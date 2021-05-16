@@ -1,0 +1,166 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>ImageCollection.AddStrip Method</TITLE>
+<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<BODY id=bodyID class=dtBODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead cellSpacing=0>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead></TD>
+    <TD class=product></TD></TR></TBODY></TABLE></DIV>
+<DIV id=TitleRow>
+<H1 class=dtH1>Изображения.ДобавитьПолосу (ImageCollection.AddStrip)&nbsp;Метод</H1></DIV></DIV>
+<DIV id=nstext>
+<H4 class=dtH4>Синтаксис</H4>
+<P>ДобавитьПолосу(&lt;Изображение&gt;)</P>
+<H4 class=dtH4>Параметры</H4>
+<DL>
+<DT><I>Изображение</I> (обязательный)</DT>
+<DD>Тип: <A href="OneScriptForms.Bitmap.html">Картинка&nbsp;(Bitmap)</A>.</DD>
+<DD>Объект <A href="OneScriptForms.Bitmap.html">Картинка&nbsp;(Bitmap)</A> с добавляемым изображением (изображениями).</DD></DL>
+<H4 class=dtH4>Возвращаемое значение</H4>
+<P>Тип: Число.</P>
+<P>Индекс добавленного изображения или -1, если изображение не может быть добавлено.</P>
+<H4 class=dtH4>Описание</H4>
+<P>Добавляет полосу изображений заданного изображения для <B>СписокИзображений&nbsp;(ImageList)</B>.</P>
+<H4 class=dtH4>Примечание</H4>
+<P></P>
+<H4 class=dtH4>Пример</H4>
+<P><PRE class=code>
+Изображения1.ДобавитьПолосу(Изображение);
+</PRE>
+<details><summary>Полный пример кода</summary>
+<P><PRE class=code>
+<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+Дерево1 = Форма1.ЭлементыУправления.Добавить(Ф.Дерево());
+Дерево1.Стыковка = Ф.СтильСтыковки.Заполнение;
+Узел1 = Дерево1.Узлы.Добавить("Узел1");
+Узел2 = Дерево1.Узлы.Добавить("Узел2");
+Узлы1 = Узел1.Узлы;
+ПодУзел1 = Узлы1.Добавить("ПодУзел1");
+Дерево1.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+
+СписокИзображений1 = Ф.СписокИзображений();
+Дерево1.СписокИзображений = СписокИзображений1;
+
+Изображения1 = СписокИзображений1.Изображения;
+Дерево1.СписокИзображений.РазмерИзображения = Ф.Размер(16, 16);
+
+Стр = "iVBORw0KGgoAAAANSUhEUgAAAEAAAAAQCAIAAAAphe5+AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACcSURBVEhLlc7BCQQxAMSwlHalpf
+|O9vw1jAipA5zuPvvvk3PPku78n+iUVN/wSfkm/pOKGX8Iv6ZdU3PBL+CX9koobfgm/pF9SccMv4Zf0Sypu+CX8kn5JxQ2/hF/SL6m44ZfwS/olFTf8En5Jv6Tihl/CL+mXVNzwS/gl/ZKKG34Jv6R
+|fUnHDL+GX9Esqbvgl/JJ+ScUNv4RfuL8//628TBZ9aFMAAAAASUVORK5CYII=";
+Изображение = Ф.Картинка(Стр);
+Изображения1.ДобавитьПолосу(Изображение);
+Дерево1.ИндексИзображения = 0;
+Дерево1.ИндексВыбранногоИзображения = 2;
+
+Пока Ф.Продолжать Цикл
+	Выполнить(Ф.ПолучитьСобытие());
+КонецЦикла;
+</DIV>
+</PRE>
+</details>
+<P></P>
+<details><summary>Тестовый код</summary>
+<P><PRE class=code>
+<a id="copy2" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select2" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont2">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+Дерево1 = Форма1.ЭлементыУправления.Добавить(Ф.Дерево());
+Дерево1.Стыковка = Ф.СтильСтыковки.Заполнение;
+Узел1 = Дерево1.Узлы.Добавить("Узел1");
+Узел2 = Дерево1.Узлы.Добавить("Узел2");
+Узлы1 = Узел1.Узлы;
+ПодУзел1 = Узлы1.Добавить("ПодУзел1");
+Дерево1.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+
+СписокИзображений1 = Ф.СписокИзображений();
+Дерево1.СписокИзображений = СписокИзображений1;
+
+Изображения1 = СписокИзображений1.Изображения;
+Дерево1.СписокИзображений.РазмерИзображения = Ф.Размер(16, 16);
+
+Стр = "iVBORw0KGgoAAAANSUhEUgAAAEAAAAAQCAIAAAAphe5+AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACcSURBVEhLlc7BCQQxAMSwlHalpf
+|O9vw1jAipA5zuPvvvk3PPku78n+iUVN/wSfkm/pOKGX8Iv6ZdU3PBL+CX9koobfgm/pF9SccMv4Zf0Sypu+CX8kn5JxQ2/hF/SL6m44ZfwS/olFTf8En5Jv6Tihl/CL+mXVNzwS/gl/ZKKG34Jv6R
+|fUnHDL+GX9Esqbvgl/JJ+ScUNv4RfuL8//628TBZ9aFMAAAAASUVORK5CYII=";
+Изображение = Ф.Картинка(Стр);
+Изображения1.ДобавитьПолосу(Изображение);
+Дерево1.ИндексИзображения = 0;
+Дерево1.ИндексВыбранногоИзображения = 2;
+
+Сообщить(?(Изображения1.Количество = 4, "", "!!! ") + "Изображения.ДобавитьПолосу (ImageCollection.AddStrip) Метод" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+</details>
+<P></P>
+<H4 class=dtH4>Смотрите также</H4>
+<P><A href="OneScriptForms.ImageCollection.html">Изображения&nbsp;(ImageCollection)&nbsp;Класс</A>| <A 
+href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P></DIV>
+<script>
+window.onload = function () {
+    var a = document.getElementById('select1');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont1'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy1');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont1'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+	
+    var c = document.getElementById('select2');
+    c.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta3 = document.getElementById('cont2'); 
+		var range3 = document.createRange();
+		range3.selectNode(ta3); 
+		window.getSelection().addRange(range3); 
+        return false;
+    }
+	
+    var d = document.getElementById('copy2');
+    d.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta4 = document.getElementById('cont2'); 
+		var range4 = document.createRange();
+		range4.selectNode(ta4); 
+		window.getSelection().addRange(range4);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range4);
+        return false;
+    }
+}
+</script>
+</BODY></HTML>
