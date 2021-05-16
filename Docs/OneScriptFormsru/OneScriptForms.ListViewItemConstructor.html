@@ -1,0 +1,268 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>ListViewItem Constructor</TITLE>
+<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<BODY id=bodyID class=dtBODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead cellSpacing=0>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead></TD>
+    <TD class=product></TD></TR></TBODY></TABLE></DIV>
+<DIV id=TitleRow>
+<H1 class=dtH1>ЭлементСпискаЭлементов (ListViewItem)&nbsp;Конструктор</H1></DIV></DIV>
+<DIV id=nstext>
+<H4 class=dtH4>Синтаксис</H4>
+<P>ЭлементСпискаЭлементов(&lt;Текст&gt;, &lt;ИндексИзображения&gt;)</P>
+<H4 class=dtH4>Параметры</H4>
+<DL>
+<DT><I>Текст</I> (необязательный)</DT>
+<DD>Тип: Строка.</DD>
+<DD>Текст, отображаемый для элемента. Значение не должно превышать 259 знаков.</DD>
+<DT><I>ИндексИзображения</I> (необязательный)</DT>
+<DD>Тип: Число.</DD>
+<DD>Начинающийся с нуля индекс изображения в объекте <B>СписокИзображений&nbsp;(ImageList)</B>, связанном с элементом управления <B>СписокЭлементов&nbsp;(ListView)</B>, содержащим данный элемент.</DD></DL>
+<H4 class=dtH4>Описание</H4>
+<P>Используйте метод <A href="OneScriptForms.OneScriptForms.ListViewItem.html">ФормыДляОдноСкрипта.ЭлементСпискаЭлементов&nbsp;(OneScriptForms.ListViewItem)</A> для создания нового экземпляра класса <A href="OneScriptForms.ListViewItem.html">ЭлементСпискаЭлементов&nbsp;(ListViewItem)</A>.</P>
+<H4 class=dtH4>Примечание</H4>
+<P></P>
+<H4 class=dtH4>Пример</H4>
+<P><PRE class=code>
+ЭлементСпискаЭлементов1 = Ф.ЭлементСпискаЭлементов("Тетраэдр", 0);
+</PRE>
+<details><summary>Полный пример кода</summary>
+<P><PRE class=code>
+<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Ширина = 750;
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+СтрКуб = "Qk0GAgAAAAAAAD4AAAAoAAAAOAAAADkAAAABAAEAAAAAAMgBAAB0EgAAdBIAAAAAAAAAAAAAAAAAAP///wD/////////AP///8H///8A////AH///wD///wAH
+|///AP//4AAH//8A//+AYQH//wD//gHhwH//AP/4D+HwH/8A/8A/4fwH/wD/AP/h/wH/APwD/+H/wH8A4A//4f/wHwCAf//h//wHAID//+H//wMAh///4f//wQCP///h///x
+|AI///+H///EAj///4f//8QCP///h///xAI///+H///EAj///4f//8QCP///h///xAI///+H///EAj///4f//8QCP///h///xAI///+H///EAj///4f//8QCP///h///xAI/
+|//+H///EAj///4f//8QCP///h///xAI///8D///EAj///AD//8QCP//gAD//xAI//wB4D//EAj/+Af4D/8QCP/AP/4B/xAI/wD//4B/EAj8A///4B8QCOAf///8BxAIgH//
+|//8BEAgB/////8AQCA//////8BAIH//////wEAgH/////8AwDwH/////APAPwD////wD8A/wD///8B/wD/wD///Af/AP/4D//wH/8A//4B/8B//wD//4B/Af//AP//4BwH/
+|/8A///4AB///wD///8Af///AP///4H///8A/////////wA=";
+СтрДодекаэдр = "Qk0WAgAAAAAAAD4AAAAoAAAAPgAAADsAAAABAAEAAAAAANgBAAB0EgAAdBIAAAAAAAAAAAAAAAAAAP///wD//////////P///4AH///8///gAAB///z/
+|8AAAAAP//P/gADxwAD/8/+AP/H8AP/z/w//8f/gP/P+H//x//4/8/4f//H//h/z/D//8f//H/P8P//x//8P8/h///H//4/z+H//8P//h/Pw///Af//H8/D//4A//8Pz4f/+B
+|g//4/Ph//gfB//h88P/8D+D//Hzw//A/+D/8POB/4P/8H/g84AeB//4PwDzgAAf//4YAHOMAD///wAMc4/A////gHxzD/j///+D/HMP+H///4/8cx/8f///j/wzH/x///8P/
+|jMf/D///x/+Mh/+P///H/4yH/4///4f/jIf/h///j/+Ej//H//+P/8SP/8f//w//xI//w///H//Ej//j//8f/8SP/+P//h//xIf/4f/+P/+Ew//x//4//wzh//AAAD/+HPD/
+|8AAAf/w8+H/gAAA/+Hz8P8P//h/w/P4fh///D+H8/w+P//+Hw/z/hw///8OH/P/CH///4Q/8/+A////wH/z/8H////g//P/4H///4H/8//wH//+A//z//wH//gP//P//wH/4
+|D//8///wH+A///z///wHgP///P///wAD///8////wA////z////wP////P/////////8";
+СтрИкосаэдр = "Qk3+AQAAAAAAAD4AAAAoAAAANwAAADgAAAABAAEAAAAAAMABAAB0EgAAdBIAAAAAAAAAAAAAAAAAAP///wD////////+AP///8////4A////A////gD//
+|/wA///+AP//8AA///4A///AQA///gD//wHGA//+AP/8B8eA//4A//Afx+Af/gD/wH/H+Af+AP8B/8f+Af4A/Af/x//AfgDwH//H//AeAMB+AAAA/AYAwAAAAAAABgCAAAAAA
+|AACAIAA/wH+AAIAgf//EP//ggCB//4Yf/+CAID//Dx//wIAiP/8fD//AgCIf/h+H/4CAIx/8P8f/CIAjD/x/w/8YgCOP+H/h/hiAI4fw//H+OIAjx/H/8Pw4gCPD4f/4fHiA
+|I+PD//x4eIAj4cf//DD4gCPxh//+EfiAI/AP//8B+IAj+B///wP4gCP4H///g/iAI/wAAAAH+IAj8AAAAAH4gCPgAAAAAPiAI4EP//8AOIAjB4f//xwIgCAPw//+HgCAID/h
+|//w/gIAgf/H//H/ggCA/8P/4f4GAMAf4f/D+A4A+Afw/8fgPgD+Afh/h4D+AP/AOD8OA/4A//AMPxgP/gD//AIeAD/+AP//gAwA//4A///gAAP//gD///gAD//+AP///gA//
+|/4A////gP///gD////j///+AP////////4A";
+СтрОктаэдр = "Qk0aAwAAAAAAAD4AAAAoAAAAQQAAAD0AAAABAAEAAAAAANwCAAB0EgAAdBIAAAAAAAAAAAAAAAAAAP///wD//////////4AAAAD////5/////4AAAAD///
+|/wf////4AAAAD////gP////4AAAAD////AD////4AAAAD///+AB////4AAAAD///4Ig////4AAAAD///wQ4P///4AAAAD///gx8H///4AAAAD///Bx+B///4AAAAD//+Dx/g
+|///4AAAAD//8Ph/wf//4AAAAD//wfj/8H//4AAAAD//g/j/+D//4AAAAD//B/j//A//4AAAAD/+D/D//wf/4AAAAD/8P/H//4P/4AAAAD/4f/H//8D/4AAAAD/g//H///B/4
+|AAAAD/B/+H///gf4AAAAD+D/+P///4P4AAAAD8P/+P///8H4AAAAD4f+AAAf//B4AAAADw4AAAAAA/g4AAAADAAAAAAAAAAYAAAADAAA+P/AAAAYAAAACAD/+P//+AAIAAAA
+|DD//+P////4YAAAADh//+H////w4AAAADw///H////h4AAAAD4f//H////D4AAAAD8P//H///+H4AAAAD+H//H///8P4AAAAD/H//H///4f4AAAAD/D//D///w/4AAAAD/h/
+|/j///h/4AAAAD/w//j///D/4AAAAD/4f/j//+H/4AAAAD/8P/j//8P/4AAAAD/+H/j//4f/4AAAAD//D/h//w//4AAAAD//j/x//h//4AAAAD//h/x//D//4AAAAD//w/x/+
+|H//4AAAAD//4fx/8P//4AAAAD//8Pw/4f//4AAAAD//+H4/w///4AAAAD///D4/h///4AAAAD///h4/D///4AAAAD///x4+H///4AAAAD///w48P///4AAAAD///4YYf///4
+|AAAAD///8MQ////4AAAAD///+EB////4AAAAD////AD////4AAAAD////gH////4AAAAD////wP////4AAAAD////4f////4AAAAD////4/////4AAAAD////9/////4AAAA
+|D//////////4AAAAA=";
+СтрТетраэдр = "Qk32AQAAAAAAAD4AAAAoAAAAPAAAADcAAAABAAEAAAAAALgBAAB0EgAAdBIAAAAAAAAAAAAAAAAAAP///wD/////////8MAAAAAAAABwgAAAAAAAADCAAA
+|AAAAAAEMAf/////8Aw4Af/////AHDhAf////wAcPHAf///8BDw8PAf//+AcPD4/Af//gHh8Ph/Af/4B+Hw/D/Af+A/w/D8P/AfgP/D8P4f/AQD/4fw/h//AA//h/D/D//AP/8
+|P8P+P//D//w/w/4f/+P/+H/D/w//4//4f8P/D//j//D/w/+H/+P/8f/D/8f/4//h/8P/w//j/+P/w//j/+P/w//D/+H/4//H/8P/8P/j/4f/w//w/+P/j//D//h/4/8P/8P/+
+|H/j/x//w//8P+P+H//D//w/4/4//8P//h/j/D//w///D+P8f//D//8P4/h//8P//4fj+P//w///h+Pw///D///D4+H//8P//8Pj4///w///4ePD///D///w48f//8P///Djh/
+|//w///+GOP///D///4Yw///8P///wjH///w////CIf///D///+Aj///8P///4AP///w////wB////D////AH///8P///+A////w////8D////D////wf///8P////j////w//
+|//+P////D/////////8A==";
+
+СписокЭлементов1 = Форма1.ЭлементыУправления.Добавить(Ф.СписокЭлементов());
+СписокЭлементов1.Стыковка = Ф.СтильСтыковки.Заполнение;
+
+// подготовим мелкие значки
+СписокИзображенийМелкие = Ф.СписокИзображений();
+СписокИзображенийМелкие.РазмерИзображения = Ф.Размер(16, 16);
+СписокИзображенийМелкие.Изображения.Добавить(Ф.Картинка(СтрТетраэдр));
+СписокИзображенийМелкие.Изображения.Добавить(Ф.Картинка(СтрКуб));
+СписокИзображенийМелкие.Изображения.Добавить(Ф.Картинка(СтрОктаэдр));
+СписокИзображенийМелкие.Изображения.Добавить(Ф.Картинка(СтрДодекаэдр));
+СписокИзображенийМелкие.Изображения.Добавить(Ф.Картинка(СтрИкосаэдр));
+СписокЭлементов1.СписокМаленькихИзображений = СписокИзображенийМелкие;
+// подготовим крупные значки
+СписокИзображенийБольшие = Ф.СписокИзображений();
+СписокИзображенийБольшие.РазмерИзображения = Ф.Размер(32, 32);
+Для А = 0 По СписокИзображенийМелкие.Изображения.Количество - 1 Цикл
+	Попытка
+		Картинка = СписокИзображенийМелкие.Изображения.Элемент(А);
+		СписокИзображенийБольшие.Изображения.Добавить(Картинка);
+	Исключение
+	КонецПопытки;
+КонецЦикла;
+СписокЭлементов1.СписокБольшихИзображений = СписокИзображенийБольшие;
+СписокЭлементов1.РежимОтображения = Ф.РежимОтображения.МаленькийЗначок;
+
+СписокЭлементов1.НачатьОбновление();
+
+Элементы = СписокЭлементов1.Элементы;
+ЭлементСпискаЭлементов1 = Ф.ЭлементСпискаЭлементов("Тетраэдр", 0);
+Тетраэдр = Элементы.Добавить(ЭлементСпискаЭлементов1);
+Куб = Элементы.Добавить(Ф.ЭлементСпискаЭлементов("Куб", 1));
+Октаэдр = Элементы.Добавить(Ф.ЭлементСпискаЭлементов("Октаэдр", 2));
+Додекаэдр = Элементы.Добавить(Ф.ЭлементСпискаЭлементов("Додекаэдр", 3));
+Икосаэдр = Элементы.Добавить(Ф.ЭлементСпискаЭлементов("Икосаэдр", 4));
+
+СписокЭлементов1.ЗавершитьОбновление();
+
+Пока Ф.Продолжать Цикл
+	Выполнить(Ф.ПолучитьСобытие());
+КонецЦикла;
+</DIV>
+</PRE>
+</details>
+<P></P>
+<details><summary>Тестовый код</summary>
+<P><PRE class=code>
+<a id="copy2" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select2" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont2">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Ширина = 750;
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+СтрКуб = "Qk0GAgAAAAAAAD4AAAAoAAAAOAAAADkAAAABAAEAAAAAAMgBAAB0EgAAdBIAAAAAAAAAAAAAAAAAAP///wD/////////AP///8H///8A////AH///wD///wAH
+|///AP//4AAH//8A//+AYQH//wD//gHhwH//AP/4D+HwH/8A/8A/4fwH/wD/AP/h/wH/APwD/+H/wH8A4A//4f/wHwCAf//h//wHAID//+H//wMAh///4f//wQCP///h///x
+|AI///+H///EAj///4f//8QCP///h///xAI///+H///EAj///4f//8QCP///h///xAI///+H///EAj///4f//8QCP///h///xAI///+H///EAj///4f//8QCP///h///xAI/
+|//+H///EAj///4f//8QCP///h///xAI///8D///EAj///AD//8QCP//gAD//xAI//wB4D//EAj/+Af4D/8QCP/AP/4B/xAI/wD//4B/EAj8A///4B8QCOAf///8BxAIgH//
+|//8BEAgB/////8AQCA//////8BAIH//////wEAgH/////8AwDwH/////APAPwD////wD8A/wD///8B/wD/wD///Af/AP/4D//wH/8A//4B/8B//wD//4B/Af//AP//4BwH/
+|/8A///4AB///wD///8Af///AP///4H///8A/////////wA=";
+СтрДодекаэдр = "Qk0WAgAAAAAAAD4AAAAoAAAAPgAAADsAAAABAAEAAAAAANgBAAB0EgAAdBIAAAAAAAAAAAAAAAAAAP///wD//////////P///4AH///8///gAAB///z/
+|8AAAAAP//P/gADxwAD/8/+AP/H8AP/z/w//8f/gP/P+H//x//4/8/4f//H//h/z/D//8f//H/P8P//x//8P8/h///H//4/z+H//8P//h/Pw///Af//H8/D//4A//8Pz4f/+B
+|g//4/Ph//gfB//h88P/8D+D//Hzw//A/+D/8POB/4P/8H/g84AeB//4PwDzgAAf//4YAHOMAD///wAMc4/A////gHxzD/j///+D/HMP+H///4/8cx/8f///j/wzH/x///8P/
+|jMf/D///x/+Mh/+P///H/4yH/4///4f/jIf/h///j/+Ej//H//+P/8SP/8f//w//xI//w///H//Ej//j//8f/8SP/+P//h//xIf/4f/+P/+Ew//x//4//wzh//AAAD/+HPD/
+|8AAAf/w8+H/gAAA/+Hz8P8P//h/w/P4fh///D+H8/w+P//+Hw/z/hw///8OH/P/CH///4Q/8/+A////wH/z/8H////g//P/4H///4H/8//wH//+A//z//wH//gP//P//wH/4
+|D//8///wH+A///z///wHgP///P///wAD///8////wA////z////wP////P/////////8";
+СтрИкосаэдр = "Qk3+AQAAAAAAAD4AAAAoAAAANwAAADgAAAABAAEAAAAAAMABAAB0EgAAdBIAAAAAAAAAAAAAAAAAAP///wD////////+AP///8////4A////A////gD//
+|/wA///+AP//8AA///4A///AQA///gD//wHGA//+AP/8B8eA//4A//Afx+Af/gD/wH/H+Af+AP8B/8f+Af4A/Af/x//AfgDwH//H//AeAMB+AAAA/AYAwAAAAAAABgCAAAAAA
+|AACAIAA/wH+AAIAgf//EP//ggCB//4Yf/+CAID//Dx//wIAiP/8fD//AgCIf/h+H/4CAIx/8P8f/CIAjD/x/w/8YgCOP+H/h/hiAI4fw//H+OIAjx/H/8Pw4gCPD4f/4fHiA
+|I+PD//x4eIAj4cf//DD4gCPxh//+EfiAI/AP//8B+IAj+B///wP4gCP4H///g/iAI/wAAAAH+IAj8AAAAAH4gCPgAAAAAPiAI4EP//8AOIAjB4f//xwIgCAPw//+HgCAID/h
+|//w/gIAgf/H//H/ggCA/8P/4f4GAMAf4f/D+A4A+Afw/8fgPgD+Afh/h4D+AP/AOD8OA/4A//AMPxgP/gD//AIeAD/+AP//gAwA//4A///gAAP//gD///gAD//+AP///gA//
+|/4A////gP///gD////j///+AP////////4A";
+СтрОктаэдр = "Qk0aAwAAAAAAAD4AAAAoAAAAQQAAAD0AAAABAAEAAAAAANwCAAB0EgAAdBIAAAAAAAAAAAAAAAAAAP///wD//////////4AAAAD////5/////4AAAAD///
+|/wf////4AAAAD////gP////4AAAAD////AD////4AAAAD///+AB////4AAAAD///4Ig////4AAAAD///wQ4P///4AAAAD///gx8H///4AAAAD///Bx+B///4AAAAD//+Dx/g
+|///4AAAAD//8Ph/wf//4AAAAD//wfj/8H//4AAAAD//g/j/+D//4AAAAD//B/j//A//4AAAAD/+D/D//wf/4AAAAD/8P/H//4P/4AAAAD/4f/H//8D/4AAAAD/g//H///B/4
+|AAAAD/B/+H///gf4AAAAD+D/+P///4P4AAAAD8P/+P///8H4AAAAD4f+AAAf//B4AAAADw4AAAAAA/g4AAAADAAAAAAAAAAYAAAADAAA+P/AAAAYAAAACAD/+P//+AAIAAAA
+|DD//+P////4YAAAADh//+H////w4AAAADw///H////h4AAAAD4f//H////D4AAAAD8P//H///+H4AAAAD+H//H///8P4AAAAD/H//H///4f4AAAAD/D//D///w/4AAAAD/h/
+|/j///h/4AAAAD/w//j///D/4AAAAD/4f/j//+H/4AAAAD/8P/j//8P/4AAAAD/+H/j//4f/4AAAAD//D/h//w//4AAAAD//j/x//h//4AAAAD//h/x//D//4AAAAD//w/x/+
+|H//4AAAAD//4fx/8P//4AAAAD//8Pw/4f//4AAAAD//+H4/w///4AAAAD///D4/h///4AAAAD///h4/D///4AAAAD///x4+H///4AAAAD///w48P///4AAAAD///4YYf///4
+|AAAAD///8MQ////4AAAAD///+EB////4AAAAD////AD////4AAAAD////gH////4AAAAD////wP////4AAAAD////4f////4AAAAD////4/////4AAAAD////9/////4AAAA
+|D//////////4AAAAA=";
+СтрТетраэдр = "Qk32AQAAAAAAAD4AAAAoAAAAPAAAADcAAAABAAEAAAAAALgBAAB0EgAAdBIAAAAAAAAAAAAAAAAAAP///wD/////////8MAAAAAAAABwgAAAAAAAADCAAA
+|AAAAAAEMAf/////8Aw4Af/////AHDhAf////wAcPHAf///8BDw8PAf//+AcPD4/Af//gHh8Ph/Af/4B+Hw/D/Af+A/w/D8P/AfgP/D8P4f/AQD/4fw/h//AA//h/D/D//AP/8
+|P8P+P//D//w/w/4f/+P/+H/D/w//4//4f8P/D//j//D/w/+H/+P/8f/D/8f/4//h/8P/w//j/+P/w//j/+P/w//D/+H/4//H/8P/8P/j/4f/w//w/+P/j//D//h/4/8P/8P/+
+|H/j/x//w//8P+P+H//D//w/4/4//8P//h/j/D//w///D+P8f//D//8P4/h//8P//4fj+P//w///h+Pw///D///D4+H//8P//8Pj4///w///4ePD///D///w48f//8P///Djh/
+|//w///+GOP///D///4Yw///8P///wjH///w////CIf///D///+Aj///8P///4AP///w////wB////D////AH///8P///+A////w////8D////D////wf///8P////j////w//
+|//+P////D/////////8A==";
+
+СписокЭлементов1 = Форма1.ЭлементыУправления.Добавить(Ф.СписокЭлементов());
+СписокЭлементов1.Стыковка = Ф.СтильСтыковки.Заполнение;
+
+// подготовим мелкие значки
+СписокИзображенийМелкие = Ф.СписокИзображений();
+СписокИзображенийМелкие.РазмерИзображения = Ф.Размер(16, 16);
+СписокИзображенийМелкие.Изображения.Добавить(Ф.Картинка(СтрТетраэдр));
+СписокИзображенийМелкие.Изображения.Добавить(Ф.Картинка(СтрКуб));
+СписокИзображенийМелкие.Изображения.Добавить(Ф.Картинка(СтрОктаэдр));
+СписокИзображенийМелкие.Изображения.Добавить(Ф.Картинка(СтрДодекаэдр));
+СписокИзображенийМелкие.Изображения.Добавить(Ф.Картинка(СтрИкосаэдр));
+СписокЭлементов1.СписокМаленькихИзображений = СписокИзображенийМелкие;
+// подготовим крупные значки
+СписокИзображенийБольшие = Ф.СписокИзображений();
+СписокИзображенийБольшие.РазмерИзображения = Ф.Размер(32, 32);
+Для А = 0 По СписокИзображенийМелкие.Изображения.Количество - 1 Цикл
+	Попытка
+		Картинка = СписокИзображенийМелкие.Изображения.Элемент(А);
+		СписокИзображенийБольшие.Изображения.Добавить(Картинка);
+	Исключение
+	КонецПопытки;
+КонецЦикла;
+СписокЭлементов1.СписокБольшихИзображений = СписокИзображенийБольшие;
+СписокЭлементов1.РежимОтображения = Ф.РежимОтображения.МаленькийЗначок;
+
+СписокЭлементов1.НачатьОбновление();
+
+Элементы = СписокЭлементов1.Элементы;
+ЭлементСпискаЭлементов1 = Ф.ЭлементСпискаЭлементов("Тетраэдр", 0);
+Тетраэдр = Элементы.Добавить(ЭлементСпискаЭлементов1);
+Куб = Элементы.Добавить(Ф.ЭлементСпискаЭлементов("Куб", 1));
+Октаэдр = Элементы.Добавить(Ф.ЭлементСпискаЭлементов("Октаэдр", 2));
+Додекаэдр = Элементы.Добавить(Ф.ЭлементСпискаЭлементов("Додекаэдр", 3));
+Икосаэдр = Элементы.Добавить(Ф.ЭлементСпискаЭлементов("Икосаэдр", 4));
+
+СписокЭлементов1.ЗавершитьОбновление();
+
+Сообщить(?(
+"" + ЭлементСпискаЭлементов1 = "КлЭлементСпискаЭлементов"
+, "", "!!! ") + "ЭлементСпискаЭлементов (ListViewItem) Конструктор" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+</details>
+<P></P>
+<H4 class=dtH4>Смотрите также</H4>
+<P><A href="OneScriptForms.ListViewItem.html">ЭлементСпискаЭлементов&nbsp;(ListViewItem)&nbsp;Класс</A>| <A 
+href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P></DIV>
+<script>
+window.onload = function () {
+    var a = document.getElementById('select1');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont1'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy1');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont1'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+	
+    var c = document.getElementById('select2');
+    c.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta3 = document.getElementById('cont2'); 
+		var range3 = document.createRange();
+		range3.selectNode(ta3); 
+		window.getSelection().addRange(range3); 
+        return false;
+    }
+	
+    var d = document.getElementById('copy2');
+    d.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta4 = document.getElementById('cont2'); 
+		var range4 = document.createRange();
+		range4.selectNode(ta4); 
+		window.getSelection().addRange(range4);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range4);
+        return false;
+    }
+}
+</script>
+</BODY></HTML>

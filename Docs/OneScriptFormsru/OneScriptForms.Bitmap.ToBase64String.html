@@ -1,0 +1,214 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Bitmap.ToBase64String Method</TITLE>
+<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<BODY id=bodyID class=dtBODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead cellSpacing=0>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead></TD>
+    <TD class=product></TD></TR></TBODY></TABLE></DIV>
+<DIV id=TitleRow>
+<H1 class=dtH1>Картинка.ЗакодироватьВСтроку (Bitmap.ToBase64String)&nbsp;Метод</H1></DIV></DIV>
+<DIV id=nstext>
+<H4 class=dtH4>Синтаксис</H4>
+<P>ЗакодироватьВСтроку(&lt;ФорматИзображения&gt;)</P>
+<H4 class=dtH4>Параметры</H4>
+<DL>
+<DT><I>ФорматИзображения</I> (необязательный)</DT>
+<DD>Тип: <A href="OneScriptForms.ImageFormat.html">ФорматИзображения&nbsp;(ImageFormat)</A>.</DD>
+<DD>Экземпляр класса <A href="OneScriptForms.ImageFormat.html">ФорматИзображения&nbsp;(ImageFormat)</A> для этого растрового объекта.</DD></DL>
+<H4 class=dtH4>Возвращаемое значение</H4>
+<P>Тип: Строка.</P>
+<P>Строковое представление Base64 растрового изображения.</P>
+<H4 class=dtH4>Описание</H4>
+<P>Преобразует объект <A href="OneScriptForms.Bitmap.html">Картинка&nbsp;(Bitmap)</A> в строку.</P>
+<H4 class=dtH4>Примечание</H4>
+<P>GDI+ компонент .NET Framework не умеет записывать формат ".ico". Поэтому в нижеследующем примере параметр ФорматИзображения1.Icon выдаст ошибку.</P>
+<H4 class=dtH4>Пример</H4>
+<P><PRE class=code>
+Стр1 = Картинка1.ЗакодироватьВСтроку();
+Стр2 = Картинка1.ЗакодироватьВСтроку(Ф.ФорматИзображения().Jpeg);
+</PRE>
+<details><summary>Полный пример кода</summary>
+<P><PRE class=code>
+<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+СтрМасленица1 = "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
+|iVR1xhsZH698dyV67cY6JnlKLP/2Q==";
+Картинка1 = Ф.Картинка(СтрМасленица1);
+Форма1.ФоновоеИзображение = Картинка1;
+Стр1 = Картинка1.ЗакодироватьВСтроку();
+Сообщить(Стр1);
+Сообщить("========================================");
+Стр2 = Картинка1.ЗакодироватьВСтроку(Ф.ФорматИзображения().Jpeg);
+Сообщить(Стр2);
+
+Пока Ф.Продолжать Цикл
+	Выполнить(Ф.ПолучитьСобытие());
+КонецЦикла;
+</DIV>
+</PRE>
+</details>
+<P></P>
+<details><summary>Тестовый код</summary>
+<P><PRE class=code>
+<a id="copy2" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select2" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont2">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+СтрМасленица1 = "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
+|iVR1xhsZH698dyV67cY6JnlKLP/2Q==";
+Картинка1 = Ф.Картинка(СтрМасленица1);
+Стр2 = Картинка1.ЗакодироватьВСтроку(Ф.ФорматИзображения().Jpeg);
+Картинка2 = Ф.Картинка(Стр2);
+Форма1.ФоновоеИзображение = Картинка2;
+
+Сообщить(?(Картинка2.Ширина = Картинка1.Ширина, "", "!!! ") + "Картинка.ЗакодироватьВСтроку (Bitmap.ToBase64String) Метод" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+</details>
+<P></P>
+<H4 class=dtH4>Смотрите также</H4>
+<P><A href="OneScriptForms.Bitmap.html">Картинка&nbsp;(Bitmap)&nbsp;Класс</A>| <A 
+href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P></DIV>
+<script>
+window.onload = function () {
+    var a = document.getElementById('select1');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont1'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy1');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont1'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+	
+    var c = document.getElementById('select2');
+    c.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta3 = document.getElementById('cont2'); 
+		var range3 = document.createRange();
+		range3.selectNode(ta3); 
+		window.getSelection().addRange(range3); 
+        return false;
+    }
+	
+    var d = document.getElementById('copy2');
+    d.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta4 = document.getElementById('cont2'); 
+		var range4 = document.createRange();
+		range4.selectNode(ta4); 
+		window.getSelection().addRange(range4);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range4);
+        return false;
+    }
+}
+</script>
+</BODY></HTML>
