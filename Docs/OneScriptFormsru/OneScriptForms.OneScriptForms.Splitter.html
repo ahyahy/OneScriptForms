@@ -1,0 +1,666 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>OneScriptForms.Splitter Method</TITLE>
+<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<BODY id=bodyID class=dtBODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead cellSpacing=0>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead></TD>
+    <TD class=product></TD></TR></TBODY></TABLE></DIV>
+<DIV id=TitleRow>
+<H1 class=dtH1>ФормыДляОдноСкрипта.Разделитель (OneScriptForms.Splitter)&nbsp;Метод</H1></DIV></DIV>
+<DIV id=nstext>
+<H4 class=dtH4>Синтаксис</H4>
+<P>Разделитель()</P>
+<H4 class=dtH4>Параметры</H4>
+<DL></DL>
+<H4 class=dtH4>Возвращаемое значение</H4>
+<P>Тип: <A href="OneScriptForms.Splitter.html">Разделитель&nbsp;(Splitter)</A>.</P>
+<H4 class=dtH4>Описание</H4>
+<P>Создаёт новый экземпляр класса <B>Разделитель&nbsp;(Splitter)</B>.</P>
+<H4 class=dtH4>Примечание</H4>
+<P></P>
+<H4 class=dtH4>Пример</H4>
+<P><PRE class=code>
+Разделитель1 = Ф.Разделитель();
+</PRE>
+<details><summary>Полный пример кода</summary>
+<P><PRE class=code>
+<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Размер = Ф.Размер(300, 150);
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+Панель0 = Форма1.ЭлементыУправления.Добавить(Ф.Панель());
+Панель0.Размер = Ф.Размер(Форма1.КлиентШирина, Форма1.КлиентВысота);
+Панель0.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+
+Разделитель1 = Панель0.ЭлементыУправления.Добавить(Ф.Разделитель());
+Разделитель1.Стыковка = Ф.СтильСтыковки.Лево;
+
+Панель1 = Панель0.ЭлементыУправления.Добавить(Ф.Панель());
+Панель1.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+Панель1.ЦветФона = Ф.Цвет().Синий;
+Панель1.Стыковка = Ф.СтильСтыковки.Лево;
+
+Разделитель2 = Панель0.ЭлементыУправления.Добавить(Ф.Разделитель());
+Разделитель2.Стыковка = Ф.СтильСтыковки.Лево;
+
+Панель2 = Панель0.ЭлементыУправления.Добавить(Ф.Панель());
+Панель2.Ширина = 50;
+Панель2.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+Панель2.ЦветФона = Ф.Цвет().Красный;
+Панель2.Стыковка = Ф.СтильСтыковки.Лево;
+
+Панель3 = Панель0.ЭлементыУправления.Добавить(Ф.Панель());
+Панель3.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+Панель3.ЦветФона = Ф.Цвет().Зеленый;
+Панель3.Стыковка = Ф.СтильСтыковки.Заполнение;
+
+Пока Ф.Продолжать Цикл
+	Выполнить(Ф.ПолучитьСобытие());
+КонецЦикла;
+</DIV>
+</PRE>
+</details>
+<P></P>
+<details><summary>Тестовый код</summary>
+<P><PRE class=code>
+<a id="copy2" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select2" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont2">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Размер = Ф.Размер(300, 150);
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+Панель0 = Форма1.ЭлементыУправления.Добавить(Ф.Панель());
+Панель0.Размер = Ф.Размер(Форма1.КлиентШирина, Форма1.КлиентВысота);
+Панель0.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+
+Разделитель1 = Панель0.ЭлементыУправления.Добавить(Ф.Разделитель());
+Разделитель1.Стыковка = Ф.СтильСтыковки.Лево;
+
+Панель1 = Панель0.ЭлементыУправления.Добавить(Ф.Панель());
+Панель1.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+Панель1.ЦветФона = Ф.Цвет().Синий;
+Панель1.Стыковка = Ф.СтильСтыковки.Лево;
+
+Разделитель2 = Панель0.ЭлементыУправления.Добавить(Ф.Разделитель());
+Разделитель2.Стыковка = Ф.СтильСтыковки.Лево;
+
+Панель2 = Панель0.ЭлементыУправления.Добавить(Ф.Панель());
+Панель2.Ширина = 50;
+Панель2.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+Панель2.ЦветФона = Ф.Цвет().Красный;
+Панель2.Стыковка = Ф.СтильСтыковки.Лево;
+
+Панель3 = Панель0.ЭлементыУправления.Добавить(Ф.Панель());
+Панель3.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+Панель3.ЦветФона = Ф.Цвет().Зеленый;
+Панель3.Стыковка = Ф.СтильСтыковки.Заполнение;
+
+Сообщить(?(
+"" + Разделитель1 = "КлРазделитель"
+, "", "!!! ") + "ФормыДляОдноСкрипта.Разделитель (OneScriptForms.Splitter) Метод" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+</details>
+<P></P>
+<hr style="border-color: lightgray;">
+<details><summary>Код примера различных вариантов деления формы с помощью разделителей:</summary>
+<P><PRE class=code>
+<a id="copy3" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select3" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont3">
+Перем Ф, Панель13, Форма1;
+
+Процедура УдалитьЭлементыУправления(ЭлементУправления)
+	ЭлУпр = ЭлементУправления;
+	Пока ЭлУпр.ЭлементыУправления.Количество > 0 Цикл
+		Эл = ЭлУпр.ЭлементыУправления.Элемент(0);
+		Если Эл.ЭлементыУправления.Количество > 0 Тогда
+			УдалитьЭлементыУправления(Эл);
+		КонецЕсли;
+		ЭлУпр.ЭлементыУправления.Удалить(Эл);
+		Эл.Освободить();
+	КонецЦикла;
+КонецПроцедуры
+
+
+Процедура Кнопка1_Нажатие()
+	//удаляем с закладки Разделитель все панели с разделителями
+	УдалитьЭлементыУправления(Панель13);
+	//создаем новые панели с разделителями
+	Разделитель1 = Ф.Разделитель();
+	Разделитель1.Родитель = Панель13;
+	Разделитель1.Стыковка = Ф.СтильСтыковки.Лево;
+
+	Панель7 = Панель13.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель7.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель7.СтильГраницы = 2;
+	Панель7.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель7.ЦветФона = Ф.Цвет().Белый;
+	Панель7.Стыковка = Ф.СтильСтыковки.Лево;
+	Надпись9 = Панель7.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись9.Текст = "Панель1";
+	Надпись9.Стыковка = Ф.СтильСтыковки.Верх;
+	
+	Панель8 = Панель13.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель8.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель8.ЦветФона = Ф.Цвет().Белый;
+	Панель8.Стыковка = Ф.СтильСтыковки.Заполнение;
+	Надпись8 = Панель8.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись8.Текст = "Панель2";
+	Надпись8.Стыковка = Ф.СтильСтыковки.Верх;
+	Надпись8.ВыравниваниеТекста = Ф.ВыравниваниеСодержимого.СерединаПраво;
+КонецПроцедуры
+
+Процедура Кнопка2_Нажатие()
+	//удаляем с закладки Разделитель все панели с разделителями
+	УдалитьЭлементыУправления(Панель13);
+	//создаем новые панели с разделителями
+	Разделитель1 = Панель13.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель1.Стыковка = Ф.СтильСтыковки.Лево;
+
+	Панель7 = Панель13.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель7.Стыковка = Ф.СтильСтыковки.Лево;
+
+	Разделитель2 = Панель13.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель2.Стыковка = Ф.СтильСтыковки.Лево;
+
+	Панель8 = Панель13.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель8.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель8.ЦветФона = Ф.Цвет().Белый;
+	Панель8.Стыковка = Ф.СтильСтыковки.Заполнение;
+	Надпись8 = Панель8.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись8.Текст = "Панель2";
+	Надпись8.Стыковка = Ф.СтильСтыковки.Верх;
+	Надпись8.ВыравниваниеТекста = Ф.ВыравниваниеСодержимого.СерединаПраво;
+	
+	Разделитель3 = Панель7.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель3.Стыковка = Ф.СтильСтыковки.Верх;
+
+	Панель10 = Панель7.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель10.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель10.ЦветФона = Ф.Цвет().Белый;
+	Панель10.Стыковка = Ф.СтильСтыковки.Верх;
+	Надпись10 = Панель10.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись10.Текст = "Панель3";
+	Надпись10.Стыковка = Ф.СтильСтыковки.Верх;
+
+	Разделитель4 = Панель7.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель4.Стыковка = Ф.СтильСтыковки.Верх;
+
+	Панель11 = Панель7.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель11.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель11.ЦветФона = Ф.Цвет().Белый;
+	Панель11.Стыковка = Ф.СтильСтыковки.Заполнение;
+	Надпись11 = Панель11.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись11.Текст = "Панель4";
+	Надпись11.Стыковка = Ф.СтильСтыковки.Низ;
+	Надпись11.ВыравниваниеТекста = Ф.ВыравниваниеСодержимого.СерединаПраво;
+КонецПроцедуры
+
+Процедура Кнопка3_Нажатие()
+	//удаляем с закладки Разделитель все панели с разделителями
+	УдалитьЭлементыУправления(Панель13);
+	//создаем новые панели с разделителями
+	Разделитель1 = Панель13.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель1.Стыковка = Ф.СтильСтыковки.Лево;
+	
+	Панель8 = Панель13.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель8.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель8.ЦветФона = Ф.Цвет().Белый;
+	Панель8.Стыковка = Ф.СтильСтыковки.Лево;
+	Надпись8 = Панель8.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись8.Текст = "Панель1";
+	Надпись8.Стыковка = Ф.СтильСтыковки.Верх;
+	
+	Панель7 = Панель13.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель7.Стыковка = Ф.СтильСтыковки.Заполнение;
+	
+	Разделитель2 = Панель7.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель2.Стыковка = Ф.СтильСтыковки.Верх;
+	
+	Панель9 = Панель7.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель9.ЦветФона = Ф.Цвет().Белый;
+	Панель9.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель9.Стыковка = Ф.СтильСтыковки.Верх;
+	Надпись9 = Панель9.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись9.Текст = "Панель3";
+	Надпись9.Стыковка = Ф.СтильСтыковки.Верх;
+	Надпись9.ВыравниваниеТекста = Ф.ВыравниваниеСодержимого.СерединаПраво;
+
+	Разделитель3 = Панель7.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель3.Стыковка = Ф.СтильСтыковки.Верх;
+
+	Панель10 = Панель7.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель10.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель10.ЦветФона = Ф.Цвет().Белый;
+	Панель10.Стыковка = Ф.СтильСтыковки.Заполнение;
+	Надпись10 = Панель10.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись10.Текст = "Панель4";
+	Надпись10.Стыковка = Ф.СтильСтыковки.Низ;
+	Надпись10.ВыравниваниеТекста = Ф.ВыравниваниеСодержимого.СерединаПраво;
+КонецПроцедуры
+
+Процедура Кнопка4_Нажатие()
+	//удаляем с закладки Разделитель все панели с разделителями
+	УдалитьЭлементыУправления(Панель13);
+	//создаем новые панели с разделителями
+	Разделитель1 = Панель13.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель1.Стыковка = Ф.СтильСтыковки.Лево;
+	
+	Панель8 = Панель13.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель8.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель8.ЦветФона = Ф.Цвет().Белый;
+	Панель8.Стыковка = Ф.СтильСтыковки.Лево;
+	Надпись8 = Панель8.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись8.Текст = "Панель1";
+	Надпись8.Стыковка = Ф.СтильСтыковки.Верх;
+	
+	Панель7 = Панель13.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель7.Стыковка = Ф.СтильСтыковки.Заполнение;
+	
+	Разделитель2 = Панель7.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель2.Стыковка = Ф.СтильСтыковки.Верх;
+	
+	Панель9 = Панель7.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель9.ЦветФона = Ф.Цвет().Белый;
+	Панель9.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель9.Стыковка = Ф.СтильСтыковки.Верх;
+	Надпись9 = Панель9.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись9.Текст = "Панель3";
+	Надпись9.Стыковка = Ф.СтильСтыковки.Верх;
+	Надпись9.ВыравниваниеТекста = Ф.ВыравниваниеСодержимого.СерединаПраво;
+
+	Разделитель3 = Панель7.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель3.Стыковка = Ф.СтильСтыковки.Верх;
+
+	Панель10 = Панель7.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель10.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель10.ЦветФона = Ф.Цвет().Белый;
+	Панель10.Стыковка = Ф.СтильСтыковки.Верх;
+	Надпись10 = Панель10.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись10.Текст = "Панель4";
+	Надпись10.Стыковка = Ф.СтильСтыковки.Верх;
+	Надпись10.ВыравниваниеТекста = Ф.ВыравниваниеСодержимого.СерединаПраво;
+	
+	Разделитель4 = Панель7.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель4.Стыковка = Ф.СтильСтыковки.Верх;
+
+	Панель11 = Панель7.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель11.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель11.ЦветФона = Ф.Цвет().Белый;
+	Панель11.Стыковка = Ф.СтильСтыковки.Заполнение;
+	Надпись11 = Панель11.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись11.Текст = "Панель5";
+	Надпись11.Стыковка = Ф.СтильСтыковки.Низ;
+	Надпись11.ВыравниваниеТекста = Ф.ВыравниваниеСодержимого.СерединаПраво;
+КонецПроцедуры
+
+Процедура Кнопка5_Нажатие()
+	//удаляем с закладки Разделитель все панели с разделителями
+	УдалитьЭлементыУправления(Панель13);
+	//создаем новые панели с разделителями
+	Разделитель1 = Панель13.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель1.Стыковка = Ф.СтильСтыковки.Лево;
+
+	Панель7 = Панель13.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель7.Стыковка = Ф.СтильСтыковки.Лево;
+
+	Разделитель2 = Панель13.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель2.Стыковка = Ф.СтильСтыковки.Лево;
+
+	Панель8 = Панель13.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель8.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель8.ЦветФона = Ф.Цвет().Белый;
+	Панель8.Стыковка = Ф.СтильСтыковки.Лево;
+	Надпись8 = Панель8.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись8.Текст = "Панель2";
+	Надпись8.Стыковка = Ф.СтильСтыковки.Верх;
+
+	Панель9 = Панель13.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель9.ЦветФона = Ф.Цвет().Белый;
+	Панель9.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель9.Стыковка = Ф.СтильСтыковки.Заполнение;
+	Надпись9 = Панель9.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись9.Текст = "Панель3";
+	Надпись9.Стыковка = Ф.СтильСтыковки.Верх;
+	Надпись9.ВыравниваниеТекста = Ф.ВыравниваниеСодержимого.СерединаПраво;
+
+	Разделитель3 = Панель7.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель3.Стыковка = Ф.СтильСтыковки.Верх;
+
+	Панель10 = Панель7.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель10.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель10.ЦветФона = Ф.Цвет().Белый;
+	Панель10.Стыковка = Ф.СтильСтыковки.Верх;
+	Надпись10 = Панель10.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись10.Текст = "Панель4";
+	Надпись10.Стыковка = Ф.СтильСтыковки.Верх;
+
+	Разделитель4 = Панель7.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель4.Стыковка = Ф.СтильСтыковки.Верх;
+
+	Панель11 = Панель7.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель11.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель11.ЦветФона = Ф.Цвет().Белый;
+	Панель11.Стыковка = Ф.СтильСтыковки.Заполнение;
+	Надпись11 = Панель11.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись11.Текст = "Панель5";
+	Надпись11.Стыковка = Ф.СтильСтыковки.Низ;
+КонецПроцедуры
+
+Процедура Кнопка6_Нажатие()
+	//удаляем с закладки Разделитель все панели с разделителями
+	УдалитьЭлементыУправления(Панель13);
+	//создаем новые панели с разделителями
+	Разделитель1 = Панель13.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель1.Стыковка = Ф.СтильСтыковки.Лево;
+
+	Панель7 = Панель13.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель7.Стыковка = Ф.СтильСтыковки.Лево;
+	Панель7.Имя = "Панель1";
+
+	Разделитель2 = Панель13.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель2.Стыковка = Ф.СтильСтыковки.Лево;
+
+	Панель8 = Панель13.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель8.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель8.ЦветФона = Ф.Цвет().Белый;
+	Панель8.Стыковка = Ф.СтильСтыковки.Лево;
+	Надпись8 = Панель8.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись8.Текст = "Панель2";
+	Надпись8.Стыковка = Ф.СтильСтыковки.Верх;
+
+	Панель9 = Панель13.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель9.ЦветФона = Ф.Цвет().Белый;
+	Панель9.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель9.Стыковка = Ф.СтильСтыковки.Заполнение;
+	Надпись9 = Панель9.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись9.Текст = "Панель3";
+	Надпись9.Стыковка = Ф.СтильСтыковки.Верх;
+	Надпись9.ВыравниваниеТекста = Ф.ВыравниваниеСодержимого.СерединаПраво;
+
+	Разделитель3 = Панель7.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель3.Стыковка = Ф.СтильСтыковки.Верх;
+
+	Панель10 = Панель7.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель10.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель10.ЦветФона = Ф.Цвет().Белый;
+	Панель10.Стыковка = Ф.СтильСтыковки.Верх;
+	Надпись10 = Панель10.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись10.Текст = "Панель4";
+	Надпись10.Стыковка = Ф.СтильСтыковки.Верх;
+
+	Разделитель4 = Панель7.ЭлементыУправления.Добавить(Ф.Разделитель());
+	Разделитель4.Стыковка = Ф.СтильСтыковки.Верх;
+
+	Панель11 = Панель7.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель11.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель11.ЦветФона = Ф.Цвет().Белый;
+	Панель11.Стыковка = Ф.СтильСтыковки.Верх;
+	Надпись11 = Панель11.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись11.Текст = "Панель5";
+	Надпись11.Стыковка = Ф.СтильСтыковки.Верх;
+
+	Панель12 = Панель7.ЭлементыУправления.Добавить(Ф.Панель());
+	Панель12.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+	Панель12.ЦветФона = Ф.Цвет().Белый;
+	Панель12.Стыковка = Ф.СтильСтыковки.Заполнение;
+	Надпись6 = Панель12.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись6.Текст = "Панель6";
+	Надпись6.Стыковка = Ф.СтильСтыковки.Низ;
+КонецПроцедуры
+
+Процедура Разделитель()
+	Панель13 = Форма1.ЭлементыУправления.Добавить(Ф.Панель());//Панель0
+	Панель13.Размер = Ф.Размер(Форма1.Размер.Ширина - 250, Форма1.Размер.Высота - 50);
+	Панель13.Имя = "Панель0";
+
+	Имя1 = Ф.Цвет().ИзRgb(255, 255, 255).Имя;
+	Имя2 = Ф.Цвет().Зеленый.Имя;
+	СтрОбщая = "/9j/4AAQSkZJRgABAQEAeAB4AAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDR
+	|gyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCABGAF8DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwI
+	|EAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKj
+	|pKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExB
+	|hJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6ws
+	|PExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDg";
+	СтрРазделитель0 = СтрОбщая + "Phn8NP8AhYv9qf8AE2/s/wCw+V/y7ebv37/9tcY2e/Wu/wD+GZf+pu/8pv8A9to/Zl/5mn/t0/8Aa1e/0AeAf8My/wD
+	|U3f8AlN/+20f8My/9Td/5Tf8A7bXv9FAHyh8R/g//AMK/8PW+rf279v8AOu1tvK+yeVjKO27O9v7mMY710Ghfs8/234e0zVv+Eo8n7daRXPlf2fu2b0Dbc+YM4zjOBXX/ALR3/JPNP/7Csf8A6Klr0DwJ/wAk
+	|88M/9gq1/wDRS0AeQf8ADMv/AFN3/lN/+20f8My/9Td/5Tf/ALbXv9FAHgH/AAzL/wBTd/5Tf/ttH/DMv/U3f+U3/wC217/RQB4B/wAMy/8AU3f+U3/7bXmPxF8D/wDCA+ILfSv7Q+3edaLc+b5Hl4y7rtxub
+	|+5nOe9fZtfMH7Rv/JQtP/7BUf8A6NloA6D9mX/maf8At0/9rV7/AF4B+zL/AMzT/wBun/tavf6ACiiigDx/9o7/AJJ5p/8A2FY//RUtegeBP+SeeGf+wVa/+ilrz/8AaO/5J5p//YVj/wDRUtegeBP+SeeGf+
+	|wVa/8AopaAOgooooAKKKKACvmD9o3/AJKFp/8A2Co//RstfT9fMH7Rv/JQtP8A+wVH/wCjZaAOg/Zl/wCZp/7dP/a1e/14B+zL/wAzT/26f+1q9/oAKKKKAPH/ANo7/knmn/8AYVj/APRUtegeBP8Aknnhn/s
+	|FWv8A6KWvP/2jv+Seaf8A9hWP/wBFS16B4E/5J54Z/wCwVa/+iloA6CiiigAooooAK+YP2jf+Shaf/wBgqP8A9Gy19P18wftG/wDJQtP/AOwVH/6NloA6D9mX/maf+3T/ANrV7/XgH7Mv/M0/9un/ALWr3+gA
+	|ooooA8f/AGjv+Seaf/2FY/8A0VLXoHgT/knnhn/sFWv/AKKWvP8A9o7/AJJ5p/8A2FY//RUtegeBP+SeeGf+wVa/+iloA6CiiigAooooAK+YP2jf+Shaf/2Co/8A0bLX0/XzB+0b/wAlC0//ALBUf/o2WgDgf
+	|DXjTxD4P+0/2FqH2T7Xs879zHJu252/fU4xuPT1rf8A+F2fEP8A6GD/AMkrf/43RRQAf8Ls+If/AEMH/klb/wDxuj/hdnxD/wChg/8AJK3/APjdFFAGP4k+Ifirxbp0dhrmqfa7WOUTKn2eJMOAQDlFB6Mfzr
+	|QsPi9470zTraws9c8u1tYlhhT7JAdqKAFGSmTgAdaKKALH/C7PiH/0MH/klb//ABuj/hdnxD/6GD/ySt//AI3RRQAf8Ls+If8A0MH/AJJW/wD8bo/4XZ8Q/wDoYP8AySt//jdFFAB/wuz4h/8AQwf+SVv/APG
+	|65jxF4o1jxbqEd/rV59quY4hCsnlJHhASQMIAOrH86KKAP//Z";
+	СтрРазделитель1 = СтрОбщая + "fhp8Nf8AhYg1T/ibf2f9h8r/AJdvN379/wDtrjGz36133/DMv/U3f+U3/wC20fsy/wDM0/8Abp/7Wr3+gDwD/hmX/qb
+	|v/Kb/APbaP+GZf+pu/wDKb/8Aba9/ooA+UfiL8If+EA8P2+rHXPt3nXa23lfZPKxlHbdne39zGMd639D/AGfP7b8P6bqv/CT+T9utIrnyvsG7ZvQNtz5gzjOM4Fdf+0b/AMk90/8A7Csf/oqWu/8AAn/JPPDP
+	|/YKtf/RS0AeQ/wDDMv8A1N3/AJTf/ttH/DMv/U3f+U3/AO217/RQB4B/wzL/ANTd/wCU3/7bR/wzL/1N3/lN/wDtte/0UAeAf8My/wDU3f8AlN/+215l8RPBH/CB+ILfSv7Q+2+daLc+b5Hl4y7rtxub+5nOe
+	|9fZlfMH7Rv/ACUHT/8AsFR/+jZaAOg/Zl/5mn/t0/8Aa1e/14B+zL/zNP8A26f+1q9/oAKKKKAPH/2jf+Se6f8A9hWP/wBFS13/AIE/5J54Z/7BVr/6KWuA/aN/5J7p/wD2FY//AEVLXf8AgT/knnhn/sFWv/
+	|opaAOhooooAKKKKACvmD9o3/koOn/9gqP/ANGy19P18wftG/8AJQdP/wCwVH/6NloAPgZ428O+Dv7e/t7UPsf2r7P5P7mSTdt8zd9xTjG4dfWvX/8Ahdvw8/6GH/ySuP8A43XkHwM8E+HfGP8Ab39vaf8AbPs
+	|v2fyf30ke3d5m77jDOdo6+lev/wDCkvh5/wBC9/5O3H/xygA/4Xb8PP8AoYf/ACSuP/jdH/C7fh5/0MP/AJJXH/xuj/hSXw8/6F7/AMnbj/45R/wpL4ef9C9/5O3H/wAcoA83+NXxE8K+LfBtnYaHqn2u6j1B
+	|JmT7PLHhBHICcuoHVh+dez+BP+SeeGf+wVa/+ilrxj41fDvwr4S8G2d/oel/ZLqTUEhZ/tEsmUMchIw7EdVH5V7P4E/5J54Z/wCwVa/+iloA6GiiigAooooAK+YP2jf+Sg6f/wBgqP8A9Gy19P18wftG/wDJQ
+	|dP/AOwVH/6NloA6D9mX/maf+3T/ANrV7/XgH7Mv/M0/9un/ALWr3+gAooooA8f/AGjf+Se6f/2FY/8A0VLXf+BP+SeeGf8AsFWv/opa4D9o3/knun/9hWP/ANFS13/gT/knnhn/ALBVr/6KWgDoaKKKACiiig
+	|Ar5g/aN/5KDp//AGCo/wD0bLX0/XzB+0b/AMlB0/8A7BUf/o2WgDg/DfjPxD4P+0f2HqH2T7XsMv7mOTdtzt++pxjcenrW7/wuv4h/9DB/5J2//wAboooAP+F1/EP/AKGD/wAk7f8A+N0f8Lr+If8A0MH/AJJ
+	|2/wD8boooAyPEXxD8U+LbCPT9b1T7XbpKJlQ28SYcAgHKKD0Y/nWhZ/Fzxzpdjb6faa55dtaxLDFH9khOxFACjJTJwAOtFFAE/wDwuv4h/wDQwf8Aknb/APxuj/hdfxD/AOhg/wDJO3/+N0UUAH/C6/iH/wBD
+	|B/5J2/8A8bo/4XX8Q/8AoYP/ACTt/wD43RRQAf8AC6/iH/0MH/knb/8Axuua8Q+J9Y8W6jFfazefarmOIQpJ5SR4QEkDCADqT+dFFAH/2Q==";
+	СтрРазделитель2 = СтрОбщая + "fhp8Nf8AhYg1T/ibf2f9h8r/AJdvN379/wDtrjGz36133/DMv/U3f+U3/wC20fsy/wDM0/8Abp/7Wr3+gDwD/hmX/qb
+	|v/Kb/APbaP+GZf+pu/wDKb/8Aba9/ooA+UfiL8If+EA8P2+rHXPt3nXa23lfZPKxlHbdne39zGMd639D/AGfP7b8P6bqv/CT+T9utIrnyvsG7ZvQNtz5gzjOM4Fdf+0b/AMk90/8A7Csf/oqWu/8AAn/JPPDP
+	|/YKtf/RS0AeQ/wDDMv8A1N3/AJTf/ttH/DMv/U3f+U3/AO217/RQB4B/wzL/ANTd/wCU3/7bR/wzL/1N3/lN/wDtte/0UAeAf8My/wDU3f8AlN/+215l8RPBH/CB+ILfSv7Q+2+daLc+b5Hl4y7rtxub+5nOe
+	|9fZlfMH7Rv/ACUHT/8AsFR/+jZaAOg/Zl/5mn/t0/8Aa1e/14B+zL/zNP8A26f+1q9/oAKKKKAPH/2jf+Se6f8A9hWP/wBFS13/AIE/5J54Z/7BVr/6KWuA/aN/5J7p/wD2FY//AEVLXf8AgT/knnhn/sFWv/
+	|opaAOhooooAKKKKACvmD9o3/koOn/9gqP/ANGy19P18wftG/8AJQdP/wCwVH/6NloA6D9mX/maf+3T/wBrV7/XgH7Mv/M0/wDbp/7Wr3+gAooooA8f/aN/5J7p/wD2FY//AEVLXH6D+zz/AG34e0zVv+Eo8n7
+	|daxXPlf2fu2b0Dbc+YM4zjOBXYftG/wDJPdP/AOwrH/6Klrv/AAJ/yTzwz/2CrX/0UtAHkP8AwzL/ANTd/wCU3/7bR/wzL/1N3/lN/wDtte/0UAeAf8My/wDU3f8AlN/+20f8My/9Td/5Tf8A7bXv9FAHgH/D
+	|Mv8A1N3/AJTf/tteX/EbwL/wr/xDb6V/aP2/zrVbnzfI8rGWdduNzf3M5z3r7Pr5g/aN/wCSg6f/ANgqP/0bLQB0H7Mv/M0/9un/ALWr3+vAP2Zf+Zp/7dP/AGtXv9ABRRRQB4/+0b/yT3T/APsKx/8AoqWu/
+	|wDAn/JPPDP/AGCrX/0UtcB+0b/yT3T/APsKx/8AoqWu/wDAn/JPPDP/AGCrX/0UtAHQ0UUUAFFFFABXzB+0b/yUHT/+wVH/AOjZa+n6+YP2jf8AkoOn/wDYKj/9Gy0AcH4b8Z+IfB/2j+w9Q+yfa9hl/cxybt
+	|udv31OMbj09a3f+F1/EP8A6GD/AMk7f/43RRQAf8Lr+If/AEMH/knb/wDxuj/hdfxD/wChg/8AJO3/APjdFFAGR4i+IfinxbYR6freqfa7dJRMqG3iTDgEA5RQejH860LP4ueOdLsbfT7TXPLtrWJYYo/skJ2
+	|IoAUZKZOAB1oooAn/AOF1/EP/AKGD/wAk7f8A+N0f8Lr+If8A0MH/AJJ2/wD8boooAP8AhdfxD/6GD/yTt/8A43R/wuv4h/8AQwf+Sdv/APG6KKAD/hdfxD/6GD/yTt//AI3XNeIfE+seLdRivtZvPtVzHEIU
+	|k8pI8ICSBhAB1J/OiigD/9k=";
+	СтрРазделитель3 = СтрОбщая + "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";
+	СтрРазделитель4 = СтрОбщая + "Phn8NP8AhYv9qf8AE2/s/wCw+V/y7ebv37/9tcY2e/Wu/wD+GZf+pu/8pv8A9to/Zl/5mn/t0/8Aa1e/0AeAf8My/wD
+	|U3f8AlN/+215/4q+GX/CM/EPRfCn9r/af7T8j/Svs2zy/MlaP7u45xtz1Gc4r6/rwD4p/8nC+Cv8Atx/9K3oAP+GZf+pu/wDKb/8AbaP+GZf+pu/8pv8A9tr3+igDwD/hmX/qbv8Aym//AG2uP+I/wf8A+Ff+
+	|HrfVv7d+3+ddrbeV9k8rGUdt2d7f3MYx3r6vrx/9o7/knmn/APYVj/8ARUtAHIaF+zz/AG34e0zVv+Eo8n7daRXPlf2fu2b0Dbc+YM4zjOBWh/wzL/1N3/lN/wDttev+BP8Aknnhn/sFWv8A6KWugoA8A/4Zl
+	|/6m7/ym/wD22vMfiL4H/wCEB8QW+lf2h9u860W583yPLxl3Xbjc39zOc96+za+YP2jf+Shaf/2Co/8A0bLQB0H7Mv8AzNP/AG6f+1q9/rwD9mX/AJmn/t0/9rV7/QAV4B8U/wDk4XwV/wBuP/pW9e/18+fFue
+	|G1+Pvg+4uJY4YIksnkkkYKqKLpySSeAAO9AH0HRXP/APCd+D/+hr0P/wAGMP8A8VR/wnfg/wD6GvQ//BjD/wDFUAdBXj/7R3/JPNP/AOwrH/6Klr0D/hO/B/8A0Neh/wDgxh/+Kryz4+eJdB1nwLY2+l63pt9
+	|Oupxu0drdJKwXypRkhSTjJHPuKAPU/An/ACTzwz/2CrX/ANFLXQVz/gT/AJJ54Z/7BVr/AOilroKACvmD9o3/AJKFp/8A2Co//RstfT9fMH7Rv/JQtP8A+wVH/wCjZaAOg/Zl/wCZp/7dP/a1e/14B+zL/wAz
+	|T/26f+1q9/oAK+dPjTpsOs/Gzwxpdw0iwXtva28jRkBgr3MikjIIzg+hr6LrwD4p/wDJwvgr/tx/9K3oA3/+GcfB/wD0Etc/7/w//GqP+GcfB/8A0Etc/wC/8P8A8ar2CigDx/8A4Zx8H/8AQS1z/v8Aw/8Ax
+	|quE+LPwm0HwJ4VtdU0u71KaeW9S3ZbqRGUKUdsjainOUHf1r6brx/8AaO/5J5p//YVj/wDRUtAHoHgT/knnhn/sFWv/AKKWugrn/An/ACTzwz/2CrX/ANFLXQUAFfMH7Rv/ACULT/8AsFR/+jZa+n6+YP2jf+
+	|Shaf8A9gqP/wBGy0AdB+zL/wAzT/26f+1q9/rwD9mX/maf+3T/ANrV7/QAV4B8U/8Ak4XwV/24/wDpW9e/14B8U/8Ak4XwV/24/wDpW9AHv9FFFABXj/7R3/JPNP8A+wrH/wCipa9grx/9o7/knmn/APYVj/8
+	|ARUtAHoHgT/knnhn/ALBVr/6KWugrn/An/JPPDP8A2CrX/wBFLXQUAFfMH7Rv/JQtP/7BUf8A6Nlr6fr5g/aN/wCShaf/ANgqP/0bLQBwPhrxp4h8H/af7C1D7J9r2ed+5jk3bc7fvqcY3Hp61v8A/C7PiH/0
+	|MH/klb//ABuiigA/4XZ8Q/8AoYP/ACSt/wD43XP6r418Ra34hste1DUPO1Ox2fZ5/JjXZscuvyqoU4Yk8g0UUAdB/wALs+If/Qwf+SVv/wDG6P8AhdnxD/6GD/ySt/8A43RRQAf8Ls+If/Qwf+SVv/8AG6x/E
+	|nxD8VeLdOjsNc1T7XaxyiZU+zxJhwCAcooPRj+dFFAGhYfF7x3pmnW1hZ655draxLDCn2SA7UUAKMlMnAA61Y/4XZ8Q/wDoYP8AySt//jdFFAB/wuz4h/8AQwf+SVv/APG65jxF4o1jxbqEd/rV59quY4hCsn
+	|lJHhASQMIAOrH86KKAP//Z";
+	СтрРазделитель5 = СтрОбщая + "fhp8Nf8AhYg1T/ibf2f9h8r/AJdvN379/wDtrjGz36133/DMv/U3f+U3/wC20fsy/wDM0/8Abp/7Wr3+gDwD/hmX/qb
+	|v/Kb/APba4HxR8M/+Ea+IOjeFRqwuf7T8j/Sfs2zy/MlaP7u45xtz1Gc4r69rwD4p/wDJwngr/tx/9K3oAP8AhmX/AKm7/wApv/22j/hmX/qbv/Kb/wDba9/ooA8A/wCGZf8Aqbv/ACm//ba5D4i/CH/hAPD9
+	|vqx1z7d512tt5X2TysZR23Z3t/cxjHevq6vH/wBo3/knun/9hWP/ANFS0Achof7Pn9t+H9N1X/hJ/J+3WkVz5X2Dds3oG258wZxnGcCtD/hmX/qbv/Kb/wDba9e8Cf8AJPPDP/YKtf8A0UtdDQB4B/wzL/1N3
+	|/lN/wDtteZfETwR/wAIH4gt9K/tD7b51otz5vkeXjLuu3G5v7mc5719mV8wftG/8lB0/wD7BUf/AKNloA6D9mX/AJmn/t0/9rV7/XgH7Mv/ADNP/bp/7Wr3+gAr5w+OGp/2J8Y/Duq+T532K0trnyt23fsuJG
+	|25wcZxjODX0fXgHxRBP7QXgvGP+XH/ANKnoAP+Gmv+pR/8qX/2qj/hpr/qUf8Aypf/AGqvf6KAPAP+Gmv+pR/8qX/2quP+I/xg/wCFgeHrfSv7C+weTdLc+b9r83OEdcY2L/fznPavq+vIP2jB/wAW/wBP6c6
+	|rH/6KloA77wJ/yTzwz/2CrX/0UtdDXPeBP+SeeGf+wVa/+ilroaACvmD9o3/koOn/APYKj/8ARstfT9fMH7Rv/JQdP/7BUf8A6NloA6D9mX/maf8At0/9rV7/AF4B+zL/AMzT/wBun/tavf6ACvAPigcftB+C
+	|8jj/AELv/wBPT17/AF84fHC6vLH4x+HbzTrf7RfQWltLbw7C/mSLcSFV2ryckAYHJoA+j6K8A/4Wn8X/APoQv/KPd/8AxdH/AAtP4v8A/Qhf+Ue7/wDi6APf68h/aLOPh9YH/qKx/wDoqWue/wCFp/F//oQv/
+	|KPd/wDxdcf8R/GnjzxH4et7PxR4Z/suxS6WVJvsE8O6QI4C7pGIPBY468UAfR3gT/knnhn/ALBVr/6KWuhrnvAn/JPPDP8A2CrX/wBFLXQ0AFfMH7Rv/JQdP/7BUf8A6Nlr6fr5g/aN/wCSg6f/ANgqP/0bLQ
+	|B0H7Mv/M0/9un/ALWr3+vAP2Zf+Zp/7dP/AGtXv9ABXgHxT/5OE8Ff9uP/AKVvXv8AXgHxT/5OE8Ff9uP/AKVvQB7/AEUUUAFeP/tG/wDJPdP/AOwrH/6Klr2CvH/2jf8Aknun/wDYVj/9FS0Ad/4E/wCSeeG
+	|f+wVa/wDopa6Gue8Cf8k88M/9gq1/9FLXQ0AFfMH7Rv8AyUHT/wDsFR/+jZa+n6+YP2jf+Sg6f/2Co/8A0bLQBwfhvxn4h8H/AGj+w9Q+yfa9hl/cxybtudv31OMbj09a3f8AhdfxD/6GD/yTt/8A43RRQAf8
+	|Lr+If/Qwf+Sdv/8AG6wdU8b+Ida1+y12/v8AztTstn2efyY12bHLr8qqFOGJPINFFAG9/wALr+If/Qwf+Sdv/wDG6P8AhdfxD/6GD/yTt/8A43RRQAf8Lr+If/Qwf+Sdv/8AG6yPEXxD8U+LbCPT9b1T7XbpK
+	|JlQ28SYcAgHKKD0Y/nRRQBoWfxc8c6XY2+n2mueXbWsSwxR/ZITsRQAoyUycADrU/8Awuv4h/8AQwf+Sdv/APG6KKAD/hdfxD/6GD/yTt//AI3XNeIfE+seLdRivtZvPtVzHEIUk8pI8ICSBhAB1J/OiigD/9k=";
+
+	Кнопка1 = Форма1.ЭлементыУправления.Добавить(Ф.Кнопка());
+	Кнопка1.Размер = Ф.Размер(100, 75);
+	Кнопка1.Верх = Панель13.Верх + 70;
+	Кнопка1.Лево = Панель13.Ширина + 20;
+	Кнопка1.Изображение = Ф.Картинка(СтрРазделитель0);
+	Кнопка1.ВыравниваниеИзображения = Ф.ВыравниваниеСодержимого.СерединаЦентр;
+	Кнопка1.Нажатие = "Кнопка1_Нажатие()";
+
+	Кнопка2 = Форма1.ЭлементыУправления.Добавить(Ф.Кнопка());
+	Кнопка2.Размер = Ф.Размер(100, 75);
+	Кнопка2.Верх = Кнопка1.Верх;
+	Кнопка2.Лево = Кнопка1.Право + 10;
+	Кнопка2.Изображение = Ф.Картинка(СтрРазделитель1);
+	Кнопка2.ВыравниваниеИзображения = Ф.ВыравниваниеСодержимого.СерединаЦентр;
+	Кнопка2.Нажатие = "Кнопка2_Нажатие()";
+
+	Кнопка3 = Форма1.ЭлементыУправления.Добавить(Ф.Кнопка());
+	Кнопка3.Размер = Ф.Размер(100, 75);
+	Кнопка3.Верх = Кнопка1.Низ + 10;
+	Кнопка3.Лево = Кнопка1.Лево;
+	Кнопка3.Изображение = Ф.Картинка(СтрРазделитель2);
+	Кнопка3.ВыравниваниеИзображения = Ф.ВыравниваниеСодержимого.СерединаЦентр;
+	Кнопка3.Нажатие = "Кнопка3_Нажатие()";
+
+	Кнопка4 = Форма1.ЭлементыУправления.Добавить(Ф.Кнопка());
+	Кнопка4.Размер = Ф.Размер(100, 75);
+	Кнопка4.Верх = Кнопка3.Верх;
+	Кнопка4.Лево = Кнопка2.Лево;
+	Кнопка4.Изображение = Ф.Картинка(СтрРазделитель3);
+	Кнопка4.ВыравниваниеИзображения = Ф.ВыравниваниеСодержимого.СерединаЦентр;
+	Кнопка4.Нажатие = "Кнопка4_Нажатие()";
+
+	Кнопка5 = Форма1.ЭлементыУправления.Добавить(Ф.Кнопка());
+	Кнопка5.Размер = Ф.Размер(100, 75);
+	Кнопка5.Верх = Кнопка4.Низ + 10;
+	Кнопка5.Лево = Кнопка3.Лево;
+	Кнопка5.Изображение = Ф.Картинка(СтрРазделитель4);
+	Кнопка5.ВыравниваниеИзображения = Ф.ВыравниваниеСодержимого.СерединаЦентр;
+	Кнопка5.Нажатие = "Кнопка5_Нажатие()";
+
+	Кнопка6 = Форма1.ЭлементыУправления.Добавить(Ф.Кнопка());
+	Кнопка6.Размер = Ф.Размер(100, 75);
+	Кнопка6.Верх = Кнопка5.Верх;
+	Кнопка6.Лево = Кнопка4.Лево;
+	Кнопка6.Изображение = Ф.Картинка(СтрРазделитель5);
+	Кнопка6.ВыравниваниеИзображения = Ф.ВыравниваниеСодержимого.СерединаЦентр;
+	Кнопка6.Нажатие = "Кнопка6_Нажатие()";
+
+	Надпись1 = Форма1.ЭлементыУправления.Добавить(Ф.Надпись());
+	Надпись1.Текст = "Выберите один из примеров.";
+	Надпись1.Размер = Ф.Размер(200, 50);
+	Надпись1.Положение = Ф.Точка(Форма1.Ширина - 220, 10);
+	Надпись1.Шрифт = Ф.Шрифт(, 10, );
+	Надпись1.ВыравниваниеТекста = Ф.ВыравниваниеСодержимого.СерединаЦентр;
+	
+	Кнопка6_Нажатие();
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Размер = Ф.Размер(800, 400);
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+Разделитель();
+
+Пока Ф.Продолжать Цикл
+	Выполнить(Ф.ПолучитьСобытие());
+КонецЦикла;
+</DIV>
+</PRE>
+</details>
+<P></P>
+<IMG src="Splitter4.jpg"></IMG>
+<H4 class=dtH4>Смотрите также</H4>
+<P><A href="OneScriptForms.OneScriptForms.html">ФормыДляОдноСкрипта&nbsp;(OneScriptForms)&nbsp;Класс</A>| <A 
+href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P></DIV>
+<script>
+window.onload = function () {
+    var a = document.getElementById('select1');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont1'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy1');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont1'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+	
+    var c = document.getElementById('select2');
+    c.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta3 = document.getElementById('cont2'); 
+		var range3 = document.createRange();
+		range3.selectNode(ta3); 
+		window.getSelection().addRange(range3); 
+        return false;
+    }
+	
+    var d = document.getElementById('copy2');
+    d.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta4 = document.getElementById('cont2'); 
+		var range4 = document.createRange();
+		range4.selectNode(ta4); 
+		window.getSelection().addRange(range4);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range4);
+        return false;
+    }
+	
+    var c = document.getElementById('select3');
+    c.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta3 = document.getElementById('cont3'); 
+		var range3 = document.createRange();
+		range3.selectNode(ta3); 
+		window.getSelection().addRange(range3); 
+        return false;
+    }
+	
+    var d = document.getElementById('copy3');
+    d.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta4 = document.getElementById('cont3'); 
+		var range4 = document.createRange();
+		range4.selectNode(ta4); 
+		window.getSelection().addRange(range4);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range4);
+        return false;
+    }
+}
+</script>
+</BODY></HTML>
