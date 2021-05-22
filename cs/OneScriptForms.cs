@@ -548,6 +548,14 @@ namespace osf
             System.Windows.Forms.Application.DoEvents();
         }
 
+        [DllImport("User32")] private static extern int ShowWindow(IntPtr hwnd, int nCmdShow);
+
+        [ContextMethod("ВосстановитьКонсоль", "RestoreConsole")]
+        public void RestoreConsole()
+        {
+            ShowWindow(GetConsoleWindow(), 9);
+        }
+
         [ContextMethod("ВыделенныйДиапазон", "SelectionRange")]
         public ClSelectionRange SelectionRange(IValue p1 = null, IValue p2 = null)
         {
@@ -1174,6 +1182,12 @@ namespace osf
             return new ClNumericUpDown();
         }
 
+        [ContextMethod("СвернутьКонсоль", "MinimizedConsole")]
+        public void MinimizedConsole()
+        {
+            ShowWindow(GetConsoleWindow(), 7);
+        }
+
         [ContextMethod("СвойстваОбъекта", "PropObj")]
         public string PropObj1(IValue p1)
         {
@@ -1209,6 +1223,14 @@ namespace osf
         public ClPropertyGrid PropertyGrid()
         {
             return new ClPropertyGrid();
+        }
+
+        [DllImport("kernel32.dll")] static extern IntPtr GetConsoleWindow();
+
+        [ContextMethod("СкрытьКонсоль", "HideConsole")]
+        public void HideConsole()
+        {
+            ShowWindow(GetConsoleWindow(), 0);
         }
 
         [ContextMethod("СловарнаяЗапись", "DictionaryEntry")]
