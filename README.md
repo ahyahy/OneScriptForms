@@ -149,5 +149,5 @@
     КонецЦикла;
 
 Получаем форму с кнопкой.
-![Пример с кнопкой](https://ahyahy.github.io/OneScriptForms/docs/Button1.png)
+![Пример с кнопкой](https://github.com/ahyahy/OneScriptForms/tree/main/docs/Button1.png)
 На этом всё, в общих чертах.
