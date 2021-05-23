@@ -148,6 +148,5 @@
         Выполнить(Ф.ПолучитьСобытие());
     КонецЦикла;
 
-Получаем форму с кнопкой.
-![Пример с кнопкой](https://github.com/ahyahy/OneScriptForms/tree/main/docs/Button1.jpg)
+Получаем форму с кнопкой.![Пример с кнопкой](https://github.com/ahyahy/OneScriptForms/tree/main/docs/Button1.jpg)
 На этом всё, в общих чертах.
