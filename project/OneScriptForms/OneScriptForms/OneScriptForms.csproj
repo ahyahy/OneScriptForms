@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7402949C-5D18-4D89-B9A9-9D64B7AA71EA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OneScriptForms</RootNamespace>
+    <AssemblyName>OneScriptForms</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="ScriptEngine, Version=1.3.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ScriptEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="ScriptEngine.HostedScript, Version=1.3.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ScriptEngine.HostedScript.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnchorStyles.cs" />
+    <Compile Include="AnnuallyBoldedDates.cs" />
+    <Compile Include="Appearance.cs" />
+    <Compile Include="Application.cs" />
+    <Compile Include="ArrayList.cs" />
+    <Compile Include="Bitmap.cs" />
+    <Compile Include="BitmapData.cs" />
+    <Compile Include="BoldedDates.cs" />
+    <Compile Include="BorderStyle.cs" />
+    <Compile Include="Brush.cs" />
+    <Compile Include="Button.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ButtonBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CancelEventArgs.cs" />
+    <Compile Include="CharacterCasing.cs" />
+    <Compile Include="CheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CheckState.cs" />
+    <Compile Include="Clipboard.cs" />
+    <Compile Include="CloseReason.cs" />
+    <Compile Include="Collection.cs" />
+    <Compile Include="CollectionBase.cs" />
+    <Compile Include="Color.cs" />
+    <Compile Include="ColorDepth.cs" />
+    <Compile Include="ColorDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ColumnClickEventArgs.cs" />
+    <Compile Include="ColumnHeader.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ColumnHeaderStyle.cs" />
+    <Compile Include="ComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ComboBoxObjectCollection.cs" />
+    <Compile Include="ComboBoxStyle.cs" />
+    <Compile Include="CommonDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Component.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ContainerControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ContentAlignment.cs" />
+    <Compile Include="ContextMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ContextMenuPopupEventArgs.cs" />
+    <Compile Include="Control.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ControlCollection.cs" />
+    <Compile Include="ControlEventArgs.cs" />
+    <Compile Include="Cursor.cs" />
+    <Compile Include="Cursors.cs" />
+    <Compile Include="DataColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataColumnCollection.cs" />
+    <Compile Include="DataGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataGridBoolColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataGridCell.cs" />
+    <Compile Include="DataGridColumnStyle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataGridComboBoxColumnStyle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataGridTableStyle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataGridTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataGridTextBoxColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataItem.cs" />
+    <Compile Include="DataRow.cs" />
+    <Compile Include="DataRowCollection.cs" />
+    <Compile Include="DataRowState.cs" />
+    <Compile Include="DataRowView.cs" />
+    <Compile Include="DataSet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataTableCollection.cs" />
+    <Compile Include="DataType.cs" />
+    <Compile Include="DataView.cs" />
+    <Compile Include="DateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Day.cs" />
+    <Compile Include="DialogResult.cs" />
+    <Compile Include="DictionaryEntry.cs" />
+    <Compile Include="DockPaddingEdges.cs" />
+    <Compile Include="DockStyle.cs" />
+    <Compile Include="DrawMode.cs" />
+    <Compile Include="Encoding.cs" />
+    <Compile Include="Environment.cs" />
+    <Compile Include="EventArgs.cs" />
+    <Compile Include="ExtractIconClass.cs" />
+    <Compile Include="FileDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FileSystemEventArgs.cs" />
+    <Compile Include="FileSystemWatcher.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FlatStyle.cs" />
+    <Compile Include="FolderBrowserDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Font.cs" />
+    <Compile Include="FontDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FontStyle.cs" />
+    <Compile Include="Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormatDateTimePicker.cs" />
+    <Compile Include="FormBorderStyle.cs" />
+    <Compile Include="FormClosingEventArgs.cs" />
+    <Compile Include="FormStartPosition.cs" />
+    <Compile Include="FormWindowState.cs" />
+    <Compile Include="Graphics.cs" />
+    <Compile Include="GridColumnStylesCollection.cs" />
+    <Compile Include="GridItem.cs" />
+    <Compile Include="GridItemCollection.cs" />
+    <Compile Include="GridItemType.cs" />
+    <Compile Include="GridTableStylesCollection.cs" />
+    <Compile Include="GroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HashTable.cs" />
+    <Compile Include="HatchBrush.cs" />
+    <Compile Include="HatchStyle.cs" />
+    <Compile Include="HorizontalAlignment.cs" />
+    <Compile Include="HScrollBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Icon.cs" />
+    <Compile Include="Image.cs" />
+    <Compile Include="ImageCollection.cs" />
+    <Compile Include="ImageFormat.cs" />
+    <Compile Include="ImageLayout.cs" />
+    <Compile Include="ImageList.cs" />
+    <Compile Include="InputBox.cs" />
+    <Compile Include="ItemActivation.cs" />
+    <Compile Include="ItemCheckEventArgs.cs" />
+    <Compile Include="KeyEventArgs.cs" />
+    <Compile Include="KeyPressEventArgs.cs" />
+    <Compile Include="Keys.cs" />
+    <Compile Include="Label.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LabelEditEventArgs.cs" />
+    <Compile Include="LeftRightAlignment.cs" />
+    <Compile Include="Link.cs" />
+    <Compile Include="LinkArea.cs" />
+    <Compile Include="LinkClickedEventArgs.cs" />
+    <Compile Include="LinkCollection.cs" />
+    <Compile Include="LinkLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LinkLabelLinkBehavior.cs" />
+    <Compile Include="LinkLabelLinkClickedEventArgs.cs" />
+    <Compile Include="ListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ListBoxObjectCollection.cs" />
+    <Compile Include="ListBoxSelectedIndexCollection.cs" />
+    <Compile Include="ListBoxSelectedObjectCollection.cs" />
+    <Compile Include="ListControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ListItem.cs" />
+    <Compile Include="ListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ListViewAlignment.cs" />
+    <Compile Include="ListViewCheckedItemCollection.cs" />
+    <Compile Include="ListViewColumnHeaderCollection.cs" />
+    <Compile Include="ListViewItem.cs" />
+    <Compile Include="ListViewItemCollection.cs" />
+    <Compile Include="ListViewSelectedItemCollection.cs" />
+    <Compile Include="ListViewSubItem.cs" />
+    <Compile Include="ListViewSubItemCollection.cs" />
+    <Compile Include="MainMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ManagedProperty.cs" />
+    <Compile Include="Math.cs" />
+    <Compile Include="Menu.cs" />
+    <Compile Include="MenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MenuItemCollection.cs" />
+    <Compile Include="MenuMerge.cs" />
+    <Compile Include="MenuNotifyIcon.cs" />
+    <Compile Include="MessageBox.cs" />
+    <Compile Include="MessageBoxButtons.cs" />
+    <Compile Include="MessageBoxIcon.cs" />
+    <Compile Include="MonthCalendar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MonthlyBoldedDates.cs" />
+    <Compile Include="MouseButtons.cs" />
+    <Compile Include="MouseEventArgs.cs" />
+    <Compile Include="MouseFlags.cs" />
+    <Compile Include="NodeLabelEditEventArgs.cs" />
+    <Compile Include="NotifyFilters.cs" />
+    <Compile Include="NotifyIcon.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NumericUpDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OneScriptForms.cs" />
+    <Compile Include="OpenFileDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PaintEventArgs.cs" />
+    <Compile Include="Panel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pen.cs" />
+    <Compile Include="PictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PictureBoxSizeMode.cs" />
+    <Compile Include="PixelFormat.cs" />
+    <Compile Include="Point.cs" />
+    <Compile Include="Process.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProcessStartInfo.cs" />
+    <Compile Include="ProcessWindowStyle.cs" />
+    <Compile Include="ProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PropertySort.cs" />
+    <Compile Include="PropertyValueChangedEventArgs.cs" />
+    <Compile Include="RadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rectangle.cs" />
+    <Compile Include="RenamedEventArgs.cs" />
+    <Compile Include="RichTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RichTextBoxFinds.cs" />
+    <Compile Include="RichTextBoxStreamType.cs" />
+    <Compile Include="SaveFileDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Screen.cs" />
+    <Compile Include="ScrollableControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ScrollBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ScrollBars.cs" />
+    <Compile Include="ScrollEventArgs.cs" />
+    <Compile Include="ScrollEventType.cs" />
+    <Compile Include="ScrollOrientation.cs" />
+    <Compile Include="SeekOrigin.cs" />
+    <Compile Include="SelectedGridItemChangedEventArgs.cs" />
+    <Compile Include="SelectionMode.cs" />
+    <Compile Include="SelectionRange.cs" />
+    <Compile Include="Shortcut.cs" />
+    <Compile Include="Size.cs" />
+    <Compile Include="SolidBrush.cs" />
+    <Compile Include="SortedList.cs" />
+    <Compile Include="SortOrder.cs" />
+    <Compile Include="SortType.cs" />
+    <Compile Include="Sound.cs" />
+    <Compile Include="Sounds.cs" />
+    <Compile Include="SpecialFolder.cs" />
+    <Compile Include="Splitter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StatusBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StatusBarPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StatusBarPanelAutoSize.cs" />
+    <Compile Include="StatusBarPanelBorderStyle.cs" />
+    <Compile Include="StatusBarPanelCollection.cs" />
+    <Compile Include="Stream.cs" />
+    <Compile Include="StreamReader.cs" />
+    <Compile Include="TabAlignment.cs" />
+    <Compile Include="TabAppearance.cs" />
+    <Compile Include="TabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TabPageCollection.cs" />
+    <Compile Include="TabSizeMode.cs" />
+    <Compile Include="TextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TextBoxBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TextureBrush.cs" />
+    <Compile Include="Timer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ToolBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ToolBarAppearance.cs" />
+    <Compile Include="ToolBarButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ToolBarButtonClickEventArgs.cs" />
+    <Compile Include="ToolBarButtonCollection.cs" />
+    <Compile Include="ToolBarButtonStyle.cs" />
+    <Compile Include="ToolBarTextAlign.cs" />
+    <Compile Include="ToolTip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TreeNode.cs" />
+    <Compile Include="TreeNodeCollection.cs" />
+    <Compile Include="TreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TreeViewAction.cs" />
+    <Compile Include="TreeViewCancelEventArgs.cs" />
+    <Compile Include="TreeViewEventArgs.cs" />
+    <Compile Include="Type.cs" />
+    <Compile Include="UpDownBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Version.cs" />
+    <Compile Include="View.cs" />
+    <Compile Include="VScrollBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WatcherChangeTypes.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

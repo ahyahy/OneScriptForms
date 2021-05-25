@@ -1,0 +1,4 @@
+C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll
+C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.pdb
+C:\444\111\OneScriptForms\OneScriptForms\obj\Debug\OneScriptForms.dll
+C:\444\111\OneScriptForms\OneScriptForms\obj\Debug\OneScriptForms.pdb
