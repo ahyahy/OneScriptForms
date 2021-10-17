@@ -91,7 +91,7 @@
             }
         }
 
-        public bool MultiLine
+        public bool Multiline
         {
             get { return M_TextBoxBase.Multiline; }
             set

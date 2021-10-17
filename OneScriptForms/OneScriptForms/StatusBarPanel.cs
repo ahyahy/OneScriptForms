@@ -12,13 +12,6 @@ namespace osf
         public ClStatusBarPanel dll_obj;
         public StatusBarPanelEx M_StatusBarPanel;
 
-        public StatusBarPanel(System.Windows.Forms.StatusBarPanel p1)
-        {
-            M_StatusBarPanel = (StatusBarPanelEx)p1;
-            M_StatusBarPanel.M_Object = this;
-            base.M_Component = M_StatusBarPanel;
-        }
-
         public StatusBarPanel(osf.StatusBarPanel p1)
         {
             M_StatusBarPanel = p1.M_StatusBarPanel;
@@ -35,6 +28,13 @@ namespace osf
             {
                 M_StatusBarPanel.Text = text;
             }
+        }
+
+        public StatusBarPanel(System.Windows.Forms.StatusBarPanel p1)
+        {
+            M_StatusBarPanel = (StatusBarPanelEx)p1;
+            M_StatusBarPanel.M_Object = this;
+            base.M_Component = M_StatusBarPanel;
         }
 
         //Свойства============================================================

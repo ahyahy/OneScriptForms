@@ -9,6 +9,11 @@
         {
         }
 
+        public Image(osf.Image p1)
+        {
+            M_Image = p1.M_Image;
+        }
+
         public Image(Stream stream)
         {
             M_Image = System.Drawing.Image.FromStream((System.IO.Stream)stream.M_Stream);
@@ -17,11 +22,6 @@
         public Image(System.Drawing.Image p1)
         {
             M_Image = p1;
-        }
-
-        public Image(osf.Image p1)
-        {
-            M_Image = p1.M_Image;
         }
 
         //Свойства============================================================

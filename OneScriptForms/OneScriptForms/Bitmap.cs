@@ -24,6 +24,12 @@ namespace osf
             OneScriptForms.AddToHashtable(M_Bitmap, this);
         }
 
+        public Bitmap(osf.Bitmap p1)
+        {
+            M_Bitmap = p1.M_Bitmap;
+            base.M_Image = M_Bitmap;
+        }
+
         public Bitmap(Size p1)
         {
             M_Bitmap = new System.Drawing.Bitmap(p1.Width, p1.Height);
@@ -38,25 +44,6 @@ namespace osf
             OneScriptForms.AddToHashtable(M_Bitmap, this);
         }
 
-        public Bitmap(System.Drawing.Bitmap p1)
-        {
-            M_Bitmap = p1;
-            base.M_Image = M_Bitmap;
-        }
-
-        public Bitmap(System.Drawing.Image p1)
-        {
-            M_Bitmap = new System.Drawing.Bitmap(p1);
-            base.M_Image = M_Bitmap;
-            OneScriptForms.AddToHashtable(M_Bitmap, this);
-        }
-
-        public Bitmap(osf.Bitmap p1)
-        {
-            M_Bitmap = p1.M_Bitmap;
-            base.M_Image = M_Bitmap;
-        }
-
         public Bitmap(string p1)
         {
             try
@@ -69,6 +56,19 @@ namespace osf
                 M_Bitmap = new System.Drawing.Bitmap(p1);
                 base.M_Image = M_Bitmap;
             }
+            OneScriptForms.AddToHashtable(M_Bitmap, this);
+        }
+
+        public Bitmap(System.Drawing.Bitmap p1)
+        {
+            M_Bitmap = p1;
+            base.M_Image = M_Bitmap;
+        }
+
+        public Bitmap(System.Drawing.Image p1)
+        {
+            M_Bitmap = new System.Drawing.Bitmap(p1);
+            base.M_Image = M_Bitmap;
             OneScriptForms.AddToHashtable(M_Bitmap, this);
         }
 

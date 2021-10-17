@@ -8,15 +8,6 @@ namespace osf
         public ClRectangle dll_obj;
         public System.Drawing.Rectangle M_Rectangle;
 
-        public Rectangle(System.Drawing.Rectangle p1)
-        {
-            M_Rectangle = p1;
-            X = p1.X;
-            Y = p1.Y;
-            Width = p1.Width;
-            Height = p1.Height;
-        }
-
         public Rectangle(int x = 0, int y = 0, int width = 0, int height = 0)
         {
             M_Rectangle = new System.Drawing.Rectangle();
@@ -29,6 +20,15 @@ namespace osf
         public Rectangle(osf.Rectangle p1)
         {
             M_Rectangle = p1.M_Rectangle;
+            X = p1.X;
+            Y = p1.Y;
+            Width = p1.Width;
+            Height = p1.Height;
+        }
+
+        public Rectangle(System.Drawing.Rectangle p1)
+        {
+            M_Rectangle = p1;
             X = p1.X;
             Y = p1.Y;
             Width = p1.Width;

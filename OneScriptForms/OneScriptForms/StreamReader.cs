@@ -8,11 +8,6 @@ namespace osf
         public ClStreamReader dll_obj;
         public System.IO.StreamReader M_StreamReader;
 
-        public StreamReader(System.IO.StreamReader p1)
-        {
-            M_StreamReader = p1;
-        }
-
         public StreamReader(osf.StreamReader p1)
         {
             M_StreamReader = p1.M_StreamReader;
@@ -21,6 +16,11 @@ namespace osf
         public StreamReader(string p1)
         {
             M_StreamReader = new System.IO.StreamReader(p1);
+        }
+
+        public StreamReader(System.IO.StreamReader p1)
+        {
+            M_StreamReader = p1;
         }
 
         //Свойства============================================================

@@ -12,12 +12,6 @@ namespace osf
         public ClToolBarButton dll_obj;
         public ToolBarButtonEx M_ToolBarButton;
 
-        public ToolBarButton(System.Windows.Forms.ToolBarButton p1)
-        {
-            M_ToolBarButton = (ToolBarButtonEx)p1;
-            M_ToolBarButton.M_Object = this;
-        }
-
         public ToolBarButton(osf.ToolBarButton p1)
         {
             M_ToolBarButton = p1.M_ToolBarButton;
@@ -29,6 +23,12 @@ namespace osf
             M_ToolBarButton = new ToolBarButtonEx();
             M_ToolBarButton.M_Object = this;
             M_ToolBarButton.Text = text;
+        }
+
+        public ToolBarButton(System.Windows.Forms.ToolBarButton p1)
+        {
+            M_ToolBarButton = (ToolBarButtonEx)p1;
+            M_ToolBarButton.M_Object = this;
         }
 
         //Свойства============================================================
@@ -55,7 +55,7 @@ namespace osf
             set { M_ToolBarButton.ImageIndex = value; }
         }
 
-        public bool ParitalPush
+        public bool PartialPush
         {
             get { return M_ToolBarButton.PartialPush; }
             set { M_ToolBarButton.PartialPush = value; }
@@ -163,11 +163,18 @@ namespace osf
             set { Base_obj.Pushed = value; }
         }
 
-        [ContextProperty("НейтральноеПоложение", "ParitalPush")]
+        [ContextProperty("НейтральноеПоложение", "PartialPush")]
+        public bool PartialPush
+        {
+            get { return Base_obj.PartialPush; }
+            set { Base_obj.PartialPush = value; }
+        }
+
+        [ContextProperty("НейтральноеПоложение2", "ParitalPush")]
         public bool ParitalPush
         {
-            get { return Base_obj.ParitalPush; }
-            set { Base_obj.ParitalPush = value; }
+            get { return Base_obj.PartialPush; }
+            set { Base_obj.PartialPush = value; }
         }
 
         [ContextProperty("Отображать", "Visible")]

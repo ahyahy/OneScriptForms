@@ -20,12 +20,6 @@ namespace osf
             M_DataTable.M_Object = this;
         }
 
-        public DataTable(System.Data.DataTable p1)
-        {
-            M_DataTable = (DataTableEx)p1;
-            M_DataTable.M_Object = this;
-        }
-
         public DataTable(osf.DataTable p1)
         {
             M_DataTable = p1.M_DataTable;
@@ -37,6 +31,12 @@ namespace osf
             M_DataTable = new DataTableEx();
             M_DataTable.M_Object = this;
             M_DataTable.TableName = p1;
+        }
+
+        public DataTable(System.Data.DataTable p1)
+        {
+            M_DataTable = (DataTableEx)p1;
+            M_DataTable.M_Object = this;
         }
 
         //Свойства============================================================

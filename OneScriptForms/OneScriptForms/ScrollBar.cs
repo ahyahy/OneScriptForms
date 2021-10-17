@@ -84,8 +84,21 @@ namespace osf
             if (Scroll.Length > 0)
             {
                 ScrollEventArgs ScrollEventArgs1 = new ScrollEventArgs();
-                ScrollEventArgs1.Sender = this;
                 ScrollEventArgs1.EventString = Scroll;
+                ScrollEventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.Scroll;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    ScrollEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    ScrollEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    ScrollEventArgs1.Parameter = null;
+                }
                 ScrollEventArgs1.OldValue = e.OldValue;
                 ScrollEventArgs1.NewValue = e.NewValue;
                 ScrollEventArgs1.ScrollOrientation = (int)e.ScrollOrientation;
@@ -104,6 +117,19 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = ValueChanged;
                 EventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.ValueChanged;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    EventArgs1.Parameter = null;
+                }
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }

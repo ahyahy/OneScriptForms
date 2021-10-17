@@ -32,12 +32,6 @@ namespace osf
             M_DataColumn.M_Object = this;
         }
 
-        public DataColumn(System.Data.DataColumn p1)
-        {
-            M_DataColumn = (DataColumnEx)p1;
-            M_DataColumn.M_Object = this;
-        }
-
         public DataColumn(osf.DataColumn p1)
         {
             M_DataColumn = p1.M_DataColumn;
@@ -53,6 +47,12 @@ namespace osf
         public DataColumn(string p1, System.Type p2)
         {
             M_DataColumn = new DataColumnEx(p1, p2);
+            M_DataColumn.M_Object = this;
+        }
+
+        public DataColumn(System.Data.DataColumn p1)
+        {
+            M_DataColumn = (DataColumnEx)p1;
             M_DataColumn.M_Object = this;
         }
 

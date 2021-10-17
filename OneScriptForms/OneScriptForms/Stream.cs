@@ -14,14 +14,14 @@ namespace osf
             M_Stream = (System.IO.Stream)new System.IO.MemoryStream();
         }
 
-        public Stream(System.IO.Stream p1)
-        {
-            M_Stream = p1;
-        }
-
         public Stream(osf.Stream p1)
         {
             M_Stream = p1.M_Stream;
+        }
+
+        public Stream(System.IO.Stream p1)
+        {
+            M_Stream = p1;
         }
 
         //Свойства============================================================

@@ -1,18 +1,16 @@
-﻿// здесь собрано всё, что необходимо для генерации .cs файлов
-// создаются они на основе анализа html страниц справки, мне так удобнее было работать
-// создаю в Notepad++ страницу для справки свойства/метода/конструктора/... затем генерирую поновой все .cs файлы
-// тестирую, подправляю
-// рекомендую для поиска - Функция СтрНайтиМежду(СтрПараметр, Фрагмент1 = Неопределено, Фрагмент2 = Неопределено, ИсключитьФрагменты = Истина, БезНаложения = Истина)
-// рабочий файл для моего компа, универсальности не придавал
+﻿// Скрипт читает файлы справки в C:\444\OneScriptFormsru\ и создает *.cs файлы в каталоге C:\444\ВыгруженныеОбъекты\
+// Из каталога C:\444\ВыгруженныеОбъекты\ файлы *.cs можно скопировать в каталог проекта.
 
 Перем СтрДирективы, СтрШапка, СтрРазделОбъявленияПеременных, СтрКонструктор, СтрBase_obj, СтрСвойства, СтрМетоды, СтрПодвал, СтрВыгрузкиПеречислений;
 Перем СтрРазделОбъявленияПеременныхДляПеречисления, СтрСвойстваДляПеречисления, СтрМетодовСистема, СписокСтрМетодовСистема;
 Перем СписокЗамен, ИменаКалассовПеречислений;
 
+Перем КаталогСправки, КаталогВыгрузки;
+
 Функция ОтобратьФайлы(Фильтр)
 	// Фильтр = Класс Конструктор Члены Свойства Свойство Методы Метод Перечисление
 	М_Фильтр = Новый Массив;
-	ВыбранныеФайлы = НайтиФайлы("C:\444", "*.html", Истина);
+	ВыбранныеФайлы = НайтиФайлы(КаталогСправки, "*.html", Истина);
 	Найдено1 = 0;
 	Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
 		ТекстДок = Новый ТекстовыйДокумент;
@@ -23,8 +21,8 @@
 			СтрЗаголовка= М[0];
 			Если (СтрНайти(СтрЗаголовка, Фильтр + "<") > 0) или (СтрНайти(СтрЗаголовка, Фильтр + " <") > 0) Тогда
 				Найдено1 = Найдено1 + 1;
-				// // Сообщить("================================================================================================");
-				// // Сообщить("" + ВыбранныеФайлы[А].ПолноеИмя + "=" + СтрЗаголовка);
+				// // // Сообщить("================================================================================================");
+				// // // Сообщить("" + ВыбранныеФайлы[А].ПолноеИмя + "=" + СтрЗаголовка);
 				// Сообщить("" + СтрЗаголовка);
 				М_Фильтр.Добавить(ВыбранныеФайлы[А].ПолноеИмя);
 			КонецЕсли;
@@ -114,26 +112,21 @@
 		ИмяКонтекстКлассаАнгл = "DataGridBoolColumn" или 
 		ИмяКонтекстКлассаАнгл = "Cursors" или 
 		ИмяКонтекстКлассаАнгл = "Cursor" или 
-		ИмяКонтекстКлассаАнгл = "ContextMenuPopupEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "ContentAlignment" или 
 		ИмяКонтекстКлассаАнгл = "ComboBoxStyle" или 
 		ИмяКонтекстКлассаАнгл = "ColumnHeaderStyle" или 
 		ИмяКонтекстКлассаАнгл = "ColumnHeader" или 
-		ИмяКонтекстКлассаАнгл = "ColumnClickEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "ColorDepth" или 
 		ИмяКонтекстКлассаАнгл = "CloseReason" или 
 		ИмяКонтекстКлассаАнгл = "BitmapData" или 
 		ИмяКонтекстКлассаАнгл = "CheckState" или 
 		ИмяКонтекстКлассаАнгл = "CharacterCasing" или 
-		ИмяКонтекстКлассаАнгл = "CancelEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "BorderStyle" или 
 		ИмяКонтекстКлассаАнгл = "DrawMode" или 
 		ИмяКонтекстКлассаАнгл = "Encoding" или 
-		ИмяКонтекстКлассаАнгл = "FileSystemEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "FontStyle" или 
 		ИмяКонтекстКлассаАнгл = "FormatDateTimePicker" или 
 		ИмяКонтекстКлассаАнгл = "FormBorderStyle" или 
-		ИмяКонтекстКлассаАнгл = "FormClosingEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "FormStartPosition" или 
 		ИмяКонтекстКлассаАнгл = "FormWindowState" или 
 		ИмяКонтекстКлассаАнгл = "GridItemType" или 
@@ -145,15 +138,10 @@
 		ИмяКонтекстКлассаАнгл = "ImageLayout" или 
 		ИмяКонтекстКлассаАнгл = "ImageList" или 
 		ИмяКонтекстКлассаАнгл = "ItemActivation" или 
-		ИмяКонтекстКлассаАнгл = "ItemCheckEventArgs" или 
-		ИмяКонтекстКлассаАнгл = "KeyEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "Keys" или 
-		ИмяКонтекстКлассаАнгл = "LabelEditEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "LeftRightAlignment" или 
 		ИмяКонтекстКлассаАнгл = "LinkArea" или 
-		ИмяКонтекстКлассаАнгл = "LinkClickedEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "LinkLabelLinkBehavior" или 
-		ИмяКонтекстКлассаАнгл = "LinkLabelLinkClickedEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "ListViewAlignment" или 
 		ИмяКонтекстКлассаАнгл = "ListViewCheckedItemCollection" или 
 		ИмяКонтекстКлассаАнгл = "ListViewItem" или 
@@ -161,17 +149,12 @@
 		ИмяКонтекстКлассаАнгл = "ListViewSubItem" или 
 		ИмяКонтекстКлассаАнгл = "MenuItemCollection" или 
 		ИмяКонтекстКлассаАнгл = "MenuMerge" или 
-		ИмяКонтекстКлассаАнгл = "MenuNotifyIcon" или 
 		ИмяКонтекстКлассаАнгл = "MessageBox" или 
 		ИмяКонтекстКлассаАнгл = "MessageBoxButtons" или 
 		ИмяКонтекстКлассаАнгл = "MessageBoxIcon" или 
 		ИмяКонтекстКлассаАнгл = "MouseButtons" или 
-		ИмяКонтекстКлассаАнгл = "MouseEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "MouseFlags" или 
-		ИмяКонтекстКлассаАнгл = "NodeLabelEditEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "NotifyFilters" или 
-		ИмяКонтекстКлассаАнгл = "NotifyIcon" или 
-		ИмяКонтекстКлассаАнгл = "PaintEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "Pen" или 
 		ИмяКонтекстКлассаАнгл = "PictureBoxSizeMode" или 
 		ИмяКонтекстКлассаАнгл = "PixelFormat" или 
@@ -180,12 +163,10 @@
 		ИмяКонтекстКлассаАнгл = "ProcessWindowStyle" или 
 		ИмяКонтекстКлассаАнгл = "PropertySort" или 
 		ИмяКонтекстКлассаАнгл = "Rectangle" или 
-		ИмяКонтекстКлассаАнгл = "RenamedEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "RichTextBoxFinds" или 
 		ИмяКонтекстКлассаАнгл = "RichTextBoxStreamType" или 
 		ИмяКонтекстКлассаАнгл = "Screen" или 
 		ИмяКонтекстКлассаАнгл = "ScrollBars" или 
-		ИмяКонтекстКлассаАнгл = "ScrollEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "ScrollEventType" или 
 		ИмяКонтекстКлассаАнгл = "ScrollOrientation" или 
 		ИмяКонтекстКлассаАнгл = "SeekOrigin" или 
@@ -206,18 +187,15 @@
 		ИмяКонтекстКлассаАнгл = "TabAppearance" или 
 		ИмяКонтекстКлассаАнгл = "TabSizeMode" или 
 		ИмяКонтекстКлассаАнгл = "TextureBrush" или 
-		ИмяКонтекстКлассаАнгл = "Timer" или 
 		ИмяКонтекстКлассаАнгл = "ToolBarAppearance" или 
 		ИмяКонтекстКлассаАнгл = "ToolBarButton" или 
-		ИмяКонтекстКлассаАнгл = "ToolBarButtonClickEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "ToolBarButtonCollection" или 
 		ИмяКонтекстКлассаАнгл = "ToolBarButtonStyle" или 
 		ИмяКонтекстКлассаАнгл = "ToolBarTextAlign" или 
 		ИмяКонтекстКлассаАнгл = "TreeViewAction" или 
-		ИмяКонтекстКлассаАнгл = "TreeViewCancelEventArgs" или 
-		ИмяКонтекстКлассаАнгл = "TreeViewEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "Version" или 
 		ИмяКонтекстКлассаАнгл = "WatcherChangeTypes" или 
+		ИмяКонтекстКлассаАнгл = "ControlStyles" или 
 		ИмяКонтекстКлассаАнгл = "Appearance" Тогда
 		Стр = 
 		"using ScriptEngine.Machine.Contexts;
@@ -248,7 +226,9 @@
 		ИмяКонтекстКлассаАнгл = "MonthlyBoldedDates" или
 		ИмяКонтекстКлассаАнгл = "SelectionRange" или
 		ИмяКонтекстКлассаАнгл = "TreeNodeCollection" или
-		ИмяКонтекстКлассаАнгл = "Bitmap" Тогда
+		ИмяКонтекстКлассаАнгл = "Bitmap" или 
+		ИмяКонтекстКлассаАнгл = "KeyPressEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "FileSystemWatcher" Тогда
 		Стр = 
 		"using System;
 		|using ScriptEngine.Machine.Contexts;
@@ -257,7 +237,6 @@
 		|";
 		Возврат Стр;
 	ИначеЕсли ИмяКонтекстКлассаАнгл = "Application" или 
-		ИмяКонтекстКлассаАнгл = "EventArgs" или 
 		ИмяКонтекстКлассаАнгл = "Environment" Тогда
 		Стр = 
 		"using ScriptEngine.Machine.Contexts;
@@ -294,6 +273,7 @@
 	ИначеЕсли ИмяКонтекстКлассаАнгл = "Button" или 
 		ИмяКонтекстКлассаАнгл = "DateTimePicker" или 
 		ИмяКонтекстКлассаАнгл = "DataGrid" или 
+		ИмяКонтекстКлассаАнгл = "EventArgs" или 
 		ИмяКонтекстКлассаАнгл = "ComboBoxObjectCollection" или 
 		ИмяКонтекстКлассаАнгл = "Color" или 
 		ИмяКонтекстКлассаАнгл = "GroupBox" или 
@@ -381,10 +361,31 @@
 		ИмяКонтекстКлассаАнгл = "ManagedProperty" или 
 		ИмяКонтекстКлассаАнгл = "Math" или 
 		ИмяКонтекстКлассаАнгл = "MenuItem" или 
+		ИмяКонтекстКлассаАнгл = "MenuNotifyIcon" или 
+		ИмяКонтекстКлассаАнгл = "NotifyIcon" или 
 		ИмяКонтекстКлассаАнгл = "PropertyValueChangedEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "SelectedGridItemChangedEventArgs" или
+		ИмяКонтекстКлассаАнгл = "Timer" или 
 		ИмяКонтекстКлассаАнгл = "ToolTip" или
 		ИмяКонтекстКлассаАнгл = "TreeNode" или
+		ИмяКонтекстКлассаАнгл = "CancelEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "ColumnClickEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "FileSystemEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "FormClosingEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "ItemCheckEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "KeyEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "LabelEditEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "LinkClickedEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "LinkLabelLinkClickedEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "MouseEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "NodeLabelEditEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "PaintEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "RenamedEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "ScrollEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "ToolBarButtonClickEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "TreeViewCancelEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "TreeViewEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "ContextMenuPopupEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "ControlCollection" Тогда
 		Стр = 
 		"using ScriptEngine.Machine.Contexts;
@@ -414,10 +415,8 @@
 	ИначеЕсли ИмяКонтекстКлассаАнгл = "DataGridTextBox" или 
 		ИмяКонтекстКлассаАнгл = "GridTableStylesCollection" или 
 		ИмяКонтекстКлассаАнгл = "Icon" или 
-		ИмяКонтекстКлассаАнгл = "KeyPressEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "ListBoxSelectedIndexCollection" или 
-		ИмяКонтекстКлассаАнгл = "Stream" или 
-		ИмяКонтекстКлассаАнгл = "FileSystemWatcher" Тогда
+		ИмяКонтекстКлассаАнгл = "Stream" Тогда
 		Стр = 
 		"using System;
 		|using ScriptEngine.Machine.Contexts;
@@ -581,10 +580,10 @@
 		Стр = 
 		"        public ClListBox M_obj;";
 	ИначеЕсли ИмяКласса = "BoldedDates" или 
-			ИмяКласса = "AnnuallyBoldedDates" или
+			ИмяКласса = "AnnuallyBoldedDates" или 
 			ИмяКласса = "MonthlyBoldedDates" Тогда
 		Стр = 
-		"        public System.DateTime[] M_Object;";
+		"        public osf.MonthCalendar M_MonthCalendar;";
 	ИначеЕсли ИмяКласса = "MonthCalendar" Тогда
 		Стр = 
 		"        private ClAnnuallyBoldedDates annuallyBoldedDates;
@@ -963,12 +962,33 @@
 		|        }//end_constr
 		|";
 	ИначеЕсли ИмяКласса = "Clipboard"  или 
-			ИмяКласса = "BoldedDates" или 
-			ИмяКласса = "AnnuallyBoldedDates" или 
 			ИмяКласса = "Math" или 
-			ИмяКласса = "InputBox" или 
-			ИмяКласса = "MonthlyBoldedDates" Тогда
+			ИмяКласса = "InputBox" Тогда
 		Стр = "";
+	ИначеЕсли ИмяКласса = "BoldedDates" Тогда
+		Стр = 
+		"        public System.DateTime[] M_Object
+		|        {
+		|            get { return M_MonthCalendar.BoldedDates; }
+		|            set { M_MonthCalendar.BoldedDates = value; }
+		|        }//end_constr
+		|		";
+	ИначеЕсли ИмяКласса = "AnnuallyBoldedDates" Тогда
+		Стр = 
+		"        public System.DateTime[] M_Object
+		|        {
+		|            get { return M_MonthCalendar.AnnuallyBoldedDates; }
+		|            set { M_MonthCalendar.AnnuallyBoldedDates = value; }
+		|        }//end_constr
+		|		";
+	ИначеЕсли ИмяКласса = "MonthlyBoldedDates" Тогда
+		Стр = 
+		"        public System.DateTime[] M_Object
+		|        {
+		|            get { return M_MonthCalendar.MonthlyBoldedDates; }
+		|            set { M_MonthCalendar.MonthlyBoldedDates = value; }
+		|        }//end_constr
+		|		";
 	ИначеЕсли ИмяКласса = "SolidBrush" Тогда
 		Стр = 
 		"        public ClSolidBrush(Color p1)
@@ -998,35 +1018,83 @@
 		Стр = 
 		"        public ClType(IValue p1)
 		|        {
-		|            Type Type1 = null;
+		|            dynamic Type1 = null;
 		|            if (p1.SystemType.Name == ""Строка"")
 		|            {
 		|                string p2 = p1.AsString();
 		|                try
 		|                {
-		|                    string str1 = """";
-		|                    string str2 = """";
-		|                    var a = Assembly.GetExecutingAssembly();
-		|                    var allTypes = a.GetTypes();
-		|                    foreach (var type1 in allTypes)
+		|                    if (p2 == ""System.Drawing.Bitmap"")
 		|                    {
-		|                        try
-		|                        {
-		|                            str1 = type1.GetCustomAttribute<ContextClassAttribute>().GetName();
-		|                            str2 = type1.GetCustomAttribute<ContextClassAttribute>().GetAlias();
-		|                        }
-		|                        catch { }
-		|                        if (str1.Replace(""Кл"", """") == p2 || str2.Replace(""Cl"", """") == p2)
-		|                        {
-		|                            Type1 = new Type(type1);
-		|                            break;
-		|                        }
-		|                        else
-		|                        {
-		|                        }
+		|                        Type1 = (new System.Drawing.Bitmap(10, 10)).GetType();
+		|                    }
+		|                    else
+		|                    {
+		|                        Type1 = osf.OneScriptForms.GetTypeFromName(p2);
 		|                    }
 		|                }
 		|                catch { }
+		|                if (Type1 != null)
+		|                {
+		|                    Base_obj = Type1;
+		|                    return;
+		|                }
+		|                if (p2.Contains(""osf.""))
+		|                {
+		|                    try
+		|                    {
+		|                        var a = Assembly.GetExecutingAssembly();
+		|                        var allTypes = a.GetTypes();
+		|                        foreach (var type1 in allTypes)
+		|                        {
+		|                            string str1 = """";
+		|                            string str2 = """";
+		|                            try
+		|                            {
+		|                                str1 = type1.GetCustomAttribute<ContextClassAttribute>().GetName();
+		|                                str2 = type1.GetCustomAttribute<ContextClassAttribute>().GetAlias();
+		|                            }
+		|                            catch { }
+		|                            if ( type1.ToString() == p2)
+		|                            {
+		|                                Type1 = new Type(type1);
+		|                                break;
+		|                            }
+		|                            else
+		|                            {
+		|                            }
+		|                        }
+		|                    }
+		|                    catch { }
+		|                }
+		|                else
+		|                {
+		|                    try
+		|                    {
+		|                        var a = Assembly.GetExecutingAssembly();
+		|                        var allTypes = a.GetTypes();
+		|                        foreach (var type1 in allTypes)
+		|                        {
+		|                            string str1 = """";
+		|                            string str2 = """";
+		|                            try
+		|                            {
+		|                                str1 = type1.GetCustomAttribute<ContextClassAttribute>().GetName();
+		|                                str2 = type1.GetCustomAttribute<ContextClassAttribute>().GetAlias();
+		|                            }
+		|                            catch { }
+		|                            if (str1.Replace(""Кл"", """") == p2 || str2.Replace(""Cl"", """") == p2)
+		|                            {
+		|                                Type1 = new Type(type1);
+		|                                break;
+		|                            }
+		|                            else
+		|                            {
+		|                            }
+		|                        }
+		|                    }
+		|                    catch { }
+		|                }
 		|            }
 		|            else
 		|            {
@@ -1301,11 +1369,11 @@
 		|            MonthCalendar1.dll_obj = this;
 		|            Base_obj = MonthCalendar1;
 		|            boldedDates = new ClBoldedDates();
-		|            boldedDates.M_Object = Base_obj.BoldedDates;
+		|            boldedDates.M_MonthCalendar = Base_obj;
 		|            annuallyBoldedDates = new ClAnnuallyBoldedDates();
-		|            annuallyBoldedDates.M_Object = Base_obj.AnnuallyBoldedDates;
+		|            annuallyBoldedDates.M_MonthCalendar = Base_obj;
 		|            monthlyBoldedDates = new ClMonthlyBoldedDates();
-		|            monthlyBoldedDates.M_Object = Base_obj.MonthlyBoldedDates;
+		|            monthlyBoldedDates.M_MonthCalendar = Base_obj;
 		|        }//end_constr
 		|
 		|        public ClMonthCalendar(MonthCalendar p1)
@@ -1314,11 +1382,11 @@
 		|            MonthCalendar1.dll_obj = this;
 		|            Base_obj = MonthCalendar1;
 		|            boldedDates = new ClBoldedDates();
-		|            boldedDates.M_Object = Base_obj.BoldedDates;
+		|            boldedDates.M_MonthCalendar = Base_obj;
 		|            annuallyBoldedDates = new ClAnnuallyBoldedDates();
-		|            annuallyBoldedDates.M_Object = Base_obj.AnnuallyBoldedDates;
+		|            annuallyBoldedDates.M_MonthCalendar = Base_obj;
 		|            monthlyBoldedDates = new ClMonthlyBoldedDates();
-		|            monthlyBoldedDates.M_Object = Base_obj.MonthlyBoldedDates;
+		|            monthlyBoldedDates.M_MonthCalendar = Base_obj;
 		|        }//end_constr
 		|";
 	ИначеЕсли ИмяКласса = "TreeNode" Тогда
@@ -1556,6 +1624,11 @@
 		"        public DataGridComboBoxColumn Base_obj;
 		|";
 		Возврат Стр;
+	ИначеЕсли ИмяКласса = "Type" Тогда
+		Стр = 
+		"        public dynamic Base_obj;
+		|";
+		Возврат Стр;
 	КонецЕсли;
 	Стр = 
 	"        public " + ИмяКласса + " Base_obj;
@@ -1565,7 +1638,7 @@
 
 Функция Свойства(ИмяФайлаЧленов, ИмяКонтекстКлассаАнгл)
 	ТекстДок = Новый ТекстовыйДокумент;
-	ТекстДок.Прочитать("C:\444\OneScriptFormsru\OneScriptForms.html");
+	ТекстДок.Прочитать(КаталогСправки + "\OneScriptForms.html");
 	Стр = ТекстДок.ПолучитьТекст();
 	//находим текст таблицы
 	СтрТаблица = СтрНайтиМежду(Стр, "<H3 class=dtH3>Перечисления</H3>", "</TBODY></TABLE>", Ложь, );
@@ -1620,7 +1693,7 @@
 			СтрХ = М07[0];
 			СтрХ = СтрЗаменить(СтрХ, "&nbsp;", " ");
 			
-			ИмяФайлаСвойства = "C:\444\OneScriptFormsru\" + СтрНайтиМежду(СтрХ, "<A href=""", """>", , )[0];
+			ИмяФайлаСвойства = КаталогСправки + "\" + СтрНайтиМежду(СтрХ, "<A href=""", """>", , )[0];
 			ТекстДокСвойства = Новый ТекстовыйДокумент;
 			ТекстДокСвойства.Прочитать(ИмяФайлаСвойства);
 			СтрТекстДокСвойства = ТекстДокСвойства.ПолучитьТекст();
@@ -1719,12 +1792,21 @@
 				|        }
 				|        
 				|";
-			ИначеЕсли СвойствоРус = "Отправитель" Тогда
+			ИначеЕсли (СвойствоРус = "Отправитель") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
 				"        [ContextProperty(""Отправитель"", ""Sender"")]
 				|        public IValue Sender
 				|        {
 				|            get { return OneScriptForms.RevertObj(((dynamic)Event).Base_obj.Sender); }
+				|        }
+				|        
+				|";
+			ИначеЕсли СвойствоРус = "Отправитель" Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Отправитель"", ""Sender"")]
+				|        public IValue Sender
+				|        {
+				|            get { return OneScriptForms.RevertObj(Base_obj.Sender); }
 				|        }
 				|        
 				|";
@@ -1747,12 +1829,136 @@
 				|        
 				|";
 			ИначеЕсли (СвойствоРус = "ПриЗакрытии") и (ИмяКонтекстКлассаАнгл = "Form") Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        private IValue _FormClosing;";
 				Стр = Стр +
 				"        [ContextProperty(""ПриЗакрытии"", ""FormClosing"")]
-				|        public string FormClosing
+				|        public IValue FormClosing
 				|        {
-				|            get { return Base_obj.Closing; }
-				|            set { Base_obj.Closing = value; }
+				|            get
+				|            {
+				|                if (Base_obj.Closing.Contains(""ScriptEngine.HostedScript.Library.DelegateAction""))
+				|                {
+				|                    return _FormClosing;
+				|                }
+				|                else if (Base_obj.Closing.Contains(""osf.ClDictionaryEntry""))
+				|                {
+				|                    return _FormClosing;
+				|                }
+				|                else
+				|                {
+				|                    return ValueFactory.Create((string)Base_obj.Closing);
+				|                }
+				|            }
+				|            set
+				|            {
+				|                if (value.GetType().ToString() == ""ScriptEngine.HostedScript.Library.DelegateAction"")
+				|                {
+				|                    _FormClosing = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+				|                    Base_obj.Closing = ""ScriptEngine.HostedScript.Library.DelegateAction"" + ""FormClosing"";
+				|                }
+				|                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
+				|                {
+				|                    _FormClosing = value;
+				|                    Base_obj.Closing = ""osf.ClDictionaryEntry"" + ""FormClosing"";
+				|                }
+				|                else
+				|                {
+				|                    Base_obj.Closing = value.AsString();
+				|                }
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли СвойствоРус = "ПриАктивизации" или 
+				СвойствоРус = "ПослеРедактированияНадписи" или 
+				СвойствоРус = "ПослеВыбора" или 
+				СвойствоРус = "ПередРазвертыванием" или 
+				СвойствоРус = "ПередРедактированиемНадписи" или 
+				СвойствоРус = "ПриНажатииКнопки" или 
+				СвойствоРус = "ПриИзменении" или 
+				СвойствоРус = "ПометкаИзменена" или 
+				СвойствоРус = "Нажатие" или 
+				СвойствоРус = "КолонкаНажатие" или 
+				СвойствоРус = "ЭлементДобавлен" или 
+				СвойствоРус = "ЭлементУдален" или 
+				СвойствоРус = "ПриСоздании" или 
+				СвойствоРус = "ТекущаяЯчейкаИзменена" или 
+				СвойствоРус = "ПриДеактивации" или 
+				СвойствоРус = "ПриУдалении" или 
+				СвойствоРус = "ДвойноеНажатие" или 
+				СвойствоРус = "ПриВыпадении" или 
+				СвойствоРус = "ПриВходе" или 
+				СвойствоРус = "ПриАктивизацииЭлемента" или 
+				СвойствоРус = "ЭлементПомечен" или 
+				СвойствоРус = "КлавишаВниз" или 
+				СвойствоРус = "КлавишаНажата" или 
+				СвойствоРус = "КлавишаВверх" или 
+				СвойствоРус = "ПриУходе" или 
+				СвойствоРус = "СсылкаНажата" или 
+				СвойствоРус = "ПриЗагрузке" или 
+				СвойствоРус = "ПоложениеИзменено" или 
+				СвойствоРус = "ПриПотереФокуса" или 
+				СвойствоРус = "ДатаИзменена" или 
+				СвойствоРус = "ДатаВыбрана" или 
+				СвойствоРус = "ИндексВыбранногоИзменен" или 
+				СвойствоРус = "ПриНажатииКнопкиМыши" или 
+				СвойствоРус = "МышьНадЭлементом" или 
+				СвойствоРус = "ПриЗадержкеМыши" или 
+				СвойствоРус = "МышьПокинулаЭлемент" или 
+				СвойствоРус = "ПриПеремещенииМыши" или 
+				СвойствоРус = "ПриОтпусканииМыши" или 
+				СвойствоРус = "ПриПеремещении" или 
+				СвойствоРус = "ПриПерерисовке" или 
+				СвойствоРус = "ПриПоявлении" или 
+				СвойствоРус = "ЗначениеСвойстваИзменено" или 
+				СвойствоРус = "ПриПереименовании" или 
+				СвойствоРус = "ПриПрокручивании" или 
+				СвойствоРус = "ВыбранныйЭлементСеткиИзменен" или 
+				СвойствоРус = "ИндексВыбранногоИзменен" или 
+				СвойствоРус = "ВыделениеИзменено" или 
+				СвойствоРус = "РазмерИзменен" или 
+				СвойствоРус = "ТекстИзменен" или 
+				СвойствоРус = "ПриСрабатыванииТаймера" или 
+				СвойствоРус = "ЗначениеИзменено" Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        private IValue _" + СвойствоАнгл + ";";
+				Стр = Стр +
+				"        [ContextProperty(""" + СвойствоРус + """, """ + СвойствоАнгл + """)]
+				|        public IValue " + СвойствоАнгл + "
+				|        {
+				|            get
+				|            {
+				|                if (Base_obj." + СвойствоАнгл + ".Contains(""ScriptEngine.HostedScript.Library.DelegateAction""))
+				|                {
+				|                    return _" + СвойствоАнгл + ";
+				|                }
+				|                else if (Base_obj." + СвойствоАнгл + ".Contains(""osf.ClDictionaryEntry""))
+				|                {
+				|                    return _" + СвойствоАнгл + ";
+				|                }
+				|                else
+				|                {
+				|                    return ValueFactory.Create((string)Base_obj." + СвойствоАнгл + ");
+				|                }
+				|            }
+				|            set
+				|            {
+				|                if (value.GetType().ToString() == ""ScriptEngine.HostedScript.Library.DelegateAction"")
+				|                {
+				|                    _" + СвойствоАнгл + " = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+				|                    Base_obj." + СвойствоАнгл + " = ""ScriptEngine.HostedScript.Library.DelegateAction"" + """ + СвойствоАнгл + """;
+				|                }
+				|                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
+				|                {
+				|                    _" + СвойствоАнгл + " = value;
+				|                    Base_obj." + СвойствоАнгл + " = ""osf.ClDictionaryEntry"" + """ + СвойствоАнгл + """;
+				|                }
+				|                else
+				|                {
+				|                    Base_obj." + СвойствоАнгл + " = value.AsString();
+				|                }
+				|            }
 				|        }
 				|        
 				|";
@@ -2166,6 +2372,65 @@
 				|        public IValue DpiY
 				|        {
 				|            get { return ValueFactory.Create((Convert.ToDecimal(Base_obj.DpiY))); }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Имя") и (ИмяКонтекстКлассаАнгл = "Type") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Имя"", ""Имя"")]
+				|        public string Name1
+				|        {
+				|            get
+				|            {
+				|                string str1 = """";
+				|                if (this.ToString().Contains(""osf.""))
+				|                {
+				|                    var a = Assembly.GetExecutingAssembly();
+				|                    var allTypes = a.GetTypes();
+				|                    foreach (var type1 in allTypes)
+				|                    {
+				|                        try
+				|                        {
+				|                            str1 = type1.GetCustomAttribute<ContextClassAttribute>().GetName();
+				|                            if (type1.ToString() == this.ToString())
+				|                            {
+				|                                break;
+				|                            }
+				|                        }
+				|                        catch { }
+				|                    }
+				|                    str1 = str1.Replace(""Кл"", """");
+				|                }
+				|                return str1;
+				|            }
+				|        }
+				|
+				|        [ContextProperty(""Name"", ""Name"")]
+				|        public string Name2
+				|        {
+				|            get
+				|            {
+				|                string str1 = """";
+				|                if (this.ToString().Contains(""osf.""))
+				|                {
+				|                    var a = Assembly.GetExecutingAssembly();
+				|                    var allTypes = a.GetTypes();
+				|                    foreach (var type1 in allTypes)
+				|                    {
+				|                        try
+				|                        {
+				|                            str1 = type1.GetCustomAttribute<ContextClassAttribute>().GetAlias();
+				|                            if (type1.ToString() == this.ToString())
+				|                            {
+				|                                break;
+				|                            }
+				|                        }
+				|                        catch { }
+				|                    }
+				|                    str1 = str1.Replace(""Cl"", """");
+				|                }
+				|                return str1;
+				|            }
 				|        }
 				|        
 				|";
@@ -2845,6 +3110,53 @@
 				|        }
 				|
 				|";
+			ИначеЕсли (СвойствоРус = "НейтральноеПоложение") и (ИмяКонтекстКлассаАнгл = "ToolBarButton") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""НейтральноеПоложение"", ""PartialPush"")]
+				|        public bool PartialPush
+				|        {
+				|            get { return Base_obj.PartialPush; }
+				|            set { Base_obj.PartialPush = value; }
+				|        }
+				|
+				|        [ContextProperty(""НейтральноеПоложение2"", ""ParitalPush"")]
+				|        public bool ParitalPush
+				|        {
+				|            get { return Base_obj.PartialPush; }
+				|            set { Base_obj.PartialPush = value; }
+				|        }
+				|
+				|";
+			ИначеЕсли СвойствоРус = "МногострочныйРежим" Тогда
+				Стр = Стр +
+				"        [ContextProperty(""МногострочныйРежим"", ""Multiline"")]
+				|        public bool Multiline
+				|        {
+				|            get { return Base_obj.Multiline; }
+				|            set { Base_obj.Multiline = value; }
+				|        }
+				|
+				|        [ContextProperty(""МногострочныйРежим2"", ""MultiLine"")]
+				|        public bool MultiLine
+				|        {
+				|            get { return Base_obj.Multiline; }
+				|            set { Base_obj.Multiline = value; }
+				|        }
+				|
+				|";
+			ИначеЕсли СвойствоРус = "Параметр" Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Параметр"", ""Parameter"")]
+				|        public IValue Parameter
+				|        {
+				|            get { return (IValue)Base_obj.Parameter; }
+				|        }
+				|
+				|";
+				
+				
+				
+				
 				
 				
 				
@@ -2876,22 +3188,22 @@
 				ВозвратГет = "хххх";
 				ВозвратСет = "хххх";
 				Комментарий = "//";
-				Если ТипВозвращаемогоЗначения = "Число." Тогда/////////////////////////////////////////////////
+				Если ТипВозвращаемогоЗначения = "Число." Тогда
 					ТипВозвращаемогоЗначения = "int";
 					ВозвратГет = "    get { return Base_obj." + СвойствоАнгл + "; }";
 					ВозвратСет = "    set { Base_obj." + СвойствоАнгл + " = value; }";
 					Комментарий = "";
-				ИначеЕсли ТипВозвращаемогоЗначения = "Строка." Тогда////////////////////////////////////////////
+				ИначеЕсли ТипВозвращаемогоЗначения = "Строка." Тогда
 					ТипВозвращаемогоЗначения = "string";
 					ВозвратГет = "    get { return Base_obj." + СвойствоАнгл + "; }";
 					ВозвратСет = "    set { Base_obj." + СвойствоАнгл + " = value; }";
 					Комментарий = "";
-				ИначеЕсли ТипВозвращаемогоЗначения = "Булево." Тогда////////////////////////////////////////////
+				ИначеЕсли ТипВозвращаемогоЗначения = "Булево." Тогда
 					ТипВозвращаемогоЗначения = "bool";
 					ВозвратГет = "    get { return Base_obj." + СвойствоАнгл + "; }";
 					ВозвратСет = "    set { Base_obj." + СвойствоАнгл + " = value; }";
 					Комментарий = "";
-				ИначеЕсли ТипВозвращаемогоЗначения = "Дата." Тогда///////////////////////////////////////////////
+				ИначеЕсли ТипВозвращаемогоЗначения = "Дата." Тогда
 					ТипВозвращаемогоЗначения = "DateTime";
 					ВозвратГет = "    get { return Base_obj." + СвойствоАнгл + "; }";
 					ВозвратСет = "    set { Base_obj." + СвойствоАнгл + " = value; }";
@@ -3058,32 +3370,14 @@
 КонецФункции//Свойства
 
 Функция ПеречисленияКакСвойства(ИмяФайлаЧленов)
-	Если Не (ИмяФайлаЧленов = "C:\444\OneScriptFormsru\OneScriptForms.OneScriptFormsMembers.html") Тогда
+	Если Не (ИмяФайлаЧленов = КаталогСправки + "\OneScriptForms.OneScriptFormsMembers.html") Тогда
 		Возврат "";
 	КонецЕсли;
 	
-	// // // СписокПолей2 = Новый СписокЗначений;
 	СписокПереч2 = Новый СписокЗначений;
-	// // // ТекстДок = Новый ТекстовыйДокумент;
-	// // // ТекстДок.Прочитать("C:\444\OneScriptFormsru\OneScriptForms.OneScriptFormsFields.html");
-	// // // Стр = ТекстДок.ПолучитьТекст();
-	// // // //находим строку таблицы
-	// // // М48 = СтрНайтиМежду(Стр, "<TR vAlign=top>" + Символы.ПС + "    <TD", "</TD></TR>", Ложь, );
-	// // // Для А61 = 0 По М48.ВГраница() Цикл
-		// // // СтрТабл = М48[А61];
-		// // // СтрТабл = СтрЗаменить(СтрТабл, "&nbsp;", " ");
-		// // // // Сообщить("-СтрТабл-----------------------");
-		// // // // Сообщить("" + СтрТабл);
-		// // // Предст2 = СтрНайтиМежду(СтрТабл, ".html"">", " ", , )[0];
-		// // // Знач2 = СтрНайтиМежду(СтрТабл, "(", ")", , )[0];
-		// // // СписокПолей2.Добавить(Знач2, Предст2);
-	// // // КонецЦикла;
-	// // // // Для А = 0 По СписокПолей2.Количество() - 1 Цикл
-		// // // // Сообщить("" + СписокПолей2.Получить(А).Представление + " -- " + СписокПолей2.Получить(А).Значение);
-	// // // // КонецЦикла;
 	
 	ТекстДок = Новый ТекстовыйДокумент;
-	ТекстДок.Прочитать("C:\444\OneScriptFormsru\OneScriptForms.html");
+	ТекстДок.Прочитать(КаталогСправки + "\OneScriptForms.html");
 	Стр = ТекстДок.ПолучитьТекст();
 	//находим строку таблицы
 	СтрТаблПереч = СтрНайтиМежду(Стр, "<H3 class=dtH3>Перечисления</H3>", "</TBODY></TABLE>", Ложь, )[0];
@@ -3097,23 +3391,8 @@
 		Знач2 = СтрНайтиМежду(СтрТабл, "(", ")", , )[0];
 		СписокПереч2.Добавить(Знач2, Предст2);
 	КонецЦикла;
-	// Для А = 0 По СписокПереч2.Количество() - 1 Цикл
-		// Сообщить("" + СписокПереч2.Получить(А).Представление + " -- " + СписокПереч2.Получить(А).Значение);
-	// КонецЦикла;
+
 	Стр = "" + Символы.ПС + "        //ПеречисленияКакСвойства============================================================" + Символы.ПС;
-	// // // Для А = 0 По СписокПолей2.Количество() - 1 Цикл
-		// // // // Сообщить("" + СписокПолей2.Получить(А).Представление + " -- " + СписокПолей2.Получить(А).Значение);
-		// // // Знач4 = СписокПолей2.Получить(А).Значение;
-		// // // Предст4 = СписокПолей2.Получить(А).Представление;
-		// // // Стр = Стр + Символы.ПС + 
-		// // // "        [ContextProperty(""" + Предст4 + """, """ + Знач4 + """)]
-		// // // |        public int Cl" + Знач4 + "1
-		// // // |        {
-		// // // |            get { return cl_" + Знач4 + "; }
-		// // // |        }" + Символы.ПС;
-		// // // СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
-		// // // "        private int cl_" + Знач4 + " = cl_" + СтрЗаменить(Знач4, "_", ".") + ";";
-	// // // КонецЦикла;
 	
 	Для А = 0 По СписокПереч2.Количество() - 1 Цикл
 		// Сообщить("" + СписокПереч2.Получить(А).Представление + " -- " + СписокПереч2.Получить(А).Значение);
@@ -3169,11 +3448,29 @@
 			Если (МетодРус = "ПолучитьСобытие") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр + 
 				"        [ContextMethod(""ПолучитьСобытие"", ""DoEvents"")]
-				|        public string DoEvents()
+				|        public IValue DoEvents()
 				|        {
 				|            EventString = """";
 				|            EventHandling();
-				|            return EventString;
+				|            if (EventString.Contains(""ScriptEngine.HostedScript.Library.DelegateAction""))
+				|            {
+				|                string propName = EventString.Replace(""ScriptEngine.HostedScript.Library.DelegateAction"", """");
+				|                dynamic obj1 = ((dynamic)Event).Base_obj.Sender.dll_obj;
+				|                PropertyInfo property1 = obj1.GetType().GetProperty(propName);
+				|                return property1.GetValue(obj1);
+				|            }
+				|            else if (EventString.Contains(""osf.ClDictionaryEntry""))
+				|            {
+				|                string propName = EventString.Replace(""osf.ClDictionaryEntry"", """");
+				|                dynamic obj1 = ((dynamic)Event).Base_obj.Sender.dll_obj;
+				|                PropertyInfo property1 = obj1.GetType().GetProperty(propName);
+				|                EventString = ((osf.ClDictionaryEntry)property1.GetValue(obj1)).Value.AsString();
+				|            }
+				|            if (!EventString.Contains(""(""))
+				|            {
+				|                return ValueFactory.Create((string)EventString + ""()"");
+				|            }
+				|            return ValueFactory.Create((string)EventString);
 				|        }
 				|
 				|        public static void EventHandling()
@@ -3708,7 +4005,7 @@
 				"        [ContextMethod(""Показать"", ""Show"")]
 				|        public string Show(string p1, string p2, string p3 = """", int p4 = -1, int p5 = -1)
 				|        {
-				|            string str1 = null;
+				|            string str1 = """";
 				|            var thread = new Thread(() =>
 				|            {
 				|                str1 = Microsoft.VisualBasic.Interaction.InputBox(p1, p2, p3, p4, p5);
@@ -4948,31 +5245,94 @@
 				|        }
 				|        
 				|";
-			ИначеЕсли (МетодРус = "СвойстваОбъекта") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+			ИначеЕсли (МетодРус = "СвойстваКласса") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
-				"        [ContextMethod(""СвойстваОбъекта"", ""PropObj"")]
-				|        public string PropObj1(IValue p1)
+				"        [ContextMethod(""СвойстваКласса"", ""PropClass"")]
+				|        public ClSortedList PropClass(IValue p1)
 				|        {
-				|            System.Reflection.PropertyInfo[] myPropertyInfo = p1.GetType().GetProperties();
-				|            List<string> p = new List<string>();
-				|            for (int i = 0; i < myPropertyInfo.Length; i++)
+				|            ClSortedList ClSortedList1 = new osf.ClSortedList();
+				|            System.Reflection.PropertyInfo[] myPropertyInfo;
+				|            if (p1.GetType() == typeof(osf.ClType))
 				|            {
-				|                if (myPropertyInfo[i].CustomAttributes.Count() == 1)
+				|                myPropertyInfo = p1.GetType().GetProperties();
+				|                for (int i = 0; i < myPropertyInfo.Length; i++)
 				|                {
-				|                    string NameRu = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetName();
-				|                    string NameEn = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
-				|                    p.Add(NameRu + "" ("" + NameEn + "")"");
+				|                    if (myPropertyInfo[i].CustomAttributes.Count() == 1)
+				|                    {
+				|                        string NameRu = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetName();
+				|                        string NameEn = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
+				|                        ClSortedList1.Add(NameEn, ValueFactory.Create(NameEn));
+				|                    }
 				|                }
 				|            }
-				|            p.Sort();
-				|            string str1 = """";
-				|            string transfer = """";
-				|            foreach (string str in p)
+				|
+				|            if (p1.SystemType.Name == ""Строка"") // это может быть полное имя класса, если объект не из пространства имен osf, или имя класса сокращенное, если объект из пространства имен osf
 				|            {
-				|                str1 = str1 + transfer + str;
-				|                transfer = ""\r\n"";
+				|                if (p1.AsString().Contains(""."")) // имя объекта не из пространства имен osf
+				|                {
+				|                    if (p1.AsString() == ""System.Drawing.Bitmap"")
+				|                    {
+				|                        myPropertyInfo = (new System.Drawing.Bitmap(10, 10)).GetType().GetProperties();
+				|                    }
+				|                    else
+				|                    {
+				|                        myPropertyInfo = GetTypeFromName(p1.AsString()).GetProperties();
+				|                    }
+				|                    foreach (var item in myPropertyInfo)
+				|                    {
+				|                        if (!ClSortedList1.ContainsKey(item.Name))
+				|                        {
+				|                            ClSortedList1.Add(item.Name, ValueFactory.Create(item.Name));
+				|                        }
+				|                    }
+				|                }
+				|                else // имя объекта из пространства имен osf
+				|                {
+				|                    // находим совпадение GetName или GetAlias в методах osf.OneScriptForms, так мы получим объекты, имеющие конструктор
+				|                    System.Type Type1 = System.Type.GetType(""osf.OneScriptForms"", false, true);
+				|                    System.Reflection.MethodInfo[] myMethodInfo = Type1.GetMethods();
+				|                    for (int i = 0; i < myMethodInfo.Length; i++)
+				|                    {
+				|                        if (myMethodInfo[i].CustomAttributes.Count() == 1)
+				|                        {
+				|                            if (myMethodInfo[i].GetCustomAttribute<ContextMethodAttribute>() != null)
+				|                            {
+				|                                string NameRu = myMethodInfo[i].GetCustomAttribute<ContextMethodAttribute>().GetName();
+				|                                string NameEn = myMethodInfo[i].GetCustomAttribute<ContextMethodAttribute>().GetAlias();
+				|                                if (NameRu == p1.AsString() || NameEn == p1.AsString())
+				|                                {
+				|                                    System.Type Type2 = System.Type.GetType(""osf.Cl"" + NameEn, false, true);
+				|                                    System.Reflection.PropertyInfo[] myPropertyInfo2 = Type2.GetProperties();
+				|                                    for (int i2 = 0; i2 < myPropertyInfo2.Length; i2++)
+				|                                    {
+				|                                        if (myPropertyInfo2[i2].CustomAttributes.Count() == 1)
+				|                                        {
+				|                                            string NameRu2 = myPropertyInfo2[i2].GetCustomAttribute<ContextPropertyAttribute>().GetName();
+				|                                            string NameEn2 = myPropertyInfo2[i2].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
+				|                                            ClSortedList1.Add(NameEn2, ValueFactory.Create(NameEn2));
+				|                                        }
+				|                                    }
+				|                                    break;
+				|                                }
+				|                            }
+				|                        }
+				|                    }
+				|                }
 				|            }
-				|            return str1;
+				|            else // это объект, а не строка
+				|            {
+				|                myPropertyInfo = p1.GetType().GetProperties();
+				|                for (int i = 0; i < myPropertyInfo.Length; i++)
+				|                {
+				|                    if (myPropertyInfo[i].CustomAttributes.Count() == 1)
+				|                    {
+				|                        string NameRu = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetName();
+				|                        string NameEn = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
+				|                        ClSortedList1.Add(NameEn, ValueFactory.Create(NameEn));
+				|                    }
+				|                }
+				|            }
+				|            return ClSortedList1;
 				|        }
 				|        
 				|";
@@ -6977,10 +7337,232 @@
 				|        }
 				|
 				|";
-				
-				
-				
-				
+			ИначеЕсли (МетодРус = "Сортировать") и (ИмяКонтекстКлассаАнгл = "ArrayList") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Сортировать"", ""Sort"")]
+				|        public void Sort(int p1 = 0, int p2 = 1)
+				|        {
+				|            Base_obj.Sort(p1, p2);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "СвойстваОбъекта") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""СвойстваОбъекта"", ""PropObj"")]
+				|        public string PropObj1(IValue p1)
+				|        {
+				|            string str1 = null;
+				|            string transfer = """";
+				|            List<string> p = new List<string>();
+				|            System.Reflection.PropertyInfo[] myPropertyInfo;
+				|            if (p1.GetType() == typeof(osf.ClType))
+				|            {
+				|                myPropertyInfo = p1.GetType().GetProperties();
+				|                for (int i = 0; i < myPropertyInfo.Length; i++)
+				|                {
+				|                    if (myPropertyInfo[i].CustomAttributes.Count() == 1)
+				|                    {
+				|                        string NameRu = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetName();
+				|                        string NameEn = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
+				|                        p.Add(NameRu + "" ("" + NameEn + "")"");
+				|                    }
+				|                }
+				|            }
+				|
+				|            if (p1.SystemType.Name == ""Строка"") // это может быть полное имя класса, если объект не из пространства имен osf, или имя класса сокращенное, если объект из пространства имен osf
+				|            {
+				|                if (p1.AsString().Contains(""."")) // имя объекта не из пространства имен osf
+				|                {
+				|                    myPropertyInfo = GetTypeFromName(p1.AsString()).GetProperties();
+				|                    foreach (var item in myPropertyInfo)
+				|                    {
+				|                        p.Add(item.Name);
+				|                    }
+				|                }
+				|                else // имя объекта из пространства имен osf
+				|                {
+				|                    // находим совпадение GetName или GetAlias в методах osf.OneScriptForms, так мы получим объекты, имеющие конструктор
+				|                    System.Type Type1 = System.Type.GetType(""osf.OneScriptForms"", false, true);
+				|                    System.Reflection.MethodInfo[] myMethodInfo = Type1.GetMethods();
+				|                    for (int i = 0; i < myMethodInfo.Length; i++)
+				|                    {
+				|                        if (myMethodInfo[i].CustomAttributes.Count() == 1)
+				|                        {
+				|                            if (myMethodInfo[i].GetCustomAttribute<ContextMethodAttribute>() != null)
+				|                            {
+				|                                string NameRu = myMethodInfo[i].GetCustomAttribute<ContextMethodAttribute>().GetName();
+				|                                string NameEn = myMethodInfo[i].GetCustomAttribute<ContextMethodAttribute>().GetAlias();
+				|                                if (NameRu == p1.AsString() || NameEn == p1.AsString())
+				|                                {
+				|                                    System.Type Type2 = System.Type.GetType(""osf.Cl"" + NameEn, false, true);
+				|                                    System.Reflection.PropertyInfo[] myPropertyInfo2 = Type2.GetProperties();
+				|                                    for (int i2 = 0; i2 < myPropertyInfo2.Length; i2++)
+				|                                    {
+				|                                        if (myPropertyInfo2[i2].CustomAttributes.Count() == 1)
+				|                                        {
+				|                                            string NameRu2 = myPropertyInfo2[i2].GetCustomAttribute<ContextPropertyAttribute>().GetName();
+				|                                            string NameEn2 = myPropertyInfo2[i2].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
+				|                                            p.Add(NameRu2 + "" ("" + NameEn2 + "")"");
+				|                                        }
+				|                                    }
+				|                                    break;
+				|                                }
+				|                            }
+				|                        }
+				|                    }
+				|                }
+				|            }
+				|            else // это объект, а не строка
+				|            {
+				|                myPropertyInfo = p1.GetType().GetProperties();
+				|                for (int i = 0; i < myPropertyInfo.Length; i++)
+				|                {
+				|                    if (myPropertyInfo[i].CustomAttributes.Count() == 1)
+				|                    {
+				|                        string NameRu = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetName();
+				|                        string NameEn = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
+				|                        p.Add(NameRu + "" ("" + NameEn + "")"");
+				|                    }
+				|                }
+				|            }
+				|            p.Sort();
+				|            foreach (string str in p)
+				|            {
+				|                str1 = str1 + transfer + str;
+				|                transfer = ""\r\n"";
+				|            }
+				|            return str1;
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "СтрНайтиМежду") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""СтрНайтиМежду"", ""StrFindBetween"")]
+				|        public ClArrayList StrFindBetween(string p1, string p2 = null, string p3 = null, bool p4 = true, bool p5 = true)
+				|        {
+				|            //p1 - исходная строка
+				|            //p2 - подстрока поиска от которой ведем поиск
+				|            //p3 - подстрока поиска до которой ведем поиск
+				|            //p4 - не включать p2 и p3 в результат
+				|            //p5 - в результат не будут включены участки, содержащие другие найденные участки, удовлетворяющие переданным параметрам
+				|            //функция возвращает массив строк
+				|            string str1 = p1;
+				|            int Position1;
+				|            ClArrayList ClArrayList1 = new ClArrayList();
+				|            if (p2 != null && p3 == null)
+				|            {
+				|                Position1 = str1.IndexOf(p2);
+				|                while (Position1 >= 0)
+				|                {
+				|                    ClArrayList1.Add(ValueFactory.Create("""" + ((p4) ? str1.Substring(Position1 + p2.Length) : str1.Substring(Position1))));
+				|                    str1 = str1.Substring(Position1 + 1);
+				|                    Position1 = str1.IndexOf(p2);
+				|                }
+				|            }
+				|            else if (p2 == null && p3 != null)
+				|            {
+				|                Position1 = str1.IndexOf(p3) + 1;
+				|                int SumPosition1 = Position1;
+				|                while (Position1 > 0)
+				|                {
+				|                    ClArrayList1.Add(ValueFactory.Create("""" + ((p4) ? str1.Substring(0, SumPosition1 - 1) : str1.Substring(0, SumPosition1 - 1 + p3.Length))));
+				|                    try
+				|                    {
+				|                        Position1 = str1.Substring(SumPosition1 + 1).IndexOf(p3) + 1;
+				|                        SumPosition1 = SumPosition1 + Position1 + 1;
+				|                    }
+				|                    catch
+				|                    {
+				|                        break;
+				|                    }
+				|                }
+				|            }
+				|            else if (p2 != null && p3 != null)
+				|            {
+				|                Position1 = str1.IndexOf(p2);
+				|                while (Position1 >= 0)
+				|                {
+				|                    string Стр2;
+				|                    Стр2 = (p4) ? str1.Substring(Position1 + p2.Length) : str1.Substring(Position1);
+				|                    int Position2 = Стр2.IndexOf(p3) + 1;
+				|                    int SumPosition2 = Position2;
+				|                    while (Position2 > 0)
+				|                    {
+				|                        if (p5)
+				|                        {
+				|                            if (Стр2.Substring(0, SumPosition2 - 1).IndexOf(p3) <= -1)
+				|                            {
+				|                                ClArrayList1.Add(ValueFactory.Create("""" + ((p4) ? Стр2.Substring(0, SumPosition2 - 1) : Стр2.Substring(0, SumPosition2 - 1 + p3.Length))));
+				|                            }
+				|                        }
+				|                        else
+				|                        {
+				|                            ClArrayList1.Add(ValueFactory.Create("""" + ((p4) ? Стр2.Substring(0, SumPosition2 - 1) : Стр2.Substring(0, SumPosition2 - 1 + p3.Length))));
+				|                        }
+				|                        try
+				|                        {
+				|                            Position2 = Стр2.Substring(SumPosition2 + 1).IndexOf(p3) + 1;
+				|                            SumPosition2 = SumPosition2 + Position2 + 1;
+				|                        }
+				|                        catch
+				|                        {
+				|                            break;
+				|
+				|                        }
+				|                    }
+				|                    str1 = str1.Substring(Position1 + 1);
+				|                    Position1 = str1.IndexOf(p2);
+				|                }
+				|            }
+				|            return ClArrayList1;
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "КнопкаПанелиИнструментов") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""КнопкаПанелиИнструментов"", ""ToolBarButton"")]
+				|        public ClToolBarButton ToolBarButton(string p1 = null)
+				|        {
+				|            return new ClToolBarButton(p1);
+				|        }
+				|
+				|";
+			ИначеЕсли МетодРус = "УстановитьСтиль" Тогда
+				Стр = Стр +
+				"        [ContextMethod(""УстановитьСтиль"", ""SetStyle"")]
+				|        public void SetStyle(int p1, bool p2)
+				|        {
+				|            Base_obj.SetStyle((System.Windows.Forms.ControlStyles)p1, p2);
+				|        }
+				|
+				|";
+			ИначеЕсли МетодРус = "ПолучитьСтиль" Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолучитьСтиль"", ""GetStyle"")]
+				|        public bool GetStyle(int p1)
+				|        {
+				|            return Base_obj.GetStyle((System.Windows.Forms.ControlStyles)p1);
+				|        }
+				|
+				|";
+			ИначеЕсли МетодРус = "ПередатьУправление" Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПередатьУправление"", ""EventControlTransfer"")]
+				|        public void EventControlTransfer()
+				|        {
+				|            System.Windows.Forms.Application.DoEvents();
+				|        }
+				|
+				|";
+			ИначеЕсли МетодРус = "ЧислоСообщений" Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ЧислоСообщений"", ""EventQueueCount"")]
+				|        public int EventQueueCount()
+				|        {
+				|            return EventQueue.Count;
+				|        }
+				|
+				|";
 				
 				
 				
@@ -6990,7 +7572,7 @@
 			
 			
 			Иначе
-				ИмяФайлаМетода = "C:\444\OneScriptFormsru\" + СтрНайтиМежду(СтрХ, "<A href=""", """>", , )[0];
+				ИмяФайлаМетода = КаталогСправки + "\" + СтрНайтиМежду(СтрХ, "<A href=""", """>", , )[0];
 				ТекстДокМетода = Новый ТекстовыйДокумент;
 				ТекстДокМетода.Прочитать(ИмяФайлаМетода);
 				СтрТекстДокМетода = ТекстДокМетода.ПолучитьТекст();
@@ -7387,9 +7969,8 @@
 	ИменаКалассовПеречислений = Новый СписокЗначений;
 	ОтобранныеПеречисления = ОтобратьФайлы("Перечисление");
 	Для А = 0 По ОтобранныеПеречисления.ВГраница() Цикл
-		// C:\444\OneScriptFormsru\OneScriptForms.TreeViewAction.html
 		СтрКлассПеречисления = "" + ОтобранныеПеречисления[А];
-		СтрКлассПеречисления = СтрЗаменить(СтрКлассПеречисления, "C:\444\OneScriptFormsru\OneScriptForms.", "Cl");
+		СтрКлассПеречисления = СтрЗаменить(СтрКлассПеречисления, КаталогСправки + "\OneScriptForms.", "Cl");
 		СтрКлассПеречисления = СтрЗаменить(СтрКлассПеречисления, ".html", "");
 		ИменаКалассовПеречислений.Добавить(СтрКлассПеречисления);
 	КонецЦикла;
@@ -7398,7 +7979,7 @@
 		// Сообщить("" + ИменаКалассовПеречислений.Получить(А).Значение);
 	// КонецЦикла;
 	
-	УдалитьФайлы("C:\444\ВыгруженныеОбъекты", "*.cs");
+	УдалитьФайлы(КаталогВыгрузки, "*.cs");
 	
 	СоздатьФайлCs("ButtonBase");
 	СоздатьФайлCs("Button");
@@ -7566,12 +8147,10 @@
 	СоздатьФайлCs("HashTable");
 	СоздатьФайлCs("Screen");
 	
-
-	
 	СписокЗамен = Новый СписокЗначений;
 	
 	ТекстДок = Новый ТекстовыйДокумент;
-	ТекстДок.Прочитать("C:\444\OneScriptFormsru\OneScriptForms.OneScriptFormsMethods.html");
+	ТекстДок.Прочитать(КаталогСправки + "\OneScriptForms.OneScriptFormsMethods.html");
 	Стр = ТекстДок.ПолучитьТекст();
 	Массив1 = СтрНайтиМежду(Стр, "<TR vAlign=top>", "</TD></TR>", Ложь, );
 	Если Массив1.Количество() > 0 Тогда
@@ -7610,12 +8189,15 @@
 		Стр33 = СтрЗаменить(Стр33, ">", "");
 		М08 = РазобратьСтроку(Стр33, " ");
 		
-		ИмяФайлаВыгрузки = "C:\444\ВыгруженныеОбъекты\" + М01[0] + ".cs";
+		// КаталогВыгрузки + "\"
+		// КаталогВыгрузки + \"
+		
+		ИмяФайлаВыгрузки = КаталогВыгрузки + "\" + М01[0] + ".cs";
 		
 		ИмяКонтекстКлассаАнгл = М01[0];
 		ИмяКонтекстКлассаРус = М08[0];
 		// находим имя файла членов
-		ИмяФайлаЧленов = "C:\444\OneScriptFormsru\OneScriptForms." + М01[0] + "Members.html";
+		ИмяФайлаЧленов = КаталогСправки + "\OneScriptForms." + М01[0] + "Members.html";
 		СтрДирективы = Директивы(ИмяКонтекстКлассаАнгл);
 		СтрШапка = Шапка(ИмяКонтекстКлассаАнгл, ИмяКонтекстКлассаРус);
 		СтрРазделОбъявленияПеременных = РазделОбъявленияПеременных(ИмяФайлаЧленов, М01[0]);
@@ -7674,11 +8256,123 @@
 				КонецЕсли;
 			КонецЦикла;
 			
-			//добавим метод RevertObj
+			//добавим методы в osf.OneScriptForms
 			ПодстрокаПоиска = 
 			"        //endMethods";
 			ПодстрокаЗамены = 
-			"        public static void AddToHashtable(dynamic p1, dynamic p2)
+			"        [ContextMethod(""ДанныеДляДизайнера"", ""DataForDesigner"")] // метод нужен только для дизайнера форм
+			|        public string AttributesForDesigner(string p1, string p2) // p1 - строковое представление типа объекта, p2 - имя свойства
+			|        {
+			|            System.Type Type1 = GetTypeFromName(p1);
+			|            string str1 = """";
+			|            string DisplayName = """";//ОтображаемоеИмяСвойства
+			|            //try
+			|            //{
+			|            //    System.ComponentModel.PropertyDescriptor PropertyDescriptorCollection1 = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2];
+			|            //    System.ComponentModel.AttributeCollection attributes = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2].Attributes;
+			|            //    System.ComponentModel.DisplayNameAttribute myDisplayNameAttribute = (System.ComponentModel.DisplayNameAttribute)attributes[typeof(System.ComponentModel.DisplayNameAttribute)];
+			|            //    DisplayName = myDisplayNameAttribute.DisplayName;
+			|            //}
+			|            //catch { }
+			|            str1 = str1 + ""DisplayName="" + DisplayName + ""~"";
+			|            string Description = """";//ОписаниеСвойства
+			|            //try
+			|            //{
+			|            //    System.ComponentModel.PropertyDescriptor PropertyDescriptorCollection1 = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2];
+			|            //    System.ComponentModel.AttributeCollection attributes = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2].Attributes;
+			|            //    System.ComponentModel.DescriptionAttribute myDescriptionAttribute = (System.ComponentModel.DescriptionAttribute)attributes[typeof(System.ComponentModel.DescriptionAttribute)];
+			|            //    Description = myDescriptionAttribute.Description;
+			|            //}
+			|            //catch { }
+			|            str1 = str1 + ""Description="" + Description + ""~"";
+			|            string Category = """";//КатегорияСвойства
+			|            try
+			|            {
+			|                System.ComponentModel.PropertyDescriptor PropertyDescriptorCollection1 = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2];
+			|                System.ComponentModel.AttributeCollection attributes = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2].Attributes;
+			|                System.ComponentModel.CategoryAttribute myCategoryAttribute = (System.ComponentModel.CategoryAttribute)attributes[typeof(System.ComponentModel.CategoryAttribute)];
+			|                Category = myCategoryAttribute.Category;
+			|            }
+			|            catch { }
+			|            str1 = str1 + ""Category="" + Category + ""~"";
+			|            string Browsable = ""Неопределено"";//ВидимостьСвойства
+			|            try
+			|            {
+			|                System.ComponentModel.PropertyDescriptor PropertyDescriptorCollection1 = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2];
+			|                System.ComponentModel.AttributeCollection attributes = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2].Attributes;
+			|                System.ComponentModel.BrowsableAttribute myBrowsableAttribute = (System.ComponentModel.BrowsableAttribute)attributes[typeof(System.ComponentModel.BrowsableAttribute)];
+			|                Browsable = """" + myBrowsableAttribute.Browsable;
+			|            }
+			|            catch { }
+			|            str1 = str1 + ""Browsable="" + Browsable + ""~"";
+			|            string ConverterTypeName = """";//КонвертерТипаСвойства
+			|            //try
+			|            //{
+			|            //    System.ComponentModel.PropertyDescriptor PropertyDescriptorCollection1 = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2];
+			|            //    System.ComponentModel.AttributeCollection attributes = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2].Attributes;
+			|            //    System.ComponentModel.TypeConverterAttribute myTypeConverterAttribute = (System.ComponentModel.TypeConverterAttribute)attributes[typeof(System.ComponentModel.TypeConverterAttribute)];
+			|            //    ConverterTypeName = myTypeConverterAttribute.ConverterTypeName;
+			|            //}
+			|            //catch { }
+			|            str1 = str1 + ""ConverterTypeName="" + ConverterTypeName + ""~"";
+			|            string AvailabilityOfTheProperty = ""0"";//НаличиеСвойства
+			|            System.Reflection.PropertyInfo[] myPropertyInfo = Type1.GetProperties();
+			|            foreach (var prop in myPropertyInfo)
+			|            {
+			|                if (prop.Name == p2)
+			|                {
+			|                    AvailabilityOfTheProperty = ""1"";
+			|                    break;
+			|                }
+			|            }
+			|            str1 = str1 + ""AvailabilityOfTheProperty="" + AvailabilityOfTheProperty + ""~"";
+			|            return str1;
+			|        }
+			|
+			|        public static System.Type GetTypeFromName(string typeName)
+			|        {
+			|            // необходимо двойное открытие закрытие во избежание проблем
+			|            const string typeProgram = @""using System; using System.Collections.Generic; using System.IO;
+			|                namespace SimpleTest
+			|                {{
+			|                    public class Program
+			|                    {{
+			|                        public static Type GetItemType()
+			|                        {{
+			|                            {0} typeTest = new {0}();
+			|                            if (typeTest == null) return null;
+			|                            return typeTest.GetType();
+			|                        }}
+			|                    }}
+			|                }}"";
+			|
+			|            var formattedCode = String.Format(typeProgram, typeName);
+			|            var CompilerParams = new System.CodeDom.Compiler.CompilerParameters
+			|            {
+			|                GenerateInMemory = true,
+			|                TreatWarningsAsErrors = false,
+			|                GenerateExecutable = false,
+			|                CompilerOptions = ""/optimize""
+			|            };
+			|
+			|            string[] references = { ""System.dll"", ""System.Windows.Forms.dll"" };
+			|            CompilerParams.ReferencedAssemblies.AddRange(references);
+			|
+			|            var provider = new Microsoft.CSharp.CSharpCodeProvider();
+			|            System.CodeDom.Compiler.CompilerResults compile = provider.CompileAssemblyFromSource(CompilerParams, formattedCode);
+			|            if (compile.Errors.HasErrors) return null;
+			|
+			|            System.Reflection.Module module = compile.CompiledAssembly.GetModules()[0];
+			|            System.Type mt = null; System.Reflection.MethodInfo methInfo = null;
+			|
+			|            if (module != null) mt = module.GetType(""SimpleTest.Program"");
+			|            if (mt != null) methInfo = mt.GetMethod(""GetItemType"");
+			|            if (methInfo != null) return (System.Type)methInfo.Invoke(null, null);
+			|
+			|            return null;
+			|        }
+			|			
+			|        public static void AddToHashtable(dynamic p1, dynamic p2)
 			|        {
 			|            if (!OneScriptForms.hashtable.ContainsKey(p1))
 			|            {
@@ -7863,6 +8557,16 @@
 			|                return p1;
 			|            }
 			|        }
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			|        //endMethods";
 			СтрВыгрузки = СтрЗаменить(СтрВыгрузки, ПодстрокаПоиска, ПодстрокаЗамены);
 		КонецЕсли;
@@ -7881,7 +8585,7 @@
 		Если Не (Файл1.Существует()) Тогда
 			ЗаписьТекста1 = Новый ЗаписьТекста();
 			ЗаписьТекста1.Открыть(ИмяФайлаВыгрузки,,,);
-			Если ИмяФайлаВыгрузки = "C:\444\ВыгруженныеОбъекты\OneScriptForms.cs" Тогда
+			Если ИмяФайлаВыгрузки = КаталогВыгрузки + "\OneScriptForms.cs" Тогда
 				Стр88 = 
 				"using System;
 				|using System.Collections;
@@ -7953,7 +8657,7 @@
 		Стр33 = СтрЗаменить(Стр33, "&nbsp;", " ");
 		Стр33 = СтрЗаменить(Стр33, ">", "");
 		М08 = РазобратьСтроку(Стр33, " ");
-		ИмяФайлаВыгрузки = "C:\444\ВыгруженныеОбъекты\" + М01[0] + ".cs";
+		ИмяФайлаВыгрузки = КаталогВыгрузки + "\" + М01[0] + ".cs";
 		ИмяКонтекстКлассаАнгл = М01[0];
 		ИмяКонтекстКлассаРус = М08[0];
 		
@@ -8003,6 +8707,7 @@
 				ИмяКонтекстКлассаАнгл = "ColorDepth" или 
 				ИмяКонтекстКлассаАнгл = "ColumnHeaderStyle" или 
 				ИмяКонтекстКлассаАнгл = "ComboBoxStyle" или 
+				ИмяКонтекстКлассаАнгл = "ControlStyles" или 
 				ИмяКонтекстКлассаАнгл = "Day" или 
 				ИмяКонтекстКлассаАнгл = "DialogResult" или 
 				ИмяКонтекстКлассаАнгл = "DockStyle" или 
@@ -8140,7 +8845,7 @@
 		// |";
 		// ТекстДокХХХ = Новый ТекстовыйДокумент;
 		// ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		// ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		// ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Screen" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -8184,7 +8889,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "HashTable" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -8277,7 +8982,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "CheckBox" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -8363,7 +9068,20 @@
 		|            {
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = CheckChanged;
-		|                EventArgs1.Sender = (object)this;
+		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.CheckChanged;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -8373,7 +9091,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataGridComboBoxColumnStyle" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -8544,7 +9262,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "RichTextBox" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -8734,6 +9452,19 @@
 		|                LinkClickedEventArgs LinkClickedEventArgs1 = new LinkClickedEventArgs();
 		|                LinkClickedEventArgs1.EventString = LinkClicked;
 		|                LinkClickedEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.LinkClicked;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    LinkClickedEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    LinkClickedEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    LinkClickedEventArgs1.Parameter = null;
+		|                }
 		|                LinkClickedEventArgs1.LinkText = e.LinkText;
 		|                OneScriptForms.EventQueue.Add(LinkClickedEventArgs1);
 		|                ClLinkClickedEventArgs ClLinkClickedEventArgs1 = new ClLinkClickedEventArgs(LinkClickedEventArgs1);
@@ -8747,6 +9478,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = SelectionChanged;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.SelectionChanged;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -8756,7 +9500,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "BitmapData" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -8782,7 +9526,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataGridBoolColumn" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -8822,7 +9566,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "UpDownBase" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -8881,7 +9625,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "NumericUpDown" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -8987,7 +9731,20 @@
 		|            {
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = ValueChanged;
-		|                EventArgs1.Sender = (object)this;
+		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.ValueChanged;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -8997,7 +9754,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "GroupBox" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -9037,7 +9794,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Splitter" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -9095,7 +9852,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "TextureBrush" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -9130,7 +9887,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "HatchBrush" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -9174,7 +9931,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Application" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -9240,7 +9997,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DateTimePicker" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -9418,7 +10175,20 @@
 		|            {
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = ValueChanged;
-		|                EventArgs1.Sender = (object)this;
+		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.ValueChanged;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -9428,7 +10198,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ComboBoxObjectCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -9482,7 +10252,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ComboBox" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -9680,7 +10450,20 @@
 		|            {
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = DropDown;
-		|                EventArgs1.Sender = (object)this;
+		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.DropDown;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -9692,7 +10475,20 @@
 		|            {
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = SelectedIndexChanged;
-		|                EventArgs1.Sender = (object)this;
+		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.SelectedIndexChanged;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -9843,7 +10639,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ToolTip" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -9931,7 +10727,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "RadioButton" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -10012,9 +10808,22 @@
 		|            {
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = CheckChanged;
-		|                EventArgs1.Sender = (object)this;
+		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.CheckChanged;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
-		|                ClEventArgs ClKeyEventArgs1 = new ClEventArgs(EventArgs1);
+		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
 		|        }
 		|    }//endClass
@@ -10022,7 +10831,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "StatusBarPanel" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -10102,7 +10911,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "StatusBarPanelCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -10153,7 +10962,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "StatusBar" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -10210,7 +11019,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "FileSystemWatcher" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -10341,8 +11150,21 @@
 		|            if (Changed.Length > 0)
 		|            {
 		|                FileSystemEventArgs FileSystemEventArgs1 = new FileSystemEventArgs();
-		|                FileSystemEventArgs1.Sender = (object)this;
 		|                FileSystemEventArgs1.EventString = Changed;
+		|                FileSystemEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Changed;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    FileSystemEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    FileSystemEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    FileSystemEventArgs1.Parameter = null;
+		|                }
 		|                FileSystemEventArgs1.ChangeType = (int)e.ChangeType;
 		|                FileSystemEventArgs1.FullPath = e.FullPath;
 		|                FileSystemEventArgs1.Name = e.Name;
@@ -10356,8 +11178,21 @@
 		|            if (Created.Length > 0)
 		|            {
 		|                FileSystemEventArgs FileSystemEventArgs1 = new FileSystemEventArgs();
-		|                FileSystemEventArgs1.Sender = (object)this;
 		|                FileSystemEventArgs1.EventString = Created;
+		|                FileSystemEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Created;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    FileSystemEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    FileSystemEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    FileSystemEventArgs1.Parameter = null;
+		|                }
 		|                FileSystemEventArgs1.ChangeType = (int)e.ChangeType;
 		|                FileSystemEventArgs1.FullPath = e.FullPath;
 		|                FileSystemEventArgs1.Name = e.Name;
@@ -10371,8 +11206,21 @@
 		|            if (Deleted.Length > 0)
 		|            {
 		|                FileSystemEventArgs FileSystemEventArgs1 = new FileSystemEventArgs();
-		|                FileSystemEventArgs1.Sender = (object)this;
 		|                FileSystemEventArgs1.EventString = Deleted;
+		|                FileSystemEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Deleted;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    FileSystemEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    FileSystemEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    FileSystemEventArgs1.Parameter = null;
+		|                }
 		|                FileSystemEventArgs1.ChangeType = (int)e.ChangeType;
 		|                FileSystemEventArgs1.FullPath = e.FullPath;
 		|                FileSystemEventArgs1.Name = e.Name;
@@ -10386,8 +11234,21 @@
 		|            if (Renamed.Length > 0)
 		|            {
 		|                RenamedEventArgs RenamedEventArgs1 = new RenamedEventArgs();
-		|                RenamedEventArgs1.Sender = (object)this;
 		|                RenamedEventArgs1.EventString = Renamed;
+		|                RenamedEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Renamed;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    RenamedEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    RenamedEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    RenamedEventArgs1.Parameter = null;
+		|                }
 		|                RenamedEventArgs1.ChangeType = (int)e.ChangeType;
 		|                RenamedEventArgs1.FullPath = e.FullPath;
 		|                RenamedEventArgs1.Name = e.Name;
@@ -10402,7 +11263,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "SortedList" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -10486,7 +11347,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DictionaryEntry" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -10530,7 +11391,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Cursors" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -10683,7 +11544,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataGridTextBoxColumn" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -10728,7 +11589,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataGridColumnStyle" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -10787,7 +11648,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataGridTextBox" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -10825,7 +11686,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "GridColumnStylesCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -10857,7 +11718,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataGridTableStyle" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -10998,7 +11859,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "GridTableStylesCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -11030,7 +11891,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataGridCell" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -11084,7 +11945,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataGrid" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -11275,7 +12136,20 @@
 		|            {
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = CurrentCellChanged;
-		|                EventArgs1.Sender = (object)this;
+		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.CurrentCellChanged;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -11301,7 +12175,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataItem" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -11368,7 +12242,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataRowCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -11463,7 +12337,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataRow" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -11547,7 +12421,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataView" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -11674,7 +12548,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataSet" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -11745,7 +12619,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataTable" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -11878,7 +12752,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataTableCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -11978,7 +12852,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataColumnCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -12083,7 +12957,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataColumn" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -12200,7 +13074,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Link" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -12279,7 +13153,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "LinkArea" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -12328,7 +13202,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Label" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -12450,7 +13324,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "LinkLabel" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -12623,7 +13497,20 @@
 		|            {
 		|                LinkLabelLinkClickedEventArgs LinkLabelLinkClickedEventArgs1 = new LinkLabelLinkClickedEventArgs();
 		|                LinkLabelLinkClickedEventArgs1.EventString = LinkClicked;
-		|                LinkLabelLinkClickedEventArgs1.Sender = (object)this;
+		|                LinkLabelLinkClickedEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.LinkClicked;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    LinkLabelLinkClickedEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    LinkLabelLinkClickedEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    LinkLabelLinkClickedEventArgs1.Parameter = null;
+		|                }
 		|                LinkLabelLinkClickedEventArgs1.Button = (int)e.Button;
 		|                LinkLabelLinkClickedEventArgs1.Link = ((LinkEx)e.Link).M_Object;
 		|                OneScriptForms.EventQueue.Add(LinkLabelLinkClickedEventArgs1);
@@ -12635,7 +13522,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "LinkCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -12701,7 +13588,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Encoding" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -12795,7 +13682,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ToolBarButton" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -12851,7 +13738,7 @@
 		|            set { M_ToolBarButton.ImageIndex = value; }
 		|        }
 		|
-		|        public bool ParitalPush
+		|        public bool PartialPush
 		|        {
 		|            get { return M_ToolBarButton.PartialPush; }
 		|            set { M_ToolBarButton.PartialPush = value; }
@@ -12902,7 +13789,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ToolBar" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -12958,7 +13845,20 @@
 		|            {
 		|                ToolBarButtonClickEventArgs ToolBarButtonClickEventArgs1 = new ToolBarButtonClickEventArgs();
 		|                ToolBarButtonClickEventArgs1.EventString = ButtonClick;
-		|                ToolBarButtonClickEventArgs1.Sender = (object)this;
+		|                ToolBarButtonClickEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.ButtonClick;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    ToolBarButtonClickEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    ToolBarButtonClickEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    ToolBarButtonClickEventArgs1.Parameter = null;
+		|                }
 		|                ToolBarButtonClickEventArgs1.Button = ((ToolBarButtonEx)e.Button).M_Object;
 		|                OneScriptForms.EventQueue.Add(ToolBarButtonClickEventArgs1);
 		|                ClToolBarButtonClickEventArgs ClToolBarButtonClickEventArgs1 = new ClToolBarButtonClickEventArgs(ToolBarButtonClickEventArgs1);
@@ -13039,7 +13939,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ToolBarButtonCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -13093,7 +13993,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ProgressBar" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -13224,7 +14124,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "MessageBox" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -13270,7 +14170,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "UserControl" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -13336,7 +14236,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "NotifyIcon" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -13441,7 +14341,20 @@
 		|            {
 		|                MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
 		|                MouseEventArgs1.EventString = MouseDown;
-		|                MouseEventArgs1.Sender = (object)this;
+		|                MouseEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.MouseDown;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    MouseEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    MouseEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    MouseEventArgs1.Parameter = null;
+		|                }
 		|                MouseEventArgs1.Clicks = e.Clicks;
 		|                MouseEventArgs1.Button = (int)e.Button;
 		|                MouseEventArgs1.X = e.X;
@@ -13457,7 +14370,20 @@
 		|            {
 		|                MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
 		|                MouseEventArgs1.EventString = MouseUp;
-		|                MouseEventArgs1.Sender = (object)this;
+		|                MouseEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.MouseUp;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    MouseEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    MouseEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    MouseEventArgs1.Parameter = null;
+		|                }
 		|                MouseEventArgs1.Clicks = e.Clicks;
 		|                MouseEventArgs1.Button = (int)e.Button;
 		|                MouseEventArgs1.X = e.X;
@@ -13473,7 +14399,20 @@
 		|            {
 		|                MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
 		|                MouseEventArgs1.EventString = MouseMove;
-		|                MouseEventArgs1.Sender = (object)this;
+		|                MouseEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.MouseMove;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    MouseEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    MouseEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    MouseEventArgs1.Parameter = null;
+		|                }
 		|                MouseEventArgs1.Clicks = e.Clicks;
 		|                MouseEventArgs1.Button = (int)e.Button;
 		|                MouseEventArgs1.X = e.X;
@@ -13489,7 +14428,20 @@
 		|            {
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Click;
-		|                EventArgs1.Sender = (object)this;
+		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Click;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -13501,7 +14453,20 @@
 		|            {
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = DoubleClick;
-		|                EventArgs1.Sender = (object)this;
+		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.DoubleClick;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -13511,7 +14476,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "MenuNotifyIcon" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -13573,8 +14538,21 @@
 		|                    item.M_MenuItem.Visible = false;
 		|                }
 		|                ContextMenuPopupEventArgs ContextMenuPopupEventArgs1 = new ContextMenuPopupEventArgs();
-		|                ContextMenuPopupEventArgs1.Sender = (object)this;
 		|                ContextMenuPopupEventArgs1.EventString = Popup;
+		|                ContextMenuPopupEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Popup;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    ContextMenuPopupEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    ContextMenuPopupEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    ContextMenuPopupEventArgs1.Parameter = null;
+		|                }
 		|                ContextMenuPopupEventArgs1.Point = new Point(M_MenuNotifyIcon.SourceControl.PointToClient(System.Windows.Forms.Control.MousePosition));
 		|                OneScriptForms.EventQueue.Add(ContextMenuPopupEventArgs1);
 		|                ClContextMenuPopupEventArgs ClContextMenuPopupEventArgs1 = new ClContextMenuPopupEventArgs(ContextMenuPopupEventArgs1);
@@ -13585,7 +14563,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "SaveFileDialog" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -13637,7 +14615,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "OpenFileDialog" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -13695,7 +14673,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "FileDialog" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -13788,7 +14766,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "FontDialog" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -13846,7 +14824,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ColorDialog" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -13892,7 +14870,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Timer" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -13958,6 +14936,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Tick;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Tick;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -13967,7 +14958,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "FolderBrowserDialog" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -14029,7 +15020,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "CommonDialog" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -14063,7 +15054,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "TreeNodeCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -14123,7 +15114,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "TreeNode" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -14259,7 +15250,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "TreeView" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -14473,6 +15464,19 @@
 		|                NodeLabelEditEventArgs NodeLabelEditEventArgs1 = new NodeLabelEditEventArgs();
 		|                NodeLabelEditEventArgs1.EventString = AfterLabelEdit;
 		|                NodeLabelEditEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.AfterLabelEdit;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    NodeLabelEditEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    NodeLabelEditEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    NodeLabelEditEventArgs1.Parameter = null;
+		|                }
 		|                NodeLabelEditEventArgs1.CancelEdit = e.CancelEdit;
 		|                NodeLabelEditEventArgs1.Label = e.Label;
 		|                NodeLabelEditEventArgs1.Node = (TreeNode)((TreeNodeEx)e.Node).M_Object;
@@ -14491,6 +15495,19 @@
 		|                TreeViewEventArgs1.Node = (TreeNode)((TreeNodeEx)e.Node).M_Object;
 		|                TreeViewEventArgs1.EventString = AfterSelect;
 		|                TreeViewEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.AfterSelect;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    TreeViewEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    TreeViewEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    TreeViewEventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(TreeViewEventArgs1);
 		|                ClTreeViewEventArgs ClTreeViewEventArgs1 = new ClTreeViewEventArgs(TreeViewEventArgs1);
 		|            }
@@ -14506,6 +15523,19 @@
 		|                TreeViewCancelEventArgs1.Node = (TreeNode)((TreeNodeEx)e.Node).M_Object;
 		|                TreeViewCancelEventArgs1.EventString = BeforeExpand;
 		|                TreeViewCancelEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.BeforeExpand;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    TreeViewCancelEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    TreeViewCancelEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    TreeViewCancelEventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(TreeViewCancelEventArgs1);
 		|                ClTreeViewCancelEventArgs ClTreeViewCancelEventArgs1 = new ClTreeViewCancelEventArgs(TreeViewCancelEventArgs1);
 		|                e.Cancel = true;
@@ -14522,6 +15552,19 @@
 		|                TreeViewCancelEventArgs1.Node = (TreeNode)((TreeNodeEx)e.Node).M_Object;
 		|                TreeViewCancelEventArgs1.EventString = BeforeSelect;
 		|                TreeViewCancelEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.BeforeSelect;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    TreeViewCancelEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    TreeViewCancelEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    TreeViewCancelEventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(TreeViewCancelEventArgs1);
 		|                ClTreeViewCancelEventArgs ClTreeViewCancelEventArgs1 = new ClTreeViewCancelEventArgs(TreeViewCancelEventArgs1);
 		|                e.Cancel = true;
@@ -14532,7 +15575,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ExtractIconClass" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -14612,7 +15655,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "MonthCalendar" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -14780,6 +15823,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = M_DateChanged;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.M_DateChanged;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -14792,6 +15848,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = M_DateSelected;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.M_DateSelected;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -14801,7 +15870,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "SelectionRange" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -14851,7 +15920,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Process" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -14910,7 +15979,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ProcessStartInfo" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -15004,7 +16073,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "TextBox" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -15072,7 +16141,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "TextBoxBase" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -15178,7 +16247,7 @@
 		|            }
 		|        }
 		|
-		|        public bool MultiLine
+		|        public bool Multiline
 		|        {
 		|            get { return M_TextBoxBase.Multiline; }
 		|            set
@@ -15276,7 +16345,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "PropertyGrid" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -15337,6 +16406,19 @@
 		|                SelectedGridItemChangedEventArgs1.NewValue = e.NewSelection.Value;
 		|                SelectedGridItemChangedEventArgs1.EventString = SelectedGridItemChanged;
 		|                SelectedGridItemChangedEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.SelectedGridItemChanged;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    SelectedGridItemChangedEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    SelectedGridItemChangedEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    SelectedGridItemChangedEventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(SelectedGridItemChangedEventArgs1);
 		|                ClSelectedGridItemChangedEventArgs ClSelectedGridItemChangedEventArgs1 = new ClSelectedGridItemChangedEventArgs(SelectedGridItemChangedEventArgs1);
 		|            }
@@ -15349,6 +16431,19 @@
 		|                PropertyValueChangedEventArgs PropertyValueChangedEventArgs1 = new PropertyValueChangedEventArgs();
 		|                PropertyValueChangedEventArgs1.EventString = PropertyValueChanged;
 		|                PropertyValueChangedEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.PropertyValueChanged;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    PropertyValueChangedEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    PropertyValueChangedEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    PropertyValueChangedEventArgs1.Parameter = null;
+		|                }
 		|                PropertyValueChangedEventArgs1.OldValue = e.OldValue;
 		|                PropertyValueChangedEventArgs1.ChangedItem = new GridItem(e.ChangedItem);
 		|                OneScriptForms.EventQueue.Add(PropertyValueChangedEventArgs1);
@@ -15394,7 +16489,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "GridItem" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -15430,7 +16525,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "GridItemCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -15484,7 +16579,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ColumnHeader" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -15561,7 +16656,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ListViewSubItemCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -15616,7 +16711,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ListViewSubItem" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -15691,7 +16786,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ListViewSelectedItemCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -15726,7 +16821,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ListViewItemCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -15787,7 +16882,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ListViewItem" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -15964,7 +17059,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ListViewColumnHeaderCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -16027,7 +17122,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ListViewCheckedItemCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -16064,7 +17159,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ListView" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -16159,8 +17254,21 @@
 		|            if (BeforeLabelEdit.Length > 0)
 		|            {
 		|                LabelEditEventArgs LabelEditEventArgs1 = new LabelEditEventArgs();
-		|                LabelEditEventArgs1.Sender = this;
 		|                LabelEditEventArgs1.EventString = BeforeLabelEdit;
+		|                LabelEditEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.BeforeLabelEdit;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    LabelEditEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    LabelEditEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    LabelEditEventArgs1.Parameter = null;
+		|                }
 		|                LabelEditEventArgs1.Type = ""BeforeLabelEdit"";
 		|                LabelEditEventArgs1.CancelEdit = false;
 		|                LabelEditEventArgs1.Item = e.Item;
@@ -16178,6 +17286,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = ItemActivate;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.ItemActivate;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -16190,6 +17311,19 @@
 		|                ItemCheckEventArgs ItemCheckEventArgs1 = new ItemCheckEventArgs();
 		|                ItemCheckEventArgs1.EventString = ItemCheck;
 		|                ItemCheckEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.ItemCheck;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    ItemCheckEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    ItemCheckEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    ItemCheckEventArgs1.Parameter = null;
+		|                }
 		|                ItemCheckEventArgs1.CurrentValue = (int)e.CurrentValue;
 		|                ItemCheckEventArgs1.Index = e.Index;
 		|                ItemCheckEventArgs1.NewValue = (int)e.NewValue;
@@ -16206,8 +17340,21 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = SelectedIndexChanged;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.SelectedIndexChanged;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
-		|                ClEventArgs ClKeyEventArgs1 = new ClEventArgs(EventArgs1);
+		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
 		|        }
 		|
@@ -16216,8 +17363,21 @@
 		|            if (ColumnClick.Length > 0)
 		|            {
 		|                ColumnClickEventArgs ColumnClickEventArgs1 = new ColumnClickEventArgs();
-		|                ColumnClickEventArgs1.Sender = this;
 		|                ColumnClickEventArgs1.EventString = ColumnClick;
+		|                ColumnClickEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.ColumnClick;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    ColumnClickEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    ColumnClickEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    ColumnClickEventArgs1.Parameter = null;
+		|                }
 		|                ColumnClickEventArgs1.Column = e.Column;
 		|                OneScriptForms.EventQueue.Add(ColumnClickEventArgs1);
 		|                ClColumnClickEventArgs ClColumnClickEventArgs1 = new ClColumnClickEventArgs(ColumnClickEventArgs1);
@@ -16255,8 +17415,21 @@
 		|            if (AfterLabelEdit.Length > 0)
 		|            {
 		|                LabelEditEventArgs LabelEditEventArgs1 = new LabelEditEventArgs();
-		|                LabelEditEventArgs1.Sender = this;
 		|                LabelEditEventArgs1.EventString = AfterLabelEdit;
+		|                LabelEditEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.AfterLabelEdit;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    LabelEditEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    LabelEditEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    LabelEditEventArgs1.Parameter = null;
+		|                }
 		|                LabelEditEventArgs1.Type = ""AfterLabelEdit"";
 		|                LabelEditEventArgs1.CancelEdit = false;
 		|                LabelEditEventArgs1.Label = e.Label;
@@ -16612,7 +17785,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ContextMenuPopupEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -16654,7 +17827,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataRowView" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -16721,7 +17894,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ListBoxSelectedIndexCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -16773,7 +17946,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ListBoxSelectedObjectCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -16822,7 +17995,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ListBoxObjectCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -16876,7 +18049,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ListItem" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -16966,7 +18139,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ListBox" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -17039,6 +18212,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = M_SelectedIndexChanged;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.SelectedIndexChanged;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -17264,7 +18450,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ListControl" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -17354,7 +18540,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ImageList" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -17409,7 +18595,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "StreamReader" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -17458,7 +18644,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ImageCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -17506,7 +18692,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "TabControl" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -17556,6 +18742,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = M_SelectedIndexChanged;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.SelectedIndexChanged;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -17585,7 +18784,7 @@
 		|            set { M_TabControl.ItemSize = value.M_Size; }
 		|        }
 		|
-		|        public bool MultiLine
+		|        public bool Multiline
 		|        {
 		|            get { return M_TabControl.Multiline; }
 		|            set { M_TabControl.Multiline = value; }
@@ -17637,7 +18836,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "TabPage" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -17693,7 +18892,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "TabPageCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -17788,7 +18987,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Panel" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -17834,7 +19033,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "HScrollBar" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -17892,7 +19091,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "VScrollBar" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -17950,7 +19149,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ScrollBar" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -17983,6 +19182,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = ValueChanged;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.ValueChanged;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -17993,8 +19205,21 @@
 		|            if (Scroll.Length > 0)
 		|            {
 		|                ScrollEventArgs ScrollEventArgs1 = new ScrollEventArgs();
-		|                ScrollEventArgs1.Sender = this;
 		|                ScrollEventArgs1.EventString = Scroll;
+		|                ScrollEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Scroll;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    ScrollEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    ScrollEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    ScrollEventArgs1.Parameter = null;
+		|                }
 		|                ScrollEventArgs1.OldValue = e.OldValue;
 		|                ScrollEventArgs1.NewValue = e.NewValue;
 		|                ScrollEventArgs1.ScrollOrientation = (int)e.ScrollOrientation;
@@ -18117,7 +19342,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Environment" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -18145,7 +19370,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "MenuItemCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -18214,7 +19439,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "MenuItem" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -18373,6 +19598,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Click;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Click;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -18385,6 +19623,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Popup;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Popup;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -18394,7 +19645,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ContextMenu" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -18458,8 +19709,21 @@
 		|                    item.M_MenuItem.Visible = false;
 		|                }
 		|                ContextMenuPopupEventArgs ContextMenuPopupEventArgs1 = new ContextMenuPopupEventArgs();
-		|                ContextMenuPopupEventArgs1.Sender = this;
 		|                ContextMenuPopupEventArgs1.EventString = Popup;
+		|                ContextMenuPopupEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Popup;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    ContextMenuPopupEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    ContextMenuPopupEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    ContextMenuPopupEventArgs1.Parameter = null;
+		|                }
 		|                ContextMenuPopupEventArgs1.Point = new Point(M_ContextMenu.SourceControl.PointToClient(System.Windows.Forms.Control.MousePosition));
 		|                OneScriptForms.EventQueue.Add(ContextMenuPopupEventArgs1);
 		|                ClContextMenuPopupEventArgs ClContextMenuPopupEventArgs1 = new ClContextMenuPopupEventArgs(ContextMenuPopupEventArgs1);
@@ -18470,7 +19734,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "MainMenu" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -18518,7 +19782,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Menu" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -18559,7 +19823,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ArrayList" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -18636,6 +19900,22 @@
 		|        {
 		|            M_ArrayList.RemoveAt(index);
 		|        }
+		|		
+		|        public void Reverse()
+		|        {
+		|            M_ArrayList.Reverse();
+		|        }
+		|		
+		|        public void Sort(int p1, int p2)
+		|        {
+		|            System.Collections.IComparer myComparer = new ArrayListItemSorter(p1, p2);
+		|            M_ArrayList.Sort(myComparer);
+		|        }
+		|		
+		|        public bool Contains(object obj)
+		|        {
+		|            return M_ArrayList.Contains(obj);
+		|        }
 		|
 		|        public System.Collections.IEnumerator GetEnumerator()
 		|        {
@@ -18658,11 +19938,157 @@
 		|            Enumerator.Reset();
 		|        }
 		|    }//endClass
+		|		
+		|    public class ArrayListItemSorter : System.Collections.IComparer
+		|    {
+		|        private int sortType;
+		|        private int sortOrder;
+		|        private dynamic x2;
+		|        private dynamic y2;
+		|
+		|        public ArrayListItemSorter(int p1, int p2)
+		|        {
+		|            sortType = p1;
+		|            sortOrder = p2;
+		|        }
+		|
+		|        public int Compare(object x, object y)
+		|        {
+		|            x2 = OneScriptForms.DefineTypeIValue(x);
+		|            y2 = OneScriptForms.DefineTypeIValue(y);
+		|            int num = 0;
+		|            if (sortType == 3)//Boolean
+		|            {
+		|                if ((x2.GetType() != typeof(System.Boolean)) && (y2.GetType() != typeof(System.Boolean)))
+		|                {
+		|                    num = 0;
+		|                }
+		|                else if ((x2.GetType() != typeof(System.Boolean)) && (y2.GetType() == typeof(System.Boolean)))
+		|                {
+		|                    num = 1;
+		|                }
+		|                else if ((x2.GetType() == typeof(System.Boolean)) && (y2.GetType() != typeof(System.Boolean)))
+		|                {
+		|                    num = -1;
+		|                }
+		|                else
+		|                {
+		|                    num = ((System.Boolean)x2).CompareTo((System.Boolean)y2);
+		|                    if (sortOrder == 0)
+		|                    {
+		|                        num = 0;
+		|                    }
+		|                    else if (sortOrder == 1)
+		|                    {
+		|                        
+		|                    }
+		|                    else if (sortOrder == 2)
+		|                    {
+		|                        num = -num;
+		|                    }
+		|                }
+		|            }
+		|            if (sortType == 2)//DateTime
+		|            {
+		|                if ((x2.GetType() != typeof(System.DateTime)) && (y2.GetType() != typeof(System.DateTime)))
+		|                {
+		|                    num = 0;
+		|                }
+		|                else if ((x2.GetType() != typeof(System.DateTime)) && (y2.GetType() == typeof(System.DateTime)))
+		|                {
+		|                    num = 1;
+		|                }
+		|                else if ((x2.GetType() == typeof(System.DateTime)) && (y2.GetType() != typeof(System.DateTime)))
+		|                {
+		|                    num = -1;
+		|                }
+		|                else
+		|                {
+		|                    num = ((System.DateTime)x2).CompareTo((System.DateTime)y2);
+		|                    if (sortOrder == 0)
+		|                    {
+		|                        num = 0;
+		|                    }
+		|                    else if (sortOrder == 1)
+		|                    {
+		|
+		|                    }
+		|                    else if (sortOrder == 2)
+		|                    {
+		|                        num = -num;
+		|                    }
+		|                }
+		|            }
+		|            else if (sortType == 1)//Number
+		|            {
+		|                if ((x2.GetType() != typeof(System.Decimal)) && (y2.GetType() != typeof(System.Decimal)))
+		|                {
+		|                    num = 0;
+		|                }
+		|                else if ((x2.GetType() != typeof(System.Decimal)) && (y2.GetType() == typeof(System.Decimal)))
+		|                {
+		|                    num = 1;
+		|                }
+		|                else if ((x2.GetType() == typeof(System.Decimal)) && (y2.GetType() != typeof(System.Decimal)))
+		|                {
+		|                    num = -1;
+		|                }
+		|                else
+		|                {
+		|                    num = ((System.Decimal)x2).CompareTo((System.Decimal)y2);
+		|                    if (sortOrder == 0)
+		|                    {
+		|                        num = 0;
+		|                    }
+		|                    else if (sortOrder == 1)
+		|                    {
+		|
+		|                    }
+		|                    else if (sortOrder == 2)
+		|                    {
+		|                        num = -num;
+		|                    }
+		|                }
+		|            }
+		|            else if (sortType == 0)// text
+		|            {
+		|                if ((x2.GetType() != typeof(System.String)) && (y2.GetType() != typeof(System.String)))
+		|                {
+		|                    num = 0;
+		|                }
+		|                else if ((x2.GetType() != typeof(System.String)) && (y2.GetType() == typeof(System.String)))
+		|                {
+		|                    num = 1;
+		|                }
+		|                else if ((x2.GetType() == typeof(System.String)) && (y2.GetType() != typeof(System.String)))
+		|                {
+		|                    num = -1;
+		|                }
+		|                else
+		|                {
+		|                    num = ((System.String)x2).CompareTo((System.String)y2);
+		|                    if (sortOrder == 0)
+		|                    {
+		|                        num = 0;
+		|                    }
+		|                    else if (sortOrder == 1)
+		|                    {
+		|
+		|                    }
+		|                    else if (sortOrder == 2)
+		|                    {
+		|                        num = -num;
+		|                    }
+		|                }
+		|            }
+		|            return num;
+		|        }
+		|    }//endClass
 		|}//endnamespace
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "PictureBox" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -18744,7 +20170,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Bitmap" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -18919,7 +20345,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Icon" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19004,7 +20430,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Type" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19052,7 +20478,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Pen" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19089,7 +20515,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "SolidBrush" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19124,7 +20550,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Brush" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19142,7 +20568,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Graphics" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19265,7 +20691,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Collection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19338,7 +20764,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "FormClosingEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19371,7 +20797,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Sound" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19402,7 +20828,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ItemCheckEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19428,7 +20854,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "KeyEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19446,7 +20872,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "KeyPressEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19465,7 +20891,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "LabelEditEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19503,7 +20929,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "RenamedEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19518,7 +20944,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "LinkClickedEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19532,7 +20958,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ScrollEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19549,7 +20975,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "SelectedGridItemChangedEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19566,7 +20992,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ControlEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19580,7 +21006,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "PaintEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19595,7 +21021,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "NodeLabelEditEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19624,7 +21050,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "TreeViewEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19639,7 +21065,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "TreeViewCancelEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19667,7 +21093,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "PropertyValueChangedEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19688,7 +21114,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ToolBarButtonClickEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19702,7 +21128,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "LinkLabelLinkClickedEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19717,7 +21143,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ColumnClickEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19731,7 +21157,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "FileSystemEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19747,7 +21173,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "CancelEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19761,7 +21187,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ControlCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19846,7 +21272,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "CollectionBase" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -19955,7 +21381,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DockPaddingEdges" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -20011,7 +21437,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "MouseEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -20034,7 +21460,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Stream" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -20129,7 +21555,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ImageFormat" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -20183,7 +21609,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Image" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -20267,7 +21693,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Cursor" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -20316,7 +21742,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Rectangle" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -20418,7 +21844,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Version" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -20462,7 +21888,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Font" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -20514,7 +21940,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "EventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -20524,10 +21950,12 @@
 		|        public ClEventArgs dll_obj;
 		|        public string EventString = """";
 		|        public dynamic Sender;
+		|        public dynamic Parameter;
 		|
 		|        public EventArgs()
 		|        {
 		|            Sender = null;
+		|            Parameter = null;
 		|        }
 		|
 		|        public virtual bool PostEvent()
@@ -20599,7 +22027,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Size" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -20640,7 +22068,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Point" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -20681,7 +22109,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Color" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -21597,7 +23025,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Button" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -21643,7 +23071,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ScrollableControl" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -21683,7 +23111,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Form" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -21765,6 +23193,19 @@
 		|                FormClosingEventArgs FormClosingEventArgs1 = new FormClosingEventArgs(e.CloseReason, e.Cancel);
 		|                FormClosingEventArgs1.EventString = Closing;
 		|                FormClosingEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.FormClosing;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    FormClosingEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    FormClosingEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    FormClosingEventArgs1.Parameter = null;
+		|                }
 		|                FormClosingEventArgs1.Cancel = e.Cancel;
 		|                FormClosingEventArgs1.CloseReason = (int)e.CloseReason;
 		|                OneScriptForms.EventQueue.Add(FormClosingEventArgs1);
@@ -21780,6 +23221,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Activated;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Activated;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -21792,6 +23246,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Deactivate;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Deactivate;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -21805,6 +23272,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Load;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Load;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -21815,6 +23295,19 @@
 		|            EventArgs EventArgs1 = new EventArgs();
 		|            EventArgs1.EventString = Closed;
 		|            EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Closed;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|            OneScriptForms.EventQueue.Add(EventArgs1);
 		|            ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            if (sender == OneScriptForms.FirstForm.Base_obj.M_Form)
@@ -22215,7 +23708,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Control" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -22277,7 +23770,7 @@
 		|                ControlRemoved = """";
 		|            }//endset
 		|        }
-		|
+		|		
 		|        public Control(System.Windows.Forms.Control control = null)
 		|        {
 		|        }
@@ -22289,6 +23782,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = DoubleClick;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.DoubleClick;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -22301,6 +23807,24 @@
 		|                KeyEventArgs KeyEventArgs1 = new KeyEventArgs();
 		|                KeyEventArgs1.EventString = KeyUp;
 		|                KeyEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.KeyUp;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    KeyEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    KeyEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    KeyEventArgs1.Parameter = null;
+		|                }
+		|                KeyEventArgs1.Alt = e.Alt;
+		|                KeyEventArgs1.Control = e.Control;
+		|                KeyEventArgs1.KeyCode = (int)e.KeyCode;
+		|                KeyEventArgs1.Modifiers = (int)e.Modifiers;
+		|                KeyEventArgs1.Shift = e.Shift;
 		|                OneScriptForms.EventQueue.Add(KeyEventArgs1);
 		|                ClKeyEventArgs ClKeyEventArgs1 = new ClKeyEventArgs(KeyEventArgs1);
 		|            }
@@ -22313,6 +23837,24 @@
 		|                KeyEventArgs KeyEventArgs1 = new KeyEventArgs();
 		|                KeyEventArgs1.EventString = KeyDown;
 		|                KeyEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.KeyDown;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    KeyEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    KeyEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    KeyEventArgs1.Parameter = null;
+		|                }
+		|                KeyEventArgs1.Alt = e.Alt;
+		|                KeyEventArgs1.Control = e.Control;
+		|                KeyEventArgs1.KeyCode = (int)e.KeyCode;
+		|                KeyEventArgs1.Modifiers = (int)e.Modifiers;
+		|                KeyEventArgs1.Shift = e.Shift;
 		|                OneScriptForms.EventQueue.Add(KeyEventArgs1);
 		|                ClKeyEventArgs ClKeyEventArgs1 = new ClKeyEventArgs(KeyEventArgs1);
 		|            }
@@ -22325,6 +23867,19 @@
 		|                KeyPressEventArgs KeyPressEventArgs1 = new KeyPressEventArgs();
 		|                KeyPressEventArgs1.EventString = KeyPress;
 		|                KeyPressEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.KeyPress;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    KeyPressEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    KeyPressEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    KeyPressEventArgs1.Parameter = null;
+		|                }
 		|                KeyPressEventArgs1.KeyChar = Convert.ToString(e.KeyChar);
 		|                OneScriptForms.EventQueue.Add(KeyPressEventArgs1);
 		|                ClKeyPressEventArgs ClKeyPressEventArgs1 = new ClKeyPressEventArgs(KeyPressEventArgs1);
@@ -22338,6 +23893,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = MouseEnter;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.MouseEnter;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -22350,6 +23918,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = MouseLeave;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.MouseLeave;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -22362,6 +23943,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Click;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Click;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -22374,6 +23968,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = LocationChanged;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.LocationChanged;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -22386,6 +23993,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Enter;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Enter;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -22398,6 +24018,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = MouseHover;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.MouseHover;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -22410,6 +24043,19 @@
 		|                MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
 		|                MouseEventArgs1.EventString = MouseDown;
 		|                MouseEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.MouseDown;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    MouseEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    MouseEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    MouseEventArgs1.Parameter = null;
+		|                }
 		|                MouseEventArgs1.Clicks = e.Clicks;
 		|                MouseEventArgs1.Button = (int)e.Button;
 		|                MouseEventArgs1.X = e.X;
@@ -22426,6 +24072,19 @@
 		|                MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
 		|                MouseEventArgs1.EventString = MouseUp;
 		|                MouseEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.MouseUp;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    MouseEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    MouseEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    MouseEventArgs1.Parameter = null;
+		|                }
 		|                MouseEventArgs1.Clicks = e.Clicks;
 		|                MouseEventArgs1.Button = (int)e.Button;
 		|                MouseEventArgs1.X = e.X;
@@ -22442,6 +24101,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Move;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Move;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -22454,6 +24126,19 @@
 		|                MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
 		|                MouseEventArgs1.EventString = MouseMove;
 		|                MouseEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.MouseMove;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    MouseEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    MouseEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    MouseEventArgs1.Parameter = null;
+		|                }
 		|                MouseEventArgs1.Clicks = e.Clicks;
 		|                MouseEventArgs1.Button = (int)e.Button;
 		|                MouseEventArgs1.X = e.X;
@@ -22470,6 +24155,19 @@
 		|                PaintEventArgs PaintEventArgs1 = new PaintEventArgs();
 		|                PaintEventArgs1.EventString = Paint;
 		|                PaintEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Paint;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    PaintEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    PaintEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    PaintEventArgs1.Parameter = null;
+		|                }
 		|                PaintEventArgs1.Graphics = new Graphics(M_Control.CreateGraphics());
 		|                PaintEventArgs1.ClipRectangle = new Rectangle(e.ClipRectangle);
 		|                OneScriptForms.EventQueue.Add(PaintEventArgs1);
@@ -22484,6 +24182,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = LostFocus;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.LostFocus;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -22496,6 +24207,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Leave;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.Leave;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -22508,6 +24232,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = SizeChanged;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.SizeChanged;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -22520,6 +24257,19 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = TextChanged;
 		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.TextChanged;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
 		|                OneScriptForms.EventQueue.Add(EventArgs1);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
 		|            }
@@ -22532,6 +24282,19 @@
 		|                ControlEventArgs ControlEventArgs1 = new ControlEventArgs();
 		|                ControlEventArgs1.EventString = ControlAdded;
 		|                ControlEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.ControlAdded;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    ControlEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    ControlEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    ControlEventArgs1.Parameter = null;
+		|                }
 		|                ControlEventArgs1.Control = e.Control;
 		|                OneScriptForms.EventQueue.Add(ControlEventArgs1);
 		|                ClControlEventArgs ClControlEventArgs1 = new ClControlEventArgs(ControlEventArgs1);
@@ -22545,6 +24308,19 @@
 		|                ControlEventArgs ControlEventArgs1 = new ControlEventArgs();
 		|                ControlEventArgs1.EventString = ControlRemoved;
 		|                ControlEventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.ControlRemoved;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    ControlEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    ControlEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    ControlEventArgs1.Parameter = null;
+		|                }
 		|                ControlEventArgs1.Control = e.Control;
 		|                OneScriptForms.EventQueue.Add(ControlEventArgs1);
 		|                ClControlEventArgs ClControlEventArgs1 = new ClControlEventArgs(ControlEventArgs1);
@@ -22918,9 +24694,64 @@
 		|            get { return (int)M_Control.Anchor; }
 		|            set { M_Control.Anchor = (System.Windows.Forms.AnchorStyles)value; }
 		|        }
+		|		
+		|        public bool DoubleBuffered
+		|        {
+		|            get
+		|            {
+		|                bool db = (bool)typeof(System.Windows.Forms.Control).InvokeMember(
+		|                        ""DoubleBuffered"",
+		|                        BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
+		|                        null,
+		|                        M_Control,
+		|                        null);
 		|
+		|                return db;
+		|            }
+		|            set
+		|            {
+		|                System.Type Type1 = typeof(System.Windows.Forms.Control);
+		|
+		|                Type1.InvokeMember(
+		|                    ""DoubleBuffered"",
+		|                    BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
+		|                    null,
+		|                    M_Control,
+		|                    new object[] { value });
+		|            }
+		|        }
 		|
 		|        //Методы============================================================
+		|        public bool GetStyle(System.Windows.Forms.ControlStyles p1)
+		|        {
+		|            return (bool)typeof(System.Windows.Forms.Control).InvokeMember(
+		|                ""GetStyle"",
+		|                System.Reflection.BindingFlags.InvokeMethod | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance,
+		|                null,
+		|                M_Control,
+		|                new object[] { p1 });
+		|        }
+		|
+		|        public void SetStyle(System.Windows.Forms.ControlStyles p1, bool p2)
+		|        {
+		|            typeof(System.Windows.Forms.Control).InvokeMember(
+		|                ""SetStyle"",
+		|                System.Reflection.BindingFlags.InvokeMethod | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance,
+		|                null,
+		|                M_Control,
+		|                new object[] { p1, p2 });
+		|        }
+		|
+		|        public void UpdateStyles()
+		|        {
+		|            typeof(System.Windows.Forms.Control).InvokeMember(
+		|                ""UpdateStyles"",
+		|                System.Reflection.BindingFlags.InvokeMethod | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance,
+		|                null,
+		|                M_Control,
+		|                null);
+		|        }
+		|		
 		|        public void PlaceLeft(Control p1, int p2)
 		|        {
 		|            p1.M_Control.Location = new System.Drawing.Point(p1.M_Control.Left - Width - p2, p1.M_Control.Top);
@@ -23102,7 +24933,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ContainerControl" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -23135,7 +24966,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Component" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -23159,7 +24990,7 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ButtonBase" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -23228,1240 +25059,14 @@
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать("C:\444\ВыгруженныеОбъекты\" + ИмяФайлаCs + ".cs");
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	КонецЕсли;
 КонецПроцедуры//СоздатьФайлCs
-
-Процедура СтраницыБезПримера()
-	Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
-	
-	ВыбранныеФайлы = НайтиФайлы("C:\444", "*.html", Истина);
-	Найдено1 = 0;
-	Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
-		ТекстДок = Новый ТекстовыйДокумент;
-		ТекстДок.Прочитать(ВыбранныеФайлы[А].ПолноеИмя);
-		Стр = ТекстДок.ПолучитьТекст();
-		М = СтрНайтиМежду(Стр, "<H4 class=dtH4>Пример</H4>", "<H4 class=dtH4>Смотрите также</H4>", , );
-		Если М.Количество() > 0 Тогда
-			СтрПримера= СтрНайтиМежду(М[0], "<PRE class=code>", "</PRE>", , )[0];
-			Если (СокрЛП(СтрПримера) = "") или (СтрНайти(СтрПримера, "$") > 0) Тогда//
-				Найдено1 = Найдено1 + 1;
-				Сообщить("================================================================================================");
-				Сообщить("" + ВыбранныеФайлы[А].ПолноеИмя + Символы.ПС + СтрПримера);
-				
-			КонецЕсли;
-		КонецЕсли;
-	КонецЦикла;
-	
-	Сообщить("Найдено1 = " + Найдено1);
-	Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах()-Таймер)/1000)/60 + " мин.");
-КонецПроцедуры//СтраницыБезПримера
-
-Процедура ИзменениеСекцииПример()
-	Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
-	
-	ВыбранныеФайлы = НайтиФайлы("C:\444", "*.html", Истина);
-	Найдено1 = 0;
-	СделаноЗамен1 = 0;
-	СделаноЗамен2 = 0;
-	СделаноЗамен3 = 0;
-	СделаноЗамен4 = 0;
-	СделаноЗамен5 = 0;
-	Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
-		Если Не (СтрНайти(ВыбранныеФайлы[А].ПолноеИмя, "C:\444\OneScriptFormsru\OneScriptForms.Form.") > 0) Тогда
-			// Сообщить("" + ВыбранныеФайлы[А].ПолноеИмя);
-			Продолжить;
-		КонецЕсли;
-		ТекстДок = Новый ТекстовыйДокумент;
-		ТекстДок.Прочитать(ВыбранныеФайлы[А].ПолноеИмя);
-		Стр = ТекстДок.ПолучитьТекст();
-		М = СтрНайтиМежду(Стр, "<H4 class=dtH4>Пример</H4>", "<H4 class=dtH4>Смотрите также</H4>", Ложь, );
-		
-		Если М.Количество() > 0 Тогда
-			// Сообщить("==========" + ВыбранныеФайлы[А].ПолноеИмя);
-			СтрПримера= М[0];
-			
-			ПодстрокаПоиска = "</PRE>
-			|</details>
-			|<P></P>
-			|<H4 class=dtH4>Смотрите также</H4>";
-			ПодстрокаЗамены = "</PRE>
-			|</details>
-			|<P></P>
-			|<details><summary>Тестовый код</summary>
-			|<P><PRE class=code>
-			|
-			|</PRE>
-			|</details>
-			|<P></P>
-			|<H4 class=dtH4>Смотрите также</H4>";
-			Если СтрНайти(Стр, ПодстрокаПоиска) > 0 Тогда
-				СделаноЗамен1 = СделаноЗамен1 + 1;
-				Сообщить("==================================================");
-				Сообщить("ПодстрокаПоиска------------------------------");
-				Сообщить("" + ПодстрокаПоиска);
-				Сообщить("ПодстрокаЗамены------------------------------");
-				Сообщить("" + ПодстрокаЗамены);
-				Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
-				ТекстДок.УстановитьТекст(Стр);
-				ТекстДок.Записать(ВыбранныеФайлы[А].ПолноеИмя);
-			Иначе
-				ПодстрокаПоиска2 = "</PRE>
-				|</details>
-				|<P></P>
-				|<IMG src";
-				ПодстрокаЗамены2 = "</PRE>
-				|</details>
-				|<P></P>
-				|<details><summary>Тестовый код</summary>
-				|<P><PRE class=code>
-				|
-				|</PRE>
-				|</details>
-				|<P></P>
-				|<IMG src";
-				Если СтрНайти(Стр, ПодстрокаПоиска2) > 0 Тогда
-					СделаноЗамен2 = СделаноЗамен2 + 1;
-					Сообщить("==================================================");
-					Сообщить("ПодстрокаПоиска2------------------------------");
-					Сообщить("" + ПодстрокаПоиска2);
-					Сообщить("ПодстрокаЗамены2------------------------------");
-					Сообщить("" + ПодстрокаЗамены2);
-					Стр = СтрЗаменить(Стр, ПодстрокаПоиска2, ПодстрокаЗамены2);
-					ТекстДок.УстановитьТекст(Стр);
-					ТекстДок.Записать(ВыбранныеФайлы[А].ПолноеИмя);
-				Иначе
-					ПодстрокаПоиска3 = "</PRE>
-					|</details>
-					|<IMG src";
-					ПодстрокаЗамены3 = "</PRE>
-					|</details>
-					|<P></P>
-					|<details><summary>Тестовый код</summary>
-					|<P><PRE class=code>
-					|
-					|</PRE>
-					|</details>
-					|<P></P>
-					|<IMG src";
-					Если СтрНайти(Стр, ПодстрокаПоиска3) > 0 Тогда
-						СделаноЗамен3 = СделаноЗамен3 + 1;
-						Сообщить("==================================================");
-						Сообщить("ПодстрокаПоиска3------------------------------");
-						Сообщить("" + ПодстрокаПоиска3);
-						Сообщить("ПодстрокаЗамены3------------------------------");
-						Сообщить("" + ПодстрокаЗамены3);
-						Стр = СтрЗаменить(Стр, ПодстрокаПоиска3, ПодстрокаЗамены3);
-						ТекстДок.УстановитьТекст(Стр);
-						ТекстДок.Записать(ВыбранныеФайлы[А].ПолноеИмя);
-					Иначе
-						ПодстрокаПоиска4 = "</PRE>
-						|</details>
-						|<style>img";
-						ПодстрокаЗамены4 = "</PRE>
-						|</details>
-						|<P></P>
-						|<details><summary>Тестовый код</summary>
-						|<P><PRE class=code>
-						|
-						|</PRE>
-						|</details>
-						|<P></P>
-						|<style>img";
-						Если СтрНайти(Стр, ПодстрокаПоиска4) > 0 Тогда
-							СделаноЗамен4 = СделаноЗамен4 + 1;
-							Сообщить("==================================================");
-							Сообщить("ПодстрокаПоиска4------------------------------");
-							Сообщить("" + ПодстрокаПоиска4);
-							Сообщить("ПодстрокаЗамены4------------------------------");
-							Сообщить("" + ПодстрокаЗамены4);
-							Стр = СтрЗаменить(Стр, ПодстрокаПоиска4, ПодстрокаЗамены4);
-							ТекстДок.УстановитьТекст(Стр);
-							ТекстДок.Записать(ВыбранныеФайлы[А].ПолноеИмя);
-						Иначе
-							ПодстрокаПоиска5 = "</PRE>
-							|</details>
-							|<P></P>
-							|<style>img";
-							ПодстрокаЗамены5 = "</PRE>
-							|</details>
-							|<P></P>
-							|<details><summary>Тестовый код</summary>
-							|<P><PRE class=code>
-							|
-							|</PRE>
-							|</details>
-							|<P></P>
-							|<style>img";
-							Если СтрНайти(Стр, ПодстрокаПоиска5) > 0 Тогда
-								СделаноЗамен5 = СделаноЗамен5 + 1;
-								Сообщить("==================================================");
-								Сообщить("ПодстрокаПоиска5------------------------------");
-								Сообщить("" + ПодстрокаПоиска5);
-								Сообщить("ПодстрокаЗамены5------------------------------");
-								Сообщить("" + ПодстрокаЗамены5);
-								Стр = СтрЗаменить(Стр, ПодстрокаПоиска5, ПодстрокаЗамены5);
-								ТекстДок.УстановитьТекст(Стр);
-								ТекстДок.Записать(ВыбранныеФайлы[А].ПолноеИмя);
-							Иначе
-						
-								ИмяФайлаБат = "C:\444\Baty\gggggggg.bat";
-								ИмяРедактируемогоФайла = ВыбранныеФайлы[А].ПолноеИмя;
-
-								ТекстДок3 = Новый ТекстовыйДокумент;
-								СтрБат = "cd c:\" + Символы.ПС + """C:\Program Files (x86)\Notepad++\notepad++.exe"" """ + ИмяРедактируемогоФайла + """";
-								ТекстДок3.УстановитьТекст(СтрБат);
-								ТекстДок3.Записать(ИмяФайлаБат);
-								Приостановить(1000);
-								ЗапуститьПриложение(ИмяФайлаБат);
-								ЗавершитьРаботу(2);
-							КонецЕсли;
-						КонецЕсли;
-					КонецЕсли;
-				КонецЕсли;
-			КонецЕсли;
-			
-			
-			Найдено1 = Найдено1 + 1;
-			// Сообщить("================================================================================================");
-			// Сообщить("==========" + ВыбранныеФайлы[А].ПолноеИмя + Символы.ПС + СтрПримера);
-		КонецЕсли;
-	КонецЦикла;
-	
-	Сообщить("Найдено1 = " + Найдено1);
-	Сообщить("СделаноЗамен1 = " + СделаноЗамен1);
-	Сообщить("СделаноЗамен2 = " + СделаноЗамен2);
-	Сообщить("СделаноЗамен3 = " + СделаноЗамен3);
-	Сообщить("СделаноЗамен4 = " + СделаноЗамен4);
-	Сообщить("СделаноЗамен5 = " + СделаноЗамен5);
-	Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах()-Таймер)/1000)/60 + " мин.");
-КонецПроцедуры//ИзменениеСекцииПример
-
-Процедура ДобавлениеКопированияВПример()
-	Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
-	
-	ВыбранныеФайлы = НайтиФайлы("C:\444", "*.html", Истина);
-	Найдено1 = 0;
-	СделаноЗамен1 = 0;
-	СделаноЗамен2 = 0;
-	СделаноЗамен3 = 0;
-	СделаноЗамен4 = 0;
-	Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
-		// Если Не (СтрНайти(ВыбранныеФайлы[А].ПолноеИмя, "C:\444\OneScriptFormsru\OneScriptForms.Form.") > 0) Тогда
-			// // Сообщить("" + ВыбранныеФайлы[А].ПолноеИмя);
-			// Продолжить;
-		// КонецЕсли;
-		ТекстДок = Новый ТекстовыйДокумент;
-		ТекстДок.Прочитать(ВыбранныеФайлы[А].ПолноеИмя);
-		Стр = ТекстДок.ПолучитьТекст();
-		М = СтрНайтиМежду(Стр, "<H4 class=dtH4>Пример</H4>", "<H4 class=dtH4>Смотрите также</H4>", Ложь, );
-		
-		Если М.Количество() > 0 Тогда
-			// Сообщить("==========" + ВыбранныеФайлы[А].ПолноеИмя);
-			СтрПримера= М[0];
-			
-			ПодстрокаПоиска = "<details><summary>Полный пример кода</summary>
-			|<P><PRE class=code>";
-			ПодстрокаЗамены = "<details><summary>Полный пример кода</summary>
-			|<P><PRE class=code>
-			|<a id=""copy1"" href=""jаvascript://"" title=""Выделяет код, копирует и снимает выделение."">Копировать</a>     <a id=""select1"" href=""jаvascript://"" title=""Выделяет код."">Выделить всё</a>
-			|<hr style=""border-color: lightgray;""><DIV id=""cont1"">";
-			Если СтрНайти(Стр, ПодстрокаПоиска) > 0 Тогда
-				СделаноЗамен1 = СделаноЗамен1 + 1;
-				Сообщить("==================================================");
-				Сообщить("ПодстрокаПоиска------------------------------");
-				Сообщить("" + ПодстрокаПоиска);
-				Сообщить("ПодстрокаЗамены------------------------------");
-				Сообщить("" + ПодстрокаЗамены);
-				// Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
-				// ТекстДок.УстановитьТекст(Стр);
-				// ТекстДок.Записать(ВыбранныеФайлы[А].ПолноеИмя);
-			// // Иначе
-				// // Сообщить("================================================================================================");
-				// // Сообщить("==========1" + ВыбранныеФайлы[А].ПолноеИмя + Символы.ПС + СтрПримера);
-			КонецЕсли;
-			
-			ПодстрокаПоиска = "<details><summary>Тестовый код</summary>
-			|<P><PRE class=code>";
-			ПодстрокаЗамены = "<details><summary>Тестовый код</summary>
-			|<P><PRE class=code>
-			|<a id=""copy2"" href=""jаvascript://"" title=""Выделяет код, копирует и снимает выделение."">Копировать</a>     <a id=""select2"" href=""jаvascript://"" title=""Выделяет код."">Выделить всё</a>
-			|<hr style=""border-color: lightgray;""><DIV id=""cont2"">";
-			Если СтрНайти(Стр, ПодстрокаПоиска) > 0 Тогда
-				СделаноЗамен2 = СделаноЗамен2 + 1;
-				Сообщить("==================================================");
-				Сообщить("ПодстрокаПоиска------------------------------");
-				Сообщить("" + ПодстрокаПоиска);
-				Сообщить("ПодстрокаЗамены------------------------------");
-				Сообщить("" + ПодстрокаЗамены);
-				// Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
-				// ТекстДок.УстановитьТекст(Стр);
-				// ТекстДок.Записать(ВыбранныеФайлы[А].ПолноеИмя);
-			// // Иначе
-				// // Сообщить("================================================================================================");
-				// // Сообщить("==========2" + ВыбранныеФайлы[А].ПолноеИмя + Символы.ПС + СтрПримера);
-			КонецЕсли;
-			
-			ПодстрокаПоиска = "</PRE>
-			|</details>";
-			ПодстрокаЗамены = "</DIV>
-			|</PRE>
-			|</details>";
-			Если СтрНайти(Стр, ПодстрокаПоиска) > 0 Тогда
-				СделаноЗамен3 = СделаноЗамен3 + 1;
-				Сообщить("==================================================");
-				Сообщить("ПодстрокаПоиска------------------------------");
-				Сообщить("" + ПодстрокаПоиска);
-				Сообщить("ПодстрокаЗамены------------------------------");
-				Сообщить("" + ПодстрокаЗамены);
-				// Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
-				// ТекстДок.УстановитьТекст(Стр);
-				// ТекстДок.Записать(ВыбранныеФайлы[А].ПолноеИмя);
-			// // Иначе
-				// // Сообщить("================================================================================================");
-				// // Сообщить("==========3" + ВыбранныеФайлы[А].ПолноеИмя + Символы.ПС + СтрПримера);
-			КонецЕсли;
-			
-			ПодстрокаПоиска = "</DIV></BODY></HTML>";
-			ПодстрокаЗамены = "</DIV>
-			|<script>
-			|window.onload = function () {
-			|    var a = document.getElementById('select1');
-			|    a.onclick = function() {
-			|		window.getSelection().removeAllRanges();
-			|		var ta1 = document.getElementById('cont1'); 
-			|		var range1 = document.createRange();
-			|		range1.selectNode(ta1); 
-			|		window.getSelection().addRange(range1); 
-			|        return false;
-			|    }
-			|	
-			|    var b = document.getElementById('copy1');
-			|    b.onclick = function() {
-			|		window.getSelection().removeAllRanges();
-			|		var ta2 = document.getElementById('cont1'); 
-			|		var range2 = document.createRange();
-			|		range2.selectNode(ta2); 
-			|		window.getSelection().addRange(range2);
-			|		try { 
-			|		  document.execCommand('copy'); 
-			|		} catch(err) {} 
-			|		window.getSelection().removeRange(range2);
-			|        return false;
-			|    }
-			|	
-			|    var c = document.getElementById('select2');
-			|    c.onclick = function() {
-			|		window.getSelection().removeAllRanges();
-			|		var ta3 = document.getElementById('cont2'); 
-			|		var range3 = document.createRange();
-			|		range3.selectNode(ta3); 
-			|		window.getSelection().addRange(range3); 
-			|        return false;
-			|    }
-			|	
-			|    var d = document.getElementById('copy2');
-			|    d.onclick = function() {
-			|		window.getSelection().removeAllRanges();
-			|		var ta4 = document.getElementById('cont2'); 
-			|		var range4 = document.createRange();
-			|		range4.selectNode(ta4); 
-			|		window.getSelection().addRange(range4);
-			|		try { 
-			|		  document.execCommand('copy'); 
-			|		} catch(err) {} 
-			|		window.getSelection().removeRange(range4);
-			|        return false;
-			|    }
-			|}
-			|</script>
-			|</BODY></HTML>";
-			Если СтрНайти(Стр, ПодстрокаПоиска) > 0 Тогда
-				СделаноЗамен4 = СделаноЗамен4 + 1;
-				Сообщить("==================================================");
-				Сообщить("ПодстрокаПоиска------------------------------");
-				Сообщить("" + ПодстрокаПоиска);
-				Сообщить("ПодстрокаЗамены------------------------------");
-				Сообщить("" + ПодстрокаЗамены);
-				// Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
-				// ТекстДок.УстановитьТекст(Стр);
-				// ТекстДок.Записать(ВыбранныеФайлы[А].ПолноеИмя);
-			// // Иначе
-				// // Сообщить("================================================================================================");
-				// // Сообщить("==========4" + ВыбранныеФайлы[А].ПолноеИмя + Символы.ПС + СтрПримера);
-			КонецЕсли;
-			
-			
-			
-			
-			
-			
-			Найдено1 = Найдено1 + 1;
-			// Сообщить("================================================================================================");
-			// Сообщить("==========" + ВыбранныеФайлы[А].ПолноеИмя + Символы.ПС + СтрПримера);
-		КонецЕсли;
-	КонецЦикла;
-	
-	Сообщить("Найдено1 = " + Найдено1);
-	Сообщить("СделаноЗамен1 = " + СделаноЗамен1);
-	Сообщить("СделаноЗамен2 = " + СделаноЗамен2);
-	Сообщить("СделаноЗамен3 = " + СделаноЗамен3);
-	Сообщить("СделаноЗамен4 = " + СделаноЗамен4);
-	Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах()-Таймер)/1000)/60 + " мин.");
-КонецПроцедуры//ДобавлениеКопированияВПример
-
-Процедура СтавлюДвоеточие()
-	Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
-	
-	ВыбранныеФайлы = НайтиФайлы("C:\444", "*.html", Истина);
-	Найдено1 = 0;
-	СделаноЗамен1 = 0;
-	Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
-		// Если Не (СтрНайти(ВыбранныеФайлы[А].ПолноеИмя, "C:\444\OneScriptFormsru\OneScriptForms.Form.") > 0) Тогда
-			// // Сообщить("" + ВыбранныеФайлы[А].ПолноеИмя);
-			// Продолжить;
-		// КонецЕсли;
-		ТекстДок = Новый ТекстовыйДокумент;
-		ТекстДок.Прочитать(ВыбранныеФайлы[А].ПолноеИмя);
-		Стр = ТекстДок.ПолучитьТекст();
-		М = СтрНайтиМежду(Стр, "<H4 class=dtH4>Пример</H4>", "<H4 class=dtH4>Смотрите также</H4>", Ложь, );
-		
-		Если М.Количество() > 0 Тогда
-			// Сообщить("==========" + ВыбранныеФайлы[А].ПолноеИмя);
-			СтрПримера= М[0];
-			
-			ПодстрокаПоиска = "ТекущаяДата())
-			|</DIV>";
-			ПодстрокаЗамены = "ТекущаяДата());
-			|</DIV>";
-			Если СтрНайти(Стр, ПодстрокаПоиска) > 0 Тогда
-				СделаноЗамен1 = СделаноЗамен1 + 1;
-				Сообщить("==================================================");
-				Сообщить("ПодстрокаПоиска------------------------------");
-				Сообщить("" + ПодстрокаПоиска);
-				Сообщить("ПодстрокаЗамены------------------------------");
-				Сообщить("" + ПодстрокаЗамены);
-				// Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
-				// ТекстДок.УстановитьТекст(Стр);
-				// ТекстДок.Записать(ВыбранныеФайлы[А].ПолноеИмя);
-			// // Иначе
-				// // Сообщить("================================================================================================");
-				// // Сообщить("==========1" + ВыбранныеФайлы[А].ПолноеИмя + Символы.ПС + СтрПримера);
-			КонецЕсли;
-			
-			Найдено1 = Найдено1 + 1;
-			// Сообщить("================================================================================================");
-			// Сообщить("==========" + ВыбранныеФайлы[А].ПолноеИмя + Символы.ПС + СтрПримера);
-		КонецЕсли;
-	КонецЦикла;
-	
-	Сообщить("Найдено1 = " + Найдено1);
-	Сообщить("СделаноЗамен1 = " + СделаноЗамен1);
-	Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах()-Таймер)/1000)/60 + " мин.");
-КонецПроцедуры//СтавлюДвоеточие
-
-Процедура СвойстваМеткаИРодитель()
-	// Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
-	
-	// ВыбранныеФайлы = ОтобратьФайлы("Члены");
-	// Найдено1 = 0;
-	// Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
-		// ТекстДок = Новый ТекстовыйДокумент;
-		// ТекстДок.Прочитать(ВыбранныеФайлы[А]);
-		// Стр = ТекстДок.ПолучитьТекст();
-		// СтрЗаголовка = СтрНайтиМежду(Стр, "<H1 class=dtH1", "/H1>", , )[0];
-		// Стр33 = СтрЗаголовка;
-		// Стр33 = СтрЗаменить(Стр33, "&nbsp;", " ");
-		// // Сообщить("================================================================================================");
-		// // Сообщить("" + ВыбранныеФайлы[А] + Символы.ПС + Стр33);
-		// Если СтрНайти(Стр, ".html"">ЭлементыУправления") > 0 Тогда
-			// Найдено1 = Найдено1 + 1;
-			// // Если (СтрНайти(Стр, ".html"">Метка") > 0) и (СтрНайти(Стр, ".html"">Родитель") > 0) Тогда
-			// // Иначе
-				// // // Сообщить("================================================================================================");
-				// // // Сообщить("" + ВыбранныеФайлы[А] + Символы.ПС + Стр33);
-			// // КонецЕсли;
-		// // Иначе
-			// // Сообщить("================================================================================================");
-			// // Сообщить("" + ВыбранныеФайлы[А] + Символы.ПС + Стр33);
-			// Сообщить("" + СтрНайтиМежду(Стр33, "(", ")", , )[0]);
-			
-		// КонецЕсли;
-		
-	// КонецЦикла;
-	
-	// Сообщить("Найдено1 = " + Найдено1);
-	// Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах()-Таймер)/1000)/60 + " мин.");
-КонецПроцедуры//СвойстваМеткаИРодитель()
-
-Процедура СвойстваАрг()
-	// Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
-	
-	// СписокКлассовАрг = Новый СписокЗначений;
-	// ВыбранныеФайлы = ОтобратьФайлы("Свойство");
-	// Найдено1 = 0;
-	// Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
-		// ТекстДок = Новый ТекстовыйДокумент;
-		// ТекстДок.Прочитать(ВыбранныеФайлы[А]);
-		// Стр = ТекстДок.ПолучитьТекст();
-		// СтрЗаголовка = СтрНайтиМежду(Стр, "<H1 class=dtH1", "/H1>", , )[0];
-		// Если СтрНайти(СтрЗаголовка, "Арг.") > 0 Тогда
-			// Найдено1 = Найдено1 + 1;
-			// // Сообщить("================================================================================================");
-			// // Сообщить("" + ВыбранныеФайлы[А] + Символы.ПС + СтрЗаголовка);
-			// КлассАрг = СтрНайтиМежду(СтрЗаголовка, ">", ".", , )[0];
-			// Если СписокКлассовАрг.НайтиПоЗначению(КлассАрг) = Неопределено Тогда
-				// СписокКлассовАрг.Добавить(КлассАрг);
-			// КонецЕсли;
-			
-			// Если СтрНайти(Стр, "<P>Чтение и запись.</P>") > 0 Тогда
-				// Сообщить("<P>Чтение и запись.</P>");
-			// Иначе
-				// // Сообщить("================================================================================================");
-				// // Сообщить("" + ВыбранныеФайлы[А] + Символы.ПС + СтрЗаголовка);
-			// КонецЕсли;
-			// ПодстрокаПоиска = "<P>Чтение и запись.</P>";
-			// ПодстрокаЗамены = "<P>Только чтение.</P>";
-			// Стр = СтрЗаменить(Стр,ПодстрокаПоиска,ПодстрокаЗамены);
-			// ТекстДок.УстановитьТекст(Стр);
-			// ТекстДок.Записать(ВыбранныеФайлы[А]);
-		// КонецЕсли;
-	// КонецЦикла;
-	
-	// Сообщить("===========");
-	// Сообщить("СписокКлассовАрг.Количество = " + СписокКлассовАрг.Количество());	
-	// Для А = 0 По СписокКлассовАрг.Количество() - 1 Цикл
-		// Сообщить("" + СписокКлассовАрг.Получить(А).Значение);
-	// КонецЦикла;
-	
-	// Сообщить("Найдено1 = " + Найдено1);
-	// Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах()-Таймер)/1000)/60 + " мин.");
-КонецПроцедуры//СвойстваАрг()
-
-Процедура ЗаполнитьПримерамиЦвета()
-	Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
-	
-	ВыбранныеФайлы = ОтобратьФайлы("Свойство");
-	Найдено1 = 0;
-	Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
-		ТекстДок = Новый ТекстовыйДокумент;
-		ТекстДок.Прочитать(ВыбранныеФайлы[А]);
-		Стр = ТекстДок.ПолучитьТекст();
-		СтрЗаголовка = СтрНайтиМежду(Стр, "<H1 class=dtH1", "/H1>", Ложь, )[0];
-		Если СтрНайти(СтрЗаголовка, "<H1 class=dtH1>Цвет.") > 0 Тогда
-			Если (СтрНайти(СтрЗаголовка, "Цвет.ЗначениеАльфа&nbsp;(Color.A)&nbsp;Свойство") > 0) или 
-			     (СтрНайти(СтрЗаголовка, "Цвет.ЗначениеЗеленый&nbsp;(Color.G)&nbsp;Свойство") > 0) или 
-			     (СтрНайти(СтрЗаголовка, "Цвет.ЗначениеКрасный&nbsp;(Color.R)&nbsp;Свойство") > 0) или 
-			     (СтрНайти(СтрЗаголовка, "Цвет.Пусто&nbsp;(Color.IsEmpty)&nbsp;Свойство") > 0) или 
-			     (СтрНайти(СтрЗаголовка, "Цвет.ЗначениеСиний&nbsp;(Color.B)&nbsp;Свойство") > 0) или 
-			     (СтрНайти(СтрЗаголовка, "Цвет.Имя&nbsp;(Color.Name)&nbsp;Свойство") > 0) Тогда
-			Иначе
-				// <H1 class=dtH1>Цвет.Серебристый&nbsp;(Color.Silver)&nbsp;Свойство</H1>
-				ЦветРус = СтрНайтиМежду(Стр, "<H1 class=dtH1>Цвет.", "&nbsp;", , )[0];
-				ЦветАнгл = СтрНайтиМежду(Стр, "(Color.", ")", , )[0];
-				Найдено1 = Найдено1 + 1;
-				Сообщить("================================================================================================");
-				Сообщить("" + ВыбранныеФайлы[А] + Символы.ПС + СтрЗаголовка);
-				Сообщить("ЦветРус = " + ЦветРус);
-				Сообщить("ЦветАнгл = " + ЦветАнгл);
-				ПримерИсх = СтрНайтиМежду(Стр, "<H4 class=dtH4>Пример</H4>", "</PRE>", Ложь, )[0];
-				ПримерКон = "<H4 class=dtH4>Пример</H4>
-					|<P><PRE class=code>
-					|Цвет1 = Ф.Цвет()." + ЦветРус + ";
-					|</PRE>";
-				ПодстрокаПоиска = ПримерИсх;
-				ПодстрокаЗамены = ПримерКон; 
-				Стр = СтрЗаменить(Стр,ПодстрокаПоиска,ПодстрокаЗамены);
-					
-				ПолныйПримерИсх = СтрНайтиМежду(Стр, "<hr style=""border-color: lightgray;""><DIV id=""cont1"">", "</DIV>", Ложь, )[0];
-				ПолныйПримерКон = "<hr style=""border-color: lightgray;""><DIV id=""cont1"">
-					|ПодключитьВнешнююКомпоненту(""C:\444\111\onescriptgui\onescriptgui\bin\Debug\osf.dll"");
-					|Ф = Новый ФормыДляОдноСкрипта();
-					|Форма1 = Ф.Форма();
-					|Форма1.Отображать = Истина;
-					|Форма1.Показать();
-					|Форма1.Активизировать();
-					|
-					|Цвет1 = Ф.Цвет()." + ЦветРус + ";
-					|
-					|Сообщить("""" + Цвет1.Имя);
-					|
-					|Пока Ф.Продолжать Цикл
-					|	Выполнить(Ф.ПолучитьСобытие());
-					|КонецЦикла;
-					|</DIV>";
-				ПодстрокаПоиска = ПолныйПримерИсх;
-				ПодстрокаЗамены = ПолныйПримерКон; 
-				Стр = СтрЗаменить(Стр,ПодстрокаПоиска,ПодстрокаЗамены);
-					
-				ТестовыйИсх = СтрНайтиМежду(Стр, "<hr style=""border-color: lightgray;""><DIV id=""cont2"">", "</DIV>", Ложь, )[0];
-				ТестовыйКон = "<hr style=""border-color: lightgray;""><DIV id=""cont2"">
-					|ПодключитьВнешнююКомпоненту(""C:\444\111\onescriptgui\onescriptgui\bin\Debug\osf.dll"");
-					|Ф = Новый ФормыДляОдноСкрипта();
-					|Форма1 = Ф.Форма();
-					|Форма1.Отображать = Истина;
-					|Форма1.Показать();
-					|Форма1.Активизировать();
-					|
-					|Сообщить(?(
-					|Ф.Цвет()." + ЦветРус + ".Имя = """ + ЦветРус + """
-					|, """", ""!!! "") + ""Цвет." + ЦветРус + " (Color." + ЦветАнгл + ") Свойство"" + "" "" + ТекущаяДата());
-					|</DIV>";
-				ПодстрокаПоиска = ТестовыйИсх;
-				ПодстрокаЗамены = ТестовыйКон; 
-				Стр = СтрЗаменить(Стр,ПодстрокаПоиска,ПодстрокаЗамены);
-				// // // ТекстДок.УстановитьТекст(Стр);
-				// // // ТекстДок.Записать(ВыбранныеФайлы[А]);
-			КонецЕсли;
-		КонецЕсли;
-	КонецЦикла;
-	
-	Сообщить("Найдено1 = " + Найдено1);
-	Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах()-Таймер)/1000)/60 + " мин.");
-КонецПроцедуры//ЗаполнитьПримерамиЦвета()
-
-Процедура ПолучитьКлассыСвойстваМетодыПеречисления()
-	Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
-	КолСвойств = 0;
-	КолМетодов = 0;
-	КолСвойствМетодов = 0;
-	
-	// Тестируем свойства, методы, перечисления.
-	// Список классов берем из файла OneScriptForms.html
-	// Свойства - из файла OneScriptForms....(Класс).....Members.html
-	// Методы - из файла OneScriptForms....(Класс).....Members.html
-	// Перечисления - из файла OneScriptForms.html
-	
-	ВыбранныеФайлы0 = ОтобратьФайлы("Класс");
-	ВыбранныеФайлы1 = ОтобратьФайлы("Перечисление");
-	ВыбранныеФайлы2 = ОтобратьФайлы("Свойство");
-	ВыбранныеФайлы3 = ОтобратьФайлы("Метод");
-	Сообщить("Классов = " + ВыбранныеФайлы0.Количество());
-	Сообщить("Свойств = " + ВыбранныеФайлы2.Количество());
-	Сообщить("Методов = " + ВыбранныеФайлы3.Количество());
-	Сообщить("Перечислений = " + ВыбранныеФайлы1.Количество());
-	
-	Классы = ПолучитьМассивКлассов();
-	// Сообщить("Классов = " + Классы.Количество());
-	// Возврат;
-	Для А1 = 0 По Классы.ВГраница() Цикл
-			КлассРус = РазобратьСтроку(Классы[А1], " ")[0];
-			КлассАнгл = РазобратьСтроку(Классы[А1], " ")[1];
-			// Сообщить("===Класс===");
-			// Сообщить("" + КлассРус + " (" + КлассАнгл + ")");
-			
-			//находим свойства класса из файла OneScriptForms....(Класс).....Members.html
-			ИмяФайлаЧленов = "C:\444\OneScriptFormsru\OneScriptForms." + КлассАнгл + "Members.html";
-			Свойства = ПолучитьМассивСвойствКласса(ИмяФайлаЧленов, КлассАнгл);
-			// Сообщить("---Свойства---(" + Свойства.Количество() + ")");
-			Для А2 = 0 По Свойства.ВГраница() Цикл
-				СвойствоРус = РазобратьСтроку(Свойства[А2], " ")[0];
-				СвойствоАнгл = РазобратьСтроку(Свойства[А2], " ")[1];
-				// Сообщить("" + Символы.Таб + СвойствоРус + " (" + СвойствоАнгл + ")");
-				КолСвойств = КолСвойств + 1;
-			КонецЦикла;
-			
-			//находим методы класса из файла OneScriptForms....(Класс).....Members.html
-			Методы = ПолучитьМассивМетодовКласса(ИмяФайлаЧленов, КлассАнгл);
-			// Сообщить("---Методы---(" + Методы.Количество() + ")");
-			Для А3 = 0 По Методы.ВГраница() Цикл
-				МетодРус = РазобратьСтроку(Методы[А3], " ")[0];
-				МетодАнгл = РазобратьСтроку(Методы[А3], " ")[1];
-				// Сообщить("" + Символы.Таб + МетодРус + " (" + МетодАнгл + ")");
-				КолМетодов = КолМетодов + 1;
-			КонецЦикла;
-	КонецЦикла;
-	// Возврат;
-		
-	//находим Перечисления из файла OneScriptForms.html
-	Перечисления = ПолучитьМассивПеречислений();
-	Сообщить("Перечислений = " + Перечисления.Количество());
-	Сообщить("===============================");
-	Для А4 = 0 По Перечисления.ВГраница() Цикл
-		ПеречислениеРус = РазобратьСтроку(Перечисления[А4], " ")[0];
-		ПеречислениеАнгл = РазобратьСтроку(Перечисления[А4], " ")[1];
-		// Сообщить("===Перечисление===");
-		Сообщить("" + ПеречислениеРус + " (" + ПеречислениеАнгл + ")");
-		
-		//находим значения перечисления из файла OneScriptForms....(Перечисление)......html
-		ИмяФайлаПеречисления = "C:\444\OneScriptFormsru\OneScriptForms." + ПеречислениеАнгл + ".html";
-		ЗначенияПеречисления = ПолучитьМассивЗначенийПеречисления(ИмяФайлаПеречисления, ПеречислениеАнгл);
-		Для А5 = 0 По ЗначенияПеречисления.ВГраница() Цикл
-			ЗначениеПеречисленияРус = РазобратьСтроку(ЗначенияПеречисления[А5], " ")[0];
-			ЗначениеПеречисленияАнгл = РазобратьСтроку(ЗначенияПеречисления[А5], " ")[1];
-			// Сообщить("" + Символы.Таб + ЗначениеПеречисленияРус + " (" + ЗначениеПеречисленияАнгл + ")");
-		КонецЦикла;
-	КонецЦикла;
-	
-	Сообщить("КолСвойств = " + КолСвойств);
-	Сообщить("КолМетодов = " + КолМетодов);
-	Сообщить("КолСвойствМетодов = " + (КолСвойств + КолМетодов));
-	Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах() - Таймер)/1000)/60 + " мин.");
-КонецПроцедуры//ПолучитьКлассыСвойстваМетодыПеречисления()
-
-Функция ПолучитьМассивКлассов();
-	// Список классов берем из файла OneScriptForms.html
-	МассивКлассов = Новый Массив;
-	
-	ТекстДок = Новый ТекстовыйДокумент;
-	ТекстДок.Прочитать("C:\444\OneScriptFormsru\OneScriptForms.html");
-	Стр12 = ТекстДок.ПолучитьТекст();
-	Массив1 = СтрНайтиМежду(Стр12, "<H3 class=dtH3>Классы</H3>", "</TBODY></TABLE>", Ложь, );
-	Массив2 = СтрНайтиМежду(Массив1[0], "Описание</TH></TR>", "</TBODY></TABLE>", Ложь, );
-	Массив3 = СтрНайтиМежду(Массив2[0], "<TR vAlign=top>", "</TD></TR>", Ложь, );
-	// Сообщить("Классов = " + Массив3.Количество());
-	Для А1 = 0 По Массив3.ВГраница() Цикл
-		Массив4 = СтрНайтиМежду(Массив3[А1], ".html"">", "</A></TD>", Ложь, );
-		Для А = 0 По Массив4.ВГраница() Цикл
-			СтрХ = Массив4[А];
-			СтрХ = СтрЗаменить(СтрХ, "&nbsp;", " ");
-			КлассАнгл = СтрНайтиМежду(СтрХ, "(", ")", , )[0];
-			КлассРус = СтрНайтиМежду(СтрХ, ".html"">", " (", , )[0];
-			// Сообщить("===Класс===");
-			// Сообщить("" + КлассРус + " (" + КлассАнгл + ")");
-			МассивКлассов.Добавить("" + КлассРус + " " + КлассАнгл);
-		КонецЦикла;	
-	КонецЦикла;		
-			
-	Возврат МассивКлассов;	
-КонецФункции
-
-Функция ПолучитьМассивСвойствКласса(ИмяФайлаЧленов, ИмяКонтекстКлассаАнгл)
-	МассивСвойств = Новый Массив;
-	ТекстДок = Новый ТекстовыйДокумент;
-	Файл = Новый Файл(ИмяФайлаЧленов);
-	Если Не (Файл.Существует()) Тогда
-		Возврат МассивСвойств;
-	КонецЕсли;
-	ТекстДок.Прочитать(ИмяФайлаЧленов);
-	Стр10 = ТекстДок.ПолучитьТекст();
-	СтрТаблица = СтрНайтиМежду(Стр10, "<H4 class=dtH4>Свойства</H4>", "</TBODY></TABLE>", Ложь, );
-	Если Не (СтрТаблица.Количество() > 0) Тогда
-		Возврат МассивСвойств;
-	КонецЕсли;
-	Массив5 = СтрНайтиМежду(СтрТаблица[0], "pubproperty.gif", "</A>", Ложь, );
-	// Сообщить("---Свойства---(" + Массив5.Количество() + ")");
-	Для А = 0 По Массив5.ВГраница() Цикл
-		СтрХ = Массив5[А];
-		СтрХ = СтрЗаменить(СтрХ, "&nbsp;", " ");
-		СвойствоАнгл = СтрНайтиМежду(СтрХ, "(", ")", , )[0];
-		СвойствоРус = СтрНайтиМежду(СтрХ, ".html"">", " (", , )[0];
-		// Сообщить("" + Символы.Таб + СвойствоРус + " (" + СвойствоАнгл + ")");
-		МассивСвойств.Добавить("" + СвойствоРус + " " + СвойствоАнгл);
-	КонецЦикла;
-	Возврат МассивСвойств;
-КонецФункции
-
-Функция ПолучитьМассивМетодовКласса(ИмяФайлаЧленов, ИмяКонтекстКлассаАнгл)
-	МассивМетодов = Новый Массив;
-	ТекстДок = Новый ТекстовыйДокумент;
-	Файл = Новый Файл(ИмяФайлаЧленов);
-	Если Не (Файл.Существует()) Тогда
-		Возврат МассивМетодов;
-	КонецЕсли;
-	ТекстДок.Прочитать(ИмяФайлаЧленов);
-	Стр10 = ТекстДок.ПолучитьТекст();
-	СтрТаблица = СтрНайтиМежду(Стр10, "<H4 class=dtH4>Методы</H4>", "</TBODY></TABLE>", Ложь, );
-	Если СтрТаблица.Количество() > 0 Тогда
-		Массив6 = СтрНайтиМежду(СтрТаблица[0], "pubmethod.gif", "</A>", Ложь, );
-		// Сообщить("---Методы---(" + Массив6.Количество() + ")");
-		Для А = 0 По Массив6.ВГраница() Цикл
-			СтрХ = Массив6[А];
-			СтрХ = СтрЗаменить(СтрХ, "&nbsp;", " ");
-			МетодАнгл = СтрНайтиМежду(СтрХ, "(", ")", , )[0];
-			МетодРус = СтрНайтиМежду(СтрХ, ".html"">", " (", , )[0];
-			// Сообщить("" + Символы.Таб + МетодРус + " (" + МетодАнгл + ")");
-			МассивМетодов.Добавить("" + МетодРус + " " + МетодАнгл);
-		КонецЦикла;
-	Иначе
-		// Сообщить("" + Символы.Таб + "---Методы---(0)");
-	КонецЕсли;
-	Возврат МассивМетодов;
-КонецФункции
-
-Функция ПолучитьМассивПеречислений();
-	МассивПеречислений = Новый Массив;
-	ТекстДок = Новый ТекстовыйДокумент;
-	ТекстДок.Прочитать("C:\444\OneScriptFormsru\OneScriptForms.html");
-	Стр12 = ТекстДок.ПолучитьТекст();
-	Массив7 = СтрНайтиМежду(Стр12, "<H3 class=dtH3>Перечисления</H3>", "</TBODY></TABLE>", Ложь, );
-	Массив8 = СтрНайтиМежду(Массив7[0], "Описание</TH></TR>", "</TBODY></TABLE>", Ложь, );
-	Массив9 = СтрНайтиМежду(Массив8[0], "<TR vAlign=top>", "</TD></TR>", Ложь, );
-	// Сообщить("Перечислений = " + Массив9.Количество());
-	// Сообщить("===============================");
-	Для А1 = 0 По Массив9.ВГраница() Цикл
-		Массив10 = СтрНайтиМежду(Массив9[А1], ".html"">", "</A></TD>", Ложь, );
-		Для А = 0 По Массив10.ВГраница() Цикл
-			СтрХ = Массив10[А];
-			СтрХ = СтрЗаменить(СтрХ, "&nbsp;", " ");
-			ПеречислениеАнгл = СтрНайтиМежду(СтрХ, "(", ")", , )[0];
-			ПеречислениеРус = СтрНайтиМежду(СтрХ, ".html"">", " (", , )[0];
-			// Сообщить("===Перечисление===");
-			// Сообщить("" + ПеречислениеРус + " (" + ПеречислениеАнгл + ")");
-			МассивПеречислений.Добавить("" + ПеречислениеРус + " " + ПеречислениеАнгл);
-			
-			//находим значения перечисления из файла OneScriptForms....(Перечисление)......html
-			ИмяФайлаПеречисления = "C:\444\OneScriptFormsru\OneScriptForms." + ПеречислениеАнгл + ".html";
-			ПолучитьМассивЗначенийПеречисления(ИмяФайлаПеречисления, ПеречислениеАнгл);
-			
-		КонецЦикла;
-	КонецЦикла;
-	Возврат МассивПеречислений;
-КонецФункции
-
-Функция ПолучитьМассивЗначенийПеречисления(ИмяФайлаПеречисления, ПеречислениеАнгл)
-	МассивЗначенийПеречисления = Новый Массив;
-	ТекстДок = Новый ТекстовыйДокумент;
-	ТекстДок.Прочитать(ИмяФайлаПеречисления);
-	Стр10 = ТекстДок.ПолучитьТекст();
-	СтрТаблица = СтрНайтиМежду(Стр10, "<TD><B>", "</B></TD>", Ложь, );
-	// Сообщить("---Перечисления---(" + СтрТаблица.Количество() + ")");
-	Для А = 0 По СтрТаблица.ВГраница() Цикл
-		СтрХ = СтрТаблица[А];
-		СтрХ = СтрЗаменить(СтрХ, "&nbsp;", " ");
-		ЗначениеПеречисленияАнгл = СтрНайтиМежду(СтрХ, "(", ")", , )[0];
-		ЗначениеПеречисленияРус = СтрНайтиМежду(СтрХ, "<TD><B>", " (", , )[0];
-		// Сообщить("" + Символы.Таб + ЗначениеПеречисленияРус + " (" + ЗначениеПеречисленияАнгл + ")");
-		МассивЗначенийПеречисления.Добавить("" + ЗначениеПеречисленияРус + " " + ЗначениеПеречисленияАнгл);
-	КонецЦикла;
-	Возврат МассивЗначенийПеречисления;
-КонецФункции
-
-Процедура КлассыБезКонструктора()
-	Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
-	
-	БезКонструктора = 0;
-	ВыбранныеФайлы0 = ОтобратьФайлы("Класс");
-	ВыбранныеФайлы = ОтобратьФайлы("Члены");
-	ВыбранныеФайлы2 = ОтобратьФайлы("Свойство");
-	ВыбранныеФайлы3 = ОтобратьФайлы("Метод");
-	
-	// Сообщить("" + ВыбранныеФайлы0.Количество());
-	Для А = 0 По ВыбранныеФайлы0.Количество() - 1 Цикл
-		Путь = СтрЗаменить(ВыбранныеФайлы0[А], ".html", "Members.html");
-		Файл = Новый Файл(Путь);
-		Если Не Файл.Существует() Тогда
-			Сообщить("" + ВыбранныеФайлы0[А]);
-			ВыбранныеФайлы.Добавить(ВыбранныеФайлы0[А]);
-		КонецЕсли;
-	КонецЦикла;
-	// Возврат;
-	
-	НайденоСоответствий = 0;
-	Список = Новый СписокЗначений;
-	Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
-		ТекстДок = Новый ТекстовыйДокумент;
-		ТекстДок.Прочитать(ВыбранныеФайлы[А]);
-		Стр = ТекстДок.ПолучитьТекст();
-		СтрЗаголовка = СтрНайтиМежду(Стр, "<H1 class=dtH1>", "</H1>", , );
-		СтрЗаголовка = СтрЗаголовка[0];
-		СтрЗаголовка = СтрЗаменить(СтрЗаголовка, "Члены", "");
-		СтрЗаголовка = СтрЗаменить(СтрЗаголовка, "Класс", "");
-		СтрЗаголовка = СтрЗаменить(СтрЗаголовка, "&nbsp;", " ");
-		СтрЗаголовка = СокрЛП(СтрЗаголовка);
-		
-		Сообщить("СтрЗаголовка = " + СтрЗаголовка);
-		
-		Если Не (СтрНайти(Стр, "<H4 class=dtH4>Конструктор</H4>") > 0) Тогда
-			Добавлять = Истина;
-			СтрВСписок = "";
-			Для А1 = 0 По ВыбранныеФайлы2.ВГраница() Цикл
-				ТекстДок2 = Новый ТекстовыйДокумент;
-				ТекстДок2.Прочитать(ВыбранныеФайлы2[А1]);
-				Стр2 = ТекстДок2.ПолучитьТекст();
-				
-				СтрЗаголовка2 = СтрНайтиМежду(Стр2, "<H1 class=dtH1>", "</H1>", , );
-				СтрЗаголовка2 = СтрЗаголовка2[0];
-				СтрЗаголовка2 = СтрЗаменить(СтрЗаголовка2, "Свойство", "");
-				СтрЗаголовка2 = СтрЗаменить(СтрЗаголовка2, "&nbsp;", " ");
-				СтрЗаголовка2 = СокрЛП(СтрЗаголовка2);
-				
-				Стр3 = СтрНайтиМежду(Стр2, "<H4 class=dtH4>Значение</H4>", "<H4 class=dtH4>Примечание</H4>", Ложь, );
-				Стр3 = СтрНайтиМежду(Стр3[0], "<P>Тип:", "</P>", Ложь, );
-				Стр3 = СтрНайтиМежду(Стр3[0], ".html"">", "</A>", , );
-				Если Стр3.Количество() > 0 Тогда
-					Стр3 = Стр3[0];
-					Стр3 = СтрЗаменить(Стр3, "&nbsp;", " ");
-				КонецЕсли;
-				Если Стр3 = СтрЗаголовка Тогда
-					Добавлять = Истина;
-				КонецЕсли;
-			КонецЦикла;
-			Для А1 = 0 По ВыбранныеФайлы3.ВГраница() Цикл
-				ТекстДок2 = Новый ТекстовыйДокумент;
-				ТекстДок2.Прочитать(ВыбранныеФайлы3[А1]);
-				Стр2 = ТекстДок2.ПолучитьТекст();
-				
-				СтрЗаголовка2 = СтрНайтиМежду(Стр2, "<H1 class=dtH1>", "</H1>", , );
-				СтрЗаголовка2 = СтрЗаголовка2[0];
-				СтрЗаголовка2 = СтрЗаменить(СтрЗаголовка2, "Метод", "");
-				СтрЗаголовка2 = СтрЗаменить(СтрЗаголовка2, "&nbsp;", " ");
-				СтрЗаголовка2 = СокрЛП(СтрЗаголовка2);
-				
-				Стр3 = СтрНайтиМежду(Стр2, "<H4 class=dtH4>Возвращаемое значение</H4>", "<H4 class=dtH4>Описание</H4>", Ложь, );
-				Если Стр3.Количество() > 0 Тогда
-					Если Стр3.Количество() > 0 Тогда
-						Стр3 = СтрНайтиМежду(Стр3[0], "<P>Тип:", "</P>", Ложь, );
-						Если Стр3.Количество() > 0 Тогда
-							Стр3 = СтрНайтиМежду(Стр3[0], ".html"">", "</A>", , );
-							Если Стр3.Количество() > 0 Тогда
-								Стр3 = Стр3[0];
-								Стр3 = СтрЗаменить(Стр3, "&nbsp;", " ");
-							КонецЕсли;
-							Если Стр3 = СтрЗаголовка Тогда
-								Добавлять = Истина;
-							КонецЕсли;
-						КонецЕсли;
-					КонецЕсли;
-				КонецЕсли;
-			КонецЦикла;
-			Если Добавлять = Истина Тогда
-				БезКонструктора = БезКонструктора + 1;
-				СтрВСписок = СтрВСписок + "===================";
-				СтрВСписок = СтрВСписок + Символы.ПС + "Класс = " + СтрЗаголовка;
-			КонецЕсли;
-			
-			// найдем в каком свойстве возвращается этот класс
-			Для А1 = 0 По ВыбранныеФайлы2.ВГраница() Цикл
-				ТекстДок2 = Новый ТекстовыйДокумент;
-				ТекстДок2.Прочитать(ВыбранныеФайлы2[А1]);
-				Стр2 = ТекстДок2.ПолучитьТекст();
-				
-				СтрЗаголовка2 = СтрНайтиМежду(Стр2, "<H1 class=dtH1>", "</H1>", , );
-				СтрЗаголовка2 = СтрЗаголовка2[0];
-				СтрЗаголовка2 = СтрЗаменить(СтрЗаголовка2, "Свойство", "");
-				СтрЗаголовка2 = СтрЗаменить(СтрЗаголовка2, "&nbsp;", " ");
-				СтрЗаголовка2 = СокрЛП(СтрЗаголовка2);
-				
-				Стр3 = СтрНайтиМежду(Стр2, "<H4 class=dtH4>Значение</H4>", "<H4 class=dtH4>Примечание</H4>", Ложь, );
-				Стр3 = СтрНайтиМежду(Стр3[0], "<P>Тип:", "</P>", Ложь, );
-				Стр3 = СтрНайтиМежду(Стр3[0], ".html"">", "</A>", , );
-				Если Стр3.Количество() > 0 Тогда
-					Стр3 = Стр3[0];
-					Стр3 = СтрЗаменить(Стр3, "&nbsp;", " ");
-				КонецЕсли;
-				Если Стр3 = СтрЗаголовка Тогда
-					НайденоСоответствий = НайденоСоответствий + 1;
-					СтрВСписок = СтрВСписок + Символы.ПС + "Как конструктор = " + СтрЗаголовка2;
-				КонецЕсли;
-			КонецЦикла;
-			
-			// найдем в каком методе возвращается этот класс
-			Для А1 = 0 По ВыбранныеФайлы3.ВГраница() Цикл
-				ТекстДок2 = Новый ТекстовыйДокумент;
-				ТекстДок2.Прочитать(ВыбранныеФайлы3[А1]);
-				Стр2 = ТекстДок2.ПолучитьТекст();
-				
-				СтрЗаголовка2 = СтрНайтиМежду(Стр2, "<H1 class=dtH1>", "</H1>", , );
-				СтрЗаголовка2 = СтрЗаголовка2[0];
-				СтрЗаголовка2 = СтрЗаменить(СтрЗаголовка2, "Метод", "");
-				СтрЗаголовка2 = СтрЗаменить(СтрЗаголовка2, "&nbsp;", " ");
-				СтрЗаголовка2 = СокрЛП(СтрЗаголовка2);
-				
-				Стр3 = СтрНайтиМежду(Стр2, "<H4 class=dtH4>Возвращаемое значение</H4>", "<H4 class=dtH4>Описание</H4>", Ложь, );
-				Если Стр3.Количество() > 0 Тогда
-					Если Стр3.Количество() > 0 Тогда
-						Стр3 = СтрНайтиМежду(Стр3[0], "<P>Тип:", "</P>", Ложь, );
-						Если Стр3.Количество() > 0 Тогда
-							Стр3 = СтрНайтиМежду(Стр3[0], ".html"">", "</A>", , );
-							Если Стр3.Количество() > 0 Тогда
-								Стр3 = Стр3[0];
-								Стр3 = СтрЗаменить(Стр3, "&nbsp;", " ");
-							КонецЕсли;
-							Если Стр3 = СтрЗаголовка Тогда
-								НайденоСоответствий = НайденоСоответствий + 1;
-								СтрВСписок = СтрВСписок + Символы.ПС + "Как конструктор = " + СтрЗаголовка2;
-							КонецЕсли;
-						КонецЕсли;
-					КонецЕсли;
-				КонецЕсли;
-			КонецЦикла;
-			Если Добавлять = Истина Тогда
-				Список.Добавить(СтрЗаголовка, СтрВСписок);
-			КонецЕсли;
-		КонецЕсли;
-		
-	КонецЦикла;
-	Список.СортироватьПоЗначению();
-	Если Список.Количество() > 0 Тогда
-		Для А2 = 0 По Список.Количество() - 1 Цикл
-			Сообщить("" + Список.Получить(А2).Представление);
-			// Сообщить("" + Список.Получить(А2).Значение);
-		КонецЦикла;
-	КонецЕсли;
-	
-	Сообщить("===================");
-	Сообщить("БезКонструктора = " + БезКонструктора);
-	Сообщить("НайденоСоответствий = " + НайденоСоответствий);
-	Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах()-Таймер)/1000)/60 + " мин.");
-КонецПроцедуры//КлассыБезКонструктора()
-
-Процедура ТипыЗначений()
-	// Список = Новый СписокЗначений;
-	// ВыбранныеФайлы = НайтиФайлы("C:\444", "*.html", Истина);
-	// Найдено1 = 0;
-	// Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
-		// ТекстДок = Новый ТекстовыйДокумент;
-		// ТекстДок.Прочитать(ВыбранныеФайлы[А].ПолноеИмя);
-		// Стр = ТекстДок.ПолучитьТекст();
-		// М = СтрНайтиМежду(Стр, "<P>Тип:", "</P>", , );
-		// Если М.Количество() > 0 Тогда
-			// СтрТип = М[0];
-			// Если Список.НайтиПоЗначению(СтрТип) = Неопределено Тогда
-				// Список.Добавить(СтрТип);
-			// КонецЕсли;
-		// КонецЕсли;
-	// КонецЦикла;
-	
-	// Для А = 0 По Список.Количество() - 1 Цикл
-		// Стр1 = Список.Получить(А).Значение;
-		// Если СтрНайти(Стр1, "<A href") > 0 Тогда
-		// Иначе
-			// Сообщить("" + Стр1);
-		// КонецЕсли;
-	// КонецЦикла;
-КонецПроцедуры// ТипыЗначений()
-
-Процедура ЗаполнениеМетодовФормыДляОдноСкрипта();
-	Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
-	
-	ИмяФайлаЧленов = "C:\444\OneScriptFormsru\OneScriptForms.OneScriptFormsMembers.html";
-	КлассАнгл = "OneScriptForms";
-	КолМетодов = 0;
-	//находим методы класса из файла OneScriptForms....(Класс).....Members.html
-	Методы = ПолучитьМассивМетодовКласса(ИмяФайлаЧленов, КлассАнгл);
-	Сообщить("---Методы---(" + Методы.Количество() + ")");
-	Для А3 = 0 По Методы.ВГраница() Цикл
-		МетодРус = РазобратьСтроку(Методы[А3], " ")[0];
-		МетодАнгл = РазобратьСтроку(Методы[А3], " ")[1];
-		// Сообщить("" + Символы.Таб + МетодРус + " (" + МетодАнгл + ")");
-		КолМетодов = КолМетодов + 1;
-		//Находим файлы источника и назначения
-		ПутьИст = "C:\444\OneScriptFormsru\OneScriptForms." + МетодАнгл + "Constructor.html";
-		ПутьНазн = "C:\444\OneScriptFormsru\OneScriptForms.OneScriptForms." + МетодАнгл + ".html";
-		Если ПутьИст = "C:\444\OneScriptFormsru\OneScriptForms.EnableVisualStylesConstructor.html" или//
-			ПутьИст = "C:\444\OneScriptFormsru\OneScriptForms.MethodsObjConstructor.html" или//
-			ПутьИст = "C:\444\OneScriptFormsru\OneScriptForms.MouseKeyPressConstructor.html" или//
-			ПутьИст = "C:\444\OneScriptFormsru\OneScriptForms.FindWindowByCaptionConstructor.html" или//
-			ПутьИст = "C:\444\OneScriptFormsru\OneScriptForms.PostEventProcessingConstructor.html" или//
-			ПутьИст = "C:\444\OneScriptFormsru\OneScriptForms.SendKeysConstructor.html" или//
-			ПутьИст = "C:\444\OneScriptFormsru\OneScriptForms.DoEventsConstructor.html" или//
-			ПутьИст = "C:\444\OneScriptFormsru\OneScriptForms.PropObjConstructor.html" Тогда//
-			Продолжить;
-		КонецЕсли;
-		ФайлИст = Новый Файл(ПутьИст);
-		ФайлНазн = Новый Файл(ПутьНазн);
-		Если ФайлИст.Существует() И ФайлНазн.Существует() Тогда
-		Иначе
-			Сообщить("Нет " + ПутьИст);
-		КонецЕсли;
-		
-		ТекстДокИст = Новый ТекстовыйДокумент;
-		ТекстДокИст.Прочитать(ПутьИст);
-		СтрИст = ТекстДокИст.ПолучитьТекст();
-		СинтаксисИст = СтрНайтиМежду(СтрИст, "<H4 class=dtH4>Синтаксис</H4>", "<H4 class=dtH4>Описание</H4>", , )[0];
-		
-		ТекстДокНазн = Новый ТекстовыйДокумент;
-		ТекстДокНазн.Прочитать(ПутьНазн);
-		СтрНазн = ТекстДокНазн.ПолучитьТекст();
-		СинтаксисНазн = СтрНайтиМежду(СтрНазн, "<H4 class=dtH4>Синтаксис</H4>", "<H4 class=dtH4>Возвращаемое значение</H4>", , )[0];
-		// // Сообщить("=====" + ПутьИст + "==========================================================================================");
-		// // Сообщить("" + СинтаксисИст);
-		// // Сообщить("" + СинтаксисНазн);
-		ПодстрокаПоиска = СинтаксисНазн;
-		ПодстрокаЗамены = СинтаксисИст;
-		СтрНазн = СтрЗаменить(СтрНазн, ПодстрокаПоиска, ПодстрокаЗамены);
-		
-		ПримерИст = СтрНайтиМежду(СтрИст, "<H4 class=dtH4>Пример</H4>", "<H4 class=dtH4>Смотрите также</H4>", , )[0];
-		ПримерНазн = СтрНайтиМежду(СтрНазн, "<H4 class=dtH4>Пример</H4>", "<H4 class=dtH4>Смотрите также</H4>", , )[0];
-		// // Сообщить("=====" + ПутьИст + "==========================================================================================");
-		// // Сообщить("" + ПримерИст);
-		// // Сообщить("" + ПримерНазн);
-		ПодстрокаПоиска = ПримерНазн;
-		ПодстрокаЗамены = ПримерИст;
-		СтрНазн = СтрЗаменить(СтрНазн, ПодстрокаПоиска, ПодстрокаЗамены);
-		
-		//"ИнформацияЗапускаПроцесса (ProcessStartInfo) Конструктор" + " " + ТекущаяДата())
-		//ФормыДляОдноСкрипта.ИнформацияЗапускаПроцесса (OneScriptForms.ProcessStartInfo) Метод
-		ПодстрокаПоиска = """" + МетодРус + " (" + МетодАнгл + ") Конструктор"" + "" "" + ТекущаяДата())";
-		ПодстрокаЗамены = """ФормыДляОдноСкрипта." + МетодРус + " (OneScriptForms." + МетодАнгл + ") Метод"" + "" "" + ТекущаяДата())";
-		// // Сообщить("=====" + ПутьИст + "==========================================================================================");
-		// // Сообщить("" + ПодстрокаПоиска);
-		// // Сообщить("===");
-		// // Сообщить("" + ПодстрокаЗамены);
-		СтрНазн = СтрЗаменить(СтрНазн, ПодстрокаПоиска, ПодстрокаЗамены);
-		
-		СкриптИст = СтрНайтиМежду(СтрИст, "<script>", "</script>", , )[0];
-		СкриптНазн = СтрНайтиМежду(СтрНазн, "<script>", "</script>", , )[0];
-		// // Сообщить("=====" + ПутьИст + "==========================================================================================");
-		// // Сообщить("" + СкриптИст);
-		// // Сообщить("" + СкриптНазн);
-		ПодстрокаПоиска = СкриптНазн;
-		ПодстрокаЗамены = СкриптИст;
-		СтрНазн = СтрЗаменить(СтрНазн, ПодстрокаПоиска, ПодстрокаЗамены);
-		
-		ТекстДокНазн.УстановитьТекст(СтрНазн);
-		ТекстДокНазн.Записать(ПутьНазн);
-		
-	КонецЦикла;
-	
-	Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах() - Таймер)/1000)/60 + " мин.");
-КонецПроцедуры//ЗаполнениеМетодовФормыДляОдноСкрипта()
-
-Процедура БезТестовыхКодов()
-	Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
-	
-	БезТестов = 0;
-	ВыбранныеФайлы = НайтиФайлы("C:\444\OneScriptFormsru", "*.html", Истина);
-	Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
-		ТекстДок = Новый ТекстовыйДокумент;
-		ТекстДок.Прочитать(ВыбранныеФайлы[А].ПолноеИмя);
-		Стр = ТекстДок.ПолучитьТекст();
-		
-		М = СтрНайтиМежду(Стр, "<H1 class=dtH1>", "</H1>", , );
-		Если М.Количество() > 0 Тогда
-			Заголовок = СтрНайтиМежду(Стр, "<H1 class=dtH1>", "</H1>", , )[0];
-			Заголовок = СтрЗаменить(Заголовок, "&nbsp;", " ");
-			
-			М1 = СтрНайтиМежду(Стр, "<details><summary>Тестовый код</summary>", "</DIV>", , );
-			Для А1 = 0 По М1.Количество() - 1 Цикл
-				СтрКода = М1[А1];
-				Если СтрНайти(СтрКода, "Сообщить(?(") > 0 Тогда
-					
-				Иначе
-					БезТестов = БезТестов + 1;
-					Сообщить("===" + Заголовок);
-				КонецЕсли;
-				
-			КонецЦикла;
-		Иначе
-			Сообщить("" + ВыбранныеФайлы[А].ПолноеИмя);
-		КонецЕсли;
-	КонецЦикла;
-	
-	Сообщить("БезТестов = " + БезТестов);
-	Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах() - Таймер)/1000)/60 + " мин.");
-КонецПроцедуры//БезТестовыхКодов()
-
-Процедура КтоНаследует()
-	Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
-	
-	КолНаследуемых = 0;
-	ВыбранныеФайлы = ОтобратьФайлы("Члены");
-	Список = Новый СписокЗначений;
-	Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
-		ТекстДок = Новый ТекстовыйДокумент;
-		ТекстДок.Прочитать(ВыбранныеФайлы[А]);
-		Стр = ТекстДок.ПолучитьТекст();
-		
-		РодительМассив = СтрНайтиМежду(Стр, "(унаследовано", "</TD>", , );
-		Для А1 = 0 По РодительМассив.ВГраница() Цикл
-			РодительСтрока = РодительМассив[А1];
-			РодительСтрока2 = СтрНайтиМежду(РодительСтрока, "<B>", "</B>", , )[0];
-			РодительСтрока2 = СтрЗаменить(РодительСтрока2, "&nbsp;", " ");
-			КолНаследуемых = КолНаследуемых + 1;
-			Если Список.НайтиПоЗначению(РодительСтрока2) = Неопределено Тогда
-				Список.Добавить(РодительСтрока2);
-			КонецЕсли;
-			
-			
-		КонецЦикла;
-		
-		// Если СтрНайти() > 0 Тогда
-			// СтрВСписок = ВыбранныеФайлы[А] + " - " + 
-			
-		// КонецЕсли;
-		// СтрЗаголовка2 = СтрНайтиМежду(Стр, "<H1 class=dtH1>", "</H1>", , );
-		// СтрЗаголовка2 = СтрЗаголовка2[0];
-		// СтрЗаголовка2 = СтрЗаменить(СтрЗаголовка2, "Методы", "");
-		// СтрЗаголовка2 = СтрЗаменить(СтрЗаголовка2, "&nbsp;", " ");
-		// СтрЗаголовка2 = СокрЛП(СтрЗаголовка2);
-		// // Сообщить("СтрЗаголовка = " + СтрЗаголовка);
-		// // Сообщить("СтрЗаголовка2 = " + СтрЗаголовка2);
-		// // Сообщить("==========================================================================================================================================");
-	
-	КонецЦикла;
-	
-	Список.СортироватьПоЗначению();
-	Сообщить("КолНаследуемых = " + КолНаследуемых);
-	Сообщить("Найдено родителей " + Список.Количество());
-	Сообщить("-------------------------------------------------");
-	Для А2 = 0 По Список.Количество() - 1 Цикл
-		СтрСписок = Список.Получить(А2).Значение;
-		Сообщить("" + СтрСписок);
-	КонецЦикла;
-	Сообщить("-------------------------------------------------");
-	
-	Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах() - Таймер)/1000)/60 + " мин.");
-КонецПроцедуры//КтоНаследует()
-
-Процедура КлассыНеИспользующиеНаследованиеСвойствМетодов()
-	Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
-	
-	// ВыбранныеФайлы = ОтобратьФайлы("Члены");
-	ВыбранныеФайлы = ОтобратьФайлы("Методы");
-	Список = Новый СписокЗначений;
-	Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
-		ТекстДок = Новый ТекстовыйДокумент;
-		ТекстДок.Прочитать(ВыбранныеФайлы[А]);
-		Стр = ТекстДок.ПолучитьТекст();
-		
-		РодительМассив = СтрНайтиМежду(Стр, "(унаследовано", "</TD>", , );
-		// Для А1 = 0 По РодительМассив.ВГраница() Цикл
-			// РодительСтрока = РодительМассив[А1];
-			// РодительСтрока2 = СтрНайтиМежду(РодительСтрока, "<B>", "</B>", , )[0];
-			// РодительСтрока2 = СтрЗаменить(РодительСтрока2, "&nbsp;", " ");
-			// КолНаследуемых = КолНаследуемых + 1;
-			// Если Список.НайтиПоЗначению(РодительСтрока2) = Неопределено Тогда
-				// Список.Добавить(РодительСтрока2);
-			// КонецЕсли;
-		// КонецЦикла;
-		
-		Если РодительМассив.Количество() = 0 Тогда
-			Если Список.НайтиПоЗначению(ВыбранныеФайлы[А]) = Неопределено Тогда
-				Список.Добавить(ВыбранныеФайлы[А]);
-			КонецЕсли;
-			
-			СтрЗаголовка2 = СтрНайтиМежду(Стр, "<H1 class=dtH1>", "</H1>", , );
-			СтрЗаголовка2 = СтрЗаголовка2[0];
-			СтрЗаголовка2 = СтрЗаменить(СтрЗаголовка2, "Методы", "");
-			СтрЗаголовка2 = СтрЗаменить(СтрЗаголовка2, "&nbsp;", " ");
-			СтрЗаголовка2 = СокрЛП(СтрЗаголовка2);
-			Сообщить("" + СтрЗаголовка2);
-			
-		КонецЕсли;
-		
-		// Если СтрНайти() > 0 Тогда
-			// СтрВСписок = ВыбранныеФайлы[А] + " - " + 
-			
-		// КонецЕсли;
-		// СтрЗаголовка2 = СтрНайтиМежду(Стр, "<H1 class=dtH1>", "</H1>", , );
-		// СтрЗаголовка2 = СтрЗаголовка2[0];
-		// СтрЗаголовка2 = СтрЗаменить(СтрЗаголовка2, "Методы", "");
-		// СтрЗаголовка2 = СтрЗаменить(СтрЗаголовка2, "&nbsp;", " ");
-		// СтрЗаголовка2 = СокрЛП(СтрЗаголовка2);
-		// // Сообщить("СтрЗаголовка = " + СтрЗаголовка);
-		// // Сообщить("СтрЗаголовка2 = " + СтрЗаголовка2);
-		// // Сообщить("==========================================================================================================================================");
-	
-	КонецЦикла;
-	
-	Список.СортироватьПоЗначению();
-	Сообщить("Найдено классов не использующих наследуемых свойств и методов " + Список.Количество());
-	Сообщить("-------------------------------------------------");
-	Для А2 = 0 По Список.Количество() - 1 Цикл
-		СтрСписок = Список.Получить(А2).Значение;
-		Сообщить("" + СтрСписок);
-	КонецЦикла;
-	Сообщить("-------------------------------------------------");
-	
-	Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах() - Таймер)/1000)/60 + " мин.");
-КонецПроцедуры//КлассыНеИспользующиеНаследованиеСвойствМетодов()
 
 Процедура СортировкаКода()
 	Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
 	
-	ВыбранныеФайлы = НайтиФайлы("C:\444\ВыгруженныеОбъекты", "*.cs", Ложь);
+	ВыбранныеФайлы = НайтиФайлы(КаталогВыгрузки, "*.cs", Ложь);
 	Найдено1 = 0;
 	Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
 		СтрДирективы = "";
@@ -24736,19 +25341,206 @@
 	Возврат Стр;
 КонецФункции//СортировкаКласса2Уровня(СтрКласса)
 
-// ЗаполнитьПримерамиЦвета();
-// СвойстваАрг();
-// СвойстваМеткаИРодитель();
-// // // СтраницыБезПримера();
-// ИзменениеСекцииПример();
-// ДобавлениеКопированияВПример();
-// СтавлюДвоеточие();
-// // // ВыгрузкаДляCS();//запускать перед СортировкаКода и связанно
-// // // СортировкаКода();//запускать после ВыгрузкаДляCS и связанно
-// ТипыЗначений();
-// // // ПолучитьКлассыСвойстваМетодыПеречисления();
-// // // КлассыБезКонструктора();
-// ЗаполнениеМетодовФормыДляОдноСкрипта();
-БезТестовыхКодов();
-// КтоНаследует();
-// КлассыНеИспользующиеНаследованиеСвойствМетодов();
+Процедура ДобавитьДвойнаяБуферизация();
+	// Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
+	
+	// Наследников = 0;
+	// ВыбранныеФайлы = ОтобратьФайлы("Класс");
+	// Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
+		// ТекстДок = Новый ТекстовыйДокумент;
+		// ТекстДок.Прочитать(ВыбранныеФайлы[А]);
+		// Стр = ТекстДок.ПолучитьТекст();
+		// СтрЗаголовка = СтрНайтиМежду(Стр, "<H1 class=dtH1", "/H1>", , )[0];
+		// СтрИерархия = СтрНайтиМежду(Стр, "<H4 class=dtH4>Иерархия</H4>", "</HTML>", , )[0];
+		// Если СтрНайти(СтрИерархия, "OneScriptForms.Control.html") > 0 Тогда
+			// Наследников = Наследников + 1;
+			// ПутьЧлены = СтрЗаменить(ВыбранныеФайлы[А], ".html", "Members.html");
+			// ФайлЧлены = Новый Файл(ПутьЧлены);
+			// Если ФайлЧлены.Существует() Тогда
+				// ТекстДокЧлены = Новый ТекстовыйДокумент;
+				// ТекстДокЧлены.Прочитать(ПутьЧлены);
+				// СтрЧлены = ТекстДокЧлены.ПолучитьТекст();
+				// Если СтрНайти(СтрЧлены, "ДвойнаяБуферизация") > 0 Тогда
+				// Иначе
+					// ПодстрокаПоиска = "<H4 class=dtH4>Свойства</H4>
+					// |<DIV class=tablediv>
+					// |<TABLE class=dtTABLE cellSpacing=0>
+					// |  <TBODY>";
+					// ПодстрокаЗамены = ПодстрокаПоиска + "
+					// |  <TR vAlign=top>
+					// |    <TD width=""50%""><IMG src=""pubproperty.gif""></IMG><A href=""OneScriptForms.Control.DoubleBuffered.html"">ДвойнаяБуферизация&nbsp;(DoubleBuffered)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
+					// |    <TD width=""50%"">Возвращает или задает значение, указывающее, должна ли поверхность этого элемента управления перерисовываться с помощью дополнительного буфера, чтобы уменьшить или предотвратить мерцание.</TD></TR>";
+					// СтрЧлены = СтрЗаменить(СтрЧлены, ПодстрокаПоиска, ПодстрокаЗамены);
+				// КонецЕсли;
+				
+				// Если (СтрНайти(СтрЧлены, "ПолучитьСтиль") > 0) или (СтрНайти(СтрЧлены, "УстановитьСтиль") > 0) или (СтрНайти(СтрЧлены, "ОбновитьСтили") > 0) Тогда
+				// Иначе
+					// ПодстрокаПоиска = "<H4 class=dtH4>Методы</H4>
+					// |<DIV class=tablediv>
+					// |<TABLE class=dtTABLE cellSpacing=0>
+					// |  <TBODY>";
+					// ПодстрокаЗамены = ПодстрокаПоиска + "
+					// |  <TR vAlign=top>
+					// |    <TD width=""50%""><IMG src=""pubmethod.gif""></IMG><A href=""OneScriptForms.Control.GetStyle.html"">ПолучитьСтиль&nbsp;(GetStyle)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
+					// |    <TD width=""50%"">Возвращает значение указанного бита стиля для данного элемента управления.</TD></TR>
+					// |  <TR vAlign=top>
+					// |    <TD width=""50%""><IMG src=""pubmethod.gif""></IMG><A href=""OneScriptForms.Control.SetStyle.html"">УстановитьСтиль&nbsp;(SetStyle)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
+					// |    <TD width=""50%"">Включает или выключает указанный стиль.</TD></TR>
+					// |  <TR vAlign=top>
+					// |    <TD width=""50%""><IMG src=""pubmethod.gif""></IMG><A href=""OneScriptForms.Control.UpdateStyles.html"">ОбновитьСтили&nbsp;(UpdateStyles)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
+					// |    <TD width=""50%"">Вызывает принудительное повторное применение назначенных стилей к элементу управления.</TD></TR>";
+					// СтрЧлены = СтрЗаменить(СтрЧлены, ПодстрокаПоиска, ПодстрокаЗамены);
+				// КонецЕсли;
+				// ТекстДокЧлены.УстановитьТекст(СтрЧлены);
+				// ТекстДокЧлены.Записать(ПутьЧлены);
+			// Иначе
+				// Сообщить("Не найден ПутьЧлены===" + ПутьЧлены);
+			// КонецЕсли;
+			
+			// ПутьСвойства = СтрЗаменить(ВыбранныеФайлы[А], ".html", "Properties.html");
+			// ФайлСвойства = Новый Файл(ПутьСвойства);
+			// Если ФайлСвойства.Существует() Тогда
+				// ТекстДокСвойства = Новый ТекстовыйДокумент;
+				// ТекстДокСвойства.Прочитать(ПутьСвойства);
+				// СтрСвойства = ТекстДокСвойства.ПолучитьТекст();
+				// Если СтрНайти(СтрСвойства, "ДвойнаяБуферизация") > 0 Тогда
+				// Иначе
+					// ПодстрокаПоиска = "<H4 class=dtH4>Свойства</H4>
+					// |<DIV class=tablediv>
+					// |<TABLE class=dtTABLE cellSpacing=0>
+					// |  <TBODY>";
+					// ПодстрокаЗамены = ПодстрокаПоиска + "
+					// |  <TR vAlign=top>
+					// |    <TD width=""50%""><IMG src=""pubproperty.gif""></IMG><A href=""OneScriptForms.Control.DoubleBuffered.html"">ДвойнаяБуферизация&nbsp;(DoubleBuffered)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
+					// |    <TD width=""50%"">Возвращает или задает значение, указывающее, должна ли поверхность этого элемента управления перерисовываться с помощью дополнительного буфера, чтобы уменьшить или предотвратить мерцание.</TD></TR>";
+					// СтрСвойства = СтрЗаменить(СтрСвойства, ПодстрокаПоиска, ПодстрокаЗамены);
+				// КонецЕсли;
+				// ТекстДокСвойства.УстановитьТекст(СтрСвойства);
+				// ТекстДокСвойства.Записать(ПутьСвойства);
+			// Иначе
+				// Сообщить("Не найден ПутьСвойства===" + ПутьСвойства);
+			// КонецЕсли;
+
+			// ПутьМетоды = СтрЗаменить(ВыбранныеФайлы[А], ".html", "Methods.html");
+			// ФайлМетоды = Новый Файл(ПутьМетоды);
+			// Если ФайлМетоды.Существует() Тогда
+				// ТекстДокМетоды = Новый ТекстовыйДокумент;
+				// ТекстДокМетоды.Прочитать(ПутьМетоды);
+				// СтрМетоды = ТекстДокМетоды.ПолучитьТекст();
+				// Если (СтрНайти(СтрМетоды, "ПолучитьСтиль") > 0) или (СтрНайти(СтрМетоды, "УстановитьСтиль") > 0) или (СтрНайти(СтрМетоды, "ОбновитьСтили") > 0) Тогда
+				// Иначе
+					// ПодстрокаПоиска = "<H4 class=dtH4>Методы</H4>
+					// |<DIV class=tablediv>
+					// |<TABLE class=dtTABLE cellSpacing=0>
+					// |  <TBODY>";
+					// ПодстрокаЗамены = ПодстрокаПоиска + "
+					// |  <TR vAlign=top>
+					// |    <TD width=""50%""><IMG src=""pubmethod.gif""></IMG><A href=""OneScriptForms.Control.GetStyle.html"">ПолучитьСтиль&nbsp;(GetStyle)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
+					// |    <TD width=""50%"">Возвращает значение указанного бита стиля для данного элемента управления.</TD></TR>
+					// |  <TR vAlign=top>
+					// |    <TD width=""50%""><IMG src=""pubmethod.gif""></IMG><A href=""OneScriptForms.Control.SetStyle.html"">УстановитьСтиль&nbsp;(SetStyle)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
+					// |    <TD width=""50%"">Включает или выключает указанный стиль.</TD></TR>
+					// |  <TR vAlign=top>
+					// |    <TD width=""50%""><IMG src=""pubmethod.gif""></IMG><A href=""OneScriptForms.Control.UpdateStyles.html"">ОбновитьСтили&nbsp;(UpdateStyles)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
+					// |    <TD width=""50%"">Вызывает принудительное повторное применение назначенных стилей к элементу управления.</TD></TR>";
+					// СтрМетоды = СтрЗаменить(СтрМетоды, ПодстрокаПоиска, ПодстрокаЗамены);
+				// КонецЕсли;
+				// ТекстДокМетоды.УстановитьТекст(СтрМетоды);
+				// ТекстДокМетоды.Записать(ПутьМетоды);
+			// Иначе
+				// Сообщить("Не найден ПутьМетоды===" + ПутьМетоды);
+			// КонецЕсли;
+		// КонецЕсли;
+	
+	// КонецЦикла;
+		
+	// Сообщить("Наследников = " + Наследников);
+	// Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах() - Таймер)/1000)/60 + " мин.");
+КонецПроцедуры//ДобавитьДвойнаяБуферизация()
+
+Процедура ДобавитьОтправительПараметр();
+	// Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
+	
+	// Найдено1 = 0;
+	// ВыбранныеФайлы = НайтиФайлы(КаталогСправки, "*.html", Истина);
+	// Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
+		// Если СтрНайти(ВыбранныеФайлы[А].Имя, "Args.html") > 0 Тогда
+			// Найдено1 = Найдено1 + 1;
+			// // Сообщить("" + ВыбранныеФайлы[А].Имя);
+		
+			// ПутьЧлены = СтрЗаменить(ВыбранныеФайлы[А].ПолноеИмя, ".html", "Members.html");
+			// Сообщить("ПутьЧлены = " + ПутьЧлены);
+			// ФайлЧлены = Новый Файл(ПутьЧлены);
+			// Приостановить(1000);
+			// Если ФайлЧлены.Существует() Тогда
+				// ТекстДокЧлены = Новый ТекстовыйДокумент;
+				// ТекстДокЧлены.Прочитать(ПутьЧлены);
+				// СтрЧлены = ТекстДокЧлены.ПолучитьТекст();
+				// Если (СтрНайти(СтрЧлены, "Отправитель") > 0) или (СтрНайти(СтрЧлены, "Параметр") > 0) Тогда
+				// Иначе
+					// ПодстрокаПоиска = "<H4 class=dtH4>Свойства</H4>
+					// |<DIV class=tablediv>
+					// |<TABLE class=dtTABLE cellSpacing=0>
+					// |  <TBODY>";
+					// ПодстрокаЗамены = ПодстрокаПоиска + "
+					// |  <TR vAlign=top>
+					// |    <TD width=""50%""><IMG src=""pubproperty.gif""></IMG><A href=""OneScriptForms.EventArgs.Sender.html"">Отправитель&nbsp;(Sender)</A> (унаследовано от <B>АргументыСобытия&nbsp;(EventArgs)</B>)</TD>
+					// |    <TD width=""50%"">Возвращает объект, послуживший источником события.</TD></TR>
+					// |  <TR vAlign=top>
+					// |    <TD width=""50%""><IMG src=""pubproperty.gif""></IMG><A href=""OneScriptForms.EventArgs.Parameter.html"">Параметр&nbsp;(Parameter)</A> (унаследовано от <B>АргументыСобытия&nbsp;(EventArgs)</B>)</TD>
+					// |    <TD width=""50%"">Возвращает объект, заданный при установке обработчика события.</TD></TR>";
+					// СтрЧлены = СтрЗаменить(СтрЧлены, ПодстрокаПоиска, ПодстрокаЗамены);
+				// КонецЕсли;
+				
+				// ТекстДокЧлены.УстановитьТекст(СтрЧлены);
+				// ТекстДокЧлены.Записать(ПутьЧлены);
+			// Иначе
+				// Сообщить("Не найден ПутьЧлены===" + ПутьЧлены);
+			// КонецЕсли;
+			
+			// ПутьСвойства = СтрЗаменить(ВыбранныеФайлы[А].ПолноеИмя, ".html", "Properties.html");
+			// Сообщить("ПутьСвойства = " + ПутьСвойства);
+			// ФайлСвойства = Новый Файл(ПутьСвойства);
+			// Приостановить(1000);
+			// Если ФайлСвойства.Существует() Тогда
+				// ТекстДокСвойства = Новый ТекстовыйДокумент;
+				// ТекстДокСвойства.Прочитать(ПутьСвойства);
+				// СтрСвойства = ТекстДокСвойства.ПолучитьТекст();
+				// Если (СтрНайти(СтрСвойства, "Отправитель") > 0) или (СтрНайти(СтрСвойства, "Параметр") > 0) Тогда
+				// Иначе
+					// ПодстрокаПоиска = "<H4 class=dtH4>Свойства</H4>
+					// |<DIV class=tablediv>
+					// |<TABLE class=dtTABLE cellSpacing=0>
+					// |  <TBODY>";
+					// ПодстрокаЗамены = ПодстрокаПоиска + "
+					// |  <TR vAlign=top>
+					// |    <TD width=""50%""><IMG src=""pubproperty.gif""></IMG><A href=""OneScriptForms.EventArgs.Sender.html"">Отправитель&nbsp;(Sender)</A> (унаследовано от <B>АргументыСобытия&nbsp;(EventArgs)</B>)</TD>
+					// |    <TD width=""50%"">Возвращает объект, послуживший источником события.</TD></TR>
+					// |  <TR vAlign=top>
+					// |    <TD width=""50%""><IMG src=""pubproperty.gif""></IMG><A href=""OneScriptForms.EventArgs.Parameter.html"">Параметр&nbsp;(Parameter)</A> (унаследовано от <B>АргументыСобытия&nbsp;(EventArgs)</B>)</TD>
+					// |    <TD width=""50%"">Возвращает объект, заданный при установке обработчика события.</TD></TR>";
+					// СтрСвойства = СтрЗаменить(СтрСвойства, ПодстрокаПоиска, ПодстрокаЗамены);
+				// КонецЕсли;
+				
+				// ТекстДокСвойства.УстановитьТекст(СтрСвойства);
+				// ТекстДокСвойства.Записать(ПутьСвойства);
+			// Иначе
+				// Сообщить("Не найден ПутьСвойства===" + ПутьСвойства);
+			// КонецЕсли;
+		
+		// КонецЕсли;
+
+	// КонецЦикла;
+		
+	// Сообщить("Найдено1 = " + Найдено1);
+	// Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах() - Таймер)/1000)/60 + " мин.");
+КонецПроцедуры//ДобавитьОтправительПараметр()
+
+
+КаталогСправки = "C:\444\OneScriptFormsru";// без слэша в конце
+КаталогВыгрузки = "C:\444\ВыгруженныеОбъекты";// без слэша в конце
+
+ВыгрузкаДляCS();
+СортировкаКода();
+// // // ДобавитьДвойнаяБуферизация();
+// // // ДобавитьОтправительПараметр();

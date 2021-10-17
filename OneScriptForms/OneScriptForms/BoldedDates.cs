@@ -7,7 +7,13 @@ namespace osf
     [ContextClass ("КлВыделенныеДаты", "ClBoldedDates")]
     public class ClBoldedDates : AutoContext<ClBoldedDates>
     {
-        public System.DateTime[] M_Object;
+        public osf.MonthCalendar M_MonthCalendar;
+
+        public System.DateTime[] M_Object
+        {
+            get { return M_MonthCalendar.BoldedDates; }
+            set { M_MonthCalendar.BoldedDates = value; }
+        }
 
         //Свойства============================================================
 

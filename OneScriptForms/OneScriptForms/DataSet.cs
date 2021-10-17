@@ -20,15 +20,15 @@ namespace osf
             M_DataSet.M_Object = this;
         }
 
-        public DataSet(System.Data.DataSet p1)
-        {
-            M_DataSet = (DataSetEx)p1;
-            M_DataSet.M_Object = this;
-        }
-
         public DataSet(osf.DataSet p1)
         {
             M_DataSet = p1.M_DataSet;
+            M_DataSet.M_Object = this;
+        }
+
+        public DataSet(System.Data.DataSet p1)
+        {
+            M_DataSet = (DataSetEx)p1;
             M_DataSet.M_Object = this;
         }
 

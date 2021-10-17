@@ -8,15 +8,15 @@ namespace osf
         public ClDockPaddingEdges dll_obj;
         public System.Windows.Forms.ScrollableControl.DockPaddingEdges M_DockPaddingEdges;
 
-        public DockPaddingEdges(System.Windows.Forms.ScrollableControl.DockPaddingEdges p1)
-        {
-            M_DockPaddingEdges = p1;
-            OneScriptForms.AddToHashtable(M_DockPaddingEdges, this);
-        }
-
         public DockPaddingEdges(osf.DockPaddingEdges p1)
         {
             M_DockPaddingEdges = p1.M_DockPaddingEdges;
+            OneScriptForms.AddToHashtable(M_DockPaddingEdges, this);
+        }
+
+        public DockPaddingEdges(System.Windows.Forms.ScrollableControl.DockPaddingEdges p1)
+        {
+            M_DockPaddingEdges = p1;
             OneScriptForms.AddToHashtable(M_DockPaddingEdges, this);
         }
 

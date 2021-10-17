@@ -13,14 +13,14 @@ namespace osf
             M_Screen = System.Windows.Forms.Screen.PrimaryScreen;
         }
 
-        public Screen(System.Windows.Forms.Screen p1)
-        {
-            M_Screen = p1;
-        }
-
         public Screen(osf.Screen p1)
         {
             M_Screen = p1.M_Screen;
+        }
+
+        public Screen(System.Windows.Forms.Screen p1)
+        {
+            M_Screen = p1;
         }
 
         //Свойства============================================================

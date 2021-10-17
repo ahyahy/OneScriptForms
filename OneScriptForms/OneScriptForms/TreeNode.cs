@@ -19,12 +19,6 @@ namespace osf
             M_TreeNode.M_Object = this;
         }
 
-        public TreeNode(System.Windows.Forms.TreeNode p1)
-        {
-            M_TreeNode = (TreeNodeEx)p1;
-            M_TreeNode.M_Object = this;
-        }
-
         public TreeNode(osf.TreeNode p1)
         {
             M_TreeNode = p1.M_TreeNode;
@@ -36,6 +30,12 @@ namespace osf
             M_TreeNode = new TreeNodeEx();
             M_TreeNode.M_Object = this;
             M_TreeNode.Text = p1;
+        }
+
+        public TreeNode(System.Windows.Forms.TreeNode p1)
+        {
+            M_TreeNode = (TreeNodeEx)p1;
+            M_TreeNode.M_Object = this;
         }
 
         //Свойства============================================================

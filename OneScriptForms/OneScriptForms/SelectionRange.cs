@@ -22,15 +22,15 @@ namespace osf
             OneScriptForms.AddToHashtable(M_SelectionRange, this);
         }
 
-        public SelectionRange(System.Windows.Forms.SelectionRange p1)
-        {
-            M_SelectionRange = p1;
-            OneScriptForms.AddToHashtable(M_SelectionRange, this);
-        }
-
         public SelectionRange(osf.SelectionRange p1)
         {
             M_SelectionRange = p1.M_SelectionRange;
+            OneScriptForms.AddToHashtable(M_SelectionRange, this);
+        }
+
+        public SelectionRange(System.Windows.Forms.SelectionRange p1)
+        {
+            M_SelectionRange = p1;
             OneScriptForms.AddToHashtable(M_SelectionRange, this);
         }
 

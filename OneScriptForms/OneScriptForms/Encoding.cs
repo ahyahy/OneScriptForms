@@ -8,14 +8,14 @@ namespace osf
         public ClEncoding dll_obj;
         public System.Text.Encoding M_Encoding;
 
-        private Encoding(System.Text.Encoding p1)
-        {
-            M_Encoding = p1;
-        }
-
         private Encoding(osf.Encoding p1)
         {
             M_Encoding = p1.M_Encoding;
+        }
+
+        private Encoding(System.Text.Encoding p1)
+        {
+            M_Encoding = p1;
         }
 
         public Encoding()

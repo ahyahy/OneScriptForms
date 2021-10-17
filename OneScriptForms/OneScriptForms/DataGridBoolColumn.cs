@@ -19,16 +19,16 @@ namespace osf
             base.M_DataGridColumnStyle = M_DataGridBoolColumn;
         }
 
-        public DataGridBoolColumn(System.Windows.Forms.DataGridBoolColumn p1)
+        public DataGridBoolColumn(osf.DataGridBoolColumn p1)
         {
-            M_DataGridBoolColumn = (DataGridBoolColumnEx)p1;
+            M_DataGridBoolColumn = p1.M_DataGridBoolColumn;
             M_DataGridBoolColumn.M_Object = this;
             base.M_DataGridColumnStyle = M_DataGridBoolColumn;
         }
 
-        public DataGridBoolColumn(osf.DataGridBoolColumn p1)
+        public DataGridBoolColumn(System.Windows.Forms.DataGridBoolColumn p1)
         {
-            M_DataGridBoolColumn = p1.M_DataGridBoolColumn;
+            M_DataGridBoolColumn = (DataGridBoolColumnEx)p1;
             M_DataGridBoolColumn.M_Object = this;
             base.M_DataGridColumnStyle = M_DataGridBoolColumn;
         }

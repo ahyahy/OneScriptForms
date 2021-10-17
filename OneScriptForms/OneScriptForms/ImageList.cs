@@ -14,15 +14,15 @@ namespace osf
             OneScriptForms.AddToHashtable(M_ImageList, this);
         }
 
-        public ImageList(System.Windows.Forms.ImageList p1)
-        {
-            M_ImageList = p1;
-            OneScriptForms.AddToHashtable(M_ImageList, this);
-        }
-
         public ImageList(osf.ImageList p1)
         {
             M_ImageList = p1.M_ImageList;
+            OneScriptForms.AddToHashtable(M_ImageList, this);
+        }
+
+        public ImageList(System.Windows.Forms.ImageList p1)
+        {
+            M_ImageList = p1;
             OneScriptForms.AddToHashtable(M_ImageList, this);
         }
 

@@ -52,6 +52,18 @@ namespace osf
             get { return OneScriptForms.RevertObj(Base_obj.NewValue); }
         }
         
+        [ContextProperty("Отправитель", "Sender")]
+        public IValue Sender
+        {
+            get { return OneScriptForms.RevertObj(Base_obj.Sender); }
+        }
+        
+        [ContextProperty("Параметр", "Parameter")]
+        public IValue Parameter
+        {
+            get { return (IValue)Base_obj.Parameter; }
+        }
+
         [ContextProperty("СтараяНадпись", "OldLabel")]
         public string OldLabel
         {

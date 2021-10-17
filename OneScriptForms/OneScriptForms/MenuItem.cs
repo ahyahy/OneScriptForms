@@ -17,19 +17,6 @@ namespace osf
         public string Name;
         public string Popup;
 
-        public MenuItem(System.Windows.Forms.MenuItem p1)
-        {
-            M_MenuItem = (MenuItemEx)p1;
-            M_MenuItem.M_Object = this;
-            base.M_Menu = M_MenuItem;
-            M_MenuItem.Click += M_MenuItem_Click;
-            M_MenuItem.Popup += M_MenuItem_Popup;
-            Name = "";
-            Click = "";
-            Popup = "";
-            M_VisibleSaveState = false;
-        }
-
         public MenuItem(osf.MenuItem p1)
         {
             M_MenuItem = p1.M_MenuItem;
@@ -56,6 +43,19 @@ namespace osf
             M_VisibleSaveState = false;
             M_MenuItem.Text = text;
             M_MenuItem.Shortcut = shortcut;
+        }
+
+        public MenuItem(System.Windows.Forms.MenuItem p1)
+        {
+            M_MenuItem = (MenuItemEx)p1;
+            M_MenuItem.M_Object = this;
+            base.M_Menu = M_MenuItem;
+            M_MenuItem.Click += M_MenuItem_Click;
+            M_MenuItem.Popup += M_MenuItem_Popup;
+            Name = "";
+            Click = "";
+            Popup = "";
+            M_VisibleSaveState = false;
         }
 
         //Свойства============================================================
@@ -161,6 +161,19 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = Click;
                 EventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.Click;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    EventArgs1.Parameter = null;
+                }
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
@@ -173,6 +186,19 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = Popup;
                 EventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.Popup;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    EventArgs1.Parameter = null;
+                }
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
@@ -183,6 +209,7 @@ namespace osf
     [ContextClass ("КлЭлементМеню", "ClMenuItem")]
     public class ClMenuItem : AutoContext<ClMenuItem>
     {
+        private IValue _Click;
         private ClMenuItemCollection menuItems;
 
         public ClMenuItem()
@@ -235,12 +262,42 @@ namespace osf
         }
 
         [ContextProperty("Нажатие", "Click")]
-        public string Click
+        public IValue Click
         {
-            get { return Base_obj.Click; }
-            set { Base_obj.Click = value; }
+            get
+            {
+                if (Base_obj.Click.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
+                {
+                    return _Click;
+                }
+                else if (Base_obj.Click.Contains("osf.ClDictionaryEntry"))
+                {
+                    return _Click;
+                }
+                else
+                {
+                    return ValueFactory.Create((string)Base_obj.Click);
+                }
+            }
+            set
+            {
+                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                {
+                    _Click = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+                    Base_obj.Click = "ScriptEngine.HostedScript.Library.DelegateAction" + "Click";
+                }
+                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    _Click = value;
+                    Base_obj.Click = "osf.ClDictionaryEntry" + "Click";
+                }
+                else
+                {
+                    Base_obj.Click = value.AsString();
+                }
+            }
         }
-
+        
         [ContextProperty("Отображать", "Visible")]
         public bool Visible
         {

@@ -20,13 +20,6 @@ namespace osf
             SortType = 0;
         }
 
-        public ColumnHeader(System.Windows.Forms.ColumnHeader p1)
-        {
-            M_ColumnHeader = (ColumnHeaderEx)p1;
-            M_ColumnHeader.M_Object = this;
-            SortType = 0;
-        }
-
         public ColumnHeader(osf.ColumnHeader p1)
         {
             M_ColumnHeader = p1.M_ColumnHeader;
@@ -43,6 +36,13 @@ namespace osf
             }
             M_ColumnHeader.Width = width;
             M_ColumnHeader.TextAlign = (System.Windows.Forms.HorizontalAlignment)alignment;
+            M_ColumnHeader.M_Object = this;
+            SortType = 0;
+        }
+
+        public ColumnHeader(System.Windows.Forms.ColumnHeader p1)
+        {
+            M_ColumnHeader = (ColumnHeaderEx)p1;
             M_ColumnHeader.M_Object = this;
             SortType = 0;
         }

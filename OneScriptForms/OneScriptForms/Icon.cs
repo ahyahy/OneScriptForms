@@ -15,12 +15,6 @@ namespace osf
             OneScriptForms.AddToHashtable(M_Icon, this);
         }
 
-        public Icon(System.Drawing.Icon p1)
-        {
-            M_Icon = p1;
-            OneScriptForms.AddToHashtable(M_Icon, this);
-        }
-
         public Icon(osf.Icon p1)
         {
             M_Icon = p1.M_Icon;
@@ -57,6 +51,12 @@ namespace osf
         public Icon(string p1, int p2)
         {
             M_Icon = ExtractIconClass.GetIconFromExeDll(p2, p1);
+            OneScriptForms.AddToHashtable(M_Icon, this);
+        }
+
+        public Icon(System.Drawing.Icon p1)
+        {
+            M_Icon = p1;
             OneScriptForms.AddToHashtable(M_Icon, this);
         }
 

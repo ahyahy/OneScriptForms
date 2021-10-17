@@ -19,15 +19,15 @@ namespace osf
             M_ToolTip.M_Object = this;
         }
 
-        public ToolTip(System.Windows.Forms.ToolTip p1)
-        {
-            M_ToolTip = (ToolTipEx)p1;
-            M_ToolTip.M_Object = this;
-        }
-
         public ToolTip(osf.ToolTip p1)
         {
             M_ToolTip = p1.M_ToolTip;
+            M_ToolTip.M_Object = this;
+        }
+
+        public ToolTip(System.Windows.Forms.ToolTip p1)
+        {
+            M_ToolTip = (ToolTipEx)p1;
             M_ToolTip.M_Object = this;
         }
 

@@ -14,15 +14,15 @@ namespace osf
         {
         }
 
-        public DataRowView(System.Data.DataRowView p1)
-        {
-            M_DataRowView = p1;
-            OneScriptForms.AddToHashtable(M_DataRowView, this);
-        }
-
         public DataRowView(osf.DataRowView p1)
         {
             M_DataRowView = p1.M_DataRowView;
+            OneScriptForms.AddToHashtable(M_DataRowView, this);
+        }
+
+        public DataRowView(System.Data.DataRowView p1)
+        {
+            M_DataRowView = p1;
             OneScriptForms.AddToHashtable(M_DataRowView, this);
         }
 

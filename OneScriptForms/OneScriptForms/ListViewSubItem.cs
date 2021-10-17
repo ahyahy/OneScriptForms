@@ -8,12 +8,6 @@ namespace osf
         public ClListViewSubItem dll_obj;
         public System.Windows.Forms.ListViewItem.ListViewSubItem M_ListViewSubItem;
 
-        public ListViewSubItem(System.Windows.Forms.ListViewItem.ListViewSubItem p1)
-        {
-            M_ListViewSubItem = p1;
-            OneScriptForms.AddToHashtable(M_ListViewSubItem, this);
-        }
-
         public ListViewSubItem(osf.ListViewSubItem p1)
         {
             M_ListViewSubItem = p1.M_ListViewSubItem;
@@ -24,6 +18,12 @@ namespace osf
         {
             M_ListViewSubItem = new System.Windows.Forms.ListViewItem.ListViewSubItem();
             M_ListViewSubItem.Text = p1;
+            OneScriptForms.AddToHashtable(M_ListViewSubItem, this);
+        }
+
+        public ListViewSubItem(System.Windows.Forms.ListViewItem.ListViewSubItem p1)
+        {
+            M_ListViewSubItem = p1;
             OneScriptForms.AddToHashtable(M_ListViewSubItem, this);
         }
 

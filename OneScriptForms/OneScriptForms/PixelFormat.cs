@@ -5,8 +5,8 @@ namespace osf
     [ContextClass ("КлФорматПикселей", "ClPixelFormat")]
     public class ClPixelFormat : AutoContext<ClPixelFormat>
     {
-        private int m_undefined = (int)System.Drawing.Imaging.PixelFormat.Undefined; // 0 Формат пикселей не определен.
         private int m_dontCare = (int)System.Drawing.Imaging.PixelFormat.DontCare; // 0 Формат пикселей не указан.
+        private int m_undefined = (int)System.Drawing.Imaging.PixelFormat.Undefined; // 0 Формат пикселей не определен.
         private int m_max = (int)System.Drawing.Imaging.PixelFormat.Max; // 15 Максимальное значение данного перечисления.
         private int m_indexed = (int)System.Drawing.Imaging.PixelFormat.Indexed; // 65536 Данные о пикселях содержат значения индексированных цветов, то есть значение является индексом цвета в системной таблице цветов, в отличие от отдельных значений цветов.
         private int m_gdi = (int)System.Drawing.Imaging.PixelFormat.Gdi; // 131072 Данные о пикселях содержат цвета GDI.
@@ -137,16 +137,16 @@ namespace osf
         	get { return m_max; }
         }
 
-        [ContextProperty("НеУказан", "DontCare")]
-        public int DontCare
-        {
-        	get { return m_dontCare; }
-        }
-
         [ContextProperty("Неопределенный", "Undefined")]
         public int Undefined
         {
         	get { return m_undefined; }
+        }
+
+        [ContextProperty("НеУказан", "DontCare")]
+        public int DontCare
+        {
+        	get { return m_dontCare; }
         }
 
         [ContextProperty("ОбратноАльфа", "PAlpha")]

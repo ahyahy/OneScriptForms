@@ -19,18 +19,18 @@ namespace osf
             base.M_DataGridColumnStyle = (System.Windows.Forms.DataGridColumnStyle)M_DataGridTextBoxColumn;
         }
 
-        public DataGridTextBoxColumn(System.Windows.Forms.DataGridTextBoxColumn p1)
-        {
-            M_DataGridTextBoxColumn = (DataGridTextBoxColumnEx)p1;
-            M_DataGridTextBoxColumn.M_Object = this;
-            base.M_DataGridColumnStyle = (System.Windows.Forms.DataGridColumnStyle)M_DataGridTextBoxColumn;
-        }
-
         public DataGridTextBoxColumn(osf.DataGridTextBoxColumn p1)
         {
             M_DataGridTextBoxColumn = p1.M_DataGridTextBoxColumn;
             M_DataGridTextBoxColumn.M_Object = this;
             base.M_DataGridColumnStyle = M_DataGridTextBoxColumn;
+        }
+
+        public DataGridTextBoxColumn(System.Windows.Forms.DataGridTextBoxColumn p1)
+        {
+            M_DataGridTextBoxColumn = (DataGridTextBoxColumnEx)p1;
+            M_DataGridTextBoxColumn.M_Object = this;
+            base.M_DataGridColumnStyle = (System.Windows.Forms.DataGridColumnStyle)M_DataGridTextBoxColumn;
         }
 
         //Свойства============================================================

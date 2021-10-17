@@ -94,16 +94,16 @@ namespace osf
         	get { return m_personal; }
         }
 
-        [ContextProperty("МоиРисунки", "MyPictures")]
-        public int MyPictures
-        {
-        	get { return m_myPictures; }
-        }
-
         [ContextProperty("МойКомпьютер", "MyComputer")]
         public int MyComputer
         {
         	get { return m_myComputer; }
+        }
+
+        [ContextProperty("МоиРисунки", "MyPictures")]
+        public int MyPictures
+        {
+        	get { return m_myPictures; }
         }
 
         [ContextProperty("МояМузыка", "MyMusic")]

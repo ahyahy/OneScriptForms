@@ -8,15 +8,15 @@ namespace osf
         public ClBitmapData dll_obj;
         public System.Drawing.Imaging.BitmapData M_BitmapData;
 
-        public BitmapData(System.Drawing.Imaging.BitmapData p1)
-        {
-            M_BitmapData = p1;
-            OneScriptForms.AddToHashtable(M_BitmapData, this);
-        }
-
         public BitmapData(osf.BitmapData p1)
         {
             M_BitmapData = p1.M_BitmapData;
+            OneScriptForms.AddToHashtable(M_BitmapData, this);
+        }
+
+        public BitmapData(System.Drawing.Imaging.BitmapData p1)
+        {
+            M_BitmapData = p1;
             OneScriptForms.AddToHashtable(M_BitmapData, this);
         }
 

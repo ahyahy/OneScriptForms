@@ -16,17 +16,17 @@ namespace osf
             M_Color = System.Drawing.Color.Empty;
         }
 
+        public Color(osf.Color p1)
+        {
+            M_Color = p1.M_Color;
+        }
+
         public Color(System.Drawing.Color p1)
         {
             M_Color = p1;
         }
 
         //Свойства============================================================
-
-        public Color(osf.Color p1)
-        {
-            M_Color = p1.M_Color;
-        }
 
         //Свойства============================================================
 
@@ -1109,16 +1109,16 @@ namespace osf
             get { return (ClColor)OneScriptForms.RevertObj(Base_obj.LawnGreen); }
         }
 
-        [ContextProperty("ЗеленоЖелтый", "GreenYellow")]
-        public ClColor GreenYellow
-        {
-            get { return (ClColor)OneScriptForms.RevertObj(Base_obj.GreenYellow); }
-        }
-
         [ContextProperty("ЗеленоеМоре", "SeaGreen")]
         public ClColor SeaGreen
         {
             get { return (ClColor)OneScriptForms.RevertObj(Base_obj.SeaGreen); }
+        }
+
+        [ContextProperty("ЗеленоЖелтый", "GreenYellow")]
+        public ClColor GreenYellow
+        {
+            get { return (ClColor)OneScriptForms.RevertObj(Base_obj.GreenYellow); }
         }
 
         [ContextProperty("Зеленый", "Green")]
@@ -1955,6 +1955,12 @@ namespace osf
             get { return (ClColor)OneScriptForms.RevertObj(Base_obj.Tan); }
         }
 
+        [ContextProperty("ЦветочноБелый", "FloralWhite")]
+        public ClColor FloralWhite
+        {
+            get { return (ClColor)OneScriptForms.RevertObj(Base_obj.FloralWhite); }
+        }
+
         [ContextProperty("ЦветПлотнойДревесины", "BurlyWood")]
         public ClColor BurlyWood
         {
@@ -1965,12 +1971,6 @@ namespace osf
         public ClColor Navy
         {
             get { return (ClColor)OneScriptForms.RevertObj(Base_obj.Navy); }
-        }
-
-        [ContextProperty("ЦветочноБелый", "FloralWhite")]
-        public ClColor FloralWhite
-        {
-            get { return (ClColor)OneScriptForms.RevertObj(Base_obj.FloralWhite); }
         }
 
         [ContextProperty("Циан", "Cyan")]

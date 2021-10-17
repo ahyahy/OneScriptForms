@@ -19,15 +19,15 @@ namespace osf
             M_Link.M_Object = this;
         }
 
-        public Link(System.Windows.Forms.LinkLabel.Link p1)
-        {
-            M_Link = (LinkEx)p1;
-            M_Link.M_Object = this;
-        }
-
         public Link(osf.Link p1)
         {
             M_Link = p1.M_Link;
+            M_Link.M_Object = this;
+        }
+
+        public Link(System.Windows.Forms.LinkLabel.Link p1)
+        {
+            M_Link = (LinkEx)p1;
             M_Link.M_Object = this;
         }
 

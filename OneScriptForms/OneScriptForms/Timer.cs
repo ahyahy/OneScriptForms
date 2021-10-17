@@ -1,4 +1,5 @@
 ﻿using ScriptEngine.Machine.Contexts;
+using ScriptEngine.Machine;
 
 namespace osf
 {
@@ -22,18 +23,18 @@ namespace osf
             Tick = "";
         }
 
-        public Timer(System.Windows.Forms.Timer p1)
+        public Timer(osf.Timer p1)
         {
-            M_Timer = (TimerEx)p1;
+            M_Timer = p1.M_Timer;
             M_Timer.M_Object = this;
             base.M_Component = M_Timer;
             M_Timer.Tick += M_Timer_Tick1;
             Tick = "";
         }
 
-        public Timer(osf.Timer p1)
+        public Timer(System.Windows.Forms.Timer p1)
         {
-            M_Timer = p1.M_Timer;
+            M_Timer = (TimerEx)p1;
             M_Timer.M_Object = this;
             base.M_Component = M_Timer;
             M_Timer.Tick += M_Timer_Tick1;
@@ -57,6 +58,19 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = Tick;
                 EventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.Tick;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    EventArgs1.Parameter = null;
+                }
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
@@ -77,6 +91,7 @@ namespace osf
     [ContextClass ("КлТаймер", "ClTimer")]
     public class ClTimer : AutoContext<ClTimer>
     {
+        private IValue _Tick;
         private ClCollection tag = new ClCollection();
 
         public ClTimer()
@@ -111,12 +126,42 @@ namespace osf
         }
         
         [ContextProperty("ПриСрабатыванииТаймера", "Tick")]
-        public string Tick
+        public IValue Tick
         {
-            get { return Base_obj.Tick; }
-            set { Base_obj.Tick = value; }
+            get
+            {
+                if (Base_obj.Tick.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
+                {
+                    return _Tick;
+                }
+                else if (Base_obj.Tick.Contains("osf.ClDictionaryEntry"))
+                {
+                    return _Tick;
+                }
+                else
+                {
+                    return ValueFactory.Create((string)Base_obj.Tick);
+                }
+            }
+            set
+            {
+                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                {
+                    _Tick = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+                    Base_obj.Tick = "ScriptEngine.HostedScript.Library.DelegateAction" + "Tick";
+                }
+                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    _Tick = value;
+                    Base_obj.Tick = "osf.ClDictionaryEntry" + "Tick";
+                }
+                else
+                {
+                    Base_obj.Tick = value.AsString();
+                }
+            }
         }
-
+        
         [ContextProperty("Тип", "Type")]
         public ClType Type
         {

@@ -9,15 +9,15 @@
         {
         }
 
-        public DataGridColumnStyle(System.Windows.Forms.DataGridColumnStyle p1)
-        {
-            M_DataGridColumnStyle = p1;
-            base.M_Component = M_DataGridColumnStyle;
-        }
-
         public DataGridColumnStyle(osf.DataGridColumnStyle p1)
         {
             M_DataGridColumnStyle = p1.M_DataGridColumnStyle;
+            base.M_Component = M_DataGridColumnStyle;
+        }
+
+        public DataGridColumnStyle(System.Windows.Forms.DataGridColumnStyle p1)
+        {
+            M_DataGridColumnStyle = p1;
             base.M_Component = M_DataGridColumnStyle;
         }
 

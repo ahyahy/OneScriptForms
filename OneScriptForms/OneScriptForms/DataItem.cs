@@ -15,16 +15,16 @@ namespace osf
         {
         }
 
-        public DataItem(System.Data.DataRow p1, object p2)
-        {
-            M_DataRow = p1;
-            Index = p2;
-        }
-
         public DataItem(osf.DataItem p1)
         {
             M_DataRow = p1.M_DataRow;
             Index = p1.Index;
+        }
+
+        public DataItem(System.Data.DataRow p1, object p2)
+        {
+            M_DataRow = p1;
+            Index = p2;
         }
 
         //Свойства============================================================

@@ -20,16 +20,16 @@ namespace osf
             base.M_Component = M_DataGridTableStyle;
         }
 
-        public DataGridTableStyle(System.Windows.Forms.DataGridTableStyle p1)
+        public DataGridTableStyle(osf.DataGridTableStyle p1)
         {
-            M_DataGridTableStyle = (DataGridTableStyleEx)p1;
+            M_DataGridTableStyle = p1.M_DataGridTableStyle;
             M_DataGridTableStyle.M_Object = this;
             base.M_Component = M_DataGridTableStyle;
         }
 
-        public DataGridTableStyle(osf.DataGridTableStyle p1)
+        public DataGridTableStyle(System.Windows.Forms.DataGridTableStyle p1)
         {
-            M_DataGridTableStyle = p1.M_DataGridTableStyle;
+            M_DataGridTableStyle = (DataGridTableStyleEx)p1;
             M_DataGridTableStyle.M_Object = this;
             base.M_Component = M_DataGridTableStyle;
         }

@@ -8,12 +8,6 @@ namespace osf
         public ClDataGridCell dll_obj;
         public System.Windows.Forms.DataGridCell M_DataGridCell;
 
-        public DataGridCell(System.Windows.Forms.DataGridCell p1)
-        {
-            M_DataGridCell = p1;
-            OneScriptForms.AddToHashtable(M_DataGridCell, this);
-        }
-
         public DataGridCell(int p1, int p2)
         {
             M_DataGridCell = new System.Windows.Forms.DataGridCell(p1, p2);
@@ -25,6 +19,12 @@ namespace osf
         public DataGridCell(osf.DataGridCell p1)
         {
             M_DataGridCell = p1.M_DataGridCell;
+            OneScriptForms.AddToHashtable(M_DataGridCell, this);
+        }
+
+        public DataGridCell(System.Windows.Forms.DataGridCell p1)
+        {
+            M_DataGridCell = p1;
             OneScriptForms.AddToHashtable(M_DataGridCell, this);
         }
 

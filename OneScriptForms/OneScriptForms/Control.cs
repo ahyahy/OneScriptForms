@@ -44,8 +44,6 @@ namespace osf
             set { M_Control.Anchor = (System.Windows.Forms.AnchorStyles)value; }
         }
 
-        //Методы============================================================
-
         public osf.Color BackColor
         {
             get { return new Color(M_Control.BackColor); }
@@ -153,6 +151,34 @@ namespace osf
             get { return (int)M_Control.Dock; }
             set { M_Control.Dock = (System.Windows.Forms.DockStyle)value; }
         }
+
+        public bool DoubleBuffered
+        {
+            get
+            {
+                bool db = (bool)typeof(System.Windows.Forms.Control).InvokeMember(
+                        "DoubleBuffered",
+                        BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
+                        null,
+                        M_Control,
+                        null);
+
+                return db;
+            }
+            set
+            {
+                System.Type Type1 = typeof(System.Windows.Forms.Control);
+
+                Type1.InvokeMember(
+                    "DoubleBuffered",
+                    BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
+                    null,
+                    M_Control,
+                    new object[] { value });
+            }
+        }
+
+        //Методы============================================================
 
         public bool Enabled
         {
@@ -495,6 +521,16 @@ namespace osf
             return (osf.Control)((dynamic)M_Control.GetNextControl(p1.M_Control, p2)).M_Object;
         }
 
+        public bool GetStyle(System.Windows.Forms.ControlStyles p1)
+        {
+            return (bool)typeof(System.Windows.Forms.Control).InvokeMember(
+                "GetStyle",
+                System.Reflection.BindingFlags.InvokeMethod | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance,
+                null,
+                M_Control,
+                new object[] { p1 });
+        }
+
         public void Hide()
         {
             M_Control.Hide();
@@ -512,6 +548,19 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = Click;
                 EventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.Click;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    EventArgs1.Parameter = null;
+                }
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
@@ -524,6 +573,19 @@ namespace osf
                 ControlEventArgs ControlEventArgs1 = new ControlEventArgs();
                 ControlEventArgs1.EventString = ControlAdded;
                 ControlEventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.ControlAdded;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    ControlEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    ControlEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    ControlEventArgs1.Parameter = null;
+                }
                 ControlEventArgs1.Control = e.Control;
                 OneScriptForms.EventQueue.Add(ControlEventArgs1);
                 ClControlEventArgs ClControlEventArgs1 = new ClControlEventArgs(ControlEventArgs1);
@@ -537,6 +599,19 @@ namespace osf
                 ControlEventArgs ControlEventArgs1 = new ControlEventArgs();
                 ControlEventArgs1.EventString = ControlRemoved;
                 ControlEventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.ControlRemoved;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    ControlEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    ControlEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    ControlEventArgs1.Parameter = null;
+                }
                 ControlEventArgs1.Control = e.Control;
                 OneScriptForms.EventQueue.Add(ControlEventArgs1);
                 ClControlEventArgs ClControlEventArgs1 = new ClControlEventArgs(ControlEventArgs1);
@@ -552,6 +627,19 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = DoubleClick;
                 EventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.DoubleClick;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    EventArgs1.Parameter = null;
+                }
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
@@ -564,6 +652,19 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = Enter;
                 EventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.Enter;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    EventArgs1.Parameter = null;
+                }
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
@@ -576,6 +677,24 @@ namespace osf
                 KeyEventArgs KeyEventArgs1 = new KeyEventArgs();
                 KeyEventArgs1.EventString = KeyDown;
                 KeyEventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.KeyDown;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    KeyEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    KeyEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    KeyEventArgs1.Parameter = null;
+                }
+                KeyEventArgs1.Alt = e.Alt;
+                KeyEventArgs1.Control = e.Control;
+                KeyEventArgs1.KeyCode = (int)e.KeyCode;
+                KeyEventArgs1.Modifiers = (int)e.Modifiers;
+                KeyEventArgs1.Shift = e.Shift;
                 OneScriptForms.EventQueue.Add(KeyEventArgs1);
                 ClKeyEventArgs ClKeyEventArgs1 = new ClKeyEventArgs(KeyEventArgs1);
             }
@@ -588,6 +707,19 @@ namespace osf
                 KeyPressEventArgs KeyPressEventArgs1 = new KeyPressEventArgs();
                 KeyPressEventArgs1.EventString = KeyPress;
                 KeyPressEventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.KeyPress;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    KeyPressEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    KeyPressEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    KeyPressEventArgs1.Parameter = null;
+                }
                 KeyPressEventArgs1.KeyChar = Convert.ToString(e.KeyChar);
                 OneScriptForms.EventQueue.Add(KeyPressEventArgs1);
                 ClKeyPressEventArgs ClKeyPressEventArgs1 = new ClKeyPressEventArgs(KeyPressEventArgs1);
@@ -601,6 +733,24 @@ namespace osf
                 KeyEventArgs KeyEventArgs1 = new KeyEventArgs();
                 KeyEventArgs1.EventString = KeyUp;
                 KeyEventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.KeyUp;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    KeyEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    KeyEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    KeyEventArgs1.Parameter = null;
+                }
+                KeyEventArgs1.Alt = e.Alt;
+                KeyEventArgs1.Control = e.Control;
+                KeyEventArgs1.KeyCode = (int)e.KeyCode;
+                KeyEventArgs1.Modifiers = (int)e.Modifiers;
+                KeyEventArgs1.Shift = e.Shift;
                 OneScriptForms.EventQueue.Add(KeyEventArgs1);
                 ClKeyEventArgs ClKeyEventArgs1 = new ClKeyEventArgs(KeyEventArgs1);
             }
@@ -613,6 +763,19 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = Leave;
                 EventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.Leave;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    EventArgs1.Parameter = null;
+                }
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
@@ -625,6 +788,19 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = LocationChanged;
                 EventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.LocationChanged;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    EventArgs1.Parameter = null;
+                }
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
@@ -637,6 +813,19 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = LostFocus;
                 EventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.LostFocus;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    EventArgs1.Parameter = null;
+                }
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
@@ -649,6 +838,19 @@ namespace osf
                 MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
                 MouseEventArgs1.EventString = MouseDown;
                 MouseEventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.MouseDown;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    MouseEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    MouseEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    MouseEventArgs1.Parameter = null;
+                }
                 MouseEventArgs1.Clicks = e.Clicks;
                 MouseEventArgs1.Button = (int)e.Button;
                 MouseEventArgs1.X = e.X;
@@ -665,6 +867,19 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = MouseEnter;
                 EventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.MouseEnter;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    EventArgs1.Parameter = null;
+                }
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
@@ -677,6 +892,19 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = MouseHover;
                 EventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.MouseHover;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    EventArgs1.Parameter = null;
+                }
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
@@ -689,6 +917,19 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = MouseLeave;
                 EventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.MouseLeave;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    EventArgs1.Parameter = null;
+                }
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
@@ -701,6 +942,19 @@ namespace osf
                 MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
                 MouseEventArgs1.EventString = MouseMove;
                 MouseEventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.MouseMove;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    MouseEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    MouseEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    MouseEventArgs1.Parameter = null;
+                }
                 MouseEventArgs1.Clicks = e.Clicks;
                 MouseEventArgs1.Button = (int)e.Button;
                 MouseEventArgs1.X = e.X;
@@ -717,6 +971,19 @@ namespace osf
                 MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
                 MouseEventArgs1.EventString = MouseUp;
                 MouseEventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.MouseUp;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    MouseEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    MouseEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    MouseEventArgs1.Parameter = null;
+                }
                 MouseEventArgs1.Clicks = e.Clicks;
                 MouseEventArgs1.Button = (int)e.Button;
                 MouseEventArgs1.X = e.X;
@@ -733,6 +1000,19 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = Move;
                 EventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.Move;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    EventArgs1.Parameter = null;
+                }
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
@@ -745,6 +1025,19 @@ namespace osf
                 PaintEventArgs PaintEventArgs1 = new PaintEventArgs();
                 PaintEventArgs1.EventString = Paint;
                 PaintEventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.Paint;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    PaintEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    PaintEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    PaintEventArgs1.Parameter = null;
+                }
                 PaintEventArgs1.Graphics = new Graphics(M_Control.CreateGraphics());
                 PaintEventArgs1.ClipRectangle = new Rectangle(e.ClipRectangle);
                 OneScriptForms.EventQueue.Add(PaintEventArgs1);
@@ -759,6 +1052,19 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = SizeChanged;
                 EventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.SizeChanged;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    EventArgs1.Parameter = null;
+                }
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
@@ -771,6 +1077,19 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = TextChanged;
                 EventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.TextChanged;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    EventArgs1.Parameter = null;
+                }
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
@@ -836,6 +1155,16 @@ namespace osf
             M_Control.SetBounds(p1, p2, p3, p4);
         }
 
+        public void SetStyle(System.Windows.Forms.ControlStyles p1, bool p2)
+        {
+            typeof(System.Windows.Forms.Control).InvokeMember(
+                "SetStyle",
+                System.Reflection.BindingFlags.InvokeMethod | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance,
+                null,
+                M_Control,
+                new object[] { p1, p2 });
+        }
+
         public void Show()
         {
             M_Control.Show();
@@ -851,16 +1180,26 @@ namespace osf
             M_Control.Update();
         }
 
-        public virtual void BeginUpdate()
+        public void UpdateStyles()
         {
-            SendMessage(M_Control.Handle, 11, 0, 0);
-            System.Windows.Forms.Application.DoEvents();
+            typeof(System.Windows.Forms.Control).InvokeMember(
+                "UpdateStyles",
+                System.Reflection.BindingFlags.InvokeMethod | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance,
+                null,
+                M_Control,
+                null);
         }
 
         public virtual void EndUpdate()
         {
             SendMessage(M_Control.Handle, 11, -1, 0);
             M_Control.Invalidate();
+            System.Windows.Forms.Application.DoEvents();
+        }
+
+        public virtual void BeginUpdate()
+        {
+            SendMessage(M_Control.Handle, 11, 0, 0);
             System.Windows.Forms.Application.DoEvents();
         }
 

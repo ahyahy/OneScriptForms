@@ -1,4 +1,5 @@
 ﻿using ScriptEngine.Machine.Contexts;
+using ScriptEngine.Machine;
 
 namespace osf
 {
@@ -43,6 +44,18 @@ namespace osf
             get { return new ClGraphics(Base_obj.Graphics); }
         }
         
+        [ContextProperty("Отправитель", "Sender")]
+        public IValue Sender
+        {
+            get { return OneScriptForms.RevertObj(Base_obj.Sender); }
+        }
+        
+        [ContextProperty("Параметр", "Parameter")]
+        public IValue Parameter
+        {
+            get { return (IValue)Base_obj.Parameter; }
+        }
+
         [ContextProperty("ПрямоугольникДляРисования", "ClipRectangle")]
         public ClRectangle ClipRectangle
         {

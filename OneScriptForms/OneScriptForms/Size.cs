@@ -8,11 +8,6 @@ namespace osf
         public ClSize dll_obj;
         public System.Drawing.Size M_Size;
 
-        public Size(System.Drawing.Size p1)
-        {
-            M_Size = p1;
-        }
-
         public Size(int width = 0, int height = 0)
         {
             M_Size = new System.Drawing.Size(width, height);
@@ -21,6 +16,11 @@ namespace osf
         public Size(osf.Size p1)
         {
             M_Size = p1.M_Size;
+        }
+
+        public Size(System.Drawing.Size p1)
+        {
+            M_Size = p1;
         }
 
         //Свойства============================================================

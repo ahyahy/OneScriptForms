@@ -21,16 +21,16 @@ namespace osf
             base.M_CommonDialog = M_ColorDialog;
         }
 
-        public ColorDialog(System.Windows.Forms.ColorDialog p1)
+        public ColorDialog(osf.ColorDialog p1)
         {
-            M_ColorDialog = (ColorDialogEx)p1;
+            M_ColorDialog = p1.M_ColorDialog;
             M_ColorDialog.M_Object = this;
             base.M_CommonDialog = M_ColorDialog;
         }
 
-        public ColorDialog(osf.ColorDialog p1)
+        public ColorDialog(System.Windows.Forms.ColorDialog p1)
         {
-            M_ColorDialog = p1.M_ColorDialog;
+            M_ColorDialog = (ColorDialogEx)p1;
             M_ColorDialog.M_Object = this;
             base.M_CommonDialog = M_ColorDialog;
         }

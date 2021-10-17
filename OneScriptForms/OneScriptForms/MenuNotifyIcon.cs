@@ -1,4 +1,5 @@
 ﻿using ScriptEngine.Machine.Contexts;
+using ScriptEngine.Machine;
 
 namespace osf
 {
@@ -19,9 +20,9 @@ namespace osf
             OneScriptForms.AddToHashtable(M_MenuNotifyIcon, this);
         }
 
-        public MenuNotifyIcon(System.Windows.Forms.ContextMenu p1)
+        public MenuNotifyIcon(osf.MenuNotifyIcon p1)
         {
-            M_MenuNotifyIcon = (ContextMenuEx)p1;
+            M_MenuNotifyIcon = p1.M_MenuNotifyIcon;
             M_MenuNotifyIcon.M_Object = this;
             base.M_Menu = M_MenuNotifyIcon;
             M_MenuNotifyIcon.Popup += M_ContextMenu_Popup;
@@ -29,9 +30,9 @@ namespace osf
             OneScriptForms.AddToHashtable(M_MenuNotifyIcon, this);
         }
 
-        public MenuNotifyIcon(osf.MenuNotifyIcon p1)
+        public MenuNotifyIcon(System.Windows.Forms.ContextMenu p1)
         {
-            M_MenuNotifyIcon = p1.M_MenuNotifyIcon;
+            M_MenuNotifyIcon = (ContextMenuEx)p1;
             M_MenuNotifyIcon.M_Object = this;
             base.M_Menu = M_MenuNotifyIcon;
             M_MenuNotifyIcon.Popup += M_ContextMenu_Popup;
@@ -59,8 +60,21 @@ namespace osf
                     item.M_MenuItem.Visible = false;
                 }
                 ContextMenuPopupEventArgs ContextMenuPopupEventArgs1 = new ContextMenuPopupEventArgs();
-                ContextMenuPopupEventArgs1.Sender = (object)this;
                 ContextMenuPopupEventArgs1.EventString = Popup;
+                ContextMenuPopupEventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.Popup;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    ContextMenuPopupEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    ContextMenuPopupEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    ContextMenuPopupEventArgs1.Parameter = null;
+                }
                 ContextMenuPopupEventArgs1.Point = new Point(M_MenuNotifyIcon.SourceControl.PointToClient(System.Windows.Forms.Control.MousePosition));
                 OneScriptForms.EventQueue.Add(ContextMenuPopupEventArgs1);
                 ClContextMenuPopupEventArgs ClContextMenuPopupEventArgs1 = new ClContextMenuPopupEventArgs(ContextMenuPopupEventArgs1);
@@ -77,6 +91,7 @@ namespace osf
     [ContextClass ("КлМенюЗначкаУведомления", "ClMenuNotifyIcon")]
     public class ClMenuNotifyIcon : AutoContext<ClMenuNotifyIcon>
     {
+        private IValue _Popup;
         private bool firstShow;
         private ClMenuItemCollection menuItems;
         private ClNotifyIcon notifyIcon;
@@ -115,12 +130,42 @@ namespace osf
         }
         
         [ContextProperty("ПриПоявлении", "Popup")]
-        public string Popup
+        public IValue Popup
         {
-            get { return Base_obj.Popup; }
-            set { Base_obj.Popup = value; }
+            get
+            {
+                if (Base_obj.Popup.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
+                {
+                    return _Popup;
+                }
+                else if (Base_obj.Popup.Contains("osf.ClDictionaryEntry"))
+                {
+                    return _Popup;
+                }
+                else
+                {
+                    return ValueFactory.Create((string)Base_obj.Popup);
+                }
+            }
+            set
+            {
+                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                {
+                    _Popup = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+                    Base_obj.Popup = "ScriptEngine.HostedScript.Library.DelegateAction" + "Popup";
+                }
+                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    _Popup = value;
+                    Base_obj.Popup = "osf.ClDictionaryEntry" + "Popup";
+                }
+                else
+                {
+                    Base_obj.Popup = value.AsString();
+                }
+            }
         }
-
+        
         [ContextProperty("ЭлементыМеню", "MenuItems")]
         public ClMenuItemCollection MenuItems
         {

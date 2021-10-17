@@ -26,16 +26,16 @@ namespace osf
         	get { return m_tuesday; }
         }
 
-        [ContextProperty("ПоУмолчанию", "Default")]
-        public int Default
-        {
-        	get { return m_default; }
-        }
-
         [ContextProperty("Понедельник", "Monday")]
         public int Monday
         {
         	get { return m_monday; }
+        }
+
+        [ContextProperty("ПоУмолчанию", "Default")]
+        public int Default
+        {
+        	get { return m_default; }
         }
 
         [ContextProperty("Пятница", "Friday")]

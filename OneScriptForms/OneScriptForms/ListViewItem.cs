@@ -12,12 +12,6 @@ namespace osf
         public ClListViewItem dll_obj;
         public ListViewItemEx M_ListViewItem;
 
-        public ListViewItem(System.Windows.Forms.ListViewItem p1)
-        {
-            M_ListViewItem = (ListViewItemEx)p1;
-            M_ListViewItem.M_Object = this;
-        }
-
         public ListViewItem(osf.ListViewItem p1)
         {
             M_ListViewItem = p1.M_ListViewItem;
@@ -30,6 +24,12 @@ namespace osf
             M_ListViewItem.M_Object = this;
             M_ListViewItem.Text = text;
             M_ListViewItem.ImageIndex = imageIndex;
+        }
+
+        public ListViewItem(System.Windows.Forms.ListViewItem p1)
+        {
+            M_ListViewItem = (ListViewItemEx)p1;
+            M_ListViewItem.M_Object = this;
         }
 
         //Свойства============================================================

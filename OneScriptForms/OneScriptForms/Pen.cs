@@ -8,6 +8,12 @@ namespace osf
         public ClPen dll_obj;
         public System.Drawing.Pen M_Pen;
 
+        public Pen(osf.Pen p1)
+        {
+            M_Pen = p1.M_Pen;
+            OneScriptForms.AddToHashtable(M_Pen, this);
+        }
+
         public Pen(System.Drawing.Color color, float width = 1f)
         {
             M_Pen = new System.Drawing.Pen(color, width);
@@ -17,12 +23,6 @@ namespace osf
         public Pen(System.Drawing.Pen p1)
         {
             M_Pen = p1;
-            OneScriptForms.AddToHashtable(M_Pen, this);
-        }
-
-        public Pen(osf.Pen p1)
-        {
-            M_Pen = p1.M_Pen;
             OneScriptForms.AddToHashtable(M_Pen, this);
         }
 

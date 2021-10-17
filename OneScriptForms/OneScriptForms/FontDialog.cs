@@ -21,16 +21,16 @@ namespace osf
             base.M_CommonDialog = M_FontDialog;
         }
 
-        public FontDialog(System.Windows.Forms.FontDialog p1)
+        public FontDialog(osf.FontDialog p1)
         {
-            M_FontDialog = (FontDialogEx)p1;
+            M_FontDialog = p1.M_FontDialog;
             M_FontDialog.M_Object = this;
             base.M_CommonDialog = M_FontDialog;
         }
 
-        public FontDialog(osf.FontDialog p1)
+        public FontDialog(System.Windows.Forms.FontDialog p1)
         {
-            M_FontDialog = p1.M_FontDialog;
+            M_FontDialog = (FontDialogEx)p1;
             M_FontDialog.M_Object = this;
             base.M_CommonDialog = M_FontDialog;
         }

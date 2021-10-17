@@ -8,6 +8,13 @@ namespace osf
         public ClTextureBrush dll_obj;
         public System.Drawing.TextureBrush M_TextureBrush;
 
+        public TextureBrush(osf.TextureBrush p1)
+        {
+            M_TextureBrush = p1.M_TextureBrush;
+            base.M_Brush = M_TextureBrush;
+            OneScriptForms.AddToHashtable(M_TextureBrush, this);
+        }
+
         public TextureBrush(System.Drawing.Image p1)
         {
             M_TextureBrush = new System.Drawing.TextureBrush((System.Drawing.Image)p1);
@@ -18,13 +25,6 @@ namespace osf
         public TextureBrush(System.Drawing.TextureBrush p1)
         {
             M_TextureBrush = p1;
-            base.M_Brush = M_TextureBrush;
-            OneScriptForms.AddToHashtable(M_TextureBrush, this);
-        }
-
-        public TextureBrush(osf.TextureBrush p1)
-        {
-            M_TextureBrush = p1.M_TextureBrush;
             base.M_Brush = M_TextureBrush;
             OneScriptForms.AddToHashtable(M_TextureBrush, this);
         }

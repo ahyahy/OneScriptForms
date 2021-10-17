@@ -9,15 +9,15 @@ namespace osf
         public ClGridItem dll_obj;
         public System.Windows.Forms.GridItem M_GridItem;
 
-        public GridItem(System.Windows.Forms.GridItem p1)
-        {
-            M_GridItem = p1;
-            OneScriptForms.AddToHashtable(M_GridItem, this);
-        }
-
         public GridItem(osf.GridItem p1)
         {
             M_GridItem = p1.M_GridItem;
+            OneScriptForms.AddToHashtable(M_GridItem, this);
+        }
+
+        public GridItem(System.Windows.Forms.GridItem p1)
+        {
+            M_GridItem = p1;
             OneScriptForms.AddToHashtable(M_GridItem, this);
         }
 

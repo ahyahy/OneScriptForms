@@ -10,15 +10,15 @@ namespace osf
         public ClGraphics dll_obj;
         public System.Drawing.Graphics M_Graphics;
 
-        public Graphics(System.Drawing.Graphics p1)
-        {
-            M_Graphics = p1;
-            OneScriptForms.AddToHashtable(M_Graphics, this);
-        }
-
         public Graphics(osf.Graphics p1)
         {
             M_Graphics = p1.M_Graphics;
+            OneScriptForms.AddToHashtable(M_Graphics, this);
+        }
+
+        public Graphics(System.Drawing.Graphics p1)
+        {
+            M_Graphics = p1;
             OneScriptForms.AddToHashtable(M_Graphics, this);
         }
 

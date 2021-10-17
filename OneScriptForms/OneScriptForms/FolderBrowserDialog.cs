@@ -17,15 +17,15 @@ namespace osf
             OneScriptForms.AddToHashtable(M_FolderBrowserDialog, this);
         }
 
-        public FolderBrowserDialog(System.Windows.Forms.FolderBrowserDialog p1)
-        {
-            M_FolderBrowserDialog = p1;
-            base.M_CommonDialog = M_FolderBrowserDialog;
-        }
-
         public FolderBrowserDialog(osf.FolderBrowserDialog p1)
         {
             M_FolderBrowserDialog = p1.M_FolderBrowserDialog;
+            base.M_CommonDialog = M_FolderBrowserDialog;
+        }
+
+        public FolderBrowserDialog(System.Windows.Forms.FolderBrowserDialog p1)
+        {
+            M_FolderBrowserDialog = p1;
             base.M_CommonDialog = M_FolderBrowserDialog;
         }
 

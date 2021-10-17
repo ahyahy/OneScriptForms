@@ -8,13 +8,6 @@ namespace osf
         public ClHatchBrush dll_obj;
         public System.Drawing.Drawing2D.HatchBrush M_HatchBrush;
 
-        public HatchBrush(System.Drawing.Drawing2D.HatchBrush p1)
-        {
-            M_HatchBrush = p1;
-            base.M_Brush = M_HatchBrush;
-            OneScriptForms.AddToHashtable(M_HatchBrush, this);
-        }
-
         public HatchBrush(int hatchStyle, osf.Color foreColor, osf.Color backColor = null)
         {
             if (backColor != null)
@@ -34,6 +27,13 @@ namespace osf
         public HatchBrush(osf.HatchBrush p1)
         {
             M_HatchBrush = p1.M_HatchBrush;
+            base.M_Brush = M_HatchBrush;
+            OneScriptForms.AddToHashtable(M_HatchBrush, this);
+        }
+
+        public HatchBrush(System.Drawing.Drawing2D.HatchBrush p1)
+        {
+            M_HatchBrush = p1;
             base.M_Brush = M_HatchBrush;
             OneScriptForms.AddToHashtable(M_HatchBrush, this);
         }

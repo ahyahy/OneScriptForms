@@ -18,15 +18,15 @@ namespace osf
             M_Process.M_Object = this;
         }
 
-        public Process(System.Diagnostics.Process p1)
-        {
-            M_Process = (ProcessEx)p1;
-            M_Process.M_Object = this;
-        }
-
         public Process(osf.Process p1)
         {
             M_Process = p1.M_Process;
+            M_Process.M_Object = this;
+        }
+
+        public Process(System.Diagnostics.Process p1)
+        {
+            M_Process = (ProcessEx)p1;
             M_Process.M_Object = this;
         }
 

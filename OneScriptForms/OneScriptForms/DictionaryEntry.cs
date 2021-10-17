@@ -9,12 +9,6 @@ namespace osf
         public ClDictionaryEntry dll_obj;
         public System.Collections.DictionaryEntry M_DictionaryEntry;
 
-        public DictionaryEntry(System.Collections.DictionaryEntry p1)
-        {
-            M_DictionaryEntry = p1;
-            OneScriptForms.AddToHashtable(M_DictionaryEntry, this);
-        }
-
         public DictionaryEntry(object p1, object p2)
         {
             M_DictionaryEntry = new System.Collections.DictionaryEntry(p1, p2);
@@ -24,6 +18,12 @@ namespace osf
         public DictionaryEntry(osf.DictionaryEntry p1)
         {
             M_DictionaryEntry = p1.M_DictionaryEntry;
+            OneScriptForms.AddToHashtable(M_DictionaryEntry, this);
+        }
+
+        public DictionaryEntry(System.Collections.DictionaryEntry p1)
+        {
+            M_DictionaryEntry = p1;
             OneScriptForms.AddToHashtable(M_DictionaryEntry, this);
         }
 

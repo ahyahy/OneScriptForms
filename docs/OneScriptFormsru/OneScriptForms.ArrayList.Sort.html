@@ -1,0 +1,174 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>ArrayList.Sort Method</TITLE>
+<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<BODY id=bodyID class=dtBODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead cellSpacing=0>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead></TD>
+    <TD class=product></TD></TR></TBODY></TABLE></DIV>
+<DIV id=TitleRow>
+<H1 class=dtH1>МассивСписок.Сортировать (ArrayList.Sort)&nbsp;Метод</H1></DIV></DIV>
+<DIV id=nstext>
+<H4 class=dtH4>Синтаксис</H4>
+<P>Сортировать(&lt;ТипСортировки&gt;, &lt;ПорядокСортировки&gt;)</P>
+<H4 class=dtH4>Параметры</H4>
+<DL>
+<DT><I>ТипСортировки</I> (необязательный)</DT>
+<DD>Тип: <A href="OneScriptForms.SortType.html">ТипСортировки&nbsp;(SortType)</A>.</DD>
+<DD>Одно из значений перечисления <A href="OneScriptForms.SortType.html">ТипСортировки&nbsp;(SortType)</A>. Значение по умолчанию: <B>Текст&nbsp;(Text)</B>.</DD>
+<DT><I>ПорядокСортировки</I> (необязательный)</DT>
+<DD>Тип: <A href="OneScriptForms.SortOrder.html">ПорядокСортировки&nbsp;(SortOrder)</A>.</DD>
+<DD>Одно из значений перечисления <A href="OneScriptForms.SortOrder.html">ПорядокСортировки&nbsp;(SortOrder)</A>. Значение по умолчанию: <B>ПоВозрастанию&nbsp;(Ascending)</B>.</DD></DL>
+<H4 class=dtH4>Возвращаемое значение</H4>
+<P></P>
+<H4 class=dtH4>Описание</H4>
+<P>Сортирует элементы во всем массиве <B>МассивСписок&nbsp;(ArrayList)</B>.</P>
+<H4 class=dtH4>Примечание</H4>
+<P>Выполняется сортировка по сравнению (также называемая нестабильная сортировка); то есть если два элемента равны, их порядок может не сохраняться.</P>
+<P>Если массив состоит из элементов разного типа, и в параметре указан тип сортировки, элементы указанного типа будут отсортированы между собой и 
+помещены в начало массива. Остальные элементы будут помещены в конце массива без применения к ним сортировки. При этом, если указан порядок сортировки, 
+он будет применен к указанному типу сортировки, но не к остальным типам.</P>
+<H4 class=dtH4>Пример</H4>
+<P><PRE class=code>
+М3.Сортировать(Ф.ТипСортировки.Булево, Ф.ПорядокСортировки.ПоВозрастанию);
+</PRE>
+<details><summary>Полный пример кода</summary>
+<P><PRE class=code>
+<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+М3 = Ф.МассивСписок();
+М3.Добавить("Строка в массив");
+М3.Добавить("2Строка в массив");
+М3.Добавить("пСтрока в массив");
+М3.Добавить("АСтрока в массив");
+М3.Добавить("5Строка в массив");
+М3.Добавить(7.6554567776);
+М3.Добавить(Ложь);
+М3.Добавить(237.6554567776);
+М3.Добавить(Истина);
+М3.Добавить(Дата("19881225000000"));
+М3.Добавить(Ложь);
+М3.Добавить(Форма1);
+М3.Добавить(Дата("19871225000000"));
+М3.Добавить(Ф.Кнопка());
+
+Сообщить("До сортировки=============================================");
+Для А = 0 По М3.Количество - 1 Цикл
+	Сообщить("" + М3.Элемент(А));
+КонецЦикла;
+
+М3.Сортировать(Ф.ТипСортировки.Булево, Ф.ПорядокСортировки.ПоВозрастанию);
+Сообщить("После сортировки=============================================");
+Для А = 0 По М3.Количество - 1 Цикл
+	Сообщить("" + М3.Элемент(А));
+КонецЦикла;
+
+Пока Ф.Продолжать Цикл
+	Выполнить(Ф.ПолучитьСобытие());
+КонецЦикла;
+</DIV>
+</PRE>
+</details>
+<P></P>
+<details><summary>Тестовый код</summary>
+<P><PRE class=code>
+<a id="copy2" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select2" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont2">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+М3 = Ф.МассивСписок();
+М3.Добавить("Строка в массив");
+М3.Добавить("2Строка в массив");
+М3.Добавить("пСтрока в массив");
+М3.Добавить("АСтрока в массив");
+М3.Добавить("5Строка в массив");
+М3.Добавить(7.6554567776);
+М3.Добавить(Ложь);
+М3.Добавить(237.6554567776);
+М3.Добавить(Истина);
+М3.Добавить(Дата("19881225000000"));
+М3.Добавить(Ложь);
+М3.Добавить(Форма1);
+М3.Добавить(Дата("19871225000000"));
+М3.Добавить(Ф.Кнопка());
+
+М3.Сортировать(Ф.ТипСортировки.Булево, Ф.ПорядокСортировки.ПоВозрастанию);
+
+Сообщить(?(
+М3.Элемент(2) = Истина
+, "", "!!! ") + "МассивСписок.Сортировать (ArrayList.Sort) Метод" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+</details>
+<P></P>
+<H4 class=dtH4>Смотрите также</H4>
+<P><A href="OneScriptForms.ArrayList.html">МассивСписок&nbsp;(ArrayList)&nbsp;Класс</A>| <A 
+href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P></DIV>
+<script>
+window.onload = function () {
+    var a = document.getElementById('select1');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont1'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy1');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont1'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+	
+    var c = document.getElementById('select2');
+    c.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta3 = document.getElementById('cont2'); 
+		var range3 = document.createRange();
+		range3.selectNode(ta3); 
+		window.getSelection().addRange(range3); 
+        return false;
+    }
+	
+    var d = document.getElementById('copy2');
+    d.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta4 = document.getElementById('cont2'); 
+		var range4 = document.createRange();
+		range4.selectNode(ta4); 
+		window.getSelection().addRange(range4);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range4);
+        return false;
+    }
+}
+</script>
+</BODY></HTML>

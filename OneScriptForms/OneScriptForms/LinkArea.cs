@@ -8,12 +8,6 @@ namespace osf
         public ClLinkArea dll_obj;
         public System.Windows.Forms.LinkArea M_LinkArea;
 
-        public LinkArea(System.Windows.Forms.LinkArea p1)
-        {
-            M_LinkArea = p1;
-            OneScriptForms.AddToHashtable(M_LinkArea, this);
-        }
-
         public LinkArea(int p1, int p2)
         {
             M_LinkArea = new System.Windows.Forms.LinkArea(p1, p2);
@@ -23,6 +17,12 @@ namespace osf
         public LinkArea(osf.LinkArea p1)
         {
             M_LinkArea = p1.M_LinkArea;
+            OneScriptForms.AddToHashtable(M_LinkArea, this);
+        }
+
+        public LinkArea(System.Windows.Forms.LinkArea p1)
+        {
+            M_LinkArea = p1;
             OneScriptForms.AddToHashtable(M_LinkArea, this);
         }
 

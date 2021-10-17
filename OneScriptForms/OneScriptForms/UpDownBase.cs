@@ -9,15 +9,15 @@
         {
         }
 
-        public UpDownBase(System.Windows.Forms.UpDownBase p1)
-        {
-            M_UpDownBase = p1;
-            base.M_ContainerControl = M_UpDownBase;
-        }
-
         public UpDownBase(osf.UpDownBase p1)
         {
             M_UpDownBase = p1.M_UpDownBase;
+            base.M_ContainerControl = M_UpDownBase;
+        }
+
+        public UpDownBase(System.Windows.Forms.UpDownBase p1)
+        {
+            M_UpDownBase = p1;
             base.M_ContainerControl = M_UpDownBase;
         }
 

@@ -15,6 +15,12 @@ namespace osf
             base.M_Control = M_DataGridTextBox;
         }
 
+        public DataGridTextBox(osf.DataGridTextBox p1)
+        {
+            M_DataGridTextBox = p1.M_DataGridTextBox;
+            base.M_Control = M_DataGridTextBox;
+        }
+
         public DataGridTextBox(System.Windows.Forms.DataGridTextBox p1)
         {
             M_DataGridTextBox = p1;
@@ -24,12 +30,6 @@ namespace osf
         public DataGridTextBox(System.Windows.Forms.TextBox p1)
         {
             M_DataGridTextBox = (System.Windows.Forms.DataGridTextBox)p1;
-            base.M_Control = M_DataGridTextBox;
-        }
-
-        public DataGridTextBox(osf.DataGridTextBox p1)
-        {
-            M_DataGridTextBox = p1.M_DataGridTextBox;
             base.M_Control = M_DataGridTextBox;
         }
 
@@ -74,6 +74,13 @@ namespace osf
             get { return Convert.ToInt32(Base_obj.FontHeight); }
         }
         
+        [ContextProperty("ДвойнаяБуферизация", "DoubleBuffered")]
+        public bool DoubleBuffered
+        {
+            get { return Base_obj.DoubleBuffered; }
+            set { Base_obj.DoubleBuffered = value; }
+        }
+
         [ContextProperty("ЖирныйШрифт", "FontBold")]
         public bool FontBold
         {

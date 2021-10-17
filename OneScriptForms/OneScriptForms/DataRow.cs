@@ -10,15 +10,15 @@ namespace osf
         public ClDataRow dll_obj;
         public System.Data.DataRow M_DataRow;
 
-        public DataRow(System.Data.DataRow p1)
-        {
-            M_DataRow = p1;
-            OneScriptForms.AddToHashtable(M_DataRow, this);
-        }
-
         public DataRow(osf.DataRow p1)
         {
             M_DataRow = p1.M_DataRow;
+            OneScriptForms.AddToHashtable(M_DataRow, this);
+        }
+
+        public DataRow(System.Data.DataRow p1)
+        {
+            M_DataRow = p1;
             OneScriptForms.AddToHashtable(M_DataRow, this);
         }
 

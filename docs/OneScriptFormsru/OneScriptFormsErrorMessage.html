@@ -1,0 +1,47 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>OneScriptFormsErrorMessage</TITLE>
+<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<BODY id=bodyID class=dtBODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead cellSpacing=0>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead></TD>
+    <TD class=product></TD></TR></TBODY></TABLE></DIV>
+<DIV id=TitleRow>
+<H1 class=dtH1>Сообщения об ошибках</H1></DIV></DIV>
+<DIV id=nstext>
+<P></P>
+<li><B>/ Ошибка в строке: 1 / Внешнее исключение (System.IndexOutOfRangeException): Индекс находился вне границ массива.}</B></li>
+<P>Скорее всего для заданного обработчика события нет соответствующей процедуры или функции.</P>
+<P>Следующий код приведет к появлению такой ошибки.</P>
+<P><PRE class=code>
+Перем Ф, Форма1;
+
+// Процедура Форма1_ПриПерерисовке()
+	// Графика1 = Форма1.СоздатьГрафику();
+	// Графика1.Очистить(Ф.Цвет().Белый);
+	// Цвет1 = Ф.Цвет().Синий;
+	// СплошнаяКисть1 = Ф.СплошнаяКисть(Цвет1);
+	// Графика1.ЗаполнитьПрямоугольник(СплошнаяКисть1, 10, 10, 100, 100);
+// КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.ПриПерерисовке = "Форма1_ПриПерерисовке()";
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+Пока Ф.Продолжать Цикл
+	Выполнить(Ф.ПолучитьСобытие());
+КонецЦикла;
+</PRE>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+<P></P>
+<H4 class=dtH4>Смотрите также</H4>
+<P><A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P></DIV>
+</BODY></HTML>

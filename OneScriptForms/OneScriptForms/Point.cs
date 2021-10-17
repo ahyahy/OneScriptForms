@@ -8,11 +8,6 @@ namespace osf
         public ClPoint dll_obj;
         public System.Drawing.Point M_Point;
 
-        public Point(System.Drawing.Point p1)
-        {
-            M_Point = p1;
-        }
-
         public Point(int x = 0, int y = 0)
         {
             M_Point = new System.Drawing.Point(x, y);
@@ -21,6 +16,11 @@ namespace osf
         public Point(osf.Point p1)
         {
             M_Point = p1.M_Point;
+        }
+
+        public Point(System.Drawing.Point p1)
+        {
+            M_Point = p1;
         }
 
         //Свойства============================================================

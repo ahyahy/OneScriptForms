@@ -22,17 +22,17 @@ namespace osf
             System.Windows.Forms.Application.DoEvents();
         }
 
-        public MainMenu(System.Windows.Forms.MainMenu MainMenu)
+        public MainMenu(osf.MainMenu p1)
         {
-            M_MainMenu = (MainMenuEx)MainMenu;
+            M_MainMenu = p1.M_MainMenu;
             M_MainMenu.M_Object = this;
             base.M_Menu = M_MainMenu;
             System.Windows.Forms.Application.DoEvents();
         }
 
-        public MainMenu(osf.MainMenu p1)
+        public MainMenu(System.Windows.Forms.MainMenu MainMenu)
         {
-            M_MainMenu = p1.M_MainMenu;
+            M_MainMenu = (MainMenuEx)MainMenu;
             M_MainMenu.M_Object = this;
             base.M_Menu = M_MainMenu;
             System.Windows.Forms.Application.DoEvents();

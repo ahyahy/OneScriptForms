@@ -663,30 +663,6 @@ namespace osf
         	get { return m_l; }
         }
 
-        [ContextProperty("LControlKey", "LControlKey")]
-        public int LControlKey
-        {
-        	get { return m_lControlKey; }
-        }
-
-        [ContextProperty("LMenu", "LMenu")]
-        public int LMenu
-        {
-        	get { return m_lMenu; }
-        }
-
-        [ContextProperty("LShiftKey", "LShiftKey")]
-        public int LShiftKey
-        {
-        	get { return m_lShiftKey; }
-        }
-
-        [ContextProperty("LWin", "LWin")]
-        public int LWin
-        {
-        	get { return m_lWin; }
-        }
-
         [ContextProperty("LaunchApplication1", "LaunchApplication1")]
         public int LaunchApplication1
         {
@@ -705,10 +681,34 @@ namespace osf
         	get { return m_launchMail; }
         }
 
+        [ContextProperty("LControlKey", "LControlKey")]
+        public int LControlKey
+        {
+        	get { return m_lControlKey; }
+        }
+
         [ContextProperty("LineFeed", "LineFeed")]
         public int LineFeed
         {
         	get { return m_lineFeed; }
+        }
+
+        [ContextProperty("LMenu", "LMenu")]
+        public int LMenu
+        {
+        	get { return m_lMenu; }
+        }
+
+        [ContextProperty("LShiftKey", "LShiftKey")]
+        public int LShiftKey
+        {
+        	get { return m_lShiftKey; }
+        }
+
+        [ContextProperty("LWin", "LWin")]
+        public int LWin
+        {
+        	get { return m_lWin; }
         }
 
         [ContextProperty("M", "M")]
@@ -867,6 +867,12 @@ namespace osf
         	get { return m_oemCloseBrackets; }
         }
 
+        [ContextProperty("Oemcomma", "Oemcomma")]
+        public int Oemcomma
+        {
+        	get { return m_oemcomma; }
+        }
+
         [ContextProperty("OemMinus", "OemMinus")]
         public int OemMinus
         {
@@ -891,6 +897,12 @@ namespace osf
         	get { return m_oemPipe; }
         }
 
+        [ContextProperty("Oemplus", "Oemplus")]
+        public int Oemplus
+        {
+        	get { return m_oemplus; }
+        }
+
         [ContextProperty("OemQuestion", "OemQuestion")]
         public int OemQuestion
         {
@@ -907,18 +919,6 @@ namespace osf
         public int OemSemicolon
         {
         	get { return m_oemSemicolon; }
-        }
-
-        [ContextProperty("Oemcomma", "Oemcomma")]
-        public int Oemcomma
-        {
-        	get { return m_oemcomma; }
-        }
-
-        [ContextProperty("Oemplus", "Oemplus")]
-        public int Oemplus
-        {
-        	get { return m_oemplus; }
         }
 
         [ContextProperty("Oemtilde", "Oemtilde")]
@@ -1005,6 +1005,12 @@ namespace osf
         	get { return m_rControlKey; }
         }
 
+        [ContextProperty("Return", "Return")]
+        public int Return
+        {
+        	get { return m_return; }
+        }
+
         [ContextProperty("RMenu", "RMenu")]
         public int RMenu
         {
@@ -1021,12 +1027,6 @@ namespace osf
         public int RWin
         {
         	get { return m_rWin; }
-        }
-
-        [ContextProperty("Return", "Return")]
-        public int Return
-        {
-        	get { return m_return; }
         }
 
         [ContextProperty("S", "S")]

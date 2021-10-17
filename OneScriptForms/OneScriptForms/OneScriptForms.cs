@@ -13,11 +13,6 @@ namespace osf
     public class OneScriptForms : AutoContext<OneScriptForms>
     {
         [DllImport("user32", CharSet = CharSet.Ansi, SetLastError = true)] public static extern int WaitMessage();
-        public static IValue Event = null;
-        public static System.Collections.ArrayList EventQueue = new System.Collections.ArrayList();
-        public static string EventString = "";
-        public static ClForm FirstForm = null;
-        public static System.Random Random = new Random();
         private static ClAnchorStyles cl_AnchorStyles = new ClAnchorStyles();
         private static ClAppearance cl_Appearance = new ClAppearance();
         private static ClBorderStyle cl_BorderStyle = new ClBorderStyle();
@@ -28,6 +23,7 @@ namespace osf
         private static ClColumnHeaderStyle cl_ColumnHeaderStyle = new ClColumnHeaderStyle();
         private static ClComboBoxStyle cl_ComboBoxStyle = new ClComboBoxStyle();
         private static ClContentAlignment cl_ContentAlignment = new ClContentAlignment();
+        private static ClControlStyles cl_ControlStyles = new ClControlStyles();
         private static ClDataRowState cl_DataRowState = new ClDataRowState();
         private static ClDataType cl_DataType = new ClDataType();
         private static ClDay cl_Day = new ClDay();
@@ -36,10 +32,10 @@ namespace osf
         private static ClDrawMode cl_DrawMode = new ClDrawMode();
         private static ClFlatStyle cl_FlatStyle = new ClFlatStyle();
         private static ClFontStyle cl_FontStyle = new ClFontStyle();
+        private static ClFormatDateTimePicker cl_FormatDateTimePicker = new ClFormatDateTimePicker();
         private static ClFormBorderStyle cl_FormBorderStyle = new ClFormBorderStyle();
         private static ClFormStartPosition cl_FormStartPosition = new ClFormStartPosition();
         private static ClFormWindowState cl_FormWindowState = new ClFormWindowState();
-        private static ClFormatDateTimePicker cl_FormatDateTimePicker = new ClFormatDateTimePicker();
         private static ClGridItemType cl_GridItemType = new ClGridItemType();
         private static ClHatchStyle cl_HatchStyle = new ClHatchStyle();
         private static ClHorizontalAlignment cl_HorizontalAlignment = new ClHorizontalAlignment();
@@ -82,8 +78,13 @@ namespace osf
         private static ClTreeViewAction cl_TreeViewAction = new ClTreeViewAction();
         private static ClView cl_View = new ClView();
         private static ClWatcherChangeTypes cl_WatcherChangeTypes = new ClWatcherChangeTypes();
+        public static IValue Event = null;
+        public static System.Collections.ArrayList EventQueue = new System.Collections.ArrayList();
+        public static string EventString = "";
+        public static ClForm FirstForm = null;
         public static bool goOn = true;
         public static System.Collections.Hashtable hashtable = new Hashtable();
+        public static System.Random Random = new Random();
         [DllImport("User32.dll")] static extern void mouse_event(uint dwFlags, int dx, int dy, int dwData, UIntPtr dwExtraInfo);
 
         [ScriptConstructor]
@@ -149,16 +150,16 @@ namespace osf
             get { return cl_ItemActivation; }
         }
 
-        [ContextProperty("ВыравниваниеВСпискеЭлементов", "ListViewAlignment")]
-        public ClListViewAlignment ListViewAlignment
-        {
-            get { return cl_ListViewAlignment; }
-        }
-
         [ContextProperty("ВыравниваниеВкладок", "TabAlignment")]
         public ClTabAlignment TabAlignment
         {
             get { return cl_TabAlignment; }
+        }
+
+        [ContextProperty("ВыравниваниеВСпискеЭлементов", "ListViewAlignment")]
+        public ClListViewAlignment ListViewAlignment
+        {
+            get { return cl_ListViewAlignment; }
         }
 
         [ContextProperty("ВыравниваниеСодержимого", "ContentAlignment")]
@@ -461,6 +462,12 @@ namespace osf
             get { return cl_HatchStyle; }
         }
 
+        [ContextProperty("СтильЭлементаУправления", "ControlStyles")]
+        public ClControlStyles ControlStyles
+        {
+            get { return cl_ControlStyles; }
+        }
+
         [ContextProperty("ТипДанных", "DataType")]
         public new ClDataType DataType
         {
@@ -497,18 +504,6 @@ namespace osf
             get { return cl_MouseFlags; }
         }
 
-        [ContextProperty("ФорматПикселей", "PixelFormat")]
-        public ClPixelFormat PixelFormat
-        {
-            get { return cl_PixelFormat; }
-        }
-
-        [ContextProperty("ФорматПоляКалендаря", "FormatDateTimePicker")]
-        public ClFormatDateTimePicker FormatDateTimePicker
-        {
-            get { return cl_FormatDateTimePicker; }
-        }
-
         [ContextProperty("ФорматированноеПолеВводаПоиск", "RichTextBoxFinds")]
         public ClRichTextBoxFinds RichTextBoxFinds
         {
@@ -519,6 +514,18 @@ namespace osf
         public ClRichTextBoxStreamType RichTextBoxStreamType
         {
             get { return cl_RichTextBoxStreamType; }
+        }
+
+        [ContextProperty("ФорматПикселей", "PixelFormat")]
+        public ClPixelFormat PixelFormat
+        {
+            get { return cl_PixelFormat; }
+        }
+
+        [ContextProperty("ФорматПоляКалендаря", "FormatDateTimePicker")]
+        public ClFormatDateTimePicker FormatDateTimePicker
+        {
+            get { return cl_FormatDateTimePicker; }
         }
 
         //Методы============================================================
@@ -746,7 +753,7 @@ namespace osf
         }
 
         [ContextMethod("КнопкаПанелиИнструментов", "ToolBarButton")]
-        public ClToolBarButton ToolBarButton(string p1)
+        public ClToolBarButton ToolBarButton(string p1 = null)
         {
             return new ClToolBarButton(p1);
         }
@@ -1000,6 +1007,12 @@ namespace osf
             return new ClStatusBarPanel();
         }
 
+        [ContextMethod("ПередатьУправление", "EventControlTransfer")]
+        public void EventControlTransfer()
+        {
+            System.Windows.Forms.Application.DoEvents();
+        }
+
         [ContextMethod("Переключатель", "RadioButton")]
         public ClRadioButton RadioButton()
         {
@@ -1064,11 +1077,29 @@ namespace osf
         }
 
         [ContextMethod("ПолучитьСобытие", "DoEvents")]
-        public string DoEvents()
+        public IValue DoEvents()
         {
             EventString = "";
             EventHandling();
-            return EventString;
+            if (EventString.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
+            {
+                string propName = EventString.Replace("ScriptEngine.HostedScript.Library.DelegateAction", "");
+                dynamic obj1 = ((dynamic)Event).Base_obj.Sender.dll_obj;
+                PropertyInfo property1 = obj1.GetType().GetProperty(propName);
+                return property1.GetValue(obj1);
+            }
+            else if (EventString.Contains("osf.ClDictionaryEntry"))
+            {
+                string propName = EventString.Replace("osf.ClDictionaryEntry", "");
+                dynamic obj1 = ((dynamic)Event).Base_obj.Sender.dll_obj;
+                PropertyInfo property1 = obj1.GetType().GetProperty(propName);
+                EventString = ((osf.ClDictionaryEntry)property1.GetValue(obj1)).Value.AsString();
+            }
+            if (!EventString.Contains("("))
+            {
+                return ValueFactory.Create((string)EventString + "()");
+            }
+            return ValueFactory.Create((string)EventString);
         }
 
         public static void EventHandling()
@@ -1188,23 +1219,172 @@ namespace osf
             ShowWindow(GetConsoleWindow(), 7);
         }
 
+        [ContextMethod("СвойстваКласса", "PropClass")]
+        public ClSortedList PropClass(IValue p1)
+        {
+            ClSortedList ClSortedList1 = new osf.ClSortedList();
+            System.Reflection.PropertyInfo[] myPropertyInfo;
+            if (p1.GetType() == typeof(osf.ClType))
+            {
+                myPropertyInfo = p1.GetType().GetProperties();
+                for (int i = 0; i < myPropertyInfo.Length; i++)
+                {
+                    if (myPropertyInfo[i].CustomAttributes.Count() == 1)
+                    {
+                        string NameRu = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetName();
+                        string NameEn = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
+                        ClSortedList1.Add(NameEn, ValueFactory.Create(NameEn));
+                    }
+                }
+            }
+
+            if (p1.SystemType.Name == "Строка") // это может быть полное имя класса, если объект не из пространства имен osf, или имя класса сокращенное, если объект из пространства имен osf
+            {
+                if (p1.AsString().Contains(".")) // имя объекта не из пространства имен osf
+                {
+                    if (p1.AsString() == "System.Drawing.Bitmap")
+                    {
+                        myPropertyInfo = (new System.Drawing.Bitmap(10, 10)).GetType().GetProperties();
+                    }
+                    else
+                    {
+                        myPropertyInfo = GetTypeFromName(p1.AsString()).GetProperties();
+                    }
+                    foreach (var item in myPropertyInfo)
+                    {
+                        if (!ClSortedList1.ContainsKey(item.Name))
+                        {
+                            ClSortedList1.Add(item.Name, ValueFactory.Create(item.Name));
+                        }
+                    }
+                }
+                else // имя объекта из пространства имен osf
+                {
+                    // находим совпадение GetName или GetAlias в методах osf.OneScriptForms, так мы получим объекты, имеющие конструктор
+                    System.Type Type1 = System.Type.GetType("osf.OneScriptForms", false, true);
+                    System.Reflection.MethodInfo[] myMethodInfo = Type1.GetMethods();
+                    for (int i = 0; i < myMethodInfo.Length; i++)
+                    {
+                        if (myMethodInfo[i].CustomAttributes.Count() == 1)
+                        {
+                            if (myMethodInfo[i].GetCustomAttribute<ContextMethodAttribute>() != null)
+                            {
+                                string NameRu = myMethodInfo[i].GetCustomAttribute<ContextMethodAttribute>().GetName();
+                                string NameEn = myMethodInfo[i].GetCustomAttribute<ContextMethodAttribute>().GetAlias();
+                                if (NameRu == p1.AsString() || NameEn == p1.AsString())
+                                {
+                                    System.Type Type2 = System.Type.GetType("osf.Cl" + NameEn, false, true);
+                                    System.Reflection.PropertyInfo[] myPropertyInfo2 = Type2.GetProperties();
+                                    for (int i2 = 0; i2 < myPropertyInfo2.Length; i2++)
+                                    {
+                                        if (myPropertyInfo2[i2].CustomAttributes.Count() == 1)
+                                        {
+                                            string NameRu2 = myPropertyInfo2[i2].GetCustomAttribute<ContextPropertyAttribute>().GetName();
+                                            string NameEn2 = myPropertyInfo2[i2].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
+                                            ClSortedList1.Add(NameEn2, ValueFactory.Create(NameEn2));
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else // это объект, а не строка
+            {
+                myPropertyInfo = p1.GetType().GetProperties();
+                for (int i = 0; i < myPropertyInfo.Length; i++)
+                {
+                    if (myPropertyInfo[i].CustomAttributes.Count() == 1)
+                    {
+                        string NameRu = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetName();
+                        string NameEn = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
+                        ClSortedList1.Add(NameEn, ValueFactory.Create(NameEn));
+                    }
+                }
+            }
+            return ClSortedList1;
+        }
+        
         [ContextMethod("СвойстваОбъекта", "PropObj")]
         public string PropObj1(IValue p1)
         {
-            System.Reflection.PropertyInfo[] myPropertyInfo = p1.GetType().GetProperties();
+            string str1 = null;
+            string transfer = "";
             List<string> p = new List<string>();
-            for (int i = 0; i < myPropertyInfo.Length; i++)
+            System.Reflection.PropertyInfo[] myPropertyInfo;
+            if (p1.GetType() == typeof(osf.ClType))
             {
-                if (myPropertyInfo[i].CustomAttributes.Count() == 1)
+                myPropertyInfo = p1.GetType().GetProperties();
+                for (int i = 0; i < myPropertyInfo.Length; i++)
                 {
-                    string NameRu = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetName();
-                    string NameEn = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
-                    p.Add(NameRu + " (" + NameEn + ")");
+                    if (myPropertyInfo[i].CustomAttributes.Count() == 1)
+                    {
+                        string NameRu = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetName();
+                        string NameEn = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
+                        p.Add(NameRu + " (" + NameEn + ")");
+                    }
+                }
+            }
+
+            if (p1.SystemType.Name == "Строка") // это может быть полное имя класса, если объект не из пространства имен osf, или имя класса сокращенное, если объект из пространства имен osf
+            {
+                if (p1.AsString().Contains(".")) // имя объекта не из пространства имен osf
+                {
+                    myPropertyInfo = GetTypeFromName(p1.AsString()).GetProperties();
+                    foreach (var item in myPropertyInfo)
+                    {
+                        p.Add(item.Name);
+                    }
+                }
+                else // имя объекта из пространства имен osf
+                {
+                    // находим совпадение GetName или GetAlias в методах osf.OneScriptForms, так мы получим объекты, имеющие конструктор
+                    System.Type Type1 = System.Type.GetType("osf.OneScriptForms", false, true);
+                    System.Reflection.MethodInfo[] myMethodInfo = Type1.GetMethods();
+                    for (int i = 0; i < myMethodInfo.Length; i++)
+                    {
+                        if (myMethodInfo[i].CustomAttributes.Count() == 1)
+                        {
+                            if (myMethodInfo[i].GetCustomAttribute<ContextMethodAttribute>() != null)
+                            {
+                                string NameRu = myMethodInfo[i].GetCustomAttribute<ContextMethodAttribute>().GetName();
+                                string NameEn = myMethodInfo[i].GetCustomAttribute<ContextMethodAttribute>().GetAlias();
+                                if (NameRu == p1.AsString() || NameEn == p1.AsString())
+                                {
+                                    System.Type Type2 = System.Type.GetType("osf.Cl" + NameEn, false, true);
+                                    System.Reflection.PropertyInfo[] myPropertyInfo2 = Type2.GetProperties();
+                                    for (int i2 = 0; i2 < myPropertyInfo2.Length; i2++)
+                                    {
+                                        if (myPropertyInfo2[i2].CustomAttributes.Count() == 1)
+                                        {
+                                            string NameRu2 = myPropertyInfo2[i2].GetCustomAttribute<ContextPropertyAttribute>().GetName();
+                                            string NameEn2 = myPropertyInfo2[i2].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
+                                            p.Add(NameRu2 + " (" + NameEn2 + ")");
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else // это объект, а не строка
+            {
+                myPropertyInfo = p1.GetType().GetProperties();
+                for (int i = 0; i < myPropertyInfo.Length; i++)
+                {
+                    if (myPropertyInfo[i].CustomAttributes.Count() == 1)
+                    {
+                        string NameRu = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetName();
+                        string NameEn = myPropertyInfo[i].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
+                        p.Add(NameRu + " (" + NameEn + ")");
+                    }
                 }
             }
             p.Sort();
-            string str1 = "";
-            string transfer = "";
             foreach (string str in p)
             {
                 str1 = str1 + transfer + str;
@@ -1212,7 +1392,7 @@ namespace osf
             }
             return str1;
         }
-        
+
         [ContextMethod("СеткаДанных", "DataGrid")]
         public ClDataGrid DataGrid()
         {
@@ -1291,6 +1471,86 @@ namespace osf
         public ClDataGridTableStyle DataGridTableStyle()
         {
             return new ClDataGridTableStyle();
+        }
+
+        [ContextMethod("СтрНайтиМежду", "StrFindBetween")]
+        public ClArrayList StrFindBetween(string p1, string p2 = null, string p3 = null, bool p4 = true, bool p5 = true)
+        {
+            //p1 - исходная строка
+            //p2 - подстрока поиска от которой ведем поиск
+            //p3 - подстрока поиска до которой ведем поиск
+            //p4 - не включать p2 и p3 в результат
+            //p5 - в результат не будут включены участки, содержащие другие найденные участки, удовлетворяющие переданным параметрам
+            //функция возвращает массив строк
+            string str1 = p1;
+            int Position1;
+            ClArrayList ClArrayList1 = new ClArrayList();
+            if (p2 != null && p3 == null)
+            {
+                Position1 = str1.IndexOf(p2);
+                while (Position1 >= 0)
+                {
+                    ClArrayList1.Add(ValueFactory.Create("" + ((p4) ? str1.Substring(Position1 + p2.Length) : str1.Substring(Position1))));
+                    str1 = str1.Substring(Position1 + 1);
+                    Position1 = str1.IndexOf(p2);
+                }
+            }
+            else if (p2 == null && p3 != null)
+            {
+                Position1 = str1.IndexOf(p3) + 1;
+                int SumPosition1 = Position1;
+                while (Position1 > 0)
+                {
+                    ClArrayList1.Add(ValueFactory.Create("" + ((p4) ? str1.Substring(0, SumPosition1 - 1) : str1.Substring(0, SumPosition1 - 1 + p3.Length))));
+                    try
+                    {
+                        Position1 = str1.Substring(SumPosition1 + 1).IndexOf(p3) + 1;
+                        SumPosition1 = SumPosition1 + Position1 + 1;
+                    }
+                    catch
+                    {
+                        break;
+                    }
+                }
+            }
+            else if (p2 != null && p3 != null)
+            {
+                Position1 = str1.IndexOf(p2);
+                while (Position1 >= 0)
+                {
+                    string Стр2;
+                    Стр2 = (p4) ? str1.Substring(Position1 + p2.Length) : str1.Substring(Position1);
+                    int Position2 = Стр2.IndexOf(p3) + 1;
+                    int SumPosition2 = Position2;
+                    while (Position2 > 0)
+                    {
+                        if (p5)
+                        {
+                            if (Стр2.Substring(0, SumPosition2 - 1).IndexOf(p3) <= -1)
+                            {
+                                ClArrayList1.Add(ValueFactory.Create("" + ((p4) ? Стр2.Substring(0, SumPosition2 - 1) : Стр2.Substring(0, SumPosition2 - 1 + p3.Length))));
+                            }
+                        }
+                        else
+                        {
+                            ClArrayList1.Add(ValueFactory.Create("" + ((p4) ? Стр2.Substring(0, SumPosition2 - 1) : Стр2.Substring(0, SumPosition2 - 1 + p3.Length))));
+                        }
+                        try
+                        {
+                            Position2 = Стр2.Substring(SumPosition2 + 1).IndexOf(p3) + 1;
+                            SumPosition2 = SumPosition2 + Position2 + 1;
+                        }
+                        catch
+                        {
+                            break;
+
+                        }
+                    }
+                    str1 = str1.Substring(Position1 + 1);
+                    Position1 = str1.IndexOf(p2);
+                }
+            }
+            return ClArrayList1;
         }
 
         [ContextMethod("СтрокаСостояния", "StatusBar")]
@@ -1394,6 +1654,12 @@ namespace osf
                 }
             }
             return new ClColor();
+        }
+
+        [ContextMethod("ЧислоСообщений", "EventQueueCount")]
+        public int EventQueueCount()
+        {
+            return EventQueue.Count;
         }
 
         [ContextMethod("Шрифт", "Font")]
@@ -1573,6 +1839,118 @@ namespace osf
         	return (ClTreeViewEventArgs)Event;
         }
         
+        [ContextMethod("ДанныеДляДизайнера", "DataForDesigner")] // метод нужен только для дизайнера форм
+        public string AttributesForDesigner(string p1, string p2) // p1 - строковое представление типа объекта, p2 - имя свойства
+        {
+            System.Type Type1 = GetTypeFromName(p1);
+            string str1 = "";
+            string DisplayName = "";//ОтображаемоеИмяСвойства
+            //try
+            //{
+            //    System.ComponentModel.PropertyDescriptor PropertyDescriptorCollection1 = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2];
+            //    System.ComponentModel.AttributeCollection attributes = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2].Attributes;
+            //    System.ComponentModel.DisplayNameAttribute myDisplayNameAttribute = (System.ComponentModel.DisplayNameAttribute)attributes[typeof(System.ComponentModel.DisplayNameAttribute)];
+            //    DisplayName = myDisplayNameAttribute.DisplayName;
+            //}
+            //catch { }
+            str1 = str1 + "DisplayName=" + DisplayName + "~";
+            string Description = "";//ОписаниеСвойства
+            //try
+            //{
+            //    System.ComponentModel.PropertyDescriptor PropertyDescriptorCollection1 = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2];
+            //    System.ComponentModel.AttributeCollection attributes = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2].Attributes;
+            //    System.ComponentModel.DescriptionAttribute myDescriptionAttribute = (System.ComponentModel.DescriptionAttribute)attributes[typeof(System.ComponentModel.DescriptionAttribute)];
+            //    Description = myDescriptionAttribute.Description;
+            //}
+            //catch { }
+            str1 = str1 + "Description=" + Description + "~";
+            string Category = "";//КатегорияСвойства
+            try
+            {
+                System.ComponentModel.PropertyDescriptor PropertyDescriptorCollection1 = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2];
+                System.ComponentModel.AttributeCollection attributes = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2].Attributes;
+                System.ComponentModel.CategoryAttribute myCategoryAttribute = (System.ComponentModel.CategoryAttribute)attributes[typeof(System.ComponentModel.CategoryAttribute)];
+                Category = myCategoryAttribute.Category;
+            }
+            catch { }
+            str1 = str1 + "Category=" + Category + "~";
+            string Browsable = "Неопределено";//ВидимостьСвойства
+            try
+            {
+                System.ComponentModel.PropertyDescriptor PropertyDescriptorCollection1 = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2];
+                System.ComponentModel.AttributeCollection attributes = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2].Attributes;
+                System.ComponentModel.BrowsableAttribute myBrowsableAttribute = (System.ComponentModel.BrowsableAttribute)attributes[typeof(System.ComponentModel.BrowsableAttribute)];
+                Browsable = "" + myBrowsableAttribute.Browsable;
+            }
+            catch { }
+            str1 = str1 + "Browsable=" + Browsable + "~";
+            string ConverterTypeName = "";//КонвертерТипаСвойства
+            //try
+            //{
+            //    System.ComponentModel.PropertyDescriptor PropertyDescriptorCollection1 = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2];
+            //    System.ComponentModel.AttributeCollection attributes = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2].Attributes;
+            //    System.ComponentModel.TypeConverterAttribute myTypeConverterAttribute = (System.ComponentModel.TypeConverterAttribute)attributes[typeof(System.ComponentModel.TypeConverterAttribute)];
+            //    ConverterTypeName = myTypeConverterAttribute.ConverterTypeName;
+            //}
+            //catch { }
+            str1 = str1 + "ConverterTypeName=" + ConverterTypeName + "~";
+            string AvailabilityOfTheProperty = "0";//НаличиеСвойства
+            System.Reflection.PropertyInfo[] myPropertyInfo = Type1.GetProperties();
+            foreach (var prop in myPropertyInfo)
+            {
+                if (prop.Name == p2)
+                {
+                    AvailabilityOfTheProperty = "1";
+                    break;
+                }
+            }
+            str1 = str1 + "AvailabilityOfTheProperty=" + AvailabilityOfTheProperty + "~";
+            return str1;
+        }
+
+        public static System.Type GetTypeFromName(string typeName)
+        {
+            // необходимо двойное открытие закрытие во избежание проблем
+            const string typeProgram = @"using System; using System.Collections.Generic; using System.IO;
+                namespace SimpleTest
+                {{
+                    public class Program
+                    {{
+                        public static Type GetItemType()
+                        {{
+                            {0} typeTest = new {0}();
+                            if (typeTest == null) return null;
+                            return typeTest.GetType();
+                        }}
+                    }}
+                }}";
+
+            var formattedCode = String.Format(typeProgram, typeName);
+            var CompilerParams = new System.CodeDom.Compiler.CompilerParameters
+            {
+                GenerateInMemory = true,
+                TreatWarningsAsErrors = false,
+                GenerateExecutable = false,
+                CompilerOptions = "/optimize"
+            };
+
+            string[] references = { "System.dll", "System.Windows.Forms.dll" };
+            CompilerParams.ReferencedAssemblies.AddRange(references);
+
+            var provider = new Microsoft.CSharp.CSharpCodeProvider();
+            System.CodeDom.Compiler.CompilerResults compile = provider.CompileAssemblyFromSource(CompilerParams, formattedCode);
+            if (compile.Errors.HasErrors) return null;
+
+            System.Reflection.Module module = compile.CompiledAssembly.GetModules()[0];
+            System.Type mt = null; System.Reflection.MethodInfo methInfo = null;
+
+            if (module != null) mt = module.GetType("SimpleTest.Program");
+            if (mt != null) methInfo = mt.GetMethod("GetItemType");
+            if (methInfo != null) return (System.Type)methInfo.Invoke(null, null);
+
+            return null;
+        }
+			
         public static void AddToHashtable(dynamic p1, dynamic p2)
         {
             if (!OneScriptForms.hashtable.ContainsKey(p1))

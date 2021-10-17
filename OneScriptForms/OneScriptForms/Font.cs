@@ -10,12 +10,6 @@ namespace osf
         public ClFont dll_obj;
         public System.Drawing.Font M_Font;
 
-        public Font(System.Drawing.Font p1)
-        {
-            M_Font = p1;
-            OneScriptForms.AddToHashtable(M_Font, this);
-        }
-
         public Font(osf.Font p1)
         {
             M_Font = p1.M_Font;
@@ -25,6 +19,12 @@ namespace osf
         public Font(string name = null, float size = 0.0f, System.Drawing.FontStyle style = System.Drawing.FontStyle.Regular)
         {
             M_Font = new System.Drawing.Font(name, size, style);
+            OneScriptForms.AddToHashtable(M_Font, this);
+        }
+
+        public Font(System.Drawing.Font p1)
+        {
+            M_Font = p1;
             OneScriptForms.AddToHashtable(M_Font, this);
         }
 

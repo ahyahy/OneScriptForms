@@ -11,12 +11,6 @@ namespace osf
         public ClProcessStartInfo dll_obj;
         public System.Diagnostics.ProcessStartInfo M_ProcessStartInfo;
 
-        public ProcessStartInfo(System.Diagnostics.ProcessStartInfo p1)
-        {
-            M_ProcessStartInfo = p1;
-            OneScriptForms.AddToHashtable(M_ProcessStartInfo, this);
-        }
-
         public ProcessStartInfo(osf.ProcessStartInfo p1)
         {
             M_ProcessStartInfo = p1.M_ProcessStartInfo;
@@ -26,6 +20,12 @@ namespace osf
         public ProcessStartInfo(string filename = null, string arguments = null)
         {
             M_ProcessStartInfo = new System.Diagnostics.ProcessStartInfo(filename, arguments);
+            OneScriptForms.AddToHashtable(M_ProcessStartInfo, this);
+        }
+
+        public ProcessStartInfo(System.Diagnostics.ProcessStartInfo p1)
+        {
+            M_ProcessStartInfo = p1;
             OneScriptForms.AddToHashtable(M_ProcessStartInfo, this);
         }
 

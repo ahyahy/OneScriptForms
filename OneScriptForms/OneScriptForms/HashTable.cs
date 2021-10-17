@@ -17,15 +17,15 @@ namespace osf
             OneScriptForms.AddToHashtable(M_HashTable, this);
         }
 
-        public HashTable(System.Collections.Hashtable p1)
-        {
-            M_HashTable = p1;
-            OneScriptForms.AddToHashtable(M_HashTable, this);
-        }
-
         public HashTable(osf.HashTable p1)
         {
             M_HashTable = p1.M_HashTable;
+            OneScriptForms.AddToHashtable(M_HashTable, this);
+        }
+
+        public HashTable(System.Collections.Hashtable p1)
+        {
+            M_HashTable = p1;
             OneScriptForms.AddToHashtable(M_HashTable, this);
         }
 

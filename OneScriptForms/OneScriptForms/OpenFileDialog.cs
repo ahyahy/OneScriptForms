@@ -17,16 +17,16 @@ namespace osf
             OneScriptForms.AddToHashtable(M_OpenFileDialog, this);
         }
 
-        public OpenFileDialog(System.Windows.Forms.OpenFileDialog p1)
+        public OpenFileDialog(osf.OpenFileDialog p1)
         {
-            M_OpenFileDialog = p1;
+            M_OpenFileDialog = p1.M_OpenFileDialog;
             base.M_FileDialog = M_OpenFileDialog;
             OneScriptForms.AddToHashtable(M_OpenFileDialog, this);
         }
 
-        public OpenFileDialog(osf.OpenFileDialog p1)
+        public OpenFileDialog(System.Windows.Forms.OpenFileDialog p1)
         {
-            M_OpenFileDialog = p1.M_OpenFileDialog;
+            M_OpenFileDialog = p1;
             base.M_FileDialog = M_OpenFileDialog;
             OneScriptForms.AddToHashtable(M_OpenFileDialog, this);
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using ScriptEngine.Machine.Contexts;
+using ScriptEngine.Machine;
 
 namespace osf
 {
@@ -41,6 +42,18 @@ namespace osf
         public KeyPressEventArgs Base_obj;
 
         //Свойства============================================================
+
+        [ContextProperty("Отправитель", "Sender")]
+        public IValue Sender
+        {
+            get { return OneScriptForms.RevertObj(Base_obj.Sender); }
+        }
+        
+        [ContextProperty("Параметр", "Parameter")]
+        public IValue Parameter
+        {
+            get { return (IValue)Base_obj.Parameter; }
+        }
 
         [ContextProperty("СимволКлавиши", "KeyChar")]
         public string KeyChar

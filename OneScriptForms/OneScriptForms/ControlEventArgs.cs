@@ -37,6 +37,18 @@ namespace osf
 
         //Свойства============================================================
 
+        [ContextProperty("Отправитель", "Sender")]
+        public IValue Sender
+        {
+            get { return OneScriptForms.RevertObj(Base_obj.Sender); }
+        }
+        
+        [ContextProperty("Параметр", "Parameter")]
+        public IValue Parameter
+        {
+            get { return (IValue)Base_obj.Parameter; }
+        }
+
         [ContextProperty("ЭлементУправления", "Control")]
         public IValue Control
         {

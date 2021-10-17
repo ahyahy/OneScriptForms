@@ -1,0 +1,179 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>OneScriptForms.EventControlTransfer Method</TITLE>
+<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<BODY id=bodyID class=dtBODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead cellSpacing=0>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead></TD>
+    <TD class=product></TD></TR></TBODY></TABLE></DIV>
+<DIV id=TitleRow>
+<H1 class=dtH1>ФормыДляОдноСкрипта.ПередатьУправление (OneScriptForms.EventControlTransfer)&nbsp;Метод</H1></DIV></DIV>
+<DIV id=nstext>
+<H4 class=dtH4>Синтаксис</H4>
+<P>ПередатьУправление()</P>
+<H4 class=dtH4>Параметры</H4>
+<DL></DL>
+<H4 class=dtH4>Возвращаемое значение</H4>
+<P></P>
+<H4 class=dtH4>Описание</H4>
+<P>Передает управление форме для обработки сообщений, которые в данный момент находятся в очереди сообщений.</P>
+<H4 class=dtH4>Примечание</H4>
+<P>Каждый раз, когда форма обрабатывает событие, она обрабатывает весь код, связанный с этим событием. Возможно это будет длительное вычисление в цикле. 
+Все остальные события ожидают в очереди. При вызове метода приложение может управлять другими событиями.</P>
+<H4 class=dtH4>Пример</H4>
+<P><PRE class=code>
+Ф.ПередатьУправление();
+</PRE>
+<details><summary>Полный пример кода</summary>
+<P><PRE class=code>
+<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+Перем Задержка, РегуляторВверхВниз1;
+
+Процедура Форма1_ПриПерерисовке()
+КонецПроцедуры
+
+Процедура РегуляторВверхВниз1_ЗначениеИзменено()
+	Задержка = РегуляторВверхВниз1.Значение;
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.ПриПерерисовке = "Форма1_ПриПерерисовке()";
+Форма1.Ширина = 1210;
+Форма1.Высота = 250;
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+Задержка = 3;
+
+Надпись1 = Форма1.ЭлементыУправления.Добавить(Ф.Надпись());
+Надпись1.Текст = "Задержка (миллисекунд)";
+Надпись1.Границы = Ф.Прямоугольник(10, 10, 180, 25);
+
+РегуляторВверхВниз1 = Форма1.ЭлементыУправления.Добавить(Ф.РегуляторВверхВниз());
+РегуляторВверхВниз1.Правее(Надпись1, 10);
+РегуляторВверхВниз1.Верх = Надпись1.Верх;
+РегуляторВверхВниз1.Значение = Задержка;
+РегуляторВверхВниз1.Максимум = 2000;
+РегуляторВверхВниз1.ЗначениеИзменено = "РегуляторВверхВниз1_ЗначениеИзменено()";
+
+Надпись2 = Форма1.ЭлементыУправления.Добавить(Ф.Надпись());
+Надпись2.Текст = "Цикл № ";
+Надпись2.Ширина = 170;
+Надпись2.Правее(РегуляторВверхВниз1, 30);
+Надпись2.Верх = Надпись1.Верх;
+Шрифт1 = Ф.Шрифт(, 12, Ф.СтильШрифта.Подчеркнутый + Ф.СтильШрифта.Жирный);
+Надпись2.Шрифт = Шрифт1;
+Надпись2.ОсновнойЦвет = Ф.Цвет("Красный");
+
+// в нашем случае событие получаем только внутри этого цикла, 
+// поэтому Задержка определяет частоту перерисовки формы
+Пока Истина Цикл
+	Для А = 1 По 1100 Цикл
+		Надпись2.Текст = "Цикл № " + А;
+		Приостановить(Задержка);
+		// обеспечим корректное закрытие формы
+		Если Не(Форма1.Отображать) Тогда
+			ЗавершитьРаботу(10);
+		Иначе
+			Форма1.Актуализировать();// Заставим форму перерисовать себя
+		КонецЕсли;
+		Пока Ф.ЧислоСообщений() > 0 Цикл
+			Выполнить(Ф.ПолучитьСобытие());
+		КонецЦикла;
+		// обеспечим отклик приложения на действия пользователя
+		// чтобы в заголовке окна не возникала дописка (Не отвечает)
+		Ф.ПередатьУправление();
+	КонецЦикла;
+КонецЦикла;
+
+// этот цикл сейчас не нужен, событие получаем внутри бесконечного цикла
+// Пока Ф.Продолжать Цикл
+      // Выполнить(Ф.ПолучитьСобытие());
+// КонецЦикла;
+</DIV>
+</PRE>
+</details>
+<P></P>
+<details><summary>Тестовый код</summary>
+<P><PRE class=code>
+<a id="copy2" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select2" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont2">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+Ф.ПередатьУправление();
+
+Сообщить(?(
+Истина
+, "", "!!! ") + "ФормыДляОдноСкрипта.ПередатьУправление (OneScriptForms.EventControlTransfer) Метод" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+</details>
+<P></P>
+<H4 class=dtH4>Смотрите также</H4>
+<P><A href="OneScriptForms.OneScriptForms.html">ФормыДляОдноСкрипта&nbsp;(OneScriptForms)&nbsp;Класс</A>| <A 
+href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P></DIV>
+<script>
+window.onload = function () {
+    var a = document.getElementById('select1');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont1'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy1');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont1'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+	
+    var c = document.getElementById('select2');
+    c.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta3 = document.getElementById('cont2'); 
+		var range3 = document.createRange();
+		range3.selectNode(ta3); 
+		window.getSelection().addRange(range3); 
+        return false;
+    }
+	
+    var d = document.getElementById('copy2');
+    d.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta4 = document.getElementById('cont2'); 
+		var range4 = document.createRange();
+		range4.selectNode(ta4); 
+		window.getSelection().addRange(range4);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range4);
+        return false;
+    }
+}
+</script>
+</BODY></HTML>

@@ -13,14 +13,14 @@ namespace osf
             M_ImageFormat = new System.Drawing.Imaging.ImageFormat(System.Guid.Empty);
         }
 
-        public ImageFormat(System.Drawing.Imaging.ImageFormat p1)
-        {
-            M_ImageFormat = p1;
-        }
-
         public ImageFormat(osf.ImageFormat p1)
         {
             M_ImageFormat = p1.M_ImageFormat;
+        }
+
+        public ImageFormat(System.Drawing.Imaging.ImageFormat p1)
+        {
+            M_ImageFormat = p1;
         }
 
         //Свойства============================================================

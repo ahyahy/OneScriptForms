@@ -1,0 +1,819 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>OneScriptFormsEvents</TITLE>
+<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<BODY id=bodyID class=dtBODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead cellSpacing=0>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead></TD>
+    <TD class=product></TD></TR></TBODY></TABLE></DIV>
+<DIV id=TitleRow>
+<H1 class=dtH1>Варианты установки обработчика события</H1></DIV></DIV>
+<DIV id=nstext>
+<P>Начиная с версии 1.1.0.0 расширилась возможность установки обработчика события для объектов.</P>
+<P>В версии 1.0.0.0 свойство объекта, указывающее на процедуру или функцию с кодом обработки события, имело строковый тип. Начиная с версии 1.1.0.0 
+свойству возможно задать также типы "Действие" или "СловарнаяЗапись". Рассмотрим это на примерах.</P>
+<P></P>
+<P></P>
+<P></P>
+<H4 class=dtH4>Пример</H4>
+<li>Вариант1. Тип значения "Строка": точное именование обработчика, со скобками.</li>
+<P><PRE class=code>
+Форма1.Нажатие = "НажатиеФормы()";
+</PRE>
+<details><summary>Полный пример кода</summary>
+<P><PRE class=code>
+<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+Перем Форма1;
+
+Процедура НажатиеФормы()
+	Форма1.Ширина = Форма1.Ширина + 10;
+	Сообщить("Ширина = " + Форма1.Ширина);
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Текст = "Щелкните по форме";
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+Форма1.Нажатие = "НажатиеФормы()";
+
+Пока Ф.Продолжать Цикл
+   Выполнить(Ф.ПолучитьСобытие());
+КонецЦикла;
+</DIV>
+</PRE>
+</details>
+<P></P>
+<details><summary>Тестовый код</summary>
+<P><PRE class=code>
+<a id="copy2" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select2" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont2">
+Перем Форма1, Результат;
+
+Процедура НажатиеФормы()
+	Форма1.Ширина = Форма1.Ширина + 10;
+	Результат = Форма1.Ширина;
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Ширина = 350;
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+Форма1.Нажатие = "НажатиеФормы()";
+
+Курсор1 = Ф.Курсор();
+Точка1 = Форма1.Положение;
+Курсор1.Позиция = Ф.Точка(Точка1.Икс + 70, Точка1.Игрек + 70);
+Приостановить(1000);
+Ф.НажатьКнопкуМыши(Ф.ФлагиМыши.ЛеваяВниз + Ф.ФлагиМыши.ЛеваяВверх);
+Выполнить(Ф.ПолучитьСобытие());
+
+Сообщить(?(
+Результат = 360
+, "", "!!! ") + "ЭлементУправления.Нажатие (Control.Click) Свойство" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+</details>
+<P></P>
+<hr style="border-color: lightgray;">
+<li>Вариант2. Тип значения "Строка": не точное именование обработчика, без скобок.</li>
+<P><PRE class=code>
+Форма1.Нажатие = "НажатиеФормы";
+</PRE>
+<details><summary>Полный пример кода</summary>
+<P><PRE class=code>
+<a id="copy3" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select3" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont3">
+Перем Форма1;
+
+Процедура НажатиеФормы()
+	Форма1.Ширина = Форма1.Ширина + 10;
+	Сообщить("Ширина = " + Форма1.Ширина);
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Текст = "Щелкните по форме";
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+Форма1.Нажатие = "НажатиеФормы";
+
+Пока Ф.Продолжать Цикл
+   Выполнить(Ф.ПолучитьСобытие());
+КонецЦикла;
+</DIV>
+</PRE>
+</details>
+<P></P>
+<details><summary>Тестовый код</summary>
+<P><PRE class=code>
+<a id="copy4" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select4" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont4">
+Перем Форма1, Результат;
+
+Процедура НажатиеФормы()
+	Форма1.Ширина = Форма1.Ширина + 10;
+	Результат = Форма1.Ширина;
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Ширина = 350;
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+Форма1.Нажатие = "НажатиеФормы";
+
+Курсор1 = Ф.Курсор();
+Точка1 = Форма1.Положение;
+Курсор1.Позиция = Ф.Точка(Точка1.Икс + 70, Точка1.Игрек + 70);
+Приостановить(1000);
+Ф.НажатьКнопкуМыши(Ф.ФлагиМыши.ЛеваяВниз + Ф.ФлагиМыши.ЛеваяВверх);
+Выполнить(Ф.ПолучитьСобытие());
+
+Сообщить(?(
+Результат = 360
+, "", "!!! ") + "ЭлементУправления.Нажатие (Control.Click) Свойство" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+</details>
+<P></P>
+<hr style="border-color: lightgray;">
+<li>Вариант3. Тип значения "Строка": с передачей параметра.</li>
+<P><PRE class=code>
+Форма1.Нажатие = "НажатиеФормы(Форма1)";
+</PRE>
+<details><summary>Полный пример кода</summary>
+<P><PRE class=code>
+<a id="copy5" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select5" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont5">
+Перем Форма1;
+
+Процедура НажатиеФормы(Доппараметр = Неопределено)
+	Если Доппараметр = Неопределено Тогда
+		Возврат;
+	КонецЕсли;
+	Доппараметр.Ширина = Доппараметр.Ширина + 10;
+	// для передачи другого значения параметра необходимо переопределить обработчик события
+	// в каком либо месте скрипта, например здесь
+	Сообщить("" + Доппараметр.Тип.Имя);
+	Если Доппараметр.Тип.Имя = "Кнопка" Тогда
+		Форма1.Нажатие = "НажатиеФормы(Форма1)";
+	Иначе
+		Форма1.Нажатие = "НажатиеФормы(Кнопка1)";
+	КонецЕсли;
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Текст = "Щелкните по форме";
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+Форма1.Нажатие = "НажатиеФормы(Форма1)";
+Кнопка1 = Форма1.ЭлементыУправления.Добавить(Ф.Кнопка());
+Кнопка1.Текст = "Кнопка";
+
+Пока Ф.Продолжать Цикл
+	Выполнить(Ф.ПолучитьСобытие());
+КонецЦикла;
+</DIV>
+</PRE>
+</details>
+<P></P>
+<details><summary>Тестовый код</summary>
+<P><PRE class=code>
+<a id="copy6" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select6" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont6">
+Перем Форма1, Результат;
+
+Процедура НажатиеФормы(Доппараметр = Неопределено)
+	Если Доппараметр = Неопределено Тогда
+		Возврат;
+	КонецЕсли;
+	Доппараметр.Ширина = Доппараметр.Ширина + 10;
+	// для передачи другого значения параметра необходимо переопределить обработчик события
+	// в каком либо месте скрипта, например здесь
+	// Сообщить("" + Доппараметр.Тип.Имя);
+	Если Доппараметр.Тип.Имя = "Кнопка" Тогда
+		Форма1.Нажатие = "НажатиеФормы(Форма1)";
+	Иначе
+		Форма1.Нажатие = "НажатиеФормы(Кнопка1)";
+	КонецЕсли;
+	Результат = Форма1.Нажатие;
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Текст = "Щелкните по форме";
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+Форма1.Нажатие = "НажатиеФормы(Форма1)";
+Кнопка1 = Форма1.ЭлементыУправления.Добавить(Ф.Кнопка());
+Кнопка1.Текст = "Кнопка";
+
+Курсор1 = Ф.Курсор();
+Точка1 = Форма1.Положение;
+Курсор1.Позиция = Ф.Точка(Точка1.Икс + 70, Точка1.Игрек + 70);
+Приостановить(1000);
+Ф.НажатьКнопкуМыши(Ф.ФлагиМыши.ЛеваяВниз + Ф.ФлагиМыши.ЛеваяВверх);
+Выполнить(Ф.ПолучитьСобытие());
+
+Сообщить(?(
+Результат = "НажатиеФормы(Кнопка1)"
+, "", "!!! ") + "ЭлементУправления.Нажатие (Control.Click) Свойство" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+</details>
+<P></P>
+<P></P>
+<hr style="border-color: lightgray;">
+<li>Вариант4. Тип значения "Строка": с передачей параметра.</li>
+<P><PRE class=code>
+Форма1.Нажатие = "НажатиеФормы(ЭтотОбъект)";
+</PRE>
+<details><summary>Полный пример кода</summary>
+<P><PRE class=code>
+<a id="copy7" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select7" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont7">
+Процедура НажатиеФормы(Доппараметр = Неопределено)
+	Если Доппараметр = Неопределено Тогда
+		Возврат;
+	КонецЕсли;
+	Сообщить("ТипЗнч(Доппараметр) = " + ТипЗнч(Доппараметр));
+	Реф = Новый Рефлектор();
+	Реф.ВызватьМетод(Доппараметр, "ДопМетод", Новый Массив());
+КонецПроцедуры
+
+Процедура ДопМетод() Экспорт
+	Сообщить("ДопМетод сработал");
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Текст = "Щелкните по форме";
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+Форма1.Нажатие = "НажатиеФормы(ЭтотОбъект)";
+
+Пока Ф.Продолжать Цикл
+	Выполнить(Ф.ПолучитьСобытие());
+КонецЦикла;
+</DIV>
+</PRE>
+</details>
+<P></P>
+<details><summary>Тестовый код</summary>
+<P><PRE class=code>
+<a id="copy8" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select8" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont8">
+Перем Форма1, Результат;
+
+Процедура НажатиеФормы(Доппараметр = Неопределено)
+	Если Доппараметр = Неопределено Тогда
+		Возврат;
+	КонецЕсли;
+	// Сообщить("ТипЗнч(Доппараметр) = " + ТипЗнч(Доппараметр));
+	Реф = Новый Рефлектор();
+	Реф.ВызватьМетод(Доппараметр, "ДопМетод", Новый Массив());
+КонецПроцедуры
+
+Процедура ДопМетод() Экспорт
+	Результат = "ДопМетод сработал";
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Текст = "Щелкните по форме";
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+Форма1.Нажатие = "НажатиеФормы(ЭтотОбъект)";
+
+Курсор1 = Ф.Курсор();
+Точка1 = Форма1.Положение;
+Курсор1.Позиция = Ф.Точка(Точка1.Икс + 70, Точка1.Игрек + 70);
+Приостановить(1000);
+Ф.НажатьКнопкуМыши(Ф.ФлагиМыши.ЛеваяВниз + Ф.ФлагиМыши.ЛеваяВверх);
+Выполнить(Ф.ПолучитьСобытие());
+
+Сообщить(?(
+Результат = "ДопМетод сработал"
+, "", "!!! ") + "ЭлементУправления.Нажатие (Control.Click) Свойство" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+</details>
+<P></P>
+<hr style="border-color: lightgray;">
+<li>Вариант5. Тип значения "Действие"</li>
+<P><PRE class=code>
+Форма1.Нажатие = Новый Действие(ЭтотОбъект, "НажатиеФормы");
+</PRE>
+<details><summary>Полный пример кода</summary>
+<P><PRE class=code>
+<a id="copy9" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select9" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont9">
+Перем Ф;
+
+Процедура НажатиеФормы(Доппараметр = Неопределено) Экспорт
+	Если Доппараметр = Неопределено Тогда
+		Возврат;
+	КонецЕсли;
+	Сообщить("ТипЗнч(Доппараметр) = " + ТипЗнч(Доппараметр));
+КонецПроцедуры
+
+Процедура Кнопка1_Нажатие()
+	Сообщить("Кнопка1_Нажатие");
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Ширина = 350;
+Форма1.Текст = "Щелкните по форме и кнопке";
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+Кнопка1 = Форма1.ЭлементыУправления.Добавить(Ф.Кнопка());
+Кнопка1.Текст = "Кнопка";
+
+Форма1.Нажатие = Новый Действие(ЭтотОбъект, "НажатиеФормы");
+Кнопка1.Нажатие = "Кнопка1_Нажатие";
+
+Пока Ф.Продолжать Цикл
+	Событие = Ф.ПолучитьСобытие();
+	Если ТипЗнч(Событие) = Тип("Строка") Тогда
+		Выполнить(Событие);
+	Иначе
+		Событие.Выполнить(Дата(2019,01,02,03));
+	КонецЕсли;
+КонецЦикла;
+</DIV>
+</PRE>
+</details>
+<P></P>
+<details><summary>Тестовый код</summary>
+<P><PRE class=code>
+<a id="copy10" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select10" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont10">
+Перем Ф, Результат;
+
+Процедура НажатиеФормы(Доппараметр = Неопределено) Экспорт
+	Если Доппараметр = Неопределено Тогда
+		Возврат;
+	КонецЕсли;
+	Результат = Строка(ТипЗнч(Доппараметр));
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Текст = "Щелкните по форме и кнопке";
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+Форма1.Нажатие = Новый Действие(ЭтотОбъект, "НажатиеФормы");
+
+Курсор1 = Ф.Курсор();
+Точка1 = Форма1.Положение;
+Курсор1.Позиция = Ф.Точка(Точка1.Икс + 70, Точка1.Игрек + 70);
+Приостановить(1000);
+Ф.НажатьКнопкуМыши(Ф.ФлагиМыши.ЛеваяВниз + Ф.ФлагиМыши.ЛеваяВверх);
+Событие = Ф.ПолучитьСобытие();
+Событие.Выполнить(Дата(2019,01,02,03));
+
+Сообщить(?(
+Результат = "Дата"
+, "", "!!! ") + "ЭлементУправления.Нажатие (Control.Click) Свойство" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+</details>
+<P></P>
+<hr style="border-color: lightgray;">
+<li>Вариант6. Тип значения "СловарнаяЗапись"</li>
+<P><PRE class=code>
+Форма1.Нажатие = Ф.СловарнаяЗапись(ЭтотОбъект, "НажатиеФормы");
+</PRE>
+<details><summary>Полный пример кода</summary>
+<P><PRE class=code>
+<a id="copy11" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select11" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont11">
+Перем Ф;
+
+Процедура НажатиеФормы()
+	// у аргументов события есть свойства Отправитель и Параметр.
+	// Отправитель - это инициализатор события
+	// Параметр - это либо экземпляр типа "Действие", в случае задания обработчика события объектом типа "Действие"
+	// либо ключ экземпляра типа "СловарнаяЗапись", в случае задания обработчика события объектом типа "СловарнаяЗапись"
+	// если обработчик события строкового типа, Параметр будет иметь значение Неопределено
+	Отправитель = Ф.АргументыСобытия.Отправитель;
+	Параметр = Ф.АргументыСобытия.Параметр;
+	Сообщить("Отправитель = " + Отправитель);
+	Сообщить("Параметр = " + Параметр);
+	Реф = Новый Рефлектор();
+	Реф.ВызватьМетод(Параметр, "ДопМетод", Новый Массив());
+КонецПроцедуры
+
+Процедура Кнопка1_Нажатие()
+	Сообщить("Кнопка1_Нажатие");
+	Отправитель = Ф.АргументыСобытия.Отправитель;
+	Параметр = Ф.АргументыСобытия.Параметр;
+	Сообщить("Отправитель = " + Отправитель);
+	Сообщить("Параметр = " + Параметр);
+	Сообщить("");
+КонецПроцедуры
+
+Процедура ДопМетод() Экспорт
+	Сообщить("ДопМетод сработал");
+	Сообщить("");
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Ширина = 350;
+Форма1.Текст = "Щелкните по форме и кнопке";
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+Кнопка1 = Форма1.ЭлементыУправления.Добавить(Ф.Кнопка());
+Кнопка1.Текст = "Кнопка";
+
+Форма1.Нажатие = Ф.СловарнаяЗапись(ЭтотОбъект, "НажатиеФормы");
+Кнопка1.Нажатие = "Кнопка1_Нажатие";
+
+Пока Ф.Продолжать Цикл
+	Событие = Ф.ПолучитьСобытие();
+	Если ТипЗнч(Событие) = Тип("Строка") Тогда
+		Выполнить(Событие);
+	Иначе
+		Событие.Выполнить();
+	КонецЕсли;
+КонецЦикла;
+</DIV>
+</PRE>
+</details>
+<P></P>
+<details><summary>Тестовый код</summary>
+<P><PRE class=code>
+<a id="copy12" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select12" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont12">
+Перем Ф, Результат;
+
+Процедура НажатиеФормы()
+	// у аргументов события есть свойства Отправитель и Параметр.
+	// Отправитель - это инициализатор события
+	// Параметр - это либо экземпляр типа "Действие", в случае задания обработчика события объектом типа "Действие"
+	// либо ключ экземпляра типа "СловарнаяЗапись", в случае задания обработчика события объектом типа "СловарнаяЗапись"
+	// если обработчик события строкового типа, Параметр будет иметь значение Неопределено
+	Отправитель = Ф.АргументыСобытия.Отправитель;
+	Параметр = Ф.АргументыСобытия.Параметр;
+	Реф = Новый Рефлектор();
+	Реф.ВызватьМетод(Параметр, "ДопМетод", Новый Массив());
+КонецПроцедуры
+
+Процедура ДопМетод() Экспорт
+	Результат = "ДопМетод сработал";
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Ширина = 350;
+Форма1.Текст = "Щелкните по форме и кнопке";
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+Форма1.Нажатие = Ф.СловарнаяЗапись(ЭтотОбъект, "НажатиеФормы");
+
+Курсор1 = Ф.Курсор();
+Точка1 = Форма1.Положение;
+Курсор1.Позиция = Ф.Точка(Точка1.Икс + 70, Точка1.Игрек + 70);
+Приостановить(1000);
+Ф.НажатьКнопкуМыши(Ф.ФлагиМыши.ЛеваяВниз + Ф.ФлагиМыши.ЛеваяВверх);
+Выполнить(Ф.ПолучитьСобытие());
+
+Сообщить(?(
+Результат = "ДопМетод сработал"
+, "", "!!! ") + "ЭлементУправления.Нажатие (Control.Click) Свойство" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+</details>
+<P></P>
+<H4 class=dtH4>Смотрите также</H4>
+<P><A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P></DIV>
+<script>
+window.onload = function () {
+    var a = document.getElementById('select1');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont1'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy1');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont1'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+
+    var c = document.getElementById('select2');
+    c.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta3 = document.getElementById('cont2'); 
+		var range3 = document.createRange();
+		range3.selectNode(ta3); 
+		window.getSelection().addRange(range3); 
+        return false;
+    }
+	
+    var d = document.getElementById('copy2');
+    d.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta4 = document.getElementById('cont2'); 
+		var range4 = document.createRange();
+		range4.selectNode(ta4); 
+		window.getSelection().addRange(range4);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range4);
+        return false;
+    }
+	
+    var a = document.getElementById('select3');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont3'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy3');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont3'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+	
+    var a = document.getElementById('select4');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont4'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy4');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont4'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+	
+    var a = document.getElementById('select5');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont5'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy5');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont5'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+	
+    var a = document.getElementById('select6');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont6'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy6');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont6'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+	
+	var a = document.getElementById('select7');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont7'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy7');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont7'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+	
+    var a = document.getElementById('select8');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont8'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy8');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont8'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+	
+	var a = document.getElementById('select9');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont9'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy9');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont9'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+
+    var a = document.getElementById('select10');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont10'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy10');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont10'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+	
+	var a = document.getElementById('select11');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont11'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy11');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont11'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+
+    var a = document.getElementById('select12');
+    a.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta1 = document.getElementById('cont12'); 
+		var range1 = document.createRange();
+		range1.selectNode(ta1); 
+		window.getSelection().addRange(range1); 
+        return false;
+    }
+	
+    var b = document.getElementById('copy12');
+    b.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta2 = document.getElementById('cont12'); 
+		var range2 = document.createRange();
+		range2.selectNode(ta2); 
+		window.getSelection().addRange(range2);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range2);
+        return false;
+    }
+}
+</script>
+</BODY></HTML>

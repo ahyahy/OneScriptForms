@@ -1,4 +1,6 @@
-﻿using ScriptEngine.Machine.Contexts;
+﻿using System;
+using ScriptEngine.Machine.Contexts;
+using ScriptEngine.Machine;
 using System.Reflection;
 
 namespace osf
@@ -8,11 +10,13 @@ namespace osf
     {
         public ClEventArgs dll_obj;
         public string EventString = "";
+        public dynamic Parameter;
         public dynamic Sender;
 
         public EventArgs()
         {
             Sender = null;
+            Parameter = null;
         }
 
         //Свойства============================================================
@@ -107,6 +111,18 @@ namespace osf
         public EventArgs Base_obj;
 
         //Свойства============================================================
+
+        [ContextProperty("Отправитель", "Sender")]
+        public IValue Sender
+        {
+            get { return OneScriptForms.RevertObj(Base_obj.Sender); }
+        }
+        
+        [ContextProperty("Параметр", "Parameter")]
+        public IValue Parameter
+        {
+            get { return (IValue)Base_obj.Parameter; }
+        }
 
         //Методы============================================================
 

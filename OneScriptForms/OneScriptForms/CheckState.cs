@@ -9,16 +9,16 @@ namespace osf
         private int m_checked = (int)System.Windows.Forms.CheckState.Checked; // 1 Данный элемент управления помечен.
         private int m_indeterminate = (int)System.Windows.Forms.CheckState.Indeterminate; // 2 Пометка элемента управления не определена. Такой элемент управления обычно затенен.
 
-        [ContextProperty("НеПомечен", "Unchecked")]
-        public int Unchecked
-        {
-        	get { return m_unchecked; }
-        }
-
         [ContextProperty("Неопределенный", "Indeterminate")]
         public int Indeterminate
         {
         	get { return m_indeterminate; }
+        }
+
+        [ContextProperty("НеПомечен", "Unchecked")]
+        public int Unchecked
+        {
+        	get { return m_unchecked; }
         }
 
         [ContextProperty("Помечен", "Checked")]

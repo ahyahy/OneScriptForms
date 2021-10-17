@@ -7,7 +7,7 @@
     <ProjectGuid>{7402949C-5D18-4D89-B9A9-9D64B7AA71EA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OneScriptForms</RootNamespace>
+    <RootNamespace>osf</RootNamespace>
     <AssemblyName>OneScriptForms</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -31,24 +31,24 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="ScriptEngine, Version=1.3.0.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ScriptEngine, Version=1.7.0.214, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\ScriptEngine.dll</HintPath>
     </Reference>
-    <Reference Include="ScriptEngine.HostedScript, Version=1.3.0.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ScriptEngine.HostedScript, Version=1.7.0.214, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\ScriptEngine.HostedScript.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="ControlCollection.cs" />
     <Compile Include="ControlEventArgs.cs" />
+    <Compile Include="ControlStyles.cs" />
     <Compile Include="Cursor.cs" />
     <Compile Include="Cursors.cs" />
     <Compile Include="DataColumn.cs">

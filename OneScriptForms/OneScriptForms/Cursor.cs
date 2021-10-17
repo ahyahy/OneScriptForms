@@ -14,15 +14,15 @@ namespace osf
             OneScriptForms.AddToHashtable(M_Cursor, this);
         }
 
-        public Cursor(System.Windows.Forms.Cursor p1)
-        {
-            M_Cursor = p1;
-            OneScriptForms.AddToHashtable(M_Cursor, this);
-        }
-
         public Cursor(osf.Cursor p1)
         {
             M_Cursor = p1.M_Cursor;
+            OneScriptForms.AddToHashtable(M_Cursor, this);
+        }
+
+        public Cursor(System.Windows.Forms.Cursor p1)
+        {
+            M_Cursor = p1;
             OneScriptForms.AddToHashtable(M_Cursor, this);
         }
 

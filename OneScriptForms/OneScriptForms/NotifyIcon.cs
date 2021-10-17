@@ -1,4 +1,5 @@
 ﻿using ScriptEngine.Machine.Contexts;
+using ScriptEngine.Machine;
 
 namespace osf
 {
@@ -24,9 +25,9 @@ namespace osf
             OneScriptForms.AddToHashtable(M_NotifyIcon, this);
         }
 
-        public NotifyIcon(System.Windows.Forms.NotifyIcon p1)
+        public NotifyIcon(osf.NotifyIcon p1)
         {
-            M_NotifyIcon = p1;
+            M_NotifyIcon = p1.M_NotifyIcon;
             Click = "";
             DoubleClick = "";
             MouseDown = "";
@@ -35,9 +36,9 @@ namespace osf
             OneScriptForms.AddToHashtable(M_NotifyIcon, this);
         }
 
-        public NotifyIcon(osf.NotifyIcon p1)
+        public NotifyIcon(System.Windows.Forms.NotifyIcon p1)
         {
-            M_NotifyIcon = p1.M_NotifyIcon;
+            M_NotifyIcon = p1;
             Click = "";
             DoubleClick = "";
             MouseDown = "";
@@ -107,7 +108,20 @@ namespace osf
             {
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = Click;
-                EventArgs1.Sender = (object)this;
+                EventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.Click;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    EventArgs1.Parameter = null;
+                }
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
@@ -119,7 +133,20 @@ namespace osf
             {
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = DoubleClick;
-                EventArgs1.Sender = (object)this;
+                EventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.DoubleClick;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    EventArgs1.Parameter = null;
+                }
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
@@ -131,7 +158,20 @@ namespace osf
             {
                 MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
                 MouseEventArgs1.EventString = MouseDown;
-                MouseEventArgs1.Sender = (object)this;
+                MouseEventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.MouseDown;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    MouseEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    MouseEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    MouseEventArgs1.Parameter = null;
+                }
                 MouseEventArgs1.Clicks = e.Clicks;
                 MouseEventArgs1.Button = (int)e.Button;
                 MouseEventArgs1.X = e.X;
@@ -147,7 +187,20 @@ namespace osf
             {
                 MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
                 MouseEventArgs1.EventString = MouseMove;
-                MouseEventArgs1.Sender = (object)this;
+                MouseEventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.MouseMove;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    MouseEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    MouseEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    MouseEventArgs1.Parameter = null;
+                }
                 MouseEventArgs1.Clicks = e.Clicks;
                 MouseEventArgs1.Button = (int)e.Button;
                 MouseEventArgs1.X = e.X;
@@ -163,7 +216,20 @@ namespace osf
             {
                 MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
                 MouseEventArgs1.EventString = MouseUp;
-                MouseEventArgs1.Sender = (object)this;
+                MouseEventArgs1.Sender = this;
+                dynamic event1 = ((dynamic)this).dll_obj.MouseUp;
+                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    MouseEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+                }
+                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    MouseEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+                }
+                else
+                {
+                    MouseEventArgs1.Parameter = null;
+                }
                 MouseEventArgs1.Clicks = e.Clicks;
                 MouseEventArgs1.Button = (int)e.Button;
                 MouseEventArgs1.X = e.X;
@@ -178,6 +244,11 @@ namespace osf
     [ContextClass ("КлЗначокУведомления", "ClNotifyIcon")]
     public class ClNotifyIcon : AutoContext<ClNotifyIcon>
     {
+        private IValue _Click;
+        private IValue _DoubleClick;
+        private IValue _MouseDown;
+        private IValue _MouseMove;
+        private IValue _MouseUp;
         private ClMenuNotifyIcon menu;
         private ClUserControl userControl1 = new ClUserControl();
 
@@ -200,12 +271,42 @@ namespace osf
         //Свойства============================================================
 
         [ContextProperty("ДвойноеНажатие", "DoubleClick")]
-        public string DoubleClick
+        public IValue DoubleClick
         {
-            get { return Base_obj.DoubleClick; }
-            set { Base_obj.DoubleClick = value; }
+            get
+            {
+                if (Base_obj.DoubleClick.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
+                {
+                    return _DoubleClick;
+                }
+                else if (Base_obj.DoubleClick.Contains("osf.ClDictionaryEntry"))
+                {
+                    return _DoubleClick;
+                }
+                else
+                {
+                    return ValueFactory.Create((string)Base_obj.DoubleClick);
+                }
+            }
+            set
+            {
+                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                {
+                    _DoubleClick = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+                    Base_obj.DoubleClick = "ScriptEngine.HostedScript.Library.DelegateAction" + "DoubleClick";
+                }
+                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    _DoubleClick = value;
+                    Base_obj.DoubleClick = "osf.ClDictionaryEntry" + "DoubleClick";
+                }
+                else
+                {
+                    Base_obj.DoubleClick = value.AsString();
+                }
+            }
         }
-
+        
         [ContextProperty("Значок", "Icon")]
         public ClIcon Icon
         {
@@ -224,12 +325,42 @@ namespace osf
         }
         
         [ContextProperty("Нажатие", "Click")]
-        public string Click
+        public IValue Click
         {
-            get { return Base_obj.Click; }
-            set { Base_obj.Click = value; }
+            get
+            {
+                if (Base_obj.Click.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
+                {
+                    return _Click;
+                }
+                else if (Base_obj.Click.Contains("osf.ClDictionaryEntry"))
+                {
+                    return _Click;
+                }
+                else
+                {
+                    return ValueFactory.Create((string)Base_obj.Click);
+                }
+            }
+            set
+            {
+                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                {
+                    _Click = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+                    Base_obj.Click = "ScriptEngine.HostedScript.Library.DelegateAction" + "Click";
+                }
+                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    _Click = value;
+                    Base_obj.Click = "osf.ClDictionaryEntry" + "Click";
+                }
+                else
+                {
+                    Base_obj.Click = value.AsString();
+                }
+            }
         }
-
+        
         [ContextProperty("Отображать", "Visible")]
         public bool Visible
         {
@@ -238,26 +369,116 @@ namespace osf
         }
 
         [ContextProperty("ПриНажатииКнопкиМыши", "MouseDown")]
-        public string MouseDown
+        public IValue MouseDown
         {
-            get { return Base_obj.MouseDown; }
-            set { Base_obj.MouseDown = value; }
+            get
+            {
+                if (Base_obj.MouseDown.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
+                {
+                    return _MouseDown;
+                }
+                else if (Base_obj.MouseDown.Contains("osf.ClDictionaryEntry"))
+                {
+                    return _MouseDown;
+                }
+                else
+                {
+                    return ValueFactory.Create((string)Base_obj.MouseDown);
+                }
+            }
+            set
+            {
+                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                {
+                    _MouseDown = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+                    Base_obj.MouseDown = "ScriptEngine.HostedScript.Library.DelegateAction" + "MouseDown";
+                }
+                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    _MouseDown = value;
+                    Base_obj.MouseDown = "osf.ClDictionaryEntry" + "MouseDown";
+                }
+                else
+                {
+                    Base_obj.MouseDown = value.AsString();
+                }
+            }
         }
-
+        
         [ContextProperty("ПриОтпусканииМыши", "MouseUp")]
-        public string MouseUp
+        public IValue MouseUp
         {
-            get { return Base_obj.MouseUp; }
-            set { Base_obj.MouseUp = value; }
+            get
+            {
+                if (Base_obj.MouseUp.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
+                {
+                    return _MouseUp;
+                }
+                else if (Base_obj.MouseUp.Contains("osf.ClDictionaryEntry"))
+                {
+                    return _MouseUp;
+                }
+                else
+                {
+                    return ValueFactory.Create((string)Base_obj.MouseUp);
+                }
+            }
+            set
+            {
+                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                {
+                    _MouseUp = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+                    Base_obj.MouseUp = "ScriptEngine.HostedScript.Library.DelegateAction" + "MouseUp";
+                }
+                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    _MouseUp = value;
+                    Base_obj.MouseUp = "osf.ClDictionaryEntry" + "MouseUp";
+                }
+                else
+                {
+                    Base_obj.MouseUp = value.AsString();
+                }
+            }
         }
-
+        
         [ContextProperty("ПриПеремещенииМыши", "MouseMove")]
-        public string MouseMove
+        public IValue MouseMove
         {
-            get { return Base_obj.MouseMove; }
-            set { Base_obj.MouseMove = value; }
+            get
+            {
+                if (Base_obj.MouseMove.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
+                {
+                    return _MouseMove;
+                }
+                else if (Base_obj.MouseMove.Contains("osf.ClDictionaryEntry"))
+                {
+                    return _MouseMove;
+                }
+                else
+                {
+                    return ValueFactory.Create((string)Base_obj.MouseMove);
+                }
+            }
+            set
+            {
+                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                {
+                    _MouseMove = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+                    Base_obj.MouseMove = "ScriptEngine.HostedScript.Library.DelegateAction" + "MouseMove";
+                }
+                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
+                {
+                    _MouseMove = value;
+                    Base_obj.MouseMove = "osf.ClDictionaryEntry" + "MouseMove";
+                }
+                else
+                {
+                    Base_obj.MouseMove = value.AsString();
+                }
+            }
         }
-
+        
         [ContextProperty("Текст", "Text")]
         public string Text
         {

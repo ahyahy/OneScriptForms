@@ -24,6 +24,52 @@
 		<p style="margin-left: 40px;">Первая версия библиотеки вышла 23 мая 2021 г. с номером 1.0.0.0</p>
 		
 		<hr style="border-color: lightgray; margin-left: 40px; margin-right: 40px;"> 
+		<p style="margin-left: 40px;">Версия 1.1.0.0 -&nbsp;<a href="OneScriptForms1_1_0_0.zip"><big><span style="font-weight: bold;"><button>скачать</button></span></big></a></p>
+		<div style="margin-left: 40px;"></div>
+		<div style="margin-left: 40px;">
+			<details><summary>Описание</summary>
+				<div style="margin-left: 40px;">
+					Изменения:  <B></B>
+					<br>&nbsp;&nbsp;&nbsp;- Свойство <B>Тип.Имя (Type.Name)</B> возвращало значение независимо от языка, что не 
+		соответствовало заявленному в справке. Исправлено.
+					<br>&nbsp;&nbsp;&nbsp;- Свойство объекта, задающее код обработки события, кроме строкового типа теперь может 
+		принимать значения с типом <B>"Действие"</B> и <B>"СловарнаяЗапись"</B>. Автоматически появилась
+		возможность передать в обработчик события произвольный объект в качестве параметра.
+					<br>&nbsp;&nbsp;&nbsp;- Добавлено перечисление - <B>СтильЭлементаУправления (ControlStyles)</B>
+					<br>&nbsp;&nbsp;&nbsp;- Добавлено свойство - <B>ЭлементУправления.ДвойнаяБуферизация (Control.DoubleBuffered)</B>
+					<br>&nbsp;&nbsp;&nbsp;- Добавлен метод - <B>ЭлементУправления.ОбновитьСтили (Control.UpdateStyles)</B>
+					<br>&nbsp;&nbsp;&nbsp;- Добавлен метод - <B>ЭлементУправления.ПолучитьСтиль (Control.GetStyle)</B>
+					<br>&nbsp;&nbsp;&nbsp;- Добавлен метод - <B>ЭлементУправления.УстановитьСтиль (Control.SetStyle)</B>
+					<br>&nbsp;&nbsp;&nbsp;- Добавлен метод - <B>ФормыДляОдноСкрипта.ЧислоСообщений (OneScriptForms.EventQueueCount)</B>
+					<br>&nbsp;&nbsp;&nbsp;- Добавлен метод - <B>ФормыДляОдноСкрипта.ПередатьУправление (OneScriptForms.EventControlTransfer)</B>
+					<br>&nbsp;&nbsp;&nbsp;- Исправлены обработчики событий:
+		<B>ЭлементУправления.КлавишаВверх (Control.KeyUp)</B>
+		<B>ЭлементУправления.КлавишаВниз (Control.KeyDown)</B>
+					<br>&nbsp;&nbsp;&nbsp;- Конструктор класса <B>КнопкаПанелиИнструментов (ToolBarButton)</B> не работал без параметра, как было заявлено в справке. Исправлено.
+					<br>&nbsp;&nbsp;&nbsp;- Свойство <B>КнопкаПанелиИнструментов.НейтральноеПоложение (ToolBarButton.ParitalPush)</B> считается устаревшим.
+		В английском варианте имени была неточность. <B>Вместо него используйте свойство КнопкаПанелиИнструментов.НейтральноеПоложение (ToolBarButton.PartialPush)</B>.
+		Соблюдена обратная совместимость.
+					<br>&nbsp;&nbsp;&nbsp;- Свойство <B>ПолеВводаОснова.МногострочныйРежим (TextBoxBase.MultiLine)</B> считается устаревшим.
+		В английском варианте имени была неточность. Вместо него используйте свойство <B>ПолеВводаОснова.МногострочныйРежим (TextBoxBase.Multiline)</B>.
+		Соблюдена обратная совместимость.
+					<br>&nbsp;&nbsp;&nbsp;- Свойство <B>ПанельВкладок.МногострочныйРежим (TabControl.MultiLine)</B> считается устаревшим.
+		В английском варианте имени была неточность. Вместо него используйте свойство <B>ПанельВкладок.МногострочныйРежим (TabControl.Multiline)</B>.
+		Соблюдена обратная совместимость.
+					<br>&nbsp;&nbsp;&nbsp;- В элементе управления <B>Календарь (MonthCalendar)</B> не выделялись жирным шрифтом <B>ВыделенныеДаты (BoldedDates)</B>, 
+		<B>ЕжегодныеДаты (AnnuallyBoldedDates)</B> и <B>ЕжемесячныеДаты (MonthlyBoldedDates)</B>. Исправлено.
+					<br>&nbsp;&nbsp;&nbsp;- Добавлен метод <B>ФормыДляОдноСкрипта.СтрНайтиМежду (OneScriptForms.StrFindBetween)</B>.
+					<br>&nbsp;&nbsp;&nbsp;- Добавлен метод <B>ФормыДляОдноСкрипта.СвойстваКласса (OneScriptForms.PropClass)</B>.
+					<br>&nbsp;&nbsp;&nbsp;- Добавлен метод <B>МассивСписок.ОбратныйПорядок (ArrayList.Reverse)</B>.
+					<br>&nbsp;&nbsp;&nbsp;- Добавлен метод <B>МассивСписок.Сортировать (ArrayList.Sort)</B>.
+					<br>&nbsp;&nbsp;&nbsp;- Добавлен метод <B>МассивСписок.Содержит (ArrayList.Contains)</B>.
+					<br>&nbsp;&nbsp;&nbsp;- Изменен конструктор класса <B>Тип (Type)</B>.
+					<br>&nbsp;&nbsp;&nbsp;- Изменен метод <B>ФормыДляОдноСкрипта.СвойстваОбъекта (OneScriptForms.PropObj)</B>.
+					<br>&nbsp;&nbsp;&nbsp;- Изменения в тексте справки.
+				</div>
+			</details>
+		</div>
+		
+		<hr style="border-color: lightgray; margin-left: 40px; margin-right: 40px;"> 
 		<p style="margin-left: 40px;">Версия 1.0.0.0 -&nbsp;<a href="OneScriptForms1_0_0_0.zip"><big><span style="font-weight: bold;"><button>скачать</button></span></big></a></p>
 		<div style="margin-left: 40px;"></div>
 		<div style="margin-left: 40px;">
