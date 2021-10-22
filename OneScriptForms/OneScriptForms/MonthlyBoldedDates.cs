@@ -14,17 +14,13 @@ namespace osf
             get { return M_MonthCalendar.MonthlyBoldedDates; }
             set { M_MonthCalendar.MonthlyBoldedDates = value; }
         }
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return M_Object.Length; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Добавить", "Add")]
         public IValue Add(IValue p1)
         {

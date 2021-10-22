@@ -3,7 +3,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class FileSystemEventArgs : EventArgs
     {
         public int ChangeType = 0;
@@ -11,16 +10,11 @@ namespace osf
         public string FullPath = null;
         public string Name = null;
 
-        //Свойства============================================================
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлСобытиеФайловойСистемыАрг", "ClFileSystemEventArgs")]
     public class ClFileSystemEventArgs : AutoContext<ClFileSystemEventArgs>
     {
-
         public ClFileSystemEventArgs()
         {
             FileSystemEventArgs FileSystemEventArgs1 = new FileSystemEventArgs();
@@ -36,9 +30,7 @@ namespace osf
         }
         
         public FileSystemEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Имя", "Name")]
         public string Name
         {
@@ -68,8 +60,6 @@ namespace osf
         {
             get { return (int)Base_obj.ChangeType; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

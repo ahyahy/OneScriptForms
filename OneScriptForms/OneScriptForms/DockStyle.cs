@@ -47,6 +47,5 @@ namespace osf
         {
         	get { return m_right; }
         }
-
     }
 }

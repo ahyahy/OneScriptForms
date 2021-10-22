@@ -35,8 +35,6 @@ namespace osf
             base.M_CommonDialog = M_FontDialog;
         }
 
-        //Свойства============================================================
-
         public osf.Color Color
         {
             get { return new Color(M_FontDialog.Color); }
@@ -54,15 +52,11 @@ namespace osf
             get { return M_FontDialog.ShowColor; }
             set { M_FontDialog.ShowColor = value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлДиалогВыбораШрифта", "ClFontDialog")]
     public class ClFontDialog : AutoContext<ClFontDialog>
     {
-
         public ClFontDialog()
         {
             FontDialog FontDialog1 = new FontDialog();
@@ -78,9 +72,7 @@ namespace osf
         }
         
         public FontDialog Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Тип", "Type")]
         public ClType Type
         {
@@ -104,9 +96,7 @@ namespace osf
                 Base_obj.Font.dll_obj = value;
             }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

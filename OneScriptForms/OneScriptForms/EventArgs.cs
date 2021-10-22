@@ -5,7 +5,6 @@ using System.Reflection;
 
 namespace osf
 {
-
     public class EventArgs
     {
         public ClEventArgs dll_obj;
@@ -18,10 +17,6 @@ namespace osf
             Sender = null;
             Parameter = null;
         }
-
-        //Свойства============================================================
-
-        //Методы============================================================
 
         public virtual bool PostEvent()
         {
@@ -87,13 +82,11 @@ namespace osf
             }
             return true;
         }
-
     }
 
     [ContextClass ("КлАргументыСобытия", "ClEventArgs")]
     public class ClEventArgs : AutoContext<ClEventArgs>
     {
-
         public ClEventArgs()
         {
             EventArgs EventArgs1 = new EventArgs();
@@ -109,9 +102,7 @@ namespace osf
         }
         
         public EventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Отправитель", "Sender")]
         public IValue Sender
         {
@@ -123,8 +114,6 @@ namespace osf
         {
             get { return (IValue)Base_obj.Parameter; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

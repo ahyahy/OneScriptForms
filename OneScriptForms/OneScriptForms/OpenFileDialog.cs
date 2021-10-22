@@ -4,7 +4,6 @@ using System.Threading;
 
 namespace osf
 {
-
     public class OpenFileDialog : FileDialog
     {
         public ClOpenFileDialog dll_obj;
@@ -31,8 +30,6 @@ namespace osf
             OneScriptForms.AddToHashtable(M_OpenFileDialog, this);
         }
 
-        //Свойства============================================================
-
         public override bool CheckFileExists
         {
             get { return M_OpenFileDialog.CheckFileExists; }
@@ -55,15 +52,11 @@ namespace osf
             get { return M_OpenFileDialog.ShowReadOnly; }
             set { M_OpenFileDialog.ShowReadOnly = value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлДиалогОткрытияФайла", "ClOpenFileDialog")]
     public class ClOpenFileDialog : AutoContext<ClOpenFileDialog>
     {
-
         public ClOpenFileDialog()
         {
             OpenFileDialog OpenFileDialog1 = new OpenFileDialog();
@@ -79,9 +72,7 @@ namespace osf
         }
         
         public OpenFileDialog Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ВосстанавливатьКаталог", "RestoreDirectory")]
         public bool RestoreDirectory
         {
@@ -178,9 +169,7 @@ namespace osf
             get { return Base_obj.Filter; }
             set { Base_obj.Filter = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

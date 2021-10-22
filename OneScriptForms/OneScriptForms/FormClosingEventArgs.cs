@@ -3,7 +3,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class FormClosingEventArgs : CancelEventArgs
     {
         public new ClFormClosingEventArgs dll_obj;
@@ -14,10 +13,6 @@ namespace osf
             CloseReason = (int)p1;
             Cancel = p2;
         }
-
-        //Свойства============================================================
-
-        //Методы============================================================
 
         public override bool PostEvent()
         {
@@ -31,13 +26,11 @@ namespace osf
             Form1.M_Form.FormClosing += Form1.M_Form_FormClosing;
             return true;
         }
-
     }
 
     [ContextClass ("КлПриЗакрытииФормыАрг", "ClFormClosingEventArgs")]
     public class ClFormClosingEventArgs : AutoContext<ClFormClosingEventArgs>
     {
-
         public ClFormClosingEventArgs()
         {
             FormClosingEventArgs FormClosingEventArgs1 = new FormClosingEventArgs(System.Windows.Forms.CloseReason.None, true);
@@ -53,9 +46,7 @@ namespace osf
         }
 
         public FormClosingEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Отмена", "Cancel")]
         public bool Cancel
         {
@@ -80,8 +71,6 @@ namespace osf
         {
             get { return (int)Base_obj.CloseReason; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

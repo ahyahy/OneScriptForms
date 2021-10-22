@@ -8,11 +8,7 @@ namespace osf
     [ContextClass ("КлБуферОбмена", "ClClipboard")]
     public class ClClipboard : AutoContext<ClClipboard>
     {
-
-        //Свойства============================================================
-
-        //Методы============================================================
-
+        
         [ContextMethod("Очистить", "Clear")]
         public void Clear()
         {

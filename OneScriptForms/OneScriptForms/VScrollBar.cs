@@ -53,11 +53,6 @@ namespace osf
             ValueChanged = "";
             Scroll = "";
         }
-
-        //Свойства============================================================
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлВертикальнаяПрокрутка", "ClVScrollBar")]
@@ -118,9 +113,7 @@ namespace osf
         }
         
         public VScrollBar Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("БольшоеИзменение", "LargeChange")]
         public int LargeChange
         {
@@ -1330,9 +1323,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

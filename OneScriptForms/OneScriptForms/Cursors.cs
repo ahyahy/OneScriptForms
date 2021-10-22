@@ -2,12 +2,9 @@
 
 namespace osf
 {
-
     public class Cursors
     {
         public ClCursors dll_obj;
-
-        //Свойства============================================================
 
         public osf.Cursor AppStarting
         {
@@ -148,15 +145,11 @@ namespace osf
         {
             get {return new Cursor(System.Windows.Forms.Cursors.WaitCursor); }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлКурсоры", "ClCursors")]
     public class ClCursors : AutoContext<ClCursors>
     {
-
         public ClCursors()
         {
             Cursors Cursors1 = new Cursors();
@@ -172,9 +165,7 @@ namespace osf
         }
         
         public Cursors Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("БезДвижения2D", "NoMove2D")]
         public ClCursor NoMove2D
         {
@@ -342,8 +333,6 @@ namespace osf
         {
             get { return (ClCursor)OneScriptForms.RevertObj(Base_obj.UpArrow); }
         }
-
-        //Методы============================================================
-
+        
     }
 }

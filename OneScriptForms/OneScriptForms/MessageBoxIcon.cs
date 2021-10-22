@@ -68,6 +68,5 @@ namespace osf
         {
         	get { return m_hand; }
         }
-
     }
 }

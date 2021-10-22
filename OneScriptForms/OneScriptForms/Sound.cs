@@ -3,15 +3,10 @@ using System.Runtime.InteropServices;
 
 namespace osf
 {
-
     public class Sound
     {
         [DllImport("winmm.dll", CharSet = CharSet.Auto, SetLastError = true)] public static extern int PlaySound([MarshalAs(UnmanagedType.VBByRefStr)] ref string name, int hmod, int flags);
         public ClSound dll_obj;
-
-        //Свойства============================================================
-
-        //Методы============================================================
 
         public void Play(string filename)
         {
@@ -28,13 +23,11 @@ namespace osf
         {
             Sound.PlaySound(ref name, 0, 65539);
         }
-
     }
 
     [ContextClass ("КлЗвук", "ClSound")]
     public class ClSound : AutoContext<ClSound>
     {
-
         public ClSound()
         {
             Sound Sound1 = new Sound();
@@ -50,11 +43,7 @@ namespace osf
         }
         
         public Sound Base_obj;
-
-        //Свойства============================================================
-
-        //Методы============================================================
-
+        
         [ContextMethod("Воспроизвести", "Play")]
         public void Play(string p1)
         {

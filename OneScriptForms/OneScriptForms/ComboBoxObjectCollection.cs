@@ -5,7 +5,6 @@ using System.Reflection;
 
 namespace osf
 {
-
     public class ComboBoxObjectCollection : CollectionBase
     {
         public ClComboBoxObjectCollection dll_obj;
@@ -21,8 +20,6 @@ namespace osf
             base.List = M_ComboBoxObjectCollection;
         }
 
-        //Свойства============================================================
-
         public new object this[int index]
         {
             get { return M_ComboBoxObjectCollection[index]; }
@@ -32,8 +29,6 @@ namespace osf
         {
             get { return Enumerator.Current; }
         }
-
-        //Методы============================================================
 
         public new object Add(object item)
         {
@@ -54,7 +49,6 @@ namespace osf
             M_ComboBoxObjectCollection.Remove(item);
             System.Windows.Forms.Application.DoEvents();
         }
-
     }
 
     [ContextClass ("КлЭлементыПоляВыбора", "ClComboBoxObjectCollection")]
@@ -71,17 +65,13 @@ namespace osf
         }
 
         public ComboBoxObjectCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Вставить", "Insert")]
         public IValue Insert(int p1, IValue p2)
         {

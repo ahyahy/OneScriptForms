@@ -78,8 +78,6 @@ namespace osf
             Closing = "";
         }
 
-        //Свойства============================================================
-
         public osf.Control AcceptButton
         {
             get
@@ -421,8 +419,6 @@ namespace osf
             }
         }
 
-        //Методы============================================================
-
         public void Activate()
         {
             M_Form.Activate();
@@ -596,7 +592,6 @@ namespace osf
 
             return (int)DialogResult1;
         }
-
     }
 
     [ContextClass ("КлФорма", "ClForm")]
@@ -659,9 +654,7 @@ namespace osf
         }
         
         public Form Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("АвтоПрокрутка", "AutoScroll")]
         public bool AutoScroll
         {
@@ -2098,9 +2091,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Активизировать", "Activate")]
         public void Activate()
         {

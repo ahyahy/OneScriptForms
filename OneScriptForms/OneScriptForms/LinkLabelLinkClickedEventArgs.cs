@@ -3,23 +3,17 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class LinkLabelLinkClickedEventArgs : EventArgs
     {
         public int Button;
         public new ClLinkLabelLinkClickedEventArgs dll_obj;
         public osf.Link Link;
 
-        //Свойства============================================================
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлНадписьСсылкаСсылкаНажатаАрг", "ClLinkLabelLinkClickedEventArgs")]
     public class ClLinkLabelLinkClickedEventArgs : AutoContext<ClLinkLabelLinkClickedEventArgs>
     {
-
         public ClLinkLabelLinkClickedEventArgs()
         {
             LinkLabelLinkClickedEventArgs LinkLabelLinkClickedEventArgs1 = new LinkLabelLinkClickedEventArgs();
@@ -35,9 +29,7 @@ namespace osf
         }
         
         public LinkLabelLinkClickedEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Кнопка", "Button")]
         public int Button
         {
@@ -61,8 +53,6 @@ namespace osf
         {
             get { return (ClLink)OneScriptForms.RevertObj(Base_obj.Link); }
         }
-
-        //Методы============================================================
-
+        
     }
 }

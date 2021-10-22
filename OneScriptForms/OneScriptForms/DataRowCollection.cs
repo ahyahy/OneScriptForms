@@ -4,7 +4,6 @@ using ScriptEngine.Machine.Contexts;
 
 namespace osf
 {
-
     public class DataRowCollection : ICollection, IEnumerable, IEnumerator
     {
         public ClDataRowCollection dll_obj;
@@ -15,8 +14,6 @@ namespace osf
         {
             M_DataRowCollection = p1;
         }
-
-        //Свойства============================================================
 
         public int Count
         {
@@ -50,8 +47,6 @@ namespace osf
             {
             }
         }
-
-        //Методы============================================================
 
         public osf.DataRow Add(DataRow p1)
         {
@@ -94,13 +89,11 @@ namespace osf
         {
             M_DataRowCollection.RemoveAt(p1);
         }
-
     }
 
     [ContextClass ("КлСтрокиДанных", "ClDataRowCollection")]
     public class ClDataRowCollection : AutoContext<ClDataRowCollection>
     {
-
         public ClDataRowCollection(DataRowCollection p1)
         {
             DataRowCollection DataRowCollection1 = p1;
@@ -109,17 +102,13 @@ namespace osf
         }
 
         public DataRowCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Вставить", "InsertAt")]
         public ClDataRow InsertAt(ClDataRow p1, int p2)
         {

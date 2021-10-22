@@ -3,7 +3,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class MouseEventArgs : EventArgs
     {
         private int button = -1;
@@ -12,22 +11,16 @@ namespace osf
         public int X = -1;
         public int Y = -1;
 
-        //Свойства============================================================
-
         public int Button
         {
             get { return (int)button; }
             set { button = (int)value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлМышьАрг", "ClMouseEventArgs")]
     public class ClMouseEventArgs : AutoContext<ClMouseEventArgs>
     {
-
         public ClMouseEventArgs()
         {
             MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
@@ -43,9 +36,7 @@ namespace osf
         }
         
         public MouseEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Игрек", "Y")]
         public int Y
         {
@@ -81,8 +72,6 @@ namespace osf
         {
             get { return (IValue)Base_obj.Parameter; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

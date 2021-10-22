@@ -4,7 +4,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class Font
     {
         public ClFont dll_obj;
@@ -28,8 +27,6 @@ namespace osf
             OneScriptForms.AddToHashtable(M_Font, this);
         }
 
-        //Свойства============================================================
-
         public int Height
         {
             get { return M_Font.Height; }
@@ -49,15 +46,11 @@ namespace osf
         {
             get { return (int)M_Font.Style; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлШрифт", "ClFont")]
     public class ClFont : AutoContext<ClFont>
     {
-
         public ClFont(string p1 = null, float p2 = 6.0f, int p3 = 0)
         {
             Font Font1 = new Font(p1, p2, (System.Drawing.FontStyle)p3);
@@ -73,9 +66,7 @@ namespace osf
         }
 
         public Font Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Высота", "Height")]
         public int Height
         {
@@ -99,8 +90,6 @@ namespace osf
         {
             get { return (int)Base_obj.Style; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

@@ -92,9 +92,7 @@ namespace osf
         {
             return new OneScriptForms();
         }
-
-        //Свойства============================================================
-
+        
         [ContextProperty("АргументыСобытия", "EventArgs")]
         public IValue EventArgs
         {
@@ -527,9 +525,7 @@ namespace osf
         {
             get { return cl_FormatDateTimePicker; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("БуферОбмена", "Clipboard")]
         public ClClipboard Clipboard()
         {

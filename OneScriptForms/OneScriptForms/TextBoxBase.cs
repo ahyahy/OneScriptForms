@@ -1,6 +1,5 @@
 ﻿namespace osf
 {
-
     public class TextBoxBase : Control
     {
         private System.Windows.Forms.TextBoxBase m_TextBoxBase;
@@ -8,8 +7,6 @@
         public TextBoxBase()
         {
         }
-
-        //Свойства============================================================
 
         public bool AcceptsTab
         {
@@ -156,8 +153,6 @@
             }
         }
 
-        //Методы============================================================
-
         public void AppendText(string text)
         {
             M_TextBoxBase.AppendText(text);
@@ -199,7 +194,5 @@
             M_TextBoxBase.Undo();
             System.Windows.Forms.Application.DoEvents();
         }
-
     }
-
 }

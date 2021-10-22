@@ -37,8 +37,6 @@ namespace osf
             base.M_Control = M_PictureBox;
         }
 
-        //Свойства============================================================
-
         public int BackgroundImageLayout
         {
             get { return (int)M_PictureBox.BackgroundImageLayout; }
@@ -79,9 +77,6 @@ namespace osf
                 System.Windows.Forms.Application.DoEvents();
             }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлПолеКартинки", "ClPictureBox")]
@@ -140,9 +135,7 @@ namespace osf
         }
         
         public PictureBox Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ВерсияПродукта", "ProductVersion")]
         public string ProductVersion
         {
@@ -1268,9 +1261,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

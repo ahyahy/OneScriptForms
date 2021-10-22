@@ -4,7 +4,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class ListItem
     {
         public ClListItem dll_obj;
@@ -27,8 +26,6 @@ namespace osf
             M_Value = value;
             OneScriptForms.AddToHashtable(this, this);
         }
-
-        //Свойства============================================================
 
         public osf.Color ForeColor
         {
@@ -82,13 +79,10 @@ namespace osf
             }
         }
 
-        //Методы============================================================
-
         public override string ToString()
         {
             return Text;
         }
-
     }
 
     [ContextClass ("КлЭлементСписка", "ClListItem")]
@@ -121,9 +115,7 @@ namespace osf
         }
 
         public ListItem Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Значение", "Value")]
         public IValue Value
         {
@@ -158,9 +150,7 @@ namespace osf
             get { return Base_obj.Text; }
             set { Base_obj.Text = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("ВСтроку", "ToString")]
         public new string ToString()
         {

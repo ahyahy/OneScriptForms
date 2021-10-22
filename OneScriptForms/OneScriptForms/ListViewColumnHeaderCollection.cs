@@ -4,7 +4,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class ListViewColumnHeaderCollection : CollectionBase
     {
         public ClListViewColumnHeaderCollection dll_obj;
@@ -20,8 +19,6 @@ namespace osf
             base.List = M_ColumnHeaderCollection;
         }
 
-        //Свойства============================================================
-
         public override object Current
         {
             get { return (object)(ColumnHeader)((ColumnHeaderEx)Enumerator.Current).M_Object; }
@@ -31,8 +28,6 @@ namespace osf
         {
             get { return (ColumnHeader)((ColumnHeaderEx)M_ColumnHeaderCollection[index]).M_Object; }
         }
-
-        //Методы============================================================
 
         public osf.ColumnHeader Insert(int index, ColumnHeader p1)
         {
@@ -62,13 +57,11 @@ namespace osf
         {
             M_ColumnHeaderCollection.Remove((System.Windows.Forms.ColumnHeader)column.M_ColumnHeader);
         }
-
     }
 
     [ContextClass ("КлКолонки", "ClListViewColumnHeaderCollection")]
     public class ClListViewColumnHeaderCollection : AutoContext<ClListViewColumnHeaderCollection>
     {
-
         public ClListViewColumnHeaderCollection()
         {
             ListViewColumnHeaderCollection ListViewColumnHeaderCollection1 = new ListViewColumnHeaderCollection();
@@ -84,17 +77,13 @@ namespace osf
         }
         
         public ListViewColumnHeaderCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Вставить", "Insert")]
         public ClColumnHeader Insert(int p1, ClColumnHeader p2)
         {

@@ -3,7 +3,6 @@ using ScriptEngine.Machine.Contexts;
 
 namespace osf
 {
-
     public class DataView : IEnumerable, IEnumerator
     {
         public ClDataView dll_obj;
@@ -27,8 +26,6 @@ namespace osf
             M_DataView = p1;
             OneScriptForms.AddToHashtable(M_DataView, this);
         }
-
-        //Свойства============================================================
 
         public bool AllowEdit
         {
@@ -98,8 +95,6 @@ namespace osf
             set { M_DataView.Table = (System.Data.DataTable)value.M_DataTable; }
         }
 
-        //Методы============================================================
-
         public osf.DataRowView AddNew()
         {
             return new DataRowView(M_DataView.AddNew());
@@ -125,13 +120,11 @@ namespace osf
         {
             return Enumerator.MoveNext();
         }
-
     }
 
     [ContextClass ("КлПредставлениеДанных", "ClDataView")]
     public class ClDataView : AutoContext<ClDataView>
     {
-
         public ClDataView()
         {
             DataView DataView1 = new DataView();
@@ -154,9 +147,7 @@ namespace osf
         }
 
         public DataView Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
@@ -204,9 +195,7 @@ namespace osf
             get { return Base_obj.RowFilter; }
             set { Base_obj.RowFilter = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("ДобавитьНовуюСтроку", "AddNew")]
         public ClDataRowView AddNew()
         {

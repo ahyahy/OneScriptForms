@@ -36,8 +36,6 @@ namespace osf
             base.M_Control = M_StatusBar;
         }
 
-        //Свойства============================================================
-
         public osf.StatusBarPanelCollection Panels
         {
             get { return new StatusBarPanelCollection(M_StatusBar.Panels); }
@@ -54,9 +52,6 @@ namespace osf
             get { return M_StatusBar.SizingGrip; }
             set { M_StatusBar.SizingGrip = value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлСтрокаСостояния", "ClStatusBar")]
@@ -118,9 +113,7 @@ namespace osf
         }
         
         public StatusBar Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ВерсияПродукта", "ProductVersion")]
         public string ProductVersion
         {
@@ -1234,9 +1227,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

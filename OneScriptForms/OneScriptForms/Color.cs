@@ -5,7 +5,6 @@ using System.Reflection;
 
 namespace osf
 {
-
     public class Color
     {
         public ClColor dll_obj;
@@ -25,10 +24,6 @@ namespace osf
         {
             M_Color = p1;
         }
-
-        //Свойства============================================================
-
-        //Свойства============================================================
 
         public int A
         {
@@ -895,8 +890,6 @@ namespace osf
             get { return new Color(System.Drawing.Color.FromName("YellowGreen")); }
         }
 
-        //Методы============================================================
-
         public osf.Color FromArgb(int a, int r, int g, int b)
         {
             return new Color(System.Drawing.Color.FromArgb(a, r, g, b));
@@ -916,13 +909,11 @@ namespace osf
         {
             return M_Color.ToArgb();
         }
-
     }
 
     [ContextClass ("КлЦвет", "ClColor")]
     public class ClColor : AutoContext<ClColor>
     {
-
         public ClColor()
         {
             Color Color1 = new Color();
@@ -938,9 +929,7 @@ namespace osf
         }
         
         public Color Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Аквамариновый", "Aquamarine")]
         public ClColor Aquamarine
         {
@@ -2014,9 +2003,7 @@ namespace osf
         {
             get { return (ClColor)OneScriptForms.RevertObj(Base_obj.HotPink); }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("ИзArgb", "FromArgb")]
         public ClColor FromArgb(int p1, int p2, int p3, int p4)
         {

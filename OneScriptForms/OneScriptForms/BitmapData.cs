@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class BitmapData
     {
         public ClBitmapData dll_obj;
@@ -19,17 +18,11 @@ namespace osf
             M_BitmapData = p1;
             OneScriptForms.AddToHashtable(M_BitmapData, this);
         }
-
-        //Свойства============================================================
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлАтрибутыКартинки", "ClBitmapData")]
     public class ClBitmapData : AutoContext<ClBitmapData>
     {
-
         public ClBitmapData(BitmapData p1)
         {
             BitmapData BitmapData1 = p1;
@@ -38,10 +31,6 @@ namespace osf
         }
 
         public BitmapData Base_obj;
-
-        //Свойства============================================================
-
-        //Методы============================================================
-
+        
     }
 }

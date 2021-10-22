@@ -4,7 +4,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class GridItemCollection : System.Collections.ICollection
     {
         public ClGridItemCollection dll_obj;
@@ -14,8 +13,6 @@ namespace osf
         {
             M_GridItemCollection = p1;
         }
-
-        //Свойства============================================================
 
         public int Count
         {
@@ -42,8 +39,6 @@ namespace osf
             get { return new GridItem(M_GridItemCollection[str]); }
         }
 
-        //Методы============================================================
-
         public void CopyTo(Array array, int index)
         {
             CopyTo(array, index);
@@ -53,13 +48,11 @@ namespace osf
         {
             return M_GridItemCollection.GetEnumerator();
         }
-
     }
 
     [ContextClass ("КлЭлементыСетки", "ClGridItemCollection")]
     public class ClGridItemCollection : AutoContext<ClGridItemCollection>
     {
-
         public ClGridItemCollection(GridItemCollection p1)
         {
             GridItemCollection GridItemCollection1 = p1;
@@ -75,17 +68,13 @@ namespace osf
         }
 
         public GridItemCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Элемент", "Item")]
         public ClGridItem Item(IValue p1)
         {

@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class MessageBox
     {
         public int Buttons;
@@ -18,10 +17,6 @@ namespace osf
             Buttons = (int)System.Windows.Forms.MessageBoxButtons.OK;
             Icon = (int)System.Windows.Forms.MessageBoxIcon.None;
         }
-
-        //Свойства============================================================
-
-        //Методы============================================================
 
         public int Show(string text = null, string title = null, int buttons = (int)System.Windows.Forms.MessageBoxButtons.OK, int icon = (int)System.Windows.Forms.MessageBoxIcon.None)
         {
@@ -43,13 +38,11 @@ namespace osf
             }
             return (int)System.Windows.Forms.MessageBox.Show(text, title, (System.Windows.Forms.MessageBoxButtons)buttons, (System.Windows.Forms.MessageBoxIcon)icon);
         }
-
     }
 
     [ContextClass ("КлОкноСообщений", "ClMessageBox")]
     public class ClMessageBox : AutoContext<ClMessageBox>
     {
-
         public ClMessageBox()
         {
             MessageBox MessageBox1 = new MessageBox();
@@ -65,9 +58,7 @@ namespace osf
         }
         
         public MessageBox Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Заголовок", "Title")]
         public string Title
         {
@@ -95,9 +86,7 @@ namespace osf
             get { return Base_obj.Text; }
             set { Base_obj.Text = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Показать", "Show")]
         public void Show(string text = null, string title = null, int buttons = 0, int icon = 0)
         {

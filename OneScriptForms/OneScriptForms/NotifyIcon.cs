@@ -3,7 +3,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class NotifyIcon : Component
     {
         public string Click;
@@ -46,8 +45,6 @@ namespace osf
             MouseUp = "";
             OneScriptForms.AddToHashtable(M_NotifyIcon, this);
         }
-
-        //Свойства============================================================
 
         public osf.MenuNotifyIcon ContextMenu
         {
@@ -99,8 +96,6 @@ namespace osf
                 System.Windows.Forms.Application.DoEvents();
             }
         }
-
-        //Методы============================================================
 
         public void M_NotifyIcon_Click(object sender, System.EventArgs e)
         {
@@ -238,7 +233,6 @@ namespace osf
                 ClMouseEventArgs ClMouseEventArgs1 = new ClMouseEventArgs(MouseEventArgs1);
             }
         }
-
     }
 
     [ContextClass ("КлЗначокУведомления", "ClNotifyIcon")]
@@ -267,9 +261,7 @@ namespace osf
         }
 
         public NotifyIcon Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ДвойноеНажатие", "DoubleClick")]
         public IValue DoubleClick
         {
@@ -491,9 +483,7 @@ namespace osf
         {
             get { return new ClType(this); }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

@@ -6,9 +6,7 @@ namespace osf
     [ContextClass ("КлМатематика", "ClMath")]
     public class ClMath : AutoContext<ClMath>
     {
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Е", "E")]
         public double E
         {
@@ -20,9 +18,7 @@ namespace osf
         {
             get { return System.Math.PI; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("АКосинус", "Acos")]
         public double Acos(double p1)
         {

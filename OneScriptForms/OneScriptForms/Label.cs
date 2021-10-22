@@ -37,8 +37,6 @@ namespace osf
             base.M_Control = M_Label;
         }
 
-        //Свойства============================================================
-
         public bool AutoSize
         {
             get { return M_Label.AutoSize; }
@@ -119,9 +117,6 @@ namespace osf
                 System.Windows.Forms.Application.DoEvents();
             }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлНадпись", "ClLabel")]
@@ -180,9 +175,7 @@ namespace osf
         }
         
         public Label Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("АвтоРазмер", "AutoSize")]
         public bool AutoSize
         {
@@ -1341,9 +1334,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

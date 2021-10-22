@@ -48,8 +48,6 @@ namespace osf
             Renamed = "";
         }
 
-        //Свойства============================================================
-
         public bool EnableRaisingEvents
         {
             get { return M_FileSystemWatcher.EnableRaisingEvents; }
@@ -126,8 +124,6 @@ namespace osf
                 System.Windows.Forms.Application.DoEvents();
             }
         }
-
-        //Методы============================================================
 
         public void M_FileSystemWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
         {
@@ -242,7 +238,6 @@ namespace osf
                 ClRenamedEventArgs ClRenamedEventArgs1 = new ClRenamedEventArgs(RenamedEventArgs1);
             }
         }
-
     }
 
     [ContextClass ("КлНаблюдательФайловойСистемы", "ClFileSystemWatcher")]
@@ -268,9 +263,7 @@ namespace osf
         }
         
         public FileSystemWatcher Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ВключаяПодкаталоги", "IncludeSubDirectories")]
         public bool IncludeSubDirectories
         {
@@ -466,9 +459,7 @@ namespace osf
             get { return (int)Base_obj.NotifyFilter; }
             set { Base_obj.NotifyFilter = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

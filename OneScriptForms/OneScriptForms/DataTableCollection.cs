@@ -5,7 +5,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class DataTableCollection : ICollection, IEnumerable, IEnumerator
     {
         public ClDataTableCollection dll_obj;
@@ -16,8 +15,6 @@ namespace osf
         {
             M_DataTableCollection = p1;
         }
-
-        //Свойства============================================================
 
         public int Count
         {
@@ -55,8 +52,6 @@ namespace osf
                 return ((DataTableEx)M_DataTableCollection[(string)p1]).M_Object;
             }
         }
-
-        //Методы============================================================
 
         public osf.DataTable Add(osf.DataTable p1 = null)
         {
@@ -100,13 +95,11 @@ namespace osf
         {
             M_DataTableCollection.RemoveAt(p1);
         }
-
     }
 
     [ContextClass ("КлТаблицыДанных", "ClDataTableCollection")]
     public class ClDataTableCollection : AutoContext<ClDataTableCollection>
     {
-
         public ClDataTableCollection(DataTableCollection p1)
         {
             DataTableCollection DataTableCollection1 = p1;
@@ -115,17 +108,13 @@ namespace osf
         }
 
         public DataTableCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Добавить", "Add")]
         public ClDataTable Add(ClDataTable p1)
         {

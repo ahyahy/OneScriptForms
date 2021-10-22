@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class DataGridCell
     {
         public ClDataGridCell dll_obj;
@@ -28,8 +27,6 @@ namespace osf
             OneScriptForms.AddToHashtable(M_DataGridCell, this);
         }
 
-        //Свойства============================================================
-
         public int ColumnNumber
         {
             get { return M_DataGridCell.ColumnNumber; }
@@ -49,15 +46,11 @@ namespace osf
                 System.Windows.Forms.Application.DoEvents();
             }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлЯчейкаСеткиДанных", "ClDataGridCell")]
     public class ClDataGridCell : AutoContext<ClDataGridCell>
     {
-
         public ClDataGridCell(int p1, int p2)
         {
             DataGridCell DataGridCell1 = new DataGridCell(p1, p2);
@@ -73,9 +66,7 @@ namespace osf
         }
 
         public DataGridCell Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("НомерКолонки", "ColumnNumber")]
         public int ColumnNumber
         {
@@ -89,8 +80,6 @@ namespace osf
             get { return Base_obj.RowNumber; }
             set { Base_obj.RowNumber = value; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

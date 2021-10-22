@@ -32,8 +32,6 @@ namespace osf
             M_ListViewItem.M_Object = this;
         }
 
-        //Свойства============================================================
-
         public osf.Color BackColor
         {
             get { return new Color(M_ListViewItem.BackColor); }
@@ -154,8 +152,6 @@ namespace osf
             }
         }
 
-        //Методы============================================================
-
         public void BeginEdit()
         {
             M_ListViewItem.BeginEdit();
@@ -173,7 +169,6 @@ namespace osf
             M_ListViewItem.Remove();
             System.Windows.Forms.Application.DoEvents();
         }
-
     }
 
     [ContextClass ("КлЭлементСпискаЭлементов", "ClListViewItem")]
@@ -208,9 +203,7 @@ namespace osf
         }
 
         public ListViewItem Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Выбран", "Selected")]
         public bool Selected
         {
@@ -315,9 +308,7 @@ namespace osf
                 Base_obj.Font.dll_obj = value;
             }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("НачатьРедактирование", "BeginEdit")]
         public void BeginEdit()
         {

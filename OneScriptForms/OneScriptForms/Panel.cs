@@ -36,16 +36,11 @@ namespace osf
             base.M_ScrollableControl = M_Panel;
         }
 
-        //Свойства============================================================
-
         public int BorderStyle
         {
             get { return (int)M_Panel.BorderStyle; }
             set { M_Panel.BorderStyle = (System.Windows.Forms.BorderStyle)value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлПанель", "ClPanel")]
@@ -107,9 +102,7 @@ namespace osf
         }
         
         public Panel Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("АвтоПрокрутка", "AutoScroll")]
         public bool AutoScroll
         {
@@ -1230,9 +1223,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

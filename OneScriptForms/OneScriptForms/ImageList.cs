@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class ImageList
     {
         public ClImageList dll_obj;
@@ -26,8 +25,6 @@ namespace osf
             OneScriptForms.AddToHashtable(M_ImageList, this);
         }
 
-        //Свойства============================================================
-
         public int ColorDepth
         {
             get { return (int)M_ImageList.ColorDepth; }
@@ -50,9 +47,6 @@ namespace osf
             get { return new Color(M_ImageList.TransparentColor); }
             set { M_ImageList.TransparentColor = value.M_Color; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлСписокИзображений", "ClImageList")]
@@ -77,9 +71,7 @@ namespace osf
         }
 
         public ImageList Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ГлубинаЦвета", "ColorDepth")]
         public int ColorDepth
         {
@@ -99,9 +91,7 @@ namespace osf
             get { return (ClSize)OneScriptForms.RevertObj(Base_obj.ImageSize); }
             set { Base_obj.ImageSize = value.Base_obj; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Изображения", "Images")]
         public ClBitmap Images2(int p1)
         {

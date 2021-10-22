@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class StatusBarPanelCollection : CollectionBase
     {
         public ClStatusBarPanelCollection dll_obj;
@@ -18,8 +17,6 @@ namespace osf
             base.List = M_StatusBarPanelCollection;
         }
 
-        //Свойства============================================================
-
         public override object Current
         {
             get { return (object)((StatusBarPanelEx)Enumerator.Current).M_Object; }
@@ -29,8 +26,6 @@ namespace osf
         {
             get { return ((StatusBarPanelEx)M_StatusBarPanelCollection[Index]).M_Object; }
         }
-
-        //Методы============================================================
 
         public osf.StatusBarPanel Add(osf.StatusBarPanel p1)
         {
@@ -48,13 +43,11 @@ namespace osf
         {
             M_StatusBarPanelCollection.Remove(p1.M_StatusBarPanel);
         }
-
     }
 
     [ContextClass ("КлПанелиСтрокиСостояния", "ClStatusBarPanelCollection")]
     public class ClStatusBarPanelCollection : AutoContext<ClStatusBarPanelCollection>
     {
-
         public ClStatusBarPanelCollection()
         {
             StatusBarPanelCollection StatusBarPanelCollection1 = new StatusBarPanelCollection();
@@ -70,17 +63,13 @@ namespace osf
         }
         
         public StatusBarPanelCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Вставить", "Insert")]
         public ClStatusBarPanel Insert(int p1, ClStatusBarPanel p2)
         {

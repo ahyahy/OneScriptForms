@@ -2,14 +2,11 @@
 
 namespace osf
 {
-
     public class CollectionBase : System.Collections.IList, System.Collections.IEnumerator, System.Collections.IEnumerable
     {
         public object current;
         public System.Collections.IEnumerator Enumerator;
         public System.Collections.IList List;
-
-        //Свойства============================================================
 
         public virtual bool IsFixedSize
         {
@@ -51,8 +48,6 @@ namespace osf
         {
             Enumerator.Reset();
         }
-
-        //Методы============================================================
 
         public virtual bool Contains(object value)
         {
@@ -105,7 +100,5 @@ namespace osf
         {
             List.Remove(value);
         }
-
     }
-
 }

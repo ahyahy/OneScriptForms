@@ -4,7 +4,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class DataItem
     {
         public ClDataItem dll_obj;
@@ -26,8 +25,6 @@ namespace osf
             M_DataRow = p1;
             Index = p2;
         }
-
-        //Свойства============================================================
 
         public osf.DataRow DataRow
         {
@@ -64,15 +61,11 @@ namespace osf
                 }
             }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлЭлементДанных", "ClDataItem")]
     public class ClDataItem : AutoContext<ClDataItem>
     {
-
         public ClDataItem()
         {
             DataItem DataItem1 = new DataItem();
@@ -88,9 +81,7 @@ namespace osf
         }
         
         public DataItem Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Значение", "Value")]
         public IValue Value
         {
@@ -107,8 +98,6 @@ namespace osf
             get { return (ClDataRow)OneScriptForms.RevertObj(Base_obj.DataRow); }
             set { Base_obj.DataRow = value.Base_obj; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

@@ -3,15 +3,10 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class ContextMenuPopupEventArgs : EventArgs
     {
         public new ClContextMenuPopupEventArgs dll_obj;
         public osf.Point Point;
-
-        //Свойства============================================================
-
-        //Методы============================================================
 
         public override bool PostEvent()
         {
@@ -40,13 +35,11 @@ namespace osf
             }
             return true;
         }
-
     }
 
     [ContextClass ("КлКонтекстноеМенюПриПоявленииАрг", "ClContextMenuPopupEventArgs")]
     public class ClContextMenuPopupEventArgs : AutoContext<ClContextMenuPopupEventArgs>
     {
-
         public ClContextMenuPopupEventArgs()
         {
             ContextMenuPopupEventArgs ContextMenuPopupEventArgs1 = new ContextMenuPopupEventArgs();
@@ -62,9 +55,7 @@ namespace osf
         }
         
         public ContextMenuPopupEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Отправитель", "Sender")]
         public IValue Sender
         {
@@ -82,8 +73,6 @@ namespace osf
         {
             get { return (ClPoint)OneScriptForms.RevertObj(Base_obj.Point); }
         }
-
-        //Методы============================================================
-
+        
     }
 }

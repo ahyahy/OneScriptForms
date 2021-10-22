@@ -6,11 +6,7 @@ namespace osf
     [ContextClass ("КлОкноВвода", "ClInputBox")]
     public class ClInputBox : AutoContext<ClInputBox>
     {
-
-        //Свойства============================================================
-
-        //Методы============================================================
-
+        
         [ContextMethod("Показать", "Show")]
         public string Show(string p1, string p2, string p3 = "", int p4 = -1, int p5 = -1)
         {

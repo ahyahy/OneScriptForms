@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 
 namespace osf
 {
-
     public class SortedList : IEnumerator
     {
         public ClSortedList dll_obj;
@@ -23,8 +22,6 @@ namespace osf
             Enumerator = null;
             M_SortedList = (System.Collections.SortedList)p1;
         }
-
-        //Свойства============================================================
 
         public int Count
         {
@@ -45,8 +42,6 @@ namespace osf
         {
             Enumerator.Reset();
         }
-
-        //Методы============================================================
 
         public void Add(object key, object value)
         {
@@ -84,13 +79,11 @@ namespace osf
             M_SortedList.Remove(RuntimeHelpers.GetObjectValue(key));
             System.Windows.Forms.Application.DoEvents();
         }
-
     }
 
     [ContextClass ("КлСортированныйСписок", "ClSortedList")]
     public class ClSortedList : AutoContext<ClSortedList>
     {
-
         public ClSortedList()
         {
             SortedList SortedList1 = new SortedList();
@@ -106,9 +99,7 @@ namespace osf
         }
         
         public SortedList Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Значения", "Values")]
         public ClArrayList Values
         {
@@ -146,9 +137,7 @@ namespace osf
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Добавить", "Add")]
         public void Add(object p1, IValue p2)
         {

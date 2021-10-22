@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class Point
     {
         public ClPoint dll_obj;
@@ -23,8 +22,6 @@ namespace osf
             M_Point = p1;
         }
 
-        //Свойства============================================================
-
         public int X
         {
             get { return M_Point.X; }
@@ -36,15 +33,11 @@ namespace osf
             get { return M_Point.Y; }
             set { M_Point.Y = value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлТочка", "ClPoint")]
     public class ClPoint : AutoContext<ClPoint>
     {
-
         public ClPoint(int x, int y)
         {
             Point Point1 = new Point(x, y);
@@ -67,9 +60,7 @@ namespace osf
         }
 
         public Point Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Игрек", "Y")]
         public int Y
         {
@@ -83,8 +74,6 @@ namespace osf
             get { return Base_obj.X; }
             set { Base_obj.X = value; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

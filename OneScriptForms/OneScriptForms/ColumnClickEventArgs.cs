@@ -3,22 +3,16 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class ColumnClickEventArgs : EventArgs
     {
         public new ClColumnClickEventArgs dll_obj;
         public int Column = -1;
-
-        //Свойства============================================================
-
-        //Методы============================================================
 
     }
 
     [ContextClass ("КлКолонкаНажатиеАрг", "ClColumnClickEventArgs")]
     public class ClColumnClickEventArgs : AutoContext<ClColumnClickEventArgs>
     {
-
         public ClColumnClickEventArgs()
         {
             ColumnClickEventArgs ColumnClickEventArgs1 = new ColumnClickEventArgs();
@@ -34,9 +28,7 @@ namespace osf
         }
         
         public ColumnClickEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Колонка", "Column")]
         public int Column
         {
@@ -54,8 +46,6 @@ namespace osf
         {
             get { return (IValue)Base_obj.Parameter; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

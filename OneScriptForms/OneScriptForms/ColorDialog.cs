@@ -35,16 +35,11 @@ namespace osf
             base.M_CommonDialog = M_ColorDialog;
         }
 
-        //Свойства============================================================
-
         public osf.Color Color
         {
             get { return new Color(M_ColorDialog.Color); }
             set { M_ColorDialog.Color = value.M_Color; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлДиалогВыбораЦвета", "ClColorDialog")]
@@ -69,9 +64,7 @@ namespace osf
         }
         
         public ColorDialog Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Тип", "Type")]
         public ClType Type
         {
@@ -88,9 +81,7 @@ namespace osf
                 Base_obj.Color = value.Base_obj;
             }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

@@ -3,7 +3,6 @@ using ScriptEngine.Machine.Contexts;
 
 namespace osf
 {
-
     public class DataGridTextBox : TextBox
     {
         public new ClDataGridTextBox dll_obj;
@@ -32,11 +31,6 @@ namespace osf
             M_DataGridTextBox = (System.Windows.Forms.DataGridTextBox)p1;
             base.M_Control = M_DataGridTextBox;
         }
-
-        //Свойства============================================================
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлПолеВводаКолонки", "ClDataGridTextBox")]
@@ -65,9 +59,7 @@ namespace osf
         }
         
         public DataGridTextBox Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ВысотаШрифта", "FontHeight")]
         public int FontHeight
         {
@@ -161,8 +153,6 @@ namespace osf
                 Base_obj.Font.dll_obj = value;
             }
         }
-
-        //Методы============================================================
-
+        
     }
 }

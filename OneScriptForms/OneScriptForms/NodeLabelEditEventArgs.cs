@@ -3,7 +3,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class NodeLabelEditEventArgs : EventArgs
     {
         public bool CancelEdit;
@@ -11,10 +10,6 @@ namespace osf
         public string Label;
         public string Label_old;
         public osf.TreeNode Node;
-
-        //Свойства============================================================
-
-        //Методы============================================================
 
         public override bool PostEvent()
         {
@@ -27,13 +22,11 @@ namespace osf
             Node.M_TreeNode.EndEdit(false);
             return true;
         }
-
     }
 
     [ContextClass ("КлРедактированиеНадписиУзлаАрг", "ClNodeLabelEditEventArgs")]
     public class ClNodeLabelEditEventArgs : AutoContext<ClNodeLabelEditEventArgs>
     {
-
         public ClNodeLabelEditEventArgs()
         {
             NodeLabelEditEventArgs NodeLabelEditEventArgs1 = new NodeLabelEditEventArgs();
@@ -49,9 +42,7 @@ namespace osf
         }
         
         public NodeLabelEditEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Надпись", "Label")]
         public string Label
         {
@@ -82,8 +73,6 @@ namespace osf
         {
             get { return (ClTreeNode)OneScriptForms.RevertObj(Base_obj.Node); }
         }
-
-        //Методы============================================================
-
+        
     }
 }

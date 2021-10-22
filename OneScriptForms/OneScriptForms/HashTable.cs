@@ -4,7 +4,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class HashTable : IEnumerable, IEnumerator
     {
         public ClHashTable dll_obj;
@@ -28,8 +27,6 @@ namespace osf
             M_HashTable = p1;
             OneScriptForms.AddToHashtable(M_HashTable, this);
         }
-
-        //Свойства============================================================
 
         public int Count
         {
@@ -55,8 +52,6 @@ namespace osf
         {
             M_HashTable[key] = value;
         }
-
-        //Методы============================================================
 
         public void Add(object key, object value)
         {
@@ -92,13 +87,11 @@ namespace osf
             M_HashTable[key] = value;
             System.Windows.Forms.Application.DoEvents();
         }
-
     }
 
     [ContextClass ("КлХэшТаблица", "ClHashTable")]
     public class ClHashTable : AutoContext<ClHashTable>
     {
-
         public ClHashTable()
         {
             HashTable HashTable1 = new HashTable();
@@ -114,9 +107,7 @@ namespace osf
         }
         
         public HashTable Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Значения", "Values")]
         public ClArrayList Values
         {
@@ -154,9 +145,7 @@ namespace osf
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Добавить", "Add")]
         public void Add(IValue p1, IValue p2)
         {

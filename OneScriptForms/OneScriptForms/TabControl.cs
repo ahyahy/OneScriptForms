@@ -43,8 +43,6 @@ namespace osf
             M_SelectedIndexChanged = "";
         }
 
-        //Свойства============================================================
-
         public int Alignment
         {
             get { return (int)M_TabControl.Alignment; }
@@ -117,8 +115,6 @@ namespace osf
             get { return new TabPageCollection(M_TabControl.TabPages); }
         }
 
-        //Методы============================================================
-
         private void M_TabControl_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             if (M_SelectedIndexChanged.Length > 0)
@@ -143,7 +139,6 @@ namespace osf
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
         }
-
     }
 
     [ContextClass ("КлПанельВкладок", "ClTabControl")]
@@ -206,9 +201,7 @@ namespace osf
         }
         
         public TabControl Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ВерсияПродукта", "ProductVersion")]
         public string ProductVersion
         {
@@ -1415,9 +1408,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

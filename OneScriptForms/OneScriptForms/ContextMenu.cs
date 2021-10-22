@@ -42,14 +42,10 @@ namespace osf
             Popup = "";
         }
 
-        //Свойства============================================================
-
         public osf.Control SourceControl
         {
             get { return (osf.Control)((dynamic)M_ContextMenu.SourceControl).M_Object; }
         }
-
-        //Методы============================================================
 
         public void M_ContextMenu_Popup(object sender, System.EventArgs e)
         {
@@ -87,7 +83,6 @@ namespace osf
         {
             M_ContextMenu.Show(p1, p2);
         }
-
     }
 
     [ContextClass ("КлКонтекстноеМеню", "ClContextMenu")]
@@ -113,9 +108,7 @@ namespace osf
         }
         
         public ContextMenu Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Источник", "SourceControl")]
         public IValue SourceControl
         {
@@ -164,9 +157,7 @@ namespace osf
         {
             get { return menuItems; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("КлонироватьМеню", "CloneMenu")]
         public ClContextMenu CloneMenu()
         {

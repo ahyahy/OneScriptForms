@@ -1055,6 +1055,5 @@ namespace osf
         {
         	get { return m_none; }
         }
-
     }
 }

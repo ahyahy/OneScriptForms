@@ -40,8 +40,6 @@ namespace osf
             base.M_ScrollableControl = M_TabPage;
         }
 
-        //Свойства============================================================
-
         public int ImageIndex
         {
             get { return M_TabPage.ImageIndex; }
@@ -53,9 +51,6 @@ namespace osf
             get { return M_TabPage.ToolTipText; }
             set { M_TabPage.ToolTipText = value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлВкладка", "ClTabPage")]
@@ -117,9 +112,7 @@ namespace osf
         }
 
         public TabPage Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("АвтоПрокрутка", "AutoScroll")]
         public bool AutoScroll
         {
@@ -1254,9 +1247,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

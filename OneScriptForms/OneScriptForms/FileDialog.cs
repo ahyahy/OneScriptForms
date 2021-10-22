@@ -1,6 +1,5 @@
 ﻿namespace osf
 {
-
     public class FileDialog : CommonDialog
     {
         private System.Windows.Forms.FileDialog m_FileDialog;
@@ -8,8 +7,6 @@
         public FileDialog(System.Windows.Forms.FileDialog p1 = null)
         {
         }
-
-        //Свойства============================================================
 
         public bool AddExtension
         {
@@ -86,9 +83,5 @@
             get { return M_FileDialog.Title; }
             set { M_FileDialog.Title = value; }
         }
-
-        //Методы============================================================
-
     }
-
 }

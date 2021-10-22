@@ -46,8 +46,6 @@ namespace osf
             SelectionChanged = "";
         }
 
-        //Свойства============================================================
-
         public bool AutoWordSelection
         {
             get { return M_RichTextBox.AutoWordSelection; }
@@ -135,8 +133,6 @@ namespace osf
             get { return M_RichTextBox.ZoomFactor; }
             set { M_RichTextBox.ZoomFactor = value; }
         }
-
-        //Методы============================================================
 
         public bool CanPaste()
         {
@@ -237,7 +233,6 @@ namespace osf
             M_RichTextBox.Invalidate();
             System.Windows.Forms.Application.DoEvents();
         }
-
     }
 
     [ContextClass ("КлФорматированноеПолеВвода", "ClRichTextBox")]
@@ -301,9 +296,7 @@ namespace osf
         }
         
         public RichTextBox Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Rtf", "Rtf")]
         public string Rtf
         {
@@ -1664,9 +1657,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

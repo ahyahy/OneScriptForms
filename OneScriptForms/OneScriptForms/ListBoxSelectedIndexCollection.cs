@@ -3,7 +3,6 @@ using ScriptEngine.Machine.Contexts;
 
 namespace osf
 {
-
     public class ListBoxSelectedIndexCollection : CollectionBase
     {
         public ClListBoxSelectedIndexCollection dll_obj;
@@ -19,8 +18,6 @@ namespace osf
             base.List = M_ListBoxSelectedIndexCollection;
         }
 
-        //Свойства============================================================
-
         public new int this[int index]
         {
             get { return M_ListBoxSelectedIndexCollection[index]; }
@@ -30,8 +27,6 @@ namespace osf
         {
             get { return Enumerator.Current; }
         }
-
-        //Методы============================================================
 
         public override bool Contains(object value)
         {
@@ -50,13 +45,11 @@ namespace osf
         public new void Insert(int index, object item)
         {
         }
-
     }
 
     [ContextClass ("КлИндексыВыбранныхПоляСписка", "ClListBoxSelectedIndexCollection")]
     public class ClListBoxSelectedIndexCollection : AutoContext<ClListBoxSelectedIndexCollection>
     {
-
         public ClListBoxSelectedIndexCollection()
         {
             ListBoxSelectedIndexCollection ListBoxSelectedIndexCollection1 = new ListBoxSelectedIndexCollection();
@@ -72,17 +65,13 @@ namespace osf
         }
         
         public ListBoxSelectedIndexCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Индекс", "IndexOf")]
         public int IndexOf(int p1)
         {

@@ -3,7 +3,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class GridItem
     {
         public ClGridItem dll_obj;
@@ -21,8 +20,6 @@ namespace osf
             OneScriptForms.AddToHashtable(M_GridItem, this);
         }
 
-        //Свойства============================================================
-
         public string Label
         {
             get { return M_GridItem.Label; }
@@ -32,15 +29,11 @@ namespace osf
         {
             get { return M_GridItem.Value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлЭлементСетки", "ClGridItem")]
     public class ClGridItem : AutoContext<ClGridItem>
     {
-
         public ClGridItem(GridItem p1)
         {
             GridItem GridItem1 = p1;
@@ -49,9 +42,7 @@ namespace osf
         }
 
         public GridItem Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Значение", "Value")]
         public IValue Value
         {
@@ -75,8 +66,6 @@ namespace osf
         {
             get { return new ClGridItemCollection(Base_obj.M_GridItem.GridItems); }
         }
-
-        //Методы============================================================
-
+        
     }
 }

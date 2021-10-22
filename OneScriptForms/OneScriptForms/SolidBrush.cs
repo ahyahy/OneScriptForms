@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class SolidBrush : Brush
     {
         public ClSolidBrush dll_obj;
@@ -28,17 +27,11 @@ namespace osf
             base.M_Brush = M_SolidBrush;
             OneScriptForms.AddToHashtable(M_SolidBrush, this);
         }
-
-        //Свойства============================================================
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлСплошнаяКисть", "ClSolidBrush")]
     public class ClSolidBrush : AutoContext<ClSolidBrush>
     {
-
         public ClSolidBrush(Color p1)
         {
             SolidBrush SolidBrush1 = new SolidBrush(p1.M_Color);
@@ -47,10 +40,6 @@ namespace osf
         }
 
         public SolidBrush Base_obj;
-
-        //Свойства============================================================
-
-        //Методы============================================================
-
+        
     }
 }

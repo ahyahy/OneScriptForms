@@ -30,8 +30,6 @@ namespace osf
             M_Process.M_Object = this;
         }
 
-        //Свойства============================================================
-
         public bool HasExited
         {
             get { return M_Process.HasExited; }
@@ -48,20 +46,16 @@ namespace osf
             set { M_Process.StartInfo = (System.Diagnostics.ProcessStartInfo)value.M_ProcessStartInfo; }
         }
 
-        //Методы============================================================
-
         public osf.Process Start()
         {
             M_Process.Start();
             return this;
         }
-
     }
 
     [ContextClass ("КлПроцесс", "ClProcess")]
     public class ClProcess : AutoContext<ClProcess>
     {
-
         public ClProcess()
         {
             Process Process1 = new Process();
@@ -77,9 +71,7 @@ namespace osf
         }
         
         public Process Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Завершен", "HasExited")]
         public bool HasExited
         {
@@ -98,9 +90,7 @@ namespace osf
         {
             get { return (ClStreamReader)OneScriptForms.RevertObj(Base_obj.StandardOutput); }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Начать", "Start")]
         public ClProcess Start()
         {

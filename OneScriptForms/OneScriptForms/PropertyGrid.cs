@@ -50,8 +50,6 @@ namespace osf
             SelectedGridItemChanged = "";
         }
 
-        //Свойства============================================================
-
         public int PropertySort
         {
             get { return (int)M_PropertyGrid.PropertySort; }
@@ -85,8 +83,6 @@ namespace osf
             get { return this.M_PropertyGrid.ToolbarVisible; }
             set { this.M_PropertyGrid.ToolbarVisible = value; }
         }
-
-        //Методы============================================================
 
         public void M_PropertyGrid_PropertyValueChanged(object sender, System.Windows.Forms.PropertyValueChangedEventArgs e)
         {
@@ -143,7 +139,6 @@ namespace osf
                 ClSelectedGridItemChangedEventArgs ClSelectedGridItemChangedEventArgs1 = new ClSelectedGridItemChangedEventArgs(SelectedGridItemChangedEventArgs1);
             }
         }
-
     }
 
     [ContextClass ("КлСеткаСвойств", "ClPropertyGrid")]
@@ -207,9 +202,7 @@ namespace osf
         }
         
         public PropertyGrid Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("АвтоПрокрутка", "AutoScroll")]
         public bool AutoScroll
         {
@@ -1447,9 +1440,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

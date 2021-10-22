@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class ToolBarButtonCollection : CollectionBase
     {
         public ClToolBarButtonCollection dll_obj;
@@ -18,8 +17,6 @@ namespace osf
             base.List = M_ToolBarButtonCollection;
         }
 
-        //Свойства============================================================
-
         public override object Current
         {
             get { return (object)((ToolBarButtonEx)((System.Windows.Forms.ToolBarButton)Enumerator.Current)).M_Object; }
@@ -32,8 +29,6 @@ namespace osf
             {
             }
         }
-
-        //Методы============================================================
 
         public osf.ToolBarButton Add(ToolBarButton ToolBarButton)
         {
@@ -51,13 +46,11 @@ namespace osf
         {
             M_ToolBarButtonCollection.Remove(ToolBarButton.M_ToolBarButton);
         }
-
     }
 
     [ContextClass ("КлКнопкиПанелиИнструментов", "ClToolBarButtonCollection")]
     public class ClToolBarButtonCollection : AutoContext<ClToolBarButtonCollection>
     {
-
         public ClToolBarButtonCollection()
         {
             ToolBarButtonCollection ToolBarButtonCollection1 = new ToolBarButtonCollection();
@@ -73,17 +66,13 @@ namespace osf
         }
         
         public ToolBarButtonCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Вставить", "Insert")]
         public ClToolBarButton Insert(int p1, ClToolBarButton p2)
         {

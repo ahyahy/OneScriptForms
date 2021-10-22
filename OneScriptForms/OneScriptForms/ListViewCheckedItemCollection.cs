@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class ListViewCheckedItemCollection : CollectionBase
     {
         public ClListViewCheckedItemCollection dll_obj;
@@ -18,8 +17,6 @@ namespace osf
             base.List = M_ListViewCheckedListViewItemCollection;
         }
 
-        //Свойства============================================================
-
         public override object Current
         {
             get
@@ -32,15 +29,11 @@ namespace osf
         {
             get { return ((ListViewItemEx)M_ListViewCheckedListViewItemCollection[index]).M_Object; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлПомеченныеЭлементыСпискаЭлементов", "ClListViewCheckedItemCollection")]
     public class ClListViewCheckedItemCollection : AutoContext<ClListViewCheckedItemCollection>
     {
-
         public ClListViewCheckedItemCollection()
         {
             ListViewCheckedItemCollection ListViewCheckedItemCollection1 = new ListViewCheckedItemCollection();
@@ -56,17 +49,13 @@ namespace osf
         }
         
         public ListViewCheckedItemCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Элемент", "Item")]
         public ClListViewItem Item(int p1)
         {

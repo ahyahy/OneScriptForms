@@ -4,7 +4,6 @@ using System.Reflection;
 
 namespace osf
 {
-
     public class Type
     {
     public bool IsSubclassOf(osf.Type p1)
@@ -23,8 +22,6 @@ namespace osf
             M_Type = p1;
         }
 
-        //Свойства============================================================
-
         public bool IsClass
         {
             get { return M_Type.IsClass; }
@@ -35,8 +32,6 @@ namespace osf
             get { return M_Type.Name; }
         }
 
-        //Методы============================================================
-
         public bool IsInstanceOfType(osf.Type p1)
         {
             return M_Type.IsInstanceOfType(p1.M_Type);
@@ -46,13 +41,11 @@ namespace osf
         {
             return M_Type.ToString();
         }
-
     }
 
     [ContextClass ("КлТип", "ClType")]
     public class ClType : AutoContext<ClType>
     {
-
         public ClType(IValue p1)
         {
             dynamic Type1 = null;
@@ -141,9 +134,7 @@ namespace osf
         }
 
         public dynamic Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Имя", "Имя")]
         public string Name1
         {
@@ -205,9 +196,7 @@ namespace osf
         {
             get { return Base_obj.IsClass; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("ВСтроку", "ToString")]
         public override string ToString()
         {

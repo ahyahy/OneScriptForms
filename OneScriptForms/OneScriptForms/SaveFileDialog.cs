@@ -4,7 +4,6 @@ using System.Threading;
 
 namespace osf
 {
-
     public class SaveFileDialog : FileDialog
     {
         public ClSaveFileDialog dll_obj;
@@ -31,8 +30,6 @@ namespace osf
             OneScriptForms.AddToHashtable(M_SaveFileDialog, this);
         }
 
-        //Свойства============================================================
-
         public bool CreatePrompt
         {
             get { return M_SaveFileDialog.CreatePrompt; }
@@ -49,15 +46,11 @@ namespace osf
         {
             M_SaveFileDialog.Reset();
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлДиалогСохраненияФайла", "ClSaveFileDialog")]
     public class ClSaveFileDialog : AutoContext<ClSaveFileDialog>
     {
-
         public ClSaveFileDialog()
         {
             SaveFileDialog SaveFileDialog1 = new SaveFileDialog();
@@ -73,9 +66,7 @@ namespace osf
         }
         
         public SaveFileDialog Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ВосстанавливатьКаталог", "RestoreDirectory")]
         public bool RestoreDirectory
         {
@@ -172,9 +163,7 @@ namespace osf
             get { return Base_obj.Filter; }
             set { Base_obj.Filter = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

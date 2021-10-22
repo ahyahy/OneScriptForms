@@ -75,8 +75,6 @@ namespace osf
             heights = new ArrayList();
         }
 
-        //Свойства============================================================
-
         public int DrawMode
         {
             get { return (int)M_ComboBox.DrawMode; }
@@ -183,8 +181,6 @@ namespace osf
             get { return M_ComboBox.Sorted; }
             set { M_ComboBox.Sorted = value; }
         }
-
-        //Методы============================================================
 
         private void M_ComboBox_DrawItem(object sender, System.Windows.Forms.DrawItemEventArgs e)
         {
@@ -386,7 +382,6 @@ namespace osf
             }
             System.Windows.Forms.Application.DoEvents();
         }
-
     }
 
     [ContextClass ("КлПолеВыбора", "ClComboBox")]
@@ -470,9 +465,7 @@ namespace osf
         }
 
         public dynamic Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ВерсияПродукта", "ProductVersion")]
         public string ProductVersion
         {
@@ -1800,9 +1793,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

@@ -1,6 +1,5 @@
 ﻿namespace osf
 {
-
     public class UpDownBase : ContainerControl
     {
         private System.Windows.Forms.UpDownBase m_UpDownBase;
@@ -20,8 +19,6 @@
             M_UpDownBase = p1;
             base.M_ContainerControl = M_UpDownBase;
         }
-
-        //Свойства============================================================
 
         public int BorderStyle
         {
@@ -52,9 +49,5 @@
                 System.Windows.Forms.Application.DoEvents();
             }
         }
-
-        //Методы============================================================
-
     }
-
 }

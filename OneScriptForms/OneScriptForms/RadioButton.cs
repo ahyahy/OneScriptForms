@@ -40,8 +40,6 @@ namespace osf
             CheckChanged = "";
         }
 
-        //Свойства============================================================
-
         public int Appearance
         {
             get { return (int)M_RadioButton.Appearance; }
@@ -76,8 +74,6 @@ namespace osf
             }
         }
 
-        //Методы============================================================
-
         private void M_RadioButton_CheckedChanged(object sender, System.EventArgs e)
         {
             if (CheckChanged.Length > 0)
@@ -102,7 +98,6 @@ namespace osf
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
         }
-
     }
 
     [ContextClass ("КлПереключатель", "ClRadioButton")]
@@ -162,9 +157,7 @@ namespace osf
         }
         
         public RadioButton Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("АвтоПометка", "AutoCheck")]
         public bool AutoCheck
         {
@@ -1369,9 +1362,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

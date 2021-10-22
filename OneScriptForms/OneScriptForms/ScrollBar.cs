@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class ScrollBar : Control
     {
         public ClArrayList ManagedProperties = new ClArrayList();
@@ -13,8 +12,6 @@ namespace osf
         public ScrollBar()
         {
         }
-
-        //Свойства============================================================
 
         public int LargeChange
         {
@@ -76,8 +73,6 @@ namespace osf
                 System.Windows.Forms.Application.DoEvents();
             }
         }
-
-        //Методы============================================================
 
         public void M_ScrollBar_Scroll(object sender, System.Windows.Forms.ScrollEventArgs e)
         {
@@ -190,7 +185,5 @@ namespace osf
                 }
             }
         }
-
     }
-
 }

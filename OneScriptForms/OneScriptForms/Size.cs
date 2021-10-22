@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class Size
     {
         public ClSize dll_obj;
@@ -23,8 +22,6 @@ namespace osf
             M_Size = p1;
         }
 
-        //Свойства============================================================
-
         public int Height
         {
             get { return M_Size.Height; }
@@ -36,15 +33,11 @@ namespace osf
             get { return M_Size.Width; }
             set { M_Size.Width = value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлРазмер", "ClSize")]
     public class ClSize : AutoContext<ClSize>
     {
-
         public ClSize(int width, int height)
         {
             Size Size1 = new Size(width, height);
@@ -67,9 +60,7 @@ namespace osf
         }
 
         public Size Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Высота", "Height")]
         public int Height
         {
@@ -83,8 +74,6 @@ namespace osf
             get { return Base_obj.Width; }
             set { Base_obj.Width = value; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

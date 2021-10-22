@@ -34,8 +34,6 @@ namespace osf
             base.M_Component = M_DataGridTableStyle;
         }
 
-        //Свойства============================================================
-
         public bool AllowSorting
         {
             get { return M_DataGridTableStyle.AllowSorting; }
@@ -136,9 +134,6 @@ namespace osf
             get { return M_DataGridTableStyle.RowHeaderWidth; }
             set { M_DataGridTableStyle.RowHeaderWidth = value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлСтильТаблицыСеткиДанных", "ClDataGridTableStyle")]
@@ -181,9 +176,7 @@ namespace osf
         }
         
         public DataGridTableStyle Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ИмяОтображаемого", "MappingName")]
         public string MappingName
         {
@@ -335,9 +328,7 @@ namespace osf
                 Base_obj.HeaderFont.dll_obj = value;
             }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class Pen
     {
         public ClPen dll_obj;
@@ -26,21 +25,15 @@ namespace osf
             OneScriptForms.AddToHashtable(M_Pen, this);
         }
 
-        //Свойства============================================================
-
-        //Методы============================================================
-
         public void Dispose()
         {
             M_Pen.Dispose();
         }
-
     }
 
     [ContextClass ("КлПеро", "ClPen")]
     public class ClPen : AutoContext<ClPen>
     {
-
         public ClPen(ClColor p1, float p2 = 1.0f)
         {
             Pen Pen1 = new Pen(p1.Base_obj.M_Color, p2);
@@ -56,11 +49,7 @@ namespace osf
         }
 
         public Pen Base_obj;
-
-        //Свойства============================================================
-
-        //Методы============================================================
-
+        
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

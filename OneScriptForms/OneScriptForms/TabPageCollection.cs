@@ -5,7 +5,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class TabPageCollection : IEnumerable, IEnumerator
     {
         public ClTabPageCollection dll_obj;
@@ -16,8 +15,6 @@ namespace osf
         {
             M_TabPageCollection = p1;
         }
-
-        //Свойства============================================================
 
         public int Count
         {
@@ -38,8 +35,6 @@ namespace osf
         {
             get { return (TabPage)((TabPageEx)M_TabPageCollection[index]).M_Object; }
         }
-
-        //Методы============================================================
 
         public TabPage Add(TabPage page)
         {
@@ -95,13 +90,11 @@ namespace osf
         {
             M_TabPageCollection.RemoveAt(index);
         }
-
     }
 
     [ContextClass ("КлВкладки", "ClTabPageCollection")]
     public class ClTabPageCollection : AutoContext<ClTabPageCollection>
     {
-
         public ClTabPageCollection(TabPageCollection p1)
         {
             TabPageCollection TabPageCollection1 = p1;
@@ -110,17 +103,13 @@ namespace osf
         }
 
         public TabPageCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Вставить", "Insert")]
         public ClTabPage Insert(int p1, IValue p2)
         {

@@ -1,6 +1,5 @@
 ﻿namespace osf
 {
-
     public class Image
     {
         public System.Drawing.Image M_Image;
@@ -23,8 +22,6 @@
         {
             M_Image = p1;
         }
-
-        //Свойства============================================================
 
         public osf.ImageFormat  RawFormat
         {
@@ -50,8 +47,6 @@
         {
             get { return M_Image.Width; }
         }
-
-        //Методы============================================================
 
         public object Clone()
         {
@@ -79,7 +74,5 @@
                 M_Image.Save(p1, p2.M_ImageFormat);
             }
         }
-
     }
-
 }

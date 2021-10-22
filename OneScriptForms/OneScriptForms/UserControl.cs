@@ -40,8 +40,6 @@ namespace osf
             M_Value = null;
         }
 
-        //Свойства============================================================
-
         public new string Text
         {
             get { return M_UserControl.Text; }
@@ -63,9 +61,6 @@ namespace osf
                 System.Windows.Forms.Application.DoEvents();
             }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлПользовательскийЭлементУправления", "ClUserControl")]
@@ -127,9 +122,7 @@ namespace osf
         }
         
         public UserControl Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("АвтоПрокрутка", "AutoScroll")]
         public bool AutoScroll
         {
@@ -1257,9 +1250,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

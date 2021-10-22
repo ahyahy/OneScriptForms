@@ -3,16 +3,11 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class TreeViewCancelEventArgs : CancelEventArgs
     {
         public int Action = (int)System.Windows.Forms.TreeViewAction.Unknown;
         public new ClTreeViewCancelEventArgs dll_obj;
         public osf.TreeNode Node = null;
-
-        //Свойства============================================================
-
-        //Методы============================================================
 
         public override bool PostEvent()
         {
@@ -26,13 +21,11 @@ namespace osf
             TreeView1.M_TreeView.BeforeExpand += TreeView1.M_TreeView_BeforeExpand;
             return true;
         }
-
     }
 
     [ContextClass ("КлДеревоОтменаАрг", "ClTreeViewCancelEventArgs")]
     public class ClTreeViewCancelEventArgs : AutoContext<ClTreeViewCancelEventArgs>
     {
-
         public ClTreeViewCancelEventArgs()
         {
             TreeViewCancelEventArgs TreeViewCancelEventArgs1 = new TreeViewCancelEventArgs();
@@ -48,9 +41,7 @@ namespace osf
         }
         
         public TreeViewCancelEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Действие", "Action")]
         public int Action
         {
@@ -81,8 +72,6 @@ namespace osf
         {
             get { return (ClTreeNode)OneScriptForms.RevertObj(Base_obj.Node); }
         }
-
-        //Методы============================================================
-
+        
     }
 }

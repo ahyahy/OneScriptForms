@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class LinkArea
     {
         public ClLinkArea dll_obj;
@@ -26,8 +25,6 @@ namespace osf
             OneScriptForms.AddToHashtable(M_LinkArea, this);
         }
 
-        //Свойства============================================================
-
         public bool IsEmpty
         {
             get { return M_LinkArea.IsEmpty; }
@@ -44,15 +41,11 @@ namespace osf
             get { return M_LinkArea.Start; }
             set { M_LinkArea.Start = value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлОбластьСсылки", "ClLinkArea")]
     public class ClLinkArea : AutoContext<ClLinkArea>
     {
-
         public ClLinkArea(int p1, int p2)
         {
             LinkArea LinkArea1 = new LinkArea(p1, p2);
@@ -75,9 +68,7 @@ namespace osf
         }
 
         public LinkArea Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Длина", "Length")]
         public int Length
         {
@@ -97,8 +88,6 @@ namespace osf
         {
             get { return Base_obj.IsEmpty; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

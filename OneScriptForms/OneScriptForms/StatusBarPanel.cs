@@ -37,8 +37,6 @@ namespace osf
             base.M_Component = M_StatusBarPanel;
         }
 
-        //Свойства============================================================
-
         public int AutoSize
         {
             get { return (int)M_StatusBarPanel.AutoSize; }
@@ -74,15 +72,11 @@ namespace osf
             get { return M_StatusBarPanel.Width; }
             set { M_StatusBarPanel.Width = value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлПанельСтрокиСостояния", "ClStatusBarPanel")]
     public class ClStatusBarPanel : AutoContext<ClStatusBarPanel>
     {
-
         public ClStatusBarPanel()
         {
             StatusBarPanel StatusBarPanel1 = new StatusBarPanel();
@@ -98,9 +92,7 @@ namespace osf
         }
         
         public StatusBarPanel Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("АвтоРазмер", "AutoSize")]
         public int AutoSize
         {
@@ -152,9 +144,7 @@ namespace osf
             get { return Base_obj.Width; }
             set { Base_obj.Width = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

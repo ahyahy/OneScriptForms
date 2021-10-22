@@ -33,8 +33,6 @@ namespace osf
             M_ArrayList.M_Object = this;
         }
 
-        //Свойства============================================================
-
         public object Current
         {
             get { return Enumerator.Current; }
@@ -55,8 +53,6 @@ namespace osf
             get { return M_ArrayList[index]; }
             set { M_ArrayList[index] = value; }
         }
-
-        //Методы============================================================
 
         public object Add(object value)
         {
@@ -117,7 +113,6 @@ namespace osf
         {
             M_ArrayList.RemoveAt(index);
         }
-
     }
 
     public class ArrayListItemSorter : System.Collections.IComparer
@@ -132,10 +127,6 @@ namespace osf
             sortType = p1;
             sortOrder = p2;
         }
-
-        //Свойства============================================================
-
-        //Методы============================================================
 
         public int Compare(object x, object y)
         {
@@ -268,13 +259,11 @@ namespace osf
             }
             return num;
         }
-
     }
 
     [ContextClass ("КлМассивСписок", "ClArrayList")]
     public class ClArrayList : AutoContext<ClArrayList>
     {
-
         public ClArrayList()
         {
             ArrayList ArrayList1 = new ArrayList();
@@ -290,17 +279,13 @@ namespace osf
         }
         
         public ArrayList Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Вставить", "Insert")]
         public IValue Insert(int p1, IValue p2)
         {

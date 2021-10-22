@@ -47,8 +47,6 @@ namespace osf
             SortType = 0;
         }
 
-        //Свойства============================================================
-
         public int Index
         {
             get { return M_ColumnHeader.Index; }
@@ -71,15 +69,11 @@ namespace osf
             get { return M_ColumnHeader.Width; }
             set { M_ColumnHeader.Width = value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлКолонка", "ClColumnHeader")]
     public class ClColumnHeader : AutoContext<ClColumnHeader>
     {
-
         public ClColumnHeader()
         {
             ColumnHeader ColumnHeader1 = new ColumnHeader();
@@ -102,9 +96,7 @@ namespace osf
         }
 
         public ColumnHeader Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ВыравниваниеТекста", "TextAlign")]
         public int TextAlign
         {
@@ -138,8 +130,6 @@ namespace osf
             get { return Base_obj.Width; }
             set { Base_obj.Width = value; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

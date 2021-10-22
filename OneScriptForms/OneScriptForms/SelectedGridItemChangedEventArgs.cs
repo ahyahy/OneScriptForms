@@ -3,7 +3,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class SelectedGridItemChangedEventArgs : EventArgs
     {
         public new ClSelectedGridItemChangedEventArgs dll_obj;
@@ -12,16 +11,11 @@ namespace osf
         public string OldLabel;
         public object OldValue;
 
-        //Свойства============================================================
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлВыбранныйЭлементСеткиИзмененАрг", "ClSelectedGridItemChangedEventArgs")]
     public class ClSelectedGridItemChangedEventArgs : AutoContext<ClSelectedGridItemChangedEventArgs>
     {
-
         public ClSelectedGridItemChangedEventArgs()
         {
             SelectedGridItemChangedEventArgs SelectedGridItemChangedEventArgs1 = new SelectedGridItemChangedEventArgs();
@@ -37,9 +31,7 @@ namespace osf
         }
         
         public SelectedGridItemChangedEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("НоваяНадпись", "NewLabel")]
         public string NewLabel
         {
@@ -75,8 +67,6 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.OldValue); }
         }
-
-        //Методы============================================================
-
+        
     }
 }

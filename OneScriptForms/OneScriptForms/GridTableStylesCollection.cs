@@ -3,7 +3,6 @@ using ScriptEngine.Machine.Contexts;
 
 namespace osf
 {
-
     public class GridTableStylesCollection : CollectionBase
     {
         public ClGridTableStylesCollection dll_obj;
@@ -15,14 +14,10 @@ namespace osf
             base.List = M_GridTableStylesCollection;
         }
 
-        //Свойства============================================================
-
         public new osf.DataGridTableStyle this[int p1]
         {
             get { return ((DataGridTableStyleEx)M_GridTableStylesCollection[p1]).M_Object; }
         }
-
-        //Методы============================================================
 
         public int Add(osf.DataGridTableStyle p1)
         {
@@ -30,13 +25,11 @@ namespace osf
             System.Windows.Forms.Application.DoEvents();
             return res;
         }
-
     }
 
     [ContextClass ("КлСтилиТаблицыСеткиДанных", "ClGridTableStylesCollection")]
     public class ClGridTableStylesCollection : AutoContext<ClGridTableStylesCollection>
     {
-
         public ClGridTableStylesCollection(GridTableStylesCollection p1)
         {
             GridTableStylesCollection GridTableStylesCollection1 = p1;
@@ -45,17 +38,13 @@ namespace osf
         }
 
         public GridTableStylesCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Добавить", "Add")]
         public int Add(ClDataGridTableStyle p1)
         {

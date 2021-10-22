@@ -4,7 +4,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class Collection : System.Collections.IEnumerable
     {
         public ClCollection dll_obj;
@@ -25,8 +24,6 @@ namespace osf
         {
             M_Collection = p1.M_Collection;
         }
-
-        //Свойства============================================================
 
         public int Count
         {
@@ -49,8 +46,6 @@ namespace osf
             }
         }
 
-        //Методы============================================================
-
         public void Add(object item, string key = null)
         {
             M_Collection.Add(item, key);
@@ -72,13 +67,11 @@ namespace osf
                 M_Collection.Remove(checked(Convert.ToString(index)));
             }
         }
-
     }
 
     [ContextClass ("КлКоллекция", "ClCollection")]
     public class ClCollection : AutoContext<ClCollection>
     {
-
         public ClCollection()
         {
             Collection Collection1 = new Collection();
@@ -94,17 +87,13 @@ namespace osf
         }
         
         public Collection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Добавить", "Add")]
         public void Add(IValue p1, string p2 = null)
         {

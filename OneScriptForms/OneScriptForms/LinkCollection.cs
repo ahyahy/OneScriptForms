@@ -4,7 +4,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class LinkCollection
     {
         public ClLinkCollection dll_obj;
@@ -19,8 +18,6 @@ namespace osf
         {
             M_LinkCollection = p1;
         }
-
-        //Свойства============================================================
 
         public int Count
         {
@@ -43,8 +40,6 @@ namespace osf
             set { M_LinkCollection[index] = (System.Windows.Forms.LinkLabel.Link)value; }
         }
 
-        //Методы============================================================
-
         public int Add(osf.Link p1)
         {
             return M_LinkCollection.Add((System.Windows.Forms.LinkLabel.Link)p1.M_Link);
@@ -64,13 +59,11 @@ namespace osf
         {
             M_LinkCollection.RemoveAt(p1);
         }
-
     }
 
     [ContextClass ("КлКоллекцияСсылок", "ClLinkCollection")]
     public class ClLinkCollection : AutoContext<ClLinkCollection>
     {
-
         public ClLinkCollection(LinkCollection p1)
         {
             LinkCollection LinkCollection1 = p1;
@@ -79,9 +72,7 @@ namespace osf
         }
 
         public LinkCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
@@ -99,9 +90,7 @@ namespace osf
         {
             get { return Base_obj.IsReadOnly; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Добавить", "Add")]
         public int Add(ClLink p1)
         {

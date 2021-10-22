@@ -38,15 +38,10 @@ namespace osf
             System.Windows.Forms.Application.DoEvents();
         }
 
-        //Свойства============================================================
-
-        //Методы============================================================
-
         public osf.Form GetForm()
         {
             return (osf.Form)((FormEx)M_MainMenu.GetForm()).M_Object;
         }
-
     }
 
     [ContextClass ("КлГлавноеМеню", "ClMainMenu")]
@@ -71,17 +66,13 @@ namespace osf
         }
         
         public MainMenu Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ЭлементыМеню", "MenuItems")]
         public ClMenuItemCollection MenuItems
         {
             get { return menuItems; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("КлонироватьМеню", "CloneMenu")]
         public ClMainMenu CloneMenu()
        {

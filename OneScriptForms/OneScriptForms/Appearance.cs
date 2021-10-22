@@ -19,6 +19,5 @@ namespace osf
         {
         	get { return m_normal; }
         }
-
     }
 }

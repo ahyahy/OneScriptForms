@@ -3,29 +3,22 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class PropertyValueChangedEventArgs : EventArgs
     {
         public osf.GridItem ChangedItem = null;
         public new ClPropertyValueChangedEventArgs dll_obj;
         public object oldValue = null;
 
-        //Свойства============================================================
-
         public object OldValue
         {
             get { return oldValue; }
             set { oldValue = value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлЗначениеСвойстваИзмененоАрг", "ClPropertyValueChangedEventArgs")]
     public class ClPropertyValueChangedEventArgs : AutoContext<ClPropertyValueChangedEventArgs>
     {
-
         public ClPropertyValueChangedEventArgs()
         {
             PropertyValueChangedEventArgs PropertyValueChangedEventArgs1 = new PropertyValueChangedEventArgs();
@@ -41,9 +34,7 @@ namespace osf
         }
         
         public PropertyValueChangedEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ИзмененныйЭлемент", "ChangedItem")]
         public ClGridItem ChangedItem
         {
@@ -67,8 +58,6 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.OldValue); }
         }
-
-        //Методы============================================================
-
+        
     }
 }

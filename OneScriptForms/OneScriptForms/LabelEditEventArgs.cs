@@ -3,7 +3,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class LabelEditEventArgs : EventArgs
     {
         public bool CancelEdit = false;
@@ -11,10 +10,6 @@ namespace osf
         public int Item = -1;
         public string Label = "";
         public string Type = "BeforeLabelEdit";
-
-        //Свойства============================================================
-
-        //Методы============================================================
 
         public override bool PostEvent()
         {
@@ -36,13 +31,11 @@ namespace osf
             }
             return true;
         }
-
     }
 
     [ContextClass ("КлРедактированиеНадписиАрг", "ClLabelEditEventArgs")]
     public class ClLabelEditEventArgs : AutoContext<ClLabelEditEventArgs>
     {
-
         public ClLabelEditEventArgs()
         {
             LabelEditEventArgs LabelEditEventArgs1 = new LabelEditEventArgs();
@@ -58,9 +51,7 @@ namespace osf
         }
         
         public LabelEditEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Надпись", "Label")]
         public string Label
         {
@@ -91,8 +82,6 @@ namespace osf
         {
             get { return Base_obj.Item; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

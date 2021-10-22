@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class Cursor
     {
         public ClCursor dll_obj;
@@ -26,8 +25,6 @@ namespace osf
             OneScriptForms.AddToHashtable(M_Cursor, this);
         }
 
-        //Свойства============================================================
-
         public osf.Cursor Current
         {
             get { return new Cursor(System.Windows.Forms.Cursor.Current); }
@@ -44,15 +41,11 @@ namespace osf
         {
             get { return new Size(M_Cursor.Size); }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлКурсор", "ClCursor")]
     public class ClCursor : AutoContext<ClCursor>
     {
-
         public ClCursor()
         {
             Cursor Cursor1 = new Cursor();
@@ -68,9 +61,7 @@ namespace osf
         }
         
         public Cursor Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Позиция", "Position")]
         public ClPoint Position
         {
@@ -89,8 +80,6 @@ namespace osf
         {
             get { return (ClCursor)OneScriptForms.RevertObj(Base_obj.Current); }
         }
-
-        //Методы============================================================
-
+        
     }
 }

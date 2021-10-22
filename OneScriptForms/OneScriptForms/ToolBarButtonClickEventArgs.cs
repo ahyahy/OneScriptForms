@@ -3,22 +3,16 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class ToolBarButtonClickEventArgs : EventArgs
     {
         public osf.ToolBarButton Button = null;
         public new ClToolBarButtonClickEventArgs dll_obj;
-
-        //Свойства============================================================
-
-        //Методы============================================================
 
     }
 
     [ContextClass ("КлКнопкаПанелиИнструментовАрг", "ClToolBarButtonClickEventArgs")]
     public class ClToolBarButtonClickEventArgs : AutoContext<ClToolBarButtonClickEventArgs>
     {
-
         public ClToolBarButtonClickEventArgs()
         {
             ToolBarButtonClickEventArgs ToolBarButtonClickEventArgs1 = new ToolBarButtonClickEventArgs();
@@ -34,9 +28,7 @@ namespace osf
         }
         
         public ToolBarButtonClickEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Кнопка", "Button")]
         public ClToolBarButton Button
         {
@@ -54,8 +46,6 @@ namespace osf
         {
             get { return (IValue)Base_obj.Parameter; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

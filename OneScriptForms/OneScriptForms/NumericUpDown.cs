@@ -40,8 +40,6 @@ namespace osf
             ValueChanged = "";
         }
 
-        //Свойства============================================================
-
         public int DecimalPlaces
         {
             get { return M_NumericUpDown.DecimalPlaces; }
@@ -102,8 +100,6 @@ namespace osf
             }
         }
 
-        //Методы============================================================
-
         private void M_NumericUpDown_ValueChanged(object sender, System.EventArgs e)
         {
             if (ValueChanged.Length > 0)
@@ -128,7 +124,6 @@ namespace osf
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
         }
-
     }
 
     [ContextClass ("КлРегуляторВверхВниз", "ClNumericUpDown")]
@@ -191,9 +186,7 @@ namespace osf
         }
         
         public NumericUpDown Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("АвтоПрокрутка", "AutoScroll")]
         public bool AutoScroll
         {
@@ -1400,9 +1393,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

@@ -36,8 +36,6 @@ namespace osf
             base.M_TextBoxBase = M_TextBox;
         }
 
-        //Свойства============================================================
-
         public bool AcceptsReturn
         {
             get { return M_TextBox.AcceptsReturn; }
@@ -65,9 +63,6 @@ namespace osf
             get { return (int)M_TextBox.ScrollBars; }
             set { M_TextBox.ScrollBars = (System.Windows.Forms.ScrollBars)value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлПолеВвода", "ClTextBox")]
@@ -126,9 +121,7 @@ namespace osf
         }
         
         public TextBox Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("АвтоРазмер", "AutoSize")]
         public bool AutoSize
         {
@@ -1359,9 +1352,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

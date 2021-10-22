@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class ListViewSubItem
     {
         public ClListViewSubItem dll_obj;
@@ -26,8 +25,6 @@ namespace osf
             M_ListViewSubItem = p1;
             OneScriptForms.AddToHashtable(M_ListViewSubItem, this);
         }
-
-        //Свойства============================================================
 
         public osf.Color BackColor
         {
@@ -70,9 +67,6 @@ namespace osf
                 System.Windows.Forms.Application.DoEvents();
             }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлПодэлементСпискаЭлементов", "ClListViewSubItem")]
@@ -101,9 +95,7 @@ namespace osf
         }
 
         public ListViewSubItem Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Метка", "Tag")]
         public ClCollection Tag
         {
@@ -149,8 +141,6 @@ namespace osf
                 Base_obj.Font.dll_obj = value;
             }
         }
-
-        //Методы============================================================
-
+        
     }
 }

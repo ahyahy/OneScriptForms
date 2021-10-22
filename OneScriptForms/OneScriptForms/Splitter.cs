@@ -36,8 +36,6 @@ namespace osf
             base.M_Control = M_Splitter;
         }
 
-        //Свойства============================================================
-
         public int MinExtra
         {
             get { return M_Splitter.MinExtra; }
@@ -55,9 +53,6 @@ namespace osf
             get { return M_Splitter.SplitPosition; }
             set { M_Splitter.SplitPosition = value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлРазделитель", "ClSplitter")]
@@ -116,9 +111,7 @@ namespace osf
         }
         
         public Splitter Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ВерсияПродукта", "ProductVersion")]
         public string ProductVersion
         {
@@ -1233,9 +1226,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

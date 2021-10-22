@@ -3,23 +3,17 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class PaintEventArgs : EventArgs
     {
         public osf.Rectangle ClipRectangle = null;
         public new ClPaintEventArgs dll_obj;
         public osf.Graphics Graphics = null;
 
-        //Свойства============================================================
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлРисованиеАрг", "ClPaintEventArgs")]
     public class ClPaintEventArgs : AutoContext<ClPaintEventArgs>
     {
-
         public ClPaintEventArgs()
         {
             PaintEventArgs PaintEventArgs1 = new PaintEventArgs();
@@ -35,9 +29,7 @@ namespace osf
         }
         
         public PaintEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Графика", "Graphics")]
         public ClGraphics Graphics
         {
@@ -61,8 +53,6 @@ namespace osf
         {
             get { return (ClRectangle)OneScriptForms.RevertObj(Base_obj.ClipRectangle); }
         }
-
-        //Методы============================================================
-
+        
     }
 }

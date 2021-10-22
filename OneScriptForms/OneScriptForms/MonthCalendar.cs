@@ -50,8 +50,6 @@ namespace osf
             M_DateSelected = "";
         }
 
-        //Свойства============================================================
-
         public System.DateTime[] AnnuallyBoldedDates
         {
             get { return M_MonthCalendar.AnnuallyBoldedDates; }
@@ -163,8 +161,6 @@ namespace osf
             set { M_MonthCalendar.TodayDate = value; }
         }
 
-        //Методы============================================================
-
         private void MonthCalendar_DateChanged(object sender, System.Windows.Forms.DateRangeEventArgs e)
         {
             if (M_DateChanged.Length > 0)
@@ -214,7 +210,6 @@ namespace osf
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
         }
-
     }
 
     [ContextClass ("КлКалендарь", "ClMonthCalendar")]
@@ -289,9 +284,7 @@ namespace osf
         }
 
         public MonthCalendar Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ВерсияПродукта", "ProductVersion")]
         public string ProductVersion
         {
@@ -1510,9 +1503,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

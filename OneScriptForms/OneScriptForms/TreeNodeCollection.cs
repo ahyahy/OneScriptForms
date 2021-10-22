@@ -4,7 +4,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class TreeNodeCollection : CollectionBase
     {
         public ClTreeNodeCollection dll_obj;
@@ -20,8 +19,6 @@ namespace osf
             base.List = M_TreeNodeCollection;
         }
 
-        //Свойства============================================================
-
         public override object Current
         {
             get { return (object)((TreeNodeEx)(System.Windows.Forms.TreeNode)Enumerator.Current).M_Object; }
@@ -31,8 +28,6 @@ namespace osf
         {
             get { return ((TreeNodeEx)M_TreeNodeCollection[index]).M_Object; }
         }
-
-        //Методы============================================================
 
         public osf.TreeNode Insert(int p1, TreeNode p2)
         {
@@ -59,13 +54,11 @@ namespace osf
         {
             M_TreeNodeCollection.Remove((System.Windows.Forms.TreeNode)TreeNode.M_TreeNode);
         }
-
     }
 
     [ContextClass ("КлУзлыДерева", "ClTreeNodeCollection")]
     public class ClTreeNodeCollection : AutoContext<ClTreeNodeCollection>
     {
-
         public ClTreeNodeCollection()
         {
             TreeNodeCollection TreeNodeCollection1 = new TreeNodeCollection();
@@ -81,17 +74,13 @@ namespace osf
         }
         
         public TreeNodeCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Вставить", "Insert")]
         public ClTreeNode Insert(int p1, ClTreeNode p2)
         {

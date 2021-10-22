@@ -166,6 +166,5 @@ namespace osf
         {
         	get { return m_gdi; }
         }
-
     }
 }

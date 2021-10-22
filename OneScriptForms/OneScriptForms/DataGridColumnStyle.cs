@@ -1,6 +1,5 @@
 ﻿namespace osf
 {
-
     public class DataGridColumnStyle : Component
     {
         public System.Windows.Forms.DataGridColumnStyle M_DataGridColumnStyle;
@@ -20,8 +19,6 @@
             M_DataGridColumnStyle = p1;
             base.M_Component = M_DataGridColumnStyle;
         }
-
-        //Свойства============================================================
 
         public int Alignment
         {
@@ -52,9 +49,5 @@
             get { return M_DataGridColumnStyle.Width; }
             set { M_DataGridColumnStyle.Width = value; }
         }
-
-        //Методы============================================================
-
     }
-
 }

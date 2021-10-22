@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class StreamReader
     {
         public ClStreamReader dll_obj;
@@ -23,10 +22,6 @@ namespace osf
             M_StreamReader = p1;
         }
 
-        //Свойства============================================================
-
-        //Методы============================================================
-
         public void Close()
         {
             M_StreamReader.Close();
@@ -46,13 +41,11 @@ namespace osf
         {
             return M_StreamReader.ReadToEnd();
         }
-
     }
 
     [ContextClass ("КлПотокЧтения", "ClStreamReader")]
     public class ClStreamReader : AutoContext<ClStreamReader>
     {
-
         public ClStreamReader(string p1)
         {
             StreamReader StreamReader1 = new StreamReader(p1);
@@ -68,11 +61,7 @@ namespace osf
         }
 
         public StreamReader Base_obj;
-
-        //Свойства============================================================
-
-        //Методы============================================================
-
+        
         [ContextMethod("Заглянуть", "Peek")]
         public int Peek()
         {

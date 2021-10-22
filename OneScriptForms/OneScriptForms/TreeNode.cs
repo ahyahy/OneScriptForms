@@ -38,8 +38,6 @@ namespace osf
             M_TreeNode.M_Object = this;
         }
 
-        //Свойства============================================================
-
         public bool Checked
         {
             get { return M_TreeNode.Checked; }
@@ -111,8 +109,6 @@ namespace osf
             get { return (TreeView)((TreeViewEx)M_TreeNode.TreeView).M_Object; }
         }
 
-        //Методы============================================================
-
         public void BeginEdit()
         {
             M_TreeNode.BeginEdit();
@@ -133,7 +129,6 @@ namespace osf
         {
             M_TreeNode.Remove();
         }
-
     }
 
     [ContextClass ("КлУзелДерева", "ClTreeNode")]
@@ -175,9 +170,7 @@ namespace osf
         }
 
         public TreeNode Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Дерево", "TreeView")]
         public ClTreeView TreeView
         {
@@ -264,9 +257,7 @@ namespace osf
                 Base_obj.NodeFont.dll_obj = value;
             }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("НачатьРедактирование", "BeginEdit")]
         public void BeginEdit()
         {

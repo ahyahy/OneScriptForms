@@ -3,7 +3,6 @@ using ScriptEngine.Machine.Contexts;
 
 namespace osf
 {
-
     public class Icon
     {
         public ClIcon dll_obj;
@@ -60,8 +59,6 @@ namespace osf
             OneScriptForms.AddToHashtable(M_Icon, this);
         }
 
-        //Свойства============================================================
-
         public int Height
         {
             get { return M_Icon.Height; }
@@ -77,13 +74,10 @@ namespace osf
             get { return M_Icon.Width; }
         }
 
-        //Методы============================================================
-
         public osf.Bitmap ToBitmap()
         {
             return new Bitmap(M_Icon.ToBitmap());
         }
-
     }
 
     [ContextClass ("КлЗначок", "ClIcon")]
@@ -112,9 +106,7 @@ namespace osf
         }
 
         public Icon Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Высота", "Height")]
         public int Height
         {
@@ -132,9 +124,7 @@ namespace osf
         {
             get { return Base_obj.Width; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("ВКартинку", "ToBitmap")]
         public ClBitmap ToBitmap()
         {

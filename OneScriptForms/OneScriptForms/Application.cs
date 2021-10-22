@@ -3,13 +3,10 @@ using System.Reflection;
 
 namespace osf
 {
-
     public class Application
     {
         private static bool m_IsRunning = false;
         public ClApplication dll_obj;
-
-        //Свойства============================================================
 
         public bool IsRunning
         {
@@ -35,8 +32,6 @@ namespace osf
         {
             get { return new osf.Version((dynamic)Assembly.GetExecutingAssembly().GetName().Version); }
         }
-
-        //Методы============================================================
 
         public string DoEvents(bool wait = true)
         {
@@ -64,13 +59,11 @@ namespace osf
                 return;
             form.Show();
         }
-
     }
 
     [ContextClass ("КлПриложение", "ClApplication")]
     public class ClApplication : AutoContext<ClApplication>
     {
-
         public ClApplication()
         {
             Application Application1 = new Application();
@@ -86,9 +79,7 @@ namespace osf
         }
         
         public Application Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Версия", "Version")]
         public ClVersion Version
         {
@@ -112,9 +103,7 @@ namespace osf
         {
             get { return Base_obj.UserAppDataPath; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("ВключитьВизуальныеСтили", "EnableVisualStyles")]
         public void EnableVisualStyles()
         {

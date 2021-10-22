@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class Encoding
     {
         public ClEncoding dll_obj;
@@ -22,8 +21,6 @@ namespace osf
         {
             M_Encoding = System.Text.Encoding.Default;
         }
-
-        //Свойства============================================================
 
         public osf.Encoding ASCII
         {
@@ -80,8 +77,6 @@ namespace osf
             get { return M_Encoding.WindowsCodePage; }
         }
 
-        //Методы============================================================
-
         public int GetByteCount(string sText)
         {
             return M_Encoding.GetByteCount(sText);
@@ -91,13 +86,11 @@ namespace osf
         {
             return new Encoding(System.Text.Encoding.GetEncoding(p1));
         }
-
     }
 
     [ContextClass ("КлКодировка", "ClEncoding")]
     public class ClEncoding : AutoContext<ClEncoding>
     {
-
         public ClEncoding()
         {
             Encoding Encoding1 = new Encoding();
@@ -113,9 +106,7 @@ namespace osf
         }
         
         public Encoding Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ASCII", "ASCII")]
         public ClEncoding ASCII
         {
@@ -181,9 +172,7 @@ namespace osf
         {
             get { return (ClEncoding)OneScriptForms.RevertObj(Base_obj.Unicode); }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("КоличествоБайтов", "GetByteCount")]
         public int GetByteCount(string p1)
         {

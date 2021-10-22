@@ -3,7 +3,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class DictionaryEntry
     {
         public ClDictionaryEntry dll_obj;
@@ -27,8 +26,6 @@ namespace osf
             OneScriptForms.AddToHashtable(M_DictionaryEntry, this);
         }
 
-        //Свойства============================================================
-
         public object Key
         {
             get{return M_DictionaryEntry.Key;}
@@ -40,15 +37,11 @@ namespace osf
             get{return M_DictionaryEntry.Value;}
             set{M_DictionaryEntry.Value = value;}
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлСловарнаяЗапись", "ClDictionaryEntry")]
     public class ClDictionaryEntry : AutoContext<ClDictionaryEntry>
     {
-
         public ClDictionaryEntry(IValue p1, IValue p2)
         {
             DictionaryEntry DictionaryEntry1 = new DictionaryEntry(p1, p2);
@@ -64,9 +57,7 @@ namespace osf
         }
 
         public DictionaryEntry Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Значение", "Value")]
         public IValue Value
         {
@@ -80,8 +71,6 @@ namespace osf
             get { return OneScriptForms.RevertObj(Base_obj.Key); }
             set { Base_obj.Key = value; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

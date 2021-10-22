@@ -36,16 +36,11 @@ namespace osf
             base.M_ButtonBase = M_Button;
         }
 
-        //Свойства============================================================
-
         public int DialogResult
         {
             get { return (int)M_Button.DialogResult; }
             set { M_Button.DialogResult = (System.Windows.Forms.DialogResult)value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлКнопка", "ClButton")]
@@ -104,9 +99,7 @@ namespace osf
         }
         
         public Button Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ВерсияПродукта", "ProductVersion")]
         public string ProductVersion
         {
@@ -1253,9 +1246,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

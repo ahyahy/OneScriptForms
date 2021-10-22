@@ -91,8 +91,6 @@ namespace osf
             ItemActivate = "";
         }
 
-        //Свойства============================================================
-
         public int Activation
         {
             get { return (int)M_ListView.Activation; }
@@ -252,8 +250,6 @@ namespace osf
             get { return (int)M_ListView.View; }
             set { M_ListView.View = (System.Windows.Forms.View)value; }
         }
-
-        //Методы============================================================
 
         public void EnsureVisible(int index)
         {
@@ -481,7 +477,6 @@ namespace osf
             M_ListView.EndUpdate();
             System.Windows.Forms.Application.DoEvents();
         }
-
     }
 
     public class ListViewItemSorter : IComparer
@@ -496,10 +491,6 @@ namespace osf
             owner = p1;
             col = owner.SortedColumn.Index;
         }
-
-        //Свойства============================================================
-
-        //Методы============================================================
 
         public int Compare(object x, object y)
         {
@@ -631,7 +622,6 @@ namespace osf
             }
             return num;
         }
-
     }
 
     [ContextClass ("КлСписокЭлементов", "ClListView")]
@@ -708,9 +698,7 @@ namespace osf
         }
         
         public ListView Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("АвтоУпорядочивание", "AutoArrange")]
         public bool AutoArrange
         {
@@ -2209,9 +2197,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

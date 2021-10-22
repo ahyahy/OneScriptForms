@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 
 namespace osf
 {
-
     public class Control : Component
     {
         [DllImport("user32", EntryPoint = "SendMessageA", CharSet = CharSet.Auto, SetLastError = true)] public static extern bool SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
@@ -35,8 +34,6 @@ namespace osf
         public Control(System.Windows.Forms.Control control = null)
         {
         }
-
-        //Свойства============================================================
 
         public int Anchor
         {
@@ -177,8 +174,6 @@ namespace osf
                     new object[] { value });
             }
         }
-
-        //Методы============================================================
 
         public bool Enabled
         {
@@ -459,8 +454,6 @@ namespace osf
             set { M_Control.Width = value; }
         }
 
-        //Методы============================================================
-
         public void BringToFront()
         {
             M_Control.BringToFront();
@@ -617,8 +610,6 @@ namespace osf
                 ClControlEventArgs ClControlEventArgs1 = new ClControlEventArgs(ControlEventArgs1);
             }
         }
-
-        //Свойства============================================================
 
         private void m_Control_DoubleClick(object sender, System.EventArgs e)
         {
@@ -1208,7 +1199,5 @@ namespace osf
             System.Windows.Forms.Control parent = M_Control.Parent;
             M_Control.Location = new System.Drawing.Point((int)System.Math.Round((parent.ClientSize.Width - M_Control.Width) / 2.0), (int)System.Math.Round((parent.ClientSize.Height - M_Control.Height) / 2.0));
         }
-
     }
-
 }

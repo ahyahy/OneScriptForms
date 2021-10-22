@@ -56,8 +56,6 @@ namespace osf
             M_DataColumn.M_Object = this;
         }
 
-        //Свойства============================================================
-
         public bool AutoIncrement
         {
             get { return M_DataColumn.AutoIncrement; }
@@ -115,15 +113,11 @@ namespace osf
         {
             get { return  (DataTable)((DataTableEx)M_DataColumn.Table).M_Object; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлКолонкаДанных", "ClDataColumn")]
     public class ClDataColumn : AutoContext<ClDataColumn>
     {
-
         public ClDataColumn()
         {
             DataColumn DataColumn1 = new DataColumn();
@@ -153,9 +147,7 @@ namespace osf
         }
 
         public DataColumn Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("АвтоПриращение", "AutoIncrement")]
         public bool AutoIncrement
         {
@@ -303,8 +295,6 @@ namespace osf
             get { return Base_obj.AutoIncrementStep; }
             set { Base_obj.AutoIncrementStep = value; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

@@ -3,7 +3,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class KeyEventArgs : EventArgs
     {
         public bool Alt = false;
@@ -13,16 +12,11 @@ namespace osf
         public int Modifiers = (int)System.Windows.Forms.Keys.None;
         public bool Shift = false;
 
-        //Свойства============================================================
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлКлавишаАрг", "ClKeyEventArgs")]
     public class ClKeyEventArgs : AutoContext<ClKeyEventArgs>
     {
-
         public ClKeyEventArgs()
         {
             KeyEventArgs KeyEventArgs1 = new KeyEventArgs();
@@ -38,9 +32,7 @@ namespace osf
         }
         
         public KeyEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Alt", "Alt")]
         public bool Alt
         {
@@ -82,8 +74,6 @@ namespace osf
         {
             get { return (IValue)Base_obj.Parameter; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

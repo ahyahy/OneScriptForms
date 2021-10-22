@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class DockPaddingEdges
     {
         public ClDockPaddingEdges dll_obj;
@@ -19,8 +18,6 @@ namespace osf
             M_DockPaddingEdges = p1;
             OneScriptForms.AddToHashtable(M_DockPaddingEdges, this);
         }
-
-        //Свойства============================================================
 
         public int All
         {
@@ -51,15 +48,11 @@ namespace osf
             get { return M_DockPaddingEdges.Top; }
             set { M_DockPaddingEdges.Top = value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлЗаполнениеГраниц", "ClDockPaddingEdges")]
     public class ClDockPaddingEdges : AutoContext<ClDockPaddingEdges>
     {
-
         public ClDockPaddingEdges(DockPaddingEdges p1)
         {
             DockPaddingEdges DockPaddingEdges1 = p1;
@@ -68,9 +61,7 @@ namespace osf
         }
 
         public DockPaddingEdges Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Верх", "Top")]
         public int Top
         {
@@ -105,8 +96,6 @@ namespace osf
             get { return Base_obj.Right; }
             set { Base_obj.Right = value; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class Screen
     {
         public ClScreen dll_obj;
@@ -23,8 +22,6 @@ namespace osf
             M_Screen = p1;
         }
 
-        //Свойства============================================================
-
         public osf.Rectangle Bounds
         {
             get { return new osf.Rectangle(M_Screen.Bounds); }
@@ -39,9 +36,6 @@ namespace osf
         {
             get { return new osf.Rectangle(M_Screen.WorkingArea); }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлЭкран", "ClScreen")]
@@ -69,9 +63,7 @@ namespace osf
         }
         
         public Screen Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Границы", "Bounds")]
         public ClRectangle Bounds
         {
@@ -89,8 +81,6 @@ namespace osf
         {
             get { return workingArea; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

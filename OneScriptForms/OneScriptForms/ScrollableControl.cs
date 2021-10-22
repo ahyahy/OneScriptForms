@@ -1,11 +1,8 @@
 ﻿namespace osf
 {
-
     public class ScrollableControl : Control
     {
         private System.Windows.Forms.ScrollableControl m_ScrollableControl;
-
-        //Свойства============================================================
 
         public bool AutoScroll
         {
@@ -33,9 +30,5 @@
                 base.M_Control = m_ScrollableControl;
             }
         }
-
-        //Методы============================================================
-
     }
-
 }

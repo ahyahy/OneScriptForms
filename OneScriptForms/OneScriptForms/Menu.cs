@@ -4,13 +4,10 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class Menu
     {
         public ClMenu dll_obj;
         public System.Windows.Forms.Menu M_Menu;
-
-        //Свойства============================================================
 
         public osf.MenuItem get_MenuItem(int index)
         {
@@ -21,8 +18,6 @@ namespace osf
         {
             get { return new MenuItemCollection(M_Menu.MenuItems); }
         }
-
-        //Методы============================================================
 
         public MainMenu GetMainMenu()
         {
@@ -40,7 +35,6 @@ namespace osf
         {
             return MenuItems[p1];
         }
-
     }
 
     [ContextClass ("КлМеню", "ClMenu")]
@@ -65,17 +59,13 @@ namespace osf
         }
         
         public Menu Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ЭлементыМеню", "MenuItems")]
         public ClMenuItemCollection MenuItems
         {
             get { return menuItems; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("ПолучитьГлавноеМеню", "GetMainMenu")]
         public ClMainMenu GetMainMenu()
         {

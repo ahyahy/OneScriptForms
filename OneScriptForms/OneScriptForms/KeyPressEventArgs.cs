@@ -4,7 +4,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class KeyPressEventArgs : EventArgs
     {
         public new ClKeyPressEventArgs dll_obj;
@@ -14,17 +13,11 @@ namespace osf
         {
             KeyChar = Convert.ToString(char.MinValue);
         }
-
-        //Свойства============================================================
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлКлавишаНажатаАрг", "ClKeyPressEventArgs")]
     public class ClKeyPressEventArgs : AutoContext<ClKeyPressEventArgs>
     {
-
         public ClKeyPressEventArgs()
         {
             KeyPressEventArgs KeyPressEventArgs1 = new KeyPressEventArgs();
@@ -40,9 +33,7 @@ namespace osf
         }
         
         public KeyPressEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Отправитель", "Sender")]
         public IValue Sender
         {
@@ -60,8 +51,6 @@ namespace osf
         {
             get { return Base_obj.KeyChar; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

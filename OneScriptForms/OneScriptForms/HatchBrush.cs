@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class HatchBrush : Brush
     {
         public ClHatchBrush dll_obj;
@@ -37,17 +36,11 @@ namespace osf
             base.M_Brush = M_HatchBrush;
             OneScriptForms.AddToHashtable(M_HatchBrush, this);
         }
-
-        //Свойства============================================================
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлПрямоугольнаяКисть", "ClHatchBrush")]
     public class ClHatchBrush : AutoContext<ClHatchBrush>
     {
-
         public ClHatchBrush(int p1, osf.Color p2, osf.Color p3 = null)
         {
             HatchBrush HatchBrush1 = new HatchBrush(p1, p2, p3);
@@ -63,10 +56,6 @@ namespace osf
         }
 
         public HatchBrush Base_obj;
-
-        //Свойства============================================================
-
-        //Методы============================================================
-
+        
     }
 }

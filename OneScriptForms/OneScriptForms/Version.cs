@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class Version
     {
         public ClVersion dll_obj;
@@ -12,8 +11,6 @@ namespace osf
         {
             M_Version = p1;
         }
-
-        //Свойства============================================================
 
         public int Build
         {
@@ -35,19 +32,15 @@ namespace osf
             get { return M_Version.Revision; }
         }
 
-        //Методы============================================================
-
         public new string ToString()
         {
             return M_Version.ToString();
         }
-
     }
 
     [ContextClass ("КлВерсия", "ClVersion")]
     public class ClVersion : AutoContext<ClVersion>
     {
-
         public ClVersion(Version p1)
         {
             Version Version1 = p1;
@@ -63,9 +56,7 @@ namespace osf
         }
 
         public Version Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ДополнительныйНомер", "Minor")]
         public int Minor
         {
@@ -89,8 +80,6 @@ namespace osf
         {
             get { return Base_obj.Build; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

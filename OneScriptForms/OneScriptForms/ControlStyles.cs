@@ -117,6 +117,5 @@ namespace osf
         {
         	get { return m_fixedWidth; }
         }
-
     }
 }

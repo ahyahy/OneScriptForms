@@ -3,22 +3,16 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class ControlEventArgs : EventArgs
     {
         public new ClControlEventArgs dll_obj;
         public dynamic Control = null;
-
-        //Свойства============================================================
-
-        //Методы============================================================
 
     }
 
     [ContextClass ("КлЭлементУправленияАрг", "ClControlEventArgs")]
     public class ClControlEventArgs : AutoContext<ClControlEventArgs>
     {
-
         public ClControlEventArgs()
         {
             ControlEventArgs ControlEventArgs1 = new ControlEventArgs();
@@ -34,9 +28,7 @@ namespace osf
         }
         
         public ControlEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Отправитель", "Sender")]
         public IValue Sender
         {
@@ -54,8 +46,6 @@ namespace osf
         {
             get { return (IValue)OneScriptForms.RevertObj(Base_obj.Control); }
         }
-
-        //Методы============================================================
-
+        
     }
 }

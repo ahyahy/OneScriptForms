@@ -54,6 +54,5 @@ namespace osf
         {
         	get { return m_mdiFormClosing; }
         }
-
     }
 }

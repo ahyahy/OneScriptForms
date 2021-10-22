@@ -31,8 +31,6 @@ namespace osf
             M_ToolTip.M_Object = this;
         }
 
-        //Свойства============================================================
-
         public bool Active
         {
             get { return M_ToolTip.Active; }
@@ -69,8 +67,6 @@ namespace osf
             set { M_ToolTip.ShowAlways = value; }
         }
 
-        //Методы============================================================
-
         public string GetToolTip(Control p1)
         {
             return M_ToolTip.GetToolTip(p1.M_Control);
@@ -85,13 +81,11 @@ namespace osf
         {
             M_ToolTip.SetToolTip(p1.M_Control, p2);
         }
-
     }
 
     [ContextClass ("КлПодсказка", "ClToolTip")]
     public class ClToolTip : AutoContext<ClToolTip>
     {
-
         public ClToolTip()
         {
             ToolTip ToolTip1 = new ToolTip();
@@ -107,9 +101,7 @@ namespace osf
         }
         
         public ToolTip Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("АвтоЗадержка", "AutomaticDelay")]
         public int AutomaticDelay
         {
@@ -151,9 +143,7 @@ namespace osf
             get { return Base_obj.ShowAlways; }
             set { Base_obj.ShowAlways = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("ПолучитьПодсказку", "GetToolTip")]
         public string GetToolTip(IValue p1)
         {

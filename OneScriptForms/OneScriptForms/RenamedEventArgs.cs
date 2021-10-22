@@ -3,23 +3,17 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class RenamedEventArgs : FileSystemEventArgs
     {
         public new ClRenamedEventArgs dll_obj;
         public string OldFullPath = "";
         public string OldName = "";
 
-        //Свойства============================================================
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлПереименованиеАрг", "ClRenamedEventArgs")]
     public class ClRenamedEventArgs : AutoContext<ClRenamedEventArgs>
     {
-
         public ClRenamedEventArgs()
         {
             RenamedEventArgs RenamedEventArgs1 = new RenamedEventArgs();
@@ -35,9 +29,7 @@ namespace osf
         }
         
         public RenamedEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Имя", "Name")]
         public string Name
         {
@@ -79,8 +71,6 @@ namespace osf
         {
             get { return (int)Base_obj.ChangeType; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

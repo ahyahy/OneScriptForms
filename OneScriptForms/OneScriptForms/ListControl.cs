@@ -1,6 +1,5 @@
 ﻿namespace osf
 {
-
     public class ListControl : Control
     {
         private System.Windows.Forms.ListControl m_ListControl;
@@ -8,8 +7,6 @@
         public ListControl()
         {
         }
-
-        //Свойства============================================================
 
         public object DataSource
         {
@@ -83,9 +80,5 @@
                 System.Windows.Forms.Application.DoEvents();
             }
         }
-
-        //Методы============================================================
-
     }
-
 }

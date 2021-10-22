@@ -61,6 +61,5 @@ namespace osf
         {
         	get { return m_ignore; }
         }
-
     }
 }

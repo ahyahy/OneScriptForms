@@ -68,8 +68,6 @@ namespace osf
             BeforeSelect = "";
         }
 
-        //Свойства============================================================
-
         public int BorderStyle
         {
             get { return (int)M_TreeView.BorderStyle; }
@@ -189,8 +187,6 @@ namespace osf
             get { return M_TreeView.Sorted; }
             set { M_TreeView.Sorted = value; }
         }
-
-        //Методы============================================================
 
         public osf.TreeNode GetNodeAt(int x, int y)
         {
@@ -324,7 +320,6 @@ namespace osf
         {
             M_TreeView.EndUpdate();
         }
-
     }
 
     [ContextClass ("КлДерево", "ClTreeView")]
@@ -389,9 +384,7 @@ namespace osf
         }
         
         public TreeView Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ВерсияПродукта", "ProductVersion")]
         public string ProductVersion
         {
@@ -1728,9 +1721,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

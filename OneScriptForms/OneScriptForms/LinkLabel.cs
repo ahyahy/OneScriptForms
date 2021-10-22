@@ -44,8 +44,6 @@ namespace osf
             LinkClicked = "";
         }
 
-        //Свойства============================================================
-
         public osf.Color ActiveLinkColor
         {
             get { return new Color(M_LinkLabel.ActiveLinkColor); }
@@ -168,8 +166,6 @@ namespace osf
             set { M_LinkLabel.VisitedLinkColor = value.M_Color; }
         }
 
-        //Методы============================================================
-
         private void M_LinkLabel_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
             if (LinkClicked.Length > 0)
@@ -196,7 +192,6 @@ namespace osf
                 ClLinkLabelLinkClickedEventArgs ClLinkLabelLinkClickedEventArgs1 = new ClLinkLabelLinkClickedEventArgs(LinkLabelLinkClickedEventArgs1);
             }
         }
-
     }
 
     [ContextClass ("КлНадписьСсылка", "ClLinkLabel")]
@@ -268,9 +263,7 @@ namespace osf
         }
         
         public LinkLabel Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("АвтоРазмер", "AutoSize")]
         public bool AutoSize
         {
@@ -1473,9 +1466,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

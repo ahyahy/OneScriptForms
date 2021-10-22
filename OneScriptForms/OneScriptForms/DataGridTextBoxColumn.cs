@@ -33,21 +33,15 @@ namespace osf
             base.M_DataGridColumnStyle = (System.Windows.Forms.DataGridColumnStyle)M_DataGridTextBoxColumn;
         }
 
-        //Свойства============================================================
-
         public osf.DataGridTextBox TextBox
         {
             get { return new DataGridTextBox((System.Windows.Forms.DataGridTextBox)M_DataGridTextBoxColumn.TextBox); }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлСтильКолонкиПолеВвода", "ClDataGridTextBoxColumn")]
     public class ClDataGridTextBoxColumn : AutoContext<ClDataGridTextBoxColumn>
     {
-
         public ClDataGridTextBoxColumn()
         {
             DataGridTextBoxColumn DataGridTextBoxColumn1 = new DataGridTextBoxColumn();
@@ -63,9 +57,7 @@ namespace osf
         }
         
         public DataGridTextBoxColumn Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Выравнивание", "Alignment")]
         public int Alignment
         {
@@ -106,9 +98,7 @@ namespace osf
             get { return Base_obj.Width; }
             set { Base_obj.Width = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

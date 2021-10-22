@@ -4,7 +4,6 @@ using System.Threading;
 
 namespace osf
 {
-
     public class FolderBrowserDialog : CommonDialog
     {
         public ClFolderBrowserDialog dll_obj;
@@ -28,8 +27,6 @@ namespace osf
             M_FolderBrowserDialog = p1;
             base.M_CommonDialog = M_FolderBrowserDialog;
         }
-
-        //Свойства============================================================
 
         public string Description
         {
@@ -59,15 +56,11 @@ namespace osf
             get { return M_FolderBrowserDialog.ShowNewFolderButton; }
             set { M_FolderBrowserDialog.ShowNewFolderButton = value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлДиалогВыбораКаталога", "ClFolderBrowserDialog")]
     public class ClFolderBrowserDialog : AutoContext<ClFolderBrowserDialog>
     {
-
         public ClFolderBrowserDialog()
         {
             FolderBrowserDialog FolderBrowserDialog1 = new FolderBrowserDialog();
@@ -83,9 +76,7 @@ namespace osf
         }
         
         public FolderBrowserDialog Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ВыбранныйПуть", "SelectedPath")]
         public string SelectedPath
         {
@@ -119,9 +110,7 @@ namespace osf
         {
             get { return new ClType(this); }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

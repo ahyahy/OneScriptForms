@@ -3,22 +3,16 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class LinkClickedEventArgs : EventArgs
     {
         public new ClLinkClickedEventArgs dll_obj;
         public string LinkText = "";
-
-        //Свойства============================================================
-
-        //Методы============================================================
 
     }
 
     [ContextClass ("КлСсылкаНажатаАрг", "ClLinkClickedEventArgs")]
     public class ClLinkClickedEventArgs : AutoContext<ClLinkClickedEventArgs>
     {
-
         public ClLinkClickedEventArgs()
         {
             LinkClickedEventArgs LinkClickedEventArgs1 = new LinkClickedEventArgs();
@@ -34,9 +28,7 @@ namespace osf
         }
         
         public LinkClickedEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Отправитель", "Sender")]
         public IValue Sender
         {
@@ -54,8 +46,6 @@ namespace osf
         {
             get { return Base_obj.LinkText; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

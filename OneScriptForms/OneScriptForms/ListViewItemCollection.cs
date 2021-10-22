@@ -4,7 +4,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class ListViewItemCollection : CollectionBase
     {
         public ClListViewItemCollection dll_obj;
@@ -20,8 +19,6 @@ namespace osf
             base.List = M_ListViewItemCollection;
         }
 
-        //Свойства============================================================
-
         public override object Current
         {
             get { return ((dynamic)Enumerator.Current).M_ListViewItem; }
@@ -31,8 +28,6 @@ namespace osf
         {
             get { return ((ListViewItemEx)M_ListViewItemCollection[index]).M_Object; }
         }
-
-        //Методы============================================================
 
         public osf.ListViewItem Insert(int index, ListViewItem item)
         {
@@ -60,13 +55,11 @@ namespace osf
             M_ListViewItemCollection.Remove((System.Windows.Forms.ListViewItem)item.M_ListViewItem);
             System.Windows.Forms.Application.DoEvents();
         }
-
     }
 
     [ContextClass ("КлЭлементыСпискаЭлементов", "ClListViewItemCollection")]
     public class ClListViewItemCollection : AutoContext<ClListViewItemCollection>
     {
-
         public ClListViewItemCollection()
         {
             ListViewItemCollection ListViewItemCollection1 = new ListViewItemCollection();
@@ -82,17 +75,13 @@ namespace osf
         }
         
         public ListViewItemCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Вставить", "Insert")]
         public ClListViewItem Insert(int p1, ClListViewItem p2)
         {

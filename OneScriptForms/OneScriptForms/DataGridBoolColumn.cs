@@ -32,17 +32,11 @@ namespace osf
             M_DataGridBoolColumn.M_Object = this;
             base.M_DataGridColumnStyle = M_DataGridBoolColumn;
         }
-
-        //Свойства============================================================
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлСтильКолонкиБулево", "ClDataGridBoolColumn")]
     public class ClDataGridBoolColumn : AutoContext<ClDataGridBoolColumn>
     {
-
         public ClDataGridBoolColumn()
         {
             DataGridBoolColumn DataGridBoolColumn1 = new DataGridBoolColumn();
@@ -58,9 +52,7 @@ namespace osf
         }
         
         public DataGridBoolColumn Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Выравнивание", "Alignment")]
         public int Alignment
         {
@@ -95,9 +87,7 @@ namespace osf
             get { return Base_obj.Width; }
             set { Base_obj.Width = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

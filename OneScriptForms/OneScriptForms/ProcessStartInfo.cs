@@ -5,7 +5,6 @@ using System.Security;
 
 namespace osf
 {
-
     public class ProcessStartInfo
     {
         public ClProcessStartInfo dll_obj;
@@ -28,8 +27,6 @@ namespace osf
             M_ProcessStartInfo = p1;
             OneScriptForms.AddToHashtable(M_ProcessStartInfo, this);
         }
-
-        //Свойства============================================================
 
         public string Arguments
         {
@@ -92,15 +89,11 @@ namespace osf
             get { return (int)M_ProcessStartInfo.WindowStyle; }
             set { M_ProcessStartInfo.WindowStyle = (System.Diagnostics.ProcessWindowStyle)value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлИнформацияЗапускаПроцесса", "ClProcessStartInfo")]
     public class ClProcessStartInfo : AutoContext<ClProcessStartInfo>
     {
-
         public ClProcessStartInfo(string p1 = null, string p2 = null)
         {
             ProcessStartInfo ProcessStartInfo1 = new ProcessStartInfo(p1, p2);
@@ -116,9 +109,7 @@ namespace osf
         }
 
         public ProcessStartInfo Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Аргументы", "Arguments")]
         public string Arguments
         {
@@ -181,8 +172,6 @@ namespace osf
             get { return (int)Base_obj.WindowStyle; }
             set { Base_obj.WindowStyle = value; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

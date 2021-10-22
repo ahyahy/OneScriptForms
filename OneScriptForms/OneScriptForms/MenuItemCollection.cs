@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class MenuItemCollection : CollectionBase
     {
         public ClMenuItemCollection dll_obj;
@@ -18,8 +17,6 @@ namespace osf
             base.List = M_MenuItemCollection;
         }
 
-        //Свойства============================================================
-
         public override object Current
         {
             get
@@ -32,8 +29,6 @@ namespace osf
         {
             get { return (MenuItem)((MenuItemEx)M_MenuItemCollection[p1]).M_Object; }
         }
-
-        //Методы============================================================
 
         public osf.MenuItem Add(MenuItem item)
         {
@@ -66,13 +61,11 @@ namespace osf
             M_MenuItemCollection.Remove((System.Windows.Forms.MenuItem)item.M_MenuItem);
             return null;
         }
-
     }
 
     [ContextClass ("КлЭлементыМеню", "ClMenuItemCollection")]
     public class ClMenuItemCollection : AutoContext<ClMenuItemCollection>
     {
-
         public ClMenuItemCollection()
         {
             MenuItemCollection MenuItemCollection1 = new MenuItemCollection();
@@ -88,17 +81,13 @@ namespace osf
         }
         
         public MenuItemCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Добавить", "Add")]
         public ClMenuItem Add(ClMenuItem p1)
         {

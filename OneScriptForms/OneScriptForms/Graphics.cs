@@ -4,7 +4,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class Graphics
     {
         public ClGraphics dll_obj;
@@ -22,8 +21,6 @@ namespace osf
             OneScriptForms.AddToHashtable(M_Graphics, this);
         }
 
-        //Свойства============================================================
-
         public float DpiX
         {
             get { return M_Graphics.DpiX; }
@@ -33,8 +30,6 @@ namespace osf
         {
             get { return M_Graphics.DpiY; }
         }
-
-        //Методы============================================================
 
         public void Clear(Color p1)
         {
@@ -122,13 +117,11 @@ namespace osf
         {
             M_Graphics.TranslateTransform(p1, p2);
         }
-
     }
 
     [ContextClass ("КлГрафика", "ClGraphics")]
     public class ClGraphics : AutoContext<ClGraphics>
     {
-
         public ClGraphics(Graphics p1)
         {
             Graphics Graphics1 = p1;
@@ -137,9 +130,7 @@ namespace osf
         }
 
         public Graphics Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("РазрешениеИгрек", "DpiY")]
         public IValue DpiY
         {
@@ -151,9 +142,7 @@ namespace osf
         {
             get { return ValueFactory.Create((Convert.ToDecimal(Base_obj.DpiX))); }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("ЗаполнитьПрямоугольник", "FillRectangle")]
         public void FillRectangle(IValue p1, IValue p2, IValue p3, IValue p4, IValue p5)
         {

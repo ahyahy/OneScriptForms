@@ -4,7 +4,6 @@ using System.Windows.Forms;
 
 namespace osf
 {
-
     public class DataGridComboBoxColumn : System.Windows.Forms.DataGridTextBoxColumn
     {
         private bool _isEditing;
@@ -29,8 +28,6 @@ namespace osf
             ColumnComboBox.SelectionChangeCommitted += ColumnComboBox_SelectionChangeCommitted;
             _readOnly = false;
         }
-
-        //Свойства============================================================
 
         public override bool ReadOnly
         {
@@ -134,8 +131,6 @@ namespace osf
             catch { }
         }
 
-        //Методы============================================================
-
         private void ColumnComboBox_Leave(object sender, System.EventArgs e)
         {
             if (_isEditing)
@@ -165,13 +160,11 @@ namespace osf
                 ColumnComboBox.Hide();
             }
         }
-
     }
 
     [ContextClass ("КлСтильКолонкиПолеВыбора", "ClDataGridComboBoxColumnStyle")]
     public class ClDataGridComboBoxColumnStyle : AutoContext<ClDataGridComboBoxColumnStyle>
     {
-
         public ClDataGridComboBoxColumnStyle()
         {
             DataGridComboBoxColumn DataGridComboBoxColumnStyle1 = new DataGridComboBoxColumn();
@@ -187,9 +180,7 @@ namespace osf
         }
 
         public DataGridComboBoxColumn Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Выравнивание", "Alignment")]
         public int Alignment
         {
@@ -230,9 +221,7 @@ namespace osf
             get { return Base_obj.Width; }
             set { Base_obj.Width = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

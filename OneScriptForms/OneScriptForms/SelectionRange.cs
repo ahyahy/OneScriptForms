@@ -4,7 +4,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class SelectionRange
     {
         public ClSelectionRange dll_obj;
@@ -34,8 +33,6 @@ namespace osf
             OneScriptForms.AddToHashtable(M_SelectionRange, this);
         }
 
-        //Свойства============================================================
-
         public System.DateTime End
         {
             get { return M_SelectionRange.End; }
@@ -47,15 +44,11 @@ namespace osf
             get { return M_SelectionRange.Start; }
             set { M_SelectionRange.Start = value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлВыделенныйДиапазон", "ClSelectionRange")]
     public class ClSelectionRange : AutoContext<ClSelectionRange>
     {
-
         public ClSelectionRange()
         {
             SelectionRange SelectionRange1 = new SelectionRange();
@@ -78,9 +71,7 @@ namespace osf
         }
 
         public SelectionRange Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Конец", "End")]
         public DateTime End
         {
@@ -94,8 +85,6 @@ namespace osf
             get { return Base_obj.Start; }
             set { Base_obj.Start = value; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

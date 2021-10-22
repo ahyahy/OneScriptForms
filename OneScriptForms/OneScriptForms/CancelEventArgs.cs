@@ -3,22 +3,16 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class CancelEventArgs : EventArgs
     {
         public bool Cancel = false;
         public new ClCancelEventArgs dll_obj;
-
-        //Свойства============================================================
-
-        //Методы============================================================
 
     }
 
     [ContextClass ("КлОтменаАрг", "ClCancelEventArgs")]
     public class ClCancelEventArgs : AutoContext<ClCancelEventArgs>
     {
-
         public ClCancelEventArgs()
         {
             CancelEventArgs CancelEventArgs1 = new CancelEventArgs();
@@ -34,9 +28,7 @@ namespace osf
         }
         
         public CancelEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Отмена", "Cancel")]
         public bool Cancel
         {
@@ -55,8 +47,6 @@ namespace osf
         {
             get { return (IValue)Base_obj.Parameter; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

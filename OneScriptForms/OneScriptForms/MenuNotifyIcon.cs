@@ -3,7 +3,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class MenuNotifyIcon : Menu
     {
         public new ClMenuNotifyIcon dll_obj;
@@ -40,14 +39,10 @@ namespace osf
             OneScriptForms.AddToHashtable(M_MenuNotifyIcon, this);
         }
 
-        //Свойства============================================================
-
         public osf.Control SourceControl
         {
             get { return (osf.Control)((dynamic)M_MenuNotifyIcon.SourceControl).M_Object; }
         }
-
-        //Методы============================================================
 
         public void M_ContextMenu_Popup(object sender, System.EventArgs e)
         {
@@ -85,7 +80,6 @@ namespace osf
         {
             M_MenuNotifyIcon.Show(p1, p2);
         }
-
     }
 
     [ContextClass ("КлМенюЗначкаУведомления", "ClMenuNotifyIcon")]
@@ -112,9 +106,7 @@ namespace osf
         }
 
         public MenuNotifyIcon Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ЗначокУведомления", "NotifyIcon")]
         public ClNotifyIcon NotifyIcon
         {
@@ -171,9 +163,7 @@ namespace osf
         {
             get { return menuItems; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("ПолучитьГлавноеМеню", "GetMainMenu")]
         public ClMainMenu GetMainMenu()
         {

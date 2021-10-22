@@ -1,6 +1,5 @@
 ﻿namespace osf
 {
-
     public class CommonDialog : Component
     {
         public System.Windows.Forms.CommonDialog M_CommonDialog;
@@ -21,15 +20,9 @@
             base.M_Component = M_CommonDialog;
         }
 
-        //Свойства============================================================
-
-        //Методы============================================================
-
         public int ShowDialog()
         {
             return (int)M_CommonDialog.ShowDialog();
         }
-
     }
-
 }

@@ -16,9 +16,7 @@ namespace osf
             managedProperty = p2;
             ratio = p3;
         }
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Коэффициент", "Ratio")]
         public IValue Ratio
         {
@@ -39,8 +37,6 @@ namespace osf
             get { return managedObject; }
             set { managedObject = value; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

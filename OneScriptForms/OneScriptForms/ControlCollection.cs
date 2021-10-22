@@ -3,7 +3,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class ControlCollection : CollectionBase
     {
         public ClControlCollection dll_obj;
@@ -18,8 +17,6 @@ namespace osf
             M_ControlCollection = p1;
             base.List = M_ControlCollection;
         }
-
-        //Свойства============================================================
 
         public override object Current
         {
@@ -45,8 +42,6 @@ namespace osf
                 return null;
             }
         }
-
-        //Методы============================================================
 
         public osf.Control Add(Control p1)
         {
@@ -83,13 +78,11 @@ namespace osf
             M_ControlCollection.SetChildIndex(p1.M_Control, p2);
             System.Windows.Forms.Application.DoEvents();
         }
-
     }
 
     [ContextClass ("КлЭлементыУправления", "ClControlCollection")]
     public class ClControlCollection : AutoContext<ClControlCollection>
     {
-
         public ClControlCollection()
         {
             ControlCollection ControlCollection1 = new ControlCollection();
@@ -105,17 +98,13 @@ namespace osf
         }
         
         public ControlCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Добавить", "Add")]
         public IValue Add(IValue p1)
         {

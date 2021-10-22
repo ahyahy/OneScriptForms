@@ -3,7 +3,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class ScrollEventArgs : EventArgs
     {
         public new ClScrollEventArgs dll_obj;
@@ -12,16 +11,11 @@ namespace osf
         public int OldValue;
         public int ScrollOrientation;
 
-        //Свойства============================================================
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлПриПрокручиванииАрг", "ClScrollEventArgs")]
     public class ClScrollEventArgs : AutoContext<ClScrollEventArgs>
     {
-
         public ClScrollEventArgs()
         {
             ScrollEventArgs ScrollEventArgs1 = new ScrollEventArgs();
@@ -37,9 +31,7 @@ namespace osf
         }
         
         public ScrollEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("НовоеЗначение", "NewValue")]
         public int NewValue
         {
@@ -76,8 +68,6 @@ namespace osf
         {
             get { return (int)Base_obj.EventType; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

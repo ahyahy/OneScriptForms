@@ -32,8 +32,6 @@ namespace osf
             M_DataSet.M_Object = this;
         }
 
-        //Свойства============================================================
-
         public string DataSetName
         {
             get { return M_DataSet.DataSetName; }
@@ -52,8 +50,6 @@ namespace osf
             }
         }
 
-        //Методы============================================================
-
         public void AcceptChanges()
         {
             M_DataSet.AcceptChanges();
@@ -68,7 +64,6 @@ namespace osf
         {
             M_DataSet.RejectChanges();
         }
-
     }
 
     [ContextClass ("КлНаборДанных", "ClDataSet")]
@@ -93,9 +88,7 @@ namespace osf
         }
         
         public DataSet Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ИмяНабораДанных", "DataSetName")]
         public string DataSetName
         {
@@ -108,9 +101,7 @@ namespace osf
         {
             get { return tables; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Изменен", "HasChanges")]
         public bool HasChanges()
         {

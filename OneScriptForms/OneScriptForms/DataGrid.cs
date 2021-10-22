@@ -43,8 +43,6 @@ namespace osf
             CurrentCellChanged = "";
         }
 
-        //Свойства============================================================
-
         public bool AllowSorting
         {
             get { return M_DataGrid.AllowSorting; }
@@ -162,8 +160,6 @@ namespace osf
             get { return new GridTableStylesCollection(M_DataGrid.TableStyles); }
         }
 
-        //Методы============================================================
-
         public bool BeginEdit(osf.DataGridColumnStyle p1, int p2)
         {
             return M_DataGrid.BeginEdit(p1.M_DataGridColumnStyle, p2);
@@ -229,7 +225,6 @@ namespace osf
             }
             System.Windows.Forms.Application.DoEvents();
         }
-
     }
 
     [ContextClass ("КлСеткаДанных", "ClDataGrid")]
@@ -298,9 +293,7 @@ namespace osf
         }
         
         public DataGrid Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ВерсияПродукта", "ProductVersion")]
         public string ProductVersion
         {
@@ -1532,9 +1525,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

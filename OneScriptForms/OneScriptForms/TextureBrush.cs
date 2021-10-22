@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class TextureBrush : Brush
     {
         public ClTextureBrush dll_obj;
@@ -28,17 +27,11 @@ namespace osf
             base.M_Brush = M_TextureBrush;
             OneScriptForms.AddToHashtable(M_TextureBrush, this);
         }
-
-        //Свойства============================================================
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлТекстурнаяКисть", "ClTextureBrush")]
     public class ClTextureBrush : AutoContext<ClTextureBrush>
     {
-
         public ClTextureBrush(Image p1)
         {
             TextureBrush TextureBrush1 = new TextureBrush(p1.M_Image);
@@ -54,10 +47,6 @@ namespace osf
         }
 
         public TextureBrush Base_obj;
-
-        //Свойства============================================================
-
-        //Методы============================================================
-
+        
     }
 }

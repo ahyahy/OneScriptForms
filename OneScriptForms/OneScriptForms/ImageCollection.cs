@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class ImageCollection : CollectionBase
     {
         public ClImageCollection dll_obj;
@@ -18,8 +17,6 @@ namespace osf
             base.List = M_ImageCollection;
         }
 
-        //Свойства============================================================
-
         public override object Current
         {
             get { return new Image((System.Drawing.Image)Enumerator.Current); }
@@ -29,8 +26,6 @@ namespace osf
         {
             get { return (Image)new Bitmap((System.Drawing.Bitmap)M_ImageCollection[p1]); }
         }
-
-        //Методы============================================================
 
         public int Add(Image image, Color color = null)
         {
@@ -45,13 +40,11 @@ namespace osf
         {
             return M_ImageCollection.AddStrip(image.M_Image);
         }
-
     }
 
     [ContextClass ("КлИзображения", "ClImageCollection")]
     public class ClImageCollection : AutoContext<ClImageCollection>
     {
-
         public ClImageCollection()
         {
             ImageCollection ImageCollection1 = new ImageCollection();
@@ -67,17 +60,13 @@ namespace osf
         }
         
         public ImageCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Добавить", "Add")]
         public int Add(ClBitmap p1, ClColor p2 = null)
         {

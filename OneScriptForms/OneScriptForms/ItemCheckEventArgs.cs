@@ -3,17 +3,12 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class ItemCheckEventArgs : EventArgs
     {
         public new ClItemCheckEventArgs dll_obj;
         public int CurrentValue = (int)System.Windows.Forms.CheckState.Unchecked;
         public int Index = -1;
         public int NewValue = (int)System.Windows.Forms.CheckState.Unchecked;
-
-        //Свойства============================================================
-
-        //Методы============================================================
 
         public override bool PostEvent()
         {
@@ -24,13 +19,11 @@ namespace osf
             ListViewEx1.ItemCheck += ListView1.M_ListView_ItemCheck;
             return true;
         }
-
     }
 
     [ContextClass ("КлЭлементПомеченАрг", "ClItemCheckEventArgs")]
     public class ClItemCheckEventArgs : AutoContext<ClItemCheckEventArgs>
     {
-
         public ClItemCheckEventArgs()
         {
             ItemCheckEventArgs ItemCheckEventArgs1 = new ItemCheckEventArgs();
@@ -46,9 +39,7 @@ namespace osf
         }
         
         public ItemCheckEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Индекс", "Index")]
         public int Index
         {
@@ -78,8 +69,6 @@ namespace osf
         {
             get { return (int)Base_obj.CurrentValue; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

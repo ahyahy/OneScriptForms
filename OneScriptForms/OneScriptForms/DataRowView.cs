@@ -4,7 +4,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class DataRowView
     {
         public ClDataRowView dll_obj;
@@ -26,8 +25,6 @@ namespace osf
             OneScriptForms.AddToHashtable(M_DataRowView, this);
         }
 
-        //Свойства============================================================
-
         public object get_Item(object p1)
         {
             if (p1 is string)
@@ -41,8 +38,6 @@ namespace osf
         {
             get { return new DataRow(M_DataRowView.Row); }
         }
-
-        //Методы============================================================
 
         public void Delete()
         {
@@ -66,13 +61,11 @@ namespace osf
             }
             System.Windows.Forms.Application.DoEvents();
         }
-
     }
 
     [ContextClass ("КлПредставлениеСтрокиДанных", "ClDataRowView")]
     public class ClDataRowView : AutoContext<ClDataRowView>
     {
-
         public ClDataRowView()
         {
             DataRowView DataRowView1 = new DataRowView();
@@ -95,17 +88,13 @@ namespace osf
         }
 
         public DataRowView Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Строка", "Row")]
         public ClDataRow Row
         {
             get { return new ClDataRow(Base_obj.Row); }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("ЗакончитьРедактирование", "EndEdit")]
         public void EndEdit()
         {

@@ -1,6 +1,5 @@
 ﻿namespace osf
 {
-
     public class ButtonBase : Control
     {
         private osf.Bitmap image;
@@ -9,8 +8,6 @@
         public ButtonBase()
         {
         }
-
-        //Свойства============================================================
 
         public int FlatStyle
         {
@@ -62,9 +59,5 @@
             get { return (int)M_ButtonBase.TextAlign; }
             set { M_ButtonBase.TextAlign = (System.Drawing.ContentAlignment)value; }
         }
-
-        //Методы============================================================
-
     }
-
 }

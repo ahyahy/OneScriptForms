@@ -4,7 +4,6 @@ using System.Reflection;
 
 namespace osf
 {
-
     public class ListBoxObjectCollection : CollectionBase
     {
         public ClListBoxObjectCollection dll_obj;
@@ -20,8 +19,6 @@ namespace osf
             base.List = M_ListBoxObjectCollection;
         }
 
-        //Свойства============================================================
-
         public new object this[int index]
         {
             get { return M_ListBoxObjectCollection[index]; }
@@ -31,8 +28,6 @@ namespace osf
         {
             get { return Enumerator.Current; }
         }
-
-        //Методы============================================================
 
         public new object Add(object item)
         {
@@ -53,7 +48,6 @@ namespace osf
             M_ListBoxObjectCollection.Remove(item);
             System.Windows.Forms.Application.DoEvents();
         }
-
     }
 
     [ContextClass ("КлЭлементыПоляСписка", "ClListBoxObjectCollection")]
@@ -76,17 +70,13 @@ namespace osf
         }
         
         public ListBoxObjectCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Вставить", "Insert")]
         public IValue Insert(int p1, IValue p2)
         {

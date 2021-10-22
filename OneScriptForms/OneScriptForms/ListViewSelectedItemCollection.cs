@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class ListViewSelectedItemCollection : CollectionBase
     {
         public ClListViewSelectedItemCollection dll_obj;
@@ -14,8 +13,6 @@ namespace osf
             base.List = M_SelectedListViewItemCollection;
         }
 
-        //Свойства============================================================
-
         public override object Current
         {
             get { return (object)((ListViewItemEx)Enumerator.Current).M_Object; }
@@ -26,19 +23,15 @@ namespace osf
             get { return ((ListViewItemEx)M_SelectedListViewItemCollection[index]).M_Object; }
         }
 
-        //Методы============================================================
-
         public bool Contains(ListViewItem item)
         {
             return M_SelectedListViewItemCollection.Contains((System.Windows.Forms.ListViewItem)item.M_ListViewItem);
         }
-
     }
 
     [ContextClass ("КлВыбранныеЭлементыСпискаЭлементов", "ClListViewSelectedItemCollection")]
     public class ClListViewSelectedItemCollection : AutoContext<ClListViewSelectedItemCollection>
     {
-
         public ClListViewSelectedItemCollection(ListViewSelectedItemCollection p1)
         {
             ListViewSelectedItemCollection ListViewSelectedItemCollection1 = p1;
@@ -47,17 +40,13 @@ namespace osf
         }
 
         public ListViewSelectedItemCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Очистить", "Clear")]
         public void Clear()
         {

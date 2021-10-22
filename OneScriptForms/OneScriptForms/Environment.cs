@@ -3,12 +3,9 @@ using System.Reflection;
 
 namespace osf
 {
-
     public class Environment
     {
         public ClEnvironment dll_obj;
-
-        //Свойства============================================================
 
         public string CommandLine
         {
@@ -20,19 +17,15 @@ namespace osf
             get { return new Version(Assembly.GetExecutingAssembly().GetName().Version); }
         }
 
-        //Методы============================================================
-
         public string GetFolderPath(int p1)
         {
             return System.Environment.GetFolderPath((System.Environment.SpecialFolder)p1);
         }
-
     }
 
     [ContextClass ("КлОкружение", "ClEnvironment")]
     public class ClEnvironment : AutoContext<ClEnvironment>
     {
-
         public ClEnvironment()
         {
             Environment Environment1 = new Environment();
@@ -48,9 +41,7 @@ namespace osf
         }
         
         public Environment Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Версия", "Version")]
         public ClVersion Version
         {
@@ -62,9 +53,7 @@ namespace osf
         {
             get { return Base_obj.CommandLine; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("ПолучитьПутьКаталога", "GetFolderPath")]
         public string GetFolderPath(int p1)
         {

@@ -2,7 +2,6 @@
 
 namespace osf
 {
-
     public class Rectangle
     {
         public ClRectangle dll_obj;
@@ -34,8 +33,6 @@ namespace osf
             Width = p1.Width;
             Height = p1.Height;
         }
-
-        //Свойства============================================================
 
         public int Bottom
         {
@@ -93,19 +90,15 @@ namespace osf
             set { M_Rectangle.Y = value; }
         }
 
-        //Методы============================================================
-
         public osf.Rectangle FromSize(Size Size)
         {
             return new Rectangle(new System.Drawing.Rectangle(0, 0, Size.Width, Size.Height));
         }
-
     }
 
     [ContextClass ("КлПрямоугольник", "ClRectangle")]
     public class ClRectangle : AutoContext<ClRectangle>
     {
-
         public ClRectangle(int x = 0, int y = 0, int width = 0, int height = 0)
         {
             Rectangle Rectangle1 = new Rectangle(x, y, width, height);
@@ -125,9 +118,7 @@ namespace osf
         }
 
         public Rectangle Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Верх", "Top")]
         public int Top
         {
@@ -193,8 +184,6 @@ namespace osf
             get { return Base_obj.Width; }
             set { Base_obj.Width = value; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

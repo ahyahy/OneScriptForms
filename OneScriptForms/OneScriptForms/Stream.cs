@@ -3,7 +3,6 @@ using ScriptEngine.Machine.Contexts;
 
 namespace osf
 {
-
     public class Stream
     {
         public ClStream dll_obj;
@@ -23,8 +22,6 @@ namespace osf
         {
             M_Stream = p1;
         }
-
-        //Свойства============================================================
 
         public virtual bool CanRead
         {
@@ -67,8 +64,6 @@ namespace osf
             M_Stream.Write(Bytes1, 0, count);
         }
 
-        //Методы============================================================
-
         public virtual int ReadByte()
         {
             return M_Stream.ReadByte();
@@ -93,13 +88,11 @@ namespace osf
         {
             M_Stream.WriteByte(value);
         }
-
     }
 
     [ContextClass ("КлПоток", "ClStream")]
     public class ClStream : AutoContext<ClStream>
     {
-
         public ClStream()
         {
             Stream Stream1 = new Stream();
@@ -115,9 +108,7 @@ namespace osf
         }
         
         public Stream Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ВозможностьЗаписи", "CanWrite")]
         public bool CanWrite
         {
@@ -148,9 +139,7 @@ namespace osf
             get { return Base_obj.Position; }
             set { Base_obj.Position = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Закрыть", "Close")]
         public void Close()
         {

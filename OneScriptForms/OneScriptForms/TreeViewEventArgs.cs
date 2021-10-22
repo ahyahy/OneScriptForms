@@ -3,23 +3,17 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class TreeViewEventArgs : EventArgs
     {
         public int Action = (int)System.Windows.Forms.TreeViewAction.Unknown;
         public new ClTreeViewEventArgs dll_obj;
         public osf.TreeNode Node = null;
 
-        //Свойства============================================================
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлДеревоАрг", "ClTreeViewEventArgs")]
     public class ClTreeViewEventArgs : AutoContext<ClTreeViewEventArgs>
     {
-
         public ClTreeViewEventArgs()
         {
             TreeViewEventArgs TreeViewEventArgs1 = new TreeViewEventArgs();
@@ -35,9 +29,7 @@ namespace osf
         }
         
         public TreeViewEventArgs Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Действие", "Action")]
         public int Action
         {
@@ -61,8 +53,6 @@ namespace osf
         {
             get { return (ClTreeNode)OneScriptForms.RevertObj(Base_obj.Node); }
         }
-
-        //Методы============================================================
-
+        
     }
 }

@@ -39,8 +39,6 @@ namespace osf
             M_DataTable.M_Object = this;
         }
 
-        //Свойства============================================================
-
         public osf.DataColumnCollection Columns
         {
             get { return new DataColumnCollection(M_DataTable.Columns); }
@@ -78,8 +76,6 @@ namespace osf
             get { return M_DataTable.TableName; }
             set { M_DataTable.TableName = value; }
         }
-
-        //Методы============================================================
 
         public void AcceptChanges()
         {
@@ -131,7 +127,6 @@ namespace osf
                 }
             }
         }
-
     }
 
     [ContextClass ("КлТаблицаДанных", "ClDataTable")]
@@ -168,9 +163,7 @@ namespace osf
         }
 
         public DataTable Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ИмяТаблицы", "TableName")]
         public string TableName
         {
@@ -201,9 +194,7 @@ namespace osf
         {
             get { return rows; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Выбрать", "Select")]
         public ClArrayList Select(string p1)
         {

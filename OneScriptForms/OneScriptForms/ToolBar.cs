@@ -40,8 +40,6 @@ namespace osf
             ButtonClick = "";
         }
 
-        //Свойства============================================================
-
         public int Appearance
         {
             get { return (int)M_ToolBar.Appearance; }
@@ -122,8 +120,6 @@ namespace osf
             set { M_ToolBar.Wrappable = value; }
         }
 
-        //Методы============================================================
-
         public void M_ToolBar_ButtonClick(object sender, System.Windows.Forms.ToolBarButtonClickEventArgs e)
         {
             if (ButtonClick.Length > 0)
@@ -149,7 +145,6 @@ namespace osf
                 ClToolBarButtonClickEventArgs ClToolBarButtonClickEventArgs1 = new ClToolBarButtonClickEventArgs(ToolBarButtonClickEventArgs1);
             }
         }
-
     }
 
     [ContextClass ("КлПанельИнструментов", "ClToolBar")]
@@ -212,9 +207,7 @@ namespace osf
         }
         
         public ToolBar Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("АвтоРазмер", "AutoSize")]
         public bool AutoSize
         {
@@ -1427,9 +1420,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

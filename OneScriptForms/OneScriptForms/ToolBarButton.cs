@@ -31,8 +31,6 @@ namespace osf
             M_ToolBarButton.M_Object = this;
         }
 
-        //Свойства============================================================
-
         public osf.ContextMenu DropDownMenu
         {
             get { return (ContextMenu)((ContextMenuEx)M_ToolBarButton.DropDownMenu).M_Object; }
@@ -101,9 +99,6 @@ namespace osf
             get { return M_ToolBarButton.Visible; }
             set { M_ToolBarButton.Visible = value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлКнопкаПанелиИнструментов", "ClToolBarButton")]
@@ -126,9 +121,7 @@ namespace osf
         }
 
         public ToolBarButton Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ВыпадающееМеню", "DropDownMenu")]
         public ClContextMenu DropDownMenu
         {
@@ -210,8 +203,6 @@ namespace osf
             get { return Base_obj.ToolTipText; }
             set { Base_obj.ToolTipText = value; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

@@ -5,7 +5,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class DataColumnCollection : ICollection, IEnumerable, IEnumerator
     {
         public ClDataColumnCollection dll_obj;
@@ -16,8 +15,6 @@ namespace osf
         {
             M_DataColumnCollection = p1;
         }
-
-        //Свойства============================================================
 
         public int Count
         {
@@ -58,8 +55,6 @@ namespace osf
             {
             }
         }
-
-        //Методы============================================================
 
         public osf.DataColumn Add(osf.DataColumn p1)
         {
@@ -105,13 +100,11 @@ namespace osf
         {
             M_DataColumnCollection.RemoveAt(index);
         }
-
     }
 
     [ContextClass ("КлКолонкиДанных", "ClDataColumnCollection")]
     public class ClDataColumnCollection : AutoContext<ClDataColumnCollection>
     {
-
         public ClDataColumnCollection(DataColumnCollection p1)
         {
             DataColumnCollection DataColumnCollection1 = p1;
@@ -120,17 +113,13 @@ namespace osf
         }
 
         public DataColumnCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Добавить", "Add")]
         public ClDataColumn Add(ClDataColumn p1)
         {

@@ -58,8 +58,6 @@ namespace osf
             M_VisibleSaveState = false;
         }
 
-        //Свойства============================================================
-
         public bool Checked
         {
             get { return M_MenuItem.Checked; }
@@ -145,8 +143,6 @@ namespace osf
             }
         }
 
-        //Методы============================================================
-
         public osf.MenuItem FromString(string p1)
         {
             MenuItem MenuItem1 = new MenuItem((string)null, (string)null, System.Windows.Forms.Shortcut.None);
@@ -203,7 +199,6 @@ namespace osf
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
         }
-
     }
 
     [ContextClass ("КлЭлементМеню", "ClMenuItem")]
@@ -237,9 +232,7 @@ namespace osf
         }
 
         public MenuItem Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Доступность", "Enabled")]
         public bool Enabled
         {
@@ -358,9 +351,7 @@ namespace osf
         {
             get { return menuItems; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("КлонироватьМеню", "CloneMenu")]
         public ClMenuItem CloneMenu()
         {

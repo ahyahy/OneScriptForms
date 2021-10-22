@@ -31,8 +31,6 @@ namespace osf
             M_Link.M_Object = this;
         }
 
-        //Свойства============================================================
-
         public string Description
         {
             get { return M_Link.Description; }
@@ -74,9 +72,6 @@ namespace osf
             get { return M_Link.Visited; }
             set { M_Link.Visited = value; }
         }
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлСсылка", "ClLink")]
@@ -106,9 +101,7 @@ namespace osf
         }
 
         public Link Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Данные", "LinkData")]
         public IValue LinkData
         {
@@ -163,8 +156,6 @@ namespace osf
             get { return Base_obj.Visited; }
             set { Base_obj.Visited = value; }
         }
-
-        //Методы============================================================
-
+        
     }
 }

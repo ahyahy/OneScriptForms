@@ -4,7 +4,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class GridColumnStylesCollection : CollectionBase
     {
         public ClGridColumnStylesCollection dll_obj;
@@ -16,14 +15,10 @@ namespace osf
             base.List = M_GridColumnStylesCollection;
         }
 
-        //Свойства============================================================
-
         public new osf.DataGridColumnStyle this[int p1]
         {
             get { return new DataGridColumnStyle(M_GridColumnStylesCollection[p1]); }
         }
-
-        //Методы============================================================
 
         public int Add(osf.DataGridColumnStyle p1)
         {
@@ -31,13 +26,11 @@ namespace osf
             System.Windows.Forms.Application.DoEvents();
             return res;
         }
-
     }
 
     [ContextClass ("КлСтилиКолонкиСеткиДанных", "ClGridColumnStylesCollection")]
     public class ClGridColumnStylesCollection : AutoContext<ClGridColumnStylesCollection>
     {
-
         public ClGridColumnStylesCollection(GridColumnStylesCollection p1)
         {
             GridColumnStylesCollection GridColumnStylesCollection1 = p1;
@@ -46,17 +39,13 @@ namespace osf
         }
 
         public GridColumnStylesCollection Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Добавить", "Add")]
         public int Add(IValue p1)
         {

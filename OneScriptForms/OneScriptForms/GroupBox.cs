@@ -35,11 +35,6 @@ namespace osf
             M_GroupBox.M_Object = this;
             base.M_Control = M_GroupBox;
         }
-
-        //Свойства============================================================
-
-        //Методы============================================================
-
     }
 
     [ContextClass ("КлРамкаГруппы", "ClGroupBox")]
@@ -98,9 +93,7 @@ namespace osf
         }
         
         public GroupBox Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("ВерсияПродукта", "ProductVersion")]
         public string ProductVersion
         {
@@ -1194,9 +1187,7 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {

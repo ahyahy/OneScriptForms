@@ -4,7 +4,6 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-
     public class Bitmap : Image
     {
         public ClBitmap dll_obj;
@@ -71,10 +70,6 @@ namespace osf
             base.M_Image = M_Bitmap;
             OneScriptForms.AddToHashtable(M_Bitmap, this);
         }
-
-        //Свойства============================================================
-
-        //Методы============================================================
 
         public osf.Bitmap Clone(float x, float y, float width, float height)
         {
@@ -174,13 +169,11 @@ namespace osf
         {
             M_Bitmap.UnlockBits(p1.M_BitmapData);
         }
-
     }
 
     [ContextClass ("КлКартинка", "ClBitmap")]
     public class ClBitmap : AutoContext<ClBitmap>
     {
-
         public ClBitmap(ClSize p1)
         {
             Bitmap Bitmap1 = new Bitmap(p1.Base_obj);
@@ -224,9 +217,7 @@ namespace osf
         }
 
         public Bitmap Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Высота", "Height")]
         public int Height
         {
@@ -256,9 +247,7 @@ namespace osf
         {
             get { return Base_obj.Width; }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Блокировать", "LockBits")]
         public ClBitmapData LockBits()
         {

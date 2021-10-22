@@ -41,15 +41,11 @@ namespace osf
             Tick = "";
         }
 
-        //Свойства============================================================
-
         public int Interval
         {
             get { return M_Timer.Interval; }
             set { M_Timer.Interval = value; }
         }
-
-        //Методы============================================================
 
         public void M_Timer_Tick1(object sender, System.EventArgs e)
         {
@@ -85,7 +81,6 @@ namespace osf
         {
             M_Timer.Stop();
         }
-
     }
 
     [ContextClass ("КлТаймер", "ClTimer")]
@@ -109,9 +104,7 @@ namespace osf
         }
         
         public Timer Base_obj;
-
-        //Свойства============================================================
-
+        
         [ContextProperty("Интервал", "Interval")]
         public int Interval
         {
@@ -167,9 +160,7 @@ namespace osf
         {
             get { return new ClType(this); }
         }
-
-        //Методы============================================================
-
+        
         [ContextMethod("Начать", "Start")]
         public void Start()
         {
