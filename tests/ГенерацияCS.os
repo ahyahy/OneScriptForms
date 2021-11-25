@@ -107,7 +107,6 @@
 		ИмяКонтекстКлассаАнгл = "Day" или 
 		ИмяКонтекстКлассаАнгл = "DataType" или 
 		ИмяКонтекстКлассаАнгл = "DataRowState" или 
-		ИмяКонтекстКлассаАнгл = "DataGridTextBoxColumn" или 
 		ИмяКонтекстКлассаАнгл = "DataGridCell" или 
 		ИмяКонтекстКлассаАнгл = "DataGridBoolColumn" или 
 		ИмяКонтекстКлассаАнгл = "Cursors" или 
@@ -355,6 +354,7 @@
 	ИначеЕсли ИмяКонтекстКлассаАнгл = "ControlEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "DictionaryEntry" или 
 		ИмяКонтекстКлассаАнгл = "DataGridTableStyle" или 
+		ИмяКонтекстКлассаАнгл = "DataGridTextBoxColumn" или 
 		ИмяКонтекстКлассаАнгл = "GridItem" или 
 		ИмяКонтекстКлассаАнгл = "Link" или 
 		ИмяКонтекстКлассаАнгл = "ListBoxSelectedObjectCollection" или 
@@ -569,6 +569,7 @@
 		|        public static System.Collections.ArrayList EventQueue = new System.Collections.ArrayList();
 		|        public static System.Collections.Hashtable hashtable = new Hashtable();
 		|        public static System.Random Random = new Random();
+		|        public static DateTime gridMouseDownTime = System.DateTime.Now;// для срабатывания двойного клика в ячейке DataGridTextBoxColumn сетки данных
 		|        public static bool goOn = true;";
 	ИначеЕсли ИмяКласса = "ManagedProperty" Тогда
 		Стр = 
@@ -4035,6 +4036,50 @@
 				|        public ClMenuItem MenuItem(int p1)
 				|        {
 				|            return new ClMenuItem(Base_obj.MenuItems[p1]);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "СодержитДанные") и (ИмяКонтекстКлассаАнгл = "Clipboard") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""СодержитДанные"", ""ContainsData"")]
+				|        public bool ContainsData()
+				|        {
+				|            bool res = false;
+				|            var thread = new Thread(() =>
+				|            {
+				|                IDataObject dataObject = Clipboard.GetDataObject();
+				|                if (dataObject != null)
+				|                {
+				|                    res = true;
+				|                }
+				|            }
+				|            );
+				|            thread.IsBackground = true;
+				|            thread.SetApartmentState(ApartmentState.STA);
+				|            thread.Start();
+				|            thread.Join();
+				|
+				|            return res;
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "СодержитЮникод") и (ИмяКонтекстКлассаАнгл = "Clipboard") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""СодержитЮникод"", ""ContainsUnicode"")]
+				|        public bool ContainsUnicode()
+				|        {
+				|            bool res = false;
+				|            var thread = new Thread(() =>
+				|            {
+				|                res = Clipboard.ContainsText(TextDataFormat.UnicodeText);
+				|            }
+				|            );
+				|            thread.IsBackground = true;
+				|            thread.SetApartmentState(ApartmentState.STA);
+				|            thread.Start();
+				|            thread.Join();
+				|
+				|            return res;
 				|        }
 				|        
 				|";
@@ -11558,12 +11603,15 @@
 		|    {
 		|        public ClDataGridTextBoxColumn dll_obj;
 		|        public DataGridTextBoxColumnEx M_DataGridTextBoxColumn;
+		|        public string DoubleClick;
 		|
 		|        public DataGridTextBoxColumn()
 		|        {
 		|            M_DataGridTextBoxColumn = new DataGridTextBoxColumnEx();
 		|            M_DataGridTextBoxColumn.M_Object = this;
 		|            base.M_DataGridColumnStyle = (System.Windows.Forms.DataGridColumnStyle)M_DataGridTextBoxColumn;
+		|            M_DataGridTextBoxColumn.TextBox.DoubleClick += TextBox_DoubleClick;
+		|            M_DataGridTextBoxColumn.TextBox.MouseDown += TextBox_MouseDown;
 		|        }
 		|		
 		|        public DataGridTextBoxColumn(osf.DataGridTextBoxColumn p1)
@@ -11571,6 +11619,8 @@
 		|            M_DataGridTextBoxColumn = p1.M_DataGridTextBoxColumn;
 		|            M_DataGridTextBoxColumn.M_Object = this;
 		|            base.M_DataGridColumnStyle = M_DataGridTextBoxColumn;
+		|            M_DataGridTextBoxColumn.TextBox.DoubleClick += TextBox_DoubleClick;
+		|            M_DataGridTextBoxColumn.TextBox.MouseDown += TextBox_MouseDown;
 		|        }
 		|		
 		|        public DataGridTextBoxColumn(System.Windows.Forms.DataGridTextBoxColumn p1)
@@ -11578,11 +11628,66 @@
 		|            M_DataGridTextBoxColumn = (DataGridTextBoxColumnEx)p1;
 		|            M_DataGridTextBoxColumn.M_Object = this;
 		|            base.M_DataGridColumnStyle = (System.Windows.Forms.DataGridColumnStyle)M_DataGridTextBoxColumn;
+		|            M_DataGridTextBoxColumn.TextBox.DoubleClick += TextBox_DoubleClick;
+		|            M_DataGridTextBoxColumn.TextBox.MouseDown += TextBox_MouseDown;
 		|        }
 		|
 		|        public osf.DataGridTextBox TextBox
 		|        {
 		|            get { return new DataGridTextBox((System.Windows.Forms.DataGridTextBox)M_DataGridTextBoxColumn.TextBox); }
+		|        }
+		|		
+		|        private void TextBox_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+		|        {
+		|            if (System.DateTime.Now < OneScriptForms.gridMouseDownTime.AddMilliseconds(System.Windows.Forms.SystemInformation.DoubleClickTime))
+		|            {
+		|                if (DoubleClick.Length > 0)
+		|                {
+		|                    EventArgs EventArgs1 = new EventArgs();
+		|                    EventArgs1.EventString = DoubleClick;
+		|                    EventArgs1.Sender = this;
+		|                    dynamic event1 = ((dynamic)this).dll_obj.DoubleClick;
+		|                    if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                    {
+		|                        EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                    }
+		|                    else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                    {
+		|                        EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                    }
+		|                    else
+		|                    {
+		|                        EventArgs1.Parameter = null;
+		|                    }
+		|                    OneScriptForms.EventQueue.Add(EventArgs1);
+		|                    ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                }
+		|            }
+		|        }
+		|
+		|        private void TextBox_DoubleClick(object sender, System.EventArgs e)
+		|        {
+		|            if (DoubleClick.Length > 0)
+		|            {
+		|                EventArgs EventArgs1 = new EventArgs();
+		|                EventArgs1.EventString = DoubleClick;
+		|                EventArgs1.Sender = this;
+		|                dynamic event1 = ((dynamic)this).dll_obj.DoubleClick;
+		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
+		|                {
+		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
+		|                }
+		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+		|                {
+		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
+		|                }
+		|                else
+		|                {
+		|                    EventArgs1.Parameter = null;
+		|                }
+		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|            }
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -11967,6 +12072,7 @@
 		|            M_DataGrid.M_Object = this;
 		|            base.M_Control = M_DataGrid;
 		|            M_DataGrid.CurrentCellChanged += M_DataGrid_CurrentCellChanged;
+		|            M_DataGrid.MouseDown += M_DataGrid_MouseDown;
 		|            CurrentCellChanged = """";
 		|        }
 		|
@@ -11976,6 +12082,7 @@
 		|            M_DataGrid.M_Object = this;
 		|            base.M_Control = M_DataGrid;
 		|            M_DataGrid.CurrentCellChanged += M_DataGrid_CurrentCellChanged;
+		|            M_DataGrid.MouseDown += M_DataGrid_MouseDown;
 		|            CurrentCellChanged = """";
 		|        }
 		|
@@ -11985,7 +12092,13 @@
 		|            M_DataGrid.M_Object = this;
 		|            base.M_Control = M_DataGrid;
 		|            M_DataGrid.CurrentCellChanged += M_DataGrid_CurrentCellChanged;
+		|            M_DataGrid.MouseDown += M_DataGrid_MouseDown;
 		|            CurrentCellChanged = """";
+		|        }
+		|		
+		|        private void M_DataGrid_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+		|        {
+		|            OneScriptForms.gridMouseDownTime = DateTime.Now;
 		|        }
 		|
 		|        public bool AllowSorting
@@ -19361,6 +19474,11 @@
 		|            get { return new Version(Assembly.GetExecutingAssembly().GetName().Version); }
 		|        }
 		|		
+		|        public string NewLine
+		|        {
+		|            get { return System.Environment.NewLine; }
+		|        }
+		|		
 		|        public string GetFolderPath(int p1)
 		|        {
 		|            return System.Environment.GetFolderPath((System.Environment.SpecialFolder)p1);
@@ -25393,206 +25511,8 @@
 	Возврат Стр;
 КонецФункции//СортировкаКласса2Уровня(СтрКласса)
 
-Процедура ДобавитьДвойнаяБуферизация();
-	// Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
-	
-	// Наследников = 0;
-	// ВыбранныеФайлы = ОтобратьФайлы("Класс");
-	// Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
-		// ТекстДок = Новый ТекстовыйДокумент;
-		// ТекстДок.Прочитать(ВыбранныеФайлы[А]);
-		// Стр = ТекстДок.ПолучитьТекст();
-		// СтрЗаголовка = СтрНайтиМежду(Стр, "<H1 class=dtH1", "/H1>", , )[0];
-		// СтрИерархия = СтрНайтиМежду(Стр, "<H4 class=dtH4>Иерархия</H4>", "</HTML>", , )[0];
-		// Если СтрНайти(СтрИерархия, "OneScriptForms.Control.html") > 0 Тогда
-			// Наследников = Наследников + 1;
-			// ПутьЧлены = СтрЗаменить(ВыбранныеФайлы[А], ".html", "Members.html");
-			// ФайлЧлены = Новый Файл(ПутьЧлены);
-			// Если ФайлЧлены.Существует() Тогда
-				// ТекстДокЧлены = Новый ТекстовыйДокумент;
-				// ТекстДокЧлены.Прочитать(ПутьЧлены);
-				// СтрЧлены = ТекстДокЧлены.ПолучитьТекст();
-				// Если СтрНайти(СтрЧлены, "ДвойнаяБуферизация") > 0 Тогда
-				// Иначе
-					// ПодстрокаПоиска = "<H4 class=dtH4>Свойства</H4>
-					// |<DIV class=tablediv>
-					// |<TABLE class=dtTABLE cellSpacing=0>
-					// |  <TBODY>";
-					// ПодстрокаЗамены = ПодстрокаПоиска + "
-					// |  <TR vAlign=top>
-					// |    <TD width=""50%""><IMG src=""pubproperty.gif""></IMG><A href=""OneScriptForms.Control.DoubleBuffered.html"">ДвойнаяБуферизация&nbsp;(DoubleBuffered)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-					// |    <TD width=""50%"">Возвращает или задает значение, указывающее, должна ли поверхность этого элемента управления перерисовываться с помощью дополнительного буфера, чтобы уменьшить или предотвратить мерцание.</TD></TR>";
-					// СтрЧлены = СтрЗаменить(СтрЧлены, ПодстрокаПоиска, ПодстрокаЗамены);
-				// КонецЕсли;
-				
-				// Если (СтрНайти(СтрЧлены, "ПолучитьСтиль") > 0) или (СтрНайти(СтрЧлены, "УстановитьСтиль") > 0) или (СтрНайти(СтрЧлены, "ОбновитьСтили") > 0) Тогда
-				// Иначе
-					// ПодстрокаПоиска = "<H4 class=dtH4>Методы</H4>
-					// |<DIV class=tablediv>
-					// |<TABLE class=dtTABLE cellSpacing=0>
-					// |  <TBODY>";
-					// ПодстрокаЗамены = ПодстрокаПоиска + "
-					// |  <TR vAlign=top>
-					// |    <TD width=""50%""><IMG src=""pubmethod.gif""></IMG><A href=""OneScriptForms.Control.GetStyle.html"">ПолучитьСтиль&nbsp;(GetStyle)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-					// |    <TD width=""50%"">Возвращает значение указанного бита стиля для данного элемента управления.</TD></TR>
-					// |  <TR vAlign=top>
-					// |    <TD width=""50%""><IMG src=""pubmethod.gif""></IMG><A href=""OneScriptForms.Control.SetStyle.html"">УстановитьСтиль&nbsp;(SetStyle)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-					// |    <TD width=""50%"">Включает или выключает указанный стиль.</TD></TR>
-					// |  <TR vAlign=top>
-					// |    <TD width=""50%""><IMG src=""pubmethod.gif""></IMG><A href=""OneScriptForms.Control.UpdateStyles.html"">ОбновитьСтили&nbsp;(UpdateStyles)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-					// |    <TD width=""50%"">Вызывает принудительное повторное применение назначенных стилей к элементу управления.</TD></TR>";
-					// СтрЧлены = СтрЗаменить(СтрЧлены, ПодстрокаПоиска, ПодстрокаЗамены);
-				// КонецЕсли;
-				// ТекстДокЧлены.УстановитьТекст(СтрЧлены);
-				// ТекстДокЧлены.Записать(ПутьЧлены);
-			// Иначе
-				// Сообщить("Не найден ПутьЧлены===" + ПутьЧлены);
-			// КонецЕсли;
-			
-			// ПутьСвойства = СтрЗаменить(ВыбранныеФайлы[А], ".html", "Properties.html");
-			// ФайлСвойства = Новый Файл(ПутьСвойства);
-			// Если ФайлСвойства.Существует() Тогда
-				// ТекстДокСвойства = Новый ТекстовыйДокумент;
-				// ТекстДокСвойства.Прочитать(ПутьСвойства);
-				// СтрСвойства = ТекстДокСвойства.ПолучитьТекст();
-				// Если СтрНайти(СтрСвойства, "ДвойнаяБуферизация") > 0 Тогда
-				// Иначе
-					// ПодстрокаПоиска = "<H4 class=dtH4>Свойства</H4>
-					// |<DIV class=tablediv>
-					// |<TABLE class=dtTABLE cellSpacing=0>
-					// |  <TBODY>";
-					// ПодстрокаЗамены = ПодстрокаПоиска + "
-					// |  <TR vAlign=top>
-					// |    <TD width=""50%""><IMG src=""pubproperty.gif""></IMG><A href=""OneScriptForms.Control.DoubleBuffered.html"">ДвойнаяБуферизация&nbsp;(DoubleBuffered)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-					// |    <TD width=""50%"">Возвращает или задает значение, указывающее, должна ли поверхность этого элемента управления перерисовываться с помощью дополнительного буфера, чтобы уменьшить или предотвратить мерцание.</TD></TR>";
-					// СтрСвойства = СтрЗаменить(СтрСвойства, ПодстрокаПоиска, ПодстрокаЗамены);
-				// КонецЕсли;
-				// ТекстДокСвойства.УстановитьТекст(СтрСвойства);
-				// ТекстДокСвойства.Записать(ПутьСвойства);
-			// Иначе
-				// Сообщить("Не найден ПутьСвойства===" + ПутьСвойства);
-			// КонецЕсли;
-
-			// ПутьМетоды = СтрЗаменить(ВыбранныеФайлы[А], ".html", "Methods.html");
-			// ФайлМетоды = Новый Файл(ПутьМетоды);
-			// Если ФайлМетоды.Существует() Тогда
-				// ТекстДокМетоды = Новый ТекстовыйДокумент;
-				// ТекстДокМетоды.Прочитать(ПутьМетоды);
-				// СтрМетоды = ТекстДокМетоды.ПолучитьТекст();
-				// Если (СтрНайти(СтрМетоды, "ПолучитьСтиль") > 0) или (СтрНайти(СтрМетоды, "УстановитьСтиль") > 0) или (СтрНайти(СтрМетоды, "ОбновитьСтили") > 0) Тогда
-				// Иначе
-					// ПодстрокаПоиска = "<H4 class=dtH4>Методы</H4>
-					// |<DIV class=tablediv>
-					// |<TABLE class=dtTABLE cellSpacing=0>
-					// |  <TBODY>";
-					// ПодстрокаЗамены = ПодстрокаПоиска + "
-					// |  <TR vAlign=top>
-					// |    <TD width=""50%""><IMG src=""pubmethod.gif""></IMG><A href=""OneScriptForms.Control.GetStyle.html"">ПолучитьСтиль&nbsp;(GetStyle)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-					// |    <TD width=""50%"">Возвращает значение указанного бита стиля для данного элемента управления.</TD></TR>
-					// |  <TR vAlign=top>
-					// |    <TD width=""50%""><IMG src=""pubmethod.gif""></IMG><A href=""OneScriptForms.Control.SetStyle.html"">УстановитьСтиль&nbsp;(SetStyle)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-					// |    <TD width=""50%"">Включает или выключает указанный стиль.</TD></TR>
-					// |  <TR vAlign=top>
-					// |    <TD width=""50%""><IMG src=""pubmethod.gif""></IMG><A href=""OneScriptForms.Control.UpdateStyles.html"">ОбновитьСтили&nbsp;(UpdateStyles)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-					// |    <TD width=""50%"">Вызывает принудительное повторное применение назначенных стилей к элементу управления.</TD></TR>";
-					// СтрМетоды = СтрЗаменить(СтрМетоды, ПодстрокаПоиска, ПодстрокаЗамены);
-				// КонецЕсли;
-				// ТекстДокМетоды.УстановитьТекст(СтрМетоды);
-				// ТекстДокМетоды.Записать(ПутьМетоды);
-			// Иначе
-				// Сообщить("Не найден ПутьМетоды===" + ПутьМетоды);
-			// КонецЕсли;
-		// КонецЕсли;
-	
-	// КонецЦикла;
-		
-	// Сообщить("Наследников = " + Наследников);
-	// Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах() - Таймер)/1000)/60 + " мин.");
-КонецПроцедуры//ДобавитьДвойнаяБуферизация()
-
-Процедура ДобавитьОтправительПараметр();
-	// Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
-	
-	// Найдено1 = 0;
-	// ВыбранныеФайлы = НайтиФайлы(КаталогСправки, "*.html", Истина);
-	// Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
-		// Если СтрНайти(ВыбранныеФайлы[А].Имя, "Args.html") > 0 Тогда
-			// Найдено1 = Найдено1 + 1;
-			// // Сообщить("" + ВыбранныеФайлы[А].Имя);
-		
-			// ПутьЧлены = СтрЗаменить(ВыбранныеФайлы[А].ПолноеИмя, ".html", "Members.html");
-			// Сообщить("ПутьЧлены = " + ПутьЧлены);
-			// ФайлЧлены = Новый Файл(ПутьЧлены);
-			// Приостановить(1000);
-			// Если ФайлЧлены.Существует() Тогда
-				// ТекстДокЧлены = Новый ТекстовыйДокумент;
-				// ТекстДокЧлены.Прочитать(ПутьЧлены);
-				// СтрЧлены = ТекстДокЧлены.ПолучитьТекст();
-				// Если (СтрНайти(СтрЧлены, "Отправитель") > 0) или (СтрНайти(СтрЧлены, "Параметр") > 0) Тогда
-				// Иначе
-					// ПодстрокаПоиска = "<H4 class=dtH4>Свойства</H4>
-					// |<DIV class=tablediv>
-					// |<TABLE class=dtTABLE cellSpacing=0>
-					// |  <TBODY>";
-					// ПодстрокаЗамены = ПодстрокаПоиска + "
-					// |  <TR vAlign=top>
-					// |    <TD width=""50%""><IMG src=""pubproperty.gif""></IMG><A href=""OneScriptForms.EventArgs.Sender.html"">Отправитель&nbsp;(Sender)</A> (унаследовано от <B>АргументыСобытия&nbsp;(EventArgs)</B>)</TD>
-					// |    <TD width=""50%"">Возвращает объект, послуживший источником события.</TD></TR>
-					// |  <TR vAlign=top>
-					// |    <TD width=""50%""><IMG src=""pubproperty.gif""></IMG><A href=""OneScriptForms.EventArgs.Parameter.html"">Параметр&nbsp;(Parameter)</A> (унаследовано от <B>АргументыСобытия&nbsp;(EventArgs)</B>)</TD>
-					// |    <TD width=""50%"">Возвращает объект, заданный при установке обработчика события.</TD></TR>";
-					// СтрЧлены = СтрЗаменить(СтрЧлены, ПодстрокаПоиска, ПодстрокаЗамены);
-				// КонецЕсли;
-				
-				// ТекстДокЧлены.УстановитьТекст(СтрЧлены);
-				// ТекстДокЧлены.Записать(ПутьЧлены);
-			// Иначе
-				// Сообщить("Не найден ПутьЧлены===" + ПутьЧлены);
-			// КонецЕсли;
-			
-			// ПутьСвойства = СтрЗаменить(ВыбранныеФайлы[А].ПолноеИмя, ".html", "Properties.html");
-			// Сообщить("ПутьСвойства = " + ПутьСвойства);
-			// ФайлСвойства = Новый Файл(ПутьСвойства);
-			// Приостановить(1000);
-			// Если ФайлСвойства.Существует() Тогда
-				// ТекстДокСвойства = Новый ТекстовыйДокумент;
-				// ТекстДокСвойства.Прочитать(ПутьСвойства);
-				// СтрСвойства = ТекстДокСвойства.ПолучитьТекст();
-				// Если (СтрНайти(СтрСвойства, "Отправитель") > 0) или (СтрНайти(СтрСвойства, "Параметр") > 0) Тогда
-				// Иначе
-					// ПодстрокаПоиска = "<H4 class=dtH4>Свойства</H4>
-					// |<DIV class=tablediv>
-					// |<TABLE class=dtTABLE cellSpacing=0>
-					// |  <TBODY>";
-					// ПодстрокаЗамены = ПодстрокаПоиска + "
-					// |  <TR vAlign=top>
-					// |    <TD width=""50%""><IMG src=""pubproperty.gif""></IMG><A href=""OneScriptForms.EventArgs.Sender.html"">Отправитель&nbsp;(Sender)</A> (унаследовано от <B>АргументыСобытия&nbsp;(EventArgs)</B>)</TD>
-					// |    <TD width=""50%"">Возвращает объект, послуживший источником события.</TD></TR>
-					// |  <TR vAlign=top>
-					// |    <TD width=""50%""><IMG src=""pubproperty.gif""></IMG><A href=""OneScriptForms.EventArgs.Parameter.html"">Параметр&nbsp;(Parameter)</A> (унаследовано от <B>АргументыСобытия&nbsp;(EventArgs)</B>)</TD>
-					// |    <TD width=""50%"">Возвращает объект, заданный при установке обработчика события.</TD></TR>";
-					// СтрСвойства = СтрЗаменить(СтрСвойства, ПодстрокаПоиска, ПодстрокаЗамены);
-				// КонецЕсли;
-				
-				// ТекстДокСвойства.УстановитьТекст(СтрСвойства);
-				// ТекстДокСвойства.Записать(ПутьСвойства);
-			// Иначе
-				// Сообщить("Не найден ПутьСвойства===" + ПутьСвойства);
-			// КонецЕсли;
-		
-		// КонецЕсли;
-
-	// КонецЦикла;
-		
-	// Сообщить("Найдено1 = " + Найдено1);
-	// Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах() - Таймер)/1000)/60 + " мин.");
-КонецПроцедуры//ДобавитьОтправительПараметр()
-
-
 КаталогСправки = "C:\444\OneScriptFormsru";// без слэша в конце
 КаталогВыгрузки = "C:\444\ВыгруженныеОбъекты";// без слэша в конце
 
 ВыгрузкаДляCS();
 СортировкаКода();
-// // // ДобавитьДвойнаяБуферизация();
-// // // ДобавитьОтправительПараметр();

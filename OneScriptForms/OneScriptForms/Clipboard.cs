@@ -60,6 +60,44 @@ namespace osf
             return str1;
         }
         
+        [ContextMethod("СодержитДанные", "ContainsData")]
+        public bool ContainsData()
+        {
+            bool res = false;
+            var thread = new Thread(() =>
+            {
+                IDataObject dataObject = Clipboard.GetDataObject();
+                if (dataObject != null)
+                {
+                    res = true;
+                }
+            }
+            );
+            thread.IsBackground = true;
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
+            thread.Join();
+
+            return res;
+        }
+        
+        [ContextMethod("СодержитЮникод", "ContainsUnicode")]
+        public bool ContainsUnicode()
+        {
+            bool res = false;
+            var thread = new Thread(() =>
+            {
+                res = Clipboard.ContainsText(TextDataFormat.UnicodeText);
+            }
+            );
+            thread.IsBackground = true;
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
+            thread.Join();
+
+            return res;
+        }
+        
         [ContextMethod("УстановитьИзображение", "SetImage")]
         public void SetImage(ClBitmap bitmap)
         {

@@ -12,6 +12,11 @@ namespace osf
             get { return System.Environment.CommandLine; }
         }
 
+        public string NewLine
+        {
+            get { return System.Environment.NewLine; }
+        }
+
         public osf.Version Version
         {
             get { return new Version(Assembly.GetExecutingAssembly().GetName().Version); }
@@ -52,6 +57,12 @@ namespace osf
         public string CommandLine
         {
             get { return Base_obj.CommandLine; }
+        }
+
+        [ContextProperty("НоваяСтрока", "NewLine")]
+        public string NewLine
+        {
+            get { return Base_obj.NewLine; }
         }
         
         [ContextMethod("ПолучитьПутьКаталога", "GetFolderPath")]

@@ -22,6 +22,7 @@ namespace osf
             M_DataGrid.M_Object = this;
             base.M_Control = M_DataGrid;
             M_DataGrid.CurrentCellChanged += M_DataGrid_CurrentCellChanged;
+            M_DataGrid.MouseDown += M_DataGrid_MouseDown;
             CurrentCellChanged = "";
         }
 
@@ -31,6 +32,7 @@ namespace osf
             M_DataGrid.M_Object = this;
             base.M_Control = M_DataGrid;
             M_DataGrid.CurrentCellChanged += M_DataGrid_CurrentCellChanged;
+            M_DataGrid.MouseDown += M_DataGrid_MouseDown;
             CurrentCellChanged = "";
         }
 
@@ -40,6 +42,7 @@ namespace osf
             M_DataGrid.M_Object = this;
             base.M_Control = M_DataGrid;
             M_DataGrid.CurrentCellChanged += M_DataGrid_CurrentCellChanged;
+            M_DataGrid.MouseDown += M_DataGrid_MouseDown;
             CurrentCellChanged = "";
         }
 
@@ -203,6 +206,11 @@ namespace osf
                 OneScriptForms.EventQueue.Add(EventArgs1);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
             }
+        }
+
+        private void M_DataGrid_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            OneScriptForms.gridMouseDownTime = DateTime.Now;
         }
 
         public void SetDataBinding(object source, string member = null)

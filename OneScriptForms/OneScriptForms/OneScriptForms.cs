@@ -83,6 +83,7 @@ namespace osf
         public static string EventString = "";
         public static ClForm FirstForm = null;
         public static bool goOn = true;
+        public static DateTime gridMouseDownTime = System.DateTime.Now;// для срабатывания двойного клика в ячейке DataGridTextBoxColumn сетки данных
         public static System.Collections.Hashtable hashtable = new Hashtable();
         public static System.Random Random = new Random();
         [DllImport("User32.dll")] static extern void mouse_event(uint dwFlags, int dx, int dy, int dwData, UIntPtr dwExtraInfo);

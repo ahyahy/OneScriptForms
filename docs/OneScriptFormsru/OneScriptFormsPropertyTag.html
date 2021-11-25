@@ -1,0 +1,51 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>OneScriptFormsPropertyTag</TITLE>
+<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<BODY id=bodyID class=dtBODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead cellSpacing=0>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead></TD>
+    <TD class=product></TD></TR></TBODY></TABLE></DIV>
+<DIV id=TitleRow>
+<H1 class=dtH1>Свойство Метка у контрола</H1></DIV></DIV>
+<DIV id=nstext>
+<P>Свойство Метка расширяет возможности объекта с помощью дополнительных данных с различными типами значений.</P>
+<P>Привожу пример использования метки.</P>
+<P></P>
+<H4 class=dtH4>Пример</H4>
+<P><PRE class=code>
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+Реквизиты = Новый Структура("Поле1","ЧтоТоТам");
+
+ПолеВвода1 = Форма1.ЭлементыУправления.Добавить(Ф.ПолеВвода());
+ПолеВвода1.Имя = "Поле1";
+
+Сообщить("ТипЗнч(ПолеВвода1.Метка) = " + ТипЗнч(ПолеВвода1.Метка));
+ПолеВвода1.Метка.Добавить(Реквизиты, "Реквизиты");// установили значение в коллекции по индексу 0
+
+НашаСтруктура = ПолеВвода1.Метка.Элемент(0);
+Знач1 = НашаСтруктура["Поле1"];
+Сообщить("Знач1 = " + Знач1);
+
+НашаСтруктура["Поле1"] = "ДругоеЧтоТоТам";
+Знач2 = НашаСтруктура["Поле1"];
+Сообщить("Знач2 = " + Знач2);
+
+Пока Ф.Продолжать Цикл
+	Выполнить(Ф.ПолучитьСобытие());
+КонецЦикла;
+</PRE>
+<P></P>
+<H4 class=dtH4>Смотрите также</H4>
+<P><A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P></DIV>
+</BODY></HTML>
