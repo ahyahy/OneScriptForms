@@ -166,22 +166,11 @@ namespace osf
                 LinkClickedEventArgs LinkClickedEventArgs1 = new LinkClickedEventArgs();
                 LinkClickedEventArgs1.EventString = LinkClicked;
                 LinkClickedEventArgs1.Sender = this;
-                dynamic event1 = ((dynamic)this).dll_obj.LinkClicked;
-                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    LinkClickedEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-                }
-                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-                {
-                    LinkClickedEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-                }
-                else
-                {
-                    LinkClickedEventArgs1.Parameter = null;
-                }
+                LinkClickedEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.LinkClicked);
                 LinkClickedEventArgs1.LinkText = e.LinkText;
-                OneScriptForms.EventQueue.Add(LinkClickedEventArgs1);
                 ClLinkClickedEventArgs ClLinkClickedEventArgs1 = new ClLinkClickedEventArgs(LinkClickedEventArgs1);
+                OneScriptForms.Event = ClLinkClickedEventArgs1;
+                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.LinkClicked);
             }
         }
 
@@ -192,21 +181,10 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = SelectionChanged;
                 EventArgs1.Sender = this;
-                dynamic event1 = ((dynamic)this).dll_obj.SelectionChanged;
-                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-                }
-                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-                {
-                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-                }
-                else
-                {
-                    EventArgs1.Parameter = null;
-                }
-                OneScriptForms.EventQueue.Add(EventArgs1);
+                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.SelectionChanged);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+                OneScriptForms.Event = ClEventArgs1;
+                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.SelectionChanged);
             }
         }
 
@@ -274,6 +252,21 @@ namespace osf
             RichTextBox RichTextBox1 = new RichTextBox();
             RichTextBox1.dll_obj = this;
             Base_obj = RichTextBox1;
+            ContextMenu = EnableContextMenu(this);
+            bounds = new ClRectangle(Base_obj.Bounds);
+            clientRectangle = new ClRectangle(Base_obj.ClientRectangle);
+            foreColor = new ClColor(Base_obj.ForeColor);
+            selectionColor = new ClColor(Base_obj.SelectionColor);
+            backColor = new ClColor(Base_obj.BackColor);
+            controls = new ClControlCollection(Base_obj.Controls);
+        }
+
+        public ClRichTextBox(RichTextBox p1)
+        {
+            RichTextBox RichTextBox1 = p1;
+            RichTextBox1.dll_obj = this;
+            Base_obj = RichTextBox1;
+            ContextMenu = EnableContextMenu(this);
             bounds = new ClRectangle(Base_obj.Bounds);
             clientRectangle = new ClRectangle(Base_obj.ClientRectangle);
             foreColor = new ClColor(Base_obj.ForeColor);
@@ -282,19 +275,54 @@ namespace osf
             controls = new ClControlCollection(Base_obj.Controls);
         }
 		
-        public ClRichTextBox(RichTextBox p1)
+        public ClContextMenu EnableContextMenu(ClRichTextBox rtb)
         {
-            RichTextBox RichTextBox1 = p1;
-            RichTextBox1.dll_obj = this;
-            Base_obj = RichTextBox1;
-            bounds = new ClRectangle(Base_obj.Bounds);
-            clientRectangle = new ClRectangle(Base_obj.ClientRectangle);
-            foreColor = new ClColor(Base_obj.ForeColor);
-            selectionColor = new ClColor(Base_obj.SelectionColor);
-            backColor = new ClColor(Base_obj.BackColor);
-            controls = new ClControlCollection(Base_obj.Controls);
+            ClContextMenu cm = new ClContextMenu();
+            ClMenuItem Undo = new ClMenuItem("Отменить");
+            Undo.Base_obj.M_MenuItem.Click += (sender, e) => rtb.Undo();
+            cm.MenuItems.Add(Undo);
+
+            ClMenuItem Redo = new ClMenuItem("Вернуть");
+            Redo.Base_obj.M_MenuItem.Click += (sender, e) => rtb.Redo();
+            cm.MenuItems.Add(Redo);
+
+            cm.MenuItems.Add(new ClMenuItem("-"));
+
+            ClMenuItem Cut = new ClMenuItem("Вырезать");
+            Cut.Base_obj.M_MenuItem.Click += (sender, e) => rtb.Cut();
+            cm.MenuItems.Add(Cut);
+
+            ClMenuItem Copy = new ClMenuItem("Копировать");
+            Copy.Base_obj.M_MenuItem.Click += (sender, e) => rtb.Copy();
+            cm.MenuItems.Add(Copy);
+
+            ClMenuItem Paste = new ClMenuItem("Вставить");
+            Paste.Base_obj.M_MenuItem.Click += (sender, e) => rtb.Paste();
+            cm.MenuItems.Add(Paste);
+
+            ClMenuItem Delete = new ClMenuItem("Удалить");
+            Delete.Base_obj.M_MenuItem.Click += (sender, e) => rtb.SelectedText = "";
+            cm.MenuItems.Add(Delete);
+
+            cm.MenuItems.Add(new ClMenuItem("-"));
+
+            ClMenuItem SelectAll = new ClMenuItem("Выбрать всё");
+            SelectAll.Base_obj.M_MenuItem.Click += (sender, e) => rtb.SelectAll();
+            cm.MenuItems.Add(SelectAll);
+
+            cm.Base_obj.M_ContextMenu.Popup += (sender, e) =>
+            {
+                Undo.Enabled = !rtb.ReadOnly && rtb.CanUndo;
+                Redo.Enabled = !rtb.ReadOnly && rtb.CanRedo;
+                Cut.Enabled = !rtb.ReadOnly && rtb.SelectionLength > 0;
+                Copy.Enabled = rtb.SelectionLength > 0;
+                Paste.Enabled = !rtb.ReadOnly && (new osf.ClClipboard()).ContainsData();
+                Delete.Enabled = !rtb.ReadOnly && rtb.SelectionLength > 0;
+                SelectAll.Enabled = rtb.TextLength > 0 && rtb.SelectionLength < rtb.TextLength;
+            };
+            return cm;
         }
-        
+
         public RichTextBox Base_obj;
         
         [ContextProperty("Rtf", "Rtf")]
@@ -334,36 +362,18 @@ namespace osf
         [ContextProperty("ВыделениеИзменено", "SelectionChanged")]
         public IValue SelectionChanged
         {
-            get
-            {
-                if (Base_obj.SelectionChanged.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _SelectionChanged;
-                }
-                else if (Base_obj.SelectionChanged.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _SelectionChanged;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.SelectionChanged);
-                }
-            }
+            get { return _SelectionChanged; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _SelectionChanged = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.SelectionChanged = "ScriptEngine.HostedScript.Library.DelegateAction" + "SelectionChanged";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _SelectionChanged = value;
-                    Base_obj.SelectionChanged = "osf.ClDictionaryEntry" + "SelectionChanged";
+                    Base_obj.SelectionChanged = "DelegateActionSelectionChanged";
                 }
                 else
                 {
-                    Base_obj.SelectionChanged = value.AsString();
+                    _SelectionChanged = value;
+                    Base_obj.SelectionChanged = "osfActionSelectionChanged";
                 }
             }
         }
@@ -399,46 +409,21 @@ namespace osf
             }
         }
 
-        [ContextProperty("ДвойнаяБуферизация", "DoubleBuffered")]
-        public bool DoubleBuffered
-        {
-            get { return Base_obj.DoubleBuffered; }
-            set { Base_obj.DoubleBuffered = value; }
-        }
-
         [ContextProperty("ДвойноеНажатие", "DoubleClick")]
         public IValue DoubleClick
         {
-            get
-            {
-                if (Base_obj.DoubleClick.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _DoubleClick;
-                }
-                else if (Base_obj.DoubleClick.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _DoubleClick;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.DoubleClick);
-                }
-            }
+            get { return _DoubleClick; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _DoubleClick = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.DoubleClick = "ScriptEngine.HostedScript.Library.DelegateAction" + "DoubleClick";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _DoubleClick = value;
-                    Base_obj.DoubleClick = "osf.ClDictionaryEntry" + "DoubleClick";
+                    Base_obj.DoubleClick = "DelegateActionDoubleClick";
                 }
                 else
                 {
-                    Base_obj.DoubleClick = value.AsString();
+                    _DoubleClick = value;
+                    Base_obj.DoubleClick = "osfActionDoubleClick";
                 }
             }
         }
@@ -507,36 +492,18 @@ namespace osf
         [ContextProperty("КлавишаВверх", "KeyUp")]
         public IValue KeyUp
         {
-            get
-            {
-                if (Base_obj.KeyUp.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _KeyUp;
-                }
-                else if (Base_obj.KeyUp.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _KeyUp;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.KeyUp);
-                }
-            }
+            get { return _KeyUp; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _KeyUp = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.KeyUp = "ScriptEngine.HostedScript.Library.DelegateAction" + "KeyUp";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _KeyUp = value;
-                    Base_obj.KeyUp = "osf.ClDictionaryEntry" + "KeyUp";
+                    Base_obj.KeyUp = "DelegateActionKeyUp";
                 }
                 else
                 {
-                    Base_obj.KeyUp = value.AsString();
+                    _KeyUp = value;
+                    Base_obj.KeyUp = "osfActionKeyUp";
                 }
             }
         }
@@ -544,36 +511,18 @@ namespace osf
         [ContextProperty("КлавишаВниз", "KeyDown")]
         public IValue KeyDown
         {
-            get
-            {
-                if (Base_obj.KeyDown.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _KeyDown;
-                }
-                else if (Base_obj.KeyDown.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _KeyDown;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.KeyDown);
-                }
-            }
+            get { return _KeyDown; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _KeyDown = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.KeyDown = "ScriptEngine.HostedScript.Library.DelegateAction" + "KeyDown";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _KeyDown = value;
-                    Base_obj.KeyDown = "osf.ClDictionaryEntry" + "KeyDown";
+                    Base_obj.KeyDown = "DelegateActionKeyDown";
                 }
                 else
                 {
-                    Base_obj.KeyDown = value.AsString();
+                    _KeyDown = value;
+                    Base_obj.KeyDown = "osfActionKeyDown";
                 }
             }
         }
@@ -581,36 +530,18 @@ namespace osf
         [ContextProperty("КлавишаНажата", "KeyPress")]
         public IValue KeyPress
         {
-            get
-            {
-                if (Base_obj.KeyPress.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _KeyPress;
-                }
-                else if (Base_obj.KeyPress.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _KeyPress;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.KeyPress);
-                }
-            }
+            get { return _KeyPress; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _KeyPress = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.KeyPress = "ScriptEngine.HostedScript.Library.DelegateAction" + "KeyPress";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _KeyPress = value;
-                    Base_obj.KeyPress = "osf.ClDictionaryEntry" + "KeyPress";
+                    Base_obj.KeyPress = "DelegateActionKeyPress";
                 }
                 else
                 {
-                    Base_obj.KeyPress = value.AsString();
+                    _KeyPress = value;
+                    Base_obj.KeyPress = "osfActionKeyPress";
                 }
             }
         }
@@ -696,13 +627,6 @@ namespace osf
             set { Base_obj.Multiline = value; }
         }
 
-        [ContextProperty("МногострочныйРежим2", "MultiLine")]
-        public bool MultiLine
-        {
-            get { return Base_obj.Multiline; }
-            set { Base_obj.Multiline = value; }
-        }
-
         [ContextProperty("Модифицированность", "Modified")]
         public bool Modified
         {
@@ -725,36 +649,18 @@ namespace osf
         [ContextProperty("МышьНадЭлементом", "MouseEnter")]
         public IValue MouseEnter
         {
-            get
-            {
-                if (Base_obj.MouseEnter.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _MouseEnter;
-                }
-                else if (Base_obj.MouseEnter.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _MouseEnter;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.MouseEnter);
-                }
-            }
+            get { return _MouseEnter; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _MouseEnter = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.MouseEnter = "ScriptEngine.HostedScript.Library.DelegateAction" + "MouseEnter";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _MouseEnter = value;
-                    Base_obj.MouseEnter = "osf.ClDictionaryEntry" + "MouseEnter";
+                    Base_obj.MouseEnter = "DelegateActionMouseEnter";
                 }
                 else
                 {
-                    Base_obj.MouseEnter = value.AsString();
+                    _MouseEnter = value;
+                    Base_obj.MouseEnter = "osfActionMouseEnter";
                 }
             }
         }
@@ -762,36 +668,18 @@ namespace osf
         [ContextProperty("МышьПокинулаЭлемент", "MouseLeave")]
         public IValue MouseLeave
         {
-            get
-            {
-                if (Base_obj.MouseLeave.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _MouseLeave;
-                }
-                else if (Base_obj.MouseLeave.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _MouseLeave;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.MouseLeave);
-                }
-            }
+            get { return _MouseLeave; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _MouseLeave = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.MouseLeave = "ScriptEngine.HostedScript.Library.DelegateAction" + "MouseLeave";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _MouseLeave = value;
-                    Base_obj.MouseLeave = "osf.ClDictionaryEntry" + "MouseLeave";
+                    Base_obj.MouseLeave = "DelegateActionMouseLeave";
                 }
                 else
                 {
-                    Base_obj.MouseLeave = value.AsString();
+                    _MouseLeave = value;
+                    Base_obj.MouseLeave = "osfActionMouseLeave";
                 }
             }
         }
@@ -799,36 +687,18 @@ namespace osf
         [ContextProperty("Нажатие", "Click")]
         public IValue Click
         {
-            get
-            {
-                if (Base_obj.Click.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _Click;
-                }
-                else if (Base_obj.Click.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _Click;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.Click);
-                }
-            }
+            get { return _Click; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _Click = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.Click = "ScriptEngine.HostedScript.Library.DelegateAction" + "Click";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _Click = value;
-                    Base_obj.Click = "osf.ClDictionaryEntry" + "Click";
+                    Base_obj.Click = "DelegateActionClick";
                 }
                 else
                 {
-                    Base_obj.Click = value.AsString();
+                    _Click = value;
+                    Base_obj.Click = "osfActionClick";
                 }
             }
         }
@@ -908,36 +778,18 @@ namespace osf
         [ContextProperty("ПоложениеИзменено", "LocationChanged")]
         public IValue LocationChanged
         {
-            get
-            {
-                if (Base_obj.LocationChanged.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _LocationChanged;
-                }
-                else if (Base_obj.LocationChanged.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _LocationChanged;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.LocationChanged);
-                }
-            }
+            get { return _LocationChanged; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _LocationChanged = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.LocationChanged = "ScriptEngine.HostedScript.Library.DelegateAction" + "LocationChanged";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _LocationChanged = value;
-                    Base_obj.LocationChanged = "osf.ClDictionaryEntry" + "LocationChanged";
+                    Base_obj.LocationChanged = "DelegateActionLocationChanged";
                 }
                 else
                 {
-                    Base_obj.LocationChanged = value.AsString();
+                    _LocationChanged = value;
+                    Base_obj.LocationChanged = "osfActionLocationChanged";
                 }
             }
         }
@@ -978,36 +830,18 @@ namespace osf
         [ContextProperty("ПриВходе", "Enter")]
         public IValue Enter
         {
-            get
-            {
-                if (Base_obj.Enter.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _Enter;
-                }
-                else if (Base_obj.Enter.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _Enter;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.Enter);
-                }
-            }
+            get { return _Enter; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _Enter = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.Enter = "ScriptEngine.HostedScript.Library.DelegateAction" + "Enter";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _Enter = value;
-                    Base_obj.Enter = "osf.ClDictionaryEntry" + "Enter";
+                    Base_obj.Enter = "DelegateActionEnter";
                 }
                 else
                 {
-                    Base_obj.Enter = value.AsString();
+                    _Enter = value;
+                    Base_obj.Enter = "osfActionEnter";
                 }
             }
         }
@@ -1015,36 +849,18 @@ namespace osf
         [ContextProperty("ПриЗадержкеМыши", "MouseHover")]
         public IValue MouseHover
         {
-            get
-            {
-                if (Base_obj.MouseHover.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _MouseHover;
-                }
-                else if (Base_obj.MouseHover.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _MouseHover;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.MouseHover);
-                }
-            }
+            get { return _MouseHover; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _MouseHover = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.MouseHover = "ScriptEngine.HostedScript.Library.DelegateAction" + "MouseHover";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _MouseHover = value;
-                    Base_obj.MouseHover = "osf.ClDictionaryEntry" + "MouseHover";
+                    Base_obj.MouseHover = "DelegateActionMouseHover";
                 }
                 else
                 {
-                    Base_obj.MouseHover = value.AsString();
+                    _MouseHover = value;
+                    Base_obj.MouseHover = "osfActionMouseHover";
                 }
             }
         }
@@ -1052,36 +868,18 @@ namespace osf
         [ContextProperty("ПриНажатииКнопкиМыши", "MouseDown")]
         public IValue MouseDown
         {
-            get
-            {
-                if (Base_obj.MouseDown.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _MouseDown;
-                }
-                else if (Base_obj.MouseDown.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _MouseDown;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.MouseDown);
-                }
-            }
+            get { return _MouseDown; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _MouseDown = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.MouseDown = "ScriptEngine.HostedScript.Library.DelegateAction" + "MouseDown";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _MouseDown = value;
-                    Base_obj.MouseDown = "osf.ClDictionaryEntry" + "MouseDown";
+                    Base_obj.MouseDown = "DelegateActionMouseDown";
                 }
                 else
                 {
-                    Base_obj.MouseDown = value.AsString();
+                    _MouseDown = value;
+                    Base_obj.MouseDown = "osfActionMouseDown";
                 }
             }
         }
@@ -1096,36 +894,18 @@ namespace osf
         [ContextProperty("ПриОтпусканииМыши", "MouseUp")]
         public IValue MouseUp
         {
-            get
-            {
-                if (Base_obj.MouseUp.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _MouseUp;
-                }
-                else if (Base_obj.MouseUp.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _MouseUp;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.MouseUp);
-                }
-            }
+            get { return _MouseUp; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _MouseUp = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.MouseUp = "ScriptEngine.HostedScript.Library.DelegateAction" + "MouseUp";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _MouseUp = value;
-                    Base_obj.MouseUp = "osf.ClDictionaryEntry" + "MouseUp";
+                    Base_obj.MouseUp = "DelegateActionMouseUp";
                 }
                 else
                 {
-                    Base_obj.MouseUp = value.AsString();
+                    _MouseUp = value;
+                    Base_obj.MouseUp = "osfActionMouseUp";
                 }
             }
         }
@@ -1133,36 +913,18 @@ namespace osf
         [ContextProperty("ПриПеремещении", "Move")]
         public IValue Move
         {
-            get
-            {
-                if (Base_obj.Move.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _Move;
-                }
-                else if (Base_obj.Move.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _Move;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.Move);
-                }
-            }
+            get { return _Move; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _Move = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.Move = "ScriptEngine.HostedScript.Library.DelegateAction" + "Move";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _Move = value;
-                    Base_obj.Move = "osf.ClDictionaryEntry" + "Move";
+                    Base_obj.Move = "DelegateActionMove";
                 }
                 else
                 {
-                    Base_obj.Move = value.AsString();
+                    _Move = value;
+                    Base_obj.Move = "osfActionMove";
                 }
             }
         }
@@ -1170,36 +932,18 @@ namespace osf
         [ContextProperty("ПриПеремещенииМыши", "MouseMove")]
         public IValue MouseMove
         {
-            get
-            {
-                if (Base_obj.MouseMove.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _MouseMove;
-                }
-                else if (Base_obj.MouseMove.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _MouseMove;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.MouseMove);
-                }
-            }
+            get { return _MouseMove; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _MouseMove = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.MouseMove = "ScriptEngine.HostedScript.Library.DelegateAction" + "MouseMove";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _MouseMove = value;
-                    Base_obj.MouseMove = "osf.ClDictionaryEntry" + "MouseMove";
+                    Base_obj.MouseMove = "DelegateActionMouseMove";
                 }
                 else
                 {
-                    Base_obj.MouseMove = value.AsString();
+                    _MouseMove = value;
+                    Base_obj.MouseMove = "osfActionMouseMove";
                 }
             }
         }
@@ -1207,36 +951,18 @@ namespace osf
         [ContextProperty("ПриПерерисовке", "Paint")]
         public IValue Paint
         {
-            get
-            {
-                if (Base_obj.Paint.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _Paint;
-                }
-                else if (Base_obj.Paint.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _Paint;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.Paint);
-                }
-            }
+            get { return _Paint; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _Paint = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.Paint = "ScriptEngine.HostedScript.Library.DelegateAction" + "Paint";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _Paint = value;
-                    Base_obj.Paint = "osf.ClDictionaryEntry" + "Paint";
+                    Base_obj.Paint = "DelegateActionPaint";
                 }
                 else
                 {
-                    Base_obj.Paint = value.AsString();
+                    _Paint = value;
+                    Base_obj.Paint = "osfActionPaint";
                 }
             }
         }
@@ -1244,36 +970,18 @@ namespace osf
         [ContextProperty("ПриПотереФокуса", "LostFocus")]
         public IValue LostFocus
         {
-            get
-            {
-                if (Base_obj.LostFocus.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _LostFocus;
-                }
-                else if (Base_obj.LostFocus.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _LostFocus;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.LostFocus);
-                }
-            }
+            get { return _LostFocus; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _LostFocus = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.LostFocus = "ScriptEngine.HostedScript.Library.DelegateAction" + "LostFocus";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _LostFocus = value;
-                    Base_obj.LostFocus = "osf.ClDictionaryEntry" + "LostFocus";
+                    Base_obj.LostFocus = "DelegateActionLostFocus";
                 }
                 else
                 {
-                    Base_obj.LostFocus = value.AsString();
+                    _LostFocus = value;
+                    Base_obj.LostFocus = "osfActionLostFocus";
                 }
             }
         }
@@ -1281,36 +989,18 @@ namespace osf
         [ContextProperty("ПриУходе", "Leave")]
         public IValue Leave
         {
-            get
-            {
-                if (Base_obj.Leave.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _Leave;
-                }
-                else if (Base_obj.Leave.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _Leave;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.Leave);
-                }
-            }
+            get { return _Leave; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _Leave = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.Leave = "ScriptEngine.HostedScript.Library.DelegateAction" + "Leave";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _Leave = value;
-                    Base_obj.Leave = "osf.ClDictionaryEntry" + "Leave";
+                    Base_obj.Leave = "DelegateActionLeave";
                 }
                 else
                 {
-                    Base_obj.Leave = value.AsString();
+                    _Leave = value;
+                    Base_obj.Leave = "osfActionLeave";
                 }
             }
         }
@@ -1325,36 +1015,18 @@ namespace osf
         [ContextProperty("РазмерИзменен", "SizeChanged")]
         public IValue SizeChanged
         {
-            get
-            {
-                if (Base_obj.SizeChanged.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _SizeChanged;
-                }
-                else if (Base_obj.SizeChanged.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _SizeChanged;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.SizeChanged);
-                }
-            }
+            get { return _SizeChanged; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _SizeChanged = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.SizeChanged = "ScriptEngine.HostedScript.Library.DelegateAction" + "SizeChanged";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _SizeChanged = value;
-                    Base_obj.SizeChanged = "osf.ClDictionaryEntry" + "SizeChanged";
+                    Base_obj.SizeChanged = "DelegateActionSizeChanged";
                 }
                 else
                 {
-                    Base_obj.SizeChanged = value.AsString();
+                    _SizeChanged = value;
+                    Base_obj.SizeChanged = "osfActionSizeChanged";
                 }
             }
         }
@@ -1383,36 +1055,18 @@ namespace osf
         [ContextProperty("СсылкаНажата", "LinkClicked")]
         public IValue LinkClicked
         {
-            get
-            {
-                if (Base_obj.LinkClicked.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _LinkClicked;
-                }
-                else if (Base_obj.LinkClicked.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _LinkClicked;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.LinkClicked);
-                }
-            }
+            get { return _LinkClicked; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _LinkClicked = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.LinkClicked = "ScriptEngine.HostedScript.Library.DelegateAction" + "LinkClicked";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _LinkClicked = value;
-                    Base_obj.LinkClicked = "osf.ClDictionaryEntry" + "LinkClicked";
+                    Base_obj.LinkClicked = "DelegateActionLinkClicked";
                 }
                 else
                 {
-                    Base_obj.LinkClicked = value.AsString();
+                    _LinkClicked = value;
+                    Base_obj.LinkClicked = "osfActionLinkClicked";
                 }
             }
         }
@@ -1454,36 +1108,18 @@ namespace osf
         [ContextProperty("ТекстИзменен", "TextChanged")]
         public IValue TextChanged
         {
-            get
-            {
-                if (Base_obj.TextChanged.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _TextChanged;
-                }
-                else if (Base_obj.TextChanged.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _TextChanged;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.TextChanged);
-                }
-            }
+            get { return _TextChanged; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _TextChanged = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.TextChanged = "ScriptEngine.HostedScript.Library.DelegateAction" + "TextChanged";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _TextChanged = value;
-                    Base_obj.TextChanged = "osf.ClDictionaryEntry" + "TextChanged";
+                    Base_obj.TextChanged = "DelegateActionTextChanged";
                 }
                 else
                 {
-                    Base_obj.TextChanged = value.AsString();
+                    _TextChanged = value;
+                    Base_obj.TextChanged = "osfActionTextChanged";
                 }
             }
         }
@@ -1574,36 +1210,18 @@ namespace osf
         [ContextProperty("ЭлементДобавлен", "ControlAdded")]
         public IValue ControlAdded
         {
-            get
-            {
-                if (Base_obj.ControlAdded.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _ControlAdded;
-                }
-                else if (Base_obj.ControlAdded.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _ControlAdded;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.ControlAdded);
-                }
-            }
+            get { return _ControlAdded; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _ControlAdded = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.ControlAdded = "ScriptEngine.HostedScript.Library.DelegateAction" + "ControlAdded";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _ControlAdded = value;
-                    Base_obj.ControlAdded = "osf.ClDictionaryEntry" + "ControlAdded";
+                    Base_obj.ControlAdded = "DelegateActionControlAdded";
                 }
                 else
                 {
-                    Base_obj.ControlAdded = value.AsString();
+                    _ControlAdded = value;
+                    Base_obj.ControlAdded = "osfActionControlAdded";
                 }
             }
         }
@@ -1611,36 +1229,18 @@ namespace osf
         [ContextProperty("ЭлементУдален", "ControlRemoved")]
         public IValue ControlRemoved
         {
-            get
-            {
-                if (Base_obj.ControlRemoved.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _ControlRemoved;
-                }
-                else if (Base_obj.ControlRemoved.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _ControlRemoved;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.ControlRemoved);
-                }
-            }
+            get { return _ControlRemoved; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _ControlRemoved = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.ControlRemoved = "ScriptEngine.HostedScript.Library.DelegateAction" + "ControlRemoved";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _ControlRemoved = value;
-                    Base_obj.ControlRemoved = "osf.ClDictionaryEntry" + "ControlRemoved";
+                    Base_obj.ControlRemoved = "DelegateActionControlRemoved";
                 }
                 else
                 {
-                    Base_obj.ControlRemoved = value.AsString();
+                    _ControlRemoved = value;
+                    Base_obj.ControlRemoved = "osfActionControlRemoved";
                 }
             }
         }

@@ -54,21 +54,10 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = Tick;
                 EventArgs1.Sender = this;
-                dynamic event1 = ((dynamic)this).dll_obj.Tick;
-                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-                }
-                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-                {
-                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-                }
-                else
-                {
-                    EventArgs1.Parameter = null;
-                }
-                OneScriptForms.EventQueue.Add(EventArgs1);
+                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Tick);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+                OneScriptForms.Event = ClEventArgs1;
+                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Tick);
             }
         }
 
@@ -121,36 +110,18 @@ namespace osf
         [ContextProperty("ПриСрабатыванииТаймера", "Tick")]
         public IValue Tick
         {
-            get
-            {
-                if (Base_obj.Tick.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _Tick;
-                }
-                else if (Base_obj.Tick.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _Tick;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.Tick);
-                }
-            }
+            get { return _Tick; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _Tick = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.Tick = "ScriptEngine.HostedScript.Library.DelegateAction" + "Tick";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _Tick = value;
-                    Base_obj.Tick = "osf.ClDictionaryEntry" + "Tick";
+                    Base_obj.Tick = "DelegateActionTick";
                 }
                 else
                 {
-                    Base_obj.Tick = value.AsString();
+                    _Tick = value;
+                    Base_obj.Tick = "osfActionTick";
                 }
             }
         }

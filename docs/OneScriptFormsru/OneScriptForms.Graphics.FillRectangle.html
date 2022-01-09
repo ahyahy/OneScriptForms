@@ -52,7 +52,7 @@
 <hr style="border-color: lightgray;"><DIV id="cont1">
 Перем Ф, Форма1, Картинка1;
 
-Процедура Форма1_ПриПерерисовке()
+Процедура Форма1_ПриПерерисовке() Экспорт
 	Графика1 = Форма1.СоздатьГрафику();
 	Графика1.Очистить(Ф.Цвет().Белый);
 	Цвет1 = Ф.Цвет().Синий;
@@ -71,10 +71,9 @@
 Форма1 = Ф.Форма();
 Форма1.Ширина = 600;
 Форма1.Высота = 400;
-Форма1.ПриПерерисовке = "Форма1_ПриПерерисовке()";
+Форма1.ПриПерерисовке = Новый Действие(ЭтотОбъект, "Форма1_ПриПерерисовке");
 Форма1.Отображать = Истина;
 Форма1.Показать();
-Форма1.Активизировать();
 
 СтрМасленица1 = "/9j/4AAQSkZJRgABAQEAeAB4AAD/4QA2RXhpZgAATU0AKgAAAAgAAQEyAAIAAAAUAAAAGgAAAAAyMDE4OjA3OjE5IDA5OjQxOjQxAP/bAEMACAYGBwYFCAcHBwkJCAoMFA0MCwsMGRITDxQdGh8eHRocHCAkLi
 |cgIiwjHBwoNyksMDE0NDQfJzk9ODI8LjM0Mv/bAEMBCQkJDAsMGA0NGDIhHCEyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMv/AABEIAFAAdwMBIgACEQEDEQH/xAAfAAABBQEBAQEBAQAAA
@@ -117,9 +116,10 @@
 |iVR1xhsZH698dyV67cY6JnlKLP/2Q==";
 Картинка1 = Ф.Картинка(СтрМасленица1);
 
-Пока Ф.Продолжать Цикл
-	Выполнить(Ф.ПолучитьСобытие());
-КонецЦикла;
+Ф.РазрешитьСобытия = Истина;
+Форма1.Активизировать();
+
+Ф.ЗапуститьОбработкуСобытий();
 </DIV>
 </PRE>
 </details>
@@ -130,7 +130,7 @@
 <hr style="border-color: lightgray;"><DIV id="cont2">
 Перем Ф, Форма1, Картинка1, Графика1;
 
-Процедура Форма1_ПриПерерисовке()
+Процедура Форма1_ПриПерерисовке() Экспорт
 	Графика1 = Форма1.СоздатьГрафику();
 	Графика1.Очистить(Ф.Цвет().Белый);
 	Цвет1 = Ф.Цвет().Синий;
@@ -149,10 +149,9 @@
 Форма1 = Ф.Форма();
 Форма1.Ширина = 600;
 Форма1.Высота = 400;
-Форма1.ПриПерерисовке = "Форма1_ПриПерерисовке()";
+Форма1.ПриПерерисовке = Новый Действие(ЭтотОбъект, "Форма1_ПриПерерисовке");
 Форма1.Отображать = Истина;
 Форма1.Показать();
-Форма1.Активизировать();
 
 СтрМасленица1 = "/9j/4AAQSkZJRgABAQEAeAB4AAD/4QA2RXhpZgAATU0AKgAAAAgAAQEyAAIAAAAUAAAAGgAAAAAyMDE4OjA3OjE5IDA5OjQxOjQxAP/bAEMACAYGBwYFCAcHBwkJCAoMFA0MCwsMGRITDxQdGh8eHRocHCAkLi
 |cgIiwjHBwoNyksMDE0NDQfJzk9ODI8LjM0Mv/bAEMBCQkJDAsMGA0NGDIhHCEyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMv/AABEIAFAAdwMBIgACEQEDEQH/xAAfAAABBQEBAQEBAQAAA
@@ -195,7 +194,9 @@
 |iVR1xhsZH698dyV67cY6JnlKLP/2Q==";
 Картинка1 = Ф.Картинка(СтрМасленица1);
 
-Выполнить(Ф.ПолучитьСобытие());
+Ф.РазрешитьСобытия = Истина;
+
+Форма1.Активизировать();
 
 Сообщить(?(Графика1 <> Неопределено, "", "!!! ") + "Графика.ЗаполнитьПрямоугольник (Graphics.FillRectangle) Метод" + " " + ТекущаяДата());
 </DIV>

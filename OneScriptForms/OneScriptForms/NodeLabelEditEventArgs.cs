@@ -11,17 +11,6 @@ namespace osf
         public string Label_old;
         public osf.TreeNode Node;
 
-        public override bool PostEvent()
-        {
-            if (CancelEdit)
-            {
-                Node.Text = Label_old;
-                Node.BeginEdit();
-                return true;
-            }
-            Node.M_TreeNode.EndEdit(false);
-            return true;
-        }
     }
 
     [ContextClass ("КлРедактированиеНадписиУзлаАрг", "ClNodeLabelEditEventArgs")]

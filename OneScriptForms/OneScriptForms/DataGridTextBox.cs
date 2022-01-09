@@ -66,13 +66,6 @@ namespace osf
             get { return Convert.ToInt32(Base_obj.FontHeight); }
         }
         
-        [ContextProperty("ДвойнаяБуферизация", "DoubleBuffered")]
-        public bool DoubleBuffered
-        {
-            get { return Base_obj.DoubleBuffered; }
-            set { Base_obj.DoubleBuffered = value; }
-        }
-
         [ContextProperty("ЖирныйШрифт", "FontBold")]
         public bool FontBold
         {

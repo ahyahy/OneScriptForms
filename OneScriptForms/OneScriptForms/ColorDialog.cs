@@ -97,6 +97,9 @@ namespace osf
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
             thread.Join();
+
+            color = new ClColor(Base_obj.Color);
+
             return ValueFactory.Create(Res1);
         }
     }

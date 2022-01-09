@@ -163,13 +163,6 @@ namespace osf
             set { Base_obj.PartialPush = value; }
         }
 
-        [ContextProperty("НейтральноеПоложение2", "ParitalPush")]
-        public bool ParitalPush
-        {
-            get { return Base_obj.PartialPush; }
-            set { Base_obj.PartialPush = value; }
-        }
-
         [ContextProperty("Отображать", "Visible")]
         public bool Visible
         {

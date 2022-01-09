@@ -9,18 +9,6 @@ namespace osf
         public new ClTreeViewCancelEventArgs dll_obj;
         public osf.TreeNode Node = null;
 
-        public override bool PostEvent()
-        {
-            if (Cancel)
-            {
-                return true;
-            }
-            TreeView TreeView1 = (TreeView)Sender;
-            TreeView1.M_TreeView.BeforeExpand -= TreeView1.M_TreeView_BeforeExpand;
-            Node.Expand();
-            TreeView1.M_TreeView.BeforeExpand += TreeView1.M_TreeView_BeforeExpand;
-            return true;
-        }
     }
 
     [ContextClass ("КлДеревоОтменаАрг", "ClTreeViewCancelEventArgs")]

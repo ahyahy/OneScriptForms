@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Action.cs" />
     <Compile Include="AnchorStyles.cs" />
     <Compile Include="AnnuallyBoldedDates.cs" />
     <Compile Include="Appearance.cs" />
@@ -106,7 +107,6 @@
     <Compile Include="ContextMenu.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ContextMenuPopupEventArgs.cs" />
     <Compile Include="Control.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -190,6 +190,7 @@
     <Compile Include="FormatDateTimePicker.cs" />
     <Compile Include="FormBorderStyle.cs" />
     <Compile Include="FormClosingEventArgs.cs" />
+    <Compile Include="FormsCollection.cs" />
     <Compile Include="FormStartPosition.cs" />
     <Compile Include="FormWindowState.cs" />
     <Compile Include="Graphics.cs" />
@@ -258,7 +259,6 @@
     <Compile Include="MainMenu.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ManagedProperty.cs" />
     <Compile Include="Math.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MenuItem.cs">
@@ -266,7 +266,6 @@
     </Compile>
     <Compile Include="MenuItemCollection.cs" />
     <Compile Include="MenuMerge.cs" />
-    <Compile Include="MenuNotifyIcon.cs" />
     <Compile Include="MessageBox.cs" />
     <Compile Include="MessageBoxButtons.cs" />
     <Compile Include="MessageBoxIcon.cs" />

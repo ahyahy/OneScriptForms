@@ -33,13 +33,6 @@ namespace osf
             get { return new osf.Version((dynamic)Assembly.GetExecutingAssembly().GetName().Version); }
         }
 
-        public string DoEvents(bool wait = true)
-        {
-            OneScriptForms.EventString = "";
-            OneScriptForms.EventHandling();
-            return OneScriptForms.EventString;
-        }
-
         public void EnableVisualStyles()
         {
             System.Windows.Forms.Application.EnableVisualStyles();

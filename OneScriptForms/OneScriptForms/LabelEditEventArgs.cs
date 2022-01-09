@@ -9,28 +9,7 @@ namespace osf
         public new ClLabelEditEventArgs dll_obj;
         public int Item = -1;
         public string Label = "";
-        public string Type = "BeforeLabelEdit";
 
-        public override bool PostEvent()
-        {
-            if (CancelEdit)
-            {
-                return true;
-            }
-            ListView ListView1 = (ListView)Sender;
-            ListViewEx ListViewEx1 = ListView1.M_ListView;
-            if (Type == "BeforeLabelEdit")
-            {
-                ListViewEx1.BeforeLabelEdit -= ListView1.M_ListView_BeforeLabelEdit;
-                ListViewEx1.Items[Item].BeginEdit();
-                ListViewEx1.BeforeLabelEdit += ListView1.M_ListView_BeforeLabelEdit;
-            }
-            if (Type == "AfterLabelEdit")
-            {
-                ListViewEx1.Items[Item].Text = Label;
-            }
-            return true;
-        }
     }
 
     [ContextClass ("КлРедактированиеНадписиАрг", "ClLabelEditEventArgs")]

@@ -94,6 +94,7 @@ namespace osf
                 MenuItem1.Shortcut = (int)CurrentMenuItem1.Shortcut;
                 MenuItem1.Text = CurrentMenuItem1.Text;
                 MenuItem1.MergeType = (int)CurrentMenuItem1.MergeType;
+                MenuItem1.dll_obj = CurrentMenuItem1.dll_obj;
 
                 MainMenu1.MenuItems.Add(MenuItem1);
                 if (CurrentMenuItem1.MenuItems.Count > 0)
@@ -122,6 +123,7 @@ namespace osf
                 MenuItem1.Shortcut = (int)CurrentMenuItem1.Shortcut;
                 MenuItem1.Text = CurrentMenuItem1.Text;
                 MenuItem1.MergeType = (int)CurrentMenuItem1.MergeType;
+                MenuItem1.dll_obj = CurrentMenuItem1.dll_obj;
 
                 MainMenu.MenuItems.Add(MenuItem1);
                 if (CurrentMenuItem1.MenuItems.Count > 0)

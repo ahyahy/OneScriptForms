@@ -1,4 +1,6 @@
-﻿using ScriptEngine.Machine.Contexts;
+﻿using System.Collections.Generic;
+using System.Collections;
+using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
 
 namespace osf
@@ -81,7 +83,7 @@ namespace osf
     }
 
     [ContextClass ("КлЭлементыУправления", "ClControlCollection")]
-    public class ClControlCollection : AutoContext<ClControlCollection>
+    public class ClControlCollection : AutoContext<ClControlCollection>, ICollectionContext, IEnumerable<IValue>
     {
         public ClControlCollection()
         {
@@ -96,11 +98,34 @@ namespace osf
             ControlCollection1.dll_obj = this;
             Base_obj = ControlCollection1;
         }
-        
+
+        public int Count()
+        {
+            return CountControl;
+        }
+
+        public CollectionEnumerator GetManagedIterator()
+        {
+            return new CollectionEnumerator(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<IValue>)this).GetEnumerator();
+        }
+
+        IEnumerator<IValue> IEnumerable<IValue>.GetEnumerator()
+        {
+            foreach (var item in Base_obj.M_ControlCollection)
+            {
+                yield return (((dynamic)item).M_Object.dll_obj as IValue);
+            }
+        }
+
         public ControlCollection Base_obj;
         
         [ContextProperty("Количество", "Count")]
-        public int Count
+        public int CountControl
         {
             get { return Base_obj.Count; }
         }

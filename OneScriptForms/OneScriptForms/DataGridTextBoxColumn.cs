@@ -21,6 +21,7 @@ namespace osf
             base.M_DataGridColumnStyle = (System.Windows.Forms.DataGridColumnStyle)M_DataGridTextBoxColumn;
             M_DataGridTextBoxColumn.TextBox.DoubleClick += TextBox_DoubleClick;
             M_DataGridTextBoxColumn.TextBox.MouseDown += TextBox_MouseDown;
+            DoubleClick = "";
         }
 
         public DataGridTextBoxColumn(osf.DataGridTextBoxColumn p1)
@@ -30,6 +31,7 @@ namespace osf
             base.M_DataGridColumnStyle = M_DataGridTextBoxColumn;
             M_DataGridTextBoxColumn.TextBox.DoubleClick += TextBox_DoubleClick;
             M_DataGridTextBoxColumn.TextBox.MouseDown += TextBox_MouseDown;
+            DoubleClick = "";
         }
 
         public DataGridTextBoxColumn(System.Windows.Forms.DataGridTextBoxColumn p1)
@@ -39,6 +41,7 @@ namespace osf
             base.M_DataGridColumnStyle = (System.Windows.Forms.DataGridColumnStyle)M_DataGridTextBoxColumn;
             M_DataGridTextBoxColumn.TextBox.DoubleClick += TextBox_DoubleClick;
             M_DataGridTextBoxColumn.TextBox.MouseDown += TextBox_MouseDown;
+            DoubleClick = "";
         }
 
         public osf.DataGridTextBox TextBox
@@ -53,21 +56,10 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = DoubleClick;
                 EventArgs1.Sender = this;
-                dynamic event1 = ((dynamic)this).dll_obj.DoubleClick;
-                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-                }
-                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-                {
-                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-                }
-                else
-                {
-                    EventArgs1.Parameter = null;
-                }
-                OneScriptForms.EventQueue.Add(EventArgs1);
+                EventArgs1.Parameter = OneScriptForms.GetEventParameter(dll_obj.DoubleClick);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+                OneScriptForms.Event = ClEventArgs1;
+                OneScriptForms.ExecuteEvent(dll_obj.DoubleClick);
             }
         }
 
@@ -80,21 +72,10 @@ namespace osf
                     EventArgs EventArgs1 = new EventArgs();
                     EventArgs1.EventString = DoubleClick;
                     EventArgs1.Sender = this;
-                    dynamic event1 = ((dynamic)this).dll_obj.DoubleClick;
-                    if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-                    {
-                        EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-                    }
-                    else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-                    {
-                        EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-                    }
-                    else
-                    {
-                        EventArgs1.Parameter = null;
-                    }
-                    OneScriptForms.EventQueue.Add(EventArgs1);
+                    EventArgs1.Parameter = OneScriptForms.GetEventParameter(dll_obj.DoubleClick);
                     ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+                    OneScriptForms.Event = ClEventArgs1;
+                    OneScriptForms.ExecuteEvent(dll_obj.DoubleClick);
                 }
             }
         }
@@ -131,36 +112,18 @@ namespace osf
         [ContextProperty("ДвойноеНажатие", "DoubleClick")]
         public IValue DoubleClick
         {
-            get
-            {
-                if (Base_obj.DoubleClick.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _DoubleClick;
-                }
-                else if (Base_obj.DoubleClick.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _DoubleClick;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.DoubleClick);
-                }
-            }
+            get { return _DoubleClick; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _DoubleClick = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.DoubleClick = "ScriptEngine.HostedScript.Library.DelegateAction" + "DoubleClick";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _DoubleClick = value;
-                    Base_obj.DoubleClick = "osf.ClDictionaryEntry" + "DoubleClick";
+                    Base_obj.DoubleClick = "DelegateActionDoubleClick";
                 }
                 else
                 {
-                    Base_obj.DoubleClick = value.AsString();
+                    _DoubleClick = value;
+                    Base_obj.DoubleClick = "osfActionDoubleClick";
                 }
             }
         }

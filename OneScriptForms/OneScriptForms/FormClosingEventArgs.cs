@@ -13,19 +13,6 @@ namespace osf
             CloseReason = (int)p1;
             Cancel = p2;
         }
-
-        public override bool PostEvent()
-        {
-            if (Cancel)
-            {
-                return true;
-            }
-            Form Form1 = (Form)Sender;
-            Form1.M_Form.FormClosing -= Form1.M_Form_FormClosing;
-            Form1.Close();
-            Form1.M_Form.FormClosing += Form1.M_Form_FormClosing;
-            return true;
-        }
     }
 
     [ContextClass ("КлПриЗакрытииФормыАрг", "ClFormClosingEventArgs")]

@@ -15,7 +15,6 @@ namespace osf
         public MenuItemEx M_MenuItem;
         public bool M_VisibleSaveState;
         public string Name;
-        public string Popup;
 
         public MenuItem(osf.MenuItem p1)
         {
@@ -23,23 +22,19 @@ namespace osf
             M_MenuItem.M_Object = this;
             base.M_Menu = M_MenuItem;
             M_MenuItem.Click += M_MenuItem_Click;
-            M_MenuItem.Popup += M_MenuItem_Popup;
             Name = "";
             Click = "";
-            Popup = "";
             M_VisibleSaveState = false;
         }
 
-        public MenuItem(string text = null, string click = null, System.Windows.Forms.Shortcut shortcut = System.Windows.Forms.Shortcut.None)
+        public MenuItem(string text = null, string click = "", System.Windows.Forms.Shortcut shortcut = System.Windows.Forms.Shortcut.None)
         {
             M_MenuItem = new MenuItemEx();
             M_MenuItem.M_Object = this;
             base.M_Menu = M_MenuItem;
             M_MenuItem.Click += M_MenuItem_Click;
-            M_MenuItem.Popup += M_MenuItem_Popup;
             Name = "";
             Click = click;
-            Popup = "";
             M_VisibleSaveState = false;
             M_MenuItem.Text = text;
             M_MenuItem.Shortcut = shortcut;
@@ -51,10 +46,8 @@ namespace osf
             M_MenuItem.M_Object = this;
             base.M_Menu = M_MenuItem;
             M_MenuItem.Click += M_MenuItem_Click;
-            M_MenuItem.Popup += M_MenuItem_Popup;
             Name = "";
             Click = "";
-            Popup = "";
             M_VisibleSaveState = false;
         }
 
@@ -157,46 +150,10 @@ namespace osf
                 EventArgs EventArgs1 = new EventArgs();
                 EventArgs1.EventString = Click;
                 EventArgs1.Sender = this;
-                dynamic event1 = ((dynamic)this).dll_obj.Click;
-                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-                }
-                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-                {
-                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-                }
-                else
-                {
-                    EventArgs1.Parameter = null;
-                }
-                OneScriptForms.EventQueue.Add(EventArgs1);
+                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Click);
                 ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
-            }
-        }
-
-        private void M_MenuItem_Popup(object sender, System.EventArgs e)
-        {
-            if (Popup.Length > 0)
-            {
-                EventArgs EventArgs1 = new EventArgs();
-                EventArgs1.EventString = Popup;
-                EventArgs1.Sender = this;
-                dynamic event1 = ((dynamic)this).dll_obj.Popup;
-                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-                }
-                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-                {
-                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-                }
-                else
-                {
-                    EventArgs1.Parameter = null;
-                }
-                OneScriptForms.EventQueue.Add(EventArgs1);
-                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+                OneScriptForms.Event = ClEventArgs1;
+                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Click);
             }
         }
     }
@@ -218,16 +175,26 @@ namespace osf
         public ClMenuItem(MenuItem p1)
         {
             MenuItem MenuItem1 = p1;
-            MenuItem1.dll_obj = this;
+            MenuItem1.dll_obj = p1.dll_obj;
             Base_obj = MenuItem1;
+            try
+            {
+                Click = p1.dll_obj.Click;
+            }
+            catch { }
             menuItems = new ClMenuItemCollection(Base_obj.MenuItems);
         }
 
-        public ClMenuItem(string p1 = "", string p2 = "", int p3 = 0)
+        public ClMenuItem(string p1 = "", IValue p2 = null, int p3 = 0)
         {
-            MenuItem MenuItem1 = new MenuItem(p1, p2, (System.Windows.Forms.Shortcut)p3);
+            MenuItem MenuItem1 = new MenuItem(p1, "", (System.Windows.Forms.Shortcut)p3);
             MenuItem1.dll_obj = this;
             Base_obj = MenuItem1;
+		
+            if (p2 != null)
+            {
+                Click = p2;
+            }
             menuItems = new ClMenuItemCollection(Base_obj.MenuItems);
         }
 
@@ -257,36 +224,18 @@ namespace osf
         [ContextProperty("Нажатие", "Click")]
         public IValue Click
         {
-            get
-            {
-                if (Base_obj.Click.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _Click;
-                }
-                else if (Base_obj.Click.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _Click;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.Click);
-                }
-            }
+            get { return _Click; }
             set
             {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
                 {
                     _Click = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.Click = "ScriptEngine.HostedScript.Library.DelegateAction" + "Click";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _Click = value;
-                    Base_obj.Click = "osf.ClDictionaryEntry" + "Click";
+                    Base_obj.Click = "DelegateActionClick";
                 }
                 else
                 {
-                    Base_obj.Click = value.AsString();
+                    _Click = value;
+                    Base_obj.Click = "osfActionClick";
                 }
             }
         }
@@ -368,6 +317,7 @@ namespace osf
             MenuItem4.Shortcut = (int)Base_obj.Shortcut;
             MenuItem4.Text = Base_obj.Text;
             MenuItem4.MergeType = (int)Base_obj.MergeType;
+            MenuItem4.dll_obj = Base_obj.dll_obj;
 
             for (int i = 0; i < Base_obj.MenuItems.Count; i++)
             {
@@ -385,6 +335,7 @@ namespace osf
                 MenuItem5.Shortcut = (int)CurrentMenuItem.Shortcut;
                 MenuItem5.Text = CurrentMenuItem.Text;
                 MenuItem5.MergeType = (int)CurrentMenuItem.MergeType;
+                MenuItem5.dll_obj = CurrentMenuItem.dll_obj;
 
                 MenuItem NewMenuItem = MenuItem4.MenuItems.Add(MenuItem5);
                 if (CurrentMenuItem.MenuItems.Count > 0)
@@ -413,6 +364,7 @@ namespace osf
                 MenuItem5.Shortcut = (int)CurrentMenuItem.Shortcut;
                 MenuItem5.Text = CurrentMenuItem.Text;
                 MenuItem5.MergeType = (int)CurrentMenuItem.MergeType;
+                MenuItem5.dll_obj = CurrentMenuItem.dll_obj;
 
                 MenuItem NewMenuItem = MenuItem.MenuItems.Add(MenuItem5);
                 if (CurrentMenuItem.MenuItems.Count > 0)

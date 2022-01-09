@@ -97,6 +97,7 @@
 		|using ScriptEngine.Machine;
 		|using System.Reflection;
 		|using System.Runtime.InteropServices;
+		|using ScriptEngine.HostedScript.Library;
 		|
 		|";
 		Возврат Стр;
@@ -361,7 +362,6 @@
 		ИмяКонтекстКлассаАнгл = "ManagedProperty" или 
 		ИмяКонтекстКлассаАнгл = "Math" или 
 		ИмяКонтекстКлассаАнгл = "MenuItem" или 
-		ИмяКонтекстКлассаАнгл = "MenuNotifyIcon" или 
 		ИмяКонтекстКлассаАнгл = "NotifyIcon" или 
 		ИмяКонтекстКлассаАнгл = "PropertyValueChangedEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "SelectedGridItemChangedEventArgs" или
@@ -385,8 +385,7 @@
 		ИмяКонтекстКлассаАнгл = "ToolBarButtonClickEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "TreeViewCancelEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "TreeViewEventArgs" или 
-		ИмяКонтекстКлассаАнгл = "ContextMenuPopupEventArgs" или 
-		ИмяКонтекстКлассаАнгл = "ControlCollection" Тогда
+		ИмяКонтекстКлассаАнгл = "Action" Тогда
 		Стр = 
 		"using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
@@ -412,6 +411,15 @@
 		|
 		|";
 		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "ControlCollection" Тогда
+		Стр = 
+		"using System.Collections.Generic;
+		|using System.Collections;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|
+		|";
+		Возврат Стр;
 	ИначеЕсли ИмяКонтекстКлассаАнгл = "DataGridTextBox" или 
 		ИмяКонтекстКлассаАнгл = "GridTableStylesCollection" или 
 		ИмяКонтекстКлассаАнгл = "Icon" или 
@@ -434,6 +442,14 @@
 	ИначеЕсли ИмяКонтекстКлассаАнгл = "DataView" Тогда
 		Стр = 
 		"using System.Collections;
+		|using ScriptEngine.Machine.Contexts;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "FormsCollection" Тогда
+		Стр = 
+		"using System.Collections;
+		|using System.Collections.Generic;
 		|using ScriptEngine.Machine.Contexts;
 		|
 		|";
@@ -548,6 +564,12 @@
 		|    [ContextClass(""" + ИмяКонтекстКлассаРус + """, """ + ИмяКонтекстКлассаАнгл + """)]
 		|    public class " + ИмяКонтекстКлассаАнгл + " : AutoContext<" + ИмяКонтекстКлассаАнгл + ">
 		|    {";
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "ControlCollection" Тогда
+		Стр = Стр + 
+		"
+		|    [ContextClass(""Кл" + ИмяКонтекстКлассаРус + """, ""Cl" + ИмяКонтекстКлассаАнгл + """)]
+		|    public class Cl" + ИмяКонтекстКлассаАнгл + " : AutoContext<Cl" + ИмяКонтекстКлассаАнгл + ">, ICollectionContext, IEnumerable<IValue>
+		|    {";
 	Иначе
 		Стр = Стр + 
 		"
@@ -566,10 +588,16 @@
 		|        public static ClForm FirstForm = null;
 		|        public static IValue Event = null;
 		|        public static string EventString = """";
-		|        public static System.Collections.ArrayList EventQueue = new System.Collections.ArrayList();
 		|        public static System.Collections.Hashtable hashtable = new Hashtable();
 		|        public static System.Random Random = new Random();
 		|        public static DateTime gridMouseDownTime = System.DateTime.Now;// для срабатывания двойного клика в ячейке DataGridTextBoxColumn сетки данных
+		|		
+		|        public static bool useMainForm = true;
+		|        public static bool handleEvents = false;
+		|        public static FormsCollection formsCollection;
+		|        private static OneScriptForms instance;
+		|        private static object syncRoot = new Object();
+		|		
 		|        public static bool goOn = true;";
 	ИначеЕсли ИмяКласса = "ManagedProperty" Тогда
 		Стр = 
@@ -590,14 +618,6 @@
 		"        private ClAnnuallyBoldedDates annuallyBoldedDates;
 		|        private ClBoldedDates boldedDates;
 		|        private ClMonthlyBoldedDates monthlyBoldedDates;";
-	ИначеЕсли ИмяКласса = "MenuNotifyIcon" Тогда
-		Стр = 
-		"        private bool firstShow;
-		|        private ClNotifyIcon notifyIcon;";
-	ИначеЕсли ИмяКласса = "NotifyIcon" Тогда
-		Стр = 
-		"        private ClMenuNotifyIcon menu;
-		|        private ClUserControl userControl1 = new ClUserControl();";
 	ИначеЕсли ИмяКласса = "ComboBox" Тогда
 		Стр = 
 		"        private ClComboBoxObjectCollection items;
@@ -618,10 +638,26 @@
 Функция Конструктор(ИмяФайлаЧленов, ИмяКласса)
 	Если ИмяКласса = "OneScriptForms" Тогда
 		Стр = 
-		"        [ScriptConstructor]
+		"        public static OneScriptForms getInstance()
+		|        {
+		|            if (instance == null)
+		|            {
+		|                lock (syncRoot)
+		|                {
+		|                    if (instance == null)
+		|                    {
+		|                        instance = new OneScriptForms();
+		|                        formsCollection = new FormsCollection();
+		|                    }
+		|                }
+		|            }
+		|            return instance;
+		|        }
+		|
+		|        [ScriptConstructor]
 		|        public static IRuntimeContextInstance Constructor()
 		|        {
-		|            return new OneScriptForms();
+		|            return getInstance();
 		|        }
 		|";
 	ИначеЕсли ИмяКласса = "DataRowView" Тогда
@@ -852,15 +888,21 @@
 	ИначеЕсли ИмяКласса = "Form" Тогда
 		Стр = 
 		"        public System.Windows.Forms.ContainerControl M_ContainerControl;
+		|        private IRuntimeContextInstance script = null;
 		|		
 		|        public ClForm()
 		|        {
 		|            Form Form1 = new Form();
 		|            Form1.dll_obj = this;
 		|            Base_obj = Form1;
-		|            if (OneScriptForms.FirstForm == null)
+		|		
+		|            OneScriptForms.formsCollection.Add(this);
+		|            if (OneScriptForms.useMainForm)
 		|            {
-		|                OneScriptForms.FirstForm = this;
+		|                if (OneScriptForms.FirstForm == null)
+		|                {
+		|                    OneScriptForms.FirstForm = this;
+		|                }
 		|            }
 		|        }//end_constr
 		|        ";
@@ -1160,15 +1202,25 @@
 		|        public ClMenuItem(MenuItem p1)
 		|        {
 		|            MenuItem MenuItem1 = p1;
-		|            MenuItem1.dll_obj = this;
+		|            MenuItem1.dll_obj = p1.dll_obj;
 		|            Base_obj = MenuItem1;
+		|            try
+		|            {
+		|                Click = p1.dll_obj.Click;
+		|            }
+		|            catch { }
 		|        }//end_constr
 		|
-		|        public ClMenuItem(string p1 = """", string p2 = """", int p3 = 0)
+		|        public ClMenuItem(string p1 = """", IValue p2 = null, int p3 = 0)
 		|        {
-		|            MenuItem MenuItem1 = new MenuItem(p1, p2, (System.Windows.Forms.Shortcut)p3);
+		|            MenuItem MenuItem1 = new MenuItem(p1, """", (System.Windows.Forms.Shortcut)p3);
 		|            MenuItem1.dll_obj = this;
 		|            Base_obj = MenuItem1;
+		|		
+		|            if (p2 != null)
+		|            {
+		|                Click = p2;
+		|            }
 		|        }//end_constr
 		|";
 	ИначеЕсли ИмяКласса = "Font" Тогда
@@ -1436,36 +1488,13 @@
 		|            Base_obj = ToolBarButton1;
 		|        }//end_constr
 		|";
-	ИначеЕсли ИмяКласса = "MenuNotifyIcon" Тогда
-		Стр = 
-		"        public ClMenuNotifyIcon()
-		|        {
-		|            MenuNotifyIcon MenuNotifyIcon1 = new MenuNotifyIcon();
-		|            MenuNotifyIcon1.dll_obj = this;
-		|            Base_obj = MenuNotifyIcon1;
-		|            firstShow = true;
-		|            notifyIcon = null;
-		|        }//end_constr
-		|		
-		|        public void Show(ClUserControl p1, ClPoint p2)
-		|        {
-		|            Base_obj.Show(p1.Base_obj.M_UserControl, p2.Base_obj.M_Point);
-		|        }
-		|";
 	ИначеЕсли ИмяКласса = "NotifyIcon" Тогда
 		Стр = 
-		"        public ClNotifyIcon(ref ClMenuNotifyIcon p1)
+		"        public ClNotifyIcon()
 		|        {
 		|            NotifyIcon NotifyIcon1 = new NotifyIcon();
 		|            NotifyIcon1.dll_obj = this;
 		|            Base_obj = NotifyIcon1;
-		|            menu = p1;
-		|            p1.NotifyIcon = this;
-		|            NotifyIcon1.ContextMenu = p1.Base_obj;
-		|            userControl1.Size = new ClSize(0, 0);
-		|            userControl1.Parent = OneScriptForms.FirstForm;
-		|            userControl1.Value = this;
-		|            p1.Show(userControl1, new ClPoint(5, 5));
 		|        }//end_constr
 		|";
 	ИначеЕсли ИмяКласса = "GridItemCollection" Тогда
@@ -1525,6 +1554,120 @@
 		|            StreamReader1.dll_obj = this;
 		|            Base_obj = StreamReader1;
 		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "Action" Тогда
+		Стр = 
+		"        public ClAction(IRuntimeContextInstance script, string methodName, IValue param = null)
+		|        {
+		|            Script = script;
+		|            MethodName = methodName;
+		|            Parameter = param;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "ControlCollection" Тогда
+		Стр = 
+		"        public ClControlCollection()
+		|        {
+		|            ControlCollection ControlCollection1 = new ControlCollection();
+		|            ControlCollection1.dll_obj = this;
+		|            Base_obj = ControlCollection1;
+		|        }//end_constr
+		|		
+		|        public ClControlCollection(ControlCollection p1)
+		|        {
+		|            ControlCollection ControlCollection1 = p1;
+		|            ControlCollection1.dll_obj = this;
+		|            Base_obj = ControlCollection1;
+		|        }//end_constr
+		|
+		|        public int Count()
+		|        {
+		|            return CountControl;
+		|        }
+		|
+		|        public CollectionEnumerator GetManagedIterator()
+		|        {
+		|            return new CollectionEnumerator(this);
+		|        }
+		|
+		|        IEnumerator IEnumerable.GetEnumerator()
+		|        {
+		|            return ((IEnumerable<IValue>)this).GetEnumerator();
+		|        }
+		|
+		|        IEnumerator<IValue> IEnumerable<IValue>.GetEnumerator()
+		|        {
+		|            foreach (var item in Base_obj.M_ControlCollection)
+		|            {
+		|                yield return (((dynamic)item).M_Object.dll_obj as IValue);
+		|            }
+		|        }
+		|";
+	ИначеЕсли ИмяКласса = "RichTextBox" Тогда
+		Стр = 
+		"        public ClRichTextBox()
+		|        {
+		|            RichTextBox RichTextBox1 = new RichTextBox();
+		|            RichTextBox1.dll_obj = this;
+		|            Base_obj = RichTextBox1;
+		|            ContextMenu = EnableContextMenu(this);
+		|        }//end_constr
+		|
+		|        public ClRichTextBox(RichTextBox p1)
+		|        {
+		|            RichTextBox RichTextBox1 = p1;
+		|            RichTextBox1.dll_obj = this;
+		|            Base_obj = RichTextBox1;
+		|            ContextMenu = EnableContextMenu(this);
+		|        }//end_constr
+		|		
+		|        public ClContextMenu EnableContextMenu(ClRichTextBox rtb)
+		|        {
+		|            ClContextMenu cm = new ClContextMenu();
+		|            ClMenuItem Undo = new ClMenuItem(""Отменить"");
+		|            Undo.Base_obj.M_MenuItem.Click += (sender, e) => rtb.Undo();
+		|            cm.MenuItems.Add(Undo);
+		|
+		|            ClMenuItem Redo = new ClMenuItem(""Вернуть"");
+		|            Redo.Base_obj.M_MenuItem.Click += (sender, e) => rtb.Redo();
+		|            cm.MenuItems.Add(Redo);
+		|
+		|            cm.MenuItems.Add(new ClMenuItem(""-""));
+		|
+		|            ClMenuItem Cut = new ClMenuItem(""Вырезать"");
+		|            Cut.Base_obj.M_MenuItem.Click += (sender, e) => rtb.Cut();
+		|            cm.MenuItems.Add(Cut);
+		|
+		|            ClMenuItem Copy = new ClMenuItem(""Копировать"");
+		|            Copy.Base_obj.M_MenuItem.Click += (sender, e) => rtb.Copy();
+		|            cm.MenuItems.Add(Copy);
+		|
+		|            ClMenuItem Paste = new ClMenuItem(""Вставить"");
+		|            Paste.Base_obj.M_MenuItem.Click += (sender, e) => rtb.Paste();
+		|            cm.MenuItems.Add(Paste);
+		|
+		|            ClMenuItem Delete = new ClMenuItem(""Удалить"");
+		|            Delete.Base_obj.M_MenuItem.Click += (sender, e) => rtb.SelectedText = """";
+		|            cm.MenuItems.Add(Delete);
+		|
+		|            cm.MenuItems.Add(new ClMenuItem(""-""));
+		|
+		|            ClMenuItem SelectAll = new ClMenuItem(""Выбрать всё"");
+		|            SelectAll.Base_obj.M_MenuItem.Click += (sender, e) => rtb.SelectAll();
+		|            cm.MenuItems.Add(SelectAll);
+		|
+		|            cm.Base_obj.M_ContextMenu.Popup += (sender, e) =>
+		|            {
+		|                Undo.Enabled = !rtb.ReadOnly && rtb.CanUndo;
+		|                Redo.Enabled = !rtb.ReadOnly && rtb.CanRedo;
+		|                Cut.Enabled = !rtb.ReadOnly && rtb.SelectionLength > 0;
+		|                Copy.Enabled = rtb.SelectionLength > 0;
+		|                Paste.Enabled = !rtb.ReadOnly && (new osf.ClClipboard()).ContainsData();
+		|                Delete.Enabled = !rtb.ReadOnly && rtb.SelectionLength > 0;
+		|                SelectAll.Enabled = rtb.TextLength > 0 && rtb.SelectionLength < rtb.TextLength;
+		|            };
+		|            return cm;
+		|        }
 		|";
 	ИначеЕсли ИмяКласса = "ComboBox" Тогда
 		Стр = 
@@ -1613,6 +1756,7 @@
 		ИмяКласса = "Clipboard" или
 		ИмяКласса = "Math" или
 		ИмяКласса = "InputBox" или
+		ИмяКласса = "Action" или
 		ИмяКласса = "MonthlyBoldedDates" Тогда
 		Возврат "";
 	ИначеЕсли ИмяКласса = "ComboBox" Тогда
@@ -1712,6 +1856,36 @@
 				|        }				
 				|        
 				|";
+			ИначеЕсли (СвойствоРус = "РазрешитьСобытия") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""РазрешитьСобытия"", ""AllowEvents"")]
+				|        public bool HandleEvents
+				|        {
+				|            get { return handleEvents; }
+				|            set { handleEvents = value; }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "КоллекцияФорм") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""КоллекцияФорм"", ""FormsCollection"")]
+				|        public FormsCollection FormsCollection
+				|        {
+				|            get { return formsCollection; }
+				|        }
+		
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "ИспользоватьГлавнуюФорму") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ИспользоватьГлавнуюФорму"", ""UseMainForm"")]
+				|        public bool UseMainForm
+				|        {
+				|            get { return useMainForm; }
+				|            set { useMainForm = value; }
+				|        }
+				|        
+				|";
 			ИначеЕсли СвойствоРус = "РазмерШрифта" Тогда
 				Стр = Стр +
 				"        [ContextProperty(""РазмерШрифта"", ""FontSize"")]
@@ -1756,6 +1930,34 @@
 				|        {
 				|            get { return new ClVersion(Assembly.GetExecutingAssembly().GetName().Version); }
 				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Сценарий") и (ИмяКонтекстКлассаАнгл = "Form") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Сценарий"", ""Script"")]
+				|        public IRuntimeContextInstance Script
+				|        {
+				|            get { return script; }
+				|            set { script = value; }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Сценарий") и (ИмяКонтекстКлассаАнгл = "Action") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Сценарий"", ""Script"")]
+				|        public IRuntimeContextInstance Script { get; set; }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "ИмяМетода") и (ИмяКонтекстКлассаАнгл = "Action") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ИмяМетода"", ""MethodName"")]
+				|        public string MethodName { get; set; }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Параметр") и (ИмяКонтекстКлассаАнгл = "Action") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Параметр"", ""Parameter"")]
+				|        public IValue Parameter { get; set; }
 				|        
 				|";
 			ИначеЕсли СвойствоРус = "АктивнаяФорма" Тогда
@@ -1829,6 +2031,30 @@
 				|        }
 				|        
 				|";
+			ИначеЕсли (СвойствоРус = "Закрыта") и (ИмяКонтекстКлассаАнгл = "Form") Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        private IValue _FormClosed;";
+				Стр = Стр +
+				"        [ContextProperty(""Закрыта"", ""FormClosed"")]
+				|        public IValue FormClosed
+				|        {
+				|            get { return _FormClosed; }
+				|            set
+				|            {
+				|                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+				|                {
+				|                    _FormClosed = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+				|                    Base_obj.Closed = ""DelegateActionClosed"";
+				|                }
+				|                else
+				|                {
+				|                    _FormClosed = value;
+				|                    Base_obj.Closed = ""osfActionClosed"";
+				|                }
+				|            }
+				|        }
+				|        
+				|";
 			ИначеЕсли (СвойствоРус = "ПриЗакрытии") и (ИмяКонтекстКлассаАнгл = "Form") Тогда
 				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
 				"        private IValue _FormClosing;";
@@ -1836,36 +2062,18 @@
 				"        [ContextProperty(""ПриЗакрытии"", ""FormClosing"")]
 				|        public IValue FormClosing
 				|        {
-				|            get
-				|            {
-				|                if (Base_obj.Closing.Contains(""ScriptEngine.HostedScript.Library.DelegateAction""))
-				|                {
-				|                    return _FormClosing;
-				|                }
-				|                else if (Base_obj.Closing.Contains(""osf.ClDictionaryEntry""))
-				|                {
-				|                    return _FormClosing;
-				|                }
-				|                else
-				|                {
-				|                    return ValueFactory.Create((string)Base_obj.Closing);
-				|                }
-				|            }
+				|            get { return _FormClosing; }
 				|            set
 				|            {
-				|                if (value.GetType().ToString() == ""ScriptEngine.HostedScript.Library.DelegateAction"")
+				|                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
 				|                {
 				|                    _FormClosing = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-				|                    Base_obj.Closing = ""ScriptEngine.HostedScript.Library.DelegateAction"" + ""FormClosing"";
-				|                }
-				|                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-				|                {
-				|                    _FormClosing = value;
-				|                    Base_obj.Closing = ""osf.ClDictionaryEntry"" + ""FormClosing"";
+				|                    Base_obj.Closing = ""DelegateActionClosing"";
 				|                }
 				|                else
 				|                {
-				|                    Base_obj.Closing = value.AsString();
+				|                    _FormClosing = value;
+				|                    Base_obj.Closing = ""osfActionClosing"";
 				|                }
 				|            }
 				|        }
@@ -1928,36 +2136,18 @@
 				"        [ContextProperty(""" + СвойствоРус + """, """ + СвойствоАнгл + """)]
 				|        public IValue " + СвойствоАнгл + "
 				|        {
-				|            get
-				|            {
-				|                if (Base_obj." + СвойствоАнгл + ".Contains(""ScriptEngine.HostedScript.Library.DelegateAction""))
-				|                {
-				|                    return _" + СвойствоАнгл + ";
-				|                }
-				|                else if (Base_obj." + СвойствоАнгл + ".Contains(""osf.ClDictionaryEntry""))
-				|                {
-				|                    return _" + СвойствоАнгл + ";
-				|                }
-				|                else
-				|                {
-				|                    return ValueFactory.Create((string)Base_obj." + СвойствоАнгл + ");
-				|                }
-				|            }
+				|            get { return _" + СвойствоАнгл + "; }
 				|            set
 				|            {
-				|                if (value.GetType().ToString() == ""ScriptEngine.HostedScript.Library.DelegateAction"")
+				|                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
 				|                {
 				|                    _" + СвойствоАнгл + " = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-				|                    Base_obj." + СвойствоАнгл + " = ""ScriptEngine.HostedScript.Library.DelegateAction"" + """ + СвойствоАнгл + """;
-				|                }
-				|                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-				|                {
-				|                    _" + СвойствоАнгл + " = value;
-				|                    Base_obj." + СвойствоАнгл + " = ""osf.ClDictionaryEntry"" + """ + СвойствоАнгл + """;
+				|                    Base_obj." + СвойствоАнгл + " = ""DelegateAction" + СвойствоАнгл + """;
 				|                }
 				|                else
 				|                {
-				|                    Base_obj." + СвойствоАнгл + " = value.AsString();
+				|                    _" + СвойствоАнгл + " = value;
+				|                    Base_obj." + СвойствоАнгл + " = ""osfAction" + СвойствоАнгл + """;
 				|                }
 				|            }
 				|        }
@@ -1970,7 +2160,6 @@
 				|        {
 				|            get
 				|            {
-				|                PostEventProcessing();
 				|                return goOn;
 				|            }
 				|            set { goOn = value; }
@@ -2147,16 +2336,6 @@
 				|        }
 				|        
 				|";
-			ИначеЕсли СвойствоРус = "УправляемыеСвойства" Тогда
-				Стр = Стр +
-				"        [ContextProperty(""УправляемыеСвойства"", ""ManagedProperties"")]
-				|        public ClArrayList ManagedProperties
-				|        {
-				|            get { return Base_obj.ManagedProperties; }
-				|            set { Base_obj.ManagedProperties = value; }
-				|        }
-				|        
-				|";
 			ИначеЕсли (СвойствоРус = "ВыбранныйЭлемент") и (ИмяКонтекстКлассаАнгл = "ListBox") Тогда
 				Стр = Стр +
 				"        [ContextProperty(""ВыбранныйЭлемент"", ""SelectedItem"")]
@@ -2300,6 +2479,15 @@
 				|        public IValue OldValue
 				|        {
 				|            get { return OneScriptForms.RevertObj(Base_obj.OldValue); }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Количество") и (ИмяКонтекстКлассаАнгл = "ControlCollection") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Количество"", ""Count"")]
+				|        public int CountControl
+				|        {
+				|            get { return Base_obj.Count; }
 				|        }
 				|        
 				|";
@@ -2498,32 +2686,13 @@
 				|        }
 				|        
 				|";
-			ИначеЕсли (СвойствоРус = "ЗначокУведомления") и (ИмяКонтекстКлассаАнгл = "MenuNotifyIcon") Тогда
+			ИначеЕсли (СвойствоРус = "КонтекстноеМеню") и (ИмяКонтекстКлассаАнгл = "NotifyIcon") Тогда
 				Стр = Стр +
-				"        [ContextProperty(""ЗначокУведомления"", ""NotifyIcon"")]
-				|        public ClNotifyIcon NotifyIcon
+				"        [ContextProperty(""КонтекстноеМеню"", ""ContextMenu"")]
+				|        public ClContextMenu ContextMenu
 				|        {
-				|            get { return notifyIcon; }
-				|            set { notifyIcon = value; }
-				|        }
-				|        
-				|";
-			ИначеЕсли (СвойствоРус = "ПервыйПоказ") и (ИмяКонтекстКлассаАнгл = "MenuNotifyIcon") Тогда
-				Стр = Стр +
-				"        [ContextProperty(""ПервыйПоказ"", ""FirstShow"")]
-				|        public bool FirstShow
-				|        {
-				|            get { return firstShow; }
-				|            set { firstShow = value; }
-				|        }
-				|        
-				|";
-			ИначеЕсли (СвойствоРус = "Меню") и (ИмяКонтекстКлассаАнгл = "NotifyIcon") Тогда
-				Стр = Стр +
-				"        [ContextProperty(""Меню"", ""Menu"")]
-				|        public ClMenuNotifyIcon Menu
-				|        {
-				|            get { return menu; }
+				|            get { return (ClContextMenu)OneScriptForms.RevertObj(Base_obj.ContextMenu); }
+				|            set { Base_obj.ContextMenu = value.Base_obj; }
 				|        }
 				|        
 				|";
@@ -3120,25 +3289,11 @@
 				|            set { Base_obj.PartialPush = value; }
 				|        }
 				|
-				|        [ContextProperty(""НейтральноеПоложение2"", ""ParitalPush"")]
-				|        public bool ParitalPush
-				|        {
-				|            get { return Base_obj.PartialPush; }
-				|            set { Base_obj.PartialPush = value; }
-				|        }
-				|
 				|";
 			ИначеЕсли СвойствоРус = "МногострочныйРежим" Тогда
 				Стр = Стр +
 				"        [ContextProperty(""МногострочныйРежим"", ""Multiline"")]
 				|        public bool Multiline
-				|        {
-				|            get { return Base_obj.Multiline; }
-				|            set { Base_obj.Multiline = value; }
-				|        }
-				|
-				|        [ContextProperty(""МногострочныйРежим2"", ""MultiLine"")]
-				|        public bool MultiLine
 				|        {
 				|            get { return Base_obj.Multiline; }
 				|            set { Base_obj.Multiline = value; }
@@ -3446,50 +3601,26 @@
 			// // // Сообщить("-МетодАнгл---------------------------");
 			// // // Сообщить("" + МетодАнгл);
 			МетодРус = СтрНайтиМежду(СтрХ, ".html"">", " (", , )[0];
-			Если (МетодРус = "ПолучитьСобытие") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
-				Стр = Стр + 
-				"        [ContextMethod(""ПолучитьСобытие"", ""DoEvents"")]
-				|        public IValue DoEvents()
+			Если (МетодРус = "ДоступностьВизуальныхСтилей") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ДоступностьВизуальныхСтилей"", ""EnableVisualStyles"")]
+				|        public void EnableVisualStyles()
 				|        {
-				|            EventString = """";
-				|            EventHandling();
-				|            if (EventString.Contains(""ScriptEngine.HostedScript.Library.DelegateAction""))
-				|            {
-				|                string propName = EventString.Replace(""ScriptEngine.HostedScript.Library.DelegateAction"", """");
-				|                dynamic obj1 = ((dynamic)Event).Base_obj.Sender.dll_obj;
-				|                PropertyInfo property1 = obj1.GetType().GetProperty(propName);
-				|                return property1.GetValue(obj1);
-				|            }
-				|            else if (EventString.Contains(""osf.ClDictionaryEntry""))
-				|            {
-				|                string propName = EventString.Replace(""osf.ClDictionaryEntry"", """");
-				|                dynamic obj1 = ((dynamic)Event).Base_obj.Sender.dll_obj;
-				|                PropertyInfo property1 = obj1.GetType().GetProperty(propName);
-				|                EventString = ((osf.ClDictionaryEntry)property1.GetValue(obj1)).Value.AsString();
-				|            }
-				|            if (!EventString.Contains(""(""))
-				|            {
-				|                return ValueFactory.Create((string)EventString + ""()"");
-				|            }
-				|            return ValueFactory.Create((string)EventString);
+				|            System.Windows.Forms.Application.EnableVisualStyles();
+				|            System.Windows.Forms.Application.DoEvents();
 				|        }
-				|
-				|        public static void EventHandling()
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ЗапуститьОбработкуСобытий") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ЗапуститьОбработкуСобытий"", ""StartEventProcessing"")]
+				|        public void StartEventProcessing()
 				|        {
-				|            while (EventString == """")
+				|            handleEvents = true;
+				|            while (GoOn)
 				|            {
-				|                if (EventQueue.Count > 0)
-				|                {
-				|                    dynamic EventArgs1 = (dynamic)EventQueue[0];
-				|                    Event = EventArgs1.dll_obj;
-				|                    EventString = EventArgs1.EventString;
-				|                    EventQueue.RemoveAt(0);
-				|                }
-				|                else
-				|                {
-				|                    WaitMessage();
-				|                    System.Windows.Forms.Application.DoEvents();
-				|                }
+				|                WaitMessage();
+				|                System.Windows.Forms.Application.DoEvents();
 				|            }
 				|        }
 				|        //Функция WaitMessage передает управление к другим потокам тогда, когда поток не имеет никаких других сообщений 
@@ -3498,16 +3629,88 @@
 				|        //При вызове DoEvents в коде, приложение может выполнять другие события. Например, если имеется форма, добавляющая 
 				|        //данные в ListBox, добавление DoEvents в код позволит форме перерисовывается при перетаскивании над ней другого окна. 
 				|        //Если удалить DoEvents из кода, форма не будет перерисовываться до завершения выполнения обработчика события.
-				|        //DoEvents передает управление Windows-у чтобы тот выполнил обработку своих событий
+				|        //DoEvents передает управление Windows чтобы она выполнила обработку своих событий
 				|        
 				|";
-			ИначеЕсли (МетодРус = "ДоступностьВизуальныхСтилей") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+			ИначеЕсли (МетодРус = "НайтиМежду") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
-				"        [ContextMethod(""ДоступностьВизуальныхСтилей"", ""EnableVisualStyles"")]
-				|        public void EnableVisualStyles()
+				"        [ContextMethod(""НайтиМежду"", ""ParseBetween"")]
+				|        public string ParseBetween2(string p1, string p2 = null, string p3 = null)
 				|        {
-				|            System.Windows.Forms.Application.EnableVisualStyles();
-				|            System.Windows.Forms.Application.DoEvents();
+				|            return ParseBetween(p1, p2, p3);
+				|        }
+				|
+				|        public static string ParseBetween(string p1, string p2 = null, string p3 = null)
+				|        {
+				|            //p1 - исходная строка
+				|            //p2 - подстрока поиска от которой ведем поиск
+				|            //p3 - подстрока поиска до которой ведем поиск
+				|            //возвращает строку, ограниченную p2 и p3
+				|            string str1 = p1;
+				|            int Position1;
+				|            if (p2 != null && p3 == null)
+				|            {
+				|                Position1 = str1.IndexOf(p2);
+				|                if (Position1 >= 0)
+				|                {
+				|                    return str1.Substring(Position1 + p2.Length);
+				|                }
+				|            }
+				|            else if (p2 == null && p3 != null)
+				|            {
+				|                Position1 = str1.IndexOf(p3) + 1;
+				|                if (Position1 > 0)
+				|                {
+				|                    return str1.Substring(0, Position1 - 1);
+				|                }
+				|            }
+				|            else if (p2 != null && p3 != null)
+				|            {
+				|                Position1 = str1.IndexOf(p2);
+				|                while (Position1 >= 0)
+				|                {
+				|                    string Стр2;
+				|                    Стр2 = str1.Substring(Position1 + p2.Length);
+				|                    int Position2 = Стр2.IndexOf(p3) + 1;
+				|                    int SumPosition2 = Position2;
+				|                    while (Position2 > 0)
+				|                    {
+				|                        if (Стр2.Substring(0, SumPosition2 - 1).IndexOf(p3) <= -1)
+				|                        {
+				|                            return Стр2.Substring(0, SumPosition2 - 1);
+				|                        }
+				|                        try
+				|                        {
+				|                            Position2 = Стр2.Substring(SumPosition2 + 1).IndexOf(p3) + 1;
+				|                            SumPosition2 = SumPosition2 + Position2 + 1;
+				|                        }
+				|                        catch
+				|                        {
+				|                            break;
+				|                        }
+				|                    }
+				|                    str1 = str1.Substring(Position1 + 1);
+				|                    Position1 = str1.IndexOf(p2);
+				|                }
+				|            }
+				|            return null;
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "СоздатьФорму") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""СоздатьФорму"", ""CreateForm"")]
+				|        public ClForm CreateForm(IRuntimeContextInstance script)
+				|        {
+				|            ClForm ClForm1 = new ClForm();
+				|            ClForm1.Script = script;
+				|            int i = script.FindMethod(""ПриСозданииФормы"");
+				|            if (i > 0)
+				|            {
+				|                IValue[] args = { ClForm1 };
+				|                script.CallAsProcedure(i, args);
+				|            };
+				|            return ClForm1;
 				|        }
 				|        
 				|";
@@ -3585,6 +3788,18 @@
 				|        {
 				|            dynamic p3 = ((dynamic)p1).Base_obj;
 				|            Base_obj.Location = new Point(p3.Right + p2, p3.Top);
+				|        }
+				|        
+				|";
+			ИначеЕсли МетодРус = "Предупреждение" Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        [DllImport(""user32.dll"", SetLastError = true)] static extern int MessageBoxTimeout(IntPtr hwnd, String text, String title, MesBoxFlags type, Int16 wLanguageId, Int32 milliseconds);";
+				Стр = Стр +
+				"        [ContextMethod(""Предупреждение"", ""DoMessageBox"")]
+				|        public void DoMessageBox(string p1, int p2 = 0, string p3 = """")
+				|        {
+				|            int timeout = p2 * 1000;
+				|            MessageBoxTimeout(IntPtr.Zero, p1, p3, MesBoxFlags.MB_OK | MesBoxFlags.MB_TASKMODAL, 0, timeout);
 				|        }
 				|        
 				|";
@@ -3985,10 +4200,7 @@
 				|        {
 				|            Control Control1 = (Control)((dynamic)p1).Base_obj;
 				|            Point Point1 = new Point(Control1.ClientRectangle.X + p2.Base_obj.X, Control1.ClientRectangle.Y + p2.Base_obj.Y);
-				|            Point Point2 = Control1.PointToScreen(Point1);
-				|            Cursor Cursor1 = new Cursor();
-				|            Cursor1.Current.Position = Point2;
-				|            Base_obj.Show(Control1.M_Control, Point2.M_Point);
+				|            Base_obj.Show(Control1.M_Control, Point1.M_Point);
 				|        }
 				|        
 				|";
@@ -4024,7 +4236,7 @@
 			ИначеЕсли (МетодРус = "ЭлементМеню") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""ЭлементМеню"", ""MenuItem"")]
-				|        public ClMenuItem MenuItem(string p1 = """", string p2 = """", int p3 = 0)
+				|        public ClMenuItem MenuItem(string p1 = """", IValue p2 = null, int p3 = 0)
 				|        {
 				|            return new ClMenuItem(p1, p2, p3);
 				|        }
@@ -4229,7 +4441,7 @@
 				|                if (p1.SystemType.Name == ""Массив"")
 				|                {
 				|                    ClArrayList ClArrayList1 = new ClArrayList();
-				|                    ScriptEngine.HostedScript.Library.ArrayImpl ArrayImpl1 = (ScriptEngine.HostedScript.Library.ArrayImpl)p1;
+				|                    ArrayImpl ArrayImpl1 = (ArrayImpl)p1;
 				|                    for (int i = 0; i < ArrayImpl1.Count(); i++)
 				|                    {
 				|                        ClArrayList1.Add(ArrayImpl1.Get(i));
@@ -4258,15 +4470,6 @@
 				|            {
 				|                return new ClArrayList(((dynamic)p1).Base_obj);
 				|            }
-				|        }
-				|        
-				|";
-			ИначеЕсли МетодРус = "УправляемоеСвойство" Тогда
-				Стр = Стр +
-				"        [ContextMethod(""УправляемоеСвойство"", ""ManagedProperty"")]
-				|        public ClManagedProperty ManagedProperty(IValue p1, string p2, IValue p3 = null)
-				|        {
-				|            return new ClManagedProperty(p1, p2, p3);
 				|        }
 				|        
 				|";
@@ -5055,6 +5258,7 @@
 				|                MenuItem1.Shortcut = (int)CurrentMenuItem1.Shortcut;
 				|                MenuItem1.Text = CurrentMenuItem1.Text;
 				|                MenuItem1.MergeType = (int)CurrentMenuItem1.MergeType;
+				|                MenuItem1.dll_obj = CurrentMenuItem1.dll_obj;
 				|
 				|                MainMenu1.MenuItems.Add(MenuItem1);
 				|                if (CurrentMenuItem1.MenuItems.Count > 0)
@@ -5083,6 +5287,7 @@
 				|                MenuItem1.Shortcut = (int)CurrentMenuItem1.Shortcut;
 				|                MenuItem1.Text = CurrentMenuItem1.Text;
 				|                MenuItem1.MergeType = (int)CurrentMenuItem1.MergeType;
+				|                MenuItem1.dll_obj = CurrentMenuItem1.dll_obj;
 				|
 				|                MainMenu.MenuItems.Add(MenuItem1);
 				|                if (CurrentMenuItem1.MenuItems.Count > 0)
@@ -5177,18 +5382,6 @@
 				|        }
 				|        
 				|";
-			ИначеЕсли МетодРус = "ОбработкаПослеСобытия" Тогда
-				Стр = Стр +
-				"        [ContextMethod(""ОбработкаПослеСобытия"", ""PostEventProcessing"")]
-				|        public void PostEventProcessing()
-				|        {
-				|            if (Event != null)
-				|            {
-				|                ((dynamic)Event).Base_obj.PostEvent();
-				|            }
-				|        }
-				|        
-				|";
 			ИначеЕсли (МетодРус = "ПолучитьУзел") и (ИмяКонтекстКлассаАнгл = "TreeView") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""ПолучитьУзел"", ""GetNodeAt"")]
@@ -5236,6 +5429,9 @@
 				|            thread.SetApartmentState(ApartmentState.STA);
 				|            thread.Start();
 				|            thread.Join();
+				|
+				|            color = new ClColor(Base_obj.Color);
+				|
 				|            return ValueFactory.Create(Res1);
 				|        }
 				|        
@@ -5568,10 +5764,9 @@
 			ИначеЕсли (МетодРус = "ЗначокУведомления") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""ЗначокУведомления"", ""NotifyIcon"")]
-				|        public ClNotifyIcon NotifyIcon([ByRef] IVariable p1)
+				|        public ClNotifyIcon NotifyIcon()
 				|        {
-				|            ClMenuNotifyIcon p2 = (ClMenuNotifyIcon)(p1.Value);
-				|            return new ClNotifyIcon(ref p2);
+				|            return new ClNotifyIcon();
 				|        }
 				|
 				|";
@@ -6070,6 +6265,7 @@
 				|                MenuItem1.Shortcut = (int)CurrentMenuItem1.Shortcut;
 				|                MenuItem1.Text = CurrentMenuItem1.Text;
 				|                MenuItem1.MergeType = (int)CurrentMenuItem1.MergeType;
+				|                MenuItem1.dll_obj = CurrentMenuItem1.dll_obj;
 				|
 				|                ContextMenu1.MenuItems.Add(MenuItem1);
 				|                if (CurrentMenuItem1.MenuItems.Count > 0)
@@ -6098,6 +6294,7 @@
 				|                MenuItem1.Shortcut = (int)CurrentMenuItem1.Shortcut;
 				|                MenuItem1.Text = CurrentMenuItem1.Text;
 				|                MenuItem1.MergeType = (int)CurrentMenuItem1.MergeType;
+				|                MenuItem1.dll_obj = CurrentMenuItem1.dll_obj;
 				|
 				|                ContextMenu.MenuItems.Add(MenuItem1);
 				|                if (CurrentMenuItem1.MenuItems.Count > 0)
@@ -6126,6 +6323,7 @@
 				|            MenuItem4.Shortcut = (int)Base_obj.Shortcut;
 				|            MenuItem4.Text = Base_obj.Text;
 				|            MenuItem4.MergeType = (int)Base_obj.MergeType;
+				|            MenuItem4.dll_obj = Base_obj.dll_obj;
 				|
 				|            for (int i = 0; i < Base_obj.MenuItems.Count; i++)
 				|            {
@@ -6143,6 +6341,7 @@
 				|                MenuItem5.Shortcut = (int)CurrentMenuItem.Shortcut;
 				|                MenuItem5.Text = CurrentMenuItem.Text;
 				|                MenuItem5.MergeType = (int)CurrentMenuItem.MergeType;
+				|                MenuItem5.dll_obj = CurrentMenuItem.dll_obj;
 				|
 				|                MenuItem NewMenuItem = MenuItem4.MenuItems.Add(MenuItem5);
 				|                if (CurrentMenuItem.MenuItems.Count > 0)
@@ -6171,6 +6370,7 @@
 				|                MenuItem5.Shortcut = (int)CurrentMenuItem.Shortcut;
 				|                MenuItem5.Text = CurrentMenuItem.Text;
 				|                MenuItem5.MergeType = (int)CurrentMenuItem.MergeType;
+				|                MenuItem5.dll_obj = CurrentMenuItem.dll_obj;
 				|
 				|                MenuItem NewMenuItem = MenuItem.MenuItems.Add(MenuItem5);
 				|                if (CurrentMenuItem.MenuItems.Count > 0)
@@ -7599,16 +7799,15 @@
 				|        }
 				|
 				|";
-			ИначеЕсли МетодРус = "ЧислоСообщений" Тогда
+			ИначеЕсли (МетодРус = "Действие") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
-				"        [ContextMethod(""ЧислоСообщений"", ""EventQueueCount"")]
-				|        public int EventQueueCount()
+				"        [ContextMethod(""Действие"", ""Action"")]
+				|        public ClAction Action(IRuntimeContextInstance script, string methodName, IValue param = null)
 				|        {
-				|            return EventQueue.Count;
+				|            return new ClAction(script, methodName, param);
 				|        }
 				|
 				|";
-				
 				
 				
 				
@@ -7796,7 +7995,6 @@
 						(ВозвращаемоеМетодомЗначение = "ClToolBar") или 
 						(ВозвращаемоеМетодомЗначение = "ClCursor") или 
 						(ВозвращаемоеМетодомЗначение = "ClStream") или 
-						(ВозвращаемоеМетодомЗначение = "ClMenuNotifyIcon") или 
 						(ВозвращаемоеМетодомЗначение = "ClSound") или 
 						(ВозвращаемоеМетодомЗначение = "ClSize") или 
 						(ВозвращаемоеМетодомЗначение = "ClToolBarButton") или 
@@ -8104,7 +8302,6 @@
 	СоздатьФайлCs("ListBoxSelectedObjectCollection");
 	СоздатьФайлCs("ListBoxSelectedIndexCollection");
 	СоздатьФайлCs("DataRowView");
-	СоздатьФайлCs("ContextMenuPopupEventArgs");
 	СоздатьФайлCs("ListView");
 	СоздатьФайлCs("ListViewCheckedItemCollection");
 	СоздатьФайлCs("ListViewColumnHeaderCollection");
@@ -8135,7 +8332,6 @@
 	СоздатьФайлCs("FileDialog");
 	СоздатьФайлCs("OpenFileDialog");
 	СоздатьФайлCs("SaveFileDialog");
-	СоздатьФайлCs("MenuNotifyIcon");
 	СоздатьФайлCs("NotifyIcon");
 	СоздатьФайлCs("UserControl");
 	СоздатьФайлCs("MessageBox");
@@ -8191,6 +8387,7 @@
 	СоздатьФайлCs("CheckBox");
 	СоздатьФайлCs("HashTable");
 	СоздатьФайлCs("Screen");
+	СоздатьФайлCs("FormsCollection");
 	
 	СписокЗамен = Новый СписокЗначений;
 	
@@ -8224,6 +8421,11 @@
 	СписокФайлов = Новый СписокЗначений;
 	ВыбранныеФайлы = ОтобратьФайлы("Класс");
 	Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
+		
+		Если ВыбранныеФайлы[А] = "C:\444\OneScriptFormsru\OneScriptForms.FormsCollection.html" Тогда
+			Продолжить;
+		КонецЕсли;
+		
 		ТекстДок = Новый ТекстовыйДокумент;
 		ТекстДок.Прочитать(ВыбранныеФайлы[А]);
 		Стр = ТекстДок.ПолучитьТекст();
@@ -8602,16 +8804,73 @@
 			|                return p1;
 			|            }
 			|        }
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+			|			
+			|        public static dynamic GetEventParameter(dynamic dll_objEvent)
+			|        {
+			|            if (dll_objEvent != null)
+			|            {
+			|                dynamic eventType = dll_objEvent.GetType();
+			|                if (eventType == typeof(DelegateAction))
+			|                {
+			|                    return null;
+			|                }
+			|                else if (eventType == typeof(ClAction))
+			|                {
+			|                    return ((ClAction)dll_objEvent).Parameter;
+			|                }
+			|                else
+			|                {
+			|                    return null;
+			|                }
+			|            }
+			|            else
+			|            {
+			|                return null;
+			|            }
+			|        }
+			|
+			|        public static void ExecuteEvent(dynamic dll_objEvent)
+			|        {
+			|            if (!handleEvents)
+			|            {
+			|                return;
+			|            }
+			|            if (dll_objEvent == null)
+			|            {
+			|                return;
+			|            }
+			|            if (dll_objEvent.GetType() == typeof(DelegateAction))
+			|            {
+			|                ((DelegateAction)dll_objEvent).CallAsProcedure(0, null);
+			|            }
+			|            else if (dll_objEvent.GetType() == typeof(ClAction))
+			|            {
+			|                ClAction Action1 = ((ClAction)dll_objEvent);
+			|                IRuntimeContextInstance script = Action1.Script;
+			|                string method = Action1.MethodName;
+			|                ReflectorContext reflector = new ReflectorContext();
+			|                reflector.CallMethod(script, method, null);
+			|            }
+			|            else
+			|            {
+			|                //System.Windows.Forms.MessageBox.Show(""Обработчик события "" + dll_objEvent.ToString() + "" задан неверным типом."", ""Обработчик события контрола"", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning, System.Windows.Forms.MessageBoxDefaultButton.Button1);
+			|            }
+			|            Event = null;
+			|        }
+			|
+			|        private enum MesBoxFlags
+			|        {
+			|            MB_OK = 0x00000000, // Окно сообщения содержит одну кнопку: OK. Это значение по умолчанию.
+			|            MB_YESNO = 0x00000004, // Окно сообщения содержит две кнопки: Да и Нет. 
+			|            MB_SETFOREGROUND = 0x00010000, // Окно сообщения становится окном переднего плана. Внутренне система вызывает функцию SetForegroundWindow для окна сообщения.
+			|            MB_SYSTEMMODAL = 0x00001000, // То же, что и MB_APPLMODAL, за исключением того, что окно сообщения имеет стиль WS_EX_TOPMOST. Используйте окна сообщений системного режима для уведомления пользователя о серьезных, потенциально опасных ошибках, требующих немедленного внимания (например, нехватка памяти). Этот флаг не влияет на способность пользователя взаимодействовать с окнами, отличными от тех, которые связаны с hWnd.
+			|            MB_ICONINFORMATION = 0x00000040, // В окне сообщения появится значок, состоящий из строчной буквы i в круге.
+			|            MB_APPLMODAL = 0x00000000, // Пользователь должен ответить на окно сообщения, прежде чем продолжить работу в окне, определяемом параметром hWnd. Однако пользователь может перейти к окнам других потоков и работать в этих окнах.
+			|                                       // В зависимости от иерархии окон в приложении пользователь может перейти к другим окнам в потоке. Все дочерние окна родительского окна сообщения автоматически отключаются, но всплывающие окна - нет.
+			|                                       // MB_APPLMODAL используется по умолчанию, если не указаны ни MB_SYSTEMMODAL, ни MB_TASKMODAL.
+			|            MB_TASKMODAL = 0x00002000 // То же, что и MB_APPLMODAL, за исключением того, что все окна верхнего уровня, принадлежащие текущему потоку, отключены, если параметр HWND равен нулю. Используйте этот флаг, когда вызывающее приложение или библиотека не имеют доступного дескриптора окна, но все равно должны запретить ввод в другие окна в вызывающем потоке без приостановки других потоков.
+			|        }
+			|			
 			|        //endMethods";
 			СтрВыгрузки = СтрЗаменить(СтрВыгрузки, ПодстрокаПоиска, ПодстрокаЗамены);
 		КонецЕсли;
@@ -8640,6 +8899,7 @@
 				|using ScriptEngine.Machine;
 				|using System.Reflection;
 	 			|using System.Runtime.InteropServices;
+	 			|using ScriptEngine.HostedScript.Library;
 				|
 				|";
 			Иначе
@@ -8875,6 +9135,8 @@
 		// Сообщить("" + СписокЗамен.Получить(А).Значение);
 	// КонецЦикла;
 	
+
+	
 	Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах()-Таймер)/1000)/60 + " мин." + " " + ТекущаяДата());
 КонецПроцедуры//ВыгрузкаДляCS
 
@@ -8891,6 +9153,73 @@
 		// ТекстДокХХХ = Новый ТекстовыйДокумент;
 		// ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
 		// ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+		
+		
+		
+		
+	ИначеЕсли ИмяФайлаCs = "FormsCollection" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class FormsCollection : AutoContext<FormsCollection>, ICollectionContext, IEnumerable<ClForm>
+		|    {
+		|        private List<ClForm> _list;
+		|
+		|        internal FormsCollection()
+		|        {
+		|            _list = new List<ClForm>();
+		|        }
+		|
+		|        public void Add(ClForm form)
+		|        {
+		|            _list.Add(form);
+		|        }
+		|
+		|        public bool Remove(ClForm form)
+		|        {
+		|            return _list.Remove(form);
+		|        }
+		|
+		|        [ContextMethod(""Получить"", ""Get"")]
+		|        public ClForm Get(int index)
+		|        {
+		|            return this._list[index];
+		|        }
+		|
+		|        [ContextProperty(""Количество"", ""Count"")]
+		|        public int CountForm
+		|        {
+		|            get { return _list.Count; }
+		|        }
+		|
+		|        public int Count()
+		|        {
+		|            return CountForm;
+		|        }
+		|
+		|        public CollectionEnumerator GetManagedIterator()
+		|        {
+		|            return new CollectionEnumerator(this);
+		|        }
+		|
+		|        IEnumerator IEnumerable.GetEnumerator()
+		|        {
+		|            return ((IEnumerable<ClForm>)_list).GetEnumerator();
+		|        }
+		|
+		|        IEnumerator<ClForm> IEnumerable<ClForm>.GetEnumerator()
+		|        {
+		|            foreach (var item in _list)
+		|            {
+		|                yield return (item as ClForm);
+		|            }
+		|        }
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Screen" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -9114,21 +9443,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = CheckChanged;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.CheckChanged;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.CheckChanged);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.CheckChanged);
 		|            }
 		|        }
 		|    }//endClass
@@ -9497,22 +9815,11 @@
 		|                LinkClickedEventArgs LinkClickedEventArgs1 = new LinkClickedEventArgs();
 		|                LinkClickedEventArgs1.EventString = LinkClicked;
 		|                LinkClickedEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.LinkClicked;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    LinkClickedEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    LinkClickedEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    LinkClickedEventArgs1.Parameter = null;
-		|                }
+		|                LinkClickedEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.LinkClicked);
 		|                LinkClickedEventArgs1.LinkText = e.LinkText;
-		|                OneScriptForms.EventQueue.Add(LinkClickedEventArgs1);
 		|                ClLinkClickedEventArgs ClLinkClickedEventArgs1 = new ClLinkClickedEventArgs(LinkClickedEventArgs1);
+		|                OneScriptForms.Event = ClLinkClickedEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.LinkClicked);
 		|            }
 		|        }
 		|
@@ -9523,21 +9830,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = SelectionChanged;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.SelectionChanged;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.SelectionChanged);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.SelectionChanged);
 		|            }
 		|        }
 		|    }//endClass
@@ -9777,21 +10073,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = ValueChanged;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.ValueChanged;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.ValueChanged);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.ValueChanged);
 		|            }
 		|        }
 		|    }//endClass
@@ -10005,13 +10290,6 @@
 		|            get { return Application.m_IsRunning; }
 		|        }
 		|
-		|        public string DoEvents(bool wait = true)
-		|        {
-		|            OneScriptForms.EventString = """";
-		|            OneScriptForms.EventHandling();
-		|            return OneScriptForms.EventString;
-		|        }
-		|
 		|        public void EnableVisualStyles()
 		|        {
 		|            System.Windows.Forms.Application.EnableVisualStyles();
@@ -10221,21 +10499,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = ValueChanged;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.ValueChanged;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.ValueChanged);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.ValueChanged);
 		|            }
 		|        }
 		|    }//endClass
@@ -10496,21 +10763,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = DropDown;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.DropDown;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.DropDown);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.DropDown);
 		|            }
 		|        }
 		|
@@ -10521,21 +10777,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = SelectedIndexChanged;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.SelectedIndexChanged;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.SelectedIndexChanged);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.SelectedIndexChanged);
 		|            }
 		|        }
 		|
@@ -10854,21 +11099,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = CheckChanged;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.CheckChanged;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.CheckChanged);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.CheckChanged);
 		|            }
 		|        }
 		|    }//endClass
@@ -11197,24 +11431,13 @@
 		|                FileSystemEventArgs FileSystemEventArgs1 = new FileSystemEventArgs();
 		|                FileSystemEventArgs1.EventString = Changed;
 		|                FileSystemEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Changed;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    FileSystemEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    FileSystemEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    FileSystemEventArgs1.Parameter = null;
-		|                }
+		|                FileSystemEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Changed);
 		|                FileSystemEventArgs1.ChangeType = (int)e.ChangeType;
 		|                FileSystemEventArgs1.FullPath = e.FullPath;
 		|                FileSystemEventArgs1.Name = e.Name;
-		|                OneScriptForms.EventQueue.Add(FileSystemEventArgs1);
 		|                ClFileSystemEventArgs ClFileSystemEventArgs1 = new ClFileSystemEventArgs(FileSystemEventArgs1);
+		|                OneScriptForms.Event = ClFileSystemEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Changed);
 		|            }
 		|        }
 		|
@@ -11225,24 +11448,13 @@
 		|                FileSystemEventArgs FileSystemEventArgs1 = new FileSystemEventArgs();
 		|                FileSystemEventArgs1.EventString = Created;
 		|                FileSystemEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Created;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    FileSystemEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    FileSystemEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    FileSystemEventArgs1.Parameter = null;
-		|                }
+		|                FileSystemEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Created);
 		|                FileSystemEventArgs1.ChangeType = (int)e.ChangeType;
 		|                FileSystemEventArgs1.FullPath = e.FullPath;
 		|                FileSystemEventArgs1.Name = e.Name;
-		|                OneScriptForms.EventQueue.Add(FileSystemEventArgs1);
 		|                ClFileSystemEventArgs ClFileSystemEventArgs1 = new ClFileSystemEventArgs(FileSystemEventArgs1);
+		|                OneScriptForms.Event = ClFileSystemEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Created);
 		|            }
 		|        }
 		|
@@ -11253,24 +11465,13 @@
 		|                FileSystemEventArgs FileSystemEventArgs1 = new FileSystemEventArgs();
 		|                FileSystemEventArgs1.EventString = Deleted;
 		|                FileSystemEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Deleted;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    FileSystemEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    FileSystemEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    FileSystemEventArgs1.Parameter = null;
-		|                }
+		|                FileSystemEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Deleted);
 		|                FileSystemEventArgs1.ChangeType = (int)e.ChangeType;
 		|                FileSystemEventArgs1.FullPath = e.FullPath;
 		|                FileSystemEventArgs1.Name = e.Name;
-		|                OneScriptForms.EventQueue.Add(FileSystemEventArgs1);
 		|                ClFileSystemEventArgs ClFileSystemEventArgs1 = new ClFileSystemEventArgs(FileSystemEventArgs1);
+		|                OneScriptForms.Event = ClFileSystemEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Deleted);
 		|            }
 		|        }
 		|
@@ -11281,26 +11482,15 @@
 		|                RenamedEventArgs RenamedEventArgs1 = new RenamedEventArgs();
 		|                RenamedEventArgs1.EventString = Renamed;
 		|                RenamedEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Renamed;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    RenamedEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    RenamedEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    RenamedEventArgs1.Parameter = null;
-		|                }
+		|                RenamedEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Renamed);
 		|                RenamedEventArgs1.ChangeType = (int)e.ChangeType;
 		|                RenamedEventArgs1.FullPath = e.FullPath;
 		|                RenamedEventArgs1.Name = e.Name;
 		|                RenamedEventArgs1.OldFullPath = e.OldFullPath;
 		|                RenamedEventArgs1.OldName = e.OldName;
-		|                OneScriptForms.EventQueue.Add(RenamedEventArgs1);
 		|                ClRenamedEventArgs ClRenamedEventArgs1 = new ClRenamedEventArgs(RenamedEventArgs1);
+		|                OneScriptForms.Event = ClRenamedEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Renamed);
 		|            }
 		|        }
 		|    }//endClass
@@ -11612,6 +11802,7 @@
 		|            base.M_DataGridColumnStyle = (System.Windows.Forms.DataGridColumnStyle)M_DataGridTextBoxColumn;
 		|            M_DataGridTextBoxColumn.TextBox.DoubleClick += TextBox_DoubleClick;
 		|            M_DataGridTextBoxColumn.TextBox.MouseDown += TextBox_MouseDown;
+		|            DoubleClick = """";
 		|        }
 		|		
 		|        public DataGridTextBoxColumn(osf.DataGridTextBoxColumn p1)
@@ -11621,6 +11812,7 @@
 		|            base.M_DataGridColumnStyle = M_DataGridTextBoxColumn;
 		|            M_DataGridTextBoxColumn.TextBox.DoubleClick += TextBox_DoubleClick;
 		|            M_DataGridTextBoxColumn.TextBox.MouseDown += TextBox_MouseDown;
+		|            DoubleClick = """";
 		|        }
 		|		
 		|        public DataGridTextBoxColumn(System.Windows.Forms.DataGridTextBoxColumn p1)
@@ -11630,6 +11822,7 @@
 		|            base.M_DataGridColumnStyle = (System.Windows.Forms.DataGridColumnStyle)M_DataGridTextBoxColumn;
 		|            M_DataGridTextBoxColumn.TextBox.DoubleClick += TextBox_DoubleClick;
 		|            M_DataGridTextBoxColumn.TextBox.MouseDown += TextBox_MouseDown;
+		|            DoubleClick = """";
 		|        }
 		|
 		|        public osf.DataGridTextBox TextBox
@@ -11646,21 +11839,10 @@
 		|                    EventArgs EventArgs1 = new EventArgs();
 		|                    EventArgs1.EventString = DoubleClick;
 		|                    EventArgs1.Sender = this;
-		|                    dynamic event1 = ((dynamic)this).dll_obj.DoubleClick;
-		|                    if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                    {
-		|                        EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                    }
-		|                    else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                    {
-		|                        EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                    }
-		|                    else
-		|                    {
-		|                        EventArgs1.Parameter = null;
-		|                    }
-		|                    OneScriptForms.EventQueue.Add(EventArgs1);
+		|                    EventArgs1.Parameter = OneScriptForms.GetEventParameter(dll_obj.DoubleClick);
 		|                    ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                    OneScriptForms.Event = ClEventArgs1;
+		|                    OneScriptForms.ExecuteEvent(dll_obj.DoubleClick);
 		|                }
 		|            }
 		|        }
@@ -11672,21 +11854,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = DoubleClick;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.DoubleClick;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(dll_obj.DoubleClick);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(dll_obj.DoubleClick);
 		|            }
 		|        }
 		|    }//endClass
@@ -12183,7 +12354,15 @@
 		|            {
 		|                if (M_DataGrid.DataSource != null)
 		|                {
-		|                    return ((dynamic)M_DataGrid.DataSource).M_Object;
+		|                    if (M_DataGrid.DataSource.GetType() == typeof(System.Data.DataView))
+		|                    {
+		|                        osf.DataView DataView1 = new osf.DataView((System.Data.DataView)M_DataGrid.DataSource);
+		|                        return (dynamic)DataView1;
+		|                    }
+		|                    else
+		|                    {
+		|                        return ((dynamic)M_DataGrid.DataSource).M_Object;
+		|                    }
 		|                }
 		|                return null;
 		|            }
@@ -12250,21 +12429,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = CurrentCellChanged;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.CurrentCellChanged;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.CurrentCellChanged);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.CurrentCellChanged);
 		|            }
 		|        }
 		|
@@ -13611,23 +13779,12 @@
 		|                LinkLabelLinkClickedEventArgs LinkLabelLinkClickedEventArgs1 = new LinkLabelLinkClickedEventArgs();
 		|                LinkLabelLinkClickedEventArgs1.EventString = LinkClicked;
 		|                LinkLabelLinkClickedEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.LinkClicked;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    LinkLabelLinkClickedEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    LinkLabelLinkClickedEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    LinkLabelLinkClickedEventArgs1.Parameter = null;
-		|                }
+		|                LinkLabelLinkClickedEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.LinkClicked);
 		|                LinkLabelLinkClickedEventArgs1.Button = (int)e.Button;
 		|                LinkLabelLinkClickedEventArgs1.Link = ((LinkEx)e.Link).M_Object;
-		|                OneScriptForms.EventQueue.Add(LinkLabelLinkClickedEventArgs1);
 		|                ClLinkLabelLinkClickedEventArgs ClLinkLabelLinkClickedEventArgs1 = new ClLinkLabelLinkClickedEventArgs(LinkLabelLinkClickedEventArgs1);
+		|                OneScriptForms.Event = ClLinkLabelLinkClickedEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.LinkClicked);
 		|            }
 		|        }
 		|    }//endClass
@@ -13959,22 +14116,11 @@
 		|                ToolBarButtonClickEventArgs ToolBarButtonClickEventArgs1 = new ToolBarButtonClickEventArgs();
 		|                ToolBarButtonClickEventArgs1.EventString = ButtonClick;
 		|                ToolBarButtonClickEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.ButtonClick;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    ToolBarButtonClickEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    ToolBarButtonClickEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    ToolBarButtonClickEventArgs1.Parameter = null;
-		|                }
+		|                ToolBarButtonClickEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.ButtonClick);
 		|                ToolBarButtonClickEventArgs1.Button = ((ToolBarButtonEx)e.Button).M_Object;
-		|                OneScriptForms.EventQueue.Add(ToolBarButtonClickEventArgs1);
 		|                ClToolBarButtonClickEventArgs ClToolBarButtonClickEventArgs1 = new ClToolBarButtonClickEventArgs(ToolBarButtonClickEventArgs1);
+		|                OneScriptForms.Event = ClToolBarButtonClickEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.ButtonClick);
 		|            }
 		|        }
 		|
@@ -14412,10 +14558,10 @@
 		|            OneScriptForms.AddToHashtable(M_NotifyIcon, this);
 		|        }
 		|
-		|        public osf.MenuNotifyIcon ContextMenu
+		|        public osf.ContextMenu ContextMenu
 		|        {
-		|            get { return new MenuNotifyIcon(M_NotifyIcon.ContextMenu); }
-		|            set { M_NotifyIcon.ContextMenu = value.M_MenuNotifyIcon; }
+		|            get { return new ContextMenu(M_NotifyIcon.ContextMenu); }
+		|            set { M_NotifyIcon.ContextMenu = value.M_ContextMenu; }
 		|        }
 		|
 		|        public osf.Icon Icon
@@ -14455,25 +14601,14 @@
 		|                MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
 		|                MouseEventArgs1.EventString = MouseDown;
 		|                MouseEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.MouseDown;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    MouseEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    MouseEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    MouseEventArgs1.Parameter = null;
-		|                }
+		|                MouseEventArgs1.Parameter = OneScriptForms.GetEventParameter(dll_obj.MouseDown);
 		|                MouseEventArgs1.Clicks = e.Clicks;
 		|                MouseEventArgs1.Button = (int)e.Button;
 		|                MouseEventArgs1.X = e.X;
 		|                MouseEventArgs1.Y = e.Y;
-		|                OneScriptForms.EventQueue.Add(MouseEventArgs1);
 		|                ClMouseEventArgs ClMouseEventArgs1 = new ClMouseEventArgs(MouseEventArgs1);
+		|                OneScriptForms.Event = ClMouseEventArgs1;
+		|                OneScriptForms.ExecuteEvent(dll_obj.MouseDown);
 		|            }
 		|        }
 		|
@@ -14484,25 +14619,14 @@
 		|                MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
 		|                MouseEventArgs1.EventString = MouseUp;
 		|                MouseEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.MouseUp;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    MouseEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    MouseEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    MouseEventArgs1.Parameter = null;
-		|                }
+		|                MouseEventArgs1.Parameter = OneScriptForms.GetEventParameter(dll_obj.MouseUp);
 		|                MouseEventArgs1.Clicks = e.Clicks;
 		|                MouseEventArgs1.Button = (int)e.Button;
 		|                MouseEventArgs1.X = e.X;
 		|                MouseEventArgs1.Y = e.Y;
-		|                OneScriptForms.EventQueue.Add(MouseEventArgs1);
 		|                ClMouseEventArgs ClMouseEventArgs1 = new ClMouseEventArgs(MouseEventArgs1);
+		|                OneScriptForms.Event = ClMouseEventArgs1;
+		|                OneScriptForms.ExecuteEvent(dll_obj.MouseUp);
 		|            }
 		|        }
 		|
@@ -14513,25 +14637,14 @@
 		|                MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
 		|                MouseEventArgs1.EventString = MouseMove;
 		|                MouseEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.MouseMove;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    MouseEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    MouseEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    MouseEventArgs1.Parameter = null;
-		|                }
+		|                MouseEventArgs1.Parameter = OneScriptForms.GetEventParameter(dll_obj.MouseMove);
 		|                MouseEventArgs1.Clicks = e.Clicks;
 		|                MouseEventArgs1.Button = (int)e.Button;
 		|                MouseEventArgs1.X = e.X;
 		|                MouseEventArgs1.Y = e.Y;
-		|                OneScriptForms.EventQueue.Add(MouseEventArgs1);
 		|                ClMouseEventArgs ClMouseEventArgs1 = new ClMouseEventArgs(MouseEventArgs1);
+		|                OneScriptForms.Event = ClMouseEventArgs1;
+		|                OneScriptForms.ExecuteEvent(dll_obj.MouseMove);
 		|            }
 		|        }
 		|
@@ -14542,21 +14655,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Click;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Click;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(dll_obj.Click);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(dll_obj.Click);
 		|            }
 		|        }
 		|
@@ -14567,108 +14669,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = DoubleClick;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.DoubleClick;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(dll_obj.DoubleClick);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
-		|            }
-		|        }
-		|    }//endClass
-		|}//endnamespace
-		|";
-		ТекстДокХХХ = Новый ТекстовыйДокумент;
-		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
-	ИначеЕсли ИмяФайлаCs = "MenuNotifyIcon" Тогда
-		СтрВыгрузки = СтрВыгрузки + 
-		"namespace osf
-		|{
-		|    public class MenuNotifyIcon : Menu
-		|    {
-		|        public new ClMenuNotifyIcon dll_obj;
-		|        public string Popup;
-		|        public ContextMenuEx M_MenuNotifyIcon;
-		|
-		|        public MenuNotifyIcon()
-		|        {
-		|            M_MenuNotifyIcon = new ContextMenuEx();
-		|            M_MenuNotifyIcon.M_Object = this;
-		|            base.M_Menu = M_MenuNotifyIcon;
-		|            M_MenuNotifyIcon.Popup += M_ContextMenu_Popup;
-		|            Popup = """";
-		|            OneScriptForms.AddToHashtable(M_MenuNotifyIcon, this);
-		|        }
-		|
-		|        public MenuNotifyIcon(osf.MenuNotifyIcon p1)
-		|        {
-		|            M_MenuNotifyIcon = p1.M_MenuNotifyIcon;
-		|            M_MenuNotifyIcon.M_Object = this;
-		|            base.M_Menu = M_MenuNotifyIcon;
-		|            M_MenuNotifyIcon.Popup += M_ContextMenu_Popup;
-		|            Popup = """";
-		|            OneScriptForms.AddToHashtable(M_MenuNotifyIcon, this);
-		|        }
-		|
-		|        public MenuNotifyIcon(System.Windows.Forms.ContextMenu p1)
-		|        {
-		|            M_MenuNotifyIcon = (ContextMenuEx)p1;
-		|            M_MenuNotifyIcon.M_Object = this;
-		|            base.M_Menu = M_MenuNotifyIcon;
-		|            M_MenuNotifyIcon.Popup += M_ContextMenu_Popup;
-		|            Popup = """";
-		|            OneScriptForms.AddToHashtable(M_MenuNotifyIcon, this);
-		|        }
-		|
-		|        public void Show(System.Windows.Forms.Control p1, System.Drawing.Point p2)
-		|        {
-		|            M_MenuNotifyIcon.Show(p1, p2);
-		|        }
-		|
-		|        public osf.Control SourceControl
-		|        {
-		|            get { return (osf.Control)((dynamic)M_MenuNotifyIcon.SourceControl).M_Object; }
-		|        }
-		|
-		|        public void M_ContextMenu_Popup(object sender, System.EventArgs e)
-		|        {
-		|            if (M_MenuNotifyIcon.SourceControl != null)
-		|            {
-		|                foreach (MenuItemEx itemEx in M_MenuNotifyIcon.MenuItems)
-		|                {
-		|                    MenuItem item = (MenuItem)itemEx.M_Object;
-		|                    item.M_VisibleSaveState = item.Visible;
-		|                    item.M_MenuItem.Visible = false;
-		|                }
-		|                ContextMenuPopupEventArgs ContextMenuPopupEventArgs1 = new ContextMenuPopupEventArgs();
-		|                ContextMenuPopupEventArgs1.EventString = Popup;
-		|                ContextMenuPopupEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Popup;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    ContextMenuPopupEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    ContextMenuPopupEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    ContextMenuPopupEventArgs1.Parameter = null;
-		|                }
-		|                ContextMenuPopupEventArgs1.Point = new Point(M_MenuNotifyIcon.SourceControl.PointToClient(System.Windows.Forms.Control.MousePosition));
-		|                OneScriptForms.EventQueue.Add(ContextMenuPopupEventArgs1);
-		|                ClContextMenuPopupEventArgs ClContextMenuPopupEventArgs1 = new ClContextMenuPopupEventArgs(ContextMenuPopupEventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(dll_obj.DoubleClick);
 		|            }
 		|        }
 		|    }//endClass
@@ -15049,21 +15053,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Tick;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Tick;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Tick);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Tick);
 		|            }
 		|        }
 		|    }//endClass
@@ -15577,25 +15570,15 @@
 		|                NodeLabelEditEventArgs NodeLabelEditEventArgs1 = new NodeLabelEditEventArgs();
 		|                NodeLabelEditEventArgs1.EventString = AfterLabelEdit;
 		|                NodeLabelEditEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.AfterLabelEdit;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    NodeLabelEditEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    NodeLabelEditEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    NodeLabelEditEventArgs1.Parameter = null;
-		|                }
+		|                NodeLabelEditEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.AfterLabelEdit);
 		|                NodeLabelEditEventArgs1.CancelEdit = e.CancelEdit;
 		|                NodeLabelEditEventArgs1.Label = e.Label;
 		|                NodeLabelEditEventArgs1.Node = (TreeNode)((TreeNodeEx)e.Node).M_Object;
 		|                NodeLabelEditEventArgs1.Label_old = e.Node.Text;
-		|                OneScriptForms.EventQueue.Add(NodeLabelEditEventArgs1);
 		|                ClNodeLabelEditEventArgs ClNodeLabelEditEventArgs1 = new ClNodeLabelEditEventArgs(NodeLabelEditEventArgs1);
+		|                OneScriptForms.Event = ClNodeLabelEditEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.AfterLabelEdit);
+		|                e.CancelEdit = NodeLabelEditEventArgs1.CancelEdit;
 		|            }
 		|        }
 		|
@@ -15608,21 +15591,10 @@
 		|                TreeViewEventArgs1.Node = (TreeNode)((TreeNodeEx)e.Node).M_Object;
 		|                TreeViewEventArgs1.EventString = AfterSelect;
 		|                TreeViewEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.AfterSelect;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    TreeViewEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    TreeViewEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    TreeViewEventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(TreeViewEventArgs1);
+		|                TreeViewEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.AfterSelect);
 		|                ClTreeViewEventArgs ClTreeViewEventArgs1 = new ClTreeViewEventArgs(TreeViewEventArgs1);
+		|                OneScriptForms.Event = ClTreeViewEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.AfterSelect);
 		|            }
 		|        }
 		|
@@ -15636,22 +15608,11 @@
 		|                TreeViewCancelEventArgs1.Node = (TreeNode)((TreeNodeEx)e.Node).M_Object;
 		|                TreeViewCancelEventArgs1.EventString = BeforeExpand;
 		|                TreeViewCancelEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.BeforeExpand;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    TreeViewCancelEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    TreeViewCancelEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    TreeViewCancelEventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(TreeViewCancelEventArgs1);
+		|                TreeViewCancelEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.BeforeExpand);
 		|                ClTreeViewCancelEventArgs ClTreeViewCancelEventArgs1 = new ClTreeViewCancelEventArgs(TreeViewCancelEventArgs1);
-		|                e.Cancel = true;
+		|                OneScriptForms.Event = ClTreeViewCancelEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.BeforeExpand);
+		|                e.Cancel = TreeViewCancelEventArgs1.Cancel;
 		|            }
 		|        }
 		|
@@ -15665,22 +15626,11 @@
 		|                TreeViewCancelEventArgs1.Node = (TreeNode)((TreeNodeEx)e.Node).M_Object;
 		|                TreeViewCancelEventArgs1.EventString = BeforeSelect;
 		|                TreeViewCancelEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.BeforeSelect;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    TreeViewCancelEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    TreeViewCancelEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    TreeViewCancelEventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(TreeViewCancelEventArgs1);
+		|                TreeViewCancelEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.BeforeSelect);
 		|                ClTreeViewCancelEventArgs ClTreeViewCancelEventArgs1 = new ClTreeViewCancelEventArgs(TreeViewCancelEventArgs1);
-		|                e.Cancel = true;
+		|                OneScriptForms.Event = ClTreeViewCancelEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.BeforeSelect);
+		|                e.Cancel = TreeViewCancelEventArgs1.Cancel;
 		|            }
 		|        }
 		|    }//endClass
@@ -15936,21 +15886,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = M_DateChanged;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.M_DateChanged;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.DateChanged);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.DateChanged);
 		|            }
 		|        }
 		|
@@ -15961,21 +15900,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = M_DateSelected;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.M_DateSelected;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.DateSelected);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.DateSelected);
 		|            }
 		|        }
 		|    }//endClass
@@ -16519,21 +16447,10 @@
 		|                SelectedGridItemChangedEventArgs1.NewValue = e.NewSelection.Value;
 		|                SelectedGridItemChangedEventArgs1.EventString = SelectedGridItemChanged;
 		|                SelectedGridItemChangedEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.SelectedGridItemChanged;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    SelectedGridItemChangedEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    SelectedGridItemChangedEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    SelectedGridItemChangedEventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(SelectedGridItemChangedEventArgs1);
+		|                SelectedGridItemChangedEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.SelectedGridItemChanged);
 		|                ClSelectedGridItemChangedEventArgs ClSelectedGridItemChangedEventArgs1 = new ClSelectedGridItemChangedEventArgs(SelectedGridItemChangedEventArgs1);
+		|                OneScriptForms.Event = ClSelectedGridItemChangedEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.SelectedGridItemChanged);
 		|            }
 		|        }
 		|
@@ -16544,23 +16461,12 @@
 		|                PropertyValueChangedEventArgs PropertyValueChangedEventArgs1 = new PropertyValueChangedEventArgs();
 		|                PropertyValueChangedEventArgs1.EventString = PropertyValueChanged;
 		|                PropertyValueChangedEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.PropertyValueChanged;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    PropertyValueChangedEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    PropertyValueChangedEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    PropertyValueChangedEventArgs1.Parameter = null;
-		|                }
+		|                PropertyValueChangedEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.PropertyValueChanged);
 		|                PropertyValueChangedEventArgs1.OldValue = e.OldValue;
 		|                PropertyValueChangedEventArgs1.ChangedItem = new GridItem(e.ChangedItem);
-		|                OneScriptForms.EventQueue.Add(PropertyValueChangedEventArgs1);
 		|                ClPropertyValueChangedEventArgs ClPropertyValueChangedEventArgs1 = new ClPropertyValueChangedEventArgs(PropertyValueChangedEventArgs1);
+		|                OneScriptForms.Event = ClPropertyValueChangedEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.PropertyValueChanged);
 		|            }
 		|        }
 		|
@@ -17369,26 +17275,14 @@
 		|                LabelEditEventArgs LabelEditEventArgs1 = new LabelEditEventArgs();
 		|                LabelEditEventArgs1.EventString = BeforeLabelEdit;
 		|                LabelEditEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.BeforeLabelEdit;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    LabelEditEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    LabelEditEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    LabelEditEventArgs1.Parameter = null;
-		|                }
-		|                LabelEditEventArgs1.Type = ""BeforeLabelEdit"";
-		|                LabelEditEventArgs1.CancelEdit = false;
+		|                LabelEditEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.BeforeLabelEdit);
+		|                LabelEditEventArgs1.CancelEdit = e.CancelEdit;
 		|                LabelEditEventArgs1.Item = e.Item;
 		|                LabelEditEventArgs1.Label = e.Label;
-		|                OneScriptForms.EventQueue.Add(LabelEditEventArgs1);
 		|                ClLabelEditEventArgs ClLabelEditEventArgs1 = new ClLabelEditEventArgs(LabelEditEventArgs1);
-		|                e.CancelEdit = true;
+		|                OneScriptForms.Event = ClLabelEditEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.BeforeLabelEdit);
+		|                e.CancelEdit = LabelEditEventArgs1.CancelEdit;
 		|            }
 		|        }
 		|
@@ -17399,21 +17293,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = ItemActivate;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.ItemActivate;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.ItemActivate);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.ItemActivate);
 		|            }
 		|        }
 		|
@@ -17424,25 +17307,13 @@
 		|                ItemCheckEventArgs ItemCheckEventArgs1 = new ItemCheckEventArgs();
 		|                ItemCheckEventArgs1.EventString = ItemCheck;
 		|                ItemCheckEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.ItemCheck;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    ItemCheckEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    ItemCheckEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    ItemCheckEventArgs1.Parameter = null;
-		|                }
+		|                ItemCheckEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.ItemCheck);
 		|                ItemCheckEventArgs1.CurrentValue = (int)e.CurrentValue;
 		|                ItemCheckEventArgs1.Index = e.Index;
 		|                ItemCheckEventArgs1.NewValue = (int)e.NewValue;
-		|                OneScriptForms.EventQueue.Add(ItemCheckEventArgs1);
 		|                ClItemCheckEventArgs ClItemCheckEventArgs1 = new ClItemCheckEventArgs(ItemCheckEventArgs1);
-		|                e.NewValue = e.CurrentValue;
+		|                OneScriptForms.Event = ClItemCheckEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.ItemCheck);
 		|            }
 		|        }
 		|
@@ -17453,21 +17324,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = SelectedIndexChanged;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.SelectedIndexChanged;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.SelectedIndexChanged);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.SelectedIndexChanged);
 		|            }
 		|        }
 		|
@@ -17478,22 +17338,11 @@
 		|                ColumnClickEventArgs ColumnClickEventArgs1 = new ColumnClickEventArgs();
 		|                ColumnClickEventArgs1.EventString = ColumnClick;
 		|                ColumnClickEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.ColumnClick;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    ColumnClickEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    ColumnClickEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    ColumnClickEventArgs1.Parameter = null;
-		|                }
+		|                ColumnClickEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.ColumnClick);
 		|                ColumnClickEventArgs1.Column = e.Column;
-		|                OneScriptForms.EventQueue.Add(ColumnClickEventArgs1);
 		|                ClColumnClickEventArgs ClColumnClickEventArgs1 = new ClColumnClickEventArgs(ColumnClickEventArgs1);
+		|                OneScriptForms.Event = ClColumnClickEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.ColumnClick);
 		|            }
 		|            if (!AllowSorting)
 		|            {
@@ -17530,26 +17379,14 @@
 		|                LabelEditEventArgs LabelEditEventArgs1 = new LabelEditEventArgs();
 		|                LabelEditEventArgs1.EventString = AfterLabelEdit;
 		|                LabelEditEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.AfterLabelEdit;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    LabelEditEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    LabelEditEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    LabelEditEventArgs1.Parameter = null;
-		|                }
-		|                LabelEditEventArgs1.Type = ""AfterLabelEdit"";
-		|                LabelEditEventArgs1.CancelEdit = false;
+		|                LabelEditEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.AfterLabelEdit);
+		|                LabelEditEventArgs1.CancelEdit = e.CancelEdit;
 		|                LabelEditEventArgs1.Label = e.Label;
 		|                LabelEditEventArgs1.Item = e.Item;
-		|                OneScriptForms.EventQueue.Add(LabelEditEventArgs1);
 		|                ClLabelEditEventArgs ClLabelEditEventArgs1 = new ClLabelEditEventArgs(LabelEditEventArgs1);
-		|                e.CancelEdit = true;
+		|                OneScriptForms.Event = ClLabelEditEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.AfterLabelEdit);
+		|                e.CancelEdit = LabelEditEventArgs1.CancelEdit;
 		|            }
 		|        }
 		|
@@ -17864,8 +17701,18 @@
 		|            }
 		|            else //(sortType == 0)// text
 		|            {
-		|                string str1 = Convert.ToString(Item1.SubItems[col].Text);
-		|                string str2 = Convert.ToString(Item2.SubItems[col].Text);
+		|                string str1 = null;
+		|                string str2 = null;
+		|                try
+		|                {
+		|                    str1 = Convert.ToString(Item1.SubItems[col].Text);
+		|                }
+		|                catch { return num; }
+		|                try
+		|                {
+		|                    str2 = Convert.ToString(Item2.SubItems[col].Text);
+		|                }
+		|                catch { return num; }
 		|                if (str1 == null && str2 == null)
 		|                {
 		|                    num = 0;
@@ -17892,48 +17739,6 @@
 		|                return checked(-num);
 		|            }
 		|            return num;
-		|        }
-		|    }//endClass
-		|}//endnamespace
-		|";
-		ТекстДокХХХ = Новый ТекстовыйДокумент;
-		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
-		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
-	ИначеЕсли ИмяФайлаCs = "ContextMenuPopupEventArgs" Тогда
-		СтрВыгрузки = СтрВыгрузки + 
-		"namespace osf
-		|{
-		|    public class ContextMenuPopupEventArgs : EventArgs
-		|    {
-		|        public new ClContextMenuPopupEventArgs dll_obj;
-		|        public osf.Point Point;
-		|
-		|        public override bool PostEvent()
-		|        {
-		|            if (Sender.GetType() == typeof(osf.MenuNotifyIcon))
-		|            {
-		|                MenuNotifyIcon MenuNotifyIcon1 = (MenuNotifyIcon)Sender;
-		|                foreach (MenuItem item in MenuNotifyIcon1.MenuItems)
-		|                {
-		|                    item.Visible = item.M_VisibleSaveState;
-		|                }
-		|                MenuNotifyIcon1.M_MenuNotifyIcon.Popup -= MenuNotifyIcon1.M_ContextMenu_Popup;
-		|                MenuNotifyIcon1.Show((System.Windows.Forms.Control)MenuNotifyIcon1.M_MenuNotifyIcon.SourceControl, Point.M_Point);
-		|                MenuNotifyIcon1.M_MenuNotifyIcon.Popup += MenuNotifyIcon1.M_ContextMenu_Popup;
-		|
-		|            }
-		|            else
-		|            {
-		|                ContextMenu ContextMenu1 = (ContextMenu)Sender;
-		|                foreach (MenuItem item in ContextMenu1.MenuItems)
-		|                {
-		|                    item.Visible = item.M_VisibleSaveState;
-		|                }
-		|                ContextMenu1.M_ContextMenu.Popup -= ContextMenu1.M_ContextMenu_Popup;
-		|                ContextMenu1.Show((System.Windows.Forms.Control)ContextMenu1.M_ContextMenu.SourceControl, Point.M_Point);
-		|                ContextMenu1.M_ContextMenu.Popup += ContextMenu1.M_ContextMenu_Popup;
-		|            }
-		|            return true;
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -18325,21 +18130,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = M_SelectedIndexChanged;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.SelectedIndexChanged;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.SelectedIndexChanged);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.SelectedIndexChanged);
 		|            }
 		|        }
 		|
@@ -18855,21 +18649,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = M_SelectedIndexChanged;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.SelectedIndexChanged;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.SelectedIndexChanged);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.SelectedIndexChanged);
 		|            }
 		|        }
 		|
@@ -19271,7 +19054,6 @@
 		|    {
 		|        public string ValueChanged;
 		|        public string Scroll;
-		|        public ClArrayList ManagedProperties = new ClArrayList();
 		|        public dynamic v_h_ScrollBar;
 		|
 		|        public System.Windows.Forms.ScrollBar M_ScrollBar
@@ -19295,21 +19077,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = ValueChanged;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.ValueChanged;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.ValueChanged);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.ValueChanged);
 		|            }
 		|        }
 		|
@@ -19320,27 +19091,14 @@
 		|                ScrollEventArgs ScrollEventArgs1 = new ScrollEventArgs();
 		|                ScrollEventArgs1.EventString = Scroll;
 		|                ScrollEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Scroll;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    ScrollEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    ScrollEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    ScrollEventArgs1.Parameter = null;
-		|                }
+		|                ScrollEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Scroll);
 		|                ScrollEventArgs1.OldValue = e.OldValue;
 		|                ScrollEventArgs1.NewValue = e.NewValue;
 		|                ScrollEventArgs1.ScrollOrientation = (int)e.ScrollOrientation;
 		|                ScrollEventArgs1.EventType = (int)e.Type;
-		|                OneScriptForms.EventQueue.Add(ScrollEventArgs1);
 		|                ClScrollEventArgs ClScrollEventArgs1 = new ClScrollEventArgs(ScrollEventArgs1);
-		|
-		|                ScrollBarManagedProperties();
+		|                OneScriptForms.Event = ClScrollEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Scroll);
 		|            }
 		|        }
 		|
@@ -19390,64 +19148,7 @@
 		|            set
 		|            {
 		|                M_ScrollBar.Value = value;
-		|                ScrollBarManagedProperties();
 		|                System.Windows.Forms.Application.DoEvents();
-		|            }
-		|        }
-		|
-		|        public void ScrollBarManagedProperties()
-		|        {
-		|            if (ManagedProperties.Count > 0)
-		|            {
-		|                foreach (ClManagedProperty ClManagedProperty1 in ManagedProperties.Base_obj)
-		|                {
-		|                    object obj1 = ClManagedProperty1.ManagedObject;
-		|                    string prop1 = """";
-		|                    float ratio1 = 1.0f;
-		|                    if (ClManagedProperty1.Ratio == null)
-		|                    {
-		|                    }
-		|                    else
-		|                    {
-		|                        ratio1 = Convert.ToSingle(ClManagedProperty1.Ratio.AsNumber());
-		|                    }
-		|                    System.Reflection.PropertyInfo[] myPropertyInfo;
-		|                    myPropertyInfo = obj1.GetType().GetProperties();
-		|                    for (int i = 0; i < myPropertyInfo.Length; i++)
-		|                    {
-		|                        System.Collections.Generic.IEnumerable<System.Reflection.CustomAttributeData> CustomAttributeData1 =
-		|                            myPropertyInfo[i].CustomAttributes;
-		|                        foreach (System.Reflection.CustomAttributeData CustomAttribute1 in CustomAttributeData1)
-		|                        {
-		|                            string quote = ""\"""";
-		|                            string text = CustomAttribute1.ToString();
-		|                            if (text.Contains(""[ScriptEngine.Machine.Contexts.ContextPropertyAttribute("" + quote))
-		|                            {
-		|                                text = text.Replace(""[ScriptEngine.Machine.Contexts.ContextPropertyAttribute("" + quote, """");
-		|                                text = text.Replace(quote + "", "" + quote, "" "");
-		|                                text = text.Replace(quote + "")]"", """");
-		|                                string[] stringSeparators = new string[] { };
-		|                                string[] result = text.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries);
-		|                                if (ClManagedProperty1.ManagedProperty == result[0])
-		|                                {
-		|                                    prop1 = result[1];
-		|                                    break;
-		|                                }
-		|                            }
-		|                        }
-		|                    }
-		|                    System.Type Type1 = obj1.GetType();
-		|                    float _Value = Convert.ToSingle(v_h_ScrollBar.Value);
-		|                    int res = Convert.ToInt32(ratio1 * _Value);
-		|                    if (Type1.GetProperty(prop1).PropertyType.ToString() != ""System.String"")
-		|                    {
-		|                        Type1.GetProperty(prop1).SetValue(obj1, res);
-		|                    }
-		|                    else
-		|                    {
-		|                        Type1.GetProperty(prop1).SetValue(obj1, res.ToString());
-		|                    }
-		|                }
 		|            }
 		|        }
 		|    }//endClass
@@ -19572,20 +19273,17 @@
 		|        public new ClMenuItem dll_obj;
 		|        public string Name;
 		|        public string Click;
-		|        public string Popup;
 		|        public bool M_VisibleSaveState;
 		|        public MenuItemEx M_MenuItem;
 		|
-		|        public MenuItem(string text = null, string click = null, System.Windows.Forms.Shortcut shortcut = System.Windows.Forms.Shortcut.None)
+		|        public MenuItem(string text = null, string click = """", System.Windows.Forms.Shortcut shortcut = System.Windows.Forms.Shortcut.None)
 		|        {
 		|            M_MenuItem = new MenuItemEx();
 		|            M_MenuItem.M_Object = this;
 		|            base.M_Menu = M_MenuItem;
 		|            M_MenuItem.Click += M_MenuItem_Click;
-		|            M_MenuItem.Popup += M_MenuItem_Popup;
 		|            Name = """";
 		|            Click = click;
-		|            Popup = """";
 		|            M_VisibleSaveState = false;
 		|            M_MenuItem.Text = text;
 		|            M_MenuItem.Shortcut = shortcut;
@@ -19597,10 +19295,8 @@
 		|            M_MenuItem.M_Object = this;
 		|            base.M_Menu = M_MenuItem;
 		|            M_MenuItem.Click += M_MenuItem_Click;
-		|            M_MenuItem.Popup += M_MenuItem_Popup;
 		|            Name = """";
 		|            Click = """";
-		|            Popup = """";
 		|            M_VisibleSaveState = false;
 		|        }
 		|
@@ -19610,10 +19306,8 @@
 		|            M_MenuItem.M_Object = this;
 		|            base.M_Menu = M_MenuItem;
 		|            M_MenuItem.Click += M_MenuItem_Click;
-		|            M_MenuItem.Popup += M_MenuItem_Popup;
 		|            Name = """";
 		|            Click = """";
-		|            Popup = """";
 		|            M_VisibleSaveState = false;
 		|        }
 		|
@@ -19716,46 +19410,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Click;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Click;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Click);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
-		|            }
-		|        }
-		|
-		|        private void M_MenuItem_Popup(object sender, System.EventArgs e)
-		|        {
-		|            if (Popup.Length > 0)
-		|            {
-		|                EventArgs EventArgs1 = new EventArgs();
-		|                EventArgs1.EventString = Popup;
-		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Popup;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
-		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Click);
 		|            }
 		|        }
 		|    }//endClass
@@ -19776,7 +19434,6 @@
 		|    public class ContextMenu : Menu
 		|    {
 		|        public new ClContextMenu dll_obj;
-		|        public string Popup;
 		|        public ContextMenuEx M_ContextMenu;
 		|
 		|        public ContextMenu()
@@ -19784,8 +19441,6 @@
 		|            M_ContextMenu = new ContextMenuEx();
 		|            M_ContextMenu.M_Object = this;
 		|            base.M_Menu = M_ContextMenu;
-		|            M_ContextMenu.Popup += M_ContextMenu_Popup;
-		|            Popup = """";
 		|        }
 		|
 		|        public ContextMenu(osf.ContextMenu p1)
@@ -19793,8 +19448,6 @@
 		|            M_ContextMenu = p1.M_ContextMenu;
 		|            M_ContextMenu.M_Object = this;
 		|            base.M_Menu = M_ContextMenu;
-		|            M_ContextMenu.Popup += M_ContextMenu_Popup;
-		|            Popup = """";
 		|        }
 		|
 		|        public ContextMenu(System.Windows.Forms.ContextMenu p1)
@@ -19802,8 +19455,6 @@
 		|            M_ContextMenu = (ContextMenuEx)p1;
 		|            M_ContextMenu.M_Object = this;
 		|            base.M_Menu = M_ContextMenu;
-		|            M_ContextMenu.Popup += M_ContextMenu_Popup;
-		|            Popup = """";
 		|        }
 		|
 		|        public void Show(System.Windows.Forms.Control p1, System.Drawing.Point p2)
@@ -19814,38 +19465,6 @@
 		|        public osf.Control SourceControl
 		|        {
 		|            get { return (osf.Control)((dynamic)M_ContextMenu.SourceControl).M_Object; }
-		|        }
-		|
-		|        public void M_ContextMenu_Popup(object sender, System.EventArgs e)
-		|        {
-		|            if (M_ContextMenu.SourceControl != null)
-		|            {
-		|                foreach (MenuItemEx itemEx in M_ContextMenu.MenuItems)
-		|                {
-		|                    MenuItem item = (MenuItem)itemEx.M_Object;
-		|                    item.M_VisibleSaveState = item.Visible;
-		|                    item.M_MenuItem.Visible = false;
-		|                }
-		|                ContextMenuPopupEventArgs ContextMenuPopupEventArgs1 = new ContextMenuPopupEventArgs();
-		|                ContextMenuPopupEventArgs1.EventString = Popup;
-		|                ContextMenuPopupEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Popup;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    ContextMenuPopupEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    ContextMenuPopupEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    ContextMenuPopupEventArgs1.Parameter = null;
-		|                }
-		|                ContextMenuPopupEventArgs1.Point = new Point(M_ContextMenu.SourceControl.PointToClient(System.Windows.Forms.Control.MousePosition));
-		|                OneScriptForms.EventQueue.Add(ContextMenuPopupEventArgs1);
-		|                ClContextMenuPopupEventArgs ClContextMenuPopupEventArgs1 = new ClContextMenuPopupEventArgs(ContextMenuPopupEventArgs1);
-		|            }
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -20897,19 +20516,6 @@
 		|            CloseReason = (int)p1;
 		|            Cancel = p2;
 		|        }
-		|
-		|        public override bool PostEvent()
-		|        {
-		|            if (Cancel)
-		|            {
-		|                return true;
-		|            }
-		|            Form Form1 = (Form)Sender;
-		|            Form1.M_Form.FormClosing -= Form1.M_Form_FormClosing;
-		|            Form1.Close();
-		|            Form1.M_Form.FormClosing += Form1.M_Form_FormClosing;
-		|            return true;
-		|        }
 		|    }//endClass
 		|}//endnamespace
 		|";
@@ -20957,16 +20563,6 @@
 		|        public int CurrentValue = (int)System.Windows.Forms.CheckState.Unchecked;
 		|        public int Index = -1;
 		|        public int NewValue = (int)System.Windows.Forms.CheckState.Unchecked;
-		|
-		|        public override bool PostEvent()
-		|        {
-		|            ListView ListView1 = (ListView)Sender;
-		|            ListViewEx ListViewEx1 = ListView1.M_ListView;
-		|            ListViewEx1.ItemCheck -= ListView1.M_ListView_ItemCheck;
-		|            ListViewEx1.Items[Index].Checked = (uint)NewValue > 0U;
-		|            ListViewEx1.ItemCheck += ListView1.M_ListView_ItemCheck;
-		|            return true;
-		|        }
 		|    }//endClass
 		|}//endnamespace
 		|";
@@ -21020,28 +20616,6 @@
 		|        public bool CancelEdit = false;
 		|        public int Item = -1;
 		|        public string Label = """";
-		|        public string Type = ""BeforeLabelEdit"";
-		|
-		|        public override bool PostEvent()
-		|        {
-		|            if (CancelEdit)
-		|            {
-		|                return true;
-		|            }
-		|            ListView ListView1 = (ListView)Sender;
-		|            ListViewEx ListViewEx1 = ListView1.M_ListView;
-		|            if (Type == ""BeforeLabelEdit"")
-		|            {
-		|                ListViewEx1.BeforeLabelEdit -= ListView1.M_ListView_BeforeLabelEdit;
-		|                ListViewEx1.Items[Item].BeginEdit();
-		|                ListViewEx1.BeforeLabelEdit += ListView1.M_ListView_BeforeLabelEdit;
-		|            }
-		|            if (Type == ""AfterLabelEdit"")
-		|            {
-		|                ListViewEx1.Items[Item].Text = Label;
-		|            }
-		|            return true;
-		|        }
 		|    }//endClass
 		|}//endnamespace
 		|";
@@ -21151,18 +20725,6 @@
 		|        public string Label;
 		|        public string Label_old;
 		|        public osf.TreeNode Node;
-		|		
-		|        public override bool PostEvent()
-		|        {
-		|            if (CancelEdit)
-		|            {
-		|                Node.Text = Label_old;
-		|                Node.BeginEdit();
-		|                return true;
-		|            }
-		|            Node.M_TreeNode.EndEdit(false);
-		|            return true;
-		|        }
 		|    }//endClass
 		|}//endnamespace
 		|";
@@ -21193,19 +20755,6 @@
 		|        public new ClTreeViewCancelEventArgs dll_obj;
 		|        public int Action = (int)System.Windows.Forms.TreeViewAction.Unknown;
 		|        public osf.TreeNode Node = null;
-		|
-		|        public override bool PostEvent()
-		|        {
-		|            if (Cancel)
-		|            {
-		|                return true;
-		|            }
-		|            TreeView TreeView1 = (TreeView)Sender;
-		|            TreeView1.M_TreeView.BeforeExpand -= TreeView1.M_TreeView_BeforeExpand;
-		|            Node.Expand();
-		|            TreeView1.M_TreeView.BeforeExpand += TreeView1.M_TreeView_BeforeExpand;
-		|            return true;
-		|        }
 		|    }//endClass
 		|}//endnamespace
 		|";
@@ -22074,71 +21623,6 @@
 		|        {
 		|            Sender = null;
 		|            Parameter = null;
-		|        }
-		|
-		|        public virtual bool PostEvent()
-		|        {
-		|            if (Sender.GetType() == typeof(osf.ComboBox))
-		|            {
-		|                string s = """";
-		|                osf.ComboBox ComboBox1 = (osf.ComboBox)Sender;
-		|                if (ComboBox1.DrawMode != 0)
-		|                {
-		|                    dynamic item = ComboBox1.Items[ComboBox1.SelectedIndex];
-		|                    if (Sender.GetType() == typeof(osf.ComboBox))
-		|                    {
-		|                        string ObjType = item.GetType().ToString();
-		|                        if (ObjType == ""System.Data.DataRowView"")
-		|                        {
-		|                            System.Data.DataRowView drv = (System.Data.DataRowView)item;
-		|                            try
-		|                            {
-		|                                dynamic var1 = drv.Row[ComboBox1.DisplayMember];
-		|                                System.Type Type1 = var1.GetType();
-		|                                s = Type1.GetCustomAttribute<ContextClassAttribute>().GetName();
-		|                            }
-		|                            catch
-		|                            {
-		|                                if (drv.Row[ComboBox1.DisplayMember].GetType() == typeof(System.Boolean))
-		|                                {
-		|                                    ScriptEngine.Machine.Values.BooleanValue Bool1;
-		|                                    if ((System.Boolean)drv.Row[ComboBox1.DisplayMember])
-		|                                    {
-		|                                        Bool1 = ScriptEngine.Machine.Values.BooleanValue.True;
-		|                                    }
-		|                                    else
-		|                                    {
-		|                                        Bool1 = ScriptEngine.Machine.Values.BooleanValue.False;
-		|                                    }
-		|                                    s = Bool1.ToString();
-		|                                }
-		|                                else
-		|                                {
-		|                                    s = drv.Row[ComboBox1.DisplayMember].ToString();
-		|                                }
-		|                            }
-		|                        }
-		|                    }
-		|                    else if (Sender.GetType() == typeof(osf.ListItem))
-		|                    {
-		|
-		|                    }
-		|                    if (s == """")
-		|                    {
-		|                        try
-		|                        {
-		|                            System.Type Type1 = item.GetType();
-		|                            s = Type1.GetCustomAttribute<ContextClassAttribute>().GetName();
-		|                        }
-		|                        catch
-		|                        {
-		|                            s = item.ToString();
-		|                        }
-		|                    }
-		|                    ComboBox1.Text = s;
-		|                }
-		|            }
-		|            return true;
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -23311,24 +22795,13 @@
 		|                FormClosingEventArgs FormClosingEventArgs1 = new FormClosingEventArgs(e.CloseReason, e.Cancel);
 		|                FormClosingEventArgs1.EventString = Closing;
 		|                FormClosingEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.FormClosing;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    FormClosingEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    FormClosingEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    FormClosingEventArgs1.Parameter = null;
-		|                }
+		|                FormClosingEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.FormClosing);
 		|                FormClosingEventArgs1.Cancel = e.Cancel;
 		|                FormClosingEventArgs1.CloseReason = (int)e.CloseReason;
-		|                OneScriptForms.EventQueue.Add(FormClosingEventArgs1);
 		|                ClFormClosingEventArgs ClFormClosingEventArgs1 = new ClFormClosingEventArgs(FormClosingEventArgs1);
-		|                e.Cancel = true;
+		|                OneScriptForms.Event = ClFormClosingEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.FormClosing);
+		|                e.Cancel = FormClosingEventArgs1.Cancel;
 		|            }
 		|        }
 		|		
@@ -23339,21 +22812,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Activated;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Activated;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Activated);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Activated);
 		|            }
 		|        }
 		|		
@@ -23364,24 +22826,12 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Deactivate;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Deactivate;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Deactivate);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Deactivate);
 		|            }
 		|        }
-		
 		|
 		|        private void M_Form_Load(object sender, System.EventArgs e)
 		|        {
@@ -23390,52 +22840,35 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Load;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Load;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Load);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Load);
 		|            }
 		|        }
 		|
 		|        private void M_Form_FormClosed(object sender, FormClosedEventArgs e)
 		|        {
-		|            EventArgs EventArgs1 = new EventArgs();
-		|            EventArgs1.EventString = Closed;
-		|            EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Closed;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|            OneScriptForms.EventQueue.Add(EventArgs1);
-		|            ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
-		|            if (sender == OneScriptForms.FirstForm.Base_obj.M_Form)
+		|            if (Closed.Length > 0)
+		|            {
+		|                EventArgs EventArgs1 = new EventArgs();
+		|                EventArgs1.EventString = Closed;
+		|                EventArgs1.Sender = this;
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.FormClosed);
+		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.FormClosed);
+		|            }
+		|
+		|            if (OneScriptForms.useMainForm && sender == OneScriptForms.FirstForm.Base_obj.M_Form)
 		|            {
 		|                OneScriptForms.goOn = false;
-		|                EventArgs EventArgs2 = new EventArgs();
-		|                EventArgs2.EventString = ""Sleep(20)"";
-		|                EventArgs2.Sender = this;
-		|                OneScriptForms.EventQueue.Add(EventArgs2);
-		|                ClEventArgs ClEventArgs2 = new ClEventArgs(EventArgs2);
+		|            }
+		|
+		|            OneScriptForms.formsCollection.Remove(((dynamic)sender).M_Object.dll_obj);
+		|            if (OneScriptForms.formsCollection.CountForm == 0)
+		|            {
+		|                OneScriptForms.goOn = false;
 		|            }
 		|        }
 		|
@@ -23746,19 +23179,7 @@
 		|
 		|        public int ShowDialog()
 		|        {
-		|            System.Windows.Forms.Application.DoEvents();
-		|            System.Windows.Forms.DialogResult DialogResult1 = System.Windows.Forms.DialogResult.None;
-		|            var thread = new Thread(() =>
-		|            {
-		|                DialogResult1 = (System.Windows.Forms.DialogResult)M_Form.ShowDialog();
-		|            }
-		|            );
-		|            thread.IsBackground = true;
-		|            thread.SetApartmentState(ApartmentState.STA);
-		|            thread.Start();
-		|            thread.Join();
-		|
-		|            return (int)DialogResult1;
+		|            return (int)(System.Windows.Forms.DialogResult)M_Form.ShowDialog();
 		|        }
 		|
 		|        public bool ShowInTaskbar
@@ -23900,21 +23321,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = DoubleClick;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.DoubleClick;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.DoubleClick);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.DoubleClick);
 		|            }
 		|        }
 		|        
@@ -23925,26 +23335,15 @@
 		|                KeyEventArgs KeyEventArgs1 = new KeyEventArgs();
 		|                KeyEventArgs1.EventString = KeyUp;
 		|                KeyEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.KeyUp;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    KeyEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    KeyEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    KeyEventArgs1.Parameter = null;
-		|                }
+		|                KeyEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.KeyUp);
 		|                KeyEventArgs1.Alt = e.Alt;
 		|                KeyEventArgs1.Control = e.Control;
 		|                KeyEventArgs1.KeyCode = (int)e.KeyCode;
 		|                KeyEventArgs1.Modifiers = (int)e.Modifiers;
 		|                KeyEventArgs1.Shift = e.Shift;
-		|                OneScriptForms.EventQueue.Add(KeyEventArgs1);
 		|                ClKeyEventArgs ClKeyEventArgs1 = new ClKeyEventArgs(KeyEventArgs1);
+		|                OneScriptForms.Event = ClKeyEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.KeyUp);
 		|            }
 		|        }
 		|        
@@ -23955,26 +23354,15 @@
 		|                KeyEventArgs KeyEventArgs1 = new KeyEventArgs();
 		|                KeyEventArgs1.EventString = KeyDown;
 		|                KeyEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.KeyDown;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    KeyEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    KeyEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    KeyEventArgs1.Parameter = null;
-		|                }
+		|                KeyEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.KeyDown);
 		|                KeyEventArgs1.Alt = e.Alt;
 		|                KeyEventArgs1.Control = e.Control;
 		|                KeyEventArgs1.KeyCode = (int)e.KeyCode;
 		|                KeyEventArgs1.Modifiers = (int)e.Modifiers;
 		|                KeyEventArgs1.Shift = e.Shift;
-		|                OneScriptForms.EventQueue.Add(KeyEventArgs1);
 		|                ClKeyEventArgs ClKeyEventArgs1 = new ClKeyEventArgs(KeyEventArgs1);
+		|                OneScriptForms.Event = ClKeyEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.KeyDown);
 		|            }
 		|        }
 		|        
@@ -23985,22 +23373,11 @@
 		|                KeyPressEventArgs KeyPressEventArgs1 = new KeyPressEventArgs();
 		|                KeyPressEventArgs1.EventString = KeyPress;
 		|                KeyPressEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.KeyPress;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    KeyPressEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    KeyPressEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    KeyPressEventArgs1.Parameter = null;
-		|                }
+		|                KeyPressEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.KeyPress);
 		|                KeyPressEventArgs1.KeyChar = Convert.ToString(e.KeyChar);
-		|                OneScriptForms.EventQueue.Add(KeyPressEventArgs1);
 		|                ClKeyPressEventArgs ClKeyPressEventArgs1 = new ClKeyPressEventArgs(KeyPressEventArgs1);
+		|                OneScriptForms.Event = ClKeyPressEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.KeyPress);
 		|            }
 		|        }
 		|        
@@ -24011,21 +23388,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = MouseEnter;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.MouseEnter;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.MouseEnter);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.MouseEnter);
 		|            }
 		|        }
 		|        
@@ -24036,21 +23402,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = MouseLeave;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.MouseLeave;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.MouseLeave);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.MouseLeave);
 		|            }
 		|        }
 		|        
@@ -24061,21 +23416,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Click;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Click;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Click);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Click);
 		|            }
 		|        }
 		|        
@@ -24086,21 +23430,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = LocationChanged;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.LocationChanged;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.LocationChanged);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.LocationChanged);
 		|            }
 		|        }
 		|        
@@ -24111,21 +23444,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Enter;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Enter;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Enter);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Enter);
 		|            }
 		|        }
 		|        
@@ -24136,21 +23458,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = MouseHover;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.MouseHover;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.MouseHover);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.MouseHover);
 		|            }
 		|        }
 		|        
@@ -24161,25 +23472,14 @@
 		|                MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
 		|                MouseEventArgs1.EventString = MouseDown;
 		|                MouseEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.MouseDown;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    MouseEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    MouseEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    MouseEventArgs1.Parameter = null;
-		|                }
+		|                MouseEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.MouseDown);
 		|                MouseEventArgs1.Clicks = e.Clicks;
 		|                MouseEventArgs1.Button = (int)e.Button;
 		|                MouseEventArgs1.X = e.X;
 		|                MouseEventArgs1.Y = e.Y;
-		|                OneScriptForms.EventQueue.Add(MouseEventArgs1);
 		|                ClMouseEventArgs ClMouseEventArgs1 = new ClMouseEventArgs(MouseEventArgs1);
+		|                OneScriptForms.Event = ClMouseEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.MouseDown);
 		|            }
 		|        }
 		|        
@@ -24190,25 +23490,14 @@
 		|                MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
 		|                MouseEventArgs1.EventString = MouseUp;
 		|                MouseEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.MouseUp;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    MouseEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    MouseEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    MouseEventArgs1.Parameter = null;
-		|                }
+		|                MouseEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.MouseUp);
 		|                MouseEventArgs1.Clicks = e.Clicks;
 		|                MouseEventArgs1.Button = (int)e.Button;
 		|                MouseEventArgs1.X = e.X;
 		|                MouseEventArgs1.Y = e.Y;
-		|                OneScriptForms.EventQueue.Add(MouseEventArgs1);
 		|                ClMouseEventArgs ClMouseEventArgs1 = new ClMouseEventArgs(MouseEventArgs1);
+		|                OneScriptForms.Event = ClMouseEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.MouseUp);
 		|            }
 		|        }
 		|        
@@ -24219,21 +23508,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Move;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Move;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Move);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Move);
 		|            }
 		|        }
 		|        
@@ -24244,25 +23522,14 @@
 		|                MouseEventArgs MouseEventArgs1 = new MouseEventArgs();
 		|                MouseEventArgs1.EventString = MouseMove;
 		|                MouseEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.MouseMove;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    MouseEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    MouseEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    MouseEventArgs1.Parameter = null;
-		|                }
+		|                MouseEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.MouseMove);
 		|                MouseEventArgs1.Clicks = e.Clicks;
 		|                MouseEventArgs1.Button = (int)e.Button;
 		|                MouseEventArgs1.X = e.X;
 		|                MouseEventArgs1.Y = e.Y;
-		|                OneScriptForms.EventQueue.Add(MouseEventArgs1);
 		|                ClMouseEventArgs ClMouseEventArgs1 = new ClMouseEventArgs(MouseEventArgs1);
+		|                OneScriptForms.Event = ClMouseEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.MouseMove);
 		|            }
 		|        }
 		|        
@@ -24273,23 +23540,12 @@
 		|                PaintEventArgs PaintEventArgs1 = new PaintEventArgs();
 		|                PaintEventArgs1.EventString = Paint;
 		|                PaintEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Paint;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    PaintEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    PaintEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    PaintEventArgs1.Parameter = null;
-		|                }
-		|                PaintEventArgs1.Graphics = new Graphics(M_Control.CreateGraphics());
+		|                PaintEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Paint);
+		|                PaintEventArgs1.Graphics = new Graphics(e.Graphics);
 		|                PaintEventArgs1.ClipRectangle = new Rectangle(e.ClipRectangle);
-		|                OneScriptForms.EventQueue.Add(PaintEventArgs1);
 		|                ClPaintEventArgs ClPaintEventArgs1 = new ClPaintEventArgs(PaintEventArgs1);
+		|                OneScriptForms.Event = ClPaintEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Paint);
 		|            }
 		|        }
 		|        
@@ -24300,21 +23556,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = LostFocus;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.LostFocus;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.LostFocus);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.LostFocus);
 		|            }
 		|        }
 		|        
@@ -24325,21 +23570,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = Leave;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.Leave;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Leave);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Leave);
 		|            }
 		|        }
 		|        
@@ -24350,21 +23584,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = SizeChanged;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.SizeChanged;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.SizeChanged);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.SizeChanged);
 		|            }
 		|        }
 		|        
@@ -24375,21 +23598,10 @@
 		|                EventArgs EventArgs1 = new EventArgs();
 		|                EventArgs1.EventString = TextChanged;
 		|                EventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.TextChanged;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    EventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    EventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    EventArgs1.Parameter = null;
-		|                }
-		|                OneScriptForms.EventQueue.Add(EventArgs1);
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.TextChanged);
 		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.TextChanged);
 		|            }
 		|        }
 		|        
@@ -24400,22 +23612,11 @@
 		|                ControlEventArgs ControlEventArgs1 = new ControlEventArgs();
 		|                ControlEventArgs1.EventString = ControlAdded;
 		|                ControlEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.ControlAdded;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    ControlEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    ControlEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    ControlEventArgs1.Parameter = null;
-		|                }
+		|                ControlEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.ControlAdded);
 		|                ControlEventArgs1.Control = e.Control;
-		|                OneScriptForms.EventQueue.Add(ControlEventArgs1);
 		|                ClControlEventArgs ClControlEventArgs1 = new ClControlEventArgs(ControlEventArgs1);
+		|                OneScriptForms.Event = ClControlEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.ControlAdded);
 		|            }
 		|        }
 		|        
@@ -24426,22 +23627,11 @@
 		|                ControlEventArgs ControlEventArgs1 = new ControlEventArgs();
 		|                ControlEventArgs1.EventString = ControlRemoved;
 		|                ControlEventArgs1.Sender = this;
-		|                dynamic event1 = ((dynamic)this).dll_obj.ControlRemoved;
-		|                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-		|                {
-		|                    ControlEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-		|                }
-		|                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-		|                {
-		|                    ControlEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-		|                }
-		|                else
-		|                {
-		|                    ControlEventArgs1.Parameter = null;
-		|                }
+		|                ControlEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.ControlRemoved);
 		|                ControlEventArgs1.Control = e.Control;
-		|                OneScriptForms.EventQueue.Add(ControlEventArgs1);
 		|                ClControlEventArgs ClControlEventArgs1 = new ClControlEventArgs(ControlEventArgs1);
+		|                OneScriptForms.Event = ClControlEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.ControlRemoved);
 		|            }
 		|        }
 		|
@@ -25193,9 +24383,9 @@
 		Если ВыбранныеФайлы[А].Имя = "ExtractIconClass.cs" Тогда
 			Продолжить;
 		КонецЕсли;
-		// // // Если ВыбранныеФайлы[А].Имя <> "Control.cs" Тогда
-			// // // Продолжить;
-		// // // КонецЕсли;
+		Если ВыбранныеФайлы[А].Имя = "FormsCollection.cs" Тогда
+			Продолжить;
+		КонецЕсли;
 		
 		ТекстДок = Новый ТекстовыйДокумент;
 		ТекстДок.Прочитать(ВыбранныеФайлы[А].ПолноеИмя);

@@ -10,15 +10,6 @@ namespace osf
         public int Index = -1;
         public int NewValue = (int)System.Windows.Forms.CheckState.Unchecked;
 
-        public override bool PostEvent()
-        {
-            ListView ListView1 = (ListView)Sender;
-            ListViewEx ListViewEx1 = ListView1.M_ListView;
-            ListViewEx1.ItemCheck -= ListView1.M_ListView_ItemCheck;
-            ListViewEx1.Items[Index].Checked = (uint)NewValue > 0U;
-            ListViewEx1.ItemCheck += ListView1.M_ListView_ItemCheck;
-            return true;
-        }
     }
 
     [ContextClass ("КлЭлементПомеченАрг", "ClItemCheckEventArgs")]

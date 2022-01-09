@@ -13,15 +13,12 @@ namespace osf
     {
         public new ClContextMenu dll_obj;
         public ContextMenuEx M_ContextMenu;
-        public string Popup;
 
         public ContextMenu()
         {
             M_ContextMenu = new ContextMenuEx();
             M_ContextMenu.M_Object = this;
             base.M_Menu = M_ContextMenu;
-            M_ContextMenu.Popup += M_ContextMenu_Popup;
-            Popup = "";
         }
 
         public ContextMenu(osf.ContextMenu p1)
@@ -29,8 +26,6 @@ namespace osf
             M_ContextMenu = p1.M_ContextMenu;
             M_ContextMenu.M_Object = this;
             base.M_Menu = M_ContextMenu;
-            M_ContextMenu.Popup += M_ContextMenu_Popup;
-            Popup = "";
         }
 
         public ContextMenu(System.Windows.Forms.ContextMenu p1)
@@ -38,45 +33,11 @@ namespace osf
             M_ContextMenu = (ContextMenuEx)p1;
             M_ContextMenu.M_Object = this;
             base.M_Menu = M_ContextMenu;
-            M_ContextMenu.Popup += M_ContextMenu_Popup;
-            Popup = "";
         }
 
         public osf.Control SourceControl
         {
             get { return (osf.Control)((dynamic)M_ContextMenu.SourceControl).M_Object; }
-        }
-
-        public void M_ContextMenu_Popup(object sender, System.EventArgs e)
-        {
-            if (M_ContextMenu.SourceControl != null)
-            {
-                foreach (MenuItemEx itemEx in M_ContextMenu.MenuItems)
-                {
-                    MenuItem item = (MenuItem)itemEx.M_Object;
-                    item.M_VisibleSaveState = item.Visible;
-                    item.M_MenuItem.Visible = false;
-                }
-                ContextMenuPopupEventArgs ContextMenuPopupEventArgs1 = new ContextMenuPopupEventArgs();
-                ContextMenuPopupEventArgs1.EventString = Popup;
-                ContextMenuPopupEventArgs1.Sender = this;
-                dynamic event1 = ((dynamic)this).dll_obj.Popup;
-                if (event1.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    ContextMenuPopupEventArgs1.Parameter = ((osf.ClDictionaryEntry)event1).Key;
-                }
-                else if (event1.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
-                {
-                    ContextMenuPopupEventArgs1.Parameter = (ScriptEngine.HostedScript.Library.DelegateAction)event1;
-                }
-                else
-                {
-                    ContextMenuPopupEventArgs1.Parameter = null;
-                }
-                ContextMenuPopupEventArgs1.Point = new Point(M_ContextMenu.SourceControl.PointToClient(System.Windows.Forms.Control.MousePosition));
-                OneScriptForms.EventQueue.Add(ContextMenuPopupEventArgs1);
-                ClContextMenuPopupEventArgs ClContextMenuPopupEventArgs1 = new ClContextMenuPopupEventArgs(ContextMenuPopupEventArgs1);
-            }
         }
 
         public void Show(System.Windows.Forms.Control p1, System.Drawing.Point p2)
@@ -88,7 +49,6 @@ namespace osf
     [ContextClass ("КлКонтекстноеМеню", "ClContextMenu")]
     public class ClContextMenu : AutoContext<ClContextMenu>
     {
-        private IValue _Popup;
         private ClMenuItemCollection menuItems;
 
         public ClContextMenu()
@@ -113,43 +73,6 @@ namespace osf
         public IValue SourceControl
         {
             get { return OneScriptForms.RevertObj(Base_obj.SourceControl); }
-        }
-        
-        [ContextProperty("ПриПоявлении", "Popup")]
-        public IValue Popup
-        {
-            get
-            {
-                if (Base_obj.Popup.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-                {
-                    return _Popup;
-                }
-                else if (Base_obj.Popup.Contains("osf.ClDictionaryEntry"))
-                {
-                    return _Popup;
-                }
-                else
-                {
-                    return ValueFactory.Create((string)Base_obj.Popup);
-                }
-            }
-            set
-            {
-                if (value.GetType().ToString() == "ScriptEngine.HostedScript.Library.DelegateAction")
-                {
-                    _Popup = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
-                    Base_obj.Popup = "ScriptEngine.HostedScript.Library.DelegateAction" + "Popup";
-                }
-                else if (value.GetType() == typeof(osf.ClDictionaryEntry))
-                {
-                    _Popup = value;
-                    Base_obj.Popup = "osf.ClDictionaryEntry" + "Popup";
-                }
-                else
-                {
-                    Base_obj.Popup = value.AsString();
-                }
-            }
         }
         
         [ContextProperty("ЭлементыМеню", "MenuItems")]
@@ -179,6 +102,7 @@ namespace osf
                 MenuItem1.Shortcut = (int)CurrentMenuItem1.Shortcut;
                 MenuItem1.Text = CurrentMenuItem1.Text;
                 MenuItem1.MergeType = (int)CurrentMenuItem1.MergeType;
+                MenuItem1.dll_obj = CurrentMenuItem1.dll_obj;
 
                 ContextMenu1.MenuItems.Add(MenuItem1);
                 if (CurrentMenuItem1.MenuItems.Count > 0)
@@ -207,6 +131,7 @@ namespace osf
                 MenuItem1.Shortcut = (int)CurrentMenuItem1.Shortcut;
                 MenuItem1.Text = CurrentMenuItem1.Text;
                 MenuItem1.MergeType = (int)CurrentMenuItem1.MergeType;
+                MenuItem1.dll_obj = CurrentMenuItem1.dll_obj;
 
                 ContextMenu.MenuItems.Add(MenuItem1);
                 if (CurrentMenuItem1.MenuItems.Count > 0)
@@ -221,10 +146,7 @@ namespace osf
         {
             Control Control1 = (Control)((dynamic)p1).Base_obj;
             Point Point1 = new Point(Control1.ClientRectangle.X + p2.Base_obj.X, Control1.ClientRectangle.Y + p2.Base_obj.Y);
-            Point Point2 = Control1.PointToScreen(Point1);
-            Cursor Cursor1 = new Cursor();
-            Cursor1.Current.Position = Point2;
-            Base_obj.Show(Control1.M_Control, Point2.M_Point);
+            Base_obj.Show(Control1.M_Control, Point1.M_Point);
         }
         
         [ContextMethod("ПолучитьГлавноеМеню", "GetMainMenu")]

@@ -6,6 +6,7 @@ using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using ScriptEngine.HostedScript.Library;
 
 namespace osf
 {
@@ -13,6 +14,7 @@ namespace osf
     public class OneScriptForms : AutoContext<OneScriptForms>
     {
         [DllImport("user32", CharSet = CharSet.Ansi, SetLastError = true)] public static extern int WaitMessage();
+        [DllImport("user32.dll", SetLastError = true)] static extern int MessageBoxTimeout(IntPtr hwnd, String text, String title, MesBoxFlags type, Int16 wLanguageId, Int32 milliseconds);
         private static ClAnchorStyles cl_AnchorStyles = new ClAnchorStyles();
         private static ClAppearance cl_Appearance = new ClAppearance();
         private static ClBorderStyle cl_BorderStyle = new ClBorderStyle();
@@ -79,19 +81,39 @@ namespace osf
         private static ClView cl_View = new ClView();
         private static ClWatcherChangeTypes cl_WatcherChangeTypes = new ClWatcherChangeTypes();
         public static IValue Event = null;
-        public static System.Collections.ArrayList EventQueue = new System.Collections.ArrayList();
         public static string EventString = "";
         public static ClForm FirstForm = null;
+        public static FormsCollection formsCollection;
         public static bool goOn = true;
         public static DateTime gridMouseDownTime = System.DateTime.Now;// для срабатывания двойного клика в ячейке DataGridTextBoxColumn сетки данных
+        public static bool handleEvents = false;
         public static System.Collections.Hashtable hashtable = new Hashtable();
+        private static OneScriptForms instance;
         public static System.Random Random = new Random();
+        private static object syncRoot = new Object();
+        public static bool useMainForm = true;
         [DllImport("User32.dll")] static extern void mouse_event(uint dwFlags, int dx, int dy, int dwData, UIntPtr dwExtraInfo);
+
+        public static OneScriptForms getInstance()
+        {
+            if (instance == null)
+            {
+                lock (syncRoot)
+                {
+                    if (instance == null)
+                    {
+                        instance = new OneScriptForms();
+                        formsCollection = new FormsCollection();
+                    }
+                }
+            }
+            return instance;
+        }
 
         [ScriptConstructor]
         public static IRuntimeContextInstance Constructor()
         {
-            return new OneScriptForms();
+            return getInstance();
         }
         
         [ContextProperty("АргументыСобытия", "EventArgs")]
@@ -112,6 +134,19 @@ namespace osf
             get { return ((AssemblyTitleAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false)[0]).Title.ToString(); }
         }
         
+        [ContextProperty("ИспользоватьГлавнуюФорму", "UseMainForm")]
+        public bool UseMainForm
+        {
+            get { return useMainForm; }
+            set { useMainForm = value; }
+        }
+        
+        [ContextProperty("КоллекцияФорм", "FormsCollection")]
+        public FormsCollection FormsCollection
+        {
+            get { return formsCollection; }
+        }
+        
         [ContextProperty("Отправитель", "Sender")]
         public IValue Sender
         {
@@ -123,10 +158,16 @@ namespace osf
         {
             get
             {
-                PostEventProcessing();
                 return goOn;
             }
             set { goOn = value; }
+        }
+        
+        [ContextProperty("РазрешитьСобытия", "AllowEvents")]
+        public bool HandleEvents
+        {
+            get { return handleEvents; }
+            set { handleEvents = value; }
         }
         
         [ContextProperty("Сборка", "Build")]
@@ -586,6 +627,12 @@ namespace osf
             return new ClHScrollBar();
         }
 
+        [ContextMethod("Действие", "Action")]
+        public ClAction Action(IRuntimeContextInstance script, string methodName, IValue param = null)
+        {
+            return new ClAction(script, methodName, param);
+        }
+
         [ContextMethod("Дерево", "TreeView")]
         public ClTreeView TreeView()
         {
@@ -622,6 +669,24 @@ namespace osf
             return new ClSaveFileDialog();
         }
 
+        [ContextMethod("ЗапуститьОбработкуСобытий", "StartEventProcessing")]
+        public void StartEventProcessing()
+        {
+            handleEvents = true;
+            while (GoOn)
+            {
+                WaitMessage();
+                System.Windows.Forms.Application.DoEvents();
+            }
+        }
+        //Функция WaitMessage передает управление к другим потокам тогда, когда поток не имеет никаких других сообщений 
+        //в своей очереди сообщений. Функция WaitMessage приостанавливает работу потока и не возвращает управление до 
+        //тех пор, пока не будет помещено новое сообщение в очередь сообщений потока.
+        //При вызове DoEvents в коде, приложение может выполнять другие события. Например, если имеется форма, добавляющая 
+        //данные в ListBox, добавление DoEvents в код позволит форме перерисовывается при перетаскивании над ней другого окна. 
+        //Если удалить DoEvents из кода, форма не будет перерисовываться до завершения выполнения обработчика события.
+        //DoEvents передает управление Windows чтобы она выполнила обработку своих событий
+        
         [ContextMethod("Звук", "Sound")]
         public ClSound Sound()
         {
@@ -654,10 +719,9 @@ namespace osf
         }
         
         [ContextMethod("ЗначокУведомления", "NotifyIcon")]
-        public ClNotifyIcon NotifyIcon([ByRef] IVariable p1)
+        public ClNotifyIcon NotifyIcon()
         {
-            ClMenuNotifyIcon p2 = (ClMenuNotifyIcon)(p1.Value);
-            return new ClNotifyIcon(ref p2);
+            return new ClNotifyIcon();
         }
 
         [ContextMethod("Индикатор", "ProgressBar")]
@@ -839,7 +903,7 @@ namespace osf
                 if (p1.SystemType.Name == "Массив")
                 {
                     ClArrayList ClArrayList1 = new ClArrayList();
-                    ScriptEngine.HostedScript.Library.ArrayImpl ArrayImpl1 = (ScriptEngine.HostedScript.Library.ArrayImpl)p1;
+                    ArrayImpl ArrayImpl1 = (ArrayImpl)p1;
                     for (int i = 0; i < ArrayImpl1.Count(); i++)
                     {
                         ClArrayList1.Add(ArrayImpl1.Get(i));
@@ -858,12 +922,6 @@ namespace osf
         public ClMath Math()
         {
             return new ClMath();
-        }
-
-        [ContextMethod("МенюЗначкаУведомления", "MenuNotifyIcon")]
-        public ClMenuNotifyIcon MenuNotifyIcon()
-        {
-            return new ClMenuNotifyIcon();
         }
 
         [ContextMethod("МетодыОбъекта", "MethodsObj")]
@@ -931,6 +989,68 @@ namespace osf
             }
         }
 
+        [ContextMethod("НайтиМежду", "ParseBetween")]
+        public string ParseBetween2(string p1, string p2 = null, string p3 = null)
+        {
+            return ParseBetween(p1, p2, p3);
+        }
+
+        public static string ParseBetween(string p1, string p2 = null, string p3 = null)
+        {
+            //p1 - исходная строка
+            //p2 - подстрока поиска от которой ведем поиск
+            //p3 - подстрока поиска до которой ведем поиск
+            //возвращает строку, ограниченную p2 и p3
+            string str1 = p1;
+            int Position1;
+            if (p2 != null && p3 == null)
+            {
+                Position1 = str1.IndexOf(p2);
+                if (Position1 >= 0)
+                {
+                    return str1.Substring(Position1 + p2.Length);
+                }
+            }
+            else if (p2 == null && p3 != null)
+            {
+                Position1 = str1.IndexOf(p3) + 1;
+                if (Position1 > 0)
+                {
+                    return str1.Substring(0, Position1 - 1);
+                }
+            }
+            else if (p2 != null && p3 != null)
+            {
+                Position1 = str1.IndexOf(p2);
+                while (Position1 >= 0)
+                {
+                    string Стр2;
+                    Стр2 = str1.Substring(Position1 + p2.Length);
+                    int Position2 = Стр2.IndexOf(p3) + 1;
+                    int SumPosition2 = Position2;
+                    while (Position2 > 0)
+                    {
+                        if (Стр2.Substring(0, SumPosition2 - 1).IndexOf(p3) <= -1)
+                        {
+                            return Стр2.Substring(0, SumPosition2 - 1);
+                        }
+                        try
+                        {
+                            Position2 = Стр2.Substring(SumPosition2 + 1).IndexOf(p3) + 1;
+                            SumPosition2 = SumPosition2 + Position2 + 1;
+                        }
+                        catch
+                        {
+                            break;
+                        }
+                    }
+                    str1 = str1.Substring(Position1 + 1);
+                    Position1 = str1.IndexOf(p2);
+                }
+            }
+            return null;
+        }
+        
         [DllImport("user32.dll", EntryPoint = "FindWindow", CharSet = CharSet.Auto, SetLastError = true)] private static extern IntPtr FindWindowByCaption(IntPtr ZeroOnly, string WindowName);
         
         [ContextMethod("НайтиОкноПоЗаголовку", "FindWindowByCaption")]
@@ -946,15 +1066,6 @@ namespace osf
             return new ClLinkArea(p1, p2);
         }
 
-        [ContextMethod("ОбработкаПослеСобытия", "PostEventProcessing")]
-        public void PostEventProcessing()
-        {
-            if (Event != null)
-            {
-                ((dynamic)Event).Base_obj.PostEvent();
-            }
-        }
-        
         [ContextMethod("ОкноВвода", "InputBox")]
         public ClInputBox InputBox()
         {
@@ -1002,12 +1113,6 @@ namespace osf
         public ClStatusBarPanel StatusBarPanel()
         {
             return new ClStatusBarPanel();
-        }
-
-        [ContextMethod("ПередатьУправление", "EventControlTransfer")]
-        public void EventControlTransfer()
-        {
-            System.Windows.Forms.Application.DoEvents();
         }
 
         [ContextMethod("Переключатель", "RadioButton")]
@@ -1073,58 +1178,6 @@ namespace osf
             return new ClListBox();
         }
 
-        [ContextMethod("ПолучитьСобытие", "DoEvents")]
-        public IValue DoEvents()
-        {
-            EventString = "";
-            EventHandling();
-            if (EventString.Contains("ScriptEngine.HostedScript.Library.DelegateAction"))
-            {
-                string propName = EventString.Replace("ScriptEngine.HostedScript.Library.DelegateAction", "");
-                dynamic obj1 = ((dynamic)Event).Base_obj.Sender.dll_obj;
-                PropertyInfo property1 = obj1.GetType().GetProperty(propName);
-                return property1.GetValue(obj1);
-            }
-            else if (EventString.Contains("osf.ClDictionaryEntry"))
-            {
-                string propName = EventString.Replace("osf.ClDictionaryEntry", "");
-                dynamic obj1 = ((dynamic)Event).Base_obj.Sender.dll_obj;
-                PropertyInfo property1 = obj1.GetType().GetProperty(propName);
-                EventString = ((osf.ClDictionaryEntry)property1.GetValue(obj1)).Value.AsString();
-            }
-            if (!EventString.Contains("("))
-            {
-                return ValueFactory.Create((string)EventString + "()");
-            }
-            return ValueFactory.Create((string)EventString);
-        }
-
-        public static void EventHandling()
-        {
-            while (EventString == "")
-            {
-                if (EventQueue.Count > 0)
-                {
-                    dynamic EventArgs1 = (dynamic)EventQueue[0];
-                    Event = EventArgs1.dll_obj;
-                    EventString = EventArgs1.EventString;
-                    EventQueue.RemoveAt(0);
-                }
-                else
-                {
-                    WaitMessage();
-                    System.Windows.Forms.Application.DoEvents();
-                }
-            }
-        }
-        //Функция WaitMessage передает управление к другим потокам тогда, когда поток не имеет никаких других сообщений 
-        //в своей очереди сообщений. Функция WaitMessage приостанавливает работу потока и не возвращает управление до 
-        //тех пор, пока не будет помещено новое сообщение в очередь сообщений потока.
-        //При вызове DoEvents в коде, приложение может выполнять другие события. Например, если имеется форма, добавляющая 
-        //данные в ListBox, добавление DoEvents в код позволит форме перерисовывается при перетаскивании над ней другого окна. 
-        //Если удалить DoEvents из кода, форма не будет перерисовываться до завершения выполнения обработчика события.
-        //DoEvents передает управление Windows-у чтобы тот выполнил обработку своих событий
-        
         [ContextMethod("ПользовательскийЭлементУправления", "UserControl")]
         public ClUserControl UserControl()
         {
@@ -1149,6 +1202,13 @@ namespace osf
             return new ClDataView();
         }
 
+        [ContextMethod("Предупреждение", "DoMessageBox")]
+        public void DoMessageBox(string p1, int p2 = 0, string p3 = "")
+        {
+            int timeout = p2 * 1000;
+            MessageBoxTimeout(IntPtr.Zero, p1, p3, MesBoxFlags.MB_OK | MesBoxFlags.MB_TASKMODAL, 0, timeout);
+        }
+        
         [ContextMethod("Приложение", "Application")]
         public ClApplication Application()
         {
@@ -1416,6 +1476,20 @@ namespace osf
             return new ClDictionaryEntry(p1, p2);
         }
 
+        [ContextMethod("СоздатьФорму", "CreateForm")]
+        public ClForm CreateForm(IRuntimeContextInstance script)
+        {
+            ClForm ClForm1 = new ClForm();
+            ClForm1.Script = script;
+            int i = script.FindMethod("ПриСозданииФормы");
+            if (i > 0)
+            {
+                IValue[] args = { ClForm1 };
+                script.CallAsProcedure(i, args);
+            };
+            return ClForm1;
+        }
+        
         [ContextMethod("СортированныйСписок", "SortedList")]
         public ClSortedList SortedList()
         {
@@ -1596,12 +1670,6 @@ namespace osf
             return new ClTreeNode(p1);
         }
         
-        [ContextMethod("УправляемоеСвойство", "ManagedProperty")]
-        public ClManagedProperty ManagedProperty(IValue p1, string p2, IValue p3 = null)
-        {
-            return new ClManagedProperty(p1, p2, p3);
-        }
-        
         [ContextMethod("Флажок", "CheckBox")]
         public ClCheckBox CheckBox()
         {
@@ -1653,12 +1721,6 @@ namespace osf
             return new ClColor();
         }
 
-        [ContextMethod("ЧислоСообщений", "EventQueueCount")]
-        public int EventQueueCount()
-        {
-            return EventQueue.Count;
-        }
-
         [ContextMethod("Шрифт", "Font")]
         public ClFont Font(string p1 = null, IValue p2 = null, int p3 = 0)
         {
@@ -1681,7 +1743,7 @@ namespace osf
         }
 
         [ContextMethod("ЭлементМеню", "MenuItem")]
-        public ClMenuItem MenuItem(string p1 = "", string p2 = "", int p3 = 0)
+        public ClMenuItem MenuItem(string p1 = "", IValue p2 = null, int p3 = 0)
         {
             return new ClMenuItem(p1, p2, p3);
         }
@@ -1714,12 +1776,6 @@ namespace osf
         public ClColumnClickEventArgs ColumnClickEventArgs()
         {
         	return (ClColumnClickEventArgs)Event;
-        }
-        
-        [ContextMethod("КонтекстноеМенюПриПоявленииАрг", "ContextMenuPopupEventArgs")]
-        public ClContextMenuPopupEventArgs ContextMenuPopupEventArgs()
-        {
-        	return (ClContextMenuPopupEventArgs)Event;
         }
         
         [ContextMethod("ЭлементУправленияАрг", "ControlEventArgs")]
@@ -2132,6 +2188,72 @@ namespace osf
             {
                 return p1;
             }
+        }
+			
+        public static dynamic GetEventParameter(dynamic dll_objEvent)
+        {
+            if (dll_objEvent != null)
+            {
+                dynamic eventType = dll_objEvent.GetType();
+                if (eventType == typeof(DelegateAction))
+                {
+                    return null;
+                }
+                else if (eventType == typeof(ClAction))
+                {
+                    return ((ClAction)dll_objEvent).Parameter;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static void ExecuteEvent(dynamic dll_objEvent)
+        {
+            if (!handleEvents)
+            {
+                return;
+            }
+            if (dll_objEvent == null)
+            {
+                return;
+            }
+            if (dll_objEvent.GetType() == typeof(DelegateAction))
+            {
+                ((DelegateAction)dll_objEvent).CallAsProcedure(0, null);
+            }
+            else if (dll_objEvent.GetType() == typeof(ClAction))
+            {
+                ClAction Action1 = ((ClAction)dll_objEvent);
+                IRuntimeContextInstance script = Action1.Script;
+                string method = Action1.MethodName;
+                ReflectorContext reflector = new ReflectorContext();
+                reflector.CallMethod(script, method, null);
+            }
+            else
+            {
+                //System.Windows.Forms.MessageBox.Show("Обработчик события " + dll_objEvent.ToString() + " задан неверным типом.", "Обработчик события контрола", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning, System.Windows.Forms.MessageBoxDefaultButton.Button1);
+            }
+            Event = null;
+        }
+
+        private enum MesBoxFlags
+        {
+            MB_OK = 0x00000000, // Окно сообщения содержит одну кнопку: OK. Это значение по умолчанию.
+            MB_YESNO = 0x00000004, // Окно сообщения содержит две кнопки: Да и Нет. 
+            MB_SETFOREGROUND = 0x00010000, // Окно сообщения становится окном переднего плана. Внутренне система вызывает функцию SetForegroundWindow для окна сообщения.
+            MB_SYSTEMMODAL = 0x00001000, // То же, что и MB_APPLMODAL, за исключением того, что окно сообщения имеет стиль WS_EX_TOPMOST. Используйте окна сообщений системного режима для уведомления пользователя о серьезных, потенциально опасных ошибках, требующих немедленного внимания (например, нехватка памяти). Этот флаг не влияет на способность пользователя взаимодействовать с окнами, отличными от тех, которые связаны с hWnd.
+            MB_ICONINFORMATION = 0x00000040, // В окне сообщения появится значок, состоящий из строчной буквы i в круге.
+            MB_APPLMODAL = 0x00000000, // Пользователь должен ответить на окно сообщения, прежде чем продолжить работу в окне, определяемом параметром hWnd. Однако пользователь может перейти к окнам других потоков и работать в этих окнах.
+                                       // В зависимости от иерархии окон в приложении пользователь может перейти к другим окнам в потоке. Все дочерние окна родительского окна сообщения автоматически отключаются, но всплывающие окна - нет.
+                                       // MB_APPLMODAL используется по умолчанию, если не указаны ни MB_SYSTEMMODAL, ни MB_TASKMODAL.
+            MB_TASKMODAL = 0x00002000 // То же, что и MB_APPLMODAL, за исключением того, что все окна верхнего уровня, принадлежащие текущему потоку, отключены, если параметр HWND равен нулю. Используйте этот флаг, когда вызывающее приложение или библиотека не имеют доступного дескриптора окна, но все равно должны запретить ввод в другие окна в вызывающем потоке без приостановки других потоков.
         }
     }
 }

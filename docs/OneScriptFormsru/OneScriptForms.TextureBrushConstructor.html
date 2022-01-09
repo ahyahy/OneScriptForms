@@ -34,7 +34,7 @@
 <hr style="border-color: lightgray;"><DIV id="cont1">
 Перем Ф, Форма1, ТекстурнаяКисть1;
 
-Процедура Форма1_ПриПерерисовке()
+Процедура Форма1_ПриПерерисовке() Экспорт
 	Графика1 = Форма1.СоздатьГрафику();
 	Графика1.Очистить(Ф.Цвет().Белый);
 	Графика1.ЗаполнитьПрямоугольник(ТекстурнаяКисть1, 10, 10, 250, 150);
@@ -44,10 +44,9 @@
 Ф = Новый ФормыДляОдноСкрипта();
 Форма1 = Ф.Форма();
 Форма1.Высота = 200;
-Форма1.ПриПерерисовке = "Форма1_ПриПерерисовке()";
+Форма1.ПриПерерисовке = Новый Действие(ЭтотОбъект, "Форма1_ПриПерерисовке");
 Форма1.Отображать = Истина;
 Форма1.Показать();
-Форма1.Активизировать();
 
 Стр = "/9j/4AAQSkZJRgABAQEAeAB4AAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBg
 |NDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAnACcDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcIC
@@ -65,9 +64,11 @@
 |bn+6OlVbP4davfShFslhQHmaeRNq/grEk/h+Ioor1VnWLjTaun8jy3l1BzTtY9e0DRbbQNGt9OtsskQO5yMF2JyzH6n8ulFFFeXJuTcpas9GMUlZH/9k=";
 ТекстурнаяКисть1 = Ф.ТекстурнаяКисть(Ф.Картинка(Стр));
 
-Пока Ф.Продолжать Цикл
-	Выполнить(Ф.ПолучитьСобытие());
-КонецЦикла;
+Ф.РазрешитьСобытия = Истина;
+
+Форма1.Активизировать();
+
+Ф.ЗапуститьОбработкуСобытий();
 </DIV>
 </PRE>
 </details>
@@ -78,7 +79,7 @@
 <hr style="border-color: lightgray;"><DIV id="cont2">
 Перем Ф, Форма1, ТекстурнаяКисть1;
 
-Процедура Форма1_ПриПерерисовке()
+Процедура Форма1_ПриПерерисовке() Экспорт
 	Графика1 = Форма1.СоздатьГрафику();
 	Графика1.Очистить(Ф.Цвет().Белый);
 	Графика1.ЗаполнитьПрямоугольник(ТекстурнаяКисть1, 10, 10, 250, 150);
@@ -88,10 +89,9 @@
 Ф = Новый ФормыДляОдноСкрипта();
 Форма1 = Ф.Форма();
 Форма1.Высота = 200;
-Форма1.ПриПерерисовке = "Форма1_ПриПерерисовке()";
+Форма1.ПриПерерисовке = Новый Действие(ЭтотОбъект, "Форма1_ПриПерерисовке");
 Форма1.Отображать = Истина;
 Форма1.Показать();
-Форма1.Активизировать();
 
 Стр = "/9j/4AAQSkZJRgABAQEAeAB4AAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBg
 |NDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAnACcDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcIC
@@ -108,6 +108,10 @@
 |7CPQcqrqvnZ1mu+ENK18vJOjwzyLseWEjMi9gwIIb2JGR2IrlbX4Q2VvI0batNJZSH95AYQC2OhDZ+VgTwwGeo5BIJRVRVpcy0ZTrVPZuDd12MPUvhfqtjIxtFTUbXJ2ujLHKB/tKxC8eo
 |bn+6OlVbP4davfShFslhQHmaeRNq/grEk/h+Ioor1VnWLjTaun8jy3l1BzTtY9e0DRbbQNGt9OtsskQO5yMF2JyzH6n8ulFFFeXJuTcpas9GMUlZH/9k=";
 ТекстурнаяКисть1 = Ф.ТекстурнаяКисть(Ф.Картинка(Стр));
+
+Ф.РазрешитьСобытия = Истина;
+
+Форма1.Активизировать();
 
 Сообщить(?(
 "" + ТекстурнаяКисть1 = "КлТекстурнаяКисть"
