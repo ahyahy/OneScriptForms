@@ -21,7 +21,8 @@
 		<td colspan="7" rowspan="1" style="vertical-align: top; height: 747px; background-color: white;">
 		<hr style="border-color: lightgray;">
 		<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; На этом сайте представлена бесплатная библиотека для скриптового языка OneScript, содержащая набор форм и элементов
-			управления для построения графических приложений. <br>
+			управления для построения графических приложений.
+			<br>
 			<br>&nbsp;&nbsp;&nbsp;Причин появления такой библиотеки было несколько и они довольно сильно растянуты во времени.			
 			<br>&nbsp;&nbsp;&nbsp;Первая - системное администрирование. Сисадмином я проработал примерно 15 лет на заводе, фабрике, в госучреждениях. Всегда не хватало
 			хорошего, универсального инструмента в работе. Например написать программу сохранения нужных данных в нужное место и время, и чтобы справилась она с длиннющими 
@@ -40,26 +41,36 @@
 			OneScript). В имени файла сохранил имя исходной библиотеки KixForms. Затем, уже освоив немного C#, решился написать свою версию форм. Получилась 
 			библиотека <span style="font-weight: bold;">OneScriptForms.dll</span>. С её помощью можно создавать формы и элементы управления для различных видов графических 
 			приложений, вести программирование как в русcкоязычном, так и в англоязычном вариантах.
+			<br>
+			<br>&nbsp;&nbsp;&nbsp;Первая версия (май 2021 года) была ориентирована на выполнение всего кода в одном файле сценария односкрипта. События элементов управления 
+			помещались в очередь событий и обрабатывались с некоторой задержкой или блокировались интерфейсом. Был ряд и других недостатков, сдерживающих применение форм. 
+			Исправить положение помогло взаимодействие с программистами, применяющими библиотеку на практике. Особенно с автором языка программирования 
+			<a href="http://promcod.com.ua/cat.asp?cat=perfolenta-programmig-language" target="_blank">Перфолента.Net</a> Сергеем Рогаткиным. После изменений, начиная с 
+			версии 2.0.0.0 можно создавать приложения с использованием форм согласно 
+			<a href="https://oscript.io/library" target="_blank">соглашению об устройстве библиотеки односкрипта.</a>
+			<br>
 			<br>&nbsp;&nbsp;&nbsp;Во время работы над библиотекой изучал C#, что называется "на ходу". Иногда, чтобы заставить правильно работать тот или иной метод или
 			свойство объекта, приходилось долго бродить по интернету. Мне очень помогли статьи разных авторов, найденные в сети. Выражаю им свою благодарность и ниже перечислю 
-			ссылки на их статьи. </p>
+			ссылки на их статьи и на другие интересные ресурсы.</p>
+		<ul style="margin-left: 40px;">
+			<li>&nbsp;&nbsp;&nbsp; Статья о способах взаимодействия языков программирования Перфолента.Net и OneScript. <a href="http://promcod.com.ua/Article.asp?code=20211210023810008537" target="_blank">Интеграция&nbsp;языков&nbsp;программирования&nbsp;Перфолента.Net&nbsp;и&nbsp;OneScript.</a></li>
+			<li>&nbsp;&nbsp;&nbsp; <a href="https://github.com/perfolenta/PerfolentaForOneScript" target="_blank">Библиотека&nbsp;для&nbsp;запуска&nbsp;кода&nbsp;Перфоленты&nbsp;из&nbsp;скриптов&nbsp;OneScript.</a></li>
+		</ul>
 		<ul style="margin-left: 40px;">
 			<li>&nbsp;&nbsp;&nbsp; Peter A. Bromberg. <a href="http://www.nullskull.com/articles/20060202.asp" target="_blank">Winforms&nbsp;DataGrid&nbsp;ComboBox&nbsp;Columns&nbsp;And&nbsp;Custom&nbsp;Row&nbsp;Coloring.</a></li>
 			<li>&nbsp;&nbsp;&nbsp; Алексей Лукин. <a href="http://alexeyworld.com/blog/extract_icon_class.42.aspx" target="_blank">Иконка&nbsp;из&nbsp;библиотеки&nbsp;или&nbsp;исполняемого&nbsp;файла.</a></li>
 			<li>&nbsp;&nbsp;&nbsp; Tim Dawson. <a href="https://www.developerfusion.com/article/4351/hosting-windows-forms-designers/" target="_blank">Hosting&nbsp;Windows&nbsp;Forms&nbsp;Designers.</a></li>
 			<li>&nbsp;&nbsp;&nbsp; @Ronit-H <a href="https://www.codeproject.com/Articles/9517/PropertyGrid-and-Drop-Down-properties" target="_blank">PropertyGrid&nbsp;and&nbsp;Drop&nbsp;Down&nbsp;properties.</a></li>
 			<li>&nbsp;&nbsp;&nbsp; Далее привожу несколько цитат и ссылок из общедоступных источников о библиотеке KiXforms.NET.</li>
-		</ul>
-		<div style="margin-left: 80px; text-align: left;">KiXforms was developed by <span style="font-weight: bold;">Shawn Tassie</span> of
-			CGI Canada.
-			<br>Site <a target="_blank" href="http://www.kixforms.org">KiXforms Web Site</a> is developed and maintained by <span style="font-weight: bold;">Rodney Clarke</span> 
-			of BEA Systems UK.
-			<br>KiXforms.NET this is a .NET control that uses the .NET Framework to provide script-level access to Windows Form objects.
-			<br>After over a year of development, the KiXforms.NET library is finally ready for mainstream release. It contains a wealth of resources 
-			<br>designed to help you build powerful scripts based on Microsoft's .NET Framework technology. Please see 
-			the <a href="http://www.kixforms.org/forum/viewforum.php" target="_blank">KiXforms.NET Forum</a> for further information.
-		</div>
-		<ul style="margin-left: 40px;">
+			<div style="margin-left: 80px; text-align: left;">KiXforms was developed by <span style="font-weight: bold;">Shawn Tassie</span> of
+				CGI Canada.
+				<br>Site <a target="_blank" href="http://www.kixforms.org">KiXforms Web Site</a> is developed and maintained by <span style="font-weight: bold;">Rodney Clarke</span> 
+				of BEA Systems UK.
+				<br>KiXforms.NET this is a .NET control that uses the .NET Framework to provide script-level access to Windows Form objects.
+				<br>After over a year of development, the KiXforms.NET library is finally ready for mainstream release. It contains a wealth of resources 
+				designed to help you build powerful scripts based on Microsoft's .NET Framework technology. Please see 
+				the <a href="http://www.kixforms.org/forum/viewforum.php" target="_blank">KiXforms.NET Forum</a> for further information.
+			</div>
 			<li>&nbsp;&nbsp;&nbsp; Создание идеальной оболочки на C #. <a href="https://stackoverflow.com/questions/12964931/making-the-perfect-wrapper-in-c-sharp/12964963#12964963" target="_blank">Making&nbsp;the&nbsp;perfect&nbsp;wrapper&nbsp;in&nbsp;C#.</a></li>
 		</ul>
 		<p style="margin-left: 40px;"></p>
