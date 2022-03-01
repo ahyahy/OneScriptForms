@@ -175,7 +175,7 @@ namespace osf
                 LinkLabelLinkClickedEventArgs1.Sender = this;
                 LinkLabelLinkClickedEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.LinkClicked);
                 LinkLabelLinkClickedEventArgs1.Button = (int)e.Button;
-                LinkLabelLinkClickedEventArgs1.Link = ((LinkEx)e.Link).M_Object;
+                LinkLabelLinkClickedEventArgs1.Link = new Link(e.Link);
                 ClLinkLabelLinkClickedEventArgs ClLinkLabelLinkClickedEventArgs1 = new ClLinkLabelLinkClickedEventArgs(LinkLabelLinkClickedEventArgs1);
                 OneScriptForms.Event = ClLinkLabelLinkClickedEventArgs1;
                 OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.LinkClicked);

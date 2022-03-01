@@ -1389,6 +1389,14 @@
 		|            ProgressBar ProgressBar1 = new ProgressBar(p1);
 		|            ProgressBar1.dll_obj = this;
 		|            Base_obj = ProgressBar1;
+		|            if (p1)
+		|            {
+		|                ProgressBar1.M_ProgressBarV.dll_obj = this;
+		|            }
+		|            else
+		|            {
+		|                ProgressBar1.M_ProgressBarH.dll_obj = this;
+		|            }
 		|        }//end_constr
 		|";
 	ИначеЕсли ИмяКласса = "SelectionRange" Тогда
@@ -13363,6 +13371,12 @@
 		|    public class LinkEx : System.Windows.Forms.LinkLabel.Link
 		|    {
 		|        public osf.Link M_Object;
+		|        public LinkEx() : base()
+		|        {
+		|        }
+		|        public LinkEx(int start, int count) : base(start, count)
+		|        {
+		|        }
 		|    }//endClass
 		|
 		|    public class Link
@@ -13384,7 +13398,7 @@
 		|
 		|        public Link(System.Windows.Forms.LinkLabel.Link p1)
 		|        {
-		|            M_Link = (LinkEx)p1;
+		|            M_Link = new LinkEx(p1.Start, p1.Length);
 		|            M_Link.M_Object = this;
 		|        }
 		|
@@ -13781,7 +13795,7 @@
 		|                LinkLabelLinkClickedEventArgs1.Sender = this;
 		|                LinkLabelLinkClickedEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.LinkClicked);
 		|                LinkLabelLinkClickedEventArgs1.Button = (int)e.Button;
-		|                LinkLabelLinkClickedEventArgs1.Link = ((LinkEx)e.Link).M_Object;
+		|                LinkLabelLinkClickedEventArgs1.Link = new Link(e.Link);
 		|                ClLinkLabelLinkClickedEventArgs ClLinkLabelLinkClickedEventArgs1 = new ClLinkLabelLinkClickedEventArgs(LinkLabelLinkClickedEventArgs1);
 		|                OneScriptForms.Event = ClLinkLabelLinkClickedEventArgs1;
 		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.LinkClicked);
@@ -14260,11 +14274,13 @@
 		|    public class HProgressBarEx : System.Windows.Forms.ProgressBar
 		|    {
 		|        public object M_Object;
+		|        public ClProgressBar dll_obj;
 		|    }//endClass
 		|
 		|    public class VProgressBarEx : System.Windows.Forms.ProgressBar
 		|    {
 		|        public object M_Object;
+		|        public ClProgressBar dll_obj;
 		|
 		|        protected override System.Windows.Forms.CreateParams CreateParams
 		|        {

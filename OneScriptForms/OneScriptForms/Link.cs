@@ -6,6 +6,12 @@ namespace osf
     public class LinkEx : System.Windows.Forms.LinkLabel.Link
     {
         public osf.Link M_Object;
+        public LinkEx() : base()
+        {
+        }
+        public LinkEx(int start, int count) : base(start, count)
+        {
+        }
     }
 
     public class Link
@@ -27,7 +33,7 @@ namespace osf
 
         public Link(System.Windows.Forms.LinkLabel.Link p1)
         {
-            M_Link = (LinkEx)p1;
+            M_Link = new LinkEx(p1.Start, p1.Length);
             M_Link.M_Object = this;
         }
 

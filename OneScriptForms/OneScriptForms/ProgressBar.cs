@@ -8,10 +8,12 @@ namespace osf
     public class HProgressBarEx : System.Windows.Forms.ProgressBar
     {
         public object M_Object;
+        public ClProgressBar dll_obj;
     }
     public class VProgressBarEx : System.Windows.Forms.ProgressBar
     {
         public object M_Object;
+        public ClProgressBar dll_obj;
 
         protected override System.Windows.Forms.CreateParams CreateParams
         {
@@ -163,6 +165,14 @@ namespace osf
             ProgressBar ProgressBar1 = new ProgressBar(p1);
             ProgressBar1.dll_obj = this;
             Base_obj = ProgressBar1;
+            if (p1)
+            {
+                ProgressBar1.M_ProgressBarV.dll_obj = this;
+            }
+            else
+            {
+                ProgressBar1.M_ProgressBarH.dll_obj = this;
+            }
             bounds = new ClRectangle(Base_obj.Bounds);
             clientRectangle = new ClRectangle(Base_obj.ClientRectangle);
             foreColor = new ClColor(Base_obj.ForeColor);
