@@ -139,3 +139,6 @@
 Получаем форму с кнопкой.
 
 ![Пример с кнопкой](https://github.com/ahyahy/OneScriptForms/blob/main/docs/Button1.jpg)
+
+
+Для визуального проектирования форм используйте библиотеку [OneScriptFormsDesigner](https://github.com/ahyahy/OneScriptFormsDesigner).
