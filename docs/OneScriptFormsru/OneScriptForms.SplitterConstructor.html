@@ -90,6 +90,52 @@
 <P>Для областей расположенных сверху вниз, необходимо последовательно пристыковывать объекты к верхнему краю объекта-контейнера.</P>
 <P>Комбинируя панели-контейнеры и помещая на них горизонтальные или вертикальные разделители и элементы управления (Форма, Дерево, СписокЭлементов, Панель и др.), 
 можно получить большое количество вариантов оформления формы.</P>
+<hr style="border-color: lightgray;">
+<li style="font-size: 120%;">Есть ещё один способ добавления объектов, в том числе и разделителей, интуитивно более понятный, более удобный.</li>
+<P>Можно добавлять объекты без эффекта "вытеснения", с пристыковкой к краю не родительского контейнера, а к краю уже добавленного на форму другого объекта. 
+Для этого применяйте к объекту метод <B>ЭлементУправления.НаПереднийПлан&nbsp;(Control.BringToFront)</B> сразу после установки свойства <B>Стыковка&nbsp;(Control.Dock)</B>.</P>
+<details><summary>Код примера деления формы разделителями с применением метода <B>ЭлементУправления.НаПереднийПлан&nbsp;(Control.BringToFront)</B>:</summary>
+<P><PRE class=code>
+<a id="copy4" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select4" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont4">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Размер = Ф.Размер(300, 150);
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+Панель1 = Форма1.ЭлементыУправления.Добавить(Ф.Панель());
+Панель1.Ширина = 50;
+Панель1.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+Панель1.ЦветФона = Ф.Цвет().Красный;
+Панель1.Стыковка = Ф.СтильСтыковки.Лево;
+
+Разделитель1 = Форма1.ЭлементыУправления.Добавить(Ф.Разделитель());
+Разделитель1.Стыковка = Ф.СтильСтыковки.Лево;
+Разделитель1.НаПереднийПлан();
+
+Панель2 = Форма1.ЭлементыУправления.Добавить(Ф.Панель());
+Панель2.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+Панель2.ЦветФона = Ф.Цвет().Синий;
+Панель2.Стыковка = Ф.СтильСтыковки.Лево;
+Панель2.НаПереднийПлан();
+
+Разделитель2 = Форма1.ЭлементыУправления.Добавить(Ф.Разделитель());
+Разделитель2.Стыковка = Ф.СтильСтыковки.Лево;
+Разделитель2.НаПереднийПлан();
+
+Панель3 = Форма1.ЭлементыУправления.Добавить(Ф.Панель());
+Панель3.СтильГраницы = Ф.СтильГраницы.Трехмерная;
+Панель3.ЦветФона = Ф.Цвет().Зеленый;
+Панель3.Стыковка = Ф.СтильСтыковки.Заполнение;
+
+Ф.ЗапуститьОбработкуСобытий();
+</DIV>
+</PRE>
+</details>
+<P></P>
 <H4 class=dtH4>Пример</H4>
 <P><PRE class=code>
 Разделитель1 = Ф.Разделитель();
@@ -648,6 +694,8 @@
 </details>
 <P></P>
 <IMG src="Splitter4.jpg"></IMG>
+<P></P>
+<P></P>
 <H4 class=dtH4>Смотрите также</H4>
 <P><A href="OneScriptForms.Splitter.html">Разделитель&nbsp;(Splitter)&nbsp;Класс</A>| <A 
 href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P></DIV>
@@ -715,6 +763,34 @@ window.onload = function () {
     d.onclick = function() {
 		window.getSelection().removeAllRanges();
 		var ta4 = document.getElementById('cont3'); 
+		var range4 = document.createRange();
+		range4.selectNode(ta4); 
+		window.getSelection().addRange(range4);
+		try { 
+		  document.execCommand('copy'); 
+		} catch(err) {} 
+		window.getSelection().removeRange(range4);
+        return false;
+    }
+	
+	
+	
+	
+	
+    var c = document.getElementById('select4');
+    c.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta3 = document.getElementById('cont4'); 
+		var range3 = document.createRange();
+		range3.selectNode(ta3); 
+		window.getSelection().addRange(range3); 
+        return false;
+    }
+	
+    var d = document.getElementById('copy4');
+    d.onclick = function() {
+		window.getSelection().removeAllRanges();
+		var ta4 = document.getElementById('cont4'); 
 		var range4 = document.createRange();
 		range4.selectNode(ta4); 
 		window.getSelection().addRange(range4);
