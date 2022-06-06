@@ -412,3 +412,38 @@ summary {
 summary:hover {
   color:#ff3200;  /* изменение цвета метки при наведении */
 }	
+
+
+.treeline, .treeline ul, .treeline li {
+   margin: 0; padding: 0; line-height: 1.2; list-style: none;
+}
+.treeline ul {margin: 0 0 0 15px; отступ вертикальной линии}
+.treeline > li:not(:only-child), .treeline li li {
+   position: relative;
+   padding: 3px 0 0 20px; /* отступ текста */
+}
+/* Стиль вертикальной линии */
+.treeline li:not(:last-child) { border-left: 1px solid #ccc;}
+/* Стили горизонтальной линии*/  
+.treeline li li:before, .treeline > li:not(:only-child):before {
+   content: ""; position: absolute; top: 0; left: 0;
+   width: 1.1em; height: .7em; border-bottom:1px solid #ccc;
+}
+/* Вертикальная линия последнего пункта в списка */  
+.treeline li:last-child:before {
+   width: calc(1.1em - 1px); border-left: 1px solid #ccc;
+}
+
+
+.treeline .drop {
+   position: absolute; left: -6px; top: 3px; width: 10px;
+   height: 10px; line-height: 1em; text-align: center; text-transform: uppercase;
+   background: #FFFFFF; color: #000000; /* Фон и цвет кнопки, раскрывающей список  */
+   font-size: 78%; /* Размер +/- */
+   font-weight: bold;
+   cursor: pointer; -webkit-user-select: none; -moz-user-select: none;
+   border: 1px solid #000000;
+}
+.treeline li:last-child > .drop {margin-left: 1px;}
+.treeline .drop + ul {display: none;}
+.treeline .dropM + ul {display: block;}

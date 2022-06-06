@@ -141,6 +141,48 @@
     <Compile Include="DataGridTextBoxColumn.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataGridViewAutoSizeColumnMode.cs" />
+    <Compile Include="DataGridViewAutoSizeColumnsMode.cs" />
+    <Compile Include="DataGridViewAutoSizeRowMode.cs" />
+    <Compile Include="DataGridViewAutoSizeRowsMode.cs" />
+    <Compile Include="DataGridViewBand.cs" />
+    <Compile Include="DataGridViewButtonCell.cs" />
+    <Compile Include="DataGridViewButtonColumn.cs" />
+    <Compile Include="DataGridViewCell.cs" />
+    <Compile Include="DataGridViewCellCancelEventArgs.cs" />
+    <Compile Include="DataGridViewCellCollection.cs" />
+    <Compile Include="DataGridViewCellEventArgs.cs" />
+    <Compile Include="DataGridViewCellMouseEventArgs.cs" />
+    <Compile Include="DataGridViewCellStyle.cs" />
+    <Compile Include="DataGridViewCheckBoxCell.cs" />
+    <Compile Include="DataGridViewCheckBoxColumn.cs" />
+    <Compile Include="DataGridViewColumn.cs" />
+    <Compile Include="DataGridViewColumnCollection.cs" />
+    <Compile Include="DataGridViewColumnHeaderCell.cs" />
+    <Compile Include="DataGridViewColumnSortMode.cs" />
+    <Compile Include="DataGridViewComboBoxCell.cs" />
+    <Compile Include="DataGridViewComboBoxCellObjectCollection.cs" />
+    <Compile Include="DataGridViewComboBoxColumn.cs" />
+    <Compile Include="DataGridViewComboBoxDisplayStyle.cs" />
+    <Compile Include="DataGridViewContentAlignment.cs" />
+    <Compile Include="DataGridViewElement.cs" />
+    <Compile Include="DataGridViewHeaderCell.cs" />
+    <Compile Include="DataGridViewImageCell.cs" />
+    <Compile Include="DataGridViewImageCellLayout.cs" />
+    <Compile Include="DataGridViewImageColumn.cs" />
+    <Compile Include="DataGridViewLinkCell.cs" />
+    <Compile Include="DataGridViewLinkColumn.cs" />
+    <Compile Include="DataGridViewRow.cs" />
+    <Compile Include="DataGridViewRowCollection.cs" />
+    <Compile Include="DataGridViewRowHeaderCell.cs" />
+    <Compile Include="DataGridViewRowHeadersWidthSizeMode.cs" />
+    <Compile Include="DataGridViewSelectionMode.cs" />
+    <Compile Include="DataGridViewTextBoxCell.cs" />
+    <Compile Include="DataGridViewTextBoxColumn.cs" />
+    <Compile Include="DataGridViewTriState.cs" />
     <Compile Include="DataItem.cs" />
     <Compile Include="DataRow.cs" />
     <Compile Include="DataRowCollection.cs" />
@@ -288,6 +330,7 @@
     <Compile Include="OpenFileDialog.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Padding.cs" />
     <Compile Include="PaintEventArgs.cs" />
     <Compile Include="Panel.cs">
       <SubType>Component</SubType>

@@ -82,8 +82,319 @@
 		(КлассАнгл = "CommonDialog") или 
 		(КлассАнгл = "EventArgs") или 
 		(КлассАнгл = "BitmapData") или 
+		(КлассАнгл = "DataGridViewHeaderCell") или
 		(КлассАнгл = "Brush") Тогда // базовые классы
 		Возврат Ложь;
+	ИначеЕсли (КлассАнгл = "DataGridViewCell") Тогда // ЯчейкаТаблицы (DataGridViewCell) Класс
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.АвтоНумерацияСтрок = Истина;
+		|Таблица1.ДобавлятьСтроки = Ложь;
+		|Таблица1.КоличествоСтрок = 2;
+		|Таблица1.КоличествоКолонок = 2;
+		|
+		|ЯчейкаТаблицы1 = Таблица1.Ячейка(0, 0);
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewCellCollection") Тогда // ЯчейкиТаблицы (DataGridViewCellCollection)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.АвтоНумерацияСтрок = Истина;
+		|Таблица1.КоличествоКолонок = 2;
+		|Таблица1.КоличествоСтрок = 5;
+		|Таблица1.АвтоНумерацияСтрок = Истина;
+		|
+		|ЯчейкиТаблицы1 =Таблица1.Строки(0).Ячейки;
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewCheckBoxCell") Тогда // ФлажокЯчейки (DataGridViewCheckBoxCell)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.АвтоНумерацияСтрок = Истина;
+		|
+		|КолонкаФлажок1 = Ф.КолонкаФлажок();
+		|Таблица1.Колонки.Добавить(КолонкаФлажок1);
+		|Таблица1.Колонки.Добавить(Ф.КолонкаФлажок());
+		|Таблица1.КоличествоСтрок = 3;
+		|
+		|КолонкаФлажок1.ПлоскийСтиль = Ф.ПлоскийСтиль.Всплывающий;
+		|
+		|ФлажокЯчейки1 = Таблица1.Ячейка(0, 0);
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewLinkCell") Тогда // СсылкаЯчейки (DataGridViewLinkCell)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.АвтоНумерацияСтрок = Истина;
+		|
+		|КолонкаСсылка1 = Ф.КолонкаСсылка();
+		|Таблица1.Колонки.Добавить(КолонкаСсылка1);
+		|Таблица1.Колонки.Добавить(Ф.КолонкаСсылка());
+		|Таблица1.КоличествоСтрок = 5;
+		|Таблица1.ДобавлятьСтроки = Ложь;
+		|
+		|КолонкаСсылка1.Текст = ""infostart.ru"";
+		|КолонкаСсылка1.ИспользоватьТекстКакСсылку = Истина;
+		|
+		|СсылкаЯчейки1 = Таблица1.Ячейка(0, 2);
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewBand") Тогда // ПолосаТаблицы (DataGridViewBand)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.КоличествоКолонок = 4;
+		|Таблица1.КоличествоСтрок = 7;
+		|
+		|Для А = 0 По Таблица1.Колонки.Количество - 1 Цикл
+		|	Колонка = Таблица1.Колонки(А);
+		|	Колонка.ТекстЗаголовка = ""Кол"" + А;
+		|	Колонка.РежимСортировки = Ф.РежимСортировки.Программный;
+		|КонецЦикла;
+		|Для А = 0 По Таблица1.Строки.Количество - 1 Цикл
+		|	Таблица1.Строки(А).ЗаголовокСтроки.Значение = """" + А;
+		|КонецЦикла;
+		|
+		|Таблица1.РежимВыбора = Ф.РежимВыбораТаблицы.Колонка;
+		|
+		|ПолосаТаблицы1 = Таблица1.Колонки(2);
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewComboBoxCell") Тогда // ПолеВыбораЯчейки (DataGridViewComboBoxCell)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.АвтоНумерацияСтрок = Истина;
+		|
+		|КолонкаПолеВыбора1 = Ф.КолонкаПолеВыбора();
+		|КолонкаПолеВыбора1.Ширина = 215;
+		|Таблица1.Колонки.Добавить(КолонкаПолеВыбора1);
+		|Таблица1.Колонки.Добавить(Ф.КолонкаПолеВыбора());
+		|Таблица1.КоличествоСтрок = 3;
+		|
+		|КолонкаПолеВыбора1.Элементы.Добавить(""Челябинск"");
+		|КолонкаПолеВыбора1.Элементы.Добавить(""Хабаровск"");
+		|КолонкаПолеВыбора1.Элементы.Добавить(""Тюмень"");
+		|КолонкаПолеВыбора1.Элементы.Добавить(""Москва"");
+		|КолонкаПолеВыбора1.Элементы.Добавить(""Саратов""); 
+		|
+		|Таблица1.Строки(0).Ячейки(0).Значение = ""Тюмень"";
+		|Таблица1.Строки(1).Ячейки(0).Значение = ""Саратов"";
+		|Таблица1.Строки(2).Ячейки(0).Значение = ""Москва"";
+		|
+		|КолонкаПолеВыбора1.Отсортирован = Истина;
+		|
+		|ПолеВыбораЯчейки1 = Таблица1.Ячейка(0, 0);
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewTextBoxCell") Тогда // ПолеВводаЯчейки (DataGridViewTextBoxCell)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.АвтоШиринаЗаголовковСтрок = Ф.РежимШириныЗаголовковСтрок.ДляОтображаемых;
+		|Таблица1.КоличествоКолонок = 3;
+		|Таблица1.КоличествоСтрок = 20;
+		|Таблица1.АвтоНумерацияСтрок = Истина;
+		|
+		|Для А = 0 По Таблица1.Колонки.Количество - 1 Цикл
+		|	Таблица1.Колонки(А).ТекстЗаголовка = ""Кол"" + А;
+		|КонецЦикла;
+		|
+		|ПолеВводаЯчейки1 = Таблица1.Ячейка(0, 0);
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewColumnCollection") Тогда // КолонкиТаблицы (DataGridViewColumnCollection)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.АвтонумерацияСтрок = Истина;
+		|	
+		|КолонкиТаблицы1 = Таблица1.Колонки;
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewColumn") Тогда // КолонкаТаблицы (DataGridViewColumn)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.АвтоНумерацияСтрок = Истина;
+		|Таблица1.ДобавлятьСтроки = Ложь;
+		|Таблица1.АвтоШиринаЗаголовковСтрок = Ф.РежимШириныЗаголовковСтрок.ДляОтображаемых;
+		|
+		|Для А = 0 По 3 Цикл
+		|	КолонкаПолеВвода = Ф.КолонкаПолеВвода();
+		|	КолонкаПолеВвода.РежимАвтоРазмера = Ф.РежимАвтоРазмераКолонки.Заполнение;
+		|	КолонкаПолеВвода.ТекстЗаголовка = ""Кол"" + А;
+		|	Таблица1.Колонки.Добавить(КолонкаПолеВвода);
+		|КонецЦикла;
+		|Таблица1.КоличествоСтрок = 100000;
+		|
+		|КолонкаТаблицы1 = Таблица1.Колонки(1);
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewButtonCell") Тогда // КнопкаЯчейки (DataGridViewButtonCell)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.АвтоНумерацияСтрок = Истина;
+		|Таблица1.ДобавлятьСтроки = Ложь;
+		|
+		|КолонкаКнопка1 = Ф.КолонкаКнопка();
+		|КолонкаКнопка1.ТекстЗаголовка = ""Кол0"";
+		|Таблица1.Колонки.Добавить(КолонкаКнопка1);
+		|Таблица1.Колонки.Добавить(Ф.КолонкаКнопка());
+		|Таблица1.КоличествоСтрок = 2;
+		|
+		|КолонкаКнопка1.Текст = ""Кнопа"";
+		|КнопкаЯчейки1 = Таблица1.Ячейка(0, 0);
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewImageCell") Тогда // КартинкаЯчейки (DataGridViewImageCell)
+		СтрКода0 = "
+		|СтрМасленица1 = ""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"";
+		|Картинка1 = Ф.Картинка(СтрМасленица1);
+		|
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.АвтоНумерацияСтрок = Истина;
+		|
+		|КолонкаКартинка1 = Ф.КолонкаКартинка();
+		|Таблица1.Колонки.Добавить(КолонкаКартинка1);
+		|
+		|Таблица1.ДобавлятьСтроки = Ложь;
+		|Таблица1.КоличествоСтрок = 5;
+		|
+		|КолонкаКартинка1.ТекстЗаголовка = ""КолонкаКартинка1"";
+		|Таблица1.Колонки.Элемент(0).Ширина = 140;
+		|Таблица1.Строки(0).Высота = 60;
+		|
+		|КолонкаКартинка1.Картинка = Картинка1;
+		|КолонкаКартинка1.РазмещениеИзображения = Ф.РазмещениеИзображенияЯчейки.Масштабировать;
+		|КолонкаКартинка1.Описание = ""Масленица"";
+		|
+		|КартинкаЯчейки1 = Таблица1.Ячейка(0, 0);
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridView") Тогда // Таблица (DataGridView)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewButtonColumn") Тогда // КолонкаКнопка (DataGridViewButtonColumn)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|
+		|КолонкаКнопка1 = Ф.КолонкаКнопка();
+		|КолонкаКнопка1.ТекстЗаголовка = ""Кол0"";
+		|Таблица1.Колонки.Добавить(КолонкаКнопка1);
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewImageColumn") Тогда // КолонкаКартинка (DataGridViewImageColumn)
+		СтрКода0 = "
+		|СтрМасленица1 = ""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"";
+		|Картинка1 = Ф.Картинка(СтрМасленица1);
+		|
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.АвтоНумерацияСтрок = Истина;
+		|
+		|КолонкаКартинка1 = Ф.КолонкаКартинка();
+		|
+		|Таблица1.Колонки.Добавить(КолонкаКартинка1);
+		|
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewTextBoxColumn") Тогда // КолонкаПолеВвода (DataGridViewTextBoxColumn)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.АвтоНумерацияСтрок = Истина;
+		|
+		|КолонкаПолеВвода1 = Ф.КолонкаПолеВвода();
+		|Таблица1.Колонки.Добавить(КолонкаПолеВвода1);
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewComboBoxColumn") Тогда //  КолонкаПолеВыбора (DataGridViewComboBoxColumn)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.АвтоНумерацияСтрок = Истина;
+		|
+		|КолонкаПолеВыбора1 = Ф.КолонкаПолеВыбора();
+		|КолонкаПолеВыбора1.Ширина = 215;
+		|Таблица1.Колонки.Добавить(КолонкаПолеВыбора1);
+		|Таблица1.Колонки.Добавить(Ф.КолонкаПолеВыбора());
+		|Таблица1.КоличествоСтрок = 3;
+		|
+		|Булево2 = Истина;
+		|Дата2 = Дата(2020,01,02,03);
+		|Дата3 = Дата(2022,01,02,03);
+		|КолонкаПолеВыбора1.Элементы.Добавить(Ф.ЭлементСписка(""Строка"", ""СтрЗначение""));
+		|КолонкаПолеВыбора1.Элементы.Добавить(Ф.ЭлементСписка(""Число"", 156.54888));
+		|КолонкаПолеВыбора1.Элементы.Добавить(Ф.ЭлементСписка(""Булево"", Ложь));
+		|КолонкаПолеВыбора1.Элементы.Добавить(Ф.ЭлементСписка(""Булево2"", Булево2));
+		|КолонкаПолеВыбора1.Элементы.Добавить(Ф.ЭлементСписка(""Дата"", (Дата(2019,01,02,03))));
+		|КолонкаПолеВыбора1.Элементы.Добавить(Ф.ЭлементСписка(""Дата3"", Дата3));
+		|КолонкаПолеВыбора1.Элементы.Добавить(Ф.ЭлементСписка(""Дата2"", Дата2));
+		|КолонкаПолеВыбора1.Элементы.Добавить(Ф.ЭлементСписка(""Объект"", Форма1));
+		|КолонкаПолеВыбора1.Элементы.Добавить(Ф.ЭлементСписка(""Массив"", Новый Массив()));
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewLinkColumn") Тогда // КолонкаСсылка (DataGridViewLinkColumn)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.АвтоНумерацияСтрок = Истина;
+		|
+		|КолонкаСсылка1 = Ф.КолонкаСсылка();
+		|Таблица1.Колонки.Добавить(КолонкаСсылка1);
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewCheckBoxColumn") Тогда // КолонкаФлажок (DataGridViewCheckBoxColumn)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.АвтоНумерацияСтрок = Истина;
+		|
+		|КолонкаФлажок1 = Ф.КолонкаФлажок();
+		|Таблица1.Колонки.Добавить(КолонкаФлажок1);
+		|
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewRow") Тогда //  СтрокаТаблицы (DataGridViewRow)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.АвтонумерацияСтрок = Истина;
+		|
+		|Для А = 0 По 20 Цикл
+		|	Таблица1.Колонки.Добавить(Ф.КолонкаПолеВвода());
+		|	Таблица1.Колонки(А).ТекстЗаголовка = ""Кол"" + А;
+		|КонецЦикла;
+		|
+		|СтрокаТаблицы1 = Ф.СтрокаТаблицы();
+		|Таблица1.Строки.Добавить(СтрокаТаблицы1);
+		|
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewRowHeaderCell") Тогда // ЗаголовокСтроки (DataGridViewRowHeaderCell)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.КоличествоКолонок = 10;
+		|Таблица1.КоличествоСтрок = 2;
+		|
+		|Для А = 0 По Таблица1.Колонки.Количество - 1 Цикл
+		|	Таблица1.Колонки(А).ЗаголовокКолонки.Значение = ""Кол"" + А;
+		|КонецЦикла;
+		|ЗаголовокСтроки1 = Таблица1.Строки(0).ЗаголовокСтроки;
+		|ЗаголовокСтроки1.Значение = ""Стр1"";
+		|";
 	ИначеЕсли (КлассАнгл  = "ProgressBar") Тогда 
 		СтрКода0 = "" + КлассРус + "1 = Ф.Индикатор(Ложь);";
 	ИначеЕсли (КлассАнгл  = "DataGridTextBox") Тогда //ПолеВводаКолонки(DataGridTextBox)
@@ -120,6 +431,20 @@
 		СтрКода0 = "
 		|СтильТаблицыСеткиДанных1 = Ф.СтильТаблицыСеткиДанных();
 		|СтилиКолонкиСеткиДанных1 = СтильТаблицыСеткиДанных1.СтилиКолонкиСеткиДанных;
+		|";
+	ИначеЕсли (КлассАнгл = "DataGridViewColumnHeaderCell") Тогда // ЗаголовокКолонки (DataGridViewColumnHeaderCell)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.КоличествоКолонок = 10;
+		|Таблица1.КоличествоСтрок = 2;
+		|
+		|Для А = 0 По Таблица1.Колонки.Количество - 1 Цикл
+		|	Таблица1.Колонки(А).ЗаголовокКолонки.Значение = ""Кол"" + А;
+		|КонецЦикла;
+		|ЗаголовокКолонки1 = Таблица1.Колонки(0).ЗаголовокКолонки;
+		|ЗаголовокКолонки1.Значение = ""Первая"";
 		|";
 	ИначеЕсли (КлассАнгл = "ComboBox") Тогда
 		СтрКода0 = "
@@ -482,7 +807,7 @@
 		СтрКода0 = "" + КлассРус + "1 = Ф." + КлассРус + "();";
 	КонецЕсли;
 	Возврат Истина;
-КонецФункции
+КонецФункции//ПолучитьОбъектДляСвойств
 
 Процедура ТестированиеСвойств();
 	// Если конструктора нет, то получаем методом или свойством другого объекта
@@ -622,12 +947,17 @@
 			
 			Если 
 				КлассРус = "ДеревоОтменаАрг" или 
+				КлассРус = "ЯчейкаОтменаАрг" или 
+				КлассРус = "ЯчейкаТаблицыМышьАрг" или 
 				КлассРус = "ПереименованиеАрг" Тогда
 			Иначе
 				ТекстДокХХХ = Новый ТекстовыйДокумент;
-				ТекстДокХХХ.Прочитать(ИмяВременногоФайла);
+				
+				// // // ИмяВременногоФайла = "C:\Users\master\AppData\Local\Temp\" + КлассРус + "-свойство.tmp";
+				// // // ТекстДокХХХ.Записать(ИмяВременногоФайла);
+				
 				ТекстДокХХХ.УстановитьТекст(ТекстТеста);
-				ТекстДокХХХ.Записать(ИмяВременногоФайла);
+				ТекстДокХХХ.Записать(ИмяВременногоФайла, "UTF-8");
 				Команда3("""C:\Program Files\OneScript\bin\oscript.exe""", ИмяВременногоФайла, ПолеВвода1, КлассРус + " (" + КлассАнгл + ")");
 			КонецЕсли;
 			Форма1.Фокус();
@@ -638,7 +968,7 @@
 	ПеречисленияТест();
 	
 	Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах() - Таймер)/1000)/60 + " мин.");
-КонецПроцедуры
+КонецПроцедуры//ТестированиеСвойств
 
 Процедура ТестированиеКодов()
 	ВыбранныеФайлы = НайтиФайлы(КаталогСправки + "\OneScriptFormsru", "*.html", Истина);
@@ -648,6 +978,14 @@
 		Если (ВыбранныеФайлы[А].ПолноеИмя = КаталогСправки + "\OneScriptFormsru\SaveFileDialog.Reset.html") Тогда
 			Продолжить;
 		КонецЕсли;
+		
+		// // // Если ВыбранныеФайлы[А].Имя = "OneScriptForms.DataGridViewButtonColumn.DefaultCellStyle.html" Тогда 
+		// // // ИначеЕсли ВыбранныеФайлы[А].Имя = "OneScriptForms.DataGridViewCell.Style.html" Тогда  
+		// // // ИначеЕсли ВыбранныеФайлы[А].Имя = "OneScriptForms.DataGridViewColumn.DefaultCellStyle.html" Тогда 
+		// // // ИначеЕсли ВыбранныеФайлы[А].Имя = "OneScriptForms.DataGridViewImageColumn.DefaultCellStyle.html" Тогда 
+		// // // Иначе
+			// // // Продолжить;
+		// // // КонецЕсли;
 
 		ТекстДок = Новый ТекстовыйДокумент;
 		ТекстДок.Прочитать(ВыбранныеФайлы[А].ПолноеИмя);
@@ -659,6 +997,10 @@
 				ТестовыйКод = СтрНайтиМежду(ТестовыйКод0, """>", "</DIV>", , )[0];
 				Если Не (СокрЛП(ТестовыйКод) = "") Тогда
 					ТекстДокХХХ = Новый ТекстовыйДокумент;
+					
+					// // // ИмяВременногоФайла = "C:\Users\master\AppData\Local\Temp\" + СтрЗаменить(ВыбранныеФайлы[А].Имя, ".html", "") + "-код.tmp";
+					// // // ТекстДокХХХ.Записать(ИмяВременногоФайла);
+					
 					ТекстДокХХХ.Прочитать(ИмяВременногоФайла);
 					ТекстДокХХХ.УстановитьТекст(ТестовыйКод);
 					ТекстДокХХХ.Записать(ИмяВременногоФайла);
@@ -668,7 +1010,7 @@
 			КонецЦикла;
 		КонецЕсли;
 	КонецЦикла;
-КонецПроцедуры
+КонецПроцедуры//ТестированиеКодов
 
 Функция Команда1(ИмяФайла, Аргументы, Объект, ИмяФайлаСправки)
 	ИнформацияЗапускаПроцесса1 = Ф.ИнформацияЗапускаПроцесса();
@@ -817,6 +1159,25 @@
 		(КлассАнгл = "BitmapData") или 
 		(КлассАнгл = "Brush") Тогда // базовые классы
 		Возврат Ложь;
+	ИначеЕсли (КлассАнгл = "DataGridViewColumnCollection") Тогда // КолонкиТаблицы (DataGridViewColumnCollection)
+		СтрКода0 = "
+		|Таблица1 = Ф.Таблица();
+		|Таблица1.Родитель = Форма1;
+		|Таблица1.Стыковка = Ф.СтильСтыковки.Заполнение;
+		|Таблица1.АвтонумерацияСтрок = Истина;
+		|
+		|Для А = 0 По 20 Цикл
+		|	Таблица1.Колонки.Добавить(Ф.КолонкаПолеВвода());
+		|	Таблица1.Колонки(А).ТекстЗаголовка = ""Кол"" + А;
+		|КонецЦикла;
+		|Для А = 0 По 20 Цикл
+		|	Таблица1.Строки.Добавить();
+		|КонецЦикла;
+		|
+		|КолонкаПолеВвода = Ф.КолонкаПолеВвода();
+		|КолонкаПолеВвода.ТекстЗаголовка = ""Вставленная"";
+		|КолонкиТаблицы1 = Таблица1.Колонки;
+		|";
 	ИначеЕсли (КлассАнгл  = "ProgressBar") Тогда 
 		СтрКода0 = "Индикатор1 = Форма1.ЭлементыУправления.Добавить(Ф.Индикатор(Ложь));";
 	ИначеЕсли (КлассАнгл  = "NotifyIcon") Тогда
@@ -1178,7 +1539,7 @@
 	СтрСозданияОбъекта = СтрКода0;
 	СтрСозданияОбъекта2 = СтрЗаменить(СтрСозданияОбъекта, Символы.ПС, Символы.ПС + "    ");
 	Возврат Истина;
-КонецФункции
+КонецФункции//ПолучитьОбъектДляМетодов
 
 Процедура ТестированиеМетодов()
 	// Если конструктора нет, то получаем методом или свойством другого объекта
@@ -1267,6 +1628,10 @@
 				КлассАнгл = "SaveFileDialog" Тогда // эти объекты интерактивны, тестировать отдельно вручную
 			Иначе
 				ТекстДокХХХ = Новый ТекстовыйДокумент;
+				
+				// // // ИмяВременногоФайла = "C:\Users\master\AppData\Local\Temp\" + КлассРус + "-метод.tmp";
+				// // // ТекстДокХХХ.Записать(ИмяВременногоФайла);
+				
 				ТекстДокХХХ.Прочитать(ИмяВременногоФайла);
 				ТекстДокХХХ.УстановитьТекст(ТекстТеста);
 				ТекстДокХХХ.Записать(ИмяВременногоФайла);
@@ -1282,7 +1647,7 @@
 	// Сообщить("методы, у которых параметры есть " + Сч4);
 	// Сообщить("методы, у которых параметры есть, возвращаемого значения нет " + Сч5);
 	// Сообщить("методы, у которых параметры есть, возвращаемое значение есть " + Сч6);
-КонецПроцедуры
+КонецПроцедуры//ТестированиеМетодов
 
 Функция СвойстваТест(ИмяФайлаЧленов, КлассРус, КлассАнгл)
 	МассивСвойств = МассивСвойств(ИмяФайлаЧленов);
@@ -1387,6 +1752,115 @@
 			|    " + КлассРус + "1.СписокИзображений = СписокИзображений1;
 			|    Сообщить(""" + КлассРус + "1.СписокИзображений = "" + " + КлассРус + "1.СписокИзображений + """ + " (" + ТипСвойства + ")(" + ИспользованиеСвойства + ")"");
 			|";
+		ИначеЕсли СвойствоРус = "Стиль" и (КлассРус = "КартинкаЯчейки") Тогда
+			ТекстТеста = ТекстТеста + "
+			|	СтильЯчейки1 = Ф.СтильЯчейки();
+			|	СтильЯчейки1.Выравнивание = Ф.ВыравниваниеСодержимогоЯчейки.ВерхПраво;
+			|	СтильЯчейки1.ЦветФона = Ф.Цвет().Бирюзовый;
+			|	КартинкаЯчейки1.Стиль = СтильЯчейки1;
+			|	
+			|	Сообщить(""КартинкаЯчейки1.Стиль = "" + КартинкаЯчейки1.Стиль + "" (Тип: СтильЯчейки (DataGridViewCellStyle))(Чтение и запись.)"");
+			|";
+		ИначеЕсли СвойствоРус = "Стиль" и (КлассРус = "КнопкаЯчейки") Тогда
+			ТекстТеста = ТекстТеста + "
+			|	СтильЯчейки1 = Ф.СтильЯчейки();
+			|	СтильЯчейки1.Выравнивание = Ф.ВыравниваниеСодержимогоЯчейки.ВерхПраво;
+			|	СтильЯчейки1.ЦветФона = Ф.Цвет().Бирюзовый;
+			|	КнопкаЯчейки1.Стиль = СтильЯчейки1;
+			|	
+			|	Сообщить(""КнопкаЯчейки1.Стиль = "" + КнопкаЯчейки1.Стиль + "" (Тип: СтильЯчейки (DataGridViewCellStyle))(Чтение и запись.)"");
+			|";
+		ИначеЕсли СвойствоРус = "Стиль" и (КлассРус = "ФлажокЯчейки") Тогда
+			ТекстТеста = ТекстТеста + "
+			|	СтильЯчейки1 = Ф.СтильЯчейки();
+			|	СтильЯчейки1.Выравнивание = Ф.ВыравниваниеСодержимогоЯчейки.ВерхПраво;
+			|	СтильЯчейки1.ЦветФона = Ф.Цвет().Бирюзовый;
+			|	ФлажокЯчейки1.Стиль = СтильЯчейки1;
+			|	
+			|	Сообщить(""ФлажокЯчейки1.Стиль = "" + ФлажокЯчейки1.Стиль + "" (Тип: СтильЯчейки (DataGridViewCellStyle))(Чтение и запись.)"");
+			|";
+		ИначеЕсли СвойствоРус = "Стиль" и (КлассРус = "СсылкаЯчейки") Тогда
+			ТекстТеста = ТекстТеста + "
+			|	СтильЯчейки1 = Ф.СтильЯчейки();
+			|	СтильЯчейки1.Выравнивание = Ф.ВыравниваниеСодержимогоЯчейки.ВерхПраво;
+			|	СтильЯчейки1.ЦветФона = Ф.Цвет().Бирюзовый;
+			|	СсылкаЯчейки1.Стиль = СтильЯчейки1;
+			|	
+			|	Сообщить(""СсылкаЯчейки1.Стиль = "" + СсылкаЯчейки1.Стиль + "" (Тип: СтильЯчейки (DataGridViewCellStyle))(Чтение и запись.)"");
+			|";
+		ИначеЕсли СвойствоРус = "СтильЯчейки" и (КлассРус = "КолонкаКартинка") Тогда
+			ТекстТеста = ТекстТеста + "
+			|	СтильЯчейки1 = Ф.СтильЯчейки();
+			|	СтильЯчейки1.Выравнивание = Ф.ВыравниваниеСодержимогоЯчейки.ВерхПраво;
+			|	СтильЯчейки1.ЦветФона = Ф.Цвет().Бирюзовый;
+			|	КолонкаКартинка1.СтильЯчейки = СтильЯчейки1;
+			|	
+			|	Сообщить(""КолонкаКартинка1.СтильЯчейки = "" + КолонкаКартинка1.СтильЯчейки + "" (Тип: СтильЯчейки (DataGridViewCellStyle))(Чтение и запись.)"");
+			|";
+		ИначеЕсли СвойствоРус = "СтильЯчейки" и (КлассРус = "КолонкаКнопка") Тогда
+			ТекстТеста = ТекстТеста + "
+			|	СтильЯчейки1 = Ф.СтильЯчейки();
+			|	СтильЯчейки1.Выравнивание = Ф.ВыравниваниеСодержимогоЯчейки.ВерхПраво;
+			|	СтильЯчейки1.ЦветФона = Ф.Цвет().Бирюзовый;
+			|	КолонкаКнопка1.СтильЯчейки = СтильЯчейки1;
+			|	
+			|	Сообщить(""КолонкаКнопка1.СтильЯчейки = "" + КолонкаКнопка1.СтильЯчейки + "" (Тип: СтильЯчейки (DataGridViewCellStyle))(Чтение и запись.)"");
+			|";
+		ИначеЕсли СвойствоРус = "СтильЯчейки" и (КлассРус = "КолонкаПолеВвода") Тогда
+			ТекстТеста = ТекстТеста + "
+			|	СтильЯчейки1 = Ф.СтильЯчейки();
+			|	СтильЯчейки1.Выравнивание = Ф.ВыравниваниеСодержимогоЯчейки.ВерхПраво;
+			|	СтильЯчейки1.ЦветФона = Ф.Цвет().Бирюзовый;
+			|	КолонкаПолеВвода1.СтильЯчейки = СтильЯчейки1;
+			|	
+			|	Сообщить(""КолонкаПолеВвода1.СтильЯчейки = "" + КолонкаПолеВвода1.СтильЯчейки + "" (Тип: СтильЯчейки (DataGridViewCellStyle))(Чтение и запись.)"");
+			|";
+		ИначеЕсли СвойствоРус = "СтильЯчейки" и (КлассРус = "КолонкаПолеВыбора") Тогда
+			ТекстТеста = ТекстТеста + "
+			|	СтильЯчейки1 = Ф.СтильЯчейки();
+			|	СтильЯчейки1.Выравнивание = Ф.ВыравниваниеСодержимогоЯчейки.ВерхПраво;
+			|	СтильЯчейки1.ЦветФона = Ф.Цвет().Бирюзовый;
+			|	КолонкаПолеВыбора1.СтильЯчейки = СтильЯчейки1;
+			|	
+			|	Сообщить(""КолонкаПолеВыбора1.СтильЯчейки = "" + КолонкаПолеВыбора1.СтильЯчейки + "" (Тип: СтильЯчейки (DataGridViewCellStyle))(Чтение и запись.)"");
+			|";
+		ИначеЕсли СвойствоРус = "СтильЯчейки" и (КлассРус = "КолонкаСсылка") Тогда
+			ТекстТеста = ТекстТеста + "
+			|	СтильЯчейки1 = Ф.СтильЯчейки();
+			|	СтильЯчейки1.Выравнивание = Ф.ВыравниваниеСодержимогоЯчейки.ВерхПраво;
+			|	СтильЯчейки1.ЦветФона = Ф.Цвет().Бирюзовый;
+			|	КолонкаСсылка1.СтильЯчейки = СтильЯчейки1;
+			|	
+			|	Сообщить(""КолонкаСсылка1.СтильЯчейки = "" + КолонкаСсылка1.СтильЯчейки + "" (Тип: СтильЯчейки (DataGridViewCellStyle))(Чтение и запись.)"");
+			|";
+		ИначеЕсли СвойствоРус = "СтильЯчейки" и (КлассРус = "КолонкаФлажок") Тогда
+			ТекстТеста = ТекстТеста + "
+			|	СтильЯчейки1 = Ф.СтильЯчейки();
+			|	СтильЯчейки1.Выравнивание = Ф.ВыравниваниеСодержимогоЯчейки.ВерхПраво;
+			|	СтильЯчейки1.ЦветФона = Ф.Цвет().Бирюзовый;
+			|	КолонкаФлажок1.СтильЯчейки = СтильЯчейки1;
+			|	
+			|	Сообщить(""КолонкаФлажок1.СтильЯчейки = "" + КолонкаФлажок1.СтильЯчейки + "" (Тип: СтильЯчейки (DataGridViewCellStyle))(Чтение и запись.)"");
+			|";
+		ИначеЕсли СвойствоРус = "Стиль" и (КлассРус = "ПолеВводаЯчейки") Тогда
+			ТекстТеста = ТекстТеста + "
+			|	СтильЯчейки1 = Ф.СтильЯчейки();
+			|	СтильЯчейки1.Выравнивание = Ф.ВыравниваниеСодержимогоЯчейки.ВерхПраво;
+			|	СтильЯчейки1.ЦветФона = Ф.Цвет().Бирюзовый;
+			|	ПолеВводаЯчейки1.Стиль = СтильЯчейки1;
+			|	
+			|	Сообщить(""ПолеВводаЯчейки1.Стиль = "" + ПолеВводаЯчейки1.Стиль + "" (Тип: СтильЯчейки (DataGridViewCellStyle))(Чтение и запись.)"");
+			|";
+		ИначеЕсли СвойствоРус = "Стиль" и (КлассРус = "ПолеВыбораЯчейки") Тогда
+			ТекстТеста = ТекстТеста + "
+			|	СтильЯчейки1 = Ф.СтильЯчейки();
+			|	СтильЯчейки1.Выравнивание = Ф.ВыравниваниеСодержимогоЯчейки.ВерхПраво;
+			|	СтильЯчейки1.ЦветФона = Ф.Цвет().Бирюзовый;
+			|	ПолеВыбораЯчейки1.Стиль = СтильЯчейки1;
+			|	
+			|	Сообщить(""ПолеВыбораЯчейки1.Стиль = "" + ПолеВыбораЯчейки1.Стиль + "" (Тип: СтильЯчейки (DataGridViewCellStyle))(Чтение и запись.)"");
+			|";
+			
 			
 		Иначе
 			Если (СтрНайти(ТипСвойства, "Произвольный") > 0) Тогда
@@ -1405,7 +1879,7 @@
 					|";
 				Иначе
 					ТекстТеста = ТекстТеста + "
-					|	Сообщить(""" + СтрКода1 + " = "" + " + СтрКода1 + " + "" (Тип: "" + " + СтрКода1 + ".Тип.ВСтроку() + "" ("" + " + СтрКода1 + ".Type.ВСтроку() + """ + ").)(" + ИспользованиеСвойства + ")"");
+					|	Сообщить(""" + СтрКода1 + " = "" + " + СтрКода1 + " + "" (Тип: "" + ТипЗнч(" + СтрКода1 + ") + "" ("" + ТипЗнч(" + СтрКода1 + ") + "").)(Только чтение.)"");
 					|";
 				КонецЕсли;
 			Иначе
@@ -1429,7 +1903,7 @@
 		
 	КонецЦикла;
 	Возврат МассивСвойств;
-КонецФункции
+КонецФункции//СвойстваТест
 
 Функция МассивСвойств(ИмяФайлаЧленов)
 	М = Новый Массив;
@@ -1464,7 +1938,7 @@
 		М.Добавить(М1);
 	КонецЦикла;
 	Возврат М;
-КонецФункции
+КонецФункции//МассивСвойств
 
 Функция МетодыТест(ИмяФайлаЧленов, КлассРус, КлассАнгл)
 	МассивМетодов = МассивМетодов(ИмяФайлаЧленов);
@@ -1606,6 +2080,14 @@
 								|	Колонки1 = СписокЭлементов1.Колонки;
 								|	Колонки1.Добавить(Ф.Колонка(""А1"", 40, 1));
 								|	Колонки1.Добавить(Ф.Колонка(""А2"", 40, 1));
+								|";
+								СтрУстановкиПараметра = СтрУстановкиПараметра + Символы.Таб + ПараметрВСкобки + " = 0;" + Символы.ПС;
+							ИначеЕсли (МетодРус = "УдалитьПоИндексу") и (КлассРус = "КолонкиТаблицы") Тогда
+								ТекстТеста = ТекстТеста + "
+								|	Для А = 0 По 25 Цикл
+								|		Таблица1.Колонки.Добавить(Ф.КолонкаПолеВвода());
+								|		Таблица1.Колонки(А).ТекстЗаголовка = ""Кол"" + А;
+								|	КонецЦикла;
 								|";
 								СтрУстановкиПараметра = СтрУстановкиПараметра + Символы.Таб + ПараметрВСкобки + " = 0;" + Символы.ПС;
 							ИначеЕсли (МетодРус = "УдалитьПоИндексу") и (КлассРус = "КнопкиПанелиИнструментов") Тогда
@@ -2160,6 +2642,8 @@
 ИмяВременногоФайла = ПолучитьИмяВременногоФайла();
 ТекстДокХХХ = Новый ТекстовыйДокумент;
 ТекстДокХХХ.Записать(ИмяВременногоФайла);
+
+// // // Сообщить("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\" + ИмяВременногоФайла);
 
 ПодключитьВнешнююКомпоненту(КаталогБиблиотеки + "\OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();

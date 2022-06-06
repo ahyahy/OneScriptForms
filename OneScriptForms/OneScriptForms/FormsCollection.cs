@@ -57,5 +57,5 @@ namespace osf
                 yield return (item as ClForm);
             }
         }
-    }
-}
+    }//endClass
+}//endnamespace

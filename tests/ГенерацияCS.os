@@ -87,7 +87,7 @@
 КонецПроцедуры//СортироватьСтрРазделОбъявленияПеременныхДляПеречисления
 
 Функция Директивы(ИмяКонтекстКлассаАнгл)
-	Если ИмяКонтекстКлассаАнгл = "OneScriptForms" Тогда
+	Если ИмяКонтекстКлассаАнгл = "OneScriptForms"  Тогда
 		Стр = 
 		"using System;
 		|using System.Collections;
@@ -101,9 +101,54 @@
 		|
 		|";
 		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "DataGridView" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewColumnCollection" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewRowCollection" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxCellObjectCollection" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewElement" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewBand" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewColumn" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewImageColumn" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewButtonColumn" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewTextBoxColumn" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxColumn" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewLinkColumn" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewCheckBoxColumn" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewRow" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewCell" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewHeaderCell" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewColumnHeaderCell" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewRowHeaderCell" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewImageCell" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewButtonCell" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewTextBoxCell" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxCell" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewLinkCell" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewCheckBoxCell" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewColumnSortMode" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxDisplayStyle" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewCellStyle" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewCellCollection" Тогда
+		Стр = 
+		"using System;
+		|using Microsoft.VisualBasic;
+		|using ScriptEngine.HostedScript.Library;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using System.Collections.Generic;
+		|using System.Collections;
+		|using System.Linq;
+		|using System.Reflection;
+		|using System.Runtime.CompilerServices;
+		|using System.Runtime.InteropServices;
+		|using System.Windows.Forms;
+		|
+		|";
+		Возврат Стр;
 	ИначеЕсли ИмяКонтекстКлассаАнгл = "AnchorStyles" или 
 		ИмяКонтекстКлассаАнгл = "DockStyle" или 
 		ИмяКонтекстКлассаАнгл = "DockPaddingEdges" или 
+		ИмяКонтекстКлассаАнгл = "Padding" или 
 		ИмяКонтекстКлассаАнгл = "DialogResult" или 
 		ИмяКонтекстКлассаАнгл = "Day" или 
 		ИмяКонтекстКлассаАнгл = "DataType" или 
@@ -136,6 +181,12 @@
 		ИмяКонтекстКлассаАнгл = "ImageCollection" или 
 		ИмяКонтекстКлассаАнгл = "ImageFormat" или 
 		ИмяКонтекстКлассаАнгл = "ImageLayout" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewImageCellLayout" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewAutoSizeColumnMode" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewAutoSizeColumnsMode" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewAutoSizeRowsMode" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewAutoSizeRowMode" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewSelectionMode" или 
 		ИмяКонтекстКлассаАнгл = "ImageList" или 
 		ИмяКонтекстКлассаАнгл = "ItemActivation" или 
 		ИмяКонтекстКлассаАнгл = "Keys" или 
@@ -193,9 +244,12 @@
 		ИмяКонтекстКлассаАнгл = "ToolBarButtonStyle" или 
 		ИмяКонтекстКлассаАнгл = "ToolBarTextAlign" или 
 		ИмяКонтекстКлассаАнгл = "TreeViewAction" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewTriState" или 
 		ИмяКонтекстКлассаАнгл = "Version" или 
 		ИмяКонтекстКлассаАнгл = "WatcherChangeTypes" или 
 		ИмяКонтекстКлассаАнгл = "ControlStyles" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewRowHeadersWidthSizeMode" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewContentAlignment" или 
 		ИмяКонтекстКлассаАнгл = "Appearance" Тогда
 		Стр = 
 		"using ScriptEngine.Machine.Contexts;
@@ -385,6 +439,9 @@
 		ИмяКонтекстКлассаАнгл = "ToolBarButtonClickEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "TreeViewCancelEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "TreeViewEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewCellEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewCellMouseEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewCellCancelEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "Action" Тогда
 		Стр = 
 		"using ScriptEngine.Machine.Contexts;
@@ -1563,6 +1620,36 @@
 		|            Base_obj = StreamReader1;
 		|        }//end_constr
 		|";
+	ИначеЕсли ИмяКласса = "Padding" Тогда
+		Стр = 
+		"        public ClPadding()
+		|        {
+		|            Padding Padding1 = new Padding();
+		|            Padding1.dll_obj = this;
+		|            Base_obj = Padding1;
+		|        }//end_constr
+		|		
+		|        public ClPadding(int p1)
+		|        {
+		|            Padding Padding1 = new Padding(p1);
+		|            Padding1.dll_obj = this;
+		|            Base_obj = Padding1;
+		|        }//end_constr
+		|
+		|        public ClPadding(int p1, int p2, int p3, int p4)
+		|        {
+		|            Padding Padding1 = new Padding(p1, p2, p3, p4);
+		|            Padding1.dll_obj = this;
+		|            Base_obj = Padding1;
+		|        }//end_constr
+		|
+		|        public ClPadding(Padding p1)
+		|        {
+		|            Padding Padding1 = p1;
+		|            Padding1.dll_obj = this;
+		|            Base_obj = Padding1;
+		|        }//end_constr
+		|";
 	ИначеЕсли ИмяКласса = "Action" Тогда
 		Стр = 
 		"        public ClAction(IRuntimeContextInstance script, string methodName, IValue param = null)
@@ -2003,6 +2090,26 @@
 				|        }
 				|        
 				|";
+			ИначеЕсли (СвойствоРус = "Заполнение") и (ИмяКонтекстКлассаАнгл = "DataGridViewCellStyle") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Заполнение"", ""Padding"")]
+				|        public ClPadding Padding
+				|        {
+				|            get { return new ClPadding(Base_obj.Padding); }
+				|            set { Base_obj.Padding = value.Base_obj; }
+				|        }
+				|        
+				|";
+			ИначеЕсли СвойствоРус = "ВесЗаполнения" Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ВесЗаполнения"", ""FillWeight"")]
+				|        public IValue FillWeight
+				|        {
+				|            get { return ValueFactory.Create((Convert.ToDecimal(Base_obj.FillWeight))); }
+				|            set { Base_obj.FillWeight = Convert.ToSingle(value.AsNumber()); }
+				|        }
+				|        
+				|";
 			ИначеЕсли (СвойствоРус = "Отправитель") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
 				"        [ContextProperty(""Отправитель"", ""Sender"")]
@@ -2087,57 +2194,74 @@
 				|        }
 				|        
 				|";
-			ИначеЕсли СвойствоРус = "ПриАктивизации" или 
-				СвойствоРус = "ПослеРедактированияНадписи" или 
-				СвойствоРус = "ПослеВыбора" или 
-				СвойствоРус = "ПередРазвертыванием" или 
-				СвойствоРус = "ПередРедактированиемНадписи" или 
-				СвойствоРус = "ПриНажатииКнопки" или 
-				СвойствоРус = "ПриИзменении" или 
-				СвойствоРус = "ПометкаИзменена" или 
-				СвойствоРус = "Нажатие" или 
-				СвойствоРус = "КолонкаНажатие" или 
-				СвойствоРус = "ЭлементДобавлен" или 
-				СвойствоРус = "ЭлементУдален" или 
-				СвойствоРус = "ПриСоздании" или 
-				СвойствоРус = "ТекущаяЯчейкаИзменена" или 
-				СвойствоРус = "ПриДеактивации" или 
-				СвойствоРус = "ПриУдалении" или 
+			ИначеЕсли СвойствоРус = "ВыбранныйЭлементСеткиИзменен" или 
+				СвойствоРус = "ВыделениеИзменено" или 
+				СвойствоРус = "ДатаВыбрана" или 
+				СвойствоРус = "ДатаИзменена" или 
 				СвойствоРус = "ДвойноеНажатие" или 
-				СвойствоРус = "ПриВыпадении" или 
-				СвойствоРус = "ПриВходе" или 
-				СвойствоРус = "ПриАктивизацииЭлемента" или 
-				СвойствоРус = "ЭлементПомечен" или 
+				СвойствоРус = "ДвойноеНажатиеЯчейки" или 
+				СвойствоРус = "ЗначениеИзменено" или 
+				СвойствоРус = "ЗначениеСвойстваИзменено" или 
+				СвойствоРус = "ЗначениеЯчейкиИзменено" или 
+				СвойствоРус = "ИндексВыбранногоИзменен" или 
+				СвойствоРус = "ИндексВыбранногоИзменен" или 
+				СвойствоРус = "КлавишаВверх" или 
 				СвойствоРус = "КлавишаВниз" или 
 				СвойствоРус = "КлавишаНажата" или 
-				СвойствоРус = "КлавишаВверх" или 
-				СвойствоРус = "ПриУходе" или 
-				СвойствоРус = "СсылкаНажата" или 
-				СвойствоРус = "ПриЗагрузке" или 
-				СвойствоРус = "ПоложениеИзменено" или 
-				СвойствоРус = "ПриПотереФокуса" или 
-				СвойствоРус = "ДатаИзменена" или 
-				СвойствоРус = "ДатаВыбрана" или 
-				СвойствоРус = "ИндексВыбранногоИзменен" или 
-				СвойствоРус = "ПриНажатииКнопкиМыши" или 
+				СвойствоРус = "КолонкаНажатие" или 
 				СвойствоРус = "МышьНадЭлементом" или 
-				СвойствоРус = "ПриЗадержкеМыши" или 
+				СвойствоРус = "МышьНадЯчейкой" или 
 				СвойствоРус = "МышьПокинулаЭлемент" или 
-				СвойствоРус = "ПриПеремещенииМыши" или 
+				СвойствоРус = "МышьПокинулаЯчейку" или 
+				СвойствоРус = "Нажатие" или 
+				СвойствоРус = "НажатиеСодержимогоЯчейки" или 
+				СвойствоРус = "НажатиеЯчейки" или 
+				СвойствоРус = "ПередРазвертыванием" или 
+				СвойствоРус = "ПередРедактированиемНадписи" или 
+				СвойствоРус = "ПоложениеИзменено" или 
+				СвойствоРус = "ПометкаИзменена" или 
+				СвойствоРус = "ПослеВыбора" или 
+				СвойствоРус = "ПослеРедактированияНадписи" или 
+				СвойствоРус = "ПриАктивизации" или 
+				СвойствоРус = "ПриАктивизацииЭлемента" или 
+				СвойствоРус = "ПриВходе" или 
+				СвойствоРус = "ПриВходеВСтроку" или 
+				СвойствоРус = "ПриВходеВЯчейку" или 
+				СвойствоРус = "ПриВыпадении" или 
+				СвойствоРус = "ПриДеактивации" или 
+				СвойствоРус = "ПриЗагрузке" или 
+				СвойствоРус = "ПриЗадержкеМыши" или 
+				СвойствоРус = "ПриИзменении" или 
+				СвойствоРус = "ПриНажатииЗаголовкаКолонки" или 
+				СвойствоРус = "ПриНажатииЗаголовкаСтроки" или 
+				СвойствоРус = "ПриНажатииКнопки" или 
+				СвойствоРус = "ПриНажатииКнопкиМыши" или 
+				СвойствоРус = "ПриНажатииКнопкиМышиВЯчейке" или 
 				СвойствоРус = "ПриОтпусканииМыши" или 
-				СвойствоРус = "ПриПеремещении" или 
-				СвойствоРус = "ПриПерерисовке" или 
-				СвойствоРус = "ПриПоявлении" или 
-				СвойствоРус = "ЗначениеСвойстваИзменено" или 
+				СвойствоРус = "ПриОтпусканииМышиНадЯчейкой" или 
 				СвойствоРус = "ПриПереименовании" или 
+				СвойствоРус = "ПриПеремещении" или 
+				СвойствоРус = "ПриПеремещенииМыши" или 
+				СвойствоРус = "ПриПеремещенииМышиНадЯчейкой" или 
+				СвойствоРус = "ПриПерерисовке" или 
+				СвойствоРус = "ПриПотереФокуса" или 
+				СвойствоРус = "ПриПоявлении" или 
 				СвойствоРус = "ПриПрокручивании" или 
-				СвойствоРус = "ВыбранныйЭлементСеткиИзменен" или 
-				СвойствоРус = "ИндексВыбранногоИзменен" или 
-				СвойствоРус = "ВыделениеИзменено" или 
-				СвойствоРус = "РазмерИзменен" или 
-				СвойствоРус = "ТекстИзменен" или 
+				СвойствоРус = "ПриСоздании" или 
 				СвойствоРус = "ПриСрабатыванииТаймера" или 
-				СвойствоРус = "ЗначениеИзменено" Тогда
+				СвойствоРус = "ПриУдалении" или 
+				СвойствоРус = "ПриУходе" или 
+				СвойствоРус = "ПриУходеИзСтроки" или 
+				СвойствоРус = "ПриУходеИзЯчейки" или 
+				СвойствоРус = "РазмерИзменен" или 
+				СвойствоРус = "РедактированиеЯчейкиЗавершено" или 
+				СвойствоРус = "РедактированиеЯчейкиНачато" или 
+				СвойствоРус = "СсылкаНажата" или 
+				СвойствоРус = "ТекстИзменен" или 
+				СвойствоРус = "ТекущаяЯчейкаИзменена" или 
+				СвойствоРус = "ЭлементДобавлен" или 
+				СвойствоРус = "ЭлементПомечен" или 
+				СвойствоРус = "ЭлементУдален" Тогда
 				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
 				"        private IValue _" + СвойствоАнгл + ";";
 				Стр = Стр +
@@ -2403,6 +2527,130 @@
 				|        {
 				|            get { return OneScriptForms.RevertObj(Base_obj.Value); }
 				|            set { Base_obj.Value = value; }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Значение") и (ИмяКонтекстКлассаАнгл = "DataGridViewCell") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Значение"", ""Value"")]
+				|        public IValue Value
+				|        {
+				|            get { return OneScriptForms.RevertObj(Base_obj.Value); }
+				|            set
+				|            {
+				|                if (value.SystemType.Name == ""Строка"")
+				|                {
+				|                    Base_obj.Value = value.AsString();
+				|                }
+				|                else if (value.SystemType.Name == ""Число"")
+				|                {
+				|                    Base_obj.Value = value.AsNumber();
+				|                }
+				|                else if (value.SystemType.Name == ""Булево"")
+				|                {
+				|                    Base_obj.Value = value.AsBoolean();
+				|                }
+				|                else if (value.SystemType.Name == ""Дата"")
+				|                {
+				|                    Base_obj.Value = value.AsDate();
+				|                }
+				|                else
+				|                {
+				|                    Base_obj.Value = value.AsObject();
+				|                }
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Значение") и 
+				(ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewButtonCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewCheckBoxCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewLinkCell") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Значение"", ""Value"")]
+				|        public IValue Value
+				|        {
+				|            get { return OneScriptForms.RevertObj(Base_obj.Value); }
+				|            set { Base_obj.Value = value; }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Значение") и (ИмяКонтекстКлассаАнгл = "DataGridViewImageCell") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Значение"", ""Value"")]
+				|        public IValue Value
+				|        {
+				|            get { return OneScriptForms.RevertObj(new Bitmap(((System.Drawing.Bitmap)Base_obj.Value))); }
+				|            set { Base_obj.Value = ((ClBitmap)value.AsObject()).Base_obj.M_Bitmap; }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Значение") и 
+				(ИмяКонтекстКлассаАнгл = "DataGridViewTextBoxCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewHeaderCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewColumnHeaderCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewRowHeaderCell") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Значение"", ""Value"")]
+				|        public IValue Value
+				|        {
+				|            get { return OneScriptForms.RevertObj(Base_obj.Value); }
+				|            set { Base_obj.Value = value.AsString(); }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "ФорматированноеЗначение") и 
+				(ИмяКонтекстКлассаАнгл = "DataGridViewCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewHeaderCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewColumnHeaderCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewRowHeaderCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewButtonCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewTextBoxCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewLinkCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewCheckBoxCell") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ФорматированноеЗначение"", ""FormattedValue"")]
+				|        public IValue FormattedValue
+				|        {
+				|            get { return OneScriptForms.RevertObj(Base_obj.FormattedValue); }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "ФорматированноеЗначение") и (ИмяКонтекстКлассаАнгл = "DataGridViewImageCell") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ФорматированноеЗначение"", ""FormattedValue"")]
+				|        public IValue FormattedValue
+				|        {
+				|            get { return OneScriptForms.RevertObj(Base_obj.FormattedValue.ToString()); }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "ФорматированноеЗначениеРедактируемого") и 
+				(ИмяКонтекстКлассаАнгл = "DataGridViewCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewHeaderCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewColumnHeaderCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewRowHeaderCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewButtonCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewTextBoxCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewLinkCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewCheckBoxCell") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ФорматированноеЗначениеРедактируемого"", ""EditedFormattedValue"")]
+				|        public IValue EditedFormattedValue
+				|        {
+				|            get { return OneScriptForms.RevertObj(Base_obj.EditedFormattedValue); }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "ФорматированноеЗначениеРедактируемого") и (ИмяКонтекстКлассаАнгл = "DataGridViewImageCell") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ФорматированноеЗначениеРедактируемого"", ""EditedFormattedValue"")]
+				|        public IValue EditedFormattedValue
+				|        {
+				|            get { return OneScriptForms.RevertObj(Base_obj.EditedFormattedValue.ToString()); }
 				|        }
 				|        
 				|";
@@ -2830,6 +3078,48 @@
 				|        }
 				|
 				|";
+			ИначеЕсли (СвойствоРус = "ИсточникДанных") и (ИмяКонтекстКлассаАнгл = "DataGridView") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ИсточникДанных"", ""DataSource"")]
+				|        public IValue DataSource
+				|        {
+				|            get { return OneScriptForms.RevertObj(Base_obj.DataSource); }
+				|            set
+				|            {
+				|                try
+				|                {
+				|                    Base_obj.DataSource = ((dynamic)value).Base_obj;
+				|                }
+				|                catch
+				|                {
+				|                    Base_obj.DataSource = null;
+				|                }
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "ИсточникДанных") и 
+				(ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxCell" или 
+				 ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxColumn") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ИсточникДанных"", ""DataSource"")]
+				|        public IValue DataSource
+				|        {
+				|            get { return OneScriptForms.RevertObj(Base_obj.DataSource); }
+				|            set
+				|            {
+				|                try
+				|                {
+				|                    Base_obj.DataSource = ((dynamic)value).Base_obj;
+				|                }
+				|                catch
+				|                {
+				|                    Base_obj.DataSource = null;
+				|                }
+				|            }
+				|        }
+				|
+				|";
 			ИначеЕсли (СвойствоРус = "ИсточникДанных") и (ИмяКонтекстКлассаАнгл = "ComboBox") Тогда
 				Стр = Стр +
 				"        [ContextProperty(""ИсточникДанных"", ""DataSource"")]
@@ -3103,6 +3393,52 @@
 				|        }
 				|
 				|";
+			ИначеЕсли (СвойствоРус = "Значение") и (ИмяКонтекстКлассаАнгл = "DataGridViewCheckBoxCell") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Значение"", ""Value"")]
+				|        public IValue Value
+				|        {
+				|            get { return OneScriptForms.RevertObj(Base_obj.Value); }
+				|            set { Base_obj.Value = value; }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "СоответствиеДляНеопределено") и 
+				(ИмяКонтекстКлассаАнгл = "DataGridViewCheckBoxCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewCheckBoxColumn") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""СоответствиеДляНеопределено"", ""IndeterminateValue"")]
+				|        public IValue IndeterminateValue
+				|        {
+				|            get { return OneScriptForms.RevertObj(Base_obj.IndeterminateValue); }
+				|            set { Base_obj.IndeterminateValue = value; }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "СоответствиеДляНеПомечен") и 
+				(ИмяКонтекстКлассаАнгл = "DataGridViewCheckBoxCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewCheckBoxColumn") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""СоответствиеДляНеПомечен"", ""FalseValue"")]
+				|        public IValue FalseValue
+				|        {
+				|            get { return OneScriptForms.RevertObj(Base_obj.FalseValue); }
+				|            set { Base_obj.FalseValue = value; }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "СоответствиеДляПомечен") и 
+				(ИмяКонтекстКлассаАнгл = "DataGridViewCheckBoxCell" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewCheckBoxColumn") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""СоответствиеДляПомечен"", ""TrueValue"")]
+				|        public IValue TrueValue
+				|        {
+				|            get { return OneScriptForms.RevertObj(Base_obj.TrueValue); }
+				|            set { Base_obj.TrueValue = value; }
+				|        }
+				|
+				|";
 			ИначеЕсли (СвойствоРус = "Увеличение") и (ИмяКонтекстКлассаАнгл = "NumericUpDown") Тогда
 				Стр = Стр +
 				"        [ContextProperty(""Увеличение"", ""Increment"")]
@@ -3180,6 +3516,16 @@
 				|        {
 				|            get { return new ClDataGridCell(Base_obj.CurrentCell); }
 				|            set { Base_obj.CurrentCell = value.Base_obj; }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "ТекущаяЯчейка") и (ИмяКонтекстКлассаАнгл = "DataGridView") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ТекущаяЯчейка"", ""CurrentCell"")]
+				|        public IValue CurrentCell
+				|        {
+				|            get { return OneScriptForms.RevertObj(Base_obj.CurrentCell); }
+				|            set { Base_obj.CurrentCell = ((dynamic)value).Base_obj; }
 				|        }
 				|
 				|";
@@ -3331,8 +3677,6 @@
 				
 				
 				
-				
-				
 			Иначе	
 				//находим ТипВозвращаемогоЗначения
 				СтрРаздела = СтрНайтиМежду(СтрТекстДокСвойства, "<H4 class=dtH4>Значение</H4>", "<H4 class=dtH4>Примечание</H4>", , )[0];
@@ -3402,6 +3746,7 @@
 							ТипВозвращаемогоЗначения = "TabPageCollection" или
 							ТипВозвращаемогоЗначения = "ControlCollection" или
 							ТипВозвращаемогоЗначения = "DockPaddingEdges" или
+							ТипВозвращаемогоЗначения = "Padding" или
 							ТипВозвращаемогоЗначения = "LinkCollection" или
 							ТипВозвращаемогоЗначения = "StatusBarPanelCollection" или
 							ТипВозвращаемогоЗначения = "GridTableStylesCollection" Тогда
@@ -3719,6 +4064,288 @@
 				|                script.CallAsProcedure(i, args);
 				|            };
 				|            return ClForm1;
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Заполнение") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Заполнение"", ""Padding"")]
+				|        public ClPadding Padding(IValue p1 = null, IValue p2 = null, IValue p3 = null, IValue p4 = null)
+				|        {
+				|            if (p1 != null)
+				|            {
+				|                if (p2 != null && p3 != null && p4 != null)
+				|                {
+				|                    return new ClPadding(Convert.ToInt32(p1.AsNumber()), Convert.ToInt32(p2.AsNumber()), Convert.ToInt32(p3.AsNumber()), Convert.ToInt32(p4.AsNumber()));
+				|                }
+				|                return new ClPadding(Convert.ToInt32(p1.AsNumber()));
+				|            }
+				|            return new ClPadding();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Строки") и (ИмяКонтекстКлассаАнгл = "DataGridView") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Строки"", ""Rows"")]
+				|        public ClDataGridViewRow Rows2(int p1)
+				|        {
+				|            return (ClDataGridViewRow)OneScriptForms.RevertObj(Base_obj.Rows[p1]);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Ячейка") и (ИмяКонтекстКлассаАнгл = "DataGridView") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Ячейка"", ""Cell"")]
+				|        public IValue Cell2(int p1, int p2)
+				|        {
+				|            dynamic Obj1 = null;
+				|            string str1 = Base_obj.M_DataGridView.Rows[p2].Cells[p1].GetType().ToString();
+				|            string str2 = str1.Replace(""System.Windows.Forms."", ""osf."");
+				|            System.Type Type1 = System.Type.GetType(str2, false, true);
+				|            object[] args1 = { Base_obj.M_DataGridView.Rows[p2].Cells[p1] };
+				|            Obj1 = Activator.CreateInstance(Type1, args1);
+				|            return OneScriptForms.RevertObj(Obj1);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Колонки") и (ИмяКонтекстКлассаАнгл = "DataGridView") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Колонки"", ""Columns"")]
+				|        public IValue Columns2(int p1)
+				|        {
+				|            dynamic Obj1 = null;
+				|            string str1 = Base_obj.Columns[p1].GetType().ToString();
+				|            string str2 = str1.Replace(""System.Windows.Forms."", ""osf."");
+				|            System.Type Type1 = System.Type.GetType(str2, false, true);
+				|            object[] args1 = { Base_obj.Columns[p1] };
+				|            Obj1 = Activator.CreateInstance(Type1, args1);
+				|            return OneScriptForms.RevertObj(Obj1);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Ячейки") и (ИмяКонтекстКлассаАнгл = "DataGridViewRow") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Ячейки"", ""Cells"")]
+				|        public IValue Cells2(int p1)
+				|        {
+				|            dynamic Obj1 = null;
+				|            string str1 = Base_obj.Cells[p1].GetType().ToString();
+				|            string str2 = str1.Replace(""System.Windows.Forms."", ""osf."");
+				|            System.Type Type1 = System.Type.GetType(str2, false, true);
+				|            object[] args1 = { Base_obj.Cells[p1] };
+				|            Obj1 = Activator.CreateInstance(Type1, args1);
+				|            return OneScriptForms.RevertObj(Obj1);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Таблица") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Таблица"", ""DataGridView"")]
+				|        public ClDataGridView DataGridView()
+				|        {
+				|            return new ClDataGridView();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "СтильЯчейки") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""СтильЯчейки"", ""DataGridViewCellStyle"")]
+				|        public ClDataGridViewCellStyle DataGridViewCellStyle(ClDataGridViewCellStyle p1 = null)
+				|        {
+				|            if (p1 != null)
+				|            {
+				|                return new ClDataGridViewCellStyle(p1.Base_obj);
+				|            }
+				|            return new ClDataGridViewCellStyle();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ЗаголовокКолонки") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ЗаголовокКолонки"", ""DataGridViewColumnHeaderCell"")]
+				|        public ClDataGridViewColumnHeaderCell DataGridViewColumnHeaderCell()
+				|        {
+				|            return new ClDataGridViewColumnHeaderCell();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ЗаголовокСтроки") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ЗаголовокСтроки"", ""DataGridViewRowHeaderCell"")]
+				|        public ClDataGridViewRowHeaderCell DataGridViewRowHeaderCell()
+				|        {
+				|            return new ClDataGridViewRowHeaderCell();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ПолеВводаЯчейки") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолеВводаЯчейки"", ""DataGridViewTextBoxCell"")]
+				|        public ClDataGridViewTextBoxCell DataGridViewTextBoxCell()
+				|        {
+				|            return new ClDataGridViewTextBoxCell();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ЗаголовокСтрокиЯчейки") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ЗаголовокСтрокиЯчейки"", ""DataGridViewRowHeaderCell"")]
+				|        public ClDataGridViewRowHeaderCell DataGridViewRowHeaderCell()
+				|        {
+				|            return new ClDataGridViewRowHeaderCell();
+				|        }				
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ЗаголовокКолонкиЯчейки") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ЗаголовокКолонкиЯчейки"", ""DataGridViewColumnHeaderCell"")]
+				|        public ClDataGridViewColumnHeaderCell DataGridViewColumnHeaderCell()
+				|        {
+				|            return new ClDataGridViewColumnHeaderCell();
+				|        }				
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ЗаголовокЯчейки") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ЗаголовокЯчейки"", ""DataGridViewHeaderCell"")]
+				|        public ClDataGridViewHeaderCell DataGridViewHeaderCell()
+				|        {
+				|            return new ClDataGridViewHeaderCell();
+				|        }				
+				|        
+				|";
+			ИначеЕсли (МетодРус = "КартинкаЯчейки") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""КартинкаЯчейки"", ""DataGridViewImageCell"")]
+				|        public ClDataGridViewImageCell DataGridViewImageCell()
+				|        {
+				|            return new ClDataGridViewImageCell();
+				|        }				
+				|        
+				|";
+			ИначеЕсли (МетодРус = "КнопкаЯчейки") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""КнопкаЯчейки"", ""DataGridViewButtonCell"")]
+				|        public ClDataGridViewButtonCell DataGridViewButtonCell()
+				|        {
+				|            return new ClDataGridViewButtonCell();
+				|        }				
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ПолеВыбораЯчейки") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолеВыбораЯчейки"", ""DataGridViewComboBoxCell"")]
+				|        public ClDataGridViewComboBoxCell DataGridViewComboBoxCell()
+				|        {
+				|            return new ClDataGridViewComboBoxCell();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "СсылкаЯчейки") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""СсылкаЯчейки"", ""DataGridViewLinkCell"")]
+				|        public ClDataGridViewLinkCell DataGridViewLinkCell()
+				|        {
+				|            return new ClDataGridViewLinkCell();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ФлажокЯчейки") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ФлажокЯчейки"", ""DataGridViewCheckBoxCell"")]
+				|        public ClDataGridViewCheckBoxCell DataGridViewCheckBoxCell()
+				|        {
+				|            return new ClDataGridViewCheckBoxCell();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "КолонкаКартинка") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""КолонкаКартинка"", ""DataGridViewImageColumn"")]
+				|        public ClDataGridViewImageColumn DataGridViewImageColumn()
+				|        {
+				|            return new ClDataGridViewImageColumn();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "КолонкаКнопка") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""КолонкаКнопка"", ""DataGridViewButtonColumn"")]
+				|        public ClDataGridViewButtonColumn DataGridViewButtonColumn()
+				|        {
+				|            return new ClDataGridViewButtonColumn();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "КолонкаТаблицы") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""КолонкаТаблицы"", ""DataGridViewColumn"")]
+				|        public ClDataGridViewColumn DataGridViewColumn()
+				|        {
+				|            return new ClDataGridViewColumn();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "КолонкаПолеВвода") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""КолонкаПолеВвода"", ""DataGridViewTextBoxColumn"")]
+				|        public ClDataGridViewTextBoxColumn DataGridViewTextBoxColumn()
+				|        {
+				|            return new ClDataGridViewTextBoxColumn();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "КолонкаПолеВыбора") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""КолонкаПолеВыбора"", ""DataGridViewComboBoxColumn"")]
+				|        public ClDataGridViewComboBoxColumn DataGridViewComboBoxColumn()
+				|        {
+				|            return new ClDataGridViewComboBoxColumn();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "КолонкаСсылка") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""КолонкаСсылка"", ""DataGridViewLinkColumn"")]
+				|        public ClDataGridViewLinkColumn DataGridViewLinkColumn()
+				|        {
+				|            return new ClDataGridViewLinkColumn();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "СтрокаТаблицы") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""СтрокаТаблицы"", ""DataGridViewRow"")]
+				|        public ClDataGridViewRow DataGridViewRow()
+				|        {
+				|            return new ClDataGridViewRow();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "КолонкаФлажок") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""КолонкаФлажок"", ""DataGridViewCheckBoxColumn"")]
+				|        public ClDataGridViewCheckBoxColumn DataGridViewCheckBoxColumn()
+				|        {
+				|            return new ClDataGridViewCheckBoxColumn();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ЯчейкаТаблицы") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ЯчейкаТаблицы"", ""DataGridViewCell"")]
+				|        public ClDataGridViewCell DataGridViewCell()
+				|        {
+				|            return new ClDataGridViewCell();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ЯчейкиТаблицы") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ЯчейкиТаблицы"", ""DataGridViewCellCollection"")]
+				|        public ClDataGridViewCellCollection DataGridViewCellCollection()
+				|        {
+				|            return new ClDataGridViewCellCollection();
 				|        }
 				|        
 				|";
@@ -4517,6 +5144,30 @@
 				|        }
 				|        
 				|";
+			ИначеЕсли (МетодРус = "Элемент") и (ИмяКонтекстКлассаАнгл = "DataGridViewCellCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Элемент"", ""Item"")]
+				|        public IValue Item(int p1)
+				|        {
+				|            dynamic Obj1 = null;
+				|            string str1 = Base_obj[p1].GetType().ToString();
+				|            string str2 = str1.Replace(""System.Windows.Forms."", ""osf."");
+				|            System.Type Type1 = System.Type.GetType(str2, false, true);
+				|            object[] args1 = { Base_obj[p1] };
+				|            Obj1 = Activator.CreateInstance(Type1, args1);
+				|            return OneScriptForms.RevertObj(Obj1);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Элемент") и (ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxCellObjectCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Элемент"", ""Item"")]
+				|        public IValue Item(int p1)
+				|        {
+				|            return OneScriptForms.RevertObj(Base_obj[p1]);
+				|        }
+				|        
+				|";
 			ИначеЕсли (МетодРус = "Элемент") и (ИмяКонтекстКлассаАнгл = "ListViewSubItemCollection") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""Элемент"", ""Item"")]
@@ -4547,6 +5198,99 @@
 				|                return (ClStatusBarPanel)OneScriptForms.RevertObj(Base_obj[p1]);
 				|            }
 				|            return (ClStatusBarPanel)OneScriptForms.RevertObj(Base_obj[p1]);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Элемент") и (ИмяКонтекстКлассаАнгл = "DataGridViewColumnCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Элемент"", ""Item"")]
+				|        public IValue Item(int p1)
+				|        {
+				|            System.Type Type1 = Base_obj[p1].GetType();
+				|            if (Type1 == typeof(System.Windows.Forms.DataGridViewTextBoxColumn))
+				|            {
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewTextBoxColumn((System.Windows.Forms.DataGridViewTextBoxColumn)Base_obj[p1]));
+				|            }
+				|            else if (Type1 == typeof(System.Windows.Forms.DataGridViewImageColumn))
+				|            {
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewImageColumn((System.Windows.Forms.DataGridViewImageColumn)Base_obj[p1]));
+				|            }
+				|            else if (Type1 == typeof(System.Windows.Forms.DataGridViewButtonColumn))
+				|            {
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewButtonColumn((System.Windows.Forms.DataGridViewButtonColumn)Base_obj[p1]));
+				|            }
+				|            else if (Type1 == typeof(System.Windows.Forms.DataGridViewComboBoxColumn))
+				|            {
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewComboBoxColumn((System.Windows.Forms.DataGridViewComboBoxColumn)Base_obj[p1]));
+				|            }
+				|            else if (Type1 == typeof(System.Windows.Forms.DataGridViewLinkColumn))
+				|            {
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewLinkColumn((System.Windows.Forms.DataGridViewLinkColumn)Base_obj[p1]));
+				|            }
+				|            else if (Type1 == typeof(System.Windows.Forms.DataGridViewCheckBoxColumn))
+				|            {
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewCheckBoxColumn((System.Windows.Forms.DataGridViewCheckBoxColumn)Base_obj[p1]));
+				|            }
+				|            return null;
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Элемент") и (ИмяКонтекстКлассаАнгл = "DataGridViewRowCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Элемент"", ""Item"")]
+				|        public ClDataGridViewRow Item(int p1)
+				|        {
+				|            return new ClDataGridViewRow(Base_obj[p1]);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Добавить") и (ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxCellObjectCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Добавить"", ""Add"")]
+				|        public ClListItem Add(IValue p1)
+				|        {
+				|            osf.ClListItem p2;
+				|            if (p1.GetType().ToString().Contains(""osf.ClListItem""))
+				|            {
+				|                p2 = new ClListItem(((osf.ClListItem)p1).Base_obj);
+				|            }
+				|            else
+				|            {
+				|                string s = """";
+				|                try
+				|                {
+				|                    s = p1.GetType().GetCustomAttribute<ContextClassAttribute>().GetName();
+				|                }
+				|                catch
+				|                {
+				|                    s = p1.ToString();
+				|                }
+				|                p2 = new ClListItem(new ListItem(s, p1));
+				|            }
+				|            Base_obj.Add(p2.Base_obj);
+				|            return p2;
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Добавить") и (ИмяКонтекстКлассаАнгл = "DataGridViewRowCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Добавить"", ""Add"")]
+				|        public int Add(ClDataGridViewRow p1 = null)
+				|        {
+				|            if (p1 == null)
+				|            {
+				|                return Base_obj.Add();
+				|            }
+				|            return Base_obj.Add(p1.Base_obj);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Добавить") и (ИмяКонтекстКлассаАнгл = "DataGridViewColumnCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Добавить"", ""Add"")]
+				|        public int Add(IValue p1)
+				|        {
+				|            return Base_obj.Add(((dynamic)p1).Base_obj);
 				|        }
 				|        
 				|";
@@ -5864,6 +6608,15 @@
 				|        }
 				|
 				|";
+			ИначеЕсли (МетодРус = "Удалить") и (ИмяКонтекстКлассаАнгл = "DataGridViewColumnCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Удалить"", ""Remove"")]
+				|        public void Remove(IValue p1)
+				|        {
+				|            Base_obj.Remove(((dynamic)p1).Base_obj);
+				|        }
+				|
+				|";
 			ИначеЕсли (МетодРус = "Удалить") и (ИмяКонтекстКлассаАнгл = "SortedList") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""Удалить"", ""Remove"")]
@@ -7167,6 +7920,15 @@
 				|        }
 				|
 				|";
+			ИначеЕсли (МетодРус = "Вставить") и (ИмяКонтекстКлассаАнгл = "DataGridViewColumnCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Вставить"", ""Insert"")]
+				|        public void Insert(int p1, IValue p2)
+				|        {
+				|            Base_obj.Insert(p1, ((dynamic)p2).Base_obj);
+				|        }
+				|
+				|";
 			ИначеЕсли (МетодРус = "Элемент") и (ИмяКонтекстКлассаАнгл = "TreeNodeCollection") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""Элемент"", ""Item"")]
@@ -7265,6 +8027,24 @@
 				|        }
 				|
 				|";
+			ИначеЕсли (МетодРус = "Элементы") и (ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxCell") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Элементы"", ""Items"")]
+				|        public IValue Items2(int p1)
+				|        {
+				|            return OneScriptForms.RevertObj(Base_obj.Items[p1]);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Элементы") и (ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxColumn") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Элементы"", ""Items"")]
+				|        public IValue Items2(int p1)
+				|        {
+				|            return OneScriptForms.RevertObj(Base_obj.Items[p1]);
+				|        }
+				|
+				|";
 			ИначеЕсли (МетодРус = "Элементы") и (ИмяКонтекстКлассаАнгл = "ListBox") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""Элементы"", ""Items"")]
@@ -7330,6 +8110,25 @@
 				|        public IValue Insert(int p1, IValue p2)
 				|        {
 				|            heightItems.Insert(p1, ValueFactory.Create(m_obj._HeightItems));
+				|            osf.ClListItem p3 = new ClListItem();
+				|            if (p2.GetType().ToString().Contains(""osf.ClListItem""))
+				|            {
+				|                p3.Base_obj = ((osf.ClListItem)p2).Base_obj;
+				|            }
+				|            else
+				|            {
+				|                p3.Base_obj = new ListItem(p2.ToString(), p2);
+				|            }
+				|            Base_obj.Insert(p1, p3.Base_obj);
+				|            return p3;
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Вставить") и (ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxCellObjectCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Вставить"", ""Insert"")]
+				|        public ClListItem Insert(int p1, IValue p2)
+				|        {
 				|            osf.ClListItem p3 = new ClListItem();
 				|            if (p2.GetType().ToString().Contains(""osf.ClListItem""))
 				|            {
@@ -8396,6 +9195,45 @@
 	СоздатьФайлCs("HashTable");
 	СоздатьФайлCs("Screen");
 	СоздатьФайлCs("FormsCollection");
+	СоздатьФайлCs("DataGridView");
+	СоздатьФайлCs("DataGridViewElement");
+	СоздатьФайлCs("DataGridViewCell");
+	СоздатьФайлCs("DataGridViewColumnCollection");
+	СоздатьФайлCs("DataGridViewBand");
+	СоздатьФайлCs("DataGridViewColumn");
+	СоздатьФайлCs("DataGridViewButtonCell");
+	СоздатьФайлCs("DataGridViewButtonColumn");
+	СоздатьФайлCs("DataGridViewCellCollection");
+	СоздатьФайлCs("DataGridViewCheckBoxCell");
+	СоздатьФайлCs("DataGridViewCheckBoxColumn");
+	СоздатьФайлCs("DataGridViewHeaderCell");
+	СоздатьФайлCs("DataGridViewColumnHeaderCell");
+	СоздатьФайлCs("DataGridViewComboBoxCell");
+	СоздатьФайлCs("DataGridViewComboBoxColumn");
+	СоздатьФайлCs("DataGridViewImageCell");
+	СоздатьФайлCs("DataGridViewImageColumn");
+	СоздатьФайлCs("DataGridViewLinkCell");
+	СоздатьФайлCs("DataGridViewRow");
+	СоздатьФайлCs("DataGridViewLinkColumn");
+	СоздатьФайлCs("DataGridViewRowHeaderCell");
+	СоздатьФайлCs("DataGridViewTextBoxCell");
+	СоздатьФайлCs("DataGridViewTextBoxColumn");
+	СоздатьФайлCs("DataGridViewRowCollection");
+	СоздатьФайлCs("DataGridViewComboBoxCellObjectCollection");
+	СоздатьФайлCs("DataGridViewCellEventArgs");
+	СоздатьФайлCs("DataGridViewCellMouseEventArgs");
+	СоздатьФайлCs("DataGridViewCellCancelEventArgs");
+	СоздатьФайлCs("DataGridViewCellStyle");
+	СоздатьФайлCs("Padding");
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	СписокЗамен = Новый СписокЗначений;
 	
@@ -8940,6 +9778,7 @@
 			ИмяКонтекстКлассаАнгл = "CommonDialog" или 
 			ИмяКонтекстКлассаАнгл = "DataGridColumnStyle" или 
 			ИмяКонтекстКлассаАнгл = "FileDialog" или 
+			ИмяКонтекстКлассаАнгл = "DataGridViewBand" или 
 			ИмяКонтекстКлассаАнгл = "ContainerControl")
 		
 		Тогда //дописываем в файл класс с префиксом Cl (класс третьего уровня) для классов
@@ -9021,6 +9860,7 @@
 				ИмяКонтекстКлассаАнгл = "ColumnHeaderStyle" или 
 				ИмяКонтекстКлассаАнгл = "ComboBoxStyle" или 
 				ИмяКонтекстКлассаАнгл = "ControlStyles" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewTriState" или 
 				ИмяКонтекстКлассаАнгл = "Day" или 
 				ИмяКонтекстКлассаАнгл = "DialogResult" или 
 				ИмяКонтекстКлассаАнгл = "DockStyle" или 
@@ -9031,6 +9871,12 @@
 				ИмяКонтекстКлассаАнгл = "GridItemType" или 
 				ИмяКонтекстКлассаАнгл = "HorizontalAlignment" или 
 				ИмяКонтекстКлассаАнгл = "ImageLayout" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewImageCellLayout" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewAutoSizeColumnMode" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewAutoSizeColumnsMode" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewAutoSizeRowsMode" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewAutoSizeRowMode" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewSelectionMode" или 
 				ИмяКонтекстКлассаАнгл = "ItemActivation" или 
 				ИмяКонтекстКлассаАнгл = "Keys" или 
 				ИмяКонтекстКлассаАнгл = "LeftRightAlignment" или 
@@ -9057,6 +9903,10 @@
 				ИмяКонтекстКлассаАнгл = "ToolBarAppearance" или 
 				ИмяКонтекстКлассаАнгл = "ToolBarButtonStyle" или 
 				ИмяКонтекстКлассаАнгл = "ToolBarTextAlign" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewRowHeadersWidthSizeMode" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewContentAlignment" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxDisplayStyle" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewImageCellLayout" или 
 				ИмяКонтекстКлассаАнгл = "TreeViewAction" Тогда
 				ИмяКонтекстКлассаАнгл1 = "System.Windows.Forms." + ИмяКонтекстКлассаАнгл;
 			ИначеЕсли ИмяКонтекстКлассаАнгл = "ContentAlignment" или 
@@ -9165,6 +10015,2552 @@
 		
 		
 		
+		
+		
+		
+	ИначеЕсли ИмяФайлаCs = "Padding" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class Padding
+		|    {
+		|        public ClPadding dll_obj;
+		|        public System.Windows.Forms.Padding M_Padding;
+		|
+		|        public Padding()
+		|        {
+		|            M_Padding = System.Windows.Forms.Padding.Empty;
+		|        }
+		|
+		|        public Padding(int p1)
+		|        {
+		|            M_Padding = new System.Windows.Forms.Padding(p1);
+		|        }
+		|
+		|        public Padding(int p1, int p2, int p3, int p4)
+		|        {
+		|            M_Padding = new System.Windows.Forms.Padding(p1, p2, p3, p4);
+		|        }
+		|
+		|        public Padding(osf.Padding p1)
+		|        {
+		|            M_Padding = p1.M_Padding;
+		|        }
+		|
+		|        public Padding(System.Windows.Forms.Padding p1)
+		|        {
+		|            M_Padding = p1;
+		|        }
+		|
+		|        public int All
+		|        {
+		|            get { return M_Padding.All; }
+		|            set { M_Padding.All = value; }
+		|        }
+		|
+		|        public int Bottom
+		|        {
+		|            get { return M_Padding.Bottom; }
+		|            set { M_Padding.Bottom = value; }
+		|        }
+		|
+		|        public int Left
+		|        {
+		|            get { return M_Padding.Left; }
+		|            set { M_Padding.Left = value; }
+		|        }
+		|
+		|        public int Right
+		|        {
+		|            get { return M_Padding.Right; }
+		|            set { M_Padding.Right = value; }
+		|        }
+		|
+		|        public int Top
+		|        {
+		|            get { return M_Padding.Top; }
+		|            set { M_Padding.Top = value; }
+		|        }
+		|
+		|        public int Horizontal
+		|        {
+		|            get { return M_Padding.Horizontal; }
+		|        }
+		|
+		|        public int Vertical
+		|        {
+		|            get { return M_Padding.Vertical; }
+		|        }
+		|
+		|        public osf.Size Size
+		|        {
+		|            get { return new Size(M_Padding.Size); }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewCellStyle" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewCellStyle
+		|    {
+		|        public ClDataGridViewCellStyle dll_obj;
+		|        public System.Windows.Forms.DataGridViewCellStyle M_DataGridViewCellStyle;
+		|
+		|        public DataGridViewCellStyle()
+		|        {
+		|            M_DataGridViewCellStyle = new System.Windows.Forms.DataGridViewCellStyle();
+		|            OneScriptForms.AddToHashtable(M_DataGridViewCellStyle, this);
+		|        }
+		|
+		|        public DataGridViewCellStyle(osf.DataGridViewCellStyle p1)
+		|        {
+		|            M_DataGridViewCellStyle = p1.M_DataGridViewCellStyle;
+		|            OneScriptForms.AddToHashtable(M_DataGridViewCellStyle, this);
+		|        }
+		|
+		|        public DataGridViewCellStyle(System.Windows.Forms.DataGridViewCellStyle p1)
+		|        {
+		|            M_DataGridViewCellStyle = p1;
+		|            OneScriptForms.AddToHashtable(M_DataGridViewCellStyle, this);
+		|        }
+		|
+		|        public int Alignment
+		|        {
+		|            get { return (int)M_DataGridViewCellStyle.Alignment; }
+		|            set { M_DataGridViewCellStyle.Alignment = (System.Windows.Forms.DataGridViewContentAlignment)value; }
+		|        }
+		|
+		|        public osf.Color BackColor
+		|        {
+		|            get { return new Color(M_DataGridViewCellStyle.BackColor); }
+		|            set { M_DataGridViewCellStyle.BackColor = value.M_Color; }
+		|        }
+		|
+		|        public osf.Font Font
+		|        {
+		|            get { return new Font(M_DataGridViewCellStyle.Font); }
+		|            set { M_DataGridViewCellStyle.Font = value.M_Font; }
+		|        }
+		|
+		|        public osf.Color ForeColor
+		|        {
+		|            get { return new Color(M_DataGridViewCellStyle.ForeColor); }
+		|            set { M_DataGridViewCellStyle.ForeColor = value.M_Color; }
+		|        }
+		|
+		|        public osf.Padding Padding
+		|        {
+		|            get { return new Padding(M_DataGridViewCellStyle.Padding); }
+		|            set { M_DataGridViewCellStyle.Padding = value.M_Padding; }
+		|        }
+		|
+		|        public osf.Color SelectionBackColor
+		|        {
+		|            get { return new Color(M_DataGridViewCellStyle.SelectionBackColor); }
+		|            set { M_DataGridViewCellStyle.SelectionBackColor = value.M_Color; }
+		|        }
+		|
+		|        public osf.Color SelectionForeColor
+		|        {
+		|            get { return new Color(M_DataGridViewCellStyle.SelectionForeColor); }
+		|            set { M_DataGridViewCellStyle.SelectionForeColor = value.M_Color; }
+		|        }
+		|
+		|        public int WrapMode
+		|        {
+		|            get { return (int)M_DataGridViewCellStyle.WrapMode; }
+		|            set { M_DataGridViewCellStyle.WrapMode = (System.Windows.Forms.DataGridViewTriState)value; }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewComboBoxCellObjectCollection" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewComboBoxCellObjectCollection
+		|    {
+		|        public ClDataGridViewComboBoxCellObjectCollection dll_obj;
+		|        public System.Windows.Forms.DataGridViewComboBoxCell.ObjectCollection M_DataGridViewComboBoxCellObjectCollection;
+		|
+		|        public DataGridViewComboBoxCellObjectCollection()
+		|        {
+		|        }
+		|
+		|        public DataGridViewComboBoxCellObjectCollection(System.Windows.Forms.DataGridViewComboBoxCell.ObjectCollection p1)
+		|        {
+		|            M_DataGridViewComboBoxCellObjectCollection = p1;
+		|        }
+		|
+		|        public int Count
+		|        {
+		|            get { return M_DataGridViewComboBoxCellObjectCollection.Count; }
+		|        }
+		|
+		|        public object this[int p1]
+		|        {
+		|            get { return M_DataGridViewComboBoxCellObjectCollection[p1]; }
+		|        }
+		|
+		|        public int Add(object p1)
+		|        {
+		|            return M_DataGridViewComboBoxCellObjectCollection.Add(p1);
+		|        }
+		|
+		|        public void Clear()
+		|        {
+		|            M_DataGridViewComboBoxCellObjectCollection.Clear();
+		|        }
+		|
+		|        public bool Contains(object p1)
+		|        {
+		|            return M_DataGridViewComboBoxCellObjectCollection.Contains(p1);
+		|        }
+		|
+		|        public int IndexOf(object p1)
+		|        {
+		|            return M_DataGridViewComboBoxCellObjectCollection.IndexOf(p1);
+		|        }
+		|
+		|        public void Insert(int index, object value)
+		|        {
+		|            M_DataGridViewComboBoxCellObjectCollection.Insert(index, value);
+		|        }
+		|
+		|        public void Remove(object p1)
+		|        {
+		|            M_DataGridViewComboBoxCellObjectCollection.Remove(p1);
+		|        }
+		|
+		|        public void RemoveAt(int Index)
+		|        {
+		|            M_DataGridViewComboBoxCellObjectCollection.RemoveAt(Index);
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewRowCollection" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewRowCollection
+		|    {
+		|        public ClDataGridViewRowCollection dll_obj;
+		|        public System.Windows.Forms.DataGridViewRowCollection M_DataGridViewRowCollection;
+		|
+		|        public DataGridViewRowCollection()
+		|        {
+		|        }
+		|		
+		|        public DataGridViewRowCollection(System.Windows.Forms.DataGridViewRowCollection p1)
+		|        {
+		|            M_DataGridViewRowCollection = p1;
+		|        }
+		|
+		|        public int Count
+		|        {
+		|            get { return M_DataGridViewRowCollection.Count; }
+		|        }
+		|
+		|        public osf.DataGridViewRow this[int p1]
+		|        {
+		|            get { return new osf.DataGridViewRow(M_DataGridViewRowCollection[p1]); }
+		|        }
+		|
+		|        public int Add()
+		|        {
+		|            return M_DataGridViewRowCollection.Add();
+		|        }
+		|
+		|        public int Add(osf.DataGridViewRow p1)
+		|        {
+		|            return M_DataGridViewRowCollection.Add(p1.M_DataGridViewRow);
+		|        }
+		|
+		|        public int AddCopy(int p1)
+		|        {
+		|            return M_DataGridViewRowCollection.AddCopy(p1);
+		|        }
+		|
+		|        public void Clear()
+		|        {
+		|            M_DataGridViewRowCollection.Clear();
+		|        }
+		|
+		|        public bool Contains(osf.DataGridViewRow p1)
+		|        {
+		|            return M_DataGridViewRowCollection.Contains(p1.M_DataGridViewRow);
+		|        }
+		|
+		|        public int IndexOf(osf.DataGridViewRow p1)
+		|        {
+		|            return M_DataGridViewRowCollection.IndexOf(p1.M_DataGridViewRow);
+		|        }
+		|
+		|        public void Insert(int index, osf.DataGridViewRow value)
+		|        {
+		|            M_DataGridViewRowCollection.Insert(index, value.M_DataGridViewRow);
+		|        }
+		|
+		|        public void Remove(osf.DataGridViewRow p1)
+		|        {
+		|            M_DataGridViewRowCollection.Remove(p1.M_DataGridViewRow);
+		|        }
+		|
+		|        public void RemoveAt(int Index)
+		|        {
+		|            M_DataGridViewRowCollection.RemoveAt(Index);
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewTextBoxColumn" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewTextBoxColumn : DataGridViewColumn
+		|    {
+		|        public new ClDataGridViewTextBoxColumn dll_obj;
+		|        private System.Windows.Forms.DataGridViewTextBoxColumn m_DataGridViewTextBoxColumn;
+		|		
+		|        public DataGridViewTextBoxColumn()
+		|        {
+		|            M_DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+		|        }
+		|
+		|        public DataGridViewTextBoxColumn(osf.DataGridViewTextBoxColumn p1)
+		|        {
+		|            M_DataGridViewTextBoxColumn = p1.M_DataGridViewTextBoxColumn;
+		|        }
+		|
+		|        public DataGridViewTextBoxColumn(System.Windows.Forms.DataGridViewTextBoxColumn p1)
+		|        {
+		|            M_DataGridViewTextBoxColumn = p1;
+		|        }
+		|
+		|        public int MaxInputLength
+		|        {
+		|            get { return M_DataGridViewTextBoxColumn.MaxInputLength; }
+		|            set { M_DataGridViewTextBoxColumn.MaxInputLength = value; }
+		|        }
+		|		
+		|        public System.Windows.Forms.DataGridViewTextBoxColumn M_DataGridViewTextBoxColumn
+		|        {
+		|            get { return m_DataGridViewTextBoxColumn; }
+		|            set
+		|            {
+		|                m_DataGridViewTextBoxColumn = value;
+		|                base.M_DataGridViewColumn = m_DataGridViewTextBoxColumn;
+		|            }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewTextBoxCell" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewTextBoxCell : DataGridViewCell
+		|    {
+		|        public new ClDataGridViewTextBoxCell dll_obj;
+		|        private System.Windows.Forms.DataGridViewTextBoxCell m_DataGridViewTextBoxCell;
+		|		
+		|        public DataGridViewTextBoxCell()
+		|        {
+		|            M_DataGridViewTextBoxCell = new System.Windows.Forms.DataGridViewTextBoxCell();
+		|        }
+		|
+		|        public DataGridViewTextBoxCell(System.Windows.Forms.DataGridViewTextBoxCell p1)
+		|        {
+		|            M_DataGridViewTextBoxCell = p1;
+		|        }
+		|
+		|        public int MaxInputLength
+		|        {
+		|            get { return M_DataGridViewTextBoxCell.MaxInputLength; }
+		|            set { M_DataGridViewTextBoxCell.MaxInputLength = value; }
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewTextBoxCell M_DataGridViewTextBoxCell
+		|        {
+		|            get { return m_DataGridViewTextBoxCell; }
+		|            set
+		|            {
+		|                m_DataGridViewTextBoxCell = value;
+		|                base.M_DataGridViewCell = m_DataGridViewTextBoxCell;
+		|            }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewRowHeaderCell" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewRowHeaderCell : DataGridViewHeaderCell
+		|    {
+		|        public new ClDataGridViewRowHeaderCell dll_obj;
+		|        private System.Windows.Forms.DataGridViewRowHeaderCell m_DataGridViewRowHeaderCell;
+		|		
+		|        public DataGridViewRowHeaderCell()
+		|        {
+		|            M_DataGridViewRowHeaderCell = new System.Windows.Forms.DataGridViewRowHeaderCell();
+		|        }
+		|		
+		|        public DataGridViewRowHeaderCell(System.Windows.Forms.DataGridViewRowHeaderCell p1)
+		|        {
+		|            M_DataGridViewRowHeaderCell = p1;
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewRowHeaderCell M_DataGridViewRowHeaderCell
+		|        {
+		|            get { return m_DataGridViewRowHeaderCell; }
+		|            set
+		|            {
+		|                m_DataGridViewRowHeaderCell = value;
+		|                base.M_DataGridViewHeaderCell = m_DataGridViewRowHeaderCell;
+		|            }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewLinkColumn" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewLinkColumn : DataGridViewColumn
+		|    {
+		|        public new ClDataGridViewLinkColumn dll_obj;
+		|        private System.Windows.Forms.DataGridViewLinkColumn m_DataGridViewLinkColumn;
+		|		
+		|        public DataGridViewLinkColumn()
+		|        {
+		|            M_DataGridViewLinkColumn = new System.Windows.Forms.DataGridViewLinkColumn();
+		|        }
+		|
+		|        public DataGridViewLinkColumn(osf.DataGridViewLinkColumn p1)
+		|        {
+		|            M_DataGridViewLinkColumn = p1.M_DataGridViewLinkColumn;
+		|        }
+		|
+		|        public DataGridViewLinkColumn(System.Windows.Forms.DataGridViewLinkColumn p1)
+		|        {
+		|            M_DataGridViewLinkColumn = p1;
+		|        }
+		|
+		|        public osf.Color ActiveLinkColor
+		|        {
+		|            get { return new Color(M_DataGridViewLinkColumn.ActiveLinkColor); }
+		|            set { M_DataGridViewLinkColumn.ActiveLinkColor = value.M_Color; }
+		|        }
+		|		
+		|        public string Text
+		|        {
+		|            get { return M_DataGridViewLinkColumn.Text; }
+		|            set { M_DataGridViewLinkColumn.Text = value; }
+		|        }
+		|		
+		|        public osf.Color LinkColor
+		|        {
+		|            get { return new Color(M_DataGridViewLinkColumn.LinkColor); }
+		|            set { M_DataGridViewLinkColumn.LinkColor = value.M_Color; }
+		|        }
+		|		
+		|        public osf.Color VisitedLinkColor
+		|        {
+		|            get { return new Color(M_DataGridViewLinkColumn.VisitedLinkColor); }
+		|            set { M_DataGridViewLinkColumn.VisitedLinkColor = value.M_Color; }
+		|        }
+		|
+		|        public bool UseColumnTextForLinkValue
+		|        {
+		|            get { return M_DataGridViewLinkColumn.UseColumnTextForLinkValue; }
+		|            set { M_DataGridViewLinkColumn.UseColumnTextForLinkValue = value; }
+		|        }
+		|
+		|        public int LinkBehavior
+		|        {
+		|            get { return (int)M_DataGridViewLinkColumn.LinkBehavior; }
+		|            set { M_DataGridViewLinkColumn.LinkBehavior = (System.Windows.Forms.LinkBehavior)value; }
+		|        }
+		|
+		|        public bool TrackVisitedState
+		|        {
+		|            get { return M_DataGridViewLinkColumn.TrackVisitedState; }
+		|            set { M_DataGridViewLinkColumn.TrackVisitedState = value; }
+		|        }
+		|		
+		|
+		|        public System.Windows.Forms.DataGridViewLinkColumn M_DataGridViewLinkColumn
+		|        {
+		|            get { return m_DataGridViewLinkColumn; }
+		|            set
+		|            {
+		|                m_DataGridViewLinkColumn = value;
+		|                base.M_DataGridViewColumn = m_DataGridViewLinkColumn;
+		|            }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewRow" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewRow : DataGridViewBand
+		|    {
+		|        public new ClDataGridViewRow dll_obj;
+		|        private System.Windows.Forms.DataGridViewRow m_DataGridViewRow;
+		|		
+		|        public DataGridViewRow()
+		|        {
+		|            M_DataGridViewRow = new System.Windows.Forms.DataGridViewRow();
+		|        }
+		|
+		|        public DataGridViewRow(System.Windows.Forms.DataGridViewRow p1)
+		|        {
+		|            M_DataGridViewRow = p1;
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewRow M_DataGridViewRow
+		|        {
+		|            get { return m_DataGridViewRow; }
+		|            set
+		|            {
+		|                m_DataGridViewRow = value;
+		|                base.M_DataGridViewBand = m_DataGridViewRow;
+		|            }
+		|        }
+		|
+		|        public osf.DataGridViewCellCollection Cells
+		|        {
+		|            get { return new osf.DataGridViewCellCollection(M_DataGridViewRow.Cells); }
+		|        }
+		|		
+		|        public osf.DataGridViewRowHeaderCell HeaderCell
+		|        {
+		|            get { return new osf.DataGridViewRowHeaderCell(M_DataGridViewRow.HeaderCell); }
+		|            set { M_DataGridViewRow.HeaderCell = value.M_DataGridViewRowHeaderCell; }
+		|        }
+		|		
+		|        public int Resizable
+		|        {
+		|            get { return (int)M_DataGridViewRow.Resizable; }
+		|            set { M_DataGridViewRow.Resizable = (System.Windows.Forms.DataGridViewTriState)value; }
+		|        }
+		|		
+		|        public osf.DataGridViewCellStyle DefaultCellStyle
+		|        {
+		|            get
+		|            {
+		|                foreach (System.Collections.DictionaryEntry de in OneScriptForms.hashtable)
+		|                {
+		|                    if (de.Key.Equals(M_DataGridViewRow.DefaultCellStyle))
+		|                    {
+		|                        return ((dynamic)de.Value);
+		|                    }
+		|                }
+		|                return null;
+		|            }
+		|            set { M_DataGridViewRow.DefaultCellStyle = value.M_DataGridViewCellStyle; }
+		|        }
+		|
+		|        public int DividerHeight
+		|        {
+		|            get { return M_DataGridViewRow.DividerHeight; }
+		|            set { M_DataGridViewRow.DividerHeight = value; }
+		|        }
+		|
+		|        public bool Frozen
+		|        {
+		|            get { return M_DataGridViewRow.Frozen; }
+		|            set { M_DataGridViewRow.Frozen = value; }
+		|        }
+		|
+		|        public int MinimumHeight
+		|        {
+		|            get { return M_DataGridViewRow.MinimumHeight; }
+		|            set { M_DataGridViewRow.MinimumHeight = value; }
+		|        }
+		|
+		|        public bool Visible
+		|        {
+		|            get { return M_DataGridViewRow.Visible; }
+		|            set { M_DataGridViewRow.Visible = value; }
+		|        }
+		|
+		|        public bool ReadOnly
+		|        {
+		|            get { return M_DataGridViewRow.ReadOnly; }
+		|            set { M_DataGridViewRow.ReadOnly = value; }
+		|        }
+		|
+		|        public bool IsNewRow
+		|        {
+		|            get { return M_DataGridViewRow.IsNewRow; }
+		|        }
+		|		
+		|        public int Height
+		|        {
+		|            get { return M_DataGridViewRow.Height; }
+		|            set { M_DataGridViewRow.Height = value; }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewLinkCell" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewLinkCell : DataGridViewCell
+		|    {
+		|        public new ClDataGridViewLinkCell dll_obj;
+		|        private System.Windows.Forms.DataGridViewLinkCell m_DataGridViewLinkCell;
+		|		
+		|        public DataGridViewLinkCell()
+		|        {
+		|            M_DataGridViewLinkCell = new System.Windows.Forms.DataGridViewLinkCell();
+		|        }
+		|
+		|        public DataGridViewLinkCell(System.Windows.Forms.DataGridViewLinkCell p1)
+		|        {
+		|            M_DataGridViewLinkCell = p1;
+		|        }
+		|		
+		|        public int LinkBehavior
+		|        {
+		|            get { return (int)M_DataGridViewLinkCell.LinkBehavior; }
+		|            set { M_DataGridViewLinkCell.LinkBehavior = (System.Windows.Forms.LinkBehavior)value; }
+		|        }
+		|		
+		|        public osf.Color LinkColor
+		|        {
+		|            get { return new Color(M_DataGridViewLinkCell.LinkColor); }
+		|            set { M_DataGridViewLinkCell.LinkColor = value.M_Color; }
+		|        }
+		|		
+		|        public osf.Color VisitedLinkColor
+		|        {
+		|            get { return new Color(M_DataGridViewLinkCell.VisitedLinkColor); }
+		|            set { M_DataGridViewLinkCell.VisitedLinkColor = value.M_Color; }
+		|        }
+		|		
+		|        public bool LinkVisited
+		|        {
+		|            get { return M_DataGridViewLinkCell.LinkVisited; }
+		|            set { M_DataGridViewLinkCell.LinkVisited = value; }
+		|        }
+		|		
+		|        public bool TrackVisitedState
+		|        {
+		|            get { return M_DataGridViewLinkCell.TrackVisitedState; }
+		|            set { M_DataGridViewLinkCell.TrackVisitedState = value; }
+		|        }
+		|		
+		|        public bool UseColumnTextForLinkValue
+		|        {
+		|            get { return M_DataGridViewLinkCell.UseColumnTextForLinkValue; }
+		|            set { M_DataGridViewLinkCell.UseColumnTextForLinkValue = value; }
+		|        }
+		|
+		|        public osf.Color ActiveLinkColor
+		|        {
+		|            get { return new Color(M_DataGridViewLinkCell.ActiveLinkColor); }
+		|            set { M_DataGridViewLinkCell.ActiveLinkColor = value.M_Color; }
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewLinkCell M_DataGridViewLinkCell
+		|        {
+		|            get { return m_DataGridViewLinkCell; }
+		|            set
+		|            {
+		|                m_DataGridViewLinkCell = value;
+		|                base.M_DataGridViewCell = m_DataGridViewLinkCell;
+		|            }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewImageColumn" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewImageColumn : DataGridViewColumn
+		|    {
+		|        public new ClDataGridViewImageColumn dll_obj;
+		|        private System.Windows.Forms.DataGridViewImageColumn m_DataGridViewImageColumn;
+		|		
+		|        public DataGridViewImageColumn()
+		|        {
+		|            M_DataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
+		|        }
+		|
+		|        public DataGridViewImageColumn(osf.DataGridViewImageColumn p1)
+		|        {
+		|            M_DataGridViewImageColumn = p1.M_DataGridViewImageColumn;
+		|        }
+		|
+		|        public DataGridViewImageColumn(System.Windows.Forms.DataGridViewImageColumn p1)
+		|        {
+		|            M_DataGridViewImageColumn = p1;
+		|        }
+		|
+		|        public osf.Bitmap Bitmap
+		|        {
+		|            get { return new osf.Bitmap(M_DataGridViewImageColumn.Image); }
+		|            set { M_DataGridViewImageColumn.Image = value.M_Bitmap; }
+		|        }
+		|
+		|        public osf.Icon Icon
+		|        {
+		|            get { return new osf.Icon(M_DataGridViewImageColumn.Icon); }
+		|            set { M_DataGridViewImageColumn.Icon = (System.Drawing.Icon)value.M_Icon; }
+		|        }
+		|		
+		|        public int ImageLayout
+		|        {
+		|            get { return (int)M_DataGridViewImageColumn.ImageLayout; }
+		|            set { M_DataGridViewImageColumn.ImageLayout = (System.Windows.Forms.DataGridViewImageCellLayout)value; }
+		|        }
+		|		
+		|        public bool ValuesAreIcons
+		|        {
+		|            get { return M_DataGridViewImageColumn.ValuesAreIcons; }
+		|            set { M_DataGridViewImageColumn.ValuesAreIcons = value; }
+		|        }
+		|		
+		|        public string Description
+		|        {
+		|            get { return M_DataGridViewImageColumn.Description; }
+		|            set { M_DataGridViewImageColumn.Description = value; }
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewImageColumn M_DataGridViewImageColumn
+		|        {
+		|            get { return m_DataGridViewImageColumn; }
+		|            set
+		|            {
+		|                m_DataGridViewImageColumn = value;
+		|                base.M_DataGridViewColumn = m_DataGridViewImageColumn;
+		|            }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewImageCell" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewImageCell : DataGridViewCell
+		|    {
+		|        public new ClDataGridViewImageCell dll_obj;
+		|        private System.Windows.Forms.DataGridViewImageCell m_DataGridViewImageCell;
+		|		
+		|        public DataGridViewImageCell()
+		|        {
+		|            M_DataGridViewImageCell = new System.Windows.Forms.DataGridViewImageCell();
+		|        }
+		|
+		|        public DataGridViewImageCell(System.Windows.Forms.DataGridViewImageCell p1)
+		|        {
+		|            M_DataGridViewImageCell = p1;
+		|        }
+		|
+		|        public string Description
+		|        {
+		|            get { return M_DataGridViewImageCell.Description; }
+		|            set { M_DataGridViewImageCell.Description = value; }
+		|        }
+		|
+		|        public bool ValueIsIcon
+		|        {
+		|            get { return M_DataGridViewImageCell.ValueIsIcon; }
+		|            set { M_DataGridViewImageCell.ValueIsIcon = value; }
+		|        }
+		|		
+		|        public int ImageLayout
+		|        {
+		|            get { return (int)M_DataGridViewImageCell.ImageLayout; }
+		|            set { M_DataGridViewImageCell.ImageLayout = (System.Windows.Forms.DataGridViewImageCellLayout)value; }
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewImageCell M_DataGridViewImageCell
+		|        {
+		|            get { return m_DataGridViewImageCell; }
+		|            set
+		|            {
+		|                m_DataGridViewImageCell = value;
+		|                base.M_DataGridViewCell = m_DataGridViewImageCell;
+		|            }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewComboBoxColumn" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewComboBoxColumn : DataGridViewColumn
+		|    {
+		|        public new ClDataGridViewComboBoxColumn dll_obj;
+		|        private System.Windows.Forms.DataGridViewComboBoxColumn m_DataGridViewComboBoxColumn;
+		|		
+		|        public DataGridViewComboBoxColumn()
+		|        {
+		|            M_DataGridViewComboBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+		|            M_DataGridViewComboBoxColumn.DisplayMember = ""Text"";
+		|            M_DataGridViewComboBoxColumn.ValueMember = ""Value"";
+		|        }
+		|
+		|        public DataGridViewComboBoxColumn(osf.DataGridViewComboBoxColumn p1)
+		|        {
+		|            M_DataGridViewComboBoxColumn = p1.M_DataGridViewComboBoxColumn;
+		|        }
+		|
+		|        public DataGridViewComboBoxColumn(System.Windows.Forms.DataGridViewComboBoxColumn p1)
+		|        {
+		|            M_DataGridViewComboBoxColumn = p1;
+		|        }
+		|
+		|        public int DisplayStyle
+		|        {
+		|            get { return (int)M_DataGridViewComboBoxColumn.DisplayStyle; }
+		|            set { M_DataGridViewComboBoxColumn.DisplayStyle = (System.Windows.Forms.DataGridViewComboBoxDisplayStyle)value; }
+		|        }
+		|
+		|        public string ValueMember
+		|        {
+		|            get { return M_DataGridViewComboBoxColumn.ValueMember; }
+		|            set { M_DataGridViewComboBoxColumn.ValueMember = value; }
+		|        }
+		|		
+		|        public object DataSource
+		|        {
+		|            get
+		|            {
+		|                object obj;
+		|                try
+		|                {
+		|                    obj = ((dynamic)M_DataGridViewComboBoxColumn.DataSource).M_Object;
+		|                }
+		|                catch
+		|                {
+		|                    obj = M_DataGridViewComboBoxColumn.DataSource;
+		|                }
+		|                return obj;
+		|            }
+		|            set
+		|            {
+		|                M_DataGridViewComboBoxColumn.DataSource = null;
+		|                try
+		|                {
+		|                    System.Type Type1 = value.GetType();
+		|                    string strType1 = Type1.ToString();
+		|                    string str1 = strType1.Substring(strType1.LastIndexOf(""."") + 1);
+		|                    M_DataGridViewComboBoxColumn.DataSource = Type1.GetField(""M_"" + str1).GetValue(value);
+		|                }
+		|                catch
+		|                {
+		|                    M_DataGridViewComboBoxColumn.DataSource = value;
+		|                }
+		|            }
+		|        }
+		|
+		|        public int MaxDropDownItems
+		|        {
+		|            get { return M_DataGridViewComboBoxColumn.MaxDropDownItems; }
+		|            set { M_DataGridViewComboBoxColumn.MaxDropDownItems = value; }
+		|        }
+		|
+		|        public string DisplayMember
+		|        {
+		|            get { return M_DataGridViewComboBoxColumn.DisplayMember; }
+		|            set { M_DataGridViewComboBoxColumn.DisplayMember = value; }
+		|        }
+		|
+		|        public bool Sorted
+		|        {
+		|            get { return M_DataGridViewComboBoxColumn.Sorted; }
+		|            set { M_DataGridViewComboBoxColumn.Sorted = value; }
+		|        }
+		|
+		|        public int FlatStyle
+		|        {
+		|            get { return (int)M_DataGridViewComboBoxColumn.FlatStyle; }
+		|            set { M_DataGridViewComboBoxColumn.FlatStyle = (System.Windows.Forms.FlatStyle)value; }
+		|        }
+		|
+		|        public osf.DataGridViewComboBoxCellObjectCollection Items
+		|        {
+		|            get { return new DataGridViewComboBoxCellObjectCollection(M_DataGridViewComboBoxColumn.Items); }
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewComboBoxColumn M_DataGridViewComboBoxColumn
+		|        {
+		|            get { return m_DataGridViewComboBoxColumn; }
+		|            set
+		|            {
+		|                m_DataGridViewComboBoxColumn = value;
+		|                base.M_DataGridViewColumn = m_DataGridViewComboBoxColumn;
+		|            }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewComboBoxCell" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewComboBoxCell : DataGridViewCell
+		|    {
+		|        public new ClDataGridViewComboBoxCell dll_obj;
+		|        private System.Windows.Forms.DataGridViewComboBoxCell m_DataGridViewComboBoxCell;
+		|		
+		|        public DataGridViewComboBoxCell()
+		|        {
+		|            M_DataGridViewComboBoxCell = new System.Windows.Forms.DataGridViewComboBoxCell();
+		|            M_DataGridViewComboBoxCell.DisplayMember = ""Text"";
+		|            M_DataGridViewComboBoxCell.ValueMember = ""Value"";
+		|        }
+		|
+		|        public DataGridViewComboBoxCell(System.Windows.Forms.DataGridViewComboBoxCell p1)
+		|        {
+		|            M_DataGridViewComboBoxCell = p1;
+		|        }
+		|
+		|        public int DisplayStyle
+		|        {
+		|            get { return (int)M_DataGridViewComboBoxCell.DisplayStyle; }
+		|            set { M_DataGridViewComboBoxCell.DisplayStyle = (System.Windows.Forms.DataGridViewComboBoxDisplayStyle)value; }
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewComboBoxCell M_DataGridViewComboBoxCell
+		|        {
+		|            get { return m_DataGridViewComboBoxCell; }
+		|            set
+		|            {
+		|                m_DataGridViewComboBoxCell = value;
+		|                base.M_DataGridViewCell = m_DataGridViewComboBoxCell;
+		|            }
+		|        }
+		|		
+		|        public int MaxDropDownItems
+		|        {
+		|            get { return M_DataGridViewComboBoxCell.MaxDropDownItems; }
+		|            set { M_DataGridViewComboBoxCell.MaxDropDownItems = value; }
+		|        }
+		|		
+		|        public string DisplayMember
+		|        {
+		|            get { return M_DataGridViewComboBoxCell.DisplayMember; }
+		|            set { M_DataGridViewComboBoxCell.DisplayMember = value; }
+		|        }
+		|		
+		|        public bool Sorted
+		|        {
+		|            get { return M_DataGridViewComboBoxCell.Sorted; }
+		|            set { M_DataGridViewComboBoxCell.Sorted = value; }
+		|        }
+		|		
+		|        public string ValueMember
+		|        {
+		|            get { return M_DataGridViewComboBoxCell.ValueMember; }
+		|            set { M_DataGridViewComboBoxCell.ValueMember = value; }
+		|        }
+		|		
+		|        public object DataSource
+		|        {
+		|            get
+		|            {
+		|                object obj;
+		|                try
+		|                {
+		|                    obj = ((dynamic)M_DataGridViewComboBoxCell.DataSource).M_Object;
+		|                }
+		|                catch
+		|                {
+		|                    obj = M_DataGridViewComboBoxCell.DataSource;
+		|                }
+		|                return obj;
+		|            }
+		|            set
+		|            {
+		|                M_DataGridViewComboBoxCell.DataSource = null;
+		|                try
+		|                {
+		|                    System.Type Type1 = value.GetType();
+		|                    string strType1 = Type1.ToString();
+		|                    string str1 = strType1.Substring(strType1.LastIndexOf(""."") + 1);
+		|                    M_DataGridViewComboBoxCell.DataSource = Type1.GetField(""M_"" + str1).GetValue(value);
+		|                }
+		|                catch
+		|                {
+		|                    M_DataGridViewComboBoxCell.DataSource = value;
+		|                }
+		|            }
+		|        }
+		|		
+		|        public osf.DataGridViewComboBoxCellObjectCollection Items
+		|        {
+		|            get { return new DataGridViewComboBoxCellObjectCollection(M_DataGridViewComboBoxCell.Items); }
+		|        }
+		|		
+		|        public int FlatStyle
+		|        {
+		|            get { return (int)M_DataGridViewComboBoxCell.FlatStyle; }
+		|            set { M_DataGridViewComboBoxCell.FlatStyle = (System.Windows.Forms.FlatStyle)value; }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewColumnHeaderCell" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewColumnHeaderCell : DataGridViewHeaderCell
+		|    {
+		|        public new ClDataGridViewColumnHeaderCell dll_obj;
+		|        private System.Windows.Forms.DataGridViewColumnHeaderCell m_DataGridViewColumnHeaderCell;
+		|		
+		|        public DataGridViewColumnHeaderCell()
+		|        {
+		|            M_DataGridViewColumnHeaderCell = new System.Windows.Forms.DataGridViewColumnHeaderCell();
+		|        }
+		|
+		|        public DataGridViewColumnHeaderCell(System.Windows.Forms.DataGridViewColumnHeaderCell p1)
+		|        {
+		|            M_DataGridViewColumnHeaderCell = p1;
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewColumnHeaderCell M_DataGridViewColumnHeaderCell
+		|        {
+		|            get { return m_DataGridViewColumnHeaderCell; }
+		|            set
+		|            {
+		|                m_DataGridViewColumnHeaderCell = value;
+		|                base.M_DataGridViewHeaderCell = m_DataGridViewColumnHeaderCell;
+		|            }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewHeaderCell" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewHeaderCell : DataGridViewCell
+		|    {
+		|        public new ClDataGridViewHeaderCell dll_obj;
+		|        private System.Windows.Forms.DataGridViewHeaderCell m_DataGridViewHeaderCell;
+		|		
+		|        public DataGridViewHeaderCell()
+		|        {
+		|            M_DataGridViewHeaderCell = new System.Windows.Forms.DataGridViewHeaderCell();
+		|        }
+		|
+		|        public DataGridViewHeaderCell(System.Windows.Forms.DataGridViewHeaderCell p1)
+		|        {
+		|            M_DataGridViewHeaderCell = p1;
+		|        }
+		|		
+		|        public new bool Visible
+		|        {
+		|            get { return M_DataGridViewHeaderCell.Visible; }
+		|        }
+		|		
+		|        public new bool Resizable
+		|        {
+		|            get { return M_DataGridViewHeaderCell.Resizable; }
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewHeaderCell M_DataGridViewHeaderCell
+		|        {
+		|            get { return m_DataGridViewHeaderCell; }
+		|            set
+		|            {
+		|                m_DataGridViewHeaderCell = value;
+		|                base.M_DataGridViewCell = m_DataGridViewHeaderCell;
+		|            }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewCheckBoxColumn" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewCheckBoxColumn : DataGridViewColumn
+		|    {
+		|        public new ClDataGridViewCheckBoxColumn dll_obj;
+		|        private System.Windows.Forms.DataGridViewCheckBoxColumn m_DataGridViewCheckBoxColumn;
+		|		
+		|        public DataGridViewCheckBoxColumn()
+		|        {
+		|            M_DataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+		|        }
+		|
+		|        public DataGridViewCheckBoxColumn(osf.DataGridViewCheckBoxColumn p1)
+		|        {
+		|            M_DataGridViewCheckBoxColumn = p1.M_DataGridViewCheckBoxColumn;
+		|        }
+		|
+		|        public DataGridViewCheckBoxColumn(System.Windows.Forms.DataGridViewCheckBoxColumn p1)
+		|        {
+		|            M_DataGridViewCheckBoxColumn = p1;
+		|        }
+		|
+		|        public bool ThreeState
+		|        {
+		|            get { return M_DataGridViewCheckBoxColumn.ThreeState; }
+		|            set { M_DataGridViewCheckBoxColumn.ThreeState = value; }
+		|        }
+		|		
+		|        public object IndeterminateValue
+		|        {
+		|            get { return M_DataGridViewCheckBoxColumn.IndeterminateValue; }
+		|            set { M_DataGridViewCheckBoxColumn.IndeterminateValue = value; }
+		|        }
+		|		
+		|        public object FalseValue
+		|        {
+		|            get { return M_DataGridViewCheckBoxColumn.FalseValue; }
+		|            set { M_DataGridViewCheckBoxColumn.FalseValue = value; }
+		|        }
+		|
+		|        public object TrueValue
+		|        {
+		|            get { return M_DataGridViewCheckBoxColumn.TrueValue; }
+		|            set { M_DataGridViewCheckBoxColumn.TrueValue = value; }
+		|        }
+		|		
+		|        public int FlatStyle
+		|        {
+		|            get { return (int)M_DataGridViewCheckBoxColumn.FlatStyle; }
+		|            set { M_DataGridViewCheckBoxColumn.FlatStyle = (System.Windows.Forms.FlatStyle)value; }
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewCheckBoxColumn M_DataGridViewCheckBoxColumn
+		|        {
+		|            get { return m_DataGridViewCheckBoxColumn; }
+		|            set
+		|            {
+		|                m_DataGridViewCheckBoxColumn = value;
+		|                base.M_DataGridViewColumn = m_DataGridViewCheckBoxColumn;
+		|            }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewCheckBoxCell" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewCheckBoxCell : DataGridViewCell
+		|    {
+		|        public new ClDataGridViewCheckBoxCell dll_obj;
+		|        private System.Windows.Forms.DataGridViewCheckBoxCell m_DataGridViewCheckBoxCell;
+		|		
+		|        public DataGridViewCheckBoxCell()
+		|        {
+		|            M_DataGridViewCheckBoxCell = new System.Windows.Forms.DataGridViewCheckBoxCell();
+		|        }
+		|
+		|        public DataGridViewCheckBoxCell(System.Windows.Forms.DataGridViewCheckBoxCell p1)
+		|        {
+		|            M_DataGridViewCheckBoxCell = p1;
+		|        }
+		|
+		|        public bool ThreeState
+		|        {
+		|            get { return M_DataGridViewCheckBoxCell.ThreeState; }
+		|            set { M_DataGridViewCheckBoxCell.ThreeState = value; }
+		|        }
+		|		
+		|        public int FlatStyle
+		|        {
+		|            get { return (int)M_DataGridViewCheckBoxCell.FlatStyle; }
+		|            set { M_DataGridViewCheckBoxCell.FlatStyle = (System.Windows.Forms.FlatStyle)value; }
+		|        }
+		|		
+		|        public object IndeterminateValue
+		|        {
+		|            get { return M_DataGridViewCheckBoxCell.IndeterminateValue; }
+		|            set { M_DataGridViewCheckBoxCell.IndeterminateValue = value; }
+		|        }
+		|		
+		|        public object FalseValue
+		|        {
+		|            get { return M_DataGridViewCheckBoxCell.FalseValue; }
+		|            set { M_DataGridViewCheckBoxCell.FalseValue = value; }
+		|        }
+		|		
+		|        public object TrueValue
+		|        {
+		|            get { return M_DataGridViewCheckBoxCell.TrueValue; }
+		|            set { M_DataGridViewCheckBoxCell.TrueValue = value; }
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewCheckBoxCell M_DataGridViewCheckBoxCell
+		|        {
+		|            get { return m_DataGridViewCheckBoxCell; }
+		|            set
+		|            {
+		|                m_DataGridViewCheckBoxCell = value;
+		|                base.M_DataGridViewCell = m_DataGridViewCheckBoxCell;
+		|            }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewCellCollection" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewCellCollection : CollectionBase
+		|    {
+		|        public ClDataGridViewCellCollection dll_obj;
+		|        public System.Windows.Forms.DataGridViewCellCollection M_DataGridViewCellCollection;
+		|
+		|        public DataGridViewCellCollection()
+		|        {
+		|        }
+		|
+		|        public DataGridViewCellCollection(System.Windows.Forms.DataGridViewCellCollection p1)
+		|        {
+		|            M_DataGridViewCellCollection = p1;
+		|            base.List = M_DataGridViewCellCollection;
+		|        }
+		|
+		|        public new object this[int index]
+		|        {
+		|            get { return M_DataGridViewCellCollection[index]; }
+		|        }
+		|
+		|        public override object Current
+		|        {
+		|            get { return Enumerator.Current; }
+		|        }
+		|
+		|        public int Add(System.Windows.Forms.DataGridViewCell item)
+		|        {
+		|            return M_DataGridViewCellCollection.Add(item);
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewButtonColumn" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewButtonColumn : DataGridViewColumn
+		|    {
+		|        public new ClDataGridViewButtonColumn dll_obj;
+		|        private System.Windows.Forms.DataGridViewButtonColumn m_DataGridViewButtonColumn;
+		|		
+		|        public DataGridViewButtonColumn()
+		|        {
+		|            M_DataGridViewButtonColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+		|        }
+		|
+		|        public DataGridViewButtonColumn(osf.DataGridViewButtonColumn p1)
+		|        {
+		|            M_DataGridViewButtonColumn = p1.M_DataGridViewButtonColumn;
+		|        }
+		|
+		|        public DataGridViewButtonColumn(System.Windows.Forms.DataGridViewButtonColumn p1)
+		|        {
+		|            M_DataGridViewButtonColumn = p1;
+		|        }
+		|
+		|        public int FlatStyle
+		|        {
+		|            get { return (int)M_DataGridViewButtonColumn.FlatStyle; }
+		|            set { M_DataGridViewButtonColumn.FlatStyle = (System.Windows.Forms.FlatStyle)value; }
+		|        }
+		|		
+		|        public bool UseColumnTextForButtonValue
+		|        {
+		|            get { return M_DataGridViewButtonColumn.UseColumnTextForButtonValue; }
+		|            set { M_DataGridViewButtonColumn.UseColumnTextForButtonValue = value; }
+		|        }
+		|
+		|        public string Text
+		|        {
+		|            get { return M_DataGridViewButtonColumn.Text; }
+		|            set { M_DataGridViewButtonColumn.Text = value; }
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewButtonColumn M_DataGridViewButtonColumn
+		|        {
+		|            get { return m_DataGridViewButtonColumn; }
+		|            set
+		|            {
+		|                m_DataGridViewButtonColumn = value;
+		|                base.M_DataGridViewColumn = m_DataGridViewButtonColumn;
+		|            }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewButtonCell" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewButtonCell : DataGridViewCell
+		|    {
+		|        public new ClDataGridViewButtonCell dll_obj;
+		|        private System.Windows.Forms.DataGridViewButtonCell m_DataGridViewButtonCell;
+		|		
+		|        public DataGridViewButtonCell()
+		|        {
+		|            M_DataGridViewButtonCell = new System.Windows.Forms.DataGridViewButtonCell();
+		|        }
+		|
+		|        public DataGridViewButtonCell(System.Windows.Forms.DataGridViewButtonCell p1)
+		|        {
+		|            M_DataGridViewButtonCell = p1;
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewButtonCell M_DataGridViewButtonCell
+		|        {
+		|            get { return m_DataGridViewButtonCell; }
+		|            set
+		|            {
+		|                m_DataGridViewButtonCell = value;
+		|                base.M_DataGridViewCell = m_DataGridViewButtonCell;
+		|            }
+		|        }
+		|
+		|        public int FlatStyle
+		|        {
+		|            get { return (int)M_DataGridViewButtonCell.FlatStyle; }
+		|            set { M_DataGridViewButtonCell.FlatStyle = (System.Windows.Forms.FlatStyle)value; }
+		|        }
+		|		
+		|        public bool UseColumnTextForButtonValue
+		|        {
+		|            get { return M_DataGridViewButtonCell.UseColumnTextForButtonValue; }
+		|            set { M_DataGridViewButtonCell.UseColumnTextForButtonValue = value; }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewColumn" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewColumn : DataGridViewBand
+		|    {
+		|        public new ClDataGridViewColumn dll_obj;
+		|        private System.Windows.Forms.DataGridViewColumn m_DataGridViewColumn;
+		|		
+		|        public DataGridViewColumn()
+		|        {
+		|            M_DataGridViewColumn = new System.Windows.Forms.DataGridViewColumn();
+		|        }
+		|
+		|        public DataGridViewColumn(osf.DataGridViewColumn p1)
+		|        {
+		|            M_DataGridViewColumn = p1.M_DataGridViewColumn;
+		|        }
+		|
+		|        public DataGridViewColumn(System.Windows.Forms.DataGridViewColumn p1)
+		|        {
+		|            M_DataGridViewColumn = p1;
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewColumn M_DataGridViewColumn
+		|        {
+		|            get { return m_DataGridViewColumn; }
+		|            set
+		|            {
+		|                m_DataGridViewColumn = value;
+		|                base.M_DataGridViewBand = m_DataGridViewColumn;
+		|            }
+		|        }
+		|
+		|        public int SortMode
+		|        {
+		|            get { return (int)M_DataGridViewColumn.SortMode; }
+		|            set { M_DataGridViewColumn.SortMode = (System.Windows.Forms.DataGridViewColumnSortMode)value; }
+		|        }
+		|
+		|        public int Width
+		|        {
+		|            get { return (int)M_DataGridViewColumn.Width; }
+		|            set { M_DataGridViewColumn.Width = value; }
+		|        }
+		|		
+		|        public string DataPropertyName
+		|        {
+		|            get { return M_DataGridViewColumn.DataPropertyName; }
+		|            set { M_DataGridViewColumn.DataPropertyName = value; }
+		|        }
+		|		
+		|        public int DisplayIndex
+		|        {
+		|            get { return M_DataGridViewColumn.DisplayIndex; }
+		|            set { M_DataGridViewColumn.DisplayIndex = value; }
+		|        }
+		|		
+		|        public float FillWeight
+		|        {
+		|            get { return M_DataGridViewColumn.FillWeight; }
+		|            set { M_DataGridViewColumn.FillWeight = value; }
+		|        }
+		|		
+		|        public osf.DataGridViewCellStyle DefaultCellStyle
+		|        {
+		|            get
+		|            {
+		|                foreach (System.Collections.DictionaryEntry de in OneScriptForms.hashtable)
+		|                {
+		|                    if (de.Key.Equals(M_DataGridViewColumn.DefaultCellStyle))
+		|                    {
+		|                        return ((dynamic)de.Value);
+		|                    }
+		|                }
+		|                return null;
+		|            }
+		|            set { M_DataGridViewColumn.DefaultCellStyle = value.M_DataGridViewCellStyle; }
+		|        }
+		|		
+		|        public bool Frozen
+		|        {
+		|            get { return M_DataGridViewColumn.Frozen; }
+		|            set { M_DataGridViewColumn.Frozen = value; }
+		|        }
+		|
+		|        public string Name
+		|        {
+		|            get { return M_DataGridViewColumn.Name; }
+		|            set { M_DataGridViewColumn.Name = value; }
+		|        }
+		|
+		|        public int MinimumWidth
+		|        {
+		|            get { return M_DataGridViewColumn.MinimumWidth; }
+		|            set { M_DataGridViewColumn.MinimumWidth = value; }
+		|        }
+		|
+		|        public bool Visible
+		|        {
+		|            get { return M_DataGridViewColumn.Visible; }
+		|            set { M_DataGridViewColumn.Visible = value; }
+		|        }
+		|
+		|        public int AutoSizeMode
+		|        {
+		|            get { return (int)M_DataGridViewColumn.AutoSizeMode; }
+		|            set { M_DataGridViewColumn.AutoSizeMode = (System.Windows.Forms.DataGridViewAutoSizeColumnMode)value; }
+		|        }
+		|
+		|        public string ToolTipText
+		|        {
+		|            get { return M_DataGridViewColumn.ToolTipText; }
+		|            set { M_DataGridViewColumn.ToolTipText = value; }
+		|        }
+		|
+		|        public bool ReadOnly
+		|        {
+		|            get { return M_DataGridViewColumn.ReadOnly; }
+		|            set { M_DataGridViewColumn.ReadOnly = value; }
+		|        }
+		|
+		|        public int DividerWidth
+		|        {
+		|            get { return M_DataGridViewColumn.DividerWidth; }
+		|            set { M_DataGridViewColumn.DividerWidth = value; }
+		|        }
+		|		
+		|        public int Resizable
+		|        {
+		|            get { return (int)M_DataGridViewColumn.Resizable; }
+		|            set { M_DataGridViewColumn.Resizable = (System.Windows.Forms.DataGridViewTriState)value; }
+		|        }
+		|		
+		|        public string HeaderText
+		|        {
+		|            get { return M_DataGridViewColumn.HeaderText; }
+		|            set { M_DataGridViewColumn.HeaderText = value; }
+		|        }
+		|		
+		|        public osf.DataGridViewColumnHeaderCell HeaderCell
+		|        {
+		|            get { return new DataGridViewColumnHeaderCell(M_DataGridViewColumn.HeaderCell); }
+		|            set { M_DataGridViewColumn.HeaderCell = value.M_DataGridViewColumnHeaderCell; }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewBand" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewBand : DataGridViewElement
+		|    {
+		|        private System.Windows.Forms.DataGridViewBand m_DataGridViewBand;
+		|
+		|        public int Index
+		|        {
+		|            get { return M_DataGridViewBand.Index; }
+		|        }
+		|		
+		|        public bool Selected
+		|        {
+		|            get { return M_DataGridViewBand.Selected; }
+		|            set { M_DataGridViewBand.Selected = value; }
+		|        }
+		|
+		|        public bool Displayed
+		|        {
+		|            get { return M_DataGridViewBand.Displayed; }
+		|        }
+		|		
+		|        public object Tag
+		|        {
+		|            get { return M_DataGridViewBand.Tag; }
+		|            set { M_DataGridViewBand.Tag = value; }
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewBand M_DataGridViewBand
+		|        {
+		|            get { return m_DataGridViewBand; }
+		|            set
+		|            {
+		|                m_DataGridViewBand = value;
+		|                base.M_DataGridViewElement = m_DataGridViewBand;
+		|            }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewColumnCollection" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewColumnCollection : CollectionBase
+		|    {
+		|        public ClDataGridViewColumnCollection dll_obj;
+		|        public System.Windows.Forms.DataGridViewColumnCollection M_DataGridViewColumnCollection;
+		|
+		|        public DataGridViewColumnCollection()
+		|        {
+		|        }
+		|
+		|        public DataGridViewColumnCollection(System.Windows.Forms.DataGridViewColumnCollection p1)
+		|        {
+		|            M_DataGridViewColumnCollection = p1;
+		|            base.List = M_DataGridViewColumnCollection;
+		|        }
+		|
+		|        public new object this[int index]
+		|        {
+		|            get { return M_DataGridViewColumnCollection[index]; }
+		|        }
+		|
+		|        public override object Current
+		|        {
+		|            get { return Enumerator.Current; }
+		|        }
+		|
+		|        public int Add(osf.DataGridViewColumn item)
+		|        {
+		|            return M_DataGridViewColumnCollection.Add(item.M_DataGridViewColumn);
+		|        }
+		|
+		|        public void Insert(int index, osf.DataGridViewColumn item)
+		|        {
+		|            M_DataGridViewColumnCollection.Insert(index, item.M_DataGridViewColumn);
+		|        }
+		|
+		|        public void Remove(osf.DataGridViewColumn p1)
+		|        {
+		|            M_DataGridViewColumnCollection.Remove(p1.M_DataGridViewColumn);
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewCell" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewCell : DataGridViewElement
+		|    {
+		|        public new ClDataGridViewCell dll_obj;
+		|        public System.Windows.Forms.DataGridViewCell m_DataGridViewCell;
+		|		
+		|        public DataGridViewCell()
+		|        {
+		|        }
+		|
+		|        public DataGridViewCell(System.Windows.Forms.DataGridViewCell p1)
+		|        {
+		|            M_DataGridViewCell = p1;
+		|        }
+		|		
+		|        public bool ReadOnly
+		|        {
+		|            get { return M_DataGridViewCell.ReadOnly; }
+		|            set { M_DataGridViewCell.ReadOnly = value; }
+		|        }
+		|		
+		|        public string ToolTipText
+		|        {
+		|            get { return M_DataGridViewCell.ToolTipText; }
+		|            set { M_DataGridViewCell.ToolTipText = value; }
+		|        }
+		|		
+		|        public bool Resizable
+		|        {
+		|            get { return M_DataGridViewCell.Resizable; }
+		|        }
+		|		
+		|        public int ColumnIndex
+		|        {
+		|            get { return M_DataGridViewCell.ColumnIndex; }
+		|        }
+		|		
+		|        public int RowIndex
+		|        {
+		|            get { return M_DataGridViewCell.RowIndex; }
+		|        }
+		|		
+		|        public osf.DataGridViewColumn OwningColumn
+		|        {
+		|            get { return new DataGridViewColumn(M_DataGridViewCell.OwningColumn); }
+		|        }
+		|		
+		|        public osf.Size PreferredSize
+		|        {
+		|            get { return new Size(M_DataGridViewCell.PreferredSize); }
+		|        }
+		|		
+		|        public osf.DataGridViewRow OwningRow
+		|        {
+		|            get { return new DataGridViewRow(M_DataGridViewCell.OwningRow); }
+		|        }
+		|		
+		|        public osf.Size Size
+		|        {
+		|            get { return new Size(M_DataGridViewCell.Size); }
+		|        }
+		|		
+		|        public object Value
+		|        {
+		|            get { return M_DataGridViewCell.Value; }
+		|            set { M_DataGridViewCell.Value = value; }
+		|        }
+		|		
+		|        public osf.Rectangle ContentBounds
+		|        {
+		|            get { return new Rectangle(M_DataGridViewCell.ContentBounds); }
+		|        }
+		|
+		|        public bool IsInEditMode
+		|        {
+		|            get { return M_DataGridViewCell.IsInEditMode; }
+		|        }
+		|
+		|        public bool Frozen
+		|        {
+		|            get { return M_DataGridViewCell.Frozen; }
+		|        }
+		|
+		|        public bool Displayed
+		|        {
+		|            get { return M_DataGridViewCell.Displayed; }
+		|        }
+		|
+		|        public bool Visible
+		|        {
+		|            get { return M_DataGridViewCell.Visible; }
+		|        }
+		|		
+		|        public bool Selected
+		|        {
+		|            get { return M_DataGridViewCell.Selected; }
+		|            set { M_DataGridViewCell.Selected = value; }
+		|        }
+		|
+		|        public osf.DataGridViewCellStyle Style
+		|        {
+		|            get
+		|            {
+		|                foreach (System.Collections.DictionaryEntry de in OneScriptForms.hashtable)
+		|                {
+		|                    if (de.Key.Equals(M_DataGridViewCell.Style))
+		|                    {
+		|                        return ((dynamic)de.Value);
+		|                    }
+		|                }
+		|                return null;
+		|            }
+		|            set { M_DataGridViewCell.Style = value.M_DataGridViewCellStyle; }
+		|        }
+		|
+		|        public bool HasStyle
+		|        {
+		|            get { return M_DataGridViewCell.HasStyle; }
+		|        }
+		|		
+		|        public object FormattedValue
+		|        {
+		|            get { return M_DataGridViewCell.FormattedValue; }
+		|        }
+		|
+		|        public object EditedFormattedValue
+		|        {
+		|            get { return M_DataGridViewCell.EditedFormattedValue; }
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewCell M_DataGridViewCell
+		|        {
+		|            get { return m_DataGridViewCell; }
+		|            set
+		|            {
+		|                m_DataGridViewCell = value;
+		|                base.M_DataGridViewElement = m_DataGridViewCell;
+		|            }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewElement" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewElement : System.Windows.Forms.DataGridViewElement
+		|    {
+		|        public ClDataGridViewElement dll_obj;
+		|        public System.Windows.Forms.DataGridViewElement M_DataGridViewElement;
+		|		
+		|        public new osf.DataGridView DataGridView
+		|        {
+		|            get { return new osf.DataGridView(M_DataGridViewElement.DataGridView); }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridView" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewEx : System.Windows.Forms.DataGridView
+		|    {
+		|        public osf.DataGridView M_Object;
+		|    }//endClass
+		|
+		|    public class DataGridView : Control
+		|    {
+		|        public string CellBeginEdit;
+		|        public string CellClick;
+		|        public string CellContentClick;
+		|        public string CellDoubleClick;
+		|        public string CellEndEdit;
+		|        public string CellEnter;
+		|        public string CellLeave;
+		|        public string CellMouseDown;
+		|        public string CellMouseEnter;
+		|        public string CellMouseLeave;
+		|        public string CellMouseMove;
+		|        public string CellMouseUp;
+		|        public string CellValueChanged;
+		|        public string ColumnHeaderMouseClick;
+		|        public string CurrentCellChanged;
+		|        public ClDataGridView dll_obj;
+		|        public DataGridViewEx M_DataGridView;
+		|        public string RowEnter;
+		|        public string RowHeaderMouseClick;
+		|        public string RowLeave;
+		|        public bool ArrowRowHeaders;
+		|        public bool AutoNumberingRows;
+		|
+		|        public DataGridView()
+		|        {
+		|            M_DataGridView = new DataGridViewEx();
+		|            M_DataGridView.M_Object = this;
+		|            base.M_Control = M_DataGridView;
+		|            M_DataGridView.CellBeginEdit += M_DataGridView_CellBeginEdit;
+		|            M_DataGridView.CellClick += M_DataGridView_CellClick;
+		|            M_DataGridView.CellContentClick += M_DataGridView_CellContentClick;
+		|            M_DataGridView.CellDoubleClick += M_DataGridView_CellDoubleClick;
+		|            M_DataGridView.CellEndEdit += M_DataGridView_CellEndEdit;
+		|            M_DataGridView.CellEnter += M_DataGridView_CellEnter;
+		|            M_DataGridView.CellLeave += M_DataGridView_CellLeave;
+		|            M_DataGridView.CellMouseDown += M_DataGridView_CellMouseDown;
+		|            M_DataGridView.CellMouseEnter += M_DataGridView_CellMouseEnter;
+		|            M_DataGridView.CellMouseLeave += M_DataGridView_CellMouseLeave;
+		|            M_DataGridView.CellMouseMove += M_DataGridView_CellMouseMove;
+		|            M_DataGridView.CellMouseUp += M_DataGridView_CellMouseUp;
+		|            M_DataGridView.CellValueChanged += M_DataGridView_CellValueChanged;
+		|            M_DataGridView.ColumnHeaderMouseClick += M_DataGridView_ColumnHeaderMouseClick;
+		|            M_DataGridView.CurrentCellChanged += M_DataGridView_CurrentCellChanged;
+		|            M_DataGridView.RowEnter += M_DataGridView_RowEnter;
+		|            M_DataGridView.RowHeaderMouseClick += M_DataGridView_RowHeaderMouseClick;
+		|            M_DataGridView.RowLeave += M_DataGridView_RowLeave;
+		|            M_DataGridView.CellFormatting += M_DataGridView_CellFormatting;
+		|            M_DataGridView.RowPrePaint += M_DataGridView_RowPrePaint;
+		|            M_DataGridView.RowPostPaint += M_DataGridView_RowPostPaint;
+		|            M_DataGridView.DataError += M_DataGridView_DataError;
+		|            CellBeginEdit = """";
+		|            CellClick = """";
+		|            CellContentClick = """";
+		|            CellDoubleClick = """";
+		|            CellEndEdit = """";
+		|            CellEnter = """";
+		|            CellLeave = """";
+		|            CellMouseDown = """";
+		|            CellMouseEnter = """";
+		|            CellMouseLeave = """";
+		|            CellMouseMove = """";
+		|            CellMouseUp = """";
+		|            CellValueChanged = """";
+		|            ColumnHeaderMouseClick = """";
+		|            CurrentCellChanged = """";
+		|            RowEnter = """";
+		|            RowHeaderMouseClick = """";
+		|            RowLeave = """";
+		|            ArrowRowHeaders = true;
+		|            AutoNumberingRows = false;
+		|            typeof(System.Windows.Forms.DataGridView).InvokeMember(""DoubleBuffered"", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.SetProperty, null, M_DataGridView, new object[] { true });
+		|        }
+		|
+		|        public DataGridView(osf.DataGridView p1)
+		|        {
+		|            M_DataGridView = p1.M_DataGridView;
+		|            M_DataGridView.M_Object = this;
+		|            base.M_Control = M_DataGridView;
+		|            M_DataGridView.CellBeginEdit += M_DataGridView_CellBeginEdit;
+		|            M_DataGridView.CellClick += M_DataGridView_CellClick;
+		|            M_DataGridView.CellContentClick += M_DataGridView_CellContentClick;
+		|            M_DataGridView.CellDoubleClick += M_DataGridView_CellDoubleClick;
+		|            M_DataGridView.CellEndEdit += M_DataGridView_CellEndEdit;
+		|            M_DataGridView.CellEnter += M_DataGridView_CellEnter;
+		|            M_DataGridView.CellLeave += M_DataGridView_CellLeave;
+		|            M_DataGridView.CellMouseDown += M_DataGridView_CellMouseDown;
+		|            M_DataGridView.CellMouseEnter += M_DataGridView_CellMouseEnter;
+		|            M_DataGridView.CellMouseLeave += M_DataGridView_CellMouseLeave;
+		|            M_DataGridView.CellMouseMove += M_DataGridView_CellMouseMove;
+		|            M_DataGridView.CellMouseUp += M_DataGridView_CellMouseUp;
+		|            M_DataGridView.CellValueChanged += M_DataGridView_CellValueChanged;
+		|            M_DataGridView.ColumnHeaderMouseClick += M_DataGridView_ColumnHeaderMouseClick;
+		|            M_DataGridView.CurrentCellChanged += M_DataGridView_CurrentCellChanged;
+		|            M_DataGridView.RowEnter += M_DataGridView_RowEnter;
+		|            M_DataGridView.RowHeaderMouseClick += M_DataGridView_RowHeaderMouseClick;
+		|            M_DataGridView.RowLeave += M_DataGridView_RowLeave;
+		|            M_DataGridView.CellFormatting += M_DataGridView_CellFormatting;
+		|            M_DataGridView.RowPrePaint += M_DataGridView_RowPrePaint;
+		|            M_DataGridView.RowPostPaint += M_DataGridView_RowPostPaint;
+		|            M_DataGridView.DataError += M_DataGridView_DataError;
+		|            CellBeginEdit = """";
+		|            CellClick = """";
+		|            CellContentClick = """";
+		|            CellDoubleClick = """";
+		|            CellEndEdit = """";
+		|            CellEnter = """";
+		|            CellLeave = """";
+		|            CellMouseDown = """";
+		|            CellMouseEnter = """";
+		|            CellMouseLeave = """";
+		|            CellMouseMove = """";
+		|            CellMouseUp = """";
+		|            CellValueChanged = """";
+		|            ColumnHeaderMouseClick = """";
+		|            CurrentCellChanged = """";
+		|            RowEnter = """";
+		|            RowHeaderMouseClick = """";
+		|            RowLeave = """";
+		|            ArrowRowHeaders = true;
+		|            AutoNumberingRows = false;
+		|            typeof(System.Windows.Forms.DataGridView).InvokeMember(""DoubleBuffered"", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.SetProperty, null, M_DataGridView, new object[] { true });
+		|        }
+		|
+		|        public DataGridView(System.Windows.Forms.DataGridView p1)
+		|        {
+		|            M_DataGridView = (DataGridViewEx)p1;
+		|            M_DataGridView.M_Object = this;
+		|            base.M_Control = M_DataGridView;
+		|            M_DataGridView.CellBeginEdit += M_DataGridView_CellBeginEdit;
+		|            M_DataGridView.CellClick += M_DataGridView_CellClick;
+		|            M_DataGridView.CellContentClick += M_DataGridView_CellContentClick;
+		|            M_DataGridView.CellDoubleClick += M_DataGridView_CellDoubleClick;
+		|            M_DataGridView.CellEndEdit += M_DataGridView_CellEndEdit;
+		|            M_DataGridView.CellEnter += M_DataGridView_CellEnter;
+		|            M_DataGridView.CellLeave += M_DataGridView_CellLeave;
+		|            M_DataGridView.CellMouseDown += M_DataGridView_CellMouseDown;
+		|            M_DataGridView.CellMouseEnter += M_DataGridView_CellMouseEnter;
+		|            M_DataGridView.CellMouseLeave += M_DataGridView_CellMouseLeave;
+		|            M_DataGridView.CellMouseMove += M_DataGridView_CellMouseMove;
+		|            M_DataGridView.CellMouseUp += M_DataGridView_CellMouseUp;
+		|            M_DataGridView.CellValueChanged += M_DataGridView_CellValueChanged;
+		|            M_DataGridView.ColumnHeaderMouseClick += M_DataGridView_ColumnHeaderMouseClick;
+		|            M_DataGridView.CurrentCellChanged += M_DataGridView_CurrentCellChanged;
+		|            M_DataGridView.RowEnter += M_DataGridView_RowEnter;
+		|            M_DataGridView.RowHeaderMouseClick += M_DataGridView_RowHeaderMouseClick;
+		|            M_DataGridView.RowLeave += M_DataGridView_RowLeave;
+		|            M_DataGridView.CellFormatting += M_DataGridView_CellFormatting;
+		|            M_DataGridView.RowPrePaint += M_DataGridView_RowPrePaint;
+		|            M_DataGridView.RowPostPaint += M_DataGridView_RowPostPaint;
+		|            M_DataGridView.DataError += M_DataGridView_DataError;
+		|            CellBeginEdit = """";
+		|            CellClick = """";
+		|            CellContentClick = """";
+		|            CellDoubleClick = """";
+		|            CellEndEdit = """";
+		|            CellEnter = """";
+		|            CellLeave = """";
+		|            CellMouseDown = """";
+		|            CellMouseEnter = """";
+		|            CellMouseLeave = """";
+		|            CellMouseMove = """";
+		|            CellMouseUp = """";
+		|            CellValueChanged = """";
+		|            ColumnHeaderMouseClick = """";
+		|            CurrentCellChanged = """";
+		|            RowEnter = """";
+		|            RowHeaderMouseClick = """";
+		|            RowLeave = """";
+		|            ArrowRowHeaders = true;
+		|            AutoNumberingRows = false;
+		|            typeof(System.Windows.Forms.DataGridView).InvokeMember(""DoubleBuffered"", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.SetProperty, null, M_DataGridView, new object[] { true });
+		|        }
+		|		
+		|        private void M_DataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+		|        {
+		|            if (e.Context.ToString() == ""InitialValueRestoration"")
+		|            {
+		|                e.ThrowException = false;
+		|            }
+		|        }
+		|		
+		|        public int AutoSizeColumnsMode
+		|        {
+		|            get { return (int)M_DataGridView.AutoSizeColumnsMode; }
+		|            set { M_DataGridView.AutoSizeColumnsMode = (System.Windows.Forms.DataGridViewAutoSizeColumnsMode)value; }
+		|        }
+		|
+		|        public int AutoSizeRowsMode
+		|        {
+		|            get { return (int)M_DataGridView.AutoSizeRowsMode; }
+		|            set { M_DataGridView.AutoSizeRowsMode = (System.Windows.Forms.DataGridViewAutoSizeRowsMode)value; }
+		|        }
+		|
+		|        public bool AllowUserToAddRows
+		|        {
+		|            get { return M_DataGridView.AllowUserToAddRows; }
+		|            set { M_DataGridView.AllowUserToAddRows = value; }
+		|        }
+		|		
+		|        public int SelectionMode
+		|        {
+		|            get { return (int)M_DataGridView.SelectionMode; }
+		|            set { M_DataGridView.SelectionMode = (System.Windows.Forms.DataGridViewSelectionMode)value; }
+		|        }
+		|
+		|        public bool AllowUserToResizeColumns
+		|        {
+		|            get { return M_DataGridView.AllowUserToResizeColumns; }
+		|            set { M_DataGridView.AllowUserToResizeColumns = value; }
+		|        }
+		|
+		|        public bool AllowUserToResizeRows
+		|        {
+		|            get { return M_DataGridView.AllowUserToResizeRows; }
+		|            set { M_DataGridView.AllowUserToResizeRows = value; }
+		|        }
+		|
+		|        public bool AutoGenerateColumns
+		|        {
+		|            get { return M_DataGridView.AutoGenerateColumns; }
+		|            set { M_DataGridView.AutoGenerateColumns = value; }
+		|        }
+		|
+		|        public osf.Color BackgroundColor
+		|        {
+		|            get { return new Color(M_DataGridView.BackgroundColor); }
+		|            set
+		|            {
+		|                M_DataGridView.BackgroundColor = value.M_Color;
+		|                System.Windows.Forms.Application.DoEvents();
+		|            }
+		|        }
+		|
+		|        public int ColumnCount
+		|        {
+		|            get { return M_DataGridView.ColumnCount; }
+		|            set { M_DataGridView.ColumnCount = value; }
+		|        }
+		|
+		|        public osf.DataGridViewCellStyle ColumnHeadersDefaultCellStyle
+		|        {
+		|            get { return new DataGridViewCellStyle(M_DataGridView.ColumnHeadersDefaultCellStyle); }
+		|            set { M_DataGridView.ColumnHeadersDefaultCellStyle = value.M_DataGridViewCellStyle; }
+		|        }
+		|
+		|        public int ColumnHeadersHeight
+		|        {
+		|            get { return M_DataGridView.ColumnHeadersHeight; }
+		|            set { M_DataGridView.ColumnHeadersHeight = value; }
+		|        }
+		|
+		|        public osf.DataGridViewColumnCollection Columns
+		|        {
+		|            get { return new osf.DataGridViewColumnCollection(M_DataGridView.Columns); }
+		|        }
+		|
+		|        public dynamic CurrentCell
+		|        {
+		|            get
+		|            {
+		|                dynamic Obj1 = null;
+		|                string str1 = M_DataGridView.CurrentCell.GetType().ToString();
+		|                string str2 = str1.Replace(""System.Windows.Forms."", ""osf."");
+		|                System.Type Type1 = System.Type.GetType(str2, false, true);
+		|                object[] args1 = { M_DataGridView.CurrentCell };
+		|                Obj1 = Activator.CreateInstance(Type1, args1);
+		|
+		|                return Obj1;
+		|            }
+		|            set { M_DataGridView.CurrentCell = value.M_DataGridViewCell; }
+		|        }
+		|
+		|        public osf.DataGridViewRow CurrentRow
+		|        {
+		|            get { return new DataGridViewRow(M_DataGridView.CurrentRow); }
+		|        }
+		|
+		|        public string DataMember
+		|        {
+		|            get { return M_DataGridView.DataMember; }
+		|            set { M_DataGridView.DataMember = value; }
+		|        }
+		|
+		|        public object DataSource
+		|        {
+		|            get
+		|            {
+		|                if (M_DataGridView.DataSource != null)
+		|                {
+		|                    if (M_DataGridView.DataSource.GetType() == typeof(System.Data.DataView))
+		|                    {
+		|                        osf.DataView DataView1 = new osf.DataView((System.Data.DataView)M_DataGridView.DataSource);
+		|                        return (dynamic)DataView1;
+		|                    }
+		|                    else
+		|                    {
+		|                        return ((dynamic)M_DataGridView.DataSource).M_Object;
+		|                    }
+		|                }
+		|                return null;
+		|            }
+		|            set
+		|            {
+		|                if (value != null)
+		|                {
+		|                    System.Type Type1 = ((dynamic)value).GetType();
+		|                    string strType1 = Type1.ToString();
+		|                    string str1 = strType1.Substring(strType1.LastIndexOf(""."") + 1);
+		|                    M_DataGridView.DataSource = Type1.GetField(""M_"" + str1).GetValue(value);
+		|                    System.Windows.Forms.Application.DoEvents();
+		|                }
+		|                else
+		|                {
+		|                    M_DataGridView.DataSource = null;
+		|                }
+		|            }
+		|        }
+		|
+		|        public bool ReadOnly
+		|        {
+		|            get { return M_DataGridView.ReadOnly; }
+		|            set { M_DataGridView.ReadOnly = value; }
+		|        }
+		|
+		|        public int RowCount
+		|        {
+		|            get { return M_DataGridView.RowCount; }
+		|            set { M_DataGridView.RowCount = value; }
+		|        }
+		|
+		|        public osf.DataGridViewCellStyle RowHeadersDefaultCellStyle
+		|        {
+		|            get { return new DataGridViewCellStyle(M_DataGridView.RowHeadersDefaultCellStyle); }
+		|            set { M_DataGridView.RowHeadersDefaultCellStyle = value.M_DataGridViewCellStyle; }
+		|        }
+		|
+		|        public int RowHeadersWidth
+		|        {
+		|            get { return M_DataGridView.RowHeadersWidth; }
+		|            set { M_DataGridView.RowHeadersWidth = value; }
+		|        }
+		|
+		|        public osf.DataGridViewRowCollection Rows
+		|        {
+		|            get { return new DataGridViewRowCollection(M_DataGridView.Rows); }
+		|        }
+		|
+		|        public int ScrollBars
+		|        {
+		|            get { return (int)M_DataGridView.ScrollBars; }
+		|            set { M_DataGridView.ScrollBars = (System.Windows.Forms.ScrollBars)value; }
+		|        }
+		|
+		|        public int AutoResizeRowHeadersWidth
+		|        {
+		|            get { return (int)M_DataGridView.RowHeadersWidthSizeMode; }
+		|            set { M_DataGridView.RowHeadersWidthSizeMode = (System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode)value; }
+		|        }
+		|
+		|        public bool BeginEdit(bool p1)
+		|        {
+		|            return M_DataGridView.BeginEdit(p1);
+		|        }
+		|
+		|        public bool EndEdit()
+		|        {
+		|            return M_DataGridView.EndEdit();
+		|        }
+		|
+		|        private void M_DataGridView_CellBeginEdit(object sender, System.Windows.Forms.DataGridViewCellCancelEventArgs e)
+		|        {
+		|            if (CellBeginEdit.Length > 0)
+		|            {
+		|                DataGridViewCellCancelEventArgs DataGridViewCellCancelEventArgs1 = new DataGridViewCellCancelEventArgs();
+		|                DataGridViewCellCancelEventArgs1.EventString = CellBeginEdit;
+		|                DataGridViewCellCancelEventArgs1.Sender = this;
+		|                DataGridViewCellCancelEventArgs1.ColumnIndex = e.ColumnIndex;
+		|                DataGridViewCellCancelEventArgs1.RowIndex = e.RowIndex;
+		|                DataGridViewCellCancelEventArgs1.Cancel = e.Cancel;
+		|                DataGridViewCellCancelEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.CellBeginEdit);
+		|                ClDataGridViewCellCancelEventArgs ClDataGridViewCellCancelEventArgs1 = new ClDataGridViewCellCancelEventArgs(DataGridViewCellCancelEventArgs1);
+		|                OneScriptForms.Event = ClDataGridViewCellCancelEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.CellBeginEdit);
+		|                e.Cancel = DataGridViewCellCancelEventArgs1.Cancel;
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_CellClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        {
+		|            if (CellClick.Length > 0)
+		|            {
+		|                DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
+		|                DataGridViewCellEventArgs1.EventString = CellClick;
+		|                DataGridViewCellEventArgs1.Sender = this;
+		|                DataGridViewCellEventArgs1.ColumnIndex = e.ColumnIndex;
+		|                DataGridViewCellEventArgs1.RowIndex = e.RowIndex;
+		|                DataGridViewCellEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.CellClick);
+		|                ClDataGridViewCellEventArgs ClDataGridViewCellEventArgs1 = new ClDataGridViewCellEventArgs(DataGridViewCellEventArgs1);
+		|                OneScriptForms.Event = ClDataGridViewCellEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.CellClick);
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_CellContentClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        {
+		|            if (CellContentClick.Length > 0)
+		|            {
+		|                DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
+		|                DataGridViewCellEventArgs1.EventString = CellContentClick;
+		|                DataGridViewCellEventArgs1.Sender = this;
+		|                DataGridViewCellEventArgs1.ColumnIndex = e.ColumnIndex;
+		|                DataGridViewCellEventArgs1.RowIndex = e.RowIndex;
+		|                DataGridViewCellEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.CellContentClick);
+		|                ClDataGridViewCellEventArgs ClDataGridViewCellEventArgs1 = new ClDataGridViewCellEventArgs(DataGridViewCellEventArgs1);
+		|                OneScriptForms.Event = ClDataGridViewCellEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.CellContentClick);
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_CellDoubleClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        {
+		|            if (CellDoubleClick.Length > 0)
+		|            {
+		|                DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
+		|                DataGridViewCellEventArgs1.EventString = CellDoubleClick;
+		|                DataGridViewCellEventArgs1.Sender = this;
+		|                DataGridViewCellEventArgs1.ColumnIndex = e.ColumnIndex;
+		|                DataGridViewCellEventArgs1.RowIndex = e.RowIndex;
+		|                DataGridViewCellEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.CellDoubleClick);
+		|                ClDataGridViewCellEventArgs ClDataGridViewCellEventArgs1 = new ClDataGridViewCellEventArgs(DataGridViewCellEventArgs1);
+		|                OneScriptForms.Event = ClDataGridViewCellEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.CellDoubleClick);
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_CellEndEdit(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        {
+		|            if (CellEndEdit.Length > 0)
+		|            {
+		|                DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
+		|                DataGridViewCellEventArgs1.EventString = CellEndEdit;
+		|                DataGridViewCellEventArgs1.Sender = this;
+		|                DataGridViewCellEventArgs1.ColumnIndex = e.ColumnIndex;
+		|                DataGridViewCellEventArgs1.RowIndex = e.RowIndex;
+		|                DataGridViewCellEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.CellEndEdit);
+		|                ClDataGridViewCellEventArgs ClDataGridViewCellEventArgs1 = new ClDataGridViewCellEventArgs(DataGridViewCellEventArgs1);
+		|                OneScriptForms.Event = ClDataGridViewCellEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.CellEndEdit);
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_CellEnter(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        {
+		|            if (CellEnter.Length > 0)
+		|            {
+		|                DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
+		|                DataGridViewCellEventArgs1.EventString = CellEnter;
+		|                DataGridViewCellEventArgs1.Sender = this;
+		|                DataGridViewCellEventArgs1.ColumnIndex = e.ColumnIndex;
+		|                DataGridViewCellEventArgs1.RowIndex = e.RowIndex;
+		|                DataGridViewCellEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.CellEnter);
+		|                ClDataGridViewCellEventArgs ClDataGridViewCellEventArgs1 = new ClDataGridViewCellEventArgs(DataGridViewCellEventArgs1);
+		|                OneScriptForms.Event = ClDataGridViewCellEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.CellEnter);
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+		|        {
+		|            if (AutoNumberingRows)
+		|            {
+		|                ((System.Windows.Forms.DataGridView)sender).Rows[e.RowIndex].HeaderCell.Value = Convert.ToString(e.RowIndex + 1);
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_CellLeave(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        {
+		|            if (CellLeave.Length > 0)
+		|            {
+		|                DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
+		|                DataGridViewCellEventArgs1.EventString = CellLeave;
+		|                DataGridViewCellEventArgs1.Sender = this;
+		|                DataGridViewCellEventArgs1.ColumnIndex = e.ColumnIndex;
+		|                DataGridViewCellEventArgs1.RowIndex = e.RowIndex;
+		|                DataGridViewCellEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.CellLeave);
+		|                ClDataGridViewCellEventArgs ClDataGridViewCellEventArgs1 = new ClDataGridViewCellEventArgs(DataGridViewCellEventArgs1);
+		|                OneScriptForms.Event = ClDataGridViewCellEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.CellLeave);
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_CellMouseDown(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
+		|        {
+		|            if (CellMouseDown.Length > 0)
+		|            {
+		|                DataGridViewCellMouseEventArgs DataGridViewCellMouseEventArgs1 = new DataGridViewCellMouseEventArgs();
+		|                DataGridViewCellMouseEventArgs1.EventString = CellMouseDown;
+		|                DataGridViewCellMouseEventArgs1.Sender = this;
+		|                DataGridViewCellMouseEventArgs1.ColumnIndex = e.ColumnIndex;
+		|                DataGridViewCellMouseEventArgs1.RowIndex = e.RowIndex;
+		|                DataGridViewCellMouseEventArgs1.Button = (int)e.Button;
+		|                DataGridViewCellMouseEventArgs1.Clicks = e.Clicks;
+		|                DataGridViewCellMouseEventArgs1.X = e.X;
+		|                DataGridViewCellMouseEventArgs1.Y = e.Y;
+		|                DataGridViewCellMouseEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.CellMouseDown);
+		|                ClDataGridViewCellMouseEventArgs ClDataGridViewCellMouseEventArgs1 = new ClDataGridViewCellMouseEventArgs(DataGridViewCellMouseEventArgs1);
+		|                OneScriptForms.Event = ClDataGridViewCellMouseEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.CellMouseDown);
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_CellMouseEnter(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        {
+		|            if (CellMouseEnter.Length > 0)
+		|            {
+		|                DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
+		|                DataGridViewCellEventArgs1.EventString = CellMouseEnter;
+		|                DataGridViewCellEventArgs1.Sender = this;
+		|                DataGridViewCellEventArgs1.ColumnIndex = e.ColumnIndex;
+		|                DataGridViewCellEventArgs1.RowIndex = e.RowIndex;
+		|                DataGridViewCellEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.CellMouseEnter);
+		|                ClDataGridViewCellEventArgs ClDataGridViewCellEventArgs1 = new ClDataGridViewCellEventArgs(DataGridViewCellEventArgs1);
+		|                OneScriptForms.Event = ClDataGridViewCellEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.CellMouseEnter);
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_CellMouseLeave(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        {
+		|            if (CellMouseLeave.Length > 0)
+		|            {
+		|                DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
+		|                DataGridViewCellEventArgs1.EventString = CellMouseLeave;
+		|                DataGridViewCellEventArgs1.Sender = this;
+		|                DataGridViewCellEventArgs1.ColumnIndex = e.ColumnIndex;
+		|                DataGridViewCellEventArgs1.RowIndex = e.RowIndex;
+		|                DataGridViewCellEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.CellMouseLeave);
+		|                ClDataGridViewCellEventArgs ClDataGridViewCellEventArgs1 = new ClDataGridViewCellEventArgs(DataGridViewCellEventArgs1);
+		|                OneScriptForms.Event = ClDataGridViewCellEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.CellMouseLeave);
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_CellMouseMove(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
+		|        {
+		|            if (CellMouseMove.Length > 0)
+		|            {
+		|                DataGridViewCellMouseEventArgs DataGridViewCellMouseEventArgs1 = new DataGridViewCellMouseEventArgs();
+		|                DataGridViewCellMouseEventArgs1.EventString = CellMouseMove;
+		|                DataGridViewCellMouseEventArgs1.Sender = this;
+		|                DataGridViewCellMouseEventArgs1.ColumnIndex = e.ColumnIndex;
+		|                DataGridViewCellMouseEventArgs1.RowIndex = e.RowIndex;
+		|                DataGridViewCellMouseEventArgs1.Button = (int)e.Button;
+		|                DataGridViewCellMouseEventArgs1.Clicks = e.Clicks;
+		|                DataGridViewCellMouseEventArgs1.X = e.X;
+		|                DataGridViewCellMouseEventArgs1.Y = e.Y;
+		|                DataGridViewCellMouseEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.CellMouseMove);
+		|                ClDataGridViewCellMouseEventArgs ClDataGridViewCellMouseEventArgs1 = new ClDataGridViewCellMouseEventArgs(DataGridViewCellMouseEventArgs1);
+		|                OneScriptForms.Event = ClDataGridViewCellMouseEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.CellMouseMove);
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_CellMouseUp(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
+		|        {
+		|            if (CellMouseUp.Length > 0)
+		|            {
+		|                DataGridViewCellMouseEventArgs DataGridViewCellMouseEventArgs1 = new DataGridViewCellMouseEventArgs();
+		|                DataGridViewCellMouseEventArgs1.EventString = CellMouseUp;
+		|                DataGridViewCellMouseEventArgs1.Sender = this;
+		|                DataGridViewCellMouseEventArgs1.ColumnIndex = e.ColumnIndex;
+		|                DataGridViewCellMouseEventArgs1.RowIndex = e.RowIndex;
+		|                DataGridViewCellMouseEventArgs1.Button = (int)e.Button;
+		|                DataGridViewCellMouseEventArgs1.Clicks = e.Clicks;
+		|                DataGridViewCellMouseEventArgs1.X = e.X;
+		|                DataGridViewCellMouseEventArgs1.Y = e.Y;
+		|                DataGridViewCellMouseEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.CellMouseUp);
+		|                ClDataGridViewCellMouseEventArgs ClDataGridViewCellMouseEventArgs1 = new ClDataGridViewCellMouseEventArgs(DataGridViewCellMouseEventArgs1);
+		|                OneScriptForms.Event = ClDataGridViewCellMouseEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.CellMouseUp);
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_CellValueChanged(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        {
+		|            if (CellValueChanged.Length > 0)
+		|            {
+		|                DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
+		|                DataGridViewCellEventArgs1.EventString = CellValueChanged;
+		|                DataGridViewCellEventArgs1.Sender = this;
+		|                DataGridViewCellEventArgs1.ColumnIndex = e.ColumnIndex;
+		|                DataGridViewCellEventArgs1.RowIndex = e.RowIndex;
+		|                DataGridViewCellEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.CellValueChanged);
+		|                ClDataGridViewCellEventArgs ClDataGridViewCellEventArgs1 = new ClDataGridViewCellEventArgs(DataGridViewCellEventArgs1);
+		|                OneScriptForms.Event = ClDataGridViewCellEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.CellValueChanged);
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_ColumnHeaderMouseClick(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
+		|        {
+		|            if (ColumnHeaderMouseClick.Length > 0)
+		|            {
+		|                DataGridViewCellMouseEventArgs DataGridViewCellMouseEventArgs1 = new DataGridViewCellMouseEventArgs();
+		|                DataGridViewCellMouseEventArgs1.EventString = ColumnHeaderMouseClick;
+		|                DataGridViewCellMouseEventArgs1.Sender = this;
+		|                DataGridViewCellMouseEventArgs1.ColumnIndex = e.ColumnIndex;
+		|                DataGridViewCellMouseEventArgs1.RowIndex = e.RowIndex;
+		|                DataGridViewCellMouseEventArgs1.Button = (int)e.Button;
+		|                DataGridViewCellMouseEventArgs1.Clicks = e.Clicks;
+		|                DataGridViewCellMouseEventArgs1.X = e.X;
+		|                DataGridViewCellMouseEventArgs1.Y = e.Y;
+		|                DataGridViewCellMouseEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.ColumnHeaderMouseClick);
+		|                ClDataGridViewCellMouseEventArgs ClDataGridViewCellMouseEventArgs1 = new ClDataGridViewCellMouseEventArgs(DataGridViewCellMouseEventArgs1);
+		|                OneScriptForms.Event = ClDataGridViewCellMouseEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.ColumnHeaderMouseClick);
+		|            }
+		|        }
+		|
+		|        public void M_DataGridView_CurrentCellChanged(object sender, System.EventArgs e)
+		|        {
+		|            if (CurrentCellChanged.Length > 0)
+		|            {
+		|                EventArgs EventArgs1 = new EventArgs();
+		|                EventArgs1.EventString = CurrentCellChanged;
+		|                EventArgs1.Sender = this;
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.CurrentCellChanged);
+		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.CurrentCellChanged);
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_RowEnter(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        {
+		|            if (RowEnter.Length > 0)
+		|            {
+		|                DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
+		|                DataGridViewCellEventArgs1.EventString = RowEnter;
+		|                DataGridViewCellEventArgs1.Sender = this;
+		|                DataGridViewCellEventArgs1.ColumnIndex = e.ColumnIndex;
+		|                DataGridViewCellEventArgs1.RowIndex = e.RowIndex;
+		|                DataGridViewCellEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.RowEnter);
+		|                ClDataGridViewCellEventArgs ClDataGridViewCellEventArgs1 = new ClDataGridViewCellEventArgs(DataGridViewCellEventArgs1);
+		|                OneScriptForms.Event = ClDataGridViewCellEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.RowEnter);
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_RowHeaderMouseClick(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
+		|        {
+		|            if (RowHeaderMouseClick.Length > 0)
+		|            {
+		|                DataGridViewCellMouseEventArgs DataGridViewCellMouseEventArgs1 = new DataGridViewCellMouseEventArgs();
+		|                DataGridViewCellMouseEventArgs1.EventString = RowHeaderMouseClick;
+		|                DataGridViewCellMouseEventArgs1.Sender = this;
+		|                DataGridViewCellMouseEventArgs1.ColumnIndex = e.ColumnIndex;
+		|                DataGridViewCellMouseEventArgs1.RowIndex = e.RowIndex;
+		|                DataGridViewCellMouseEventArgs1.Button = (int)e.Button;
+		|                DataGridViewCellMouseEventArgs1.Clicks = e.Clicks;
+		|                DataGridViewCellMouseEventArgs1.X = e.X;
+		|                DataGridViewCellMouseEventArgs1.Y = e.Y;
+		|                DataGridViewCellMouseEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.RowHeaderMouseClick);
+		|                ClDataGridViewCellMouseEventArgs ClDataGridViewCellMouseEventArgs1 = new ClDataGridViewCellMouseEventArgs(DataGridViewCellMouseEventArgs1);
+		|                OneScriptForms.Event = ClDataGridViewCellMouseEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.RowHeaderMouseClick);
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_RowLeave(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        {
+		|            if (RowLeave.Length > 0)
+		|            {
+		|                DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
+		|                DataGridViewCellEventArgs1.EventString = RowLeave;
+		|                DataGridViewCellEventArgs1.Sender = this;
+		|                DataGridViewCellEventArgs1.ColumnIndex = e.ColumnIndex;
+		|                DataGridViewCellEventArgs1.RowIndex = e.RowIndex;
+		|                DataGridViewCellEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.RowLeave);
+		|                ClDataGridViewCellEventArgs ClDataGridViewCellEventArgs1 = new ClDataGridViewCellEventArgs(DataGridViewCellEventArgs1);
+		|                OneScriptForms.Event = ClDataGridViewCellEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.RowLeave);
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+		|        {
+		|            if (!ArrowRowHeaders)
+		|            {
+		|                object o = M_DataGridView.Rows[e.RowIndex].HeaderCell.Value;
+		|                string str1 = """";
+		|                if (o != null)
+		|                {
+		|                    str1 = o.ToString();
+		|                }
+		|                e.Graphics.DrawString(
+		|                    str1,
+		|                    M_DataGridView.Font,
+		|                    new SolidBrush(M_DataGridView.RowHeadersDefaultCellStyle.ForeColor),
+		|                    new System.Drawing.PointF((float)e.RowBounds.Left + 5, (float)e.RowBounds.Top + 2));
+		|            }
+		|        }
+		|
+		|        private void M_DataGridView_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+		|        {
+		|            if (!ArrowRowHeaders)
+		|            {
+		|                int x = e.ClipBounds.X;
+		|                int y = e.ClipBounds.Y;
+		|                int w = e.ClipBounds.Width;
+		|                int h = e.ClipBounds.Height;
+		|                System.Drawing.Rectangle Rectangle1 = new System.Drawing.Rectangle(x, y, w, h);
+		|                e.ClipBounds = Rectangle1;
+		|                e.PaintCells(Rectangle1, DataGridViewPaintParts.All);
+		|                e.PaintHeader(DataGridViewPaintParts.Background
+		|                    | DataGridViewPaintParts.Border
+		|                    | DataGridViewPaintParts.Focus
+		|                    | DataGridViewPaintParts.SelectionBackground
+		|                    | DataGridViewPaintParts.ContentForeground);
+		|                e.Handled = true;
+		|            }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "FormsCollection" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -9222,8 +12618,8 @@
 		|                yield return (item as ClForm);
 		|            }
 		|        }
-		|    }
-		|}
+		|    }//endClass
+		|}//endnamespace
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
@@ -20647,6 +24043,51 @@
 		|        public new ClRenamedEventArgs dll_obj;
 		|        public string OldFullPath = """";
 		|        public string OldName = """";
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewCellEventArgs" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewCellEventArgs : EventArgs
+		|    {
+		|        public new ClDataGridViewCellEventArgs dll_obj;
+		|        public int ColumnIndex;
+		|        public int RowIndex;
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewCellMouseEventArgs" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewCellMouseEventArgs : MouseEventArgs
+		|    {
+		|        public new ClDataGridViewCellMouseEventArgs dll_obj;
+		|        public int ColumnIndex;
+		|        public int RowIndex;
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewCellCancelEventArgs" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class DataGridViewCellCancelEventArgs : CancelEventArgs
+		|    {
+		|        public new ClDataGridViewCellCancelEventArgs dll_obj;
+		|        public int ColumnIndex;
+		|        public int RowIndex;
 		|    }//endClass
 		|}//endnamespace
 		|";

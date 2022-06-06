@@ -26,6 +26,17 @@ namespace osf
         private static ClComboBoxStyle cl_ComboBoxStyle = new ClComboBoxStyle();
         private static ClContentAlignment cl_ContentAlignment = new ClContentAlignment();
         private static ClControlStyles cl_ControlStyles = new ClControlStyles();
+        private static ClDataGridViewAutoSizeColumnMode cl_DataGridViewAutoSizeColumnMode = new ClDataGridViewAutoSizeColumnMode();
+        private static ClDataGridViewAutoSizeColumnsMode cl_DataGridViewAutoSizeColumnsMode = new ClDataGridViewAutoSizeColumnsMode();
+        private static ClDataGridViewAutoSizeRowMode cl_DataGridViewAutoSizeRowMode = new ClDataGridViewAutoSizeRowMode();
+        private static ClDataGridViewAutoSizeRowsMode cl_DataGridViewAutoSizeRowsMode = new ClDataGridViewAutoSizeRowsMode();
+        private static ClDataGridViewColumnSortMode cl_DataGridViewColumnSortMode = new ClDataGridViewColumnSortMode();
+        private static ClDataGridViewComboBoxDisplayStyle cl_DataGridViewComboBoxDisplayStyle = new ClDataGridViewComboBoxDisplayStyle();
+        private static ClDataGridViewContentAlignment cl_DataGridViewContentAlignment = new ClDataGridViewContentAlignment();
+        private static ClDataGridViewImageCellLayout cl_DataGridViewImageCellLayout = new ClDataGridViewImageCellLayout();
+        private static ClDataGridViewRowHeadersWidthSizeMode cl_DataGridViewRowHeadersWidthSizeMode = new ClDataGridViewRowHeadersWidthSizeMode();
+        private static ClDataGridViewSelectionMode cl_DataGridViewSelectionMode = new ClDataGridViewSelectionMode();
+        private static ClDataGridViewTriState cl_DataGridViewTriState = new ClDataGridViewTriState();
         private static ClDataRowState cl_DataRowState = new ClDataRowState();
         private static ClDataType cl_DataType = new ClDataType();
         private static ClDay cl_Day = new ClDay();
@@ -208,6 +219,12 @@ namespace osf
             get { return cl_ContentAlignment; }
         }
 
+        [ContextProperty("ВыравниваниеСодержимогоЯчейки", "DataGridViewContentAlignment")]
+        public ClDataGridViewContentAlignment DataGridViewContentAlignment
+        {
+            get { return cl_DataGridViewContentAlignment; }
+        }
+
         [ContextProperty("ВыравниваниеТекстаВПанелиИнструментов", "ToolBarTextAlign")]
         public ClToolBarTextAlign ToolBarTextAlign
         {
@@ -358,16 +375,52 @@ namespace osf
             get { return cl_ImageLayout; }
         }
 
+        [ContextProperty("РазмещениеИзображенияЯчейки", "DataGridViewImageCellLayout")]
+        public ClDataGridViewImageCellLayout DataGridViewImageCellLayout
+        {
+            get { return cl_DataGridViewImageCellLayout; }
+        }
+
         [ContextProperty("РегистрСимволов", "CharacterCasing")]
         public ClCharacterCasing CharacterCasing
         {
             get { return cl_CharacterCasing; }
         }
 
+        [ContextProperty("РежимАвтоРазмераКолонки", "DataGridViewAutoSizeColumnMode")]
+        public ClDataGridViewAutoSizeColumnMode DataGridViewAutoSizeColumnMode
+        {
+            get { return cl_DataGridViewAutoSizeColumnMode; }
+        }
+
+        [ContextProperty("РежимАвтоРазмераКолонок", "DataGridViewAutoSizeColumnsMode")]
+        public ClDataGridViewAutoSizeColumnsMode DataGridViewAutoSizeColumnsMode
+        {
+            get { return cl_DataGridViewAutoSizeColumnsMode; }
+        }
+
+        [ContextProperty("РежимАвтоРазмераСтрок", "DataGridViewAutoSizeRowsMode")]
+        public ClDataGridViewAutoSizeRowsMode DataGridViewAutoSizeRowsMode
+        {
+            get { return cl_DataGridViewAutoSizeRowsMode; }
+        }
+
+        [ContextProperty("РежимАвтоРазмераСтроки", "DataGridViewAutoSizeRowMode")]
+        public ClDataGridViewAutoSizeRowMode DataGridViewAutoSizeRowMode
+        {
+            get { return cl_DataGridViewAutoSizeRowMode; }
+        }
+
         [ContextProperty("РежимВыбора", "SelectionMode")]
         public ClSelectionMode SelectionMode
         {
             get { return cl_SelectionMode; }
+        }
+
+        [ContextProperty("РежимВыбораТаблицы", "DataGridViewSelectionMode")]
+        public ClDataGridViewSelectionMode DataGridViewSelectionMode
+        {
+            get { return cl_DataGridViewSelectionMode; }
         }
 
         [ContextProperty("РежимОтображения", "View")]
@@ -392,6 +445,18 @@ namespace osf
         public ClDrawMode DrawMode
         {
             get { return cl_DrawMode; }
+        }
+
+        [ContextProperty("РежимСортировки", "DataGridViewColumnSortMode")]
+        public ClDataGridViewColumnSortMode DataGridViewColumnSortMode
+        {
+            get { return cl_DataGridViewColumnSortMode; }
+        }
+
+        [ContextProperty("РежимШириныЗаголовковСтрок", "DataGridViewRowHeadersWidthSizeMode")]
+        public ClDataGridViewRowHeadersWidthSizeMode DataGridViewRowHeadersWidthSizeMode
+        {
+            get { return cl_DataGridViewRowHeadersWidthSizeMode; }
         }
 
         [ContextProperty("РезультатДиалога", "DialogResult")]
@@ -484,6 +549,12 @@ namespace osf
             get { return cl_ComboBoxStyle; }
         }
 
+        [ContextProperty("СтильПоляВыбораЯчейки", "DataGridViewComboBoxDisplayStyle")]
+        public ClDataGridViewComboBoxDisplayStyle DataGridViewComboBoxDisplayStyle
+        {
+            get { return cl_DataGridViewComboBoxDisplayStyle; }
+        }
+
         [ContextProperty("СтильСтыковки", "DockStyle")]
         public ClDockStyle DockStyle
         {
@@ -530,6 +601,12 @@ namespace osf
         public ClGridItemType GridItemType
         {
             get { return cl_GridItemType; }
+        }
+
+        [ContextProperty("ТриСостояния", "DataGridViewTriState")]
+        public ClDataGridViewTriState DataGridViewTriState
+        {
+            get { return cl_DataGridViewTriState; }
         }
 
         [ContextProperty("ФильтрыУведомления", "NotifyFilters")]
@@ -669,6 +746,20 @@ namespace osf
             return new ClSaveFileDialog();
         }
 
+        [ContextMethod("Заполнение", "Padding")]
+        public ClPadding Padding(IValue p1 = null, IValue p2 = null, IValue p3 = null, IValue p4 = null)
+        {
+            if (p1 != null)
+            {
+                if (p2 != null && p3 != null && p4 != null)
+                {
+                    return new ClPadding(Convert.ToInt32(p1.AsNumber()), Convert.ToInt32(p2.AsNumber()), Convert.ToInt32(p3.AsNumber()), Convert.ToInt32(p4.AsNumber()));
+                }
+                return new ClPadding(Convert.ToInt32(p1.AsNumber()));
+            }
+            return new ClPadding();
+        }
+        
         [ContextMethod("ЗапуститьОбработкуСобытий", "StartEventProcessing")]
         public void StartEventProcessing()
         {
@@ -877,6 +968,42 @@ namespace osf
             return null;
         }
 
+        [ContextMethod("КолонкаКартинка", "DataGridViewImageColumn")]
+        public ClDataGridViewImageColumn DataGridViewImageColumn()
+        {
+            return new ClDataGridViewImageColumn();
+        }
+        
+        [ContextMethod("КолонкаКнопка", "DataGridViewButtonColumn")]
+        public ClDataGridViewButtonColumn DataGridViewButtonColumn()
+        {
+            return new ClDataGridViewButtonColumn();
+        }
+        
+        [ContextMethod("КолонкаПолеВвода", "DataGridViewTextBoxColumn")]
+        public ClDataGridViewTextBoxColumn DataGridViewTextBoxColumn()
+        {
+            return new ClDataGridViewTextBoxColumn();
+        }
+        
+        [ContextMethod("КолонкаПолеВыбора", "DataGridViewComboBoxColumn")]
+        public ClDataGridViewComboBoxColumn DataGridViewComboBoxColumn()
+        {
+            return new ClDataGridViewComboBoxColumn();
+        }
+        
+        [ContextMethod("КолонкаСсылка", "DataGridViewLinkColumn")]
+        public ClDataGridViewLinkColumn DataGridViewLinkColumn()
+        {
+            return new ClDataGridViewLinkColumn();
+        }
+        
+        [ContextMethod("КолонкаФлажок", "DataGridViewCheckBoxColumn")]
+        public ClDataGridViewCheckBoxColumn DataGridViewCheckBoxColumn()
+        {
+            return new ClDataGridViewCheckBoxColumn();
+        }
+        
         [ContextMethod("КонтекстноеМеню", "ContextMenu")]
         public ClContextMenu ContextMenu()
         {
@@ -1544,6 +1671,16 @@ namespace osf
             return new ClDataGridTableStyle();
         }
 
+        [ContextMethod("СтильЯчейки", "DataGridViewCellStyle")]
+        public ClDataGridViewCellStyle DataGridViewCellStyle(ClDataGridViewCellStyle p1 = null)
+        {
+            if (p1 != null)
+            {
+                return new ClDataGridViewCellStyle(p1.Base_obj);
+            }
+            return new ClDataGridViewCellStyle();
+        }
+        
         [ContextMethod("СтрНайтиМежду", "StrFindBetween")]
         public ClArrayList StrFindBetween(string p1, string p2 = null, string p3 = null, bool p4 = true, bool p5 = true)
         {
@@ -1630,6 +1767,18 @@ namespace osf
             return new ClStatusBar();
         }
 
+        [ContextMethod("СтрокаТаблицы", "DataGridViewRow")]
+        public ClDataGridViewRow DataGridViewRow()
+        {
+            return new ClDataGridViewRow();
+        }
+        
+        [ContextMethod("Таблица", "DataGridView")]
+        public ClDataGridView DataGridView()
+        {
+            return new ClDataGridView();
+        }
+        
         [ContextMethod("ТаблицаДанных", "DataTable")]
         public ClDataTable DataTable(string p1 = null)
         {
@@ -1782,6 +1931,24 @@ namespace osf
         public ClControlEventArgs ControlEventArgs()
         {
         	return (ClControlEventArgs)Event;
+        }
+        
+        [ContextMethod("ЯчейкаОтменаАрг", "DataGridViewCellCancelEventArgs")]
+        public ClDataGridViewCellCancelEventArgs DataGridViewCellCancelEventArgs()
+        {
+        	return (ClDataGridViewCellCancelEventArgs)Event;
+        }
+        
+        [ContextMethod("ЯчейкаТаблицыАрг", "DataGridViewCellEventArgs")]
+        public ClDataGridViewCellEventArgs DataGridViewCellEventArgs()
+        {
+        	return (ClDataGridViewCellEventArgs)Event;
+        }
+        
+        [ContextMethod("ЯчейкаТаблицыМышьАрг", "DataGridViewCellMouseEventArgs")]
+        public ClDataGridViewCellMouseEventArgs DataGridViewCellMouseEventArgs()
+        {
+        	return (ClDataGridViewCellMouseEventArgs)Event;
         }
         
         [ContextMethod("СобытиеФайловойСистемыАрг", "FileSystemEventArgs")]
