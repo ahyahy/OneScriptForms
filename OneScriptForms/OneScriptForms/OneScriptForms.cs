@@ -33,6 +33,7 @@ namespace osf
         private static ClDataGridViewColumnSortMode cl_DataGridViewColumnSortMode = new ClDataGridViewColumnSortMode();
         private static ClDataGridViewComboBoxDisplayStyle cl_DataGridViewComboBoxDisplayStyle = new ClDataGridViewComboBoxDisplayStyle();
         private static ClDataGridViewContentAlignment cl_DataGridViewContentAlignment = new ClDataGridViewContentAlignment();
+        private static ClDataGridViewGrouperStyle cl_DataGridViewGrouperStyle = new ClDataGridViewGrouperStyle();
         private static ClDataGridViewImageCellLayout cl_DataGridViewImageCellLayout = new ClDataGridViewImageCellLayout();
         private static ClDataGridViewRowHeadersWidthSizeMode cl_DataGridViewRowHeadersWidthSizeMode = new ClDataGridViewRowHeadersWidthSizeMode();
         private static ClDataGridViewSelectionMode cl_DataGridViewSelectionMode = new ClDataGridViewSelectionMode();
@@ -525,6 +526,12 @@ namespace osf
             get { return cl_FormBorderStyle; }
         }
 
+        [ContextProperty("СтильГруппировкиТаблицы", "DataGridViewGrouperStyle")]
+        public ClDataGridViewGrouperStyle DataGridViewGrouperStyle
+        {
+            get { return cl_DataGridViewGrouperStyle; }
+        }
+
         [ContextProperty("СтильЗаголовкаКолонки", "ColumnHeaderStyle")]
         public ClColumnHeaderStyle ColumnHeaderStyle
         {
@@ -702,6 +709,18 @@ namespace osf
         public ClHScrollBar HScrollBar()
         {
             return new ClHScrollBar();
+        }
+
+        [ContextMethod("ГруппировкаТаблицы", "DataGridViewGrouper")]
+        public Subro.Controls.ClDataGridViewGrouper DataGridViewGrouper(ClDataGridView p1)
+        {
+            return new Subro.Controls.ClDataGridViewGrouper(p1);
+        }
+
+        [ContextMethod("ГруппировщикТаблицы", "DataGridViewGrouperControl")]
+        public Subro.Controls.ClDataGridViewGrouperControl DataGridViewGrouperControl(Subro.Controls.ClDataGridViewGrouper p1)
+        {
+            return new Subro.Controls.ClDataGridViewGrouperControl(p1.Base_obj);
         }
 
         [ContextMethod("Действие", "Action")]

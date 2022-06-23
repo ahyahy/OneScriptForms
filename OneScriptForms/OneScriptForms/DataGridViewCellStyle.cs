@@ -1,15 +1,4 @@
-﻿using System;
-using Microsoft.VisualBasic;
-using ScriptEngine.HostedScript.Library;
-using ScriptEngine.Machine.Contexts;
-using ScriptEngine.Machine;
-using System.Collections.Generic;
-using System.Collections;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
+﻿using ScriptEngine.Machine.Contexts;
 
 namespace osf
 {

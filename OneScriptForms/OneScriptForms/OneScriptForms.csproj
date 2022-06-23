@@ -169,6 +169,11 @@
     <Compile Include="DataGridViewComboBoxDisplayStyle.cs" />
     <Compile Include="DataGridViewContentAlignment.cs" />
     <Compile Include="DataGridViewElement.cs" />
+    <Compile Include="DataGridViewGrouper.cs" />
+    <Compile Include="DataGridViewGrouperControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataGridViewGrouperStyle.cs" />
     <Compile Include="DataGridViewHeaderCell.cs" />
     <Compile Include="DataGridViewImageCell.cs" />
     <Compile Include="DataGridViewImageCellLayout.cs" />

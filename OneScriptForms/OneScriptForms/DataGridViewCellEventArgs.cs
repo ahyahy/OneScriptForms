@@ -1,5 +1,4 @@
 ﻿using ScriptEngine.Machine.Contexts;
-using ScriptEngine.Machine;
 
 namespace osf
 {
