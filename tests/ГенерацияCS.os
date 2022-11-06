@@ -231,6 +231,11 @@
 		ИмяКонтекстКлассаАнгл = "DataGridViewRowHeadersWidthSizeMode" или 
 		ИмяКонтекстКлассаАнгл = "DataGridViewContentAlignment" или 
 		ИмяКонтекстКлассаАнгл = "DataGridViewGrouperStyle" или 
+		ИмяКонтекстКлассаАнгл = "VerticalAlign" или 
+		ИмяКонтекстКлассаАнгл = "StringTrimming" или 
+		ИмяКонтекстКлассаАнгл = "ImageScaleMode" или 
+		ИмяКонтекстКлассаАнгл = "TreeSelectionMode" или 
+		ИмяКонтекстКлассаАнгл = "GridLineStyle" или 
 		ИмяКонтекстКлассаАнгл = "Appearance" Тогда
 		Стр = 
 		"using ScriptEngine.Machine.Contexts;
@@ -350,6 +355,88 @@
 		|
 		|";
 		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "Dns" или 
+		ИмяКонтекстКлассаАнгл = "IpAddress" или 
+		ИмяКонтекстКлассаАнгл = "IpHostEntry" или 
+		ИмяКонтекстКлассаАнгл = "NetworkStream" или 
+		ИмяКонтекстКлассаАнгл = "TCPClient" или 
+		ИмяКонтекстКлассаАнгл = "TCPListener" Тогда
+		Стр = 
+		"using System;
+		|using System.Windows.Forms;
+		|using System.Windows.Forms.VisualStyles;
+		|using System.Threading;
+		|using System.Text;
+		|using System.Security.Permissions;
+		|using System.Runtime.Serialization;
+		|using System.Runtime.InteropServices;
+		|using System.Reflection;
+		|using System.IO;
+		|using System.Globalization;
+		|using System.Drawing;
+		|using System.Drawing.Imaging;
+		|using System.Drawing.Drawing2D;
+		|using System.Drawing.Design;
+		|using System.ComponentModel;
+		|using System.Collections;
+		|using System.Collections.ObjectModel;
+		|using System.Collections.Generic;
+		|using Aga.Controls.Tree.NodeControls;
+		|using Aga.Controls.Threading;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|
+		|using System.Net;
+		|using System.Runtime.CompilerServices;
+		|using Microsoft.VisualBasic.CompilerServices;
+		|using System.Net.Sockets;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "TreeViewAdv" или 
+		ИмяКонтекстКлассаАнгл = "TreeColumnCollection" или 
+		ИмяКонтекстКлассаАнгл = "TreeColumn" или 
+		ИмяКонтекстКлассаАнгл = "TreeNodeAdv" или 
+		ИмяКонтекстКлассаАнгл = "NodeCheckBox" или 
+		ИмяКонтекстКлассаАнгл = "NodeControlsCollection" или 
+		ИмяКонтекстКлассаАнгл = "TreeViewAdvSupport" или 
+		ИмяКонтекстКлассаАнгл = "NodeStateIcon" или 
+		ИмяКонтекстКлассаАнгл = "NodeComboBox" или 
+		ИмяКонтекстКлассаАнгл = "NodeDecimalTextBox" или 
+		ИмяКонтекстКлассаАнгл = "NodeNumericUpDown" или 
+		ИмяКонтекстКлассаАнгл = "NodeTextBox" или 
+		ИмяКонтекстКлассаАнгл = "NodeComboBoxObjectCollection" или 
+		ИмяКонтекстКлассаАнгл = "SelectedTreeNodeAdvCollection" или 
+		
+		
+		ИмяКонтекстКлассаАнгл = "TreeNodeAdvCollection" Тогда
+		Стр = 
+		"using System;
+		|using System.Windows.Forms;
+		|using System.Windows.Forms.VisualStyles;
+		|using System.Threading;
+		|using System.Text;
+		|using System.Security.Permissions;
+		|using System.Runtime.Serialization;
+		|using System.Runtime.InteropServices;
+		|using System.Reflection;
+		|using System.IO;
+		|using System.Globalization;
+		|using System.Drawing;
+		|using System.Drawing.Imaging;
+		|using System.Drawing.Drawing2D;
+		|using System.Drawing.Design;
+		|using System.ComponentModel;
+		|using System.Collections;
+		|using System.Collections.ObjectModel;
+		|using System.Collections.Generic;
+		|using Aga.Controls.Tree.NodeControls;
+		|using Aga.Controls.Threading;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|
+		|";
+		Возврат Стр;
 	ИначеЕсли ИмяКонтекстКлассаАнгл = "Clipboard" Тогда
 		Стр = 
 		"using System;
@@ -442,6 +529,10 @@
 		ИмяКонтекстКлассаАнгл = "ToolBarButtonClickEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "TreeViewCancelEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "TreeViewEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "TreeColumnEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "TreeNodeAdvMouseEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "TreeViewAdvEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "ValueTreeViewAdvEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "Action" Тогда
 		Стр = 
 		"using ScriptEngine.Machine.Contexts;
@@ -515,6 +606,13 @@
 		Стр = 
 		"using System;
 		|using System.Runtime.InteropServices;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "RoundRect" Тогда
+		Стр = 
+		"using System.Drawing;
+		|using System.Drawing.Drawing2D;
 		|
 		|";
 		Возврат Стр;
@@ -679,8 +777,7 @@
 Функция РазделОбъявленияПеременных(ИмяФайлаЧленов, ИмяКласса)
 	Если ИмяКласса = "OneScriptForms" Тогда
 		Стр = 
-		"        [DllImport(""user32"", CharSet = CharSet.Ansi, SetLastError = true)] public static extern int WaitMessage();
-		|        [DllImport(""User32.dll"")] static extern void mouse_event(uint dwFlags, int dx, int dy, int dwData, UIntPtr dwExtraInfo);
+		"        [DllImport(""User32.dll"")] static extern void mouse_event(uint dwFlags, int dx, int dy, int dwData, UIntPtr dwExtraInfo);
 		|        public static ClForm FirstForm = null;
 		|        public static IValue Event = null;
 		|        public static string EventString = """";
@@ -694,6 +791,8 @@
 		|        private static OneScriptForms instance;
 		|        private static object syncRoot = new Object();
 		|		
+		|        public static bool systemVersionIsMicrosoft = false;
+		|        public static bool xdotoolIsInstall = Xdotool();
 		|        public static bool goOn = true;";
 	ИначеЕсли ИмяКласса = "ManagedProperty" Тогда
 		Стр = 
@@ -744,10 +843,69 @@
 		|                    {
 		|                        instance = new OneScriptForms();
 		|                        formsCollection = new FormsCollection();
+		|                        System.Windows.Forms.Application.ThreadException += Application_ThreadException;
 		|                    }
 		|                }
 		|            }
+		|            if (System.Environment.OSVersion.VersionString.Contains(""Microsoft""))
+		|            {
+		|                systemVersionIsMicrosoft = true;
+		|            }
 		|            return instance;
+		|        }
+		|		
+		|        private static bool Xdotool()
+		|        {
+		|            try
+		|            {
+		|                System.Diagnostics.Process process = new System.Diagnostics.Process();
+		|                process.StartInfo.FileName = ""xdotool"";
+		|                process.StartInfo.Arguments = "" version"";
+		|                process.StartInfo.UseShellExecute = false;
+		|                process.StartInfo.RedirectStandardOutput = true;
+		|                process.StartInfo.CreateNoWindow = false;
+		|                string s = """";
+		|                process.OutputDataReceived += (sender, data) =>
+		|                {
+		|                    s = s + data.Data;
+		|                };
+		|                process.Start();
+		|                process.BeginOutputReadLine();
+		|                process.WaitForExit();
+		|                if (s.Contains(""xdotool version""))
+		|                {
+		|                    return true;
+		|                }
+		|            }
+		|            catch { }
+		|            return false;
+		|        }
+		|		
+		|        private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+		|        {
+		|            if (e.Exception.TargetSite.ToString() != ""Void SetDataObject(System.Object, Boolean, Int32, Int32)"")
+		|            {
+		|                return;
+		|            }
+		|            osf.Form form = null;
+		|            try
+		|            {
+		|                form = ((Form)((FormEx)System.Windows.Forms.Form.ActiveForm).M_Object);
+		|            }
+		|            catch { }
+		|            if (form == null)
+		|            {
+		|                return;
+		|            }
+		|            System.Windows.Forms.Control activeControl = form.M_Form.ActiveControl;
+		|            System.Windows.Forms.Control parent1 = activeControl.Parent;
+		|            if (parent1.GetType() != typeof(osf.DataGridEx))
+		|            {
+		|                return;
+		|            }
+		|            System.Windows.Forms.DataGridTextBox dataGridTextBox = (System.Windows.Forms.DataGridTextBox)activeControl;
+		|
+		|            dataGridTextBox.Copy();
 		|        }
 		|
 		|        [ScriptConstructor]
@@ -755,6 +913,264 @@
 		|        {
 		|            return getInstance();
 		|        }
+		|";
+	ИначеЕсли ИмяКласса = "TCPClient" Тогда
+		Стр = 
+		"        public ClTCPClient(string HostName = null, int port = 0)
+		|        {
+		|            TCPClient TCPClient1 = new TCPClient(HostName, port);
+		|            TCPClient1.dll_obj = this;
+		|            Base_obj = TCPClient1;
+		|        }//end_constr
+		|		
+		|        public ClTCPClient(TCPClient p1)
+		|        {
+		|            TCPClient TCPClient1 = p1;
+		|            TCPClient1.dll_obj = this;
+		|            Base_obj = TCPClient1;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "DataGridViewCellStyle" Тогда
+		Стр = 
+		"        public ClDataGridViewCellStyle()
+		|        {
+		|            DataGridViewCellStyle DataGridViewCellStyle1 = new DataGridViewCellStyle();
+		|            DataGridViewCellStyle1.dll_obj = this;
+		|            Base_obj = DataGridViewCellStyle1;
+		|        }//end_constr
+		|		
+		|        public ClDataGridViewCellStyle(DataGridViewCellStyle p1)
+		|        {
+		|            DataGridViewCellStyle DataGridViewCellStyle1 = p1;
+		|            DataGridViewCellStyle1.dll_obj = this;
+		|            Base_obj = DataGridViewCellStyle1;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "DataGridTableStyle" Тогда
+		Стр = 
+		"        public ClDataGridTableStyle()
+		|        {
+		|            DataGridTableStyle DataGridTableStyle1 = new DataGridTableStyle();
+		|            DataGridTableStyle1.dll_obj = this;
+		|            Base_obj = DataGridTableStyle1;
+		|        }//end_constr
+		|		
+		|        public ClDataGridTableStyle(DataGridTableStyle p1)
+		|        {
+		|            DataGridTableStyle DataGridTableStyle1 = p1;
+		|            DataGridTableStyle1.dll_obj = this;
+		|            Base_obj = DataGridTableStyle1;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "IpAddress" Тогда
+		Стр = 
+		"        public ClIpAddress(string p1)
+		|        {
+		|            IpAddress IpAddress1 = new IpAddress(p1);
+		|            IpAddress1.dll_obj = this;
+		|            Base_obj = IpAddress1;
+		|        }//end_constr
+		|		
+		|        public ClIpAddress(osf.IpAddress p1)
+		|        {
+		|            IpAddress IpAddress1 = p1;
+		|            IpAddress1.dll_obj = this;
+		|            Base_obj = IpAddress1;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "Dns" Тогда
+		Стр = 
+		"        public ClDns()
+		|        {
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "IpHostEntry" Тогда
+		Стр = 
+		"        public ClIpHostEntry(string p1)
+		|        {
+		|            IpHostEntry IpHostEntry1 = new IpHostEntry(p1);
+		|            Base_obj = IpHostEntry1;
+		|        }//end_constr
+		|		
+		|        public ClIpHostEntry(osf.IpHostEntry p1)
+		|        {
+		|            Base_obj = p1;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "NetworkStream" Тогда
+		Стр = 
+		"        public ClNetworkStream(System.Net.Sockets.NetworkStream p1)
+		|        {
+		|            Base_obj = p1;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "TCPListener" Тогда
+		Стр = 
+		"        public ClTCPListener(ClIpAddress p1, int p2)
+		|        {
+		|            TCPListener TCPListener1 = new TCPListener(p1.Base_obj, p2);
+		|            TCPListener1.dll_obj = this;
+		|            Base_obj = TCPListener1;
+		|        }//end_constr
+		|		
+		|        public ClTCPListener(osf.TCPListener p1)
+		|        {
+		|            TCPListener TCPListener1 = p1;
+		|            TCPListener1.dll_obj = this;
+		|            Base_obj = TCPListener1;
+		|        }//end_constr
+		|";
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	ИначеЕсли ИмяКласса = "TreeColumnEventArgs" Тогда
+		Стр = 
+		"        public ClTreeColumnEventArgs(osf.TreeColumnEventArgs p1)
+		|        {
+		|            TreeColumnEventArgs TreeColumnEventArgs1 = p1;
+		|            TreeColumnEventArgs1.dll_obj = this;
+		|            Base_obj = TreeColumnEventArgs1;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "TreeViewAdvEventArgs" Тогда
+		Стр = 
+		"        public ClTreeViewAdvEventArgs(osf.TreeViewAdvEventArgs p1)
+		|        {
+		|            TreeViewAdvEventArgs TreeViewAdvEventArgs1 = p1;
+		|            TreeViewAdvEventArgs1.dll_obj = this;
+		|            Base_obj = TreeViewAdvEventArgs1;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "ValueTreeViewAdvEventArgs" Тогда
+		Стр = 
+		"        public ClValueTreeViewAdvEventArgs(osf.ValueTreeViewAdvEventArgs p1)
+		|        {
+		|            ValueTreeViewAdvEventArgs ValueTreeViewAdvEventArgs1 = p1;
+		|            ValueTreeViewAdvEventArgs1.dll_obj = this;
+		|            Base_obj = ValueTreeViewAdvEventArgs1;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "TreeNodeAdvMouseEventArgs" Тогда
+		Стр = 
+		"        public ClTreeNodeAdvMouseEventArgs(osf.TreeNodeAdvMouseEventArgs p1)
+		|        {
+		|            TreeNodeAdvMouseEventArgs TreeNodeAdvMouseEventArgs1 = p1;
+		|            TreeNodeAdvMouseEventArgs1.dll_obj = this;
+		|            Base_obj = TreeNodeAdvMouseEventArgs1;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "TreeNodeAdv" Тогда
+		СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+		"        public ClNodeCollection nodes;";
+		Стр = 
+		"        public ClNode(string p1)
+		|        {
+		|            Base_obj = new Aga.Controls.Tree.Node(p1);
+		|            Base_obj.dll_obj = this;
+		|            nodes = new ClNodeCollection(Base_obj.Nodes);
+		|            NodeName = p1;
+		|        }//end_constr
+		|
+		|        public ClNode(Aga.Controls.Tree.Node p1)
+		|        {
+		|            Base_obj = p1;
+		|            Base_obj.dll_obj = this;
+		|            nodes = new ClNodeCollection(Base_obj.Nodes);
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "NodeCheckBox" Тогда
+		СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+		"        private IValue _CheckChanged;";
+		Стр = 
+		"        public ClNodeCheckBox()
+		|        {
+		|            Base_obj = new Aga.Controls.Tree.NodeControls.NodeCheckBox();
+		|            Base_obj.dll_obj = this;
+		|        }//end_constr
+		|		
+		|        public ClNodeCheckBox(Aga.Controls.Tree.NodeControls.NodeCheckBox p1)
+		|        {
+		|            Base_obj = p1;
+		|            Base_obj.dll_obj = this;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "NodeStateIcon" Тогда
+		Стр = 
+		"        public ClNodeStateIcon()
+		|        {
+		|            Base_obj = new Aga.Controls.Tree.NodeControls.NodeStateIcon();
+		|            Image = new ClBitmap(""iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAK0lEQVR42u3NMQEAAAiEQL5/aF2s8JMQgAswFMsBKf1HQEBAQEBA4BlQawFcRy4BIkls/QAAAABJRU5ErkJggg=="");
+		|        }//end_constr
+		|		
+		|        public ClNodeStateIcon(Aga.Controls.Tree.NodeControls.NodeStateIcon p1)
+		|        {
+		|            Base_obj = p1;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "NodeComboBox" Тогда
+		Стр = 
+		"        public ClNodeComboBox()
+		|        {
+		|            Base_obj = new Aga.Controls.Tree.NodeControls.NodeComboBox();
+		|            Base_obj.dll_obj = this;
+		|        }//end_constr
+		|		
+		|        public ClNodeComboBox(Aga.Controls.Tree.NodeControls.NodeComboBox p1)
+		|        {
+		|            Base_obj = p1;
+		|            Base_obj.dll_obj = this;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "NodeDecimalTextBox" Тогда
+		Стр = 
+		"        public ClNodeDecimalTextBox()
+		|        {
+		|            Base_obj = new Aga.Controls.Tree.NodeControls.NodeDecimalTextBox();
+		|            Base_obj.dll_obj = this;
+		|        }//end_constr
+		|		
+		|        public ClNodeDecimalTextBox(Aga.Controls.Tree.NodeControls.NodeDecimalTextBox p1)
+		|        {
+		|            Base_obj = p1;
+		|            Base_obj.dll_obj = this;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "NodeNumericUpDown" Тогда
+		Стр = 
+		"        public ClNodeNumericUpDown()
+		|        {
+		|            Base_obj = new Aga.Controls.Tree.NodeControls.NodeNumericUpDown();
+		|            Base_obj.dll_obj = this;
+		|        }//end_constr
+		|		
+		|        public ClNodeNumericUpDown(Aga.Controls.Tree.NodeControls.NodeNumericUpDown p1)
+		|        {
+		|            Base_obj = p1;
+		|            Base_obj.dll_obj = this;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "NodeTextBox" Тогда
+		Стр = 
+		"        public ClNodeTextBox()
+		|        {
+		|            Base_obj = new Aga.Controls.Tree.NodeControls.NodeTextBox();
+		|            Base_obj.dll_obj = this;
+		|        }//end_constr
+		|		
+		|        public ClNodeTextBox(Aga.Controls.Tree.NodeControls.NodeTextBox p1)
+		|        {
+		|            Base_obj = p1;
+		|            Base_obj.dll_obj = this;
+		|        }//end_constr
 		|";
 	ИначеЕсли ИмяКласса = "DataGridViewGrouperControl" Тогда
 		Стр = 
@@ -776,7 +1192,7 @@
 		|            DataGridViewGrouperControl1.CmbFields.SelectedItem = prop;
 		|            if (prop == null)
 		|            {
-		|                // Значит колонка группировки не задана. Нужно усановить группировку по первой колонке и снять флажок Группировать
+		|                // Значит колонка группировки не задана. Нужно установить группировку по первой колонке и снять флажок Группировать
 		|                DataGridViewGrouperControl1.Grouper.SetGroupOn(DataGridViewGrouperControl1.Grouper.DataGridView.Columns[0]);
 		|                DataGridViewGrouperControl1.Chk.CheckState = CheckState.Unchecked;
 		|            }
@@ -811,6 +1227,67 @@
 		|            DataGridViewGrouper1.dll_obj = this;
 		|            Base_obj = DataGridViewGrouper1;
 		|        }
+		|";
+	ИначеЕсли ИмяКласса = "TreeColumnCollection" Тогда
+		Стр = 
+		"        public ClTreeColumnCollection(Aga.Controls.Tree.TreeColumnCollection p1)
+		|        {
+		|            Base_obj = p1;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "TreeColumn" Тогда
+		Стр = 
+		"        public ClTreeColumn(string p1 = null, int p2 = 50)
+		|        {
+		|            TreeColumn TreeColumn1 = new TreeColumn(p1, p2);
+		|            TreeColumn1.dll_obj = this;
+		|            Base_obj = TreeColumn1;
+		|        }//end_constr
+		|		
+		|        public ClTreeColumn(TreeColumn p1)
+		|        {
+		|            TreeColumn TreeColumn1 = p1;
+		|            TreeColumn1.dll_obj = this;
+		|            Base_obj = TreeColumn1;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "NodeControlsCollection" Тогда
+		СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+		"        public ClTreeViewAdv TreeViewAdv;";
+		Стр = 
+		"        public ClNodeControlsCollection(Aga.Controls.Tree.NodeControls.NodeControlsCollection p1)
+		|        {
+		|            Base_obj = p1;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "TreeViewAdv" Тогда
+		СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+		"        private ClTreeColumnCollection columns;
+		|        private ClSelectedTreeNodeAdvCollection selectedNodes;
+		|        private ClNodeControlsCollection nodeControls;
+		|        private Aga.Controls.Tree.TreeModel TreeModel1;";
+		Стр = 
+		"        public ClTreeViewAdv()
+		|        {
+		|            TreeViewAdv TreeViewAdv1 = new TreeViewAdv();
+		|            TreeViewAdv1.dll_obj = this;
+		|            Base_obj = TreeViewAdv1;
+		|            columns = new ClTreeColumnCollection(this.Base_obj.Columns);
+		|            nodeControls = new ClNodeControlsCollection(this.Base_obj.NodeControls);
+		|            nodeControls.TreeViewAdv = this;
+		|            selectedNodes = new ClSelectedTreeNodeAdvCollection(this.Base_obj.SelectedNodes);
+		|            TreeModel1 = new Aga.Controls.Tree.TreeModel();
+		|            Base_obj.TreeModel = TreeModel1;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "ClTreeColumnCollection" Тогда
+		Стр = 
+		"        public ClTreeColumnCollection(osf.ClTreeViewAdv p1)
+		|        {
+		|            osf.TreeColumnCollection TreeColumnCollection1 = new TreeColumnCollection(p1.Base_obj.M_TreeViewAdv);
+		|            TreeColumnCollection1.dll_obj = this;
+		|            Base_obj = TreeColumnCollection1;
+		|        }//end_constr
 		|";
 	ИначеЕсли ИмяКласса = "DataRowView" Тогда
 		Стр = 
@@ -1648,6 +2125,27 @@
 		|            Base_obj = ToolBarButton1;
 		|        }//end_constr
 		|";
+	ИначеЕсли ИмяКласса = "TreeNodeAdvCollection" Тогда
+		Стр = 
+		"        public ClNodeCollection(Aga.Controls.Tree.Node.NodeCollection p1)
+		|        {
+		|            Base_obj = p1;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "SelectedTreeNodeAdvCollection" Тогда
+		Стр = 
+		"        public ClSelectedTreeNodeAdvCollection(System.Collections.ObjectModel.ReadOnlyCollection<Aga.Controls.Tree.TreeNodeAdv> p1)
+		|        {
+		|            Base_obj = p1;
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "NodeComboBoxObjectCollection" Тогда
+		Стр = 
+		"        public ClNodeComboBoxObjectCollection(Aga.Controls.Tree.NodeControls.NodeComboBoxObjectCollection p1)
+		|        {
+		|            Base_obj = p1;
+		|        }//end_constr
+		|";
 	ИначеЕсли ИмяКласса = "NotifyIcon" Тогда
 		Стр = 
 		"        public ClNotifyIcon()
@@ -1946,9 +2444,89 @@
 		ИмяКласса = "Clipboard" или
 		ИмяКласса = "Math" или
 		ИмяКласса = "InputBox" или
-		ИмяКласса = "Action" или
+		ИмяКласса = "Action" или 
+		ИмяКласса = "Dns" или 
 		ИмяКласса = "MonthlyBoldedDates" Тогда
 		Возврат "";
+		
+	// ИначеЕсли ИмяКласса = "" Тогда
+		// Стр = 
+		// "        public Aga.Controls.Tree.NodeControls. Base_obj;
+		// |";
+		// Возврат Стр;
+		
+		
+		
+		
+		
+		
+		
+		
+	ИначеЕсли ИмяКласса = "NetworkStream" Тогда
+		Стр = 
+		"        public System.Net.Sockets.NetworkStream Base_obj;
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКласса = "TreeNodeAdvCollection" Тогда
+		Стр = 
+		"        public Aga.Controls.Tree.Node.NodeCollection Base_obj;
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКласса = "SelectedTreeNodeAdvCollection" Тогда
+		Стр = 
+		"        public System.Collections.ObjectModel.ReadOnlyCollection<Aga.Controls.Tree.TreeNodeAdv> Base_obj;
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКласса = "NodeComboBoxObjectCollection" Тогда
+		Стр = 
+		"        public Aga.Controls.Tree.NodeControls.NodeComboBoxObjectCollection Base_obj;
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКласса = "TreeNodeAdv" Тогда
+		Стр = 
+		"        public Aga.Controls.Tree.Node Base_obj;
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКласса = "TreeColumnCollection" Тогда
+		Стр = 
+		"        public Aga.Controls.Tree.TreeColumnCollection Base_obj;
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКласса = "NodeControlsCollection" Тогда
+		Стр = 
+		"        public Aga.Controls.Tree.NodeControls.NodeControlsCollection Base_obj;
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКласса = "NodeCheckBox" Тогда
+		Стр = 
+		"        public Aga.Controls.Tree.NodeControls.NodeCheckBox Base_obj;
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКласса = "NodeStateIcon" Тогда
+		Стр = 
+		"        public Aga.Controls.Tree.NodeControls.NodeStateIcon Base_obj;
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКласса = "NodeComboBox" Тогда
+		Стр = 
+		"        public Aga.Controls.Tree.NodeControls.NodeComboBox Base_obj;
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКласса = "NodeDecimalTextBox" Тогда
+		Стр = 
+		"        public Aga.Controls.Tree.NodeControls.NodeDecimalTextBox Base_obj;
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКласса = "NodeNumericUpDown" Тогда
+		Стр = 
+		"        public Aga.Controls.Tree.NodeControls.NodeNumericUpDown Base_obj;
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКласса = "NodeTextBox" Тогда
+		Стр = 
+		"        public Aga.Controls.Tree.NodeControls.NodeTextBox Base_obj;
+		|";
+		Возврат Стр;
 	ИначеЕсли ИмяКласса = "ComboBox" Тогда
 		Стр = 
 		"        public dynamic Base_obj;
@@ -2046,6 +2624,357 @@
 				|        }				
 				|        
 				|";
+			ИначеЕсли (СвойствоРус = "Позиция") и (ИмяКонтекстКлассаАнгл = "NetworkStream") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Позиция"", ""Position"")]
+				|            get { return checked((int)Base_obj.Position); }
+				|            set { Base_obj.Position = (long)value; }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Псевдонимы") и (ИмяКонтекстКлассаАнгл = "IpHostEntry") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Псевдонимы"", ""Aliases"")]
+				|        public ClArrayList Aliases
+				|        {
+				|            get
+				|            {
+				|                osf.ClArrayList ClArrayList1 = new ClArrayList();
+				|                for (int i = 0; i < Base_obj.M_IPHostEntry.Aliases.Length; i++)
+				|                {
+				|                    string alias = Base_obj.M_IPHostEntry.Aliases[i];
+				|                    ClArrayList1.Add(ValueFactory.Create(alias));
+				|                }
+				|                return ClArrayList1;
+				|            }
+				|            set
+				|            {
+				|                Base_obj.M_IPHostEntry.Aliases = new string[value.Count];
+				|                for (int i = 0; i < value.Count; i++)
+				|                {
+				|                    Base_obj.M_IPHostEntry.Aliases[i] = value.Item(i).AsString();
+				|                }
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Адреса") и (ИмяКонтекстКлассаАнгл = "IpHostEntry") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Адреса"", ""AddressList"")]
+				|        public ClArrayList AddressList
+				|        {
+				|            get
+				|            {
+				|                osf.ClArrayList ClArrayList1 = new ClArrayList();
+				|                for (int i = 0; i < Base_obj.M_IPHostEntry.AddressList.Length; i++)
+				|                {
+				|                    IpAddress IpAddress1 = new IpAddress(Base_obj.M_IPHostEntry.AddressList[i]);
+				|                    ClIpAddress ClIpAddress1 = new ClIpAddress(IpAddress1);
+				|                    ClArrayList1.Add(ClIpAddress1);
+				|                }
+				|                return ClArrayList1;
+				|            }
+				|            set
+				|            {
+				|                Base_obj.M_IPHostEntry.AddressList = new IPAddress[value.Count];
+				|                for (int i = 0; i < value.Count; i++)
+				|                {
+				|                    ClIpAddress ClIpAddress1 = (ClIpAddress)value.Item(i);
+				|                    IpAddress IpAddress1 = ClIpAddress1.Base_obj;
+				|                    Base_obj.M_IPHostEntry.AddressList[i] = IpAddress1.M_IPaddress;
+				|                }
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "СписокБольшихИзображений") и (ИмяКонтекстКлассаАнгл = "ListView") Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        private ClImageList largeImageList;";
+				Стр = Стр +
+				"        [ContextProperty(""СписокБольшихИзображений"", ""LargeImageList"")]
+				|        public ClImageList LargeImageList
+				|        {
+				|            get
+				|            {
+				|                if (largeImageList != null)
+				|                {
+				|                    return largeImageList;
+				|                }
+				|                return new ClImageList(Base_obj.LargeImageList);
+				|            }
+				|            set
+				|            {
+				|                largeImageList = value;
+				|                Base_obj.LargeImageList = value.Base_obj;
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "СписокМаленькихИзображений") и (ИмяКонтекстКлассаАнгл = "ListView") Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        private ClImageList smallImageList;";
+				Стр = Стр +
+				"        [ContextProperty(""СписокМаленькихИзображений"", ""SmallImageList"")]
+				|        public ClImageList SmallImageList
+				|        {
+				|            get
+				|            {
+				|                if (smallImageList != null)
+				|                {
+				|                    return smallImageList;
+				|                }
+				|                return new ClImageList(Base_obj.SmallImageList);
+				|            }
+				|            set
+				|            {
+				|                smallImageList = value;
+				|                Base_obj.SmallImageList = value.Base_obj;
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли СвойствоРус = "Курсор" Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        private ClCursor cursor;";
+				Стр = Стр +
+				"        [ContextProperty(""Курсор"", ""Cursor"")]
+				|        public ClCursor Cursor
+				|        {
+				|            get
+				|            {
+				|                if (cursor != null)
+				|                {
+				|                    return cursor;
+				|                }
+				|                return new ClCursor(Base_obj.Cursor);
+				|            }
+				|            set
+				|            {
+				|                cursor = value;
+				|                Base_obj.Cursor = value.Base_obj;
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "ШрифтВыделения") и (ИмяКонтекстКлассаАнгл = "RichTextBox") Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        private ClFont selectionFont;";
+				Стр = Стр +
+				"        [ContextProperty(""ШрифтВыделения"", ""SelectionFont"")]
+				|        public ClFont SelectionFont
+				|        {
+				|            get
+				|            {
+				|                if (selectionFont != null)
+				|                {
+				|                    return selectionFont;
+				|                }
+				|                return new ClFont(Base_obj.SelectionFont);
+				|            }
+				|            set
+				|            {
+				|                selectionFont = value;
+				|                Base_obj.SelectionFont = value.Base_obj;
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "ШрифтУзла") и (ИмяКонтекстКлассаАнгл = "TreeNode") Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        private ClFont nodeFont;";
+				Стр = Стр +
+				"        [ContextProperty(""ШрифтУзла"", ""NodeFont"")]
+				|        public ClFont NodeFont
+				|        {
+				|            get { return nodeFont; }
+				|            set 
+				|            {
+				|                nodeFont = value;
+				|                Base_obj.NodeFont = value.Base_obj;
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "ШрифтЗаголовков") и (ИмяКонтекстКлассаАнгл = "DataGridTableStyle") Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        private ClFont headerFont;";
+				Стр = Стр +
+				"        [ContextProperty(""ШрифтЗаголовков"", ""HeaderFont"")]
+				|        public ClFont HeaderFont
+				|        {
+				|            get { return headerFont; }
+				|            set 
+				|            {
+				|                Base_obj.HeaderFont = value.Base_obj;
+				|                headerFont = value;
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Шрифт") и 
+			(ИмяКонтекстКлассаАнгл = "NodeTextBox" или 
+			ИмяКонтекстКлассаАнгл = "NodeComboBox" или 
+			ИмяКонтекстКлассаАнгл = "NodeDecimalTextBox" или 
+			ИмяКонтекстКлассаАнгл = "NodeNumericUpDown") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Шрифт"", ""Font"")]
+				|        public ClFont Font
+				|        {
+				|            get { return (ClFont)OneScriptForms.RevertEqualsObj(this); }
+				|            set
+				|            {
+				|                Base_obj.Font = value.Base_obj.M_Font;
+				|                OneScriptForms.AddToHashtable(this, value);
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "Шрифт") Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        private ClFont font;";
+				Стр = Стр +
+				"        [ContextProperty(""Шрифт"", ""Font"")]
+				|        public ClFont Font
+				|        {
+				|            get
+				|            {
+				|                if (font != null)
+				|                {
+				|                    return font;
+				|                }
+				|                return new ClFont(Base_obj.Font);
+				|            }
+				|            set
+				|            {
+				|                font = value;
+				|                Base_obj.Font = value.Base_obj;
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "ВыбранныйЭлементСетки") и (ИмяКонтекстКлассаАнгл = "PropertyGrid") Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        private ClGridItem selectedGridItem;";
+				Стр = Стр +
+				"        [ContextProperty(""ВыбранныйЭлементСетки"", ""SelectedGridItem"")]
+				|        public ClGridItem SelectedGridItem
+				|        {
+				|            get { return selectedGridItem; }
+				|            set
+				|            {
+				|                selectedGridItem = value;
+				|                Base_obj.SelectedGridItem = value.Base_obj;
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "НачальнаяИнформация") и (ИмяКонтекстКлассаАнгл = "Process") Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        private ClProcessStartInfo startInfo;";
+				Стр = Стр +
+				"        [ContextProperty(""НачальнаяИнформация"", ""StartInfo"")]
+				|        public ClProcessStartInfo StartInfo
+				|        {
+				|            get { return startInfo; }
+				|            set
+				|            {
+				|                startInfo = value;
+				|                Base_obj.StartInfo = value.Base_obj;
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "НовоеЗначение") и (ИмяКонтекстКлассаАнгл = "ValueTreeViewAdvEventArgs") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""НовоеЗначение"", ""NewValue"")]
+				|        public IValue NewValue
+				|        {
+				|            get { return OneScriptForms.RevertObj(Base_obj.NewValue); }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "СтароеЗначение") и (ИмяКонтекстКлассаАнгл = "ValueTreeViewAdvEventArgs") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""СтароеЗначение"", ""OldValue"")]
+				|        public IValue OldValue
+				|        {
+				|            get
+				|            {
+				|                if (Base_obj.OldValue.GetType() == typeof(System.Decimal) && (System.Decimal)Base_obj.OldValue == System.Decimal.Zero)
+				|                {
+				|                    return (IValue)null;
+				|                }
+				|                return (IValue)Base_obj.OldValue;
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Элемент") и (ИмяКонтекстКлассаАнгл = "ValueTreeViewAdvEventArgs") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Элемент"", ""Subject"")]
+				|        public IValue Subject
+				|        {
+				|            get { return ((dynamic)Base_obj.Subject).dll_obj; }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "СостояниеФлажкаИзменено") и (ИмяКонтекстКлассаАнгл = "NodeCheckBox") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""СостояниеФлажкаИзменено"", ""CheckStateChanged"")]
+				|        public IValue CheckStateChanged
+				|        {
+				|            get { return _CheckChanged; }
+				|            set
+				|            {
+				|                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+				|                {
+				|                    _CheckChanged = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+				|                    Base_obj.CheckChanged = ""DelegateActionTextChanged"";
+				|                }
+				|                else
+				|                {
+				|                    _CheckChanged = value;
+				|                    Base_obj.CheckChanged = ""osfActionTextChanged"";
+				|                }
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "ЭлементУзла") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdvMouseEventArgs") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ЭлементУзла"", ""Control"")]
+				|        public IValue Control
+				|        {
+				|            get
+				|            {
+				|                dynamic Obj1 = null;
+				|                string str1 = Base_obj.Control.GetType().ToString();
+				|                string str2 = str1.Replace(""Aga.Controls.Tree.NodeControls."", ""osf.Cl"");
+				|                System.Type Type1 = System.Type.GetType(str2, false, true);
+				|                object[] args1 = { Base_obj.Control };
+				|                Obj1 = System.Activator.CreateInstance(Type1, args1);
+				|                return OneScriptForms.RevertObj(Obj1);
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Узел") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdvMouseEventArgs") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Узел"", ""Node"")]
+				|        public osf.ClNode Node
+				|        {
+				|            get { return new ClNode((Aga.Controls.Tree.Node)Base_obj.Node.Tag); }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Узел") и (ИмяКонтекстКлассаАнгл = "TreeViewAdvEventArgs") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Узел"", ""Node"")]
+				|        public osf.ClNode Node
+				|        {
+				|            get { return new ClNode((Aga.Controls.Tree.Node)Base_obj.Node.Tag); }
+				|        }
+				|        
+				|";
 			ИначеЕсли (СвойствоРус = "РазрешитьСобытия") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
 				"        [ContextProperty(""РазрешитьСобытия"", ""AllowEvents"")]
@@ -2131,6 +3060,129 @@
 				|            set { script = value; }
 				|        }
 				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Изображение") и (ИмяКонтекстКлассаАнгл = "NodeStateIcon") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Изображение"", ""Image"")]
+ 				|       public ClBitmap Image
+				|        {
+				|            get { return (ClBitmap)OneScriptForms.RevertEqualsObj(Base_obj.Image); }
+				|            set
+				|            {
+				|                Base_obj.Image = value.Base_obj.M_Bitmap;
+				|                OneScriptForms.AddToHashtable(Base_obj.Image, value);
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "ИзображениеВыбранного") и 
+				(ИмяКонтекстКлассаАнгл = "NodeStateIcon" или 
+				ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ИзображениеВыбранного"", ""SelectedImage"")]
+				|        public ClBitmap SelectedImage
+				|        {
+				|            get { return (ClBitmap)OneScriptForms.RevertEqualsObj(Base_obj.SelectedImage); }
+				|            set
+				|            {
+				|                Base_obj.SelectedImage = value.Base_obj.M_Bitmap;
+				|                OneScriptForms.AddToHashtable(Base_obj.SelectedImage, value);
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Узлы") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Узлы"", ""Nodes"")]
+				|        public ClNodeCollection Nodes
+				|        {
+				|            get { return nodes; }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Родитель") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Родитель"", ""Parent"")]
+				|        public IValue Parent
+				|        {
+				|            get { return OneScriptForms.RevertObj(Base_obj.Parent); }
+				|            set { Base_obj.Parent = ((dynamic)value).Base_obj; }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Выбран") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Выбран"", ""IsSelected"")]
+				|        public bool IsSelected
+				|        {
+				|            get { return Base_obj.TreeNodeAdv.IsSelected; }
+				|            set { Base_obj.TreeNodeAdv.IsSelected = value; }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "ДеревоЗначений") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ДеревоЗначений"", ""Tree"")]
+				|        public ClTreeViewAdv Tree
+				|        {
+				|            get { return (ClTreeViewAdv)OneScriptForms.RevertObj(Base_obj.TreeNodeAdv.Tree); }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "ПолныйПуть") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ПолныйПуть"", ""FullPath"")]
+				|        public string FullPath
+				|        {
+				|            get { return Base_obj.FullPath; }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "ПредыдущийУзел") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ПредыдущийУзел"", ""PreviousNode"")]
+				|        public ClNode PreviousNode
+				|        {
+				|            get { return new ClNode(Base_obj.PreviousNode); }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "Развернут") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Развернут"", ""IsExpanded"")]
+				|        public bool IsExpanded
+				|        {
+				|            get { return Base_obj.TreeNodeAdv.IsExpanded; }
+				|            set { Base_obj.TreeNodeAdv.IsExpanded = value; }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "СледующийУзел") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""СледующийУзел"", ""NextNode"")]
+				|        public ClNode NextNode
+				|        {
+				|            get { return new ClNode(Base_obj.NextNode); }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "Строка") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Строка"", ""Row"")]
+				|        public int Row
+				|        {
+				|            get { return Base_obj.TreeNodeAdv.Row; }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "Уровень") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Уровень"", ""Level"")]
+				|        public int Level
+				|        {
+				|            get { return Base_obj.TreeNodeAdv.Level; }
+				|        }
+				|
 				|";
 			ИначеЕсли (СвойствоРус = "Сценарий") и (ИмяКонтекстКлассаАнгл = "Action") Тогда
 				Стр = Стр +
@@ -2356,6 +3408,18 @@
 				СвойствоРус = "ТекущаяЯчейкаИзменена" или 
 				СвойствоРус = "ЭлементДобавлен" или 
 				СвойствоРус = "ЭлементПомечен" или 
+				
+				СвойствоРус = "КолонкаНажата" или 
+				СвойствоРус = "ПриНажатииУзла" или 
+				СвойствоРус = "ПриПеретаскивании" или 
+				СвойствоРус = "КолонкаПерестроена" или 
+				СвойствоРус = "ПриСвертывании" или 
+				СвойствоРус = "Свернут" или 
+				СвойствоРус = "ПриРазворачивании" или 
+				СвойствоРус = "Развернут" или 
+				
+				СвойствоРус = "СостояниеФлажкаИзменено" или 
+				
 				СвойствоРус = "ЭлементУдален" Тогда
 				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
 				"        private IValue _" + СвойствоАнгл + ";";
@@ -2422,6 +3486,80 @@
 				|        }
 				|        
 				|";
+			ИначеЕсли (СвойствоРус = "СписокИзображений") и (ИмяКонтекстКлассаАнгл = "ListViewItem") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""СписокИзображений"", ""ImageList"")]
+				|        public ClImageList ImageList
+				|        {
+				|            get { return (ClImageList)OneScriptForms.RevertObj(Base_obj.ImageList); }
+				|        }
+				|        
+				|";
+			ИначеЕсли СвойствоРус = "СписокИзображений" Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        private ClImageList imageList;";
+				Стр = Стр +
+				"        [ContextProperty(""СписокИзображений"", ""ImageList"")]
+				|        public ClImageList ImageList
+				|        {
+				|            get { return imageList; }
+				|            set
+				|            {
+				|                imageList = value;
+				|                Base_obj.ImageList = value.Base_obj;
+				|            }
+				|        }
+				|        
+				|";
+				
+				
+			// // // ИначеЕсли (СвойствоРус = "Замыкание") и (ИмяКонтекстКлассаАнгл = "IpAddress") Тогда
+				// // // Стр = Стр +
+				// // // "        [ContextProperty(""Замыкание"", ""LoopBack"")]
+				// // // |        public ClIpAddress LoopBack
+				// // // |        {
+				// // // |            //get { return (ClIpAddress)OneScriptForms.RevertObj(Base_obj.LoopBack); }
+				// // // |            get { return Base_obj.dll_obj.LoopBack; }
+				// // // |        }
+				// // // |        
+				// // // |";
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			ИначеЕсли (СвойствоРус = "Значок") и (ИмяКонтекстКлассаАнгл = "StatusBarPanel") Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        public ClIcon icon;";
+				Стр = Стр +
+				"        [ContextProperty(""Значок"", ""Icon"")]
+				|        public ClIcon Icon
+				|        {
+				|            get { return icon; }
+				|            set 
+				|            {
+				|                icon = value;
+				|                Base_obj.Icon = value.Base_obj;
+				|            }
+				|        }
+				|        
+				|";
 			ИначеЕсли (СвойствоРус = "ЭлементУправления") и (ИмяКонтекстКлассаАнгл = "Color") Тогда
 				Стр = Стр +
 				"        [ContextProperty(""ЭлементУправления"", ""Control"")]
@@ -2457,6 +3595,142 @@
 				|        {
 				|            get { return ((dynamic)Base_obj.AcceptButton).dll_obj; }
 				|            set { Base_obj.AcceptButton = ((dynamic)value).Base_obj; }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Колонка") и 
+				(ИмяКонтекстКлассаАнгл = "NodeCheckBox" или 
+				ИмяКонтекстКлассаАнгл = "NodeStateIcon" или 
+				ИмяКонтекстКлассаАнгл = "NodeComboBox" или 
+				ИмяКонтекстКлассаАнгл = "NodeDecimalTextBox" или 
+				ИмяКонтекстКлассаАнгл = "NodeNumericUpDown" или 
+				ИмяКонтекстКлассаАнгл = "NodeTextBox" ) Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Колонка"", ""ParentColumn"")]
+				|        public ClTreeColumn ParentColumn
+				|        {
+				|            get { return (ClTreeColumn)OneScriptForms.RevertEqualsObj(Base_obj.ParentColumn); }
+				|            set
+				|            {
+				|                Base_obj.ParentColumn = value.Base_obj.M_TreeColumn;
+				|                OneScriptForms.AddToHashtable(Base_obj.ParentColumn, value);
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Корень") и (ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Корень"", ""Root"")]
+				|        public ClNode Root
+				|        {
+				|            get { return new ClNode((Aga.Controls.Tree.Node)Base_obj.Root.Tag); }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "ТекущийУзел") и (ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ТекущийУзел"", ""CurrentNode"")]
+				|        public ClNode CurrentNode
+				|        {
+				|            get
+				|            {
+				|                Aga.Controls.Tree.Node Node1 = null;
+				|                try
+				|                {
+				|                    Node1 = (Aga.Controls.Tree.Node)Base_obj.CurrentNode.Tag;
+				|                }
+				|                catch { }
+				|                if (Node1 == null)
+				|                {
+				|                    return null;
+				|                }
+				|                return new ClNode((Aga.Controls.Tree.Node)Base_obj.CurrentNode.Tag);
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "ЭлементыУзла") и (ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ЭлементыУзла"", ""NodeControls"")]
+				|        public ClNodeControlsCollection NodeControls
+				|        {
+				|            get { return nodeControls; }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "ВыбранныеУзлы") и (ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ВыбранныеУзлы"", ""SelectedNodes"")]
+				|        public ClSelectedTreeNodeAdvCollection SelectedNodes
+				|        {
+				|            get { return selectedNodes; }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "РежимВыбора") и (ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""РежимВыбора"", ""SelectionMode"")]
+				|        public int SelectionMode
+				|        {
+				|            get { return (int)Base_obj.SelectionMode; }
+				|            set { Base_obj.SelectionMode = (Aga.Controls.Tree.TreeSelectionMode)value; }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "СтильСетки") и (ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""СтильСетки"", ""GridLineStyle"")]
+				|        public int GridLineStyle
+				|        {
+				|            get { return (int)Base_obj.GridLineStyle; }
+				|            set { Base_obj.GridLineStyle = (Aga.Controls.Tree.GridLineStyle)value; }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "ШиринаПриПеремещении") и (ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ШиринаПриПеремещении"", ""DragDropMarkWidth"")]
+				|        public IValue DragDropMarkWidth
+				|        {
+				|            get { return ValueFactory.Create((Convert.ToDecimal(Base_obj.DragDropMarkWidth))); }
+				|            set { Base_obj.DragDropMarkWidth = Convert.ToSingle(value.AsNumber()); }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Узлы") и (ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Узлы"", ""Nodes"")]
+				|        public ClNodeCollection Nodes
+				|        {
+				|            get { return new ClNodeCollection(TreeModel1.Nodes); }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "ВыбранныйУзел") и (ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ВыбранныйУзел"", ""SelectedNode"")]
+				|        public ClNode SelectedNode
+				|        {
+				|            get { return (ClNode)OneScriptForms.RevertObj(Base_obj.SelectedNode.Tag); }
+				|            set { Base_obj.SelectedNode = value.Base_obj.TreeNodeAdv; }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Колонки") и (ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Колонки"", ""Columns"")]
+				|        public ClTreeColumnCollection Columns
+				|        {
+				|            get { return columns; }
+				|        }
+				|        
+				|";
+			ИначеЕсли (СвойствоРус = "Колонка") и (ИмяКонтекстКлассаАнгл = "TreeColumnEventArgs") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Колонка"", ""Column"")]
+				|        public ClTreeColumn Column
+				|        {
+				|            get { return Base_obj.Column.dll_obj; }
 				|        }
 				|        
 				|";
@@ -3194,13 +4468,31 @@
 				|        }
 				|        
 				|";
+			ИначеЕсли (СвойствоРус = "Значок") и (ИмяКонтекстКлассаАнгл = "Form") Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        private ClIcon icon = null;";
+				Стр = Стр +
+				"        [ContextProperty(""Значок"", ""Icon"")]
+				|        public ClIcon Icon
+				|        {
+				|            get { return icon; }
+				|            set 
+				|            {
+				|                icon = value;
+				|                Base_obj.Icon = value.Base_obj;
+				|            }
+				|        }
+				|
+				|";
 			ИначеЕсли (СвойствоРус = "ОбластьСсылки") и (ИмяКонтекстКлассаАнгл = "LinkLabel") Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        private ClLinkArea linkArea;";
 				Стр = Стр +
 				"        [ContextProperty(""ОбластьСсылки"", ""LinkArea"")]
 				|        public ClLinkArea LinkArea
 				|        {
-				|            get { return (ClLinkArea)OneScriptForms.RevertObj(Base_obj.LinkArea); }
-				|            set { Base_obj.LinkArea = value.Base_obj; }
+				|            get { return linkArea; }
+				|            set { linkArea = value; }
 				|        }
 				|
 				|";
@@ -3509,6 +4801,47 @@
 				|        }
 				|
 				|";
+			ИначеЕсли (СвойствоРус = "ПлатформаWin") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ПлатформаWin"", ""WinPlatform"")]
+				|        public bool WinPlatform
+				|        {
+				|            get { return systemVersionIsMicrosoft; }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "МаксимумЭлементов") и (ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxCell") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""МаксимумЭлементов"", ""MaxDropDownItems"")]
+				|        public int MaxDropDownItems
+				|        {
+				|            get { return Base_obj.MaxDropDownItems; }
+				|            set
+				|            {
+				|                if (OneScriptForms.systemVersionIsMicrosoft)
+				|                {
+				|                    Base_obj.MaxDropDownItems = value;
+				|                }
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "Отсортирован") и (ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxCell") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Отсортирован"", ""Sorted"")]
+				|        public bool Sorted
+				|        {
+				|            get { return Base_obj.Sorted; }
+				|            set
+				|            {
+				|                if (OneScriptForms.systemVersionIsMicrosoft)
+				|                {
+				|                    Base_obj.Sorted = value;
+				|                }
+				|            }
+				|        }
+				|
+				|";
 			ИначеЕсли (СвойствоРус = "Элементы") и (ИмяКонтекстКлассаАнгл = "ComboBox") Тогда
 				Стр = Стр +
 				"        [ContextProperty(""Элементы"", ""Items"")]
@@ -3671,7 +5004,9 @@
 				|        }
 				|
 				|";
-			ИначеЕсли (СвойствоРус = "Увеличение") и (ИмяКонтекстКлассаАнгл = "NumericUpDown") Тогда
+			ИначеЕсли (СвойствоРус = "Увеличение") и 
+			(ИмяКонтекстКлассаАнгл = "NumericUpDown" или 
+			ИмяКонтекстКлассаАнгл = "NodeNumericUpDown") Тогда
 				Стр = Стр +
 				"        [ContextProperty(""Увеличение"", ""Increment"")]
 				|        public IValue Increment
@@ -3701,7 +5036,9 @@
 				|        }
 				|
 				|";
-			ИначеЕсли (СвойствоРус = "Максимум") и (ИмяКонтекстКлассаАнгл = "NumericUpDown") Тогда
+			ИначеЕсли (СвойствоРус = "Максимум") и 
+			(ИмяКонтекстКлассаАнгл = "NumericUpDown" или 
+			ИмяКонтекстКлассаАнгл = "NodeNumericUpDown") Тогда
 				Стр = Стр +
 				"        [ContextProperty(""Максимум"", ""Maximum"")]
 				|        public IValue Maximum
@@ -3711,7 +5048,9 @@
 				|        }
 				|
 				|";
-			ИначеЕсли (СвойствоРус = "Минимум") и (ИмяКонтекстКлассаАнгл = "NumericUpDown") Тогда
+			ИначеЕсли (СвойствоРус = "Минимум") и 
+			(ИмяКонтекстКлассаАнгл = "NumericUpDown" или 
+			ИмяКонтекстКлассаАнгл = "NodeNumericUpDown") Тогда
 				Стр = Стр +
 				"        [ContextProperty(""Минимум"", ""Minimum"")]
  				|       public IValue Minimum
@@ -3728,6 +5067,60 @@
 				|        {
 				|            get { return (int)Base_obj.Alignment; }
 				|            set { Base_obj.Alignment = value; }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "ВертикальноеВыравнивание") и 
+				(ИмяКонтекстКлассаАнгл = "NodeTextBox" или 
+				ИмяКонтекстКлассаАнгл = "NodeStateIcon" или 
+				ИмяКонтекстКлассаАнгл = "NodeComboBox" или 
+				ИмяКонтекстКлассаАнгл = "NodeNumericUpDown" или 
+				ИмяКонтекстКлассаАнгл = "NodeDecimalTextBox" или 
+				ИмяКонтекстКлассаАнгл = "NodeCheckBox") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ВертикальноеВыравнивание"", ""VerticalAlign"")]
+				|        public int VerticalAlign
+				|        {
+				|            get { return (int)Base_obj.VerticalAlign; }
+				|            set { Base_obj.VerticalAlign = (Aga.Controls.Tree.VerticalAlignment)value; }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "ВыравниваниеТекста") и 
+			(ИмяКонтекстКлассаАнгл = "NodeTextBox" или 
+			ИмяКонтекстКлассаАнгл = "NodeComboBox" или 
+			ИмяКонтекстКлассаАнгл = "NodeDecimalTextBox" или 
+			ИмяКонтекстКлассаАнгл = "NodeNumericUpDown") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ВыравниваниеТекста"", ""TextAlign"")]
+				|        public int TextAlign
+				|        {
+				|            get { return (int)Base_obj.TextAlign; }
+				|            set { Base_obj.TextAlign = (System.Windows.Forms.HorizontalAlignment)value; }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "Обрезка") и 
+			(ИмяКонтекстКлассаАнгл = "NodeTextBox" или 
+			ИмяКонтекстКлассаАнгл = "NodeComboBox" или 
+			ИмяКонтекстКлассаАнгл = "NodeDecimalTextBox" или 
+			ИмяКонтекстКлассаАнгл = "NodeNumericUpDown") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Обрезка"", ""Trimming"")]
+				|        public int Trimming
+				|        {
+				|            get { return (int)Base_obj.Trimming; }
+				|            set { Base_obj.Trimming = (System.Drawing.StringTrimming)value; }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "РежимМасштабирования") и (ИмяКонтекстКлассаАнгл = "NodeStateIcon") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""РежимМасштабирования"", ""ScaleMode"")]
+				|        public int ScaleMode
+				|        {
+				|            get { return (int)Base_obj.ScaleMode; }
+				|            set { Base_obj.ScaleMode = (Aga.Controls.Tree.ImageScaleMode)value; }
 				|        }
 				|
 				|";
@@ -3895,6 +5288,37 @@
 				|        }
 				|
 				|";
+			ИначеЕсли (СвойствоРус = "ПолныйВыборСтроки") и 
+			(ИмяКонтекстКлассаАнгл = "TreeView" или 
+			ИмяКонтекстКлассаАнгл = "TreeViewAdv" или 
+			ИмяКонтекстКлассаАнгл = "ListView") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ВыбиратьПодэлементы"", ""FullRowSelect"")]
+				|        public bool FullRowSelect
+				|        {
+				|            // Устаревшее свойство, оставить для совместимости.
+				|            get { return Base_obj.FullRowSelect; }
+				|            set { Base_obj.FullRowSelect = value; }
+				|        }
+				|
+				|        [ContextProperty(""ПолныйВыборСтроки"", ""FullRowSelect4"")]
+				|        public bool FullRowSelect4
+				|        {
+				|            get { return FullRowSelect; }
+				|            set { FullRowSelect = value; }
+				|        }
+				|
+				|";
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				
 				
 				
@@ -4192,7 +5616,214 @@
 				|        public void EnableVisualStyles()
 				|        {
 				|            System.Windows.Forms.Application.EnableVisualStyles();
-				|            System.Windows.Forms.Application.DoEvents();
+				|            //System.Windows.Forms.Application.DoEvents();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Подключить") и (ИмяКонтекстКлассаАнгл = "TCPClient") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Подключить"", ""Connect"")]
+				|        public void Connect(IValue p1, int p2)
+				|        {
+				|            if (p1.SystemType.Name == ""Строка"")
+				|            {
+				|                Base_obj.Connect(p1.AsString(), p2);
+				|            }
+				|            else
+				|            {
+				|                Base_obj.Connect(((ClIpAddress)p1).Base_obj, p2);
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Dns") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Dns"", ""Dns"")]
+				|        public ClDns Dns()
+				|        {
+				|            return new ClDns();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "IpАдрес") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""IpАдрес"", ""IpAddress"")]
+				|        public ClIpAddress IpAddress(string p1)
+				|        {
+				|            return new ClIpAddress(p1);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "IpУзел") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""IpУзел"", ""IpHostEntry"")]
+				|        public ClIpHostEntry IpHostEntry(string p1)
+				|        {
+				|            return new ClIpHostEntry(p1);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "TCPКлиент") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""TCPКлиент"", ""TCPClient"")]
+				|        public ClTCPClient TCPClient(string HostName = null, int port = 0)
+				|        {
+				|            return new ClTCPClient(HostName, port);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "TCPСлушатель") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""TCPСлушатель"", ""TCPListener"")]
+				|        public ClTCPListener TCPListener(ClIpAddress p1, int p2)
+				|        {
+				|            return new ClTCPListener(p1, p2);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ПринимающийКлиент") и (ИмяКонтекстКлассаАнгл = "TCPListener") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПринимающийКлиент"", ""AcceptTCPclient"")]
+				|        public ClTCPClient AcceptTCPclient()
+				|        {
+				|            return new ClTCPClient(Base_obj.AcceptTCPclient());
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ПолучитьИмяУзла") и (ИмяКонтекстКлассаАнгл = "Dns") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолучитьИмяУзла"", ""GetHostName"")]
+				|        public string GetHostName()
+				|        {
+				|            return System.Net.Dns.GetHostName();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ПолучитьУзелПоАдресу") и (ИмяКонтекстКлассаАнгл = "Dns") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолучитьУзелПоАдресу"", ""GetHostByAddress"")]
+				|        public ClIpHostEntry GetHostByAddress(string p1)
+				|        {
+				|            return new ClIpHostEntry(new IpHostEntry(System.Net.Dns.GetHostEntry(p1)));
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ПолучитьУзелПоИмени") и (ИмяКонтекстКлассаАнгл = "Dns") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолучитьУзелПоИмени"", ""GetHostByName"")]
+				|        public ClIpHostEntry GetHostByName(string p1)
+				|        {
+				|            return new ClIpHostEntry(new IpHostEntry(p1));
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Разрешить") и (ИмяКонтекстКлассаАнгл = "Dns") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Разрешить"", ""Resolve"")]
+				|        public ClIpHostEntry Resolve(string p1)
+				|        {
+				|            return new ClIpHostEntry(new IpHostEntry(System.Net.Dns.GetHostEntry(p1)));
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ВСтроку") и (ИмяКонтекстКлассаАнгл = "IpAddress") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ВСтроку"", ""ToString"")]
+				|        public new string ToString()
+				|        {
+				|            return Base_obj.ToString();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Записать") и (ИмяКонтекстКлассаАнгл = "NetworkStream") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Записать"", ""Write"")]
+				|        public void Write(ClArrayList p1, int p2, int p3)
+				|        {
+				|            System.Collections.ArrayList ArrayList1 = p1.Base_obj.M_ArrayList;
+				|            byte[] buffer = new byte[ArrayList1.Count];
+				|            int num = p3 - 1;
+				|            for (int i = 0; i < num; i++)
+				|            {
+				|                buffer[i] = Conversions.ToByte(ArrayList1[i + p2]);
+				|            }
+				|            Base_obj.Write(buffer, 0, p3);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Прочитать") и (ИмяКонтекстКлассаАнгл = "NetworkStream") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Прочитать"", ""Read"")]
+				|        public ClArrayList Read(int p1, int p2)
+				|        {
+				|            byte[] buffer = new byte[p2];
+				|            int num1 = Base_obj.Read(buffer, p1, p2);
+				|            ClArrayList ClArrayList1 = new ClArrayList();
+				|            System.Collections.ArrayList ArrayList1 = ClArrayList1.Base_obj.M_ArrayList;
+				|            int num2 = num1 + p1 - 1;
+				|            for (int i = p1; i < num2; i++)
+				|            {
+				|                ArrayList1.Add(buffer[i]);
+				|            }
+				|            return ClArrayList1;
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ПолучитьПоток") и (ИмяКонтекстКлассаАнгл = "TCPClient") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолучитьПоток"", ""GetStream"")]
+				|        public ClNetworkStream GetStream()
+				|        {
+				|            return new ClNetworkStream(Base_obj.GetStream());
+				|        }
+				|        
+				|";
+				
+			ИначеЕсли (МетодРус = "ПолучитьПоток") и (ИмяКонтекстКлассаАнгл = "TCPClient") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолучитьПоток"", ""GetStream"")]
+				|        public ClNetworkStream GetStream()
+				|        {
+				|            return new ClNetworkStream(Base_obj.GetStream());
+				|        }
+				|        
+				|";
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			ИначеЕсли (МетодРус = "УстановитьЗакругленныеУглы") и (ИмяКонтекстКлассаАнгл = "Panel") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""УстановитьЗакругленныеУглы"", ""SetRoundedShape"")]
+				|        public void SetRoundedShape(int p2)
+				|        {
+				|            Base_obj.SetRoundedShape(this.Base_obj, p2);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ЗаполнитьЗакругленныйПрямоугольник") и (ИмяКонтекстКлассаАнгл = "Graphics") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ЗаполнитьЗакругленныйПрямоугольник"", ""FillRoundRect"")]
+				|        public void FillRoundRect(IValue p1, ClRectangle p2, ClColor p3, int p4)
+				|        {
+				|            Base_obj.FillRoundRect(((dynamic)p1).Base_obj.M_Brush, p2.Base_obj.M_Rectangle, p3.Base_obj.M_Color, p4);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "РисоватьЗакругленныйПрямоугольник") и (ИмяКонтекстКлассаАнгл = "Graphics") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""РисоватьЗакругленныйПрямоугольник"", ""DrawRoundRect"")]
+				|        public void DrawRoundRect(ClRectangle p1, ClColor p2, int p3, int p4)
+				|        {
+				|            Base_obj.DrawRoundRect(p1.Base_obj.M_Rectangle, p2.Base_obj.M_Color, p3, p4);
 				|        }
 				|        
 				|";
@@ -4204,17 +5835,10 @@
 				|            handleEvents = true;
 				|            while (GoOn)
 				|            {
-				|                WaitMessage();
-				|                System.Windows.Forms.Application.DoEvents();
+				|                System.Windows.Forms.Application.Run();
+				|                //System.Windows.Forms.Application.DoEvents();
 				|            }
 				|        }
-				|        //Функция WaitMessage передает управление к другим потокам тогда, когда поток не имеет никаких других сообщений 
-				|        //в своей очереди сообщений. Функция WaitMessage приостанавливает работу потока и не возвращает управление до 
-				|        //тех пор, пока не будет помещено новое сообщение в очередь сообщений потока.
-				|        //При вызове DoEvents в коде, приложение может выполнять другие события. Например, если имеется форма, добавляющая 
-				|        //данные в ListBox, добавление DoEvents в код позволит форме перерисовывается при перетаскивании над ней другого окна. 
-				|        //Если удалить DoEvents из кода, форма не будет перерисовываться до завершения выполнения обработчика события.
-				|        //DoEvents передает управление Windows чтобы она выполнила обработку своих событий
 				|        
 				|";
 			ИначеЕсли (МетодРус = "НайтиМежду") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
@@ -4316,6 +5940,15 @@
 				|        }
 				|        
 				|";
+			ИначеЕсли (МетодРус = "Добавить") и (ИмяКонтекстКлассаАнгл = "TreeColumnCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Добавить"", ""Add"")]
+				|        public void Add(ClTreeColumn p1)
+				|        {
+				|            Base_obj.Add(p1.Base_obj.M_TreeColumn);
+				|        }
+				|        
+				|";
 			ИначеЕсли (МетодРус = "Строки") и (ИмяКонтекстКлассаАнгл = "DataGridView") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""Строки"", ""Rows"")]
@@ -4367,6 +6000,233 @@
 				|            object[] args1 = { Base_obj.Cells[p1] };
 				|            Obj1 = Activator.CreateInstance(Type1, args1);
 				|            return OneScriptForms.RevertObj(Obj1);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Вставить") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdvCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Вставить"", ""Insert"")]
+				|        public void Insert(int p1, ClNode p2)
+				|        {
+				|            Base_obj.Insert(p1, p2.Base_obj);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Добавить") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdvCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Добавить"", ""Add"")]
+				|        public void Add(ClNode p1)
+				|        {
+				|            Base_obj.Add(p1.Base_obj);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Индекс") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdvCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Индекс"", ""IndexOf"")]
+				|        public int IndexOf(ClNode p1)
+				|        {
+				|            return Base_obj.IndexOf(p1.Base_obj);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Содержит") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdvCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Содержит"", ""Contains"")]
+				|        public bool Contains(ClNode p1)
+				|        {
+				|            return Base_obj.Contains(p1.Base_obj);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Удалить") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdvCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Удалить"", ""Remove"")]
+				|        public void Remove(ClNode p1)
+				|        {
+				|            Base_obj.Remove(p1.Base_obj);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "УстановитьУзел") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdvCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""УстановитьУзел"", ""SetNode"")]
+				|        public void SetNode(int p1, ClNode p2)
+				|        {
+				|            Base_obj.SetNode(p1, p2.Base_obj);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Узлы") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdv") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Узлы"", ""Nodes"")]
+				|        public ClNode Nodes2(int p1)
+				|        {
+				|            return new ClNode(Base_obj.Nodes[p1]);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ПолучитьЗначение") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdv") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолучитьЗначение"", ""GetControlValue"")]
+				|        public IValue GetControlValue(IValue p1)
+				|        {
+				|            if (p1.GetType() == typeof(ClNodeCheckBox))
+				|            {
+				|                return ValueFactory.Create((int)Base_obj.GetControlValue(((dynamic)p1).Base_obj));
+				|            }
+				|            else
+				|            {
+				|                return Base_obj.GetControlValue(((dynamic)p1).Base_obj);
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "УстановитьЗначение") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdv") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""УстановитьЗначение"", ""SetControlValue"")]
+				|        public void SetControlValue(IValue p1, IValue p2)
+				|        {
+				|            if (p1.GetType() == typeof(ClNodeCheckBox))
+				|            {
+				|                Base_obj.SetControlValue(((dynamic)p1).Base_obj, (object)(System.Windows.Forms.CheckState)Convert.ToInt32(p2.AsNumber()));
+				|            }
+				|            else
+				|            {
+				|                Base_obj.SetControlValue(((dynamic)p1).Base_obj, (object)p2);
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Развернуть") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdv") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Развернуть"", ""Expand"")]
+				|        public void Expand()
+				|        {
+				|            Base_obj.TreeNodeAdv.Expand();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Свернуть") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdv") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Свернуть"", ""Collapse"")]
+				|        public void Collapse()
+				|        {
+				|            Base_obj.TreeNodeAdv.Collapse();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Удалить") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdv") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Удалить"", ""Remove"")]
+				|        public void Remove()
+				|        {
+				|            Base_obj.TreeNodeAdv.Remove();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ЭлементыУзла") и (ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ЭлементыУзла"", ""NodeControls"")]
+				|        public IValue NodeControls2(int p1)
+				|        {
+				|            dynamic Obj1 = null;
+				|            string str1 = Base_obj.NodeControls[p1].GetType().ToString();
+				|            string str2 = str1.Replace(""Aga.Controls.Tree.NodeControls."", ""osf.Cl"");
+				|            System.Type Type1 = System.Type.GetType(str2, false, true);
+				|            object[] args1 = { Base_obj.NodeControls[p1] };
+				|            Obj1 = Activator.CreateInstance(Type1, args1);
+				|            return OneScriptForms.RevertObj(Obj1);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ОбеспечитьОтображение") и (ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ОбеспечитьОтображение"", ""EnsureVisible"")]
+				|        public void EnsureVisible(ClNode p1)
+				|        {
+				|            Base_obj.EnsureVisible(p1.Base_obj.TreeNodeAdv);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ПолучитьПолныйПуть") и (ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолучитьПолныйПуть"", ""GetFullPath"")]
+				|        public string GetFullPath(ClNode p1)
+				|        {
+				|            return Base_obj.GetFullPath(p1.Base_obj.TreeNodeAdv);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ПолучитьУзел") и (ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолучитьУзел"", ""GetNodeAt"")]
+				|        public ClNode GetNodeAt(ClPoint p1)
+				|        {
+				|            return new ClNode((Aga.Controls.Tree.Node)Base_obj.M_TreeViewAdv.GetNodeAt(p1.Base_obj.M_Point).Tag);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ПрокрутитьДоУзла") и (ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПрокрутитьДоУзла"", ""ScrollTo"")]
+				|        public void ScrollTo(ClNode p1)
+				|        {
+				|            Base_obj.ScrollTo(p1.Base_obj.TreeNodeAdv);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ПолучитьУзел") и (ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолучитьУзел"", ""GetNodeAt"")]
+				|        public ClTreeNodeAdv GetNodeAt(ClPoint p1)
+				|        {
+				|            return new ClTreeNodeAdv(Base_obj.M_TreeViewAdv.GetNodeAt(p1.Base_obj.M_Point));
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Индекс") и (ИмяКонтекстКлассаАнгл = "SelectedTreeNodeAdvCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Индекс"", ""IndexOf"")]
+				|        public int IndexOf(ClNode p1)
+				|        {
+				|            return Base_obj.IndexOf(p1.Base_obj.TreeNodeAdv);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Содержит") и (ИмяКонтекстКлассаАнгл = "SelectedTreeNodeAdvCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Содержит"", ""Contains"")]
+				|        public bool Contains(ClNode p1)
+				|        {
+				|            return Base_obj.Contains(p1.Base_obj.TreeNodeAdv);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Элемент") и (ИмяКонтекстКлассаАнгл = "SelectedTreeNodeAdvCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Элемент"", ""Item"")]
+				|        public ClNode Item(int p1)
+				|        {
+				|            return new ClNode((Aga.Controls.Tree.Node)Base_obj[p1].Tag);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Элемент") и (ИмяКонтекстКлассаАнгл = "SelectedTreeNodeAdvCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Элемент"", ""Item"")]
+				|        public ClTreeNodeAdv Item(int p1)
+				|        {
+				|            return new ClTreeNodeAdv(Base_obj[p1]);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "УзелДереваЗначений") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""УзелДереваЗначений"", ""TreeNodeAdv"")]
+				|        public ClNode Node(string p1)
+				|        {
+				|            return new ClNode(p1);
 				|        }
 				|        
 				|";
@@ -4784,12 +6644,21 @@
 				|        }
 				|        
 				|";
-			ИначеЕсли (МетодРус = "РисоватьЭлипс") и (ИмяКонтекстКлассаАнгл = "Graphics") Тогда
+			ИначеЕсли (МетодРус = "РисоватьЭллипс") и (ИмяКонтекстКлассаАнгл = "Graphics") Тогда
 				Стр = Стр +
-				"        [ContextMethod(""РисоватьЭлипс"", ""DrawEllipse"")]
+				"        [ContextMethod(""РисоватьЭллипс"", ""DrawEllipse"")]
 				|        public void DrawEllipse(ClPen p1, IValue p2, IValue p3, IValue p4, IValue p5)
 				|        {
 				|            Base_obj.DrawEllipse(p1.Base_obj, Convert.ToSingle(p2.AsNumber()), Convert.ToSingle(p3.AsNumber()), Convert.ToSingle(p4.AsNumber()), Convert.ToSingle(p5.AsNumber()));
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ЗаполнитьЭллипс") и (ИмяКонтекстКлассаАнгл = "Graphics") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ЗаполнитьЭллипс"", ""FillEllipse"")]
+				|        public void FillEllipse(IValue p1, IValue p2, IValue p3, IValue p4, IValue p5)
+				|        {
+				|            Base_obj.FillEllipse(((dynamic)p1).Base_obj, Convert.ToSingle(p2.AsNumber()), Convert.ToSingle(p3.AsNumber()), Convert.ToSingle(p4.AsNumber()), Convert.ToSingle(p5.AsNumber()));
 				|        }
 				|        
 				|";
@@ -5100,6 +6969,60 @@
 				|        }
 				|        
 				|";
+			ИначеЕсли (МетодРус = "ФлажокУзла") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ФлажокУзла"", ""NodeCheckBox"")]
+				|        public ClNodeCheckBox NodeCheckBox()
+				|        {
+				|            return new ClNodeCheckBox();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ЗначокУзла") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ЗначокУзла"", ""NodeStateIcon"")]
+				|        public ClNodeStateIcon NodeStateIcon()
+				|        {
+				|            return new ClNodeStateIcon();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ПолеВыбораУзла") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолеВыбораУзла"", ""NodeComboBox"")]
+				|        public ClNodeComboBox NodeComboBox()
+				|        {
+				|            return new ClNodeComboBox();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ЧисловоеПолеУзла") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ЧисловоеПолеУзла"", ""NodeDecimalTextBox"")]
+				|        public ClNodeDecimalTextBox NodeDecimalTextBox()
+				|        {
+				|            return new ClNodeDecimalTextBox();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "РегуляторВверхВнизУзла") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""РегуляторВверхВнизУзла"", ""NodeNumericUpDown"")]
+				|        public ClNodeNumericUpDown NodeNumericUpDown()
+				|        {
+				|            return new ClNodeNumericUpDown();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ПолеВводаУзла") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолеВводаУзла"", ""NodeTextBox"")]
+				|        public ClNodeTextBox NodeTextBox()
+				|        {
+				|            return new ClNodeTextBox();
+				|        }
+				|        
+				|";
 			ИначеЕсли (МетодРус = "ЭлементМеню") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""ЭлементМеню"", ""MenuItem"")]
@@ -5403,6 +7326,24 @@
 				|        }
 				|        
 				|";
+			ИначеЕсли (МетодРус = "Элемент") и (ИмяКонтекстКлассаАнгл = "NodeComboBoxObjectCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Элемент"", ""Item"")]
+				|        public IValue Item(int p1)
+				|        {
+				|            return (IValue)Base_obj[p1];
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "УстановитьЭлемент") и (ИмяКонтекстКлассаАнгл = "NodeComboBoxObjectCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""УстановитьЭлемент"", ""SetControl"")]
+				|        public void SetControl(int p1, IValue p2)
+				|        {
+				|            Base_obj.SetControl(p1, p2);
+				|        }
+				|        
+				|";
 			ИначеЕсли (МетодРус = "Элемент") и (ИмяКонтекстКлассаАнгл = "DataGridViewCellCollection") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""Элемент"", ""Item"")]
@@ -5503,6 +7444,77 @@
 				|        }
 				|        
 				|";
+			ИначеЕсли (МетодРус = "Добавить") и (ИмяКонтекстКлассаАнгл = "NodeControlsCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Добавить"", ""Add"")]
+				|        public void Add(IValue p1)
+				|        {
+				|            dynamic p2 = p1.AsObject();
+				|            p2.Base_obj.Parent = this.TreeViewAdv.Base_obj.M_TreeViewAdv;
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "УстановитьКолонку") и (ИмяКонтекстКлассаАнгл = "TreeColumnCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""УстановитьКолонку"", ""SetColumn"")]
+				|        public void SetColumn(int p1, ClTreeColumn p2)
+				|        {
+				|            Base_obj.SetColumn(p1, p2.Base_obj.M_TreeColumn);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Удалить") и (ИмяКонтекстКлассаАнгл = "TreeColumnCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Удалить"", ""Remove"")]
+				|        public void Remove(ClTreeColumn p1)
+				|        {
+				|            Base_obj.Remove(p1.Base_obj.M_TreeColumn);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Содержит") и (ИмяКонтекстКлассаАнгл = "TreeColumnCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Содержит"", ""Contains"")]
+				|        public bool Contains(ClTreeColumn p1)
+				|        {
+				|            return Base_obj.Contains(p1.Base_obj.M_TreeColumn);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Индекс") и (ИмяКонтекстКлассаАнгл = "TreeColumnCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Индекс"", ""IndexOf"")]
+				|        public int IndexOf(ClTreeColumn p1)
+				|        {
+				|            return Base_obj.IndexOf(p1.Base_obj.M_TreeColumn);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "Вставить") и (ИмяКонтекстКлассаАнгл = "TreeColumnCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Вставить"", ""Insert"")]
+				|        public void Insert(int p1, ClTreeColumn p2)
+				|        {
+				|            Base_obj.Insert(p1, p2.Base_obj.M_TreeColumn);
+				|        }
+				|        
+				|";
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			ИначеЕсли (МетодРус = "Добавить") и (ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxCellObjectCollection") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""Добавить"", ""Add"")]
@@ -5812,7 +7824,7 @@
 				|        public IValue Add(IValue p1)
 				|        {
 				|            Base_obj.Add(((dynamic)p1).Base_obj);
-				|            System.Windows.Forms.Application.DoEvents();
+				|            //System.Windows.Forms.Application.DoEvents();
 				|            return p1;
 				|        }
 				|        
@@ -6398,7 +8410,7 @@
 				|        public void SendKeys(string p1)
 				|        {
 				|            System.Windows.Forms.SendKeys.SendWait(p1);
-				|            System.Windows.Forms.Application.DoEvents();
+				|            //System.Windows.Forms.Application.DoEvents();
 				|        }
 				|        
 				|";
@@ -6433,8 +8445,35 @@
 				|        [ContextMethod(""НайтиОкноПоЗаголовку"", ""FindWindowByCaption"")]
 				|        public IValue FindWindowByCaption(string WindowName)
 				|        {
-				|            IntPtr numWnd = FindWindowByCaption(IntPtr.Zero, WindowName);
-				|            return ValueFactory.Create((int)numWnd);
+				|            if (OneScriptForms.systemVersionIsMicrosoft)
+				|            {
+				|                IntPtr numWnd = FindWindowByCaption(IntPtr.Zero, WindowName);
+				|                return ValueFactory.Create((int)numWnd);
+				|            }
+				|            else
+				|            {
+				|                string args = "" search --name \u0022"" + WindowName + ""\u0022"";
+				|                string s = """";
+				|                try
+				|                {
+				|                    System.Diagnostics.Process process = new System.Diagnostics.Process();
+				|                    process.StartInfo.FileName = ""xdotool"";
+				|                    process.StartInfo.Arguments = args;
+				|                    process.StartInfo.UseShellExecute = false;
+				|                    process.StartInfo.RedirectStandardOutput = true;
+				|                    process.StartInfo.CreateNoWindow = false;
+				|                    
+				|                    process.OutputDataReceived += (sender, data) =>
+				|                    {
+				|                        s = s + data.Data;
+				|                    };
+				|                    process.Start();
+				|                    process.BeginOutputReadLine();
+				|                    process.WaitForExit();
+				|                }
+				|                catch { }
+				|                return ValueFactory.Create(s);
+				|            }
 				|        }
 				|        
 				|";
@@ -6761,13 +8800,83 @@
 				"        [ContextMethod(""НажатьКнопкуМыши"", ""MouseKeyPress"")]
 				|        public void MouseKeyPress(int p1, IValue p2 = null, IValue p3 = null)
 				|        {
-				|            if (p2 != null &&  p3 != null)
+				|            if (OneScriptForms.systemVersionIsMicrosoft)
 				|            {
-				|                mouse_event(Convert.ToUInt32(p1), Convert.ToInt32(p2.AsNumber()), Convert.ToInt32(p3.AsNumber()), 0, UIntPtr.Zero);
+				|                if (p2 != null && p3 != null)
+				|                {
+				|                    mouse_event(Convert.ToUInt32(p1), Convert.ToInt32(p2.AsNumber()), Convert.ToInt32(p3.AsNumber()), 0, UIntPtr.Zero);
+				|                }
+				|                else
+				|                {
+				|                    mouse_event(Convert.ToUInt32(p1), System.Windows.Forms.Cursor.Position.X, System.Windows.Forms.Cursor.Position.Y, 0, UIntPtr.Zero);
+				|                }
+				|                System.Windows.Forms.Application.DoEvents();
 				|            }
 				|            else
 				|            {
-				|                mouse_event(Convert.ToUInt32(p1), System.Windows.Forms.Cursor.Position.X, System.Windows.Forms.Cursor.Position.Y, 0, UIntPtr.Zero);
+				|                int p4 = 0;
+				|                int p5 = 0;
+				|                if (p2 != null && p3 != null)
+				|                {
+				|                    p4 = Convert.ToInt32(p2.AsNumber());
+				|                    p5 = Convert.ToInt32(p3.AsNumber());
+				|                }
+				|                else
+				|                {
+				|                    p4 = System.Windows.Forms.Cursor.Position.X;
+				|                    p5 = System.Windows.Forms.Cursor.Position.Y;
+				|                }
+				|
+				|                string args = """";
+				|                if (p1 == 1)
+				|                {
+				|                    args = args + "" mousemove_relative "" + p4 + "" "" + p5 + "" sleep 0.3"";
+				|                }
+				|                else if (p1 == 2)
+				|                {
+				|                    args = args + "" mousedown 1"";
+				|                }
+				|                else if (p1 == 4)
+				|                {
+				|                    args = args + "" mouseup 1"";
+				|                }
+				|                else if (p1 == 6)
+				|                {
+				|                    args = args + "" mousedown 1"" + "" sleep 1.0"" + "" mouseup 1"";
+				|                }
+				|                else if (p1 == 8)
+				|                {
+				|                    args = args + "" mousedown 3"";
+				|                }
+				|                else if (p1 == 16)
+				|                {
+				|                    args = args + "" mouseup 3"";
+				|                }
+				|                else if (p1 == 24)
+				|                {
+				|                    args = args + "" mousedown 3"" + "" sleep 1.0"" + "" mouseup 3"";
+				|                }
+				|                else if (p1 == 32)
+				|                {
+				|                    args = args + "" mousedown 2"";
+				|                }
+				|                else if (p1 == 64)
+				|                {
+				|                    args = args + "" mouseup 2"";
+				|                }
+				|                else if (p1 == 96)
+				|                {
+				|                    args = args + "" mousedown 2"" + "" sleep 1.0"" + "" mouseup 2"";
+				|                }
+				|
+				|                if (args != """")
+				|                {
+				|                    System.Diagnostics.Process process = new System.Diagnostics.Process();
+				|                    process.StartInfo.FileName = ""xdotool"";
+				|                    process.StartInfo.Arguments = args;
+				|                    process.Start();
+				|                    process.WaitForExit();
+				|                }
 				|            }
 				|        }
 				|
@@ -7053,6 +9162,15 @@
 				|        }
 				|
 				|";
+			ИначеЕсли (МетодРус = "ДеревоЗначений") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ДеревоЗначений"", ""TreeViewAdv"")]
+				|        public ClTreeViewAdv TreeViewAdv()
+				|        {
+				|            return new ClTreeViewAdv();
+				|        }		
+				|
+				|";
 			ИначеЕсли (МетодРус = "ТаблицаДанных") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""ТаблицаДанных"", ""DataTable"")]
@@ -7133,6 +9251,15 @@
 				|        public ClDataGridCell DataGridCell(int p1, int p2)
 				|        {
 				|            return new ClDataGridCell(p1, p2);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "КолонкаДереваЗначений") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""КолонкаДереваЗначений"", ""TreeColumn"")]
+				|        public ClTreeColumn TreeColumn(string p1 = null, int p2 = 50)
+				|        {
+				|            return new ClTreeColumn(p1, p2);
 				|        }
 				|
 				|";
@@ -7428,6 +9555,60 @@
 				|        }
 				|
 				|";
+			ИначеЕсли (МетодРус = "Знак") и (ИмяКонтекстКлассаАнгл = "Math") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Знак"", ""Sign"")]
+				|        public int Sign(decimal p1)
+				|        {
+				|            return System.Math.Sign(p1);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Меньшее") и (ИмяКонтекстКлассаАнгл = "Math") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Меньшее"", ""Min"")]
+				|        public decimal Min(decimal p1, decimal p2)
+				|        {
+				|            return System.Math.Min(p1, p2);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Большее") и (ИмяКонтекстКлассаАнгл = "Math") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Большее"", ""Max"")]
+				|        public decimal Max(decimal p1, decimal p2)
+				|        {
+				|            return System.Math.Max(p1, p2);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Целое") и (ИмяКонтекстКлассаАнгл = "Math") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Целое"", ""Truncate"")]
+				|        public decimal Truncate(decimal p1)
+				|        {
+				|            return System.Math.Truncate(p1);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Абсолютное") и (ИмяКонтекстКлассаАнгл = "Math") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Абсолютное"", ""Abs"")]
+				|        public decimal Abs(decimal p1)
+				|        {
+				|            return System.Math.Abs(p1);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "ОстатокДеления") и (ИмяКонтекстКлассаАнгл = "Math") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ОстатокДеления"", ""DivRem"")]
+				|        public decimal DivRem(decimal p1, decimal p2)
+				|        {
+				|            return p1 % p2;
+				|        }
+				|
+				|";
 			ИначеЕсли МетодРус = "АКосинус" Тогда
 				Стр = Стр + 
 				"        [ContextMethod(""АКосинус"", ""Acos"")]
@@ -7635,19 +9816,79 @@
 			ИначеЕсли (МетодРус = "ПолучитьПодсказку") и (ИмяКонтекстКлассаАнгл = "ToolTip") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""ПолучитьПодсказку"", ""GetToolTip"")]
-				|        public string GetToolTip(IValue p1)
+				|        public IValue GetToolTip(IValue p1)
 				|        {
-				|            return Base_obj.GetToolTip(((dynamic)p1).Base_obj);
+				|            dynamic p3 = ((dynamic)p1).Base_obj;
+				|            if ((p3.GetType() == typeof(Aga.Controls.Tree.Node)) ||
+				|                (p3.GetType().ToString().Contains(""Aga.Controls.Tree.NodeControls."")) ||
+				|                (p3.GetType() == typeof(osf.TreeColumn)))
+				|            {
+				|                System.Collections.Generic.Dictionary<osf.ClToolTip, object> dict = p3.ObjTooltip;
+				|                object toolTip = dict[this];
+				|                if (toolTip.GetType() == typeof(System.String))
+				|                {
+				|                    return ValueFactory.Create((string)toolTip);
+				|                }
+				|                return (IValue)toolTip;
+				|            }
+				|            else
+				|            {
+				|                return ValueFactory.Create(Base_obj.GetToolTip(((dynamic)p1).Base_obj));
+				|            }
 				|        }
 				|        
 				|";
 			ИначеЕсли (МетодРус = "УстановитьПодсказку") и (ИмяКонтекстКлассаАнгл = "ToolTip") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""УстановитьПодсказку"", ""SetToolTip"")]
-				|        public void SetToolTip(IValue p1, string p2)
+				|        public void SetToolTip(IValue p1, IValue p2)
 				|        {
-				|            Base_obj.SetToolTip(((dynamic)p1).Base_obj, p2);
+				|            dynamic p3 = ((dynamic)p1).Base_obj;
+				|            if (p2.SystemType.Name == ""Строка"")
+				|            {
+				|                string str = p2.AsString();
+				|                if ((p3.GetType() == typeof(Aga.Controls.Tree.Node)) ||
+				|                    (p3.GetType().ToString().Contains(""Aga.Controls.Tree.NodeControls."")) ||
+				|                    (p3.GetType() == typeof(osf.TreeColumn)))
+				|                {
+				|                    p3.TooltipText = str;
+				|                    System.Collections.Generic.Dictionary<osf.ClToolTip, object> dict = p3.ObjTooltip;
+				|                    if (!dict.ContainsKey(this))
+				|                    {
+				|                        dict.Add(this, str);
+				|                    }
+				|                    else
+				|                    {
+				|                        if (!((object)dict[this]).Equals(str))
+				|                        {
+				|                            dict[this] = str;
+				|                        }
+				|                    }
+				|                }
+				|                else
+				|                {
+				|                    Base_obj.SetToolTip(p3, str);
+				|                }
+				|            }
+				|            else
+				|            {
+				|                ClAction action = (ClAction)p2;
+				|                p3.TooltipText = action;
+				|                System.Collections.Generic.Dictionary<osf.ClToolTip, object> dict = p3.ObjTooltip;
+				|                if (!dict.ContainsKey(this))
+				|                {
+				|                    dict.Add(this, action);
+				|                }
+				|                else
+				|                {
+				|                    if (!((object)dict[this]).Equals(action))
+				|                    {
+				|                        dict[this] = action;
+				|                    }
+				|                }
+				|            }
 				|        }
+				|
 				|        
 				|";
 			ИначеЕсли (МетодРус = "ВысотаЭлемента") и (ИмяКонтекстКлассаАнгл = "ComboBoxObjectCollection") Тогда
@@ -7745,7 +9986,7 @@
 				|        public void EnableVisualStyles()
 				|        {
 				|            System.Windows.Forms.Application.EnableVisualStyles();
-				|            System.Windows.Forms.Application.DoEvents();
+				|            //System.Windows.Forms.Application.DoEvents();
 				|        }
 				|
 				|";
@@ -7863,6 +10104,51 @@
 				|        public ClRectangle GetCurrentCellBounds()
 				|        {
 				|            return new ClRectangle(Base_obj.GetCurrentCellBounds());
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "УстановитьЭлемент") и (ИмяКонтекстКлассаАнгл = "NodeControlsCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""УстановитьЭлемент"", ""SetControl"")]
+				|        public void SetControl(int p1, IValue p2)
+				|        {
+				|            Base_obj.SetControl(p1, ((dynamic)p2.AsObject()).Base_obj);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Удалить") и (ИмяКонтекстКлассаАнгл = "NodeControlsCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Удалить"", ""Remove"")]
+				|        public void Remove(IValue p1)
+				|        {
+				|            Base_obj.Remove(((dynamic)p1.AsObject()).Base_obj);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Содержит") и (ИмяКонтекстКлассаАнгл = "NodeControlsCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Содержит"", ""Contains"")]
+				|        public bool Contains(IValue p1)
+				|        {
+				|            return Base_obj.Contains(((dynamic)p1.AsObject()).Base_obj);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Индекс") и (ИмяКонтекстКлассаАнгл = "NodeControlsCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Индекс"", ""IndexOf"")]
+				|        public int IndexOf(IValue p1)
+				|        {
+				|            return Base_obj.IndexOf(((dynamic)p1.AsObject()).Base_obj);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Вставить") и (ИмяКонтекстКлассаАнгл = "NodeControlsCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Вставить"", ""Insert"")]
+				|        public void Insert(int p1, IValue p2)
+				|        {
+				|            Base_obj.Insert(p1, ((dynamic)p2.AsObject()).Base_obj);
 				|        }
 				|
 				|";
@@ -8901,6 +11187,182 @@
 				|        }
 				|
 				|";
+			ИначеЕсли (МетодРус = "Элемент") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdvCollection") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Элемент"", ""Item"")]
+				|        public ClNode Item(int p1)
+				|        {
+				|            return (ClNode)OneScriptForms.RevertObj(Base_obj[p1]);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Узлы") и (ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Узлы"", ""Nodes"")]
+				|        public ClNode Nodes2(int p1)
+				|        {
+				|            return new ClNode(TreeModel1.Nodes[p1]);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "АвтоРазмерКолонки") и (ИмяКонтекстКлассаАнгл = "TreeViewAdv") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""АвтоРазмерКолонки"", ""AutoSizeColumn"")]
+				|        public void AutoSizeColumn(ClTreeColumn p1 = null)
+				|        {
+				|            if (p1 != null)
+				|            {
+				|                Base_obj.AutoSizeColumn(p1.Base_obj);
+				|            }
+				|            else
+				|            {
+				|                Base_obj.AutoSizeColumn();
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "УстановитьЗначение") и (ИмяКонтекстКлассаАнгл = "NodeCheckBox") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""УстановитьЗначение"", ""SetValue"")]
+				|        public void SetValue(ClNode p1, IValue p2)
+				|        {
+				|            p1.Base_obj.SetControlValue(this.Base_obj, (object)(System.Windows.Forms.CheckState)Convert.ToInt32(p2.AsNumber()));
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "УстановитьЗначение") и (ИмяКонтекстКлассаАнгл = "NodeStateIcon") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""УстановитьЗначение"", ""SetValue"")]
+				|        public void SetValue(ClNode p1, ClBitmap p2)
+				|        {
+				|            Base_obj.SetStateIconImage(p1.Base_obj, p2.Base_obj.M_Image);
+				|            Base_obj.StateIconImage.Add(p1.Base_obj, p2);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "УстановитьЗначение") и (ИмяКонтекстКлассаАнгл = "NodeComboBox") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""УстановитьЗначение"", ""SetValue"")]
+				|        public void SetValue(ClNode p1, IValue p2)
+				|        {
+				|            p1.Base_obj.SetControlValue(Base_obj, (object)p2);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "УстановитьЗначение") и (ИмяКонтекстКлассаАнгл = "NodeNumericUpDown") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""УстановитьЗначение"", ""SetValue"")]
+				|        public void SetValue(ClNode p1, IValue p2)
+				|        {
+				|            p1.Base_obj.SetControlValue(Base_obj, (object)p2);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "УстановитьЗначение") и (ИмяКонтекстКлассаАнгл = "NodeTextBox") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""УстановитьЗначение"", ""SetValue"")]
+				|        public void SetValue(ClNode p1, IValue p2)
+				|        {
+				|            p1.Base_obj.SetControlValue(Base_obj, (object)p2);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "УстановитьЗначение") и (ИмяКонтекстКлассаАнгл = "NodeDecimalTextBox") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""УстановитьЗначение"", ""SetValue"")]
+				|        public void SetValue(ClNode p1, IValue p2)
+				|        {
+				|            p1.Base_obj.SetControlValue(Base_obj, (object)p2);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "СброситьЗначение") и (ИмяКонтекстКлассаАнгл = "NodeStateIcon") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""СброситьЗначение"", ""ResetValue"")]
+				|        public void ResetValue(ClNode p1)
+				|        {
+				|            Base_obj.ResetStateIconImage(p1.Base_obj);
+				|            Base_obj.StateIconImage.Remove(p1.Base_obj);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "ПолучитьЗначение") и (ИмяКонтекстКлассаАнгл = "NodeStateIcon") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолучитьЗначение"", ""GetValue"")]
+				|        public ClBitmap GetValue(ClNode p1)
+				|        {
+				|            ClBitmap ClBitmap1 = null;
+				|            try
+				|            {
+				|                ClBitmap1 = Base_obj.StateIconImage[p1.Base_obj];
+				|            }
+				|            catch { }
+				|            return ClBitmap1;
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "ПолучитьЗначение") и (ИмяКонтекстКлассаАнгл = "NodeTextBox") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолучитьЗначение"", ""GetValue"")]
+				|        public IValue GetValue(ClNode p1)
+				|        {
+				|            return (IValue)p1.Base_obj.GetControlValue(Base_obj);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "ПолучитьЗначение") и (ИмяКонтекстКлассаАнгл = "NodeNumericUpDown") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолучитьЗначение"", ""GetValue"")]
+				|        public IValue GetValue(ClNode p1)
+				|        {
+				|            return (IValue)p1.Base_obj.GetControlValue(Base_obj);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "ПолучитьЗначение") и (ИмяКонтекстКлассаАнгл = "NodeDecimalTextBox") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолучитьЗначение"", ""GetValue"")]
+				|        public IValue GetValue(ClNode p1)
+				|        {
+				|            return (IValue)p1.Base_obj.GetControlValue(Base_obj);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "ПолучитьЗначение") и (ИмяКонтекстКлассаАнгл = "NodeComboBox") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолучитьЗначение"", ""GetValue"")]
+				|        public IValue GetValue(ClNode p1)
+				|        {
+				|            return (IValue)p1.Base_obj.GetControlValue(Base_obj);
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "ПолучитьЗначение") и (ИмяКонтекстКлассаАнгл = "NodeCheckBox") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПолучитьЗначение"", ""GetValue"")]
+				|        public int GetValue(ClNode p1)
+				|        {
+				|            return (int)p1.Base_obj.GetControlValue(Base_obj);
+				|        }
+				|
+				|";
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+
+				
+				
+				
+				
+				
+				
 				
 				
 				
@@ -9513,6 +11975,36 @@
 	СоздатьФайлCs("Padding");
 	СоздатьФайлCs("DataGridViewGrouper");
 	СоздатьФайлCs("DataGridViewGrouperControl");
+	СоздатьФайлCs("TreeViewAdv");
+	СоздатьФайлCs("TreeColumnCollection");
+	СоздатьФайлCs("TreeColumn");
+	СоздатьФайлCs("TreeNodeAdvCollection");
+	СоздатьФайлCs("TreeNodeAdv");
+	СоздатьФайлCs("NodeCheckBox");
+	СоздатьФайлCs("NodeControlsCollection");
+	СоздатьФайлCs("TreeViewAdvSupport");
+	СоздатьФайлCs("NodeStateIcon");
+	СоздатьФайлCs("NodeComboBox");
+	СоздатьФайлCs("NodeDecimalTextBox");
+	СоздатьФайлCs("NodeNumericUpDown");
+	СоздатьФайлCs("NodeTextBox");
+	СоздатьФайлCs("NodeComboBoxObjectCollection");
+	СоздатьФайлCs("SelectedTreeNodeAdvCollection");
+	СоздатьФайлCs("TreeColumnEventArgs");
+	СоздатьФайлCs("TreeNodeAdvMouseEventArgs");
+	СоздатьФайлCs("TreeViewAdvEventArgs");
+	СоздатьФайлCs("ValueTreeViewAdvEventArgs");
+	СоздатьФайлCs("RoundRect");
+	
+	
+	
+	СоздатьФайлCs("Dns");
+	СоздатьФайлCs("IpAddress");
+	СоздатьФайлCs("IpHostEntry");
+	СоздатьФайлCs("NetworkStream");
+	СоздатьФайлCs("TCPClient");
+	СоздатьФайлCs("TCPListener");
+	
 	
 	
 	
@@ -9755,6 +12247,25 @@
 			|            {
 			|                OneScriptForms.hashtable.Add(p1, p2);
 			|            }
+			|            else
+			|            {
+			|                if (!((object)OneScriptForms.hashtable[p1]).Equals(p2))
+			|                {
+			|                    OneScriptForms.hashtable[p1] = p2;
+			|                }
+			|            }
+			|        }
+			|			
+			|        public static dynamic RevertEqualsObj(dynamic initialObject)
+			|        {
+			|            try
+			|            {
+			|                return OneScriptForms.hashtable[initialObject];
+			|            }
+			|            catch
+			|            {
+			|                return null;
+			|            }
 			|        }
 			|
 			|        public static IValue RevertObj(dynamic initialObject) 
@@ -9971,7 +12482,11 @@
 			|            }
 			|            if (dll_objEvent.GetType() == typeof(DelegateAction))
 			|            {
-			|                ((DelegateAction)dll_objEvent).CallAsProcedure(0, null);
+			|                try
+			|                {
+			|                    ((DelegateAction)dll_objEvent).CallAsProcedure(0, null);
+			|                }
+			|                catch { }
 			|            }
 			|            else if (dll_objEvent.GetType() == typeof(ClAction))
 			|            {
@@ -9979,7 +12494,11 @@
 			|                IRuntimeContextInstance script = Action1.Script;
 			|                string method = Action1.MethodName;
 			|                ReflectorContext reflector = new ReflectorContext();
-			|                reflector.CallMethod(script, method, null);
+			|                try
+			|                {
+			|                    reflector.CallMethod(script, method, null);
+			|                }
+			|                catch { }
 			|            }
 			|            else
 			|            {
@@ -10014,6 +12533,27 @@
 		ПодстрокаЗамены = "items = new ClListBoxObjectCollection(Base_obj.Items);
 		|            items.M_obj = this;";
 		СтрВыгрузки = СтрЗаменить(СтрВыгрузки, ПодстрокаПоиска, ПодстрокаЗамены);
+		
+		ПодстрокаПоиска = "public class ClTreeNodeAdv : AutoContext<ClTreeNodeAdv>";
+		ПодстрокаЗамены = "public class ClNode : AutoContext<ClNode>";
+		СтрВыгрузки = СтрЗаменить(СтрВыгрузки, ПодстрокаПоиска, ПодстрокаЗамены);
+		
+		ПодстрокаПоиска = "public class ClTreeNodeAdvCollection : AutoContext<ClTreeNodeAdvCollection>";
+		ПодстрокаЗамены = "public class ClNodeCollection : AutoContext<ClNodeCollection>";
+		СтрВыгрузки = СтрЗаменить(СтрВыгрузки, ПодстрокаПоиска, ПодстрокаЗамены);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		Файл1 = Новый Файл(ИмяФайлаВыгрузки);
 		Если Не (Файл1.Существует()) Тогда
@@ -10096,6 +12636,8 @@
 		ИмяФайлаВыгрузки = КаталогВыгрузки + "\" + М01[0] + ".cs";
 		ИмяКонтекстКлассаАнгл = М01[0];
 		ИмяКонтекстКлассаРус = М08[0];
+		// Сообщить("====" + ИмяКонтекстКлассаАнгл);
+
 		
 		//находим текст таблицы
 		СтрТаблица = СтрНайтиМежду(Стр, "</TH></TR>" + Символы.ПС + "  <TR vAlign=top>", "</TBODY></TABLE>", Ложь, );
@@ -10110,6 +12652,7 @@
 			ИмяПеречРус = М08[0];
 			ИмяЧленаАнгл = М13[1];
 			// Сообщить("==" + ИмяЧленаАнгл);
+			// если здесь ошибка, тогда возможно есть лишний пробел в одном из значений перечисления
 			ИмяЧленаАнгл = СтрНайтиМежду(ИмяЧленаАнгл, "(", ")", , )[0];
 			ИмяЧленаРус = М13[0];
 			ОписаниеЧлена = М12[1];
@@ -10194,6 +12737,7 @@
 				ИмяКонтекстКлассаАнгл = "TreeViewAction" Тогда
 				ИмяКонтекстКлассаАнгл1 = "System.Windows.Forms." + ИмяКонтекстКлассаАнгл;
 			ИначеЕсли ИмяКонтекстКлассаАнгл = "ContentAlignment" или 
+				ИмяКонтекстКлассаАнгл = "StringTrimming" или 
 				ИмяКонтекстКлассаАнгл = "FontStyle" Тогда
 				ИмяКонтекстКлассаАнгл1 = "System.Drawing." + ИмяКонтекстКлассаАнгл;
 			ИначеЕсли ИмяКонтекстКлассаАнгл = "NotifyFilters" или 
@@ -10219,10 +12763,14 @@
 			Иначе
 				ИмяКонтекстКлассаАнгл1 = ИмяКонтекстКлассаАнгл;
 			КонецЕсли;
-			Если ИмяКонтекстКлассаАнгл = "Sounds" или
-				ИмяКонтекстКлассаАнгл = "MouseFlags" или
-				ИмяКонтекстКлассаАнгл = "SortType" или
-				ИмяКонтекстКлассаАнгл = "DataGridViewGrouperStyle" или
+			Если ИмяКонтекстКлассаАнгл = "Sounds" или // это перечисление собственное (не от микрософт)
+				ИмяКонтекстКлассаАнгл = "MouseFlags" или 
+				ИмяКонтекстКлассаАнгл = "SortType" или 
+				ИмяКонтекстКлассаАнгл = "DataGridViewGrouperStyle" или 
+				ИмяКонтекстКлассаАнгл = "VerticalAlign" или 
+				ИмяКонтекстКлассаАнгл = "ImageScaleMode" или 
+				ИмяКонтекстКлассаАнгл = "TreeSelectionMode" или 
+				ИмяКонтекстКлассаАнгл = "GridLineStyle" или 
 				ИмяКонтекстКлассаАнгл = "DataType" Тогда
 				СтрРазделОбъявленияПеременныхДляПеречисления = СтрРазделОбъявленияПеременныхДляПеречисления + Символы.ПС + 
 				"        private int m_" + СоставнаяСтр + " = " + ЗначениеЧлена + "; // " + ЗначениеЧлена + " " + ОписаниеЧлена;
@@ -10290,7 +12838,8 @@
 		// СтрВыгрузки = СтрВыгрузки + 
 		// "namespace osf
 		// |{
-
+		
+		// |    }//endClass
 		// |}//endnamespace
 		// |";
 		// ТекстДокХХХ = Новый ТекстовыйДокумент;
@@ -10303,6 +12852,11958 @@
 		
 		
 		
+				
+		
+		
+	ИначеЕсли ИмяФайлаCs = "Dns" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "IpAddress" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class IpAddress
+		|    {
+		|        public System.Net.IPAddress M_IPaddress;
+		|        public ClIpAddress dll_obj;
+		|
+		|        public IpAddress(osf.IpAddress p1)
+		|        {
+		|            M_IPaddress = p1.M_IPaddress;
+		|        }
+		|
+		|        public IpAddress(string IPstring)
+		|        {
+		|            M_IPaddress = System.Net.IPAddress.Parse(IPstring);
+		|        }
+		|
+		|        public IpAddress(System.Net.IPAddress p1)
+		|        {
+		|            M_IPaddress = p1;
+		|        }
+		|
+		|        public osf.IpAddress Any
+		|        {
+		|            get { return new IpAddress(""0.0.0.0""); }
+		|        }
+		|
+		|        public osf.IpAddress BroadCast
+		|        {
+		|            get { return new IpAddress(""255.255.255.255""); }
+		|        }
+		|
+		|        public System.Net.IPAddress IPaddress
+		|        {
+		|            get { return M_IPaddress; }
+		|        }
+		|
+		|        public osf.IpAddress LoopBack
+		|        {
+		|            get { return new IpAddress(""127.0.0.1""); }
+		|        }
+		|
+		|        public osf.IpAddress None
+		|        {
+		|            get { return new IpAddress(""255.255.255.255""); }
+		|        }
+		|
+		|        public bool Equals(osf.IpAddress IPaddressObject)
+		|        {
+		|            if (M_IPaddress.ToString() == IPaddressObject.ToString())
+		|            {
+		|                return true;
+		|            }
+		|            return false;
+		|        }
+		|
+		|        public override string ToString()
+		|        {
+		|            return M_IPaddress.ToString();
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "IpHostEntry" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class IpHostEntry
+		|    {
+		|        public System.Net.IPHostEntry M_IPHostEntry;
+		|		
+		|        public IpHostEntry(osf.IpHostEntry p1)
+		|        {
+		|            M_IPHostEntry = p1.M_IPHostEntry;
+		|        }
+		|
+		|        public IpHostEntry(string HostName)
+		|        {
+		|            M_IPHostEntry = new IPHostEntry();
+		|            M_IPHostEntry.HostName = HostName;
+		|
+		|            string[] aliases = new string[0];
+		|            M_IPHostEntry.Aliases = aliases;
+		|
+		|            IPAddress[] addressList = new IPAddress[0];
+		|            M_IPHostEntry.AddressList = addressList;
+		|        }
+		|
+		|        public IpHostEntry(System.Net.IPHostEntry p1)
+		|        {
+		|            M_IPHostEntry = p1;
+		|        }
+		|
+		|        public string HostName
+		|        {
+		|            get { return M_IPHostEntry.HostName; }
+		|            set { M_IPHostEntry.HostName = value; }
+		|        }
+		|
+		|        public override string ToString()
+		|        {
+		|            return M_IPHostEntry.ToString();
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "NetworkStream" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "TCPClient" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class TCPClient
+		|    {
+		|        private System.Net.Sockets.TcpClient M_TcpClient;
+		|        public ClTCPClient dll_obj;
+		|
+		|        public TCPClient(string HostName = null, int port = 0)
+		|        {
+		|            if (HostName != null && port != 0)
+		|            {
+		|                M_TcpClient = new System.Net.Sockets.TcpClient(HostName, port);
+		|            }
+		|            else if (HostName == null && port == 0)
+		|            {
+		|                M_TcpClient = new System.Net.Sockets.TcpClient();
+		|            }
+		|            else
+		|            {
+		|                return;
+		|            }
+		|        }
+		|
+		|        public TCPClient(System.Net.Sockets.TcpClient p1)
+		|        {
+		|            M_TcpClient = p1;
+		|        }
+		|
+		|        public TCPClient(TCPClient p1)
+		|        {
+		|            M_TcpClient = p1.M_TcpClient;
+		|        }
+		|
+		|        public void Close()
+		|        {
+		|            M_TcpClient.Close();
+		|        }
+		|
+		|        public void Connect(IpAddress ipaddress, int portNo)
+		|        {
+		|            M_TcpClient.Connect(ipaddress.IPaddress, portNo);
+		|        }
+		|
+		|        public void Connect(string hostname, int portNo)
+		|        {
+		|            M_TcpClient.Connect(hostname, portNo);
+		|        }
+		|
+		|        public System.Net.Sockets.NetworkStream GetStream()
+		|        {
+		|            return M_TcpClient.GetStream();
+		|        }
+		|		
+		|        public bool Connected
+		|        {
+		|            get { return M_TcpClient.Connected; }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "TCPListener" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class TCPListener
+		|    {
+		|        private System.Net.Sockets.TcpListener M_TcpListener;
+		|        public ClTCPListener dll_obj;
+		|
+		|        public TCPListener(osf.TCPListener p1)
+		|        {
+		|            M_TcpListener = p1.M_TcpListener;
+		|        }
+		|
+		|        public TCPListener(System.Net.IPAddress p1, int p2)
+		|        {
+		|            M_TcpListener = new System.Net.Sockets.TcpListener(p1, p2);
+		|        }
+		|
+		|        public TCPListener(osf.IpAddress p1, int p2)
+		|        {
+		|            M_TcpListener = new System.Net.Sockets.TcpListener(p1.IPaddress, p2);
+		|        }
+		|
+		|        public TCPListener(System.Net.Sockets.TcpListener p1)
+		|        {
+		|            M_TcpListener = p1;
+		|        }
+		|
+		|        public osf.TCPClient AcceptTCPclient()
+		|        {
+		|            return new osf.TCPClient(M_TcpListener.AcceptTcpClient());
+		|        }
+		|
+		|        public bool Pending()
+		|        {
+		|            return M_TcpListener.Pending();
+		|        }
+		|
+		|        public void Start()
+		|        {
+		|            M_TcpListener.Start();
+		|        }
+		|
+		|        public void Stop()
+		|        {
+		|            M_TcpListener.Stop();
+		|        }
+		|		
+		|        public bool Active
+		|        {
+		|            get
+		|            {
+		|                bool res = (bool)typeof(System.Net.Sockets.TcpListener).InvokeMember(
+		|                        ""Active"",
+		|                        BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
+		|                        null,
+		|                        M_TcpListener,
+		|                        null);
+		|
+		|                return res;
+		|            }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "RoundRect" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace JonasKohl.Graphics
+		|{
+		|    // Код создан на основе разработки автора Jonas Kohl https://github.com/jonaskohl/RoundRect
+		|    // Простой вспомогательный класс для рисования идеальных по пикселям симметричных прямоугольников со скругленными углами.
+		|    // Адаптировано из https://www.codeproject.com/Articles/27228/A-class-for-creating-round-rectangles-in-GDI-with
+		|    // и перенесенный с C++ на C#.NET by Jonas Kohl http://jonaskohl.de/
+		|
+		|    static class RoundRect
+		|    {
+		|        // Создает контур закругленного прямоугольника (Графическая дорожка, напоминающая закругленный прямоугольник).
+		|        public static GraphicsPath GetRoundRectPath(Rectangle r, int dia)
+		|        {
+		|            // r - Прямоугольник для использования
+		|            // dia - Диаметр
+		|            GraphicsPath pPath = new GraphicsPath();
+		|
+		|            // Диаметр не может превышать ширину или высоту.
+		|            if (dia > r.Width) dia = r.Width;
+		|            if (dia > r.Height) dia = r.Height;
+		|
+		|            // Определите угол.
+		|            Rectangle Corner = new Rectangle(r.X, r.Y, dia, dia);
+		|
+		|            // Начальный путь.
+		|            pPath.Reset();
+		|
+		|            // Вверху слева.
+		|            pPath.AddArc(Corner, 180, 90);
+		|
+		|            // Настройка необходима для радиуса 10 (диаметр 20).
+		|            if (dia == 20)
+		|            {
+		|                Corner.Width += 1;
+		|                Corner.Height += 1;
+		|                r.Width -= 1; r.Height -= 1;
+		|            }
+		|
+		|            // Вверху справа.
+		|            Corner.X += (r.Width - dia - 1);
+		|            pPath.AddArc(Corner, 270, 90);
+		|
+		|            // Внизу справа.
+		|            Corner.Y += (r.Height - dia - 1);
+		|            pPath.AddArc(Corner, 0, 90);
+		|
+		|            // Внизу слева.
+		|            Corner.X -= (r.Width - dia - 1);
+		|            pPath.AddArc(Corner, 90, 90);
+		|
+		|            // Конечный путь.
+		|            pPath.CloseFigure();
+		|
+		|            return pPath;
+		|        }
+		|
+		|        // Рисует (очерчивает) закругленный прямоугольник в графическом контексте.
+		|        public static void DrawRoundRect(System.Drawing.Graphics pGraphics, Rectangle r, Color color, int radius, int width)
+		|        {
+		|            // pGraphics - Графический контекст
+		|            // r - Ограничивающий прямоугольник
+		|            // color - Цвет контура
+		|            // radius - Радиус угла
+		|            // width - Ширина контура
+		|            int dia = 2 * radius;
+		|
+		|            // Сохранить старый блок страниц.
+		|            GraphicsUnit oldPageUnit = pGraphics.PageUnit;
+		|
+		|            // Установить в пиксельный режим.
+		|            pGraphics.PageUnit = GraphicsUnit.Pixel;
+		|
+		|            // Определите перо.
+		|            Pen pen = new Pen(color, 1);
+		|
+		|            // Установите выравнивание пера.
+		|            pen.Alignment = PenAlignment.Center;
+		|
+		|            // Получить угловой путь.
+		|            GraphicsPath path = GetRoundRectPath(r, dia);
+		|
+		|            // Нарисуйте круглую прямую линию.
+		|            pGraphics.DrawPath(pen, path);
+		|
+		|            // Если ширина > 1.
+		|            for (int i = 1; i < width; i++)
+		|            {
+		|                // Левый ход.
+		|                r.Inflate(-1, 0);
+		|
+		|                // Получить путь.
+		|                path = GetRoundRectPath(r, dia);
+		|
+		|                // Нарисуйте круглую прямую линию.
+		|                pGraphics.DrawPath(pen, path);
+		|
+		|                // Ход вверх.
+		|                r.Inflate(0, -1);
+		|
+		|                // Получить путь.
+		|                path = GetRoundRectPath(r, dia);
+		|
+		|                // Нарисуйте круглую прямую линию.
+		|                pGraphics.DrawPath(pen, path);
+		|            }
+		|
+		|            // Восстановить блок страниц.
+		|            pGraphics.PageUnit = oldPageUnit;
+		|        }
+		|
+		|        // Заполняет закругленный прямоугольник в графическом контексте.
+		|        public static void FillRoundRect(System.Drawing.Graphics pGraphics, Brush pBrush, Rectangle r, Color border, int radius)
+		|        {
+		|            // pGraphics - Графический контекст
+		|            // pBrush - Кисть для заполнения прямоугольника
+		|            // r - Ограничивающий прямоугольник
+		|            // border - Цвет контура (границы)
+		|            // radius - Радиус угла
+		|            int dia = 2 * radius;
+		|
+		|            // Сохранить старый блок страниц.
+		|            GraphicsUnit oldPageUnit = pGraphics.PageUnit;
+		|
+		|            // Установить в пиксельный режим.
+		|            pGraphics.PageUnit = GraphicsUnit.Pixel;
+		|
+		|            // Определите перо.
+		|            Pen pen = new Pen(border, 1);
+		|
+		|            // Установите выравнивание пера.
+		|            pen.Alignment = PenAlignment.Center;
+		|
+		|            // Получить угловой путь.
+		|            GraphicsPath path = GetRoundRectPath(r, dia);
+		|
+		|            // Заполнить.
+		|            pGraphics.FillPath(pBrush, path);
+		|
+		|            // Нарисуйте границу в последнюю очередь, чтобы она была сверху, если цвет отличается.
+		|            pGraphics.DrawPath(pen, path);
+		|
+		|            // Восстановить блок страниц.
+		|            pGraphics.PageUnit = oldPageUnit;
+		|        }
+		|		
+		|        public static void SetRoundedShape(System.Windows.Forms.Panel control, int radius)
+		|        {
+		|            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+		|            path.AddLine(radius, 0, control.Width - radius, 0);
+		|            path.AddArc(control.Width - radius - 1, 0, radius, radius, 270, 90);
+		|            path.AddLine(control.Width, radius, control.Width, control.Height - radius);
+		|            path.AddArc(control.Width - radius - 1, control.Height - radius, radius, radius, 0, 90);
+		|            path.AddLine(control.Width - radius, control.Height, radius, control.Height);
+		|            path.AddArc(0, control.Height - radius, radius, radius, 90, 90);
+		|            path.AddLine(0, control.Height - radius, 0, radius);
+		|            path.AddArc(0, 0, radius, radius, 180, 90);
+		|            control.Region = new Region(path);
+		|        }
+		|    }
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "NodeComboBoxObjectCollection" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace Aga.Controls.Tree.NodeControls
+		|{
+		|    public class NodeComboBoxObjectCollection : List<object>
+		|    {
+		|        public void SetControl(int index, dynamic item)
+		|        {
+		|            this[index] = item;
+		|        }
+		|
+		|        public new void Sort()
+		|        {
+		|            System.Collections.Generic.IComparer<object> myComparer = new ItemSorter();
+		|            Sort(myComparer);
+		|        }
+		|    }
+		|
+		|    public class ItemSorter : System.Collections.Generic.IComparer<object>
+		|    {
+		|        private dynamic x2;
+		|        private dynamic y2;
+		|
+		|        public int Compare(object x, object y)
+		|        {
+		|            x2 = osf.OneScriptForms.DefineTypeIValue(x);
+		|            y2 = osf.OneScriptForms.DefineTypeIValue(y);
+		|            int num = 0;
+		|            if ((x2.GetType() != typeof(System.String)) && (y2.GetType() != typeof(System.String)))
+		|            {
+		|                num = 0;
+		|            }
+		|            else if ((x2.GetType() != typeof(System.String)) && (y2.GetType() == typeof(System.String)))
+		|            {
+		|                num = 1;
+		|            }
+		|            else if ((x2.GetType() == typeof(System.String)) && (y2.GetType() != typeof(System.String)))
+		|            {
+		|                num = -1;
+		|            }
+		|            else
+		|            {
+		|                num = ((System.String)x2).CompareTo((System.String)y2);
+		|            }
+		|            return num;
+		|        }
+		|    }
+		|}
+		|		
+		|namespace osf
+		|{
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "NodeStateIcon" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace Aga.Controls.Tree.NodeControls
+		|{
+		|    public class NodeStateIcon : NodeIcon
+		|    {
+		|        private Image image;
+		|        private Image selectedImage;
+		|        public Dictionary<Node, Image> nodeStateIconImage = new Dictionary<Node, Image>();
+		|        public Dictionary<Node, osf.ClBitmap> StateIconImage = new Dictionary<Node, osf.ClBitmap>();
+		|
+		|        public NodeStateIcon()
+		|        {
+		|        }
+		|		
+		|        public void ResetStateIconImage(Node p1)
+		|        {
+		|            nodeStateIconImage.Remove(p1);
+		|        }
+		|
+		|        public void SetStateIconImage(Node p1, Image p2)
+		|        {
+		|            if (!nodeStateIconImage.ContainsKey(p1))
+		|            {
+		|                nodeStateIconImage.Add(p1, p2);
+		|            }
+		|            else
+		|            {
+		|                if (!((object)nodeStateIconImage[p1]).Equals(p2))
+		|                {
+		|                    nodeStateIconImage[p1] = p2;
+		|                }
+		|            }
+		|        }
+		|
+		|        public Image GetStateIconImage(Node p1)
+		|        {
+		|            try
+		|            {
+		|                return nodeStateIconImage[p1];
+		|            }
+		|            catch
+		|            {
+		|                return null;
+		|            }
+		|        }
+		|
+		|        public override void Draw(TreeNodeAdv node, DrawContext context)
+		|        {
+		|            Image image = GetIcon(node);
+		|            Image imageNode = GetStateIconImage((Node)node.Tag);
+		|            if (imageNode != null)
+		|            {
+		|                image = imageNode;
+		|            }
+		|		
+		|            if (node.IsSelected)
+		|            {
+		|                if (SelectedImage != null)
+		|                {
+		|                    image = SelectedImage;
+		|                }
+		|            }
+		|
+		|            if (image != null)
+		|            {
+		|                Rectangle r = GetBounds(node, context);
+		|                if (image.Width > 0 && image.Height > 0)
+		|                {
+		|                    float f = (float)(image.Height - node.Tree.RowHeight) / 2;
+		|                    switch (ScaleMode)
+		|                    {
+		|                        case ImageScaleMode.Fit:
+		|                            {
+		|                                r.Y = r.Y + Convert.ToInt32(f);
+		|                                r.Height = node.Tree.RowHeight;
+		|                                context.Graphics.DrawImage(image, r);
+		|                            }
+		|                            break;
+		|                        case ImageScaleMode.AlwaysScale:
+		|                            {
+		|                                float fh = (float)node.Tree.RowHeight / (float)image.Height;
+		|                                if (node.Tree.RowHeight > image.Height) // высота строки больше высоты рисунка - увеличиваем рисунок
+		|                                {
+		|                                    context.Graphics.DrawImage(image, r.X, r.Y + f, image.Width * fh, image.Height * fh);
+		|                                }
+		|                                else if (node.Tree.RowHeight < image.Height) // высота строки меньше высоты рисунка - уменьшаем рисунок
+		|                                {
+		|                                    context.Graphics.DrawImage(image, r.X, r.Y + f, image.Width * fh, image.Height * fh);
+		|                                }
+		|                                else // не масштабируем
+		|                                {
+		|                                    context.Graphics.DrawImage(image, r.X, r.Y, image.Width, image.Height);
+		|                                }
+		|                            }
+		|                            break;
+		|                        case ImageScaleMode.Clip:
+		|                        default:
+		|                            context.Graphics.DrawImage(image, r.X, r.Y, image.Width, image.Height);
+		|                            break;
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        private static Image MakeTransparent(Bitmap bitmap)
+		|        {
+		|            bitmap.MakeTransparent(bitmap.GetPixel(0, 0));
+		|            return bitmap;
+		|        }
+		|
+		|        protected override Image GetIcon(TreeNodeAdv node)
+		|        {
+		|            return Image;
+		|        }
+		|		
+		|        public System.Drawing.Image Image
+		|        {
+		|            get { return image; }
+		|            set { image = value; }
+		|        }
+		|
+		|        public System.Drawing.Image SelectedImage
+		|        {
+		|            get { return selectedImage; }
+		|            set { selectedImage = value; }
+		|        }
+		|		
+		|        public override Size MeasureSize(TreeNodeAdv node, DrawContext context)
+		|        {
+		|            Image image = GetIcon(node);
+		|            Image imageNode = GetStateIconImage((Node)node.Tag);
+		|            if (imageNode != null)
+		|            {
+		|                image = imageNode;
+		|            }
+		|		
+		|            if (node.IsSelected)
+		|            {
+		|                if (SelectedImage != null)
+		|                {
+		|                    image = SelectedImage;
+		|                }
+		|            }
+		|		
+		|            if (image != null)
+		|            {
+		|                if (this.ScaleMode == ImageScaleMode.AlwaysScale)
+		|                {
+		|                    float fh = (float)node.Tree.RowHeight / (float)image.Height;
+		|                    Size Size1 = image.Size;
+		|                    Size1.Width = Convert.ToInt32(Size1.Width * fh);
+		|                    return Size1;
+		|                }
+		|                else
+		|                {
+		|                    return image.Size;
+		|                }
+		|            }
+		|            else
+		|            {
+		|                return Size.Empty;
+		|            }
+		|        }
+		|    }
+		|}
+		|
+		|namespace osf
+		|{
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "NodeComboBox" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace Aga.Controls.Tree.NodeControls
+		|{
+		|    public class NodeComboBox : BaseTextControl
+		|    {
+		|        private int _editorWidth = 100;
+		|        private int _editorHeight = 100;
+		|        private NodeComboBoxObjectCollection _dropDownItems;
+		|        public event EventHandler<EditEventArgs> CreatingEditor;
+		|        public string ValueChanged;
+		|        public event EventHandler<LabelEventArgs> LabelChanged;
+		|        public osf.ClNodeComboBox dll_obj;
+		|        DictionaryEntry currentValue;
+		|
+		|        public NodeComboBox()
+		|        {
+		|            _dropDownItems = new NodeComboBoxObjectCollection();
+		|            this.LabelChanged += NodeComboBox_LabelChanged;
+		|            ValueChanged = """";
+		|        }
+		|		
+		|        // Здесь по клавише F2, нажатию ENTER вызывается редактирование элемента узла.
+		|        public override void KeyDown(KeyEventArgs args)
+		|        {
+		|            osf.TreeViewAdv treeViewAdv = ((osf.TreeViewAdvEx)this.Parent).M_Object;
+		|            var currentControl = treeViewAdv.CurrentControl;
+		|            var currentControlValue = currentControl.Value;
+		|            if ((args.KeyCode == Keys.F2 || args.KeyCode == Keys.Enter) && Parent.CurrentNode != null && EditEnabled && currentControlValue == this)
+		|            {
+		|                args.Handled = true;
+		|                BeginEdit();
+		|            }
+		|        }
+		|		
+		|        private void NodeComboBox_LabelChanged(object sender, LabelEventArgs e)
+		|        {
+		|            if (ValueChanged.Length > 0)
+		|            {
+		|                osf.ValueTreeViewAdvEventArgs ValueTreeViewAdvEventArgs1 = new osf.ValueTreeViewAdvEventArgs(this, e.OldLabel, e.NewLabel);
+		|                ValueTreeViewAdvEventArgs1.EventString = ValueChanged;
+		|                ValueTreeViewAdvEventArgs1.Sender = ((dynamic)sender).dll_obj;
+		|                ValueTreeViewAdvEventArgs1.Parameter = osf.OneScriptForms.GetEventParameter(((dynamic)sender).dll_obj.ValueChanged);
+		|                osf.ClValueTreeViewAdvEventArgs ClValueTreeViewAdvEventArgs1 = new osf.ClValueTreeViewAdvEventArgs(ValueTreeViewAdvEventArgs1);
+		|                osf.OneScriptForms.Event = ClValueTreeViewAdvEventArgs1;
+		|                osf.OneScriptForms.ExecuteEvent(((dynamic)sender).dll_obj.ValueChanged);
+		|            }
+		|        }
+		|
+		|        public int EditorWidth
+		|        {
+		|            get { return _editorWidth; }
+		|            set { _editorWidth = value; }
+		|        }
+		|
+		|        public int EditorHeight
+		|        {
+		|            get { return _editorHeight; }
+		|            set { _editorHeight = value; }
+		|        }
+		|
+		|        public NodeComboBoxObjectCollection DropDownItems
+		|        {
+		|            get { return _dropDownItems; }
+		|        }
+		|
+		|        protected override Size CalculateEditorSize(EditorContext context)
+		|        {
+		|            if (Parent.UseColumns)
+		|            {
+		|                if (context.Editor is CheckedListBox)
+		|                {
+		|                    return new Size(context.Bounds.Size.Width, EditorHeight);
+		|                }
+		|                else
+		|                {
+		|                    return context.Bounds.Size;
+		|                }
+		|            }
+		|            else
+		|            {
+		|                if (context.Editor is CheckedListBox)
+		|                {
+		|                    return new Size(EditorWidth, EditorHeight);
+		|                }
+		|                else
+		|                {
+		|                    return new Size(EditorWidth, context.Bounds.Height);
+		|                }
+		|            }
+		|        }
+		|
+		|        protected override Control CreateEditor(TreeNodeAdv node)
+		|        {
+		|            Control c;
+		|            object value = GetValue(node);
+		|            if (IsCheckedListBoxRequired(node))
+		|            {
+		|                c = CreateCheckedListBox(node);
+		|            }
+		|            else
+		|            {
+		|                c = CreateCombo(node);
+		|            }
+		|            c.KeyDown += EditorKeyDown;
+		|            currentValue.Key = (Node)node.Tag;
+		|            currentValue.Value = ((Node)node.Tag).GetControlValue(this);
+		|            ComboBox comboBox = (ComboBox)c;
+		|            int index = comboBox.Items.IndexOf(currentValue.Value);
+		|            comboBox.SelectedIndex = index;
+		|            OnCreatingEditor(new EditEventArgs(node, c));
+		|            return c;
+		|        }
+		|
+		|        protected override void DisposeEditor(Control editor)
+		|        {
+		|            var c = editor as Control;
+		|            c.KeyDown -= EditorKeyDown;
+		|        }
+		|
+		|        private void EditorKeyDown(object sender, KeyEventArgs e)
+		|        {
+		|            if (e.KeyCode == Keys.Escape)
+		|            {
+		|                ((Node)currentValue.Key).SetControlValue(this, currentValue.Value);
+		|                currentValue.Value = null;
+		|                currentValue.Key = null;
+		|            }
+		|            else if (e.KeyCode == Keys.Enter)
+		|            {
+		|            }
+		|        }
+		|
+		|        protected virtual void OnCreatingEditor(EditEventArgs args)
+		|        {
+		|            if (CreatingEditor != null)
+		|            {
+		|                CreatingEditor(this, args);
+		|            }
+		|        }
+		|
+		|        protected virtual bool IsCheckedListBoxRequired(TreeNodeAdv node)
+		|        {
+		|            object value = GetValue(node);
+		|            if (value != null)
+		|            {
+		|                Type t = value.GetType();
+		|                object[] arr = t.GetCustomAttributes(typeof(FlagsAttribute), false);
+		|                return (t.IsEnum && arr.Length == 1);
+		|            }
+		|            return false;
+		|        }
+		|
+		|        private Control CreateCombo(TreeNodeAdv node)
+		|        {
+		|            ComboBox comboBox = new ComboBox();
+		|            if (DropDownItems != null)
+		|            {
+		|                comboBox.Items.AddRange(DropDownItems.ToArray());
+		|            }
+		|            comboBox.SelectedItem = GetValue(node);
+		|            comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+		|            comboBox.DropDownClosed += new EventHandler(EditorDropDownClosed);
+		|            SetEditControlProperties(comboBox, node);
+		|            return comboBox;
+		|        }
+		|
+		|        private Control CreateCheckedListBox(TreeNodeAdv node)
+		|        {
+		|            CheckedListBox listBox = new CheckedListBox();
+		|            listBox.CheckOnClick = true;
+		|
+		|            object value = GetValue(node);
+		|            Type enumType = GetEnumType(node);
+		|            foreach (object obj in Enum.GetValues(enumType))
+		|            {
+		|                object[] attributes = enumType.GetField(obj.ToString()).GetCustomAttributes(typeof(BrowsableAttribute), false);
+		|                if (attributes.Length == 0 || ((BrowsableAttribute)attributes[0]).Browsable)
+		|                {
+		|                    listBox.Items.Add(obj, IsContain(value, obj));
+		|                }
+		|            }
+		|
+		|            SetEditControlProperties(listBox, node);
+		|            if (CreatingEditor != null)
+		|            {
+		|                CreatingEditor(this, new EditEventArgs(node, listBox));
+		|            }
+		|            return listBox;
+		|        }
+		|
+		|        protected virtual Type GetEnumType(TreeNodeAdv node)
+		|        {
+		|            object value = GetValue(node);
+		|            return value.GetType();
+		|        }
+		|
+		|        private bool IsContain(object value, object enumElement)
+		|        {
+		|            if (value == null || enumElement == null)
+		|            {
+		|                return false;
+		|            }
+		|            if (value.GetType().IsEnum)
+		|            {
+		|                int i1 = (int)value;
+		|                int i2 = (int)enumElement;
+		|                return (i1 & i2) == i2;
+		|            }
+		|            else
+		|            {
+		|                var arr = value as object[];
+		|                foreach (object obj in arr)
+		|                {
+		|                    if ((int)obj == (int)enumElement)
+		|                    {
+		|                        return true;
+		|                    }
+		|                }
+		|                return false;
+		|            }
+		|        }
+		|
+		|        protected override string FormatLabel(object obj)
+		|        {
+		|            var arr = obj as object[];
+		|            if (arr != null)
+		|            {
+		|                StringBuilder sb = new StringBuilder();
+		|                foreach (object t in arr)
+		|                {
+		|                    if (sb.Length > 0)
+		|                    {
+		|                        sb.Append("", "");
+		|                    }
+		|                    sb.Append(t);
+		|                }
+		|                return sb.ToString();
+		|            }
+		|            else
+		|            {
+		|                return base.FormatLabel(obj);
+		|            }
+		|        }
+		|
+		|        void EditorDropDownClosed(object sender, EventArgs e)
+		|        {
+		|            EndEdit(true);
+		|        }
+		|
+		|        public override void UpdateEditor(Control control)
+		|        {
+		|            if (control is ComboBox)
+		|            {
+		|                (control as ComboBox).DroppedDown = true;
+		|            }
+		|        }
+		|
+		|        protected override void DoApplyChanges(TreeNodeAdv node, Control editor)
+		|        {
+		|            if (currentValue.Key == null)
+		|            {
+		|                return;
+		|            }
+		|            var combo = editor as ComboBox;
+		|            if (combo != null)
+		|            {
+		|                if (combo.DropDownStyle == ComboBoxStyle.DropDown)
+		|                {
+		|                    //SetValue(node, combo.Text);
+		|                    object label = (object)combo.Text;
+		|                    object oldLabel = ((Node)node.Tag).GetControlValue(this);
+		|                    ((Node)node.Tag).SetControlValue(this, (object)combo.Text);
+		|                    OnLabelChanged(this, oldLabel, label);
+		|                }
+		|                else
+		|                {
+		|                    //SetValue(node, combo.SelectedItem);
+		|                    object label = (object)combo.SelectedItem;
+		|                    object oldLabel = ((Node)node.Tag).GetControlValue(this);
+		|                    ((Node)node.Tag).SetControlValue(this, (object)combo.SelectedItem);
+		|                    OnLabelChanged(this, oldLabel, label);
+		|                }
+		|            }
+		|            else
+		|            {
+		|                var listBox = editor as CheckedListBox;
+		|                Type type = GetEnumType(node);
+		|                if (IsFlags(type))
+		|                {
+		|                    int res = 0;
+		|                    foreach (object obj in listBox.CheckedItems)
+		|                    {
+		|                        res |= (int)obj;
+		|                    }
+		|                    object val = Enum.ToObject(type, res);
+		|                    SetValue(node, val);
+		|                }
+		|                else
+		|                {
+		|                    List<object> list = new List<object>();
+		|                    foreach (object obj in listBox.CheckedItems)
+		|                    {
+		|                        list.Add(obj);
+		|                    }
+		|                    SetValue(node, list.ToArray());
+		|                }
+		|            }
+		|        }
+		|
+		|        private bool IsFlags(Type type)
+		|        {
+		|            object[] atr = type.GetCustomAttributes(typeof(FlagsAttribute), false);
+		|            return atr.Length == 1;
+		|        }
+		|
+		|        public override void MouseUp(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            if (args.Node != null && args.Node.IsSelected)
+		|            {
+		|                // Обходной путь для определенного поведения элемента управления ComboBox.
+		|                base.MouseUp(args);
+		|            }
+		|        }
+		|		
+		|        protected void OnLabelChanged(object subject, object oldLabel, object newLabel)
+		|        {
+		|            if (LabelChanged != null)
+		|            {
+		|                LabelChanged(this, new LabelEventArgs(subject, oldLabel, newLabel));
+		|            }
+		|        }
+		|    }
+		|}
+		|
+		|namespace osf
+		|{
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "NodeDecimalTextBox" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace Aga.Controls.Tree.NodeControls
+		|{
+		|    public class NodeDecimalTextBox : NodeTextBox
+		|    {
+		|        private bool _allowDecimalSeparator = true;
+		|        private bool _allowNegativeSign = true;
+		|        private string _customFormat = ""G"";
+		|        public new osf.ClNodeDecimalTextBox dll_obj;
+		|        public new string ValueChanged;
+		|        public new event EventHandler<LabelEventArgs> LabelChanged;
+		|
+		|        public NodeDecimalTextBox()
+		|        {
+		|            this.LabelChanged += NodeDecimalTextBox_LabelChanged;
+		|            ValueChanged = """";
+		|        }
+		|		
+		|        private void NodeDecimalTextBox_LabelChanged(object sender, LabelEventArgs e)
+		|        {
+		|            if (ValueChanged.Length > 0)
+		|            {
+		|                osf.ValueTreeViewAdvEventArgs ValueTreeViewAdvEventArgs1 = new osf.ValueTreeViewAdvEventArgs(this, e.OldLabel, e.NewLabel);
+		|                ValueTreeViewAdvEventArgs1.EventString = ValueChanged;
+		|                ValueTreeViewAdvEventArgs1.Sender = ((dynamic)sender).dll_obj;
+		|                ValueTreeViewAdvEventArgs1.Parameter = osf.OneScriptForms.GetEventParameter(((dynamic)sender).dll_obj.ValueChanged);
+		|                osf.ClValueTreeViewAdvEventArgs ClValueTreeViewAdvEventArgs1 = new osf.ClValueTreeViewAdvEventArgs(ValueTreeViewAdvEventArgs1);
+		|                osf.OneScriptForms.Event = ClValueTreeViewAdvEventArgs1;
+		|                osf.OneScriptForms.ExecuteEvent(((dynamic)sender).dll_obj.ValueChanged);
+		|            }
+		|        }
+		|
+		|        public bool AllowDecimalSeparator
+		|        {
+		|            get { return _allowDecimalSeparator; }
+		|            set { _allowDecimalSeparator = value; }
+		|        }
+		|
+		|        public bool AllowNegativeSign
+		|        {
+		|            get { return _allowNegativeSign; }
+		|            set { _allowNegativeSign = value; }
+		|        }
+		|
+		|        protected new NumericTextBox CreateTextBox()
+		|        {
+		|            NumericTextBox textBox = new NumericTextBox();
+		|            textBox.AllowDecimalSeparator = AllowDecimalSeparator;
+		|            textBox.AllowNegativeSign = AllowNegativeSign;
+		|            return textBox;
+		|        }
+		|		
+		|        protected override Control CreateEditor(TreeNodeAdv node)
+		|        {
+		|            NumericTextBox textBox = CreateTextBox();
+		|            textBox.TextAlign = TextAlign;
+		|            textBox.Text = GetLabel(node);
+		|            textBox.BorderStyle = BorderStyle.FixedSingle;
+		|            textBox.TextChanged += EditorTextChanged;
+		|            textBox.KeyDown += EditorKeyDown;
+		|            try
+		|            {
+		|                ScriptEngine.Machine.Values.NumberValue NumberValue1 = (ScriptEngine.Machine.Values.NumberValue)((Node)node.Tag).GetControlValue(this);
+		|                textBox.DecimalValue = (decimal)NumberValue1.AsNumber();
+		|            }
+		|            catch
+		|            {
+		|                textBox.DecimalValue = (decimal)((Node)node.Tag).GetControlValue(this);
+		|            }
+		|            SetEditControlProperties(textBox, node);
+		|            return textBox;
+		|        }
+		|		
+		|        protected override void DisposeEditor(Control editor)
+		|        {
+		|            var textBox = editor as NumericTextBox;
+		|            textBox.TextChanged -= EditorTextChanged;
+		|            textBox.KeyDown -= EditorKeyDown;
+		|        }
+		|		
+		|        private void EditorKeyDown(object sender, KeyEventArgs e)
+		|        {
+		|            if (e.KeyCode == Keys.Escape)
+		|            {
+		|                EndEdit(false);
+		|            }
+		|            else if (e.KeyCode == Keys.Enter)
+		|            {
+		|                EndEdit(true);
+		|            }
+		|        }
+		|
+		|        private void EditorTextChanged(object sender, EventArgs e)
+		|        {
+		|            Parent.UpdateEditorBounds();
+		|        }
+		|
+		|        protected override void DoApplyChanges(TreeNodeAdv node, Control editor)
+		|        {
+		|            //SetValue(node, (editor as NumericTextBox).DecimalValue);
+		|            object label = (editor as NumericTextBox).DecimalValue;
+		|            object oldLabel = ((Node)node.Tag).GetControlValue(this);
+		|            ((Node)node.Tag).dll_obj.SetControlValue(this.dll_obj, (dynamic)label);
+		|            OnLabelChanged(this, oldLabel, label);
+		|        }
+		|		
+		|        public string CustomFormat
+		|        {
+		|            get { return _customFormat; }
+		|            set { _customFormat = value; }
+		|        }
+		|		
+		|        protected new void OnLabelChanged(object subject, object oldLabel, object newLabel)
+		|        {
+		|            if (LabelChanged != null)
+		|            {
+		|                LabelChanged(this, new LabelEventArgs(subject, oldLabel, newLabel));
+		|            }
+		|        }
+		|    }
+		|}
+		|
+		|namespace osf
+		|{
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "NodeNumericUpDown" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace Aga.Controls.Tree.NodeControls
+		|{
+		|    public class NodeNumericUpDown : BaseTextControl
+		|    {
+		|        private int _editorWidth = 100;
+		|        private int _decimalPlaces = 0;
+		|        private decimal _increment = 1;
+		|        private decimal _minimum = 0;
+		|        private decimal _maximum = 100;
+		|        public osf.ClNodeNumericUpDown dll_obj;
+		|        public string ValueChanged;
+		|        public event EventHandler<LabelEventArgs> LabelChanged;
+		|
+		|        public NodeNumericUpDown()
+		|        {
+		|            this.LabelChanged += NodeNumericUpDown_LabelChanged;
+		|            ValueChanged = """";
+		|        }
+		|		
+		|        // Здесь по клавише F2, нажатию ENTER вызывается редактирование элемента узла.
+		|        public override void KeyDown(KeyEventArgs args)
+		|        {
+		|            osf.TreeViewAdv treeViewAdv = ((osf.TreeViewAdvEx)this.Parent).M_Object;
+		|            var currentControl = treeViewAdv.CurrentControl;
+		|            var currentControlValue = currentControl.Value;
+		|            if ((args.KeyCode == Keys.F2 || args.KeyCode == Keys.Enter) && Parent.CurrentNode != null && EditEnabled && currentControlValue == this)
+		|            {
+		|                args.Handled = true;
+		|                BeginEdit();
+		|            }
+		|        }
+		|		
+		|        private void NodeNumericUpDown_LabelChanged(object sender, LabelEventArgs e)
+		|        {
+		|            if (ValueChanged.Length > 0)
+		|            {
+		|                osf.ValueTreeViewAdvEventArgs ValueTreeViewAdvEventArgs1 = new osf.ValueTreeViewAdvEventArgs(this, e.OldLabel, e.NewLabel);
+		|                ValueTreeViewAdvEventArgs1.EventString = ValueChanged;
+		|                ValueTreeViewAdvEventArgs1.Sender = ((dynamic)sender).dll_obj;
+		|                ValueTreeViewAdvEventArgs1.Parameter = osf.OneScriptForms.GetEventParameter(((dynamic)sender).dll_obj.ValueChanged);
+		|                osf.ClValueTreeViewAdvEventArgs ClValueTreeViewAdvEventArgs1 = new osf.ClValueTreeViewAdvEventArgs(ValueTreeViewAdvEventArgs1);
+		|                osf.OneScriptForms.Event = ClValueTreeViewAdvEventArgs1;
+		|                osf.OneScriptForms.ExecuteEvent(((dynamic)sender).dll_obj.ValueChanged);
+		|            }
+		|        }
+		|
+		|        public int EditorWidth
+		|        {
+		|            get { return _editorWidth; }
+		|            set { _editorWidth = value; }
+		|        }
+		|
+		|        public int DecimalPlaces
+		|        {
+		|            get { return this._decimalPlaces; }
+		|            set { this._decimalPlaces = value; }
+		|        }
+		|
+		|        public decimal Increment
+		|        {
+		|            get { return this._increment; }
+		|            set { this._increment = value; }
+		|        }
+		|
+		|        public decimal Minimum
+		|        {
+		|            get { return _minimum; }
+		|            set { _minimum = value; }
+		|        }
+		|
+		|        public decimal Maximum
+		|        {
+		|            get { return this._maximum; }
+		|            set { this._maximum = value; }
+		|        }
+		|
+		|        protected override Size CalculateEditorSize(EditorContext context)
+		|        {
+		|            if (Parent.UseColumns)
+		|            {
+		|                return context.Bounds.Size;
+		|            }
+		|            else
+		|            {
+		|                return new Size(EditorWidth, context.Bounds.Height);
+		|            }
+		|        }
+		|
+		|        protected override Control CreateEditor(TreeNodeAdv node)
+		|        {
+		|            NumericUpDown num = new NumericUpDown();
+		|            num.Increment = Increment;
+		|            num.DecimalPlaces = DecimalPlaces;
+		|            num.Minimum = Minimum;
+		|            num.Maximum = Maximum;
+		|            num.KeyDown += EditorKeyDown;
+		|            try
+		|            {
+		|                ScriptEngine.Machine.Values.NumberValue NumberValue1 = (ScriptEngine.Machine.Values.NumberValue)((Node)node.Tag).GetControlValue(this);
+		|                num.Value = (decimal)NumberValue1.AsNumber();
+		|            }
+		|            catch
+		|            {
+		|                num.Value = num.Minimum;
+		|            }
+		|            SetEditControlProperties(num, node);
+		|            return num;
+		|        }
+		|
+		|        protected override void DisposeEditor(Control editor)
+		|        {
+		|            var c = editor as Control;
+		|            c.KeyDown -= EditorKeyDown;
+		|        }
+		|
+		|        private void EditorKeyDown(object sender, KeyEventArgs e)
+		|        {
+		|            if (e.KeyCode == Keys.Escape)
+		|            {
+		|                EndEdit(false);
+		|            }
+		|            else if (e.KeyCode == Keys.Enter)
+		|            {
+		|                EndEdit(true);
+		|            }
+		|        }
+		|
+		|        protected override void DoApplyChanges(TreeNodeAdv node, Control editor)
+		|        {
+		|            //SetValue(node, (editor as NumericUpDown).Value);
+		|            object label = (editor as NumericUpDown).Value;
+		|            object oldLabel = ((Node)node.Tag).GetControlValue(this);
+		|            ((Node)node.Tag).dll_obj.SetControlValue(this.dll_obj, (dynamic)label);
+		|            OnLabelChanged(this, oldLabel, label);
+		|        }
+		|		
+		|        protected void OnLabelChanged(object subject, object oldLabel, object newLabel)
+		|        {
+		|            if (LabelChanged != null)
+		|            {
+		|                LabelChanged(this, new LabelEventArgs(subject, oldLabel, newLabel));
+		|            }
+		|        }
+		|    }
+		|}
+		|
+		|namespace osf
+		|{
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "NodeTextBox" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace Aga.Controls.Tree.NodeControls
+		|{
+		|    public class NodeTextBox : BaseTextControl
+		|    {
+		|        private const int MinTextBoxWidth = 30;
+		|        private string _label;
+		|        public event EventHandler<LabelEventArgs> LabelChanged;
+		|        public osf.ClNodeTextBox dll_obj;
+		|        public string ValueChanged;
+		|
+		|        public NodeTextBox()
+		|        {
+		|            this.LabelChanged += NodeTextBox_LabelChanged;
+		|            ValueChanged = """";
+		|        }
+		|		
+		|        private void NodeTextBox_LabelChanged(object sender, LabelEventArgs e)
+		|        {
+		|            if (ValueChanged.Length > 0)
+		|            {
+		|                osf.ValueTreeViewAdvEventArgs ValueTreeViewAdvEventArgs1 = new osf.ValueTreeViewAdvEventArgs(this, e.OldLabel, e.NewLabel);
+		|                ValueTreeViewAdvEventArgs1.EventString = ValueChanged;
+		|                ValueTreeViewAdvEventArgs1.Sender = ((dynamic)sender).dll_obj;
+		|                ValueTreeViewAdvEventArgs1.Parameter = osf.OneScriptForms.GetEventParameter(((dynamic)sender).dll_obj.ValueChanged);
+		|                osf.ClValueTreeViewAdvEventArgs ClValueTreeViewAdvEventArgs1 = new osf.ClValueTreeViewAdvEventArgs(ValueTreeViewAdvEventArgs1);
+		|                osf.OneScriptForms.Event = ClValueTreeViewAdvEventArgs1;
+		|                osf.OneScriptForms.ExecuteEvent(((dynamic)sender).dll_obj.ValueChanged);
+		|            }
+		|        }
+		|
+		|        protected override Size CalculateEditorSize(EditorContext context)
+		|        {
+		|            if (Parent.UseColumns)
+		|            {
+		|                return context.Bounds.Size;
+		|            }
+		|            else
+		|            {
+		|                Size size = GetLabelSize(context.CurrentNode, context.DrawContext, _label);
+		|                int width = Math.Max(size.Width + Font.Height, MinTextBoxWidth); // Зарезервируйте место для нового введенного символа.
+		|                return new Size(width, size.Height);
+		|            }
+		|        }
+		|
+		|        // Здесь по клавише F2, нажатию ENTER вызывается редактирование элемента узла.
+		|        public override void KeyDown(KeyEventArgs args)
+		|        {
+		|            osf.TreeViewAdv treeViewAdv = ((osf.TreeViewAdvEx)this.Parent).M_Object;
+		|            var currentControl = treeViewAdv.CurrentControl;
+		|            var currentControlValue = currentControl.Value;
+		|            if ((args.KeyCode == Keys.F2 || args.KeyCode == Keys.Enter) && Parent.CurrentNode != null && EditEnabled && currentControlValue == this)
+		|            {
+		|                args.Handled = true;
+		|                BeginEdit();
+		|            }
+		|        }
+		|
+		|        protected override Control CreateEditor(TreeNodeAdv node)
+		|        {
+		|            TextBox textBox = CreateTextBox();
+		|            textBox.TextAlign = TextAlign;
+		|            textBox.Text = GetLabel(node);
+		|            textBox.BorderStyle = BorderStyle.FixedSingle;
+		|            textBox.TextChanged += EditorTextChanged;
+		|            textBox.KeyDown += EditorKeyDown;
+		|            _label = textBox.Text;
+		|            try
+		|            {
+		|                ScriptEngine.Machine.Values.StringValue StringValue1 = (ScriptEngine.Machine.Values.StringValue)((Node)node.Tag).GetControlValue(this);
+		|                textBox.Text = (string)StringValue1.AsString();
+		|            }
+		|            catch
+		|            {
+		|                textBox.Text = (string)((Node)node.Tag).GetControlValue(this);
+		|            }
+		|            SetEditControlProperties(textBox, node);
+		|            return textBox;
+		|        }
+		|
+		|        protected virtual TextBox CreateTextBox()
+		|        {
+		|            return new TextBox();
+		|        }
+		|
+		|        protected override void DisposeEditor(Control editor)
+		|        {
+		|            var textBox = editor as TextBox;
+		|            textBox.TextChanged -= EditorTextChanged;
+		|            textBox.KeyDown -= EditorKeyDown;
+		|        }
+		|
+		|        private void EditorKeyDown(object sender, KeyEventArgs e)
+		|        {
+		|            if (e.KeyCode == Keys.Escape)
+		|            {
+		|                EndEdit(false);
+		|            }
+		|            else if (e.KeyCode == Keys.Enter)
+		|            {
+		|                EndEdit(true);
+		|            }
+		|        }
+		|
+		|        private void EditorTextChanged(object sender, EventArgs e)
+		|        {
+		|            var textBox = sender as TextBox;
+		|            _label = textBox.Text;
+		|            Parent.UpdateEditorBounds();
+		|        }
+		|
+		|        protected override void DoApplyChanges(TreeNodeAdv node, Control editor)
+		|        {
+		|            object label = (editor as TextBox).Text;
+		|            object oldLabel = ((Node)node.Tag).GetControlValue(this);
+		|            if (oldLabel != label)
+		|            {
+		|                //SetLabel(node, label);
+		|                ((Node)node.Tag).dll_obj.SetControlValue(this.dll_obj, (dynamic)label);
+		|                OnLabelChanged(this, oldLabel, label);
+		|            }
+		|        }
+		|
+		|        public override void Cut(Control control)
+		|        {
+		|            (control as TextBox).Cut();
+		|        }
+		|
+		|        public override void Copy(Control control)
+		|        {
+		|            (control as TextBox).Copy();
+		|        }
+		|
+		|        public override void Paste(Control control)
+		|        {
+		|            (control as TextBox).Paste();
+		|        }
+		|
+		|        public override void Delete(Control control)
+		|        {
+		|            var textBox = control as TextBox;
+		|            int len = Math.Max(textBox.SelectionLength, 1);
+		|            if (textBox.SelectionStart < textBox.Text.Length)
+		|            {
+		|                int start = textBox.SelectionStart;
+		|                textBox.Text = textBox.Text.Remove(textBox.SelectionStart, len);
+		|                textBox.SelectionStart = start;
+		|            }
+		|        }
+		|
+		|        protected void OnLabelChanged(object subject, object oldLabel, object newLabel)
+		|        {
+		|            if (LabelChanged != null)
+		|            {
+		|                LabelChanged(this, new LabelEventArgs(subject, oldLabel, newLabel));
+		|            }
+		|        }
+		|    }
+		|}
+		|
+		|namespace osf
+		|{
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "TreeViewAdvSupport" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"    #region Aga.Controls.Threading
+		|
+		|namespace Aga.Controls.Threading
+		|{
+		|    public class AbortableThreadPool
+		|    {
+		|        private LinkedList<WorkItem> _callbacks = new LinkedList<WorkItem>();
+		|        private Dictionary<WorkItem, Thread> _threads = new Dictionary<WorkItem, Thread>();
+		|
+		|        public WorkItem QueueUserWorkItem(WaitCallback callback)
+		|        {
+		|            return QueueUserWorkItem(callback, null);
+		|        }
+		|
+		|        public WorkItem QueueUserWorkItem(WaitCallback callback, object state)
+		|        {
+		|            if (callback == null)
+		|            {
+		|                throw new ArgumentNullException(""callback"");
+		|            }
+		|
+		|            WorkItem item = new WorkItem(callback, state, ExecutionContext.Capture());
+		|            lock (_callbacks)
+		|            {
+		|                _callbacks.AddLast(item);
+		|            }
+		|            ThreadPool.QueueUserWorkItem(new WaitCallback(HandleItem));
+		|            return item;
+		|        }
+		|
+		|        private void HandleItem(object ignored)
+		|        {
+		|            WorkItem item = null;
+		|            try
+		|            {
+		|                lock (_callbacks)
+		|                {
+		|                    if (_callbacks.Count > 0)
+		|                    {
+		|                        item = _callbacks.First.Value;
+		|                        _callbacks.RemoveFirst();
+		|                    }
+		|                    if (item == null)
+		|                    {
+		|                        return;
+		|                    }
+		|                    _threads.Add(item, Thread.CurrentThread);
+		|                }
+		|                ExecutionContext.Run(item.Context, delegate { item.Callback(item.State); }, null);
+		|            }
+		|            finally
+		|            {
+		|                lock (_callbacks)
+		|                {
+		|                    if (item != null)
+		|                    {
+		|                        _threads.Remove(item);
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        public bool IsMyThread(Thread thread)
+		|        {
+		|            lock (_callbacks)
+		|            {
+		|                foreach (Thread t in _threads.Values)
+		|                {
+		|                    if (t == thread)
+		|                    {
+		|                        return true;
+		|                    }
+		|                }
+		|                return false;
+		|            }
+		|        }
+		|
+		|        public WorkItemStatus Cancel(WorkItem item, bool allowAbort)
+		|        {
+		|            if (item == null)
+		|            {
+		|                throw new ArgumentNullException(""item"");
+		|            }
+		|            lock (_callbacks)
+		|            {
+		|                LinkedListNode<WorkItem> node = _callbacks.Find(item);
+		|                if (node != null)
+		|                {
+		|                    _callbacks.Remove(node);
+		|                    return WorkItemStatus.Queued;
+		|                }
+		|                else if (_threads.ContainsKey(item))
+		|                {
+		|                    if (allowAbort)
+		|                    {
+		|                        _threads[item].Abort();
+		|                        _threads.Remove(item);
+		|                        return WorkItemStatus.Aborted;
+		|                    }
+		|                    else
+		|                    {
+		|                        return WorkItemStatus.Executing;
+		|                    }
+		|                }
+		|                else
+		|                {
+		|                    return WorkItemStatus.Completed;
+		|                }
+		|            }
+		|        }
+		|
+		|        public void CancelAll(bool allowAbort)
+		|        {
+		|            lock (_callbacks)
+		|            {
+		|                _callbacks.Clear();
+		|                if (allowAbort)
+		|                {
+		|                    foreach (Thread t in _threads.Values)
+		|                    {
+		|                        t.Abort();
+		|                    }
+		|                }
+		|            }
+		|        }
+		|    }
+		|
+		|    public sealed class WorkItem
+		|    {
+		|        internal WorkItem(WaitCallback wc, object state, ExecutionContext ctx)
+		|        {
+		|            _callback = wc;
+		|            _state = state;
+		|            _ctx = ctx;
+		|        }
+		|
+		|        private WaitCallback _callback;
+		|        internal WaitCallback Callback
+		|        {
+		|            get { return _callback; }
+		|        }
+		|
+		|        private object _state;
+		|        internal object State
+		|        {
+		|            get { return _state; }
+		|        }
+		|
+		|        private ExecutionContext _ctx;
+		|        internal ExecutionContext Context
+		|        {
+		|            get { return _ctx; }
+		|        }
+		|    }
+		|
+		|    public enum WorkItemStatus
+		|    {
+		|        Completed,
+		|        Queued,
+		|        Executing,
+		|        Aborted
+		|    }
+		|}
+		|
+		|    #endregion Aga.Controls.Threading
+		|
+		|    #region Aga.Controls
+		|
+		|namespace Aga.Controls
+		|{
+		|    public static class BitmapHelper
+		|    {
+		|        [StructLayout(LayoutKind.Sequential)]
+		|        private struct PixelData
+		|        {
+		|            public byte B;
+		|            public byte G;
+		|            public byte R;
+		|            public byte A;
+		|        }
+		|
+		|        public static void SetAlphaChanelValue(Bitmap image, byte value)
+		|        {
+		|            if (image == null)
+		|            {
+		|                throw new ArgumentNullException(""image"");
+		|            }
+		|            if (image.PixelFormat != PixelFormat.Format32bppArgb)
+		|            {
+		|                throw new ArgumentException(""Wrong PixelFormat"");
+		|            }
+		|
+		|            BitmapData bitmapData = image.LockBits(new Rectangle(0, 0, image.Width, image.Height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
+		|            unsafe
+		|            {
+		|                PixelData* pPixel = (PixelData*)bitmapData.Scan0;
+		|                for (int i = 0; i < bitmapData.Height; i++)
+		|                {
+		|                    for (int j = 0; j < bitmapData.Width; j++)
+		|                    {
+		|                        pPixel->A = value;
+		|                        pPixel++;
+		|                    }
+		|                    pPixel += bitmapData.Stride - (bitmapData.Width * 4);
+		|                }
+		|            }
+		|            image.UnlockBits(bitmapData);
+		|        }
+		|    }
+		|
+		|    //#region Java Info
+		|    ///**
+		|    // * Класс GifDecoder - Декодирует GIF-файл в один или несколько кадров.
+		|    // * <br><pre>
+		|    // * Example:
+		|    // *    GifDecoder d = new GifDecoder();
+		|    // *    d.read(""sample.gif"");
+		|    // *    int n = d.getFrameCount();
+		|    // *    for (int i = 0; i < n; i++) {
+		|    // *       BufferedImage frame = d.getFrame(i);  // frame i
+		|    // *       int t = d.getDelay(i);  // display duration of frame in milliseconds
+		|    // *       // do something with frame
+		|    // *    }
+		|    // * </pre>
+		|    // * No copyright asserted on the source code of this class.  May be used for
+		|    // * any purpose, however, refer to the Unisys LZW patent for any additional
+		|    // * restrictions.  Please forward any corrections to kweiner@fmsware.com.
+		|    // *
+		|    // * @author Kevin Weiner, FM Software; LZW decoder adapted from John Cristy's ImageMagick.
+		|    // * @version 1.03 November 2003
+		|    // *
+		|    // */
+		|    //#endregion
+		|    public class GifFrame
+		|    {
+		|        private Image _image;
+		|        public Image Image
+		|        {
+		|            get { return _image; }
+		|        }
+		|
+		|        private int _delay;
+		|        public int Delay
+		|        {
+		|            get { return _delay; }
+		|        }
+		|
+		|        public GifFrame(Image im, int del)
+		|        {
+		|            _image = im;
+		|            _delay = del;
+		|        }
+		|    }
+		|
+		|    public class GifDecoder
+		|    {
+		|        public const int StatusOK = 0; // Статус чтения файла: Ошибок нет.
+		|        public const int StatusFormatError = 1; // Статус чтения файла: Ошибка декодирования файла (может быть частично декодирован).
+		|        public const int StatusOpenError = 2; // Невозможно открыть исходный код.
+		|
+		|        private Stream inStream;
+		|        private int status;
+		|
+		|        private int width; // Полная ширина изображения.
+		|        private int height; // Полная высота изображения.
+		|        private bool gctFlag; // Используемая глобальная таблица цветов.
+		|        private int gctSize; // Размер глобальной таблицы цветов.
+		|        private int loopCount = 1; // Итерации; 0 = повторять вечно.
+		|
+		|        private int[] gct; // Глобальная таблица цветов.
+		|        private int[] lct; // Локальная таблица  цветов.
+		|        private int[] act; // Активная таблица цветов.
+		|
+		|        private int bgIndex; // Индекс цвета фона.
+		|        private int bgColor; // Цвет фона.
+		|        private int lastBgColor; // Предыдущий цвет bg.
+		|        private int pixelAspect; // Соотношение сторон в пикселях.
+		|
+		|        private bool lctFlag; // Флаг локальной таблицы цветов.
+		|        private bool interlace; // Флаг чересстрочной развертки.
+		|        private int lctSize; // Размер локальной таблицы цветов.
+		|
+		|        private int ix, iy, iw, ih; // Прямоугольник текущего изображения.
+		|        private Rectangle lastRect; // Последний прямоугольник изображения.
+		|        private Image image; // Текущий кадр.
+		|        private Bitmap bitmap;
+		|        private Image lastImage; // Предыдущий кадр.
+		|
+		|        private byte[] block = new byte[256]; // Текущий блок данных.
+		|        private int blockSize = 0; // Размер блока.
+		|
+		|        // Последняя информация о расширении графического элемента управления.
+		|        private int dispose = 0;
+		|        // 0=no action; 1=leave in place; 2=restore to bg; 3=restore to prev
+		|        private int lastDispose = 0;
+		|        private bool transparency = false; // Используйте прозрачный цвет.
+		|        private int delay = 0; // Задержка в миллисекундах.
+		|        private int transIndex; // Индекс прозрачного цвета.
+		|
+		|        private const int MaxStackSize = 4096;
+		|        // Максимальный размер стека пикселей декодера.
+		|
+		|        // LZW рабочий массив декодера.
+		|        private short[] prefix;
+		|        private byte[] suffix;
+		|        private byte[] pixelStack;
+		|        private byte[] pixels;
+		|
+		|        private ArrayList frames; // Кадры, считанные из текущего файла.
+		|        private int frameCount;
+		|        private bool _makeTransparent;
+		|
+		|        /**
+		|		 * Gets the number of frames read from file.
+		|		 * @return frame count
+		|		 */
+		|        public int FrameCount
+		|        {
+		|            get { return frameCount; }
+		|        }
+		|
+		|        /**
+		|		 * Gets the first (or only) image read.
+		|		 *
+		|		 * @return BufferedImage containing first frame, or null if none.
+		|		 */
+		|        public Image Image
+		|        {
+		|            get { return GetFrame(0).Image; }
+		|        }
+		|
+		|        /**
+		|		 * Получает количество итераций ""Netscape"", если таковые имеются.
+		|		 * Значение 0 означает повторение до бесконечности.
+		|		 *
+		|		 * @return количество итераций, если была указана одна, в противном случае 1.
+		|		 */
+		|        public int LoopCount
+		|        {
+		|            get { return loopCount; }
+		|        }
+		|
+		|        public GifDecoder(Stream stream, bool makeTransparent)
+		|        {
+		|            _makeTransparent = makeTransparent;
+		|            if (Read(stream) != 0)
+		|            {
+		|                throw new InvalidOperationException();
+		|            }
+		|        }
+		|
+		|        /**
+		|		 * Создает новое изображение кадра из текущих данных (и предыдущих кадров, как указано в их кодах расположения).
+		|		 */
+		|        private int[] GetPixels(Bitmap bitmap)
+		|        {
+		|            int[] pixels = new int[3 * image.Width * image.Height];
+		|            int count = 0;
+		|            for (int th = 0; th < image.Height; th++)
+		|            {
+		|                for (int tw = 0; tw < image.Width; tw++)
+		|                {
+		|                    Color color = bitmap.GetPixel(tw, th);
+		|                    pixels[count] = color.R;
+		|                    count++;
+		|                    pixels[count] = color.G;
+		|                    count++;
+		|                    pixels[count] = color.B;
+		|                    count++;
+		|                }
+		|            }
+		|            return pixels;
+		|        }
+		|
+		|        private void SetPixels(int[] pixels)
+		|        {
+		|            int count = 0;
+		|            for (int th = 0; th < image.Height; th++)
+		|            {
+		|                for (int tw = 0; tw < image.Width; tw++)
+		|                {
+		|                    Color color = Color.FromArgb(pixels[count++]);
+		|                    bitmap.SetPixel(tw, th, color);
+		|                }
+		|            }
+		|            if (_makeTransparent)
+		|            {
+		|                bitmap.MakeTransparent(bitmap.GetPixel(0, 0));
+		|            }
+		|        }
+		|
+		|        private void SetPixels()
+		|        {
+		|            // Выставлять пиксели целевого изображения в виде массива int.
+		|            //		int[] dest =
+		|            //			(( int ) image.getRaster().getDataBuffer()).getData();
+		|            int[] dest = GetPixels(bitmap);
+		|
+		|            // Заполните начальное содержимое изображения на основе кода удаления последнего изображения.
+		|            if (lastDispose > 0)
+		|            {
+		|                if (lastDispose == 3)
+		|                {
+		|                    // Используйте изображение перед последним.
+		|                    int n = frameCount - 2;
+		|                    if (n > 0)
+		|                    {
+		|                        lastImage = GetFrame(n - 1).Image;
+		|                    }
+		|                    else
+		|                    {
+		|                        lastImage = null;
+		|                    }
+		|                }
+		|
+		|                if (lastImage != null)
+		|                {
+		|                    //				int[] prev =
+		|                    //					((DataBufferInt) lastImage.getRaster().getDataBuffer()).getData();
+		|                    int[] prev = GetPixels(new Bitmap(lastImage));
+		|                    Array.Copy(prev, 0, dest, 0, width * height);
+		|                    // Копирование пикселей.
+		|
+		|                    if (lastDispose == 2)
+		|                    {
+		|                        // Заполните прямоугольную область последнего изображения фоновым цветом/
+		|                        Graphics g = Graphics.FromImage(image);
+		|                        Color c = Color.Empty;
+		|                        if (transparency)
+		|                        {
+		|                            c = Color.FromArgb(0, 0, 0, 0); // Предположим, что фон прозрачный.
+		|                        }
+		|                        else
+		|                        {
+		|                            c = Color.FromArgb(lastBgColor);
+		|                            // c = new Color(lastBgColor); // use given background color
+		|                        }
+		|                        Brush brush = new SolidBrush(c);
+		|                        g.FillRectangle(brush, lastRect);
+		|                        brush.Dispose();
+		|                        g.Dispose();
+		|                    }
+		|                }
+		|            }
+		|
+		|            // Скопируйте каждую исходную строку в соответствующее место в пункте назначения.
+		|            int pass = 1;
+		|            int inc = 8;
+		|            int iline = 0;
+		|            for (int i = 0; i < ih; i++)
+		|            {
+		|                int line = i;
+		|                if (interlace)
+		|                {
+		|                    if (iline >= ih)
+		|                    {
+		|                        pass++;
+		|                        switch (pass)
+		|                        {
+		|                            case 2:
+		|                                iline = 4;
+		|                                break;
+		|                            case 3:
+		|                                iline = 2;
+		|                                inc = 4;
+		|                                break;
+		|                            case 4:
+		|                                iline = 1;
+		|                                inc = 2;
+		|                                break;
+		|                        }
+		|                    }
+		|                    line = iline;
+		|                    iline += inc;
+		|                }
+		|                line += iy;
+		|                if (line < height)
+		|                {
+		|                    int k = line * width;
+		|                    int dx = k + ix; // Начало строки в dest.
+		|                    int dlim = dx + iw; // Конец строки dest.
+		|                    if ((k + width) < dlim)
+		|                    {
+		|                        dlim = k + width; // Последний в dest.
+		|                    }
+		|                    int sx = i * iw; // Начало строки в источнике.
+		|                    while (dx < dlim)
+		|                    {
+		|                        // Цвет карты и вставка в пункт назначения.
+		|                        int index = ((int)pixels[sx++]) & 0xff;
+		|                        int c = act[index];
+		|                        if (c != 0)
+		|                        {
+		|                            dest[dx] = c;
+		|                        }
+		|                        dx++;
+		|                    }
+		|                }
+		|            }
+		|            SetPixels(dest);
+		|        }
+		|
+		|        /**
+		|		 * Возвращает содержимое изображения кадра n.
+		|		 *
+		|		 * @return Буферизованное представление кадра.
+		|		 */
+		|        public GifFrame GetFrame(int n)
+		|        {
+		|            if ((n >= 0) && (n < frameCount))
+		|            {
+		|                return (GifFrame)frames[n];
+		|            }
+		|            else
+		|            {
+		|                throw new ArgumentOutOfRangeException();
+		|            }
+		|        }
+		|
+		|        /**
+		|		 * Получает размер изображения.
+		|		 *
+		|		 * @return Размеры GIF-изображения.
+		|		 */
+		|        public Size FrameSize
+		|        {
+		|            get { return new Size(width, height); }
+		|        }
+		|
+		|        /**
+		|		 * Reads GIF image from stream
+		|		 *
+		|		 * @param BufferedInputStream containing GIF file.
+		|		 * @return read status code (0 = no errors)
+		|		 */
+		|        private int Read(Stream inStream)
+		|        {
+		|            Init();
+		|            if (inStream != null)
+		|            {
+		|                this.inStream = inStream;
+		|                ReadHeader();
+		|                if (!Error())
+		|                {
+		|                    ReadContents();
+		|                    if (frameCount < 0)
+		|                    {
+		|                        status = StatusFormatError;
+		|                    }
+		|                }
+		|                inStream.Close();
+		|            }
+		|            else
+		|            {
+		|                status = StatusOpenError;
+		|            }
+		|            return status;
+		|        }
+		|
+		|        /**
+		|		 * Decodes LZW image data into pixel array.
+		|		 * Adapted from John Cristy's ImageMagick.
+		|		 */
+		|        private void DecodeImageData()
+		|        {
+		|            int NullCode = -1;
+		|            int npix = iw * ih;
+		|            int available,
+		|                clear,
+		|                code_mask,
+		|                code_size,
+		|                end_of_information,
+		|                in_code,
+		|                old_code,
+		|                bits,
+		|                code,
+		|                count,
+		|                i,
+		|                datum,
+		|                data_size,
+		|                first,
+		|                top,
+		|                bi,
+		|                pi;
+		|
+		|            if ((pixels == null) || (pixels.Length < npix))
+		|            {
+		|                pixels = new byte[npix]; // allocate new pixel array
+		|            }
+		|            if (prefix == null)
+		|            {
+		|                prefix = new short[MaxStackSize];
+		|            }
+		|            if (suffix == null)
+		|            {
+		|                suffix = new byte[MaxStackSize];
+		|            }
+		|            if (pixelStack == null)
+		|            {
+		|                pixelStack = new byte[MaxStackSize + 1];
+		|            }
+		|
+		|            // Инициализируйте декодер потока данных GIF.
+		|
+		|            data_size = Read();
+		|            clear = 1 << data_size;
+		|            end_of_information = clear + 1;
+		|            available = clear + 2;
+		|            old_code = NullCode;
+		|            code_size = data_size + 1;
+		|            code_mask = (1 << code_size) - 1;
+		|            for (code = 0; code < clear; code++)
+		|            {
+		|                prefix[code] = 0;
+		|                suffix[code] = (byte)code;
+		|            }
+		|
+		|            // Декодируйте поток пикселей GIF.
+		|
+		|            datum = bits = count = first = top = pi = bi = 0;
+		|
+		|            for (i = 0; i < npix;)
+		|            {
+		|                if (top == 0)
+		|                {
+		|                    if (bits < code_size)
+		|                    {
+		|                        // Загружайте байты до тех пор, пока не наберется достаточно битов для кода.
+		|                        if (count == 0)
+		|                        {
+		|                            // Считайте новый блок данных.
+		|                            count = ReadBlock();
+		|                            if (count <= 0)
+		|                            {
+		|                                break;
+		|                            }
+		|                            bi = 0;
+		|                        }
+		|                        datum += (((int)block[bi]) & 0xff) << bits;
+		|                        bits += 8;
+		|                        bi++;
+		|                        count--;
+		|                        continue;
+		|                    }
+		|
+		|                    // Получите следующий код.
+		|
+		|                    code = datum & code_mask;
+		|                    datum >>= code_size;
+		|                    bits -= code_size;
+		|
+		|                    // Интерпретируйте код.
+		|
+		|                    if ((code > available) || (code == end_of_information))
+		|                    {
+		|                        break;
+		|                    }
+		|                    if (code == clear)
+		|                    {
+		|                        // Сброс декодера.
+		|                        code_size = data_size + 1;
+		|                        code_mask = (1 << code_size) - 1;
+		|                        available = clear + 2;
+		|                        old_code = NullCode;
+		|                        continue;
+		|                    }
+		|                    if (old_code == NullCode)
+		|                    {
+		|                        pixelStack[top++] = suffix[code];
+		|                        old_code = code;
+		|                        first = code;
+		|                        continue;
+		|                    }
+		|                    in_code = code;
+		|                    if (code == available)
+		|                    {
+		|                        pixelStack[top++] = (byte)first;
+		|                        code = old_code;
+		|                    }
+		|                    while (code > clear)
+		|                    {
+		|                        pixelStack[top++] = suffix[code];
+		|                        code = prefix[code];
+		|                    }
+		|                    first = ((int)suffix[code]) & 0xff;
+		|
+		|                    // Добавьте новую строку в таблицу строк,
+		|
+		|                    if (available >= MaxStackSize)
+		|                    {
+		|                        break;
+		|                    }
+		|                    pixelStack[top++] = (byte)first;
+		|                    prefix[available] = (short)old_code;
+		|                    suffix[available] = (byte)first;
+		|                    available++;
+		|                    if (((available & code_mask) == 0) && (available < MaxStackSize))
+		|                    {
+		|                        code_size++;
+		|                        code_mask += available;
+		|                    }
+		|                    old_code = in_code;
+		|                }
+		|
+		|                // Извлеките пиксель из стека пикселей.
+		|
+		|                top--;
+		|                pixels[pi++] = pixelStack[top];
+		|                i++;
+		|            }
+		|
+		|            for (i = pi; i < npix; i++)
+		|            {
+		|                pixels[i] = 0; // Очистите недостающие пиксели.
+		|            }
+		|        }
+		|
+		|        /**
+		|		 * Возвращает значение true, если во время чтения/декодирования была обнаружена ошибка.
+		|		 */
+		|        private bool Error()
+		|        {
+		|            return status != StatusOK;
+		|        }
+		|
+		|        /**
+		|		 * Инициализирует или повторно инициализирует считыватель.
+		|		 */
+		|        private void Init()
+		|        {
+		|            status = StatusOK;
+		|            frameCount = 0;
+		|            frames = new ArrayList();
+		|            gct = null;
+		|            lct = null;
+		|        }
+		|
+		|        /**
+		|		 * Считывает один байт из входного потока.
+		|		 */
+		|        private int Read()
+		|        {
+		|            int curByte = 0;
+		|            try
+		|            {
+		|                curByte = inStream.ReadByte();
+		|            }
+		|            catch (IOException)
+		|            {
+		|                status = StatusFormatError;
+		|            }
+		|            return curByte;
+		|        }
+		|
+		|        /**
+		|		 * Считывает следующий блок переменной длины из входных данных.
+		|		 *
+		|		 * @return number of bytes stored in ""buffer""
+		|		 */
+		|        private int ReadBlock()
+		|        {
+		|            blockSize = Read();
+		|            int n = 0;
+		|            if (blockSize > 0)
+		|            {
+		|                try
+		|                {
+		|                    int count = 0;
+		|                    while (n < blockSize)
+		|                    {
+		|                        count = inStream.Read(block, n, blockSize - n);
+		|                        if (count == -1)
+		|                        {
+		|                            break;
+		|                        }
+		|                        n += count;
+		|                    }
+		|                }
+		|                catch (IOException)
+		|                {
+		|                }
+		|
+		|                if (n < blockSize)
+		|                {
+		|                    status = StatusFormatError;
+		|                }
+		|            }
+		|            return n;
+		|        }
+		|
+		|        /**
+		|		 * Считывает таблицу цветов в виде 256 целых значений RGB.
+		|		 *
+		|		 * @param ncolors int number of colors to read
+		|		 * @return int array containing 256 colors (packed ARGB with full alpha)
+		|		 */
+		|#pragma warning disable 675 // Bitwise-or operator used on a sign-extended operand
+		|        private int[] ReadColorTable(int ncolors)
+		|        {
+		|            int nbytes = 3 * ncolors;
+		|            int[] tab = null;
+		|            byte[] c = new byte[nbytes];
+		|            int n = 0;
+		|            try
+		|            {
+		|                n = inStream.Read(c, 0, c.Length);
+		|            }
+		|            catch (IOException)
+		|            {
+		|            }
+		|            if (n < nbytes)
+		|            {
+		|                status = StatusFormatError;
+		|            }
+		|            else
+		|            {
+		|                tab = new int[256]; // Максимальный размер, чтобы избежать проверки границ.
+		|                int i = 0;
+		|                int j = 0;
+		|                while (i < ncolors)
+		|                {
+		|                    int r = ((int)c[j++]) & 0xff;
+		|                    int g = ((int)c[j++]) & 0xff;
+		|                    int b = ((int)c[j++]) & 0xff;
+		|                    tab[i++] = (int)(0xff000000 | (r << 16) | (g << 8) | b);
+		|                }
+		|            }
+		|            return tab;
+		|        }
+		|
+		|        /**
+		|		 * Основной анализатор файлов.  Считывает блоки содержимого GIF.
+		|		 */
+		|        private void ReadContents()
+		|        {
+		|            // Чтение блоков содержимого GIF-файла.
+		|            bool done = false;
+		|            while (!(done || Error()))
+		|            {
+		|                int code = Read();
+		|                switch (code)
+		|                {
+		|
+		|                    case 0x2C: // Разделитель изображений.
+		|                        ReadImage();
+		|                        break;
+		|
+		|                    case 0x21: // Расширение.
+		|                        code = Read();
+		|                        switch (code)
+		|                        {
+		|                            case 0xf9: // Расширение для управления графикой.
+		|                                ReadGraphicControlExt();
+		|                                break;
+		|
+		|                            case 0xff: // Расширение приложения.
+		|                                ReadBlock();
+		|                                String app = """";
+		|                                for (int i = 0; i < 11; i++)
+		|                                {
+		|                                    app += (char)block[i];
+		|                                }
+		|                                if (app.Equals(""NETSCAPE2.0""))
+		|                                {
+		|                                    ReadNetscapeExt();
+		|                                }
+		|                                else
+		|                                    Skip(); // Мне все равно.
+		|                                break;
+		|
+		|                            default: // Неинтересное расширение.
+		|                                Skip();
+		|                                break;
+		|                        }
+		|                        break;
+		|
+		|                    case 0x3b: // Признак конца.
+		|                        done = true;
+		|                        break;
+		|
+		|                    case 0x00: // Плохой байт, но продолжайте идти и посмотрите, что произойдет.
+		|                        break;
+		|
+		|                    default:
+		|                        status = StatusFormatError;
+		|                        break;
+		|                }
+		|            }
+		|        }
+		|
+		|        /**
+		|		 * Reads Graphics Control Extension values
+		|		 */
+		|        private void ReadGraphicControlExt()
+		|        {
+		|            Read(); // Размер блока.
+		|            int packed = Read(); // Упакованные поля.
+		|            dispose = (packed & 0x1c) >> 2; // Способ утилизации.
+		|            if (dispose == 0)
+		|            {
+		|                dispose = 1; // Выберите сохранить старое изображение, если это необходимо по усмотрению.
+		|            }
+		|            transparency = (packed & 1) != 0;
+		|            delay = ReadShort() * 10; // Задержка в миллисекундах.
+		|            transIndex = Read(); // Индекс прозрачного цвета.
+		|            Read(); // Блок-терминатор.
+		|        }
+		|
+		|        /**
+		|		 * Считывает информацию о заголовке GIF-файла.
+		|		 */
+		|        private void ReadHeader()
+		|        {
+		|            String id = """";
+		|            for (int i = 0; i < 6; i++)
+		|            {
+		|                id += (char)Read();
+		|            }
+		|            if (!id.StartsWith(""GIF""))
+		|            {
+		|                status = StatusFormatError;
+		|                return;
+		|            }
+		|
+		|            ReadLSD();
+		|            if (gctFlag && !Error())
+		|            {
+		|                gct = ReadColorTable(gctSize);
+		|                bgColor = gct[bgIndex];
+		|            }
+		|        }
+		|
+		|        /**
+		|		 * Reads next frame image
+		|		 */
+		|        private void ReadImage()
+		|        {
+		|            ix = ReadShort(); // (sub)image position & size
+		|            iy = ReadShort();
+		|            iw = ReadShort();
+		|            ih = ReadShort();
+		|
+		|            int packed = Read();
+		|            lctFlag = (packed & 0x80) != 0; // 1 - local color table flag
+		|            interlace = (packed & 0x40) != 0; // 2 - interlace flag
+		|                                              // 3 - sort flag
+		|                                              // 4-5 - reserved
+		|            lctSize = 2 << (packed & 7); // 6-8 - local color table size
+		|
+		|            if (lctFlag)
+		|            {
+		|                lct = ReadColorTable(lctSize); // read table
+		|                act = lct; // make local table active
+		|            }
+		|            else
+		|            {
+		|                act = gct; // make global table active
+		|                if (bgIndex == transIndex)
+		|                {
+		|                    bgColor = 0;
+		|                }
+		|            }
+		|            int save = 0;
+		|            if (transparency)
+		|            {
+		|                save = act[transIndex];
+		|                act[transIndex] = 0; // set transparent color if specified
+		|            }
+		|
+		|            if (act == null)
+		|            {
+		|                status = StatusFormatError; // no color table defined
+		|            }
+		|
+		|            if (Error())
+		|            {
+		|                return;
+		|            }
+		|
+		|            DecodeImageData(); // decode pixel data
+		|            Skip();
+		|
+		|            if (Error())
+		|            {
+		|                return;
+		|            }
+		|
+		|            frameCount++;
+		|
+		|            // create new image to receive frame data
+		|            //		image =
+		|            //			new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB_PRE);
+		|
+		|            bitmap = new Bitmap(width, height);
+		|            image = bitmap;
+		|            SetPixels(); // transfer pixel data to image
+		|
+		|            frames.Add(new GifFrame(bitmap, delay)); // add image to frame list
+		|
+		|            if (transparency)
+		|            {
+		|                act[transIndex] = save;
+		|            }
+		|            ResetFrame();
+		|
+		|        }
+		|
+		|        /**
+		|		 * Reads Logical Screen Descriptor
+		|		 */
+		|        private void ReadLSD()
+		|        {
+		|
+		|            // logical screen size
+		|            width = ReadShort();
+		|            height = ReadShort();
+		|
+		|            // packed fields
+		|            int packed = Read();
+		|            gctFlag = (packed & 0x80) != 0; // 1   : global color table flag
+		|                                            // 2-4 : color resolution
+		|                                            // 5   : gct sort flag
+		|            gctSize = 2 << (packed & 7); // 6-8 : gct size
+		|
+		|            bgIndex = Read(); // background color index
+		|            pixelAspect = Read(); // pixel aspect ratio
+		|        }
+		|
+		|        /**
+		|		 * Reads Netscape extenstion to obtain iteration count
+		|		 */
+		|        private void ReadNetscapeExt()
+		|        {
+		|            do
+		|            {
+		|                ReadBlock();
+		|                if (block[0] == 1)
+		|                {
+		|                    // loop count sub-block
+		|                    int b1 = ((int)block[1]) & 0xff;
+		|                    int b2 = ((int)block[2]) & 0xff;
+		|                    loopCount = (b2 << 8) | b1;
+		|                }
+		|            }
+		|            while ((blockSize > 0) && !Error());
+		|        }
+		|
+		|        /**
+		|		 * Reads next 16-bit value, LSB first
+		|		 */
+		|        private int ReadShort()
+		|        {
+		|            // read 16-bit value, LSB first
+		|            return Read() | (Read() << 8);
+		|        }
+		|
+		|        /**
+		|		 * Resets frame state for reading next image.
+		|		 */
+		|        private void ResetFrame()
+		|        {
+		|            lastDispose = dispose;
+		|            lastRect = new Rectangle(ix, iy, iw, ih);
+		|            lastImage = image;
+		|            lastBgColor = bgColor;
+		|            //		int dispose = 0;
+		|            lct = null;
+		|        }
+		|
+		|        /**
+		|		 * Skips variable length blocks up to and including
+		|		 * next zero length block.
+		|		 */
+		|        private void Skip()
+		|        {
+		|            do
+		|            {
+		|                ReadBlock();
+		|            }
+		|            while ((blockSize > 0) && !Error());
+		|        }
+		|    }
+		|
+		|    public class NumericTextBox : TextBox
+		|    {
+		|        // Ограничивает ввод символов цифрами, знаком минус, десятичной точкой и нажатиями клавиш редактирования (пробел).
+		|        // Он не обрабатывает ключ AltGr, поэтому любые ключи, которые могут быть созданы в любой комбинации с AltGr, не фильтруются.
+		|
+		|        private const int WM_PASTE = 0x302;
+		|        private NumberStyles numberStyle = NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign;
+		|
+		|        // Ограничивает ввод символов цифрами, знаком минус, десятичной точкой и нажатиями клавиш редактирования (пробел).
+		|        // Он не обрабатывает клавишу AltGr.
+		|        protected override void OnKeyPress(KeyPressEventArgs e)
+		|        {
+		|            base.OnKeyPress(e);
+		|
+		|            e.Handled = invalidNumeric(e.KeyChar);
+		|        }
+		|
+		|        // Основной метод проверки разрешенных нажатий клавиш.
+		|        // Это не улавливает операции вырезания, вставки, копирования ....
+		|        private bool invalidNumeric(char key)
+		|        {
+		|            bool handled = false;
+		|            NumberFormatInfo numberFormatInfo = CultureInfo.CurrentCulture.NumberFormat;
+		|            string decimalSeparator = numberFormatInfo.NumberDecimalSeparator;
+		|            string negativeSign = numberFormatInfo.NegativeSign;
+		|            string keyString = key.ToString();
+		|
+		|            if (Char.IsDigit(key))
+		|            {
+		|                // Digits are OK
+		|            }
+		|            else if (AllowDecimalSeparator && keyString.Equals(decimalSeparator))
+		|            {
+		|                if (Text.IndexOf(decimalSeparator) >= 0)
+		|                {
+		|                    handled = true;
+		|                }
+		|            }
+		|            else if (AllowNegativeSign && keyString.Equals(negativeSign))
+		|            {
+		|                if (Text.IndexOf(negativeSign) >= 0)
+		|                {
+		|                    handled = true;
+		|                }
+		|            }
+		|            else if (key == '\b')
+		|            {
+		|                // Backspace key is OK
+		|            }
+		|            else if ((ModifierKeys & (Keys.Control)) != 0)
+		|            {
+		|                // Let the edit control handle control and alt key combinations
+		|            }
+		|            else
+		|            {
+		|                // Swallow this invalid key and beep
+		|                handled = true;
+		|            }
+		|            return handled;
+		|        }
+		|
+		|        // Метод, вызываемый, когда Windows отправляет сообщение.
+		|        // Это переопределено, так что пользователь не может использовать операции вырезания или вставки для обхода события TextChanging.
+		|        // Это ловит контекстное меню Paste, Shift+Insert, Ctrl+V,
+		|        // Хотя обычно не одобряется переопределение WndProc, не было видно другого простого механизма для одновременного и прозрачного перехвата такого количества различных операций.
+		|        protected override void WndProc(ref Message m)
+		|        {
+		|            // Switch to handle message...
+		|            switch (m.Msg)
+		|            {
+		|                case WM_PASTE:
+		|                    {
+		|                        // Get clipboard object to paste
+		|                        IDataObject clipboardData = Clipboard.GetDataObject();
+		|
+		|                        // Get text from clipboard data
+		|                        string pasteText = (string)clipboardData.GetData(DataFormats.UnicodeText);
+		|
+		|                        // Get the number of characters to replace
+		|                        int selectionLength = SelectionLength;
+		|
+		|                        // If no replacement or insertion, we are done
+		|                        if (pasteText.Length == 0)
+		|                        {
+		|                            break;
+		|                        }
+		|                        else if (selectionLength != 0)
+		|                        {
+		|                            base.Text = base.Text.Remove(SelectionStart, selectionLength);
+		|                        }
+		|
+		|                        bool containsInvalidChars = false;
+		|                        foreach (char c in pasteText)
+		|                        {
+		|                            if (containsInvalidChars)
+		|                            {
+		|                                break;
+		|                            }
+		|                            else if (invalidNumeric(c))
+		|                            {
+		|                                containsInvalidChars = true;
+		|                            }
+		|                        }
+		|
+		|                        if (!containsInvalidChars)
+		|                        {
+		|                            base.Text = base.Text.Insert(SelectionStart, pasteText);
+		|                        }
+		|                        return;
+		|                    }
+		|            }
+		|            base.WndProc(ref m);
+		|        }
+		|
+		|        public int IntValue
+		|        {
+		|            get
+		|            {
+		|                int intValue;
+		|                Int32.TryParse(this.Text, numberStyle, CultureInfo.CurrentCulture.NumberFormat, out intValue);
+		|                return intValue;
+		|            }
+		|        }
+		|
+		|        public decimal DecimalValue
+		|        {
+		|            get
+		|            {
+		|                decimal decimalValue;
+		|                Decimal.TryParse(this.Text, numberStyle, CultureInfo.CurrentCulture.NumberFormat, out decimalValue);
+		|                return decimalValue;
+		|            }
+		|            set { this.Text = value.ToString(CultureInfo.CurrentCulture.NumberFormat); }
+		|        }
+		|
+		|        private bool allowNegativeSign;
+		|        public bool AllowNegativeSign
+		|        {
+		|            get { return allowNegativeSign; }
+		|            set { allowNegativeSign = value; }
+		|        }
+		|
+		|        private bool allowDecimalSeparator;
+		|        public bool AllowDecimalSeparator
+		|        {
+		|            get { return allowDecimalSeparator; }
+		|            set { allowDecimalSeparator = value; }
+		|        }
+		|    }
+		|
+		|    public static class TextHelper
+		|    {
+		|        public static StringAlignment TranslateAligment(HorizontalAlignment alignment)
+		|        {
+		|            if (alignment == HorizontalAlignment.Left)
+		|            {
+		|                return StringAlignment.Near;
+		|            }
+		|            else if (alignment == HorizontalAlignment.Right)
+		|            {
+		|                return StringAlignment.Far;
+		|            }
+		|            else
+		|            {
+		|                return StringAlignment.Center;
+		|            }
+		|        }
+		|
+		|        public static TextFormatFlags TranslateAligmentToFlag(HorizontalAlignment alignment)
+		|        {
+		|            if (alignment == HorizontalAlignment.Left)
+		|            {
+		|                return TextFormatFlags.Left;
+		|            }
+		|            else if (alignment == HorizontalAlignment.Right)
+		|            {
+		|                return TextFormatFlags.Right;
+		|            }
+		|            else
+		|            {
+		|                return TextFormatFlags.HorizontalCenter;
+		|            }
+		|        }
+		|
+		|        public static TextFormatFlags TranslateTrimmingToFlag(StringTrimming trimming)
+		|        {
+		|            if (trimming == StringTrimming.EllipsisCharacter)
+		|            {
+		|                return TextFormatFlags.EndEllipsis;
+		|            }
+		|            else if (trimming == StringTrimming.EllipsisPath)
+		|            {
+		|                return TextFormatFlags.PathEllipsis;
+		|            }
+		|
+		|            if (trimming == StringTrimming.EllipsisWord)
+		|            {
+		|                return TextFormatFlags.WordEllipsis;
+		|            }
+		|            if (trimming == StringTrimming.Word)
+		|            {
+		|                return TextFormatFlags.WordBreak;
+		|            }
+		|            else
+		|            {
+		|                return TextFormatFlags.Default;
+		|            }
+		|        }
+		|    }
+		|}
+		|
+		|    #endregion Aga.Controls
+		|
+		|    #region Aga.Controls.Tree.NodeControls
+		|
+		|namespace Aga.Controls.Tree.NodeControls
+		|{
+		|    public abstract class BaseTextControl : EditableControl
+		|    {
+		|        private TextFormatFlags _baseFormatFlags;
+		|        private TextFormatFlags _formatFlags;
+		|        private Pen _focusPen;
+		|        private StringFormat _format;
+		|
+		|        protected BaseTextControl()
+		|        {
+		|            IncrementalSearchEnabled = true;
+		|            _focusPen = new Pen(Color.Black);
+		|            _focusPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+		|
+		|            _format = new StringFormat(StringFormatFlags.LineLimit | StringFormatFlags.NoClip | StringFormatFlags.FitBlackBox | StringFormatFlags.MeasureTrailingSpaces);
+		|            _baseFormatFlags = TextFormatFlags.PreserveGraphicsClipping | TextFormatFlags.PreserveGraphicsTranslateTransform;
+		|            SetFormatFlags();
+		|            LeftMargin = 3;
+		|        }
+		|
+		|        private Font _font = null;
+		|        public Font Font
+		|        {
+		|            get
+		|            {
+		|                if (_font == null)
+		|                {
+		|                    return Control.DefaultFont;
+		|                }
+		|                else
+		|                {
+		|                    return _font;
+		|                }
+		|            }
+		|            set
+		|            {
+		|                if (value == Control.DefaultFont)
+		|                {
+		|                    _font = null;
+		|                }
+		|                else
+		|                {
+		|                    _font = value;
+		|                }
+		|            }
+		|        }
+		|
+		|        protected bool ShouldSerializeFont()
+		|        {
+		|            return (_font != null);
+		|        }
+		|
+		|        private HorizontalAlignment _textAlign = HorizontalAlignment.Left;
+		|        [DefaultValue(HorizontalAlignment.Left)]
+		|        public HorizontalAlignment TextAlign
+		|        {
+		|            get { return _textAlign; }
+		|            set
+		|            {
+		|                _textAlign = value;
+		|                SetFormatFlags();
+		|            }
+		|        }
+		|
+		|        private StringTrimming _trimming = StringTrimming.None;
+		|        [DefaultValue(StringTrimming.None)]
+		|        public StringTrimming Trimming
+		|        {
+		|            get { return _trimming; }
+		|            set
+		|            {
+		|                _trimming = value;
+		|                SetFormatFlags();
+		|            }
+		|        }
+		|
+		|        private bool _displayHiddenContentInToolTip = true;
+		|        [DefaultValue(true)]
+		|        public bool DisplayHiddenContentInToolTip
+		|        {
+		|            get { return _displayHiddenContentInToolTip; }
+		|            set { _displayHiddenContentInToolTip = value; }
+		|        }
+		|
+		|        private bool _useCompatibleTextRendering = false;
+		|        [DefaultValue(false)]
+		|        public bool UseCompatibleTextRendering
+		|        {
+		|            get { return _useCompatibleTextRendering; }
+		|            set { _useCompatibleTextRendering = value; }
+		|        }
+		|
+		|        [DefaultValue(false)]
+		|        public bool TrimMultiLine { get; set; }
+		|
+		|        private void SetFormatFlags()
+		|        {
+		|            _format.Alignment = TextHelper.TranslateAligment(TextAlign);
+		|            _format.Trimming = Trimming;
+		|
+		|            _formatFlags = _baseFormatFlags | TextHelper.TranslateAligmentToFlag(TextAlign) | TextHelper.TranslateTrimmingToFlag(Trimming);
+		|        }
+		|
+		|        public override Size MeasureSize(TreeNodeAdv node, DrawContext context)
+		|        {
+		|            return GetLabelSize(node, context);
+		|        }
+		|
+		|        protected Size GetLabelSize(TreeNodeAdv node, DrawContext context)
+		|        {
+		|            return GetLabelSize(node, context, GetLabel(node));
+		|        }
+		|
+		|        protected Size GetLabelSize(TreeNodeAdv node, DrawContext context, string label)
+		|        {
+		|            CheckThread();
+		|            Font font = GetDrawingFont(node, context, label);
+		|            Size s = Size.Empty;
+		|            if (UseCompatibleTextRendering)
+		|            {
+		|                s = TextRenderer.MeasureText(label, font);
+		|            }
+		|            else
+		|            {
+		|                SizeF sf = context.Graphics.MeasureString(label, font);
+		|                s = new Size((int)Math.Ceiling(sf.Width), (int)Math.Ceiling(sf.Height));
+		|            }
+		|
+		|            if (!s.IsEmpty)
+		|            {
+		|                return s;
+		|            }
+		|            else
+		|            {
+		|                return new Size(10, Font.Height);
+		|            }
+		|        }
+		|
+		|        protected Font GetDrawingFont(TreeNodeAdv node, DrawContext context, string label)
+		|        {
+		|            Font font = context.Font;
+		|            if (DrawTextMustBeFired(node))
+		|            {
+		|                DrawEventArgs args = new DrawEventArgs(node, this, context, label);
+		|                args.Font = context.Font;
+		|                OnDrawText(args);
+		|                font = args.Font;
+		|            }
+		|            return font;
+		|        }
+		|
+		|        protected void SetEditControlProperties(Control control, TreeNodeAdv node)
+		|        {
+		|            string label = GetLabel(node);
+		|            DrawContext context = new DrawContext();
+		|            context.Font = control.Font;
+		|            control.Font = GetDrawingFont(node, context, label);
+		|        }
+		|
+		|        public override void Draw(TreeNodeAdv node, DrawContext context)
+		|        {
+		|            if (context.CurrentEditorOwner == this && node == Parent.CurrentNode)
+		|            {
+		|                return;
+		|            }
+		|
+		|            //string label = GetLabel(node);
+		|            string label = String.Empty;
+		|            try
+		|            {
+		|                if (this.GetType() == typeof(NodeDecimalTextBox))
+		|                {
+		|                    string f = ((NodeDecimalTextBox)this).CustomFormat;
+		|                    ScriptEngine.Machine.Values.NumberValue numberValue = ((ScriptEngine.Machine.Values.NumberValue)((Node)node.Tag).nodeControlValue[this]);
+		|                    if (f.Contains(""D"") || f.Contains(""X""))
+		|                    {
+		|                        int i = Convert.ToInt32(numberValue.AsNumber());
+		|                        label = i.ToString(f);
+		|                    }
+		|                    else
+		|                    {
+		|                        decimal d = ((ScriptEngine.Machine.Values.NumberValue)((Node)node.Tag).nodeControlValue[this]).AsNumber();
+		|                        label = d.ToString(f);
+		|                    }
+		|                }
+		|                else
+		|                {
+		|                    label = ((Node)node.Tag).nodeControlValue[this].ToString();
+		|                }
+		|            }
+		|            catch { }
+		|		
+		|            Rectangle bounds = GetBounds(node, context);
+		|            if (this.VerticalAlign == VerticalAlignment.Center)
+		|            {
+		|                bounds.Y = (int)(context.Bounds.Y + (context.Bounds.Height / 2) - (Font.Height / 2));
+		|            }
+		|            Rectangle focusRect = new Rectangle(bounds.X, context.Bounds.Y, bounds.Width, context.Bounds.Height);
+		|
+		|            Brush backgroundBrush;
+		|            Color textColor;
+		|            Font font;
+		|            CreateBrushes(node, context, label, out backgroundBrush, out textColor, out font, ref label);
+		|
+		|            var nodeControl = (Aga.Controls.Tree.NodeControls.BaseTextControl)this;
+		|            osf.TreeViewAdv treeViewAdv = ((osf.TreeViewAdvEx)nodeControl.Parent).M_Object;
+		|            if (treeViewAdv.SelectedNodes.Count == 1)
+		|            {
+		|                if (treeViewAdv.SelectedNodes[0] == node)
+		|                {
+		|                    if (this.GetType() == typeof(Aga.Controls.Tree.NodeControls.NodeComboBox) ||
+		|                        this.GetType() == typeof(Aga.Controls.Tree.NodeControls.NodeDecimalTextBox) ||
+		|                        this.GetType() == typeof(Aga.Controls.Tree.NodeControls.NodeNumericUpDown) ||
+		|                        this.GetType() == typeof(Aga.Controls.Tree.NodeControls.NodeTextBox))
+		|                    {
+		|                        if (node == nodeControl.Parent.CurrentNode)
+		|                        {
+		|                            System.Collections.DictionaryEntry currentControl = treeViewAdv.CurrentControl;
+		|                            if (currentControl.Value == this)
+		|                            {
+		|                                backgroundBrush = new SolidBrush(System.Drawing.Color.DodgerBlue);
+		|                            }
+		|                        }
+		|                    }
+		|                }
+		|            }
+		|
+		|            if (backgroundBrush != null)
+		|            {
+		|                context.Graphics.FillRectangle(backgroundBrush, focusRect);
+		|            }
+		|            if (context.DrawFocus)
+		|            {
+		|                focusRect.Width--;
+		|                focusRect.Height--;
+		|                if (context.DrawSelection == DrawSelectionMode.None)
+		|                {
+		|                    _focusPen.Color = SystemColors.ControlText;
+		|                }
+		|                else
+		|                {
+		|                    _focusPen.Color = SystemColors.InactiveCaption;
+		|                }
+		|                context.Graphics.DrawRectangle(_focusPen, focusRect);
+		|            }
+		|
+		|            if (UseCompatibleTextRendering)
+		|            {
+		|                TextRenderer.DrawText(context.Graphics, label, Font, bounds, textColor, _formatFlags);
+		|            }
+		|            else
+		|            {
+		|                context.Graphics.DrawString(label, Font, GetFrush(textColor), bounds, _format);
+		|            }
+		|        }
+		|
+		|        private static Dictionary<Color, Brush> _brushes = new Dictionary<Color, Brush>();
+		|        private static Brush GetFrush(Color color)
+		|        {
+		|            Brush br;
+		|            if (_brushes.ContainsKey(color))
+		|            {
+		|                br = _brushes[color];
+		|            }
+		|            else
+		|            {
+		|                br = new SolidBrush(color);
+		|                _brushes.Add(color, br);
+		|            }
+		|            return br;
+		|        }
+		|
+		|        // здесь можно задать цвет фона для всего узла
+		|        private void CreateBrushes(TreeNodeAdv node, DrawContext context, string text, out Brush backgroundBrush, out Color textColor, out Font font, ref string label)
+		|        {
+		|            textColor = SystemColors.ControlText;
+		|            backgroundBrush = null;
+		|            font = context.Font;
+		|            if (context.DrawSelection == DrawSelectionMode.Active)
+		|            {
+		|                textColor = SystemColors.HighlightText;
+		|                backgroundBrush = SystemBrushes.Highlight;
+		|                //backgroundBrush = System.Drawing.Brushes.Red;
+		|            }
+		|            else if (context.DrawSelection == DrawSelectionMode.Inactive)
+		|            {
+		|                textColor = SystemColors.ControlText;
+		|                backgroundBrush = SystemBrushes.InactiveBorder;
+		|            }
+		|            else if (context.DrawSelection == DrawSelectionMode.FullRowSelect)
+		|            {
+		|                textColor = SystemColors.HighlightText;
+		|            }
+		|
+		|            if (!context.Enabled)
+		|            {
+		|                textColor = SystemColors.GrayText;
+		|            }
+		|
+		|            if (DrawTextMustBeFired(node))
+		|            {
+		|                DrawEventArgs args = new DrawEventArgs(node, this, context, text);
+		|                args.Text = label;
+		|                args.TextColor = textColor;
+		|                args.BackgroundBrush = backgroundBrush;
+		|                args.Font = font;
+		|
+		|                OnDrawText(args);
+		|
+		|                textColor = args.TextColor;
+		|                backgroundBrush = args.BackgroundBrush;
+		|                font = args.Font;
+		|                label = args.Text;
+		|            }
+		|        }
+		|
+		|        public string GetLabel(TreeNodeAdv node)
+		|        {
+		|            if (node != null && node.Tag != null)
+		|            {
+		|                object obj = GetValue(node);
+		|                if (obj != null)
+		|                {
+		|                    return FormatLabel(obj);
+		|                }
+		|            }
+		|            return string.Empty;
+		|        }
+		|
+		|        protected virtual string FormatLabel(object obj)
+		|        {
+		|            var res = obj.ToString();
+		|            if (TrimMultiLine && res != null)
+		|            {
+		|                string[] parts = res.Split('\n');
+		|                if (parts.Length > 1)
+		|                {
+		|                    return parts[0] + ""..."";
+		|                }
+		|            }
+		|            return res;
+		|        }
+		|
+		|        public void SetLabel(TreeNodeAdv node, string value)
+		|        {
+		|            SetValue(node, value);
+		|        }
+		|
+		|        protected override void Dispose(bool disposing)
+		|        {
+		|            base.Dispose(disposing);
+		|            if (disposing)
+		|            {
+		|                _focusPen.Dispose();
+		|                _format.Dispose();
+		|            }
+		|        }
+		|
+		|        // Срабатывает, когда элемент управления собирается нарисовать текст. Может использоваться для изменения текста или цвета задней панели.
+		|        public event EventHandler<DrawEventArgs> DrawText;
+		|        protected virtual void OnDrawText(DrawEventArgs args)
+		|        {
+		|            TreeViewAdv tree = args.Node.Tree;
+		|            if (tree != null)
+		|            {
+		|                tree.FireDrawControl(args);
+		|            }
+		|            if (DrawText != null)
+		|            {
+		|                DrawText(this, args);
+		|            }
+		|        }
+		|
+		|        protected virtual bool DrawTextMustBeFired(TreeNodeAdv node)
+		|        {
+		|            return DrawText != null || (node.Tree != null && node.Tree.DrawControlMustBeFired());
+		|        }
+		|    }
+		|
+		|    public abstract class BindableControl : NodeControl
+		|    {
+		|        private struct MemberAdapter
+		|        {
+		|            private object _obj;
+		|            private PropertyInfo _pi;
+		|            private FieldInfo _fi;
+		|            public static readonly MemberAdapter Empty = new MemberAdapter();
+		|
+		|            public MemberAdapter(object obj, PropertyInfo pi)
+		|            {
+		|                _obj = obj;
+		|                _pi = pi;
+		|                _fi = null;
+		|            }
+		|
+		|            public MemberAdapter(object obj, FieldInfo fi)
+		|            {
+		|                _obj = obj;
+		|                _fi = fi;
+		|                _pi = null;
+		|            }
+		|
+		|            public MemberAdapter(object obj, dynamic value)
+		|            {
+		|                _obj = obj;
+		|                _fi = null;
+		|                _pi = null;
+		|
+		|                this.Value = value;
+		|            }
+		|
+		|
+		|
+		|
+		|            public Type MemberType
+		|            {
+		|                get
+		|                {
+		|                    if (_pi != null)
+		|                    {
+		|                        return _pi.PropertyType;
+		|                    }
+		|                    else if (_fi != null)
+		|                    {
+		|                        return _fi.FieldType;
+		|                    }
+		|                    else
+		|                    {
+		|                        return null;
+		|                    }
+		|                }
+		|            }
+		|
+		|            public object Value
+		|            {
+		|                get
+		|                {
+		|                    if (_pi != null && _pi.CanRead)
+		|                    {
+		|                        return _pi.GetValue(_obj, null);
+		|                    }
+		|                    else if (_fi != null)
+		|                    {
+		|                        return _fi.GetValue(_obj);
+		|                    }
+		|                    else
+		|                    {
+		|                        return null;
+		|                    }
+		|                }
+		|                set
+		|                {
+		|                    if (_pi != null && _pi.CanWrite)
+		|                    {
+		|                        _pi.SetValue(_obj, value, null);
+		|                    }
+		|                    else if (_fi != null)
+		|                    {
+		|                        _fi.SetValue(_obj, value);
+		|                    }
+		|
+		|
+		|                    //_obj.
+		|                }
+		|            }
+		|        }
+		|
+		|        private bool _virtualMode = false;
+		|        [DefaultValue(false)]
+		|        public bool VirtualMode
+		|        {
+		|            get { return _virtualMode; }
+		|            set { _virtualMode = value; }
+		|        }
+		|
+		|        private string _propertyName = """";
+		|        [DefaultValue("""")]
+		|        public string DataPropertyName
+		|        {
+		|            get { return _propertyName; }
+		|            set
+		|            {
+		|                if (_propertyName == null)
+		|                {
+		|                    _propertyName = string.Empty;
+		|                }
+		|                _propertyName = value;
+		|            }
+		|        }
+		|
+		|        private bool _incrementalSearchEnabled = false;
+		|        [DefaultValue(false)]
+		|        public bool IncrementalSearchEnabled
+		|        {
+		|            get { return _incrementalSearchEnabled; }
+		|            set { _incrementalSearchEnabled = value; }
+		|        }
+		|
+		|        public virtual object GetValue(TreeNodeAdv node)
+		|        {
+		|            if (VirtualMode)
+		|            {
+		|                NodeControlValueEventArgs args = new NodeControlValueEventArgs(node);
+		|                OnValueNeeded(args);
+		|                return args.Value;
+		|            }
+		|            else
+		|            {
+		|                try
+		|                {
+		|                    return GetMemberAdapter(node).Value;
+		|                }
+		|                catch (TargetInvocationException ex)
+		|                {
+		|                    if (ex.InnerException != null)
+		|                    {
+		|                        throw new ArgumentException(ex.InnerException.Message, ex.InnerException);
+		|                    }
+		|                    else
+		|                    {
+		|                        throw new ArgumentException(ex.Message);
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        public virtual void SetValue(TreeNodeAdv node, object value)
+		|        {
+		|
+		|            if (VirtualMode)
+		|            {
+		|                NodeControlValueEventArgs args = new NodeControlValueEventArgs(node);
+		|                args.Value = value;
+		|                OnValuePushed(args);
+		|            }
+		|            else
+		|            {
+		|                try
+		|                {
+		|                    MemberAdapter ma = GetMemberAdapter(node);
+		|                    //////////ma.Value = value;
+		|                }
+		|                catch (TargetInvocationException ex)
+		|                {
+		|                    if (ex.InnerException != null)
+		|                    {
+		|                        throw new ArgumentException(ex.InnerException.Message, ex.InnerException);
+		|                    }
+		|                    else
+		|                    {
+		|                        throw new ArgumentException(ex.Message);
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        public Type GetPropertyType(TreeNodeAdv node)
+		|        {
+		|            return GetMemberAdapter(node).MemberType;
+		|        }
+		|
+		|        private MemberAdapter GetMemberAdapter(TreeNodeAdv node)
+		|        {
+		|            if (node.Tag != null && !string.IsNullOrEmpty(DataPropertyName))
+		|            {
+		|                Type type = node.Tag.GetType();
+		|                PropertyInfo pi = type.GetProperty(DataPropertyName);
+		|                if (pi != null)
+		|                {
+		|                    return new MemberAdapter(node.Tag, pi);
+		|                }
+		|                else
+		|                {
+		|                    FieldInfo fi = type.GetField(DataPropertyName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+		|                    if (fi != null)
+		|                    {
+		|                        return new MemberAdapter(node.Tag, fi);
+		|                    }
+		|                }
+		|            }
+		|            return MemberAdapter.Empty;
+		|        }
+		|
+		|        public override string ToString()
+		|        {
+		|            if (string.IsNullOrEmpty(DataPropertyName))
+		|            {
+		|                return GetType().Name;
+		|            }
+		|            else
+		|            {
+		|                return string.Format(""{0} ({1})"", GetType().Name, DataPropertyName);
+		|            }
+		|        }
+		|
+		|        public event EventHandler<NodeControlValueEventArgs> ValueNeeded;
+		|        private void OnValueNeeded(NodeControlValueEventArgs args)
+		|        {
+		|            if (ValueNeeded != null)
+		|            {
+		|                ValueNeeded(this, args);
+		|            }
+		|        }
+		|
+		|        public event EventHandler<NodeControlValueEventArgs> ValuePushed;
+		|        private void OnValuePushed(NodeControlValueEventArgs args)
+		|        {
+		|            if (ValuePushed != null)
+		|            {
+		|                ValuePushed(this, args);
+		|            }
+		|        }
+		|    }
+		|
+		|    public class DrawEventArgs : NodeEventArgs
+		|    {
+		|        private DrawContext _context;
+		|        public DrawContext Context
+		|        {
+		|            get { return _context; }
+		|        }
+		|
+		|        private Brush _textBrush;
+		|        [Obsolete(""Use TextColor"")]
+		|        public Brush TextBrush
+		|        {
+		|            get { return _textBrush; }
+		|            set { _textBrush = value; }
+		|        }
+		|
+		|        private Brush _backgroundBrush;
+		|        public Brush BackgroundBrush
+		|        {
+		|            get { return _backgroundBrush; }
+		|            set { _backgroundBrush = value; }
+		|        }
+		|
+		|        private Font _font;
+		|        public Font Font
+		|        {
+		|            get { return _font; }
+		|            set { _font = value; }
+		|        }
+		|
+		|        private Color _textColor;
+		|        public Color TextColor
+		|        {
+		|            get { return _textColor; }
+		|            set { _textColor = value; }
+		|        }
+		|
+		|        private string _text;
+		|        public string Text
+		|        {
+		|            get { return _text; }
+		|            set { _text = value; }
+		|        }
+		|
+		|        private EditableControl _control;
+		|        public EditableControl Control
+		|        {
+		|            get { return _control; }
+		|        }
+		|
+		|        public DrawEventArgs(TreeNodeAdv node, EditableControl control, DrawContext context, string text) : base(node)
+		|        {
+		|            _control = control;
+		|            _context = context;
+		|            _text = text;
+		|        }
+		|    }
+		|
+		|    public abstract class EditableControl : InteractiveControl
+		|    {
+		|        private System.Windows.Forms.Timer _timer;
+		|        private bool _editFlag;
+		|
+		|        protected EditableControl()
+		|        {
+		|            _timer = new System.Windows.Forms.Timer();
+		|            //////_timer.Interval = 500;
+		|            _timer.Tick += new EventHandler(TimerTick);
+		|        }
+		|
+		|        private bool _editOnClick = false;
+		|        [DefaultValue(false)]
+		|        public bool EditOnClick
+		|        {
+		|            get { return _editOnClick; }
+		|            set { _editOnClick = value; }
+		|        }
+		|
+		|        private void TimerTick(object sender, EventArgs e)
+		|        {
+		|            _timer.Stop();
+		|            if (_editFlag)
+		|            {
+		|                BeginEdit();
+		|            }
+		|            _editFlag = false;
+		|        }
+		|
+		|        public void SetEditorBounds(EditorContext context)
+		|        {
+		|            Size size = CalculateEditorSize(context);
+		|            context.Editor.Bounds = new Rectangle(context.Bounds.X, context.Bounds.Y, Math.Min(size.Width, context.Bounds.Width), Math.Min(size.Height, Parent.ClientSize.Height - context.Bounds.Y));
+		|        }
+		|
+		|        protected abstract Size CalculateEditorSize(EditorContext context);
+		|
+		|        protected virtual bool CanEdit(TreeNodeAdv node)
+		|        {
+		|            return (node.Tag != null) && IsEditEnabled(node);
+		|        }
+		|
+		|        public void BeginEdit()
+		|        {
+		|            if (Parent != null && Parent.CurrentNode != null && CanEdit(Parent.CurrentNode))
+		|            {
+		|                CancelEventArgs args = new CancelEventArgs();
+		|                OnEditorShowing(args);
+		|                if (!args.Cancel)
+		|                {
+		|                    var editor = CreateEditor(Parent.CurrentNode);
+		|                    Parent.DisplayEditor(editor, this);
+		|                }
+		|            }
+		|        }
+		|
+		|        public void EndEdit(bool applyChanges)
+		|        {
+		|            if (Parent != null)
+		|            {
+		|                if (Parent.HideEditor(applyChanges))
+		|                {
+		|                    OnEditorHided();
+		|                }
+		|            }
+		|        }
+		|
+		|        public virtual void UpdateEditor(Control control)
+		|        {
+		|        }
+		|
+		|        internal void ApplyChanges(TreeNodeAdv node, Control editor)
+		|        {
+		|            DoApplyChanges(node, editor);
+		|            OnChangesApplied();
+		|        }
+		|
+		|        internal void DoDisposeEditor(Control editor)
+		|        {
+		|            DisposeEditor(editor);
+		|        }
+		|
+		|        protected abstract void DoApplyChanges(TreeNodeAdv node, Control editor);
+		|        protected abstract Control CreateEditor(TreeNodeAdv node);
+		|        protected abstract void DisposeEditor(Control editor);
+		|
+		|        public virtual void Cut(Control control)
+		|        {
+		|        }
+		|
+		|        public virtual void Copy(Control control)
+		|        {
+		|        }
+		|
+		|        public virtual void Paste(Control control)
+		|        {
+		|        }
+		|
+		|        public virtual void Delete(Control control)
+		|        {
+		|        }
+		|
+		|        public override void MouseDown(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            _editFlag = (!EditOnClick && args.Button == MouseButtons.Left && args.ModifierKeys == Keys.None && args.Node.IsSelected);
+		|        }
+		|
+		|        public override void MouseUp(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            if (args.Node.IsSelected)
+		|            {
+		|                if (EditOnClick && args.Button == MouseButtons.Left && args.ModifierKeys == Keys.None)
+		|                {
+		|                    Parent.ItemDragMode = false;
+		|                    BeginEdit();
+		|                    args.Handled = true;
+		|                }
+		|                else if (_editFlag) // && args.Node.IsSelected)
+		|                {
+		|                    _timer.Start();
+		|                }
+		|            }
+		|        }
+		|
+		|        public override void MouseDoubleClick(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            _editFlag = false;
+		|            _timer.Stop();
+		|        }
+		|
+		|        protected override void Dispose(bool disposing)
+		|        {
+		|            base.Dispose(disposing);
+		|            if (disposing)
+		|            {
+		|                _timer.Dispose();
+		|            }
+		|        }
+		|
+		|        public event CancelEventHandler EditorShowing;
+		|        protected void OnEditorShowing(CancelEventArgs args)
+		|        {
+		|            if (EditorShowing != null)
+		|            {
+		|                EditorShowing(this, args);
+		|            }
+		|        }
+		|
+		|        public event EventHandler EditorHided;
+		|        protected void OnEditorHided()
+		|        {
+		|            if (EditorHided != null)
+		|            {
+		|                EditorHided(this, EventArgs.Empty);
+		|            }
+		|        }
+		|
+		|        public event EventHandler ChangesApplied;
+		|        protected void OnChangesApplied()
+		|        {
+		|            if (ChangesApplied != null)
+		|            {
+		|                ChangesApplied(this, EventArgs.Empty);
+		|            }
+		|        }
+		|    }
+		|
+		|    public class EditEventArgs : NodeEventArgs
+		|    {
+		|        private Control _control;
+		|        public Control Control
+		|        {
+		|            get { return _control; }
+		|        }
+		|
+		|        public EditEventArgs(TreeNodeAdv node, Control control) : base(node)
+		|        {
+		|            _control = control;
+		|        }
+		|    }
+		|
+		|    public class ExpandingIcon : NodeControl
+		|    {
+		|        // Отображает анимированный значок для тех узлов, которые находятся в развернутом состоянии. 
+		|        // Родительский TreeView должен иметь свойство AsyncExpanding, равное true.
+		|
+		|        private static GifDecoder _gif = Aga.Controls.Tree.TreeViewAdv.LoadingIcon;
+		|        private static int _index = 0;
+		|        private static volatile Thread _animatingThread;
+		|        private static object _lock = new object();
+		|
+		|        public override Size MeasureSize(TreeNodeAdv node, DrawContext context)
+		|        {
+		|            return Aga.Controls.Tree.TreeViewAdv.LoadingIcon.FrameSize;
+		|        }
+		|
+		|        protected override void OnIsVisibleValueNeeded(NodeControlValueEventArgs args)
+		|        {
+		|            args.Value = args.Node.IsExpandingNow;
+		|            base.OnIsVisibleValueNeeded(args);
+		|        }
+		|
+		|        public override void Draw(TreeNodeAdv node, DrawContext context)
+		|        {
+		|            Rectangle rect = GetBounds(node, context);
+		|            Image img = _gif.GetFrame(_index).Image;
+		|            context.Graphics.DrawImage(img, rect.Location);
+		|        }
+		|
+		|        public static void Start()
+		|        {
+		|            lock (_lock)
+		|            {
+		|                if (_animatingThread == null)
+		|                {
+		|                    _index = 0;
+		|                    _animatingThread = new Thread(new ThreadStart(IterateIcons));
+		|                    _animatingThread.IsBackground = true;
+		|                    _animatingThread.Priority = ThreadPriority.Lowest;
+		|                    _animatingThread.Start();
+		|                }
+		|            }
+		|        }
+		|
+		|        public static void Stop()
+		|        {
+		|            lock (_lock)
+		|            {
+		|                _index = 0;
+		|                _animatingThread = null;
+		|            }
+		|        }
+		|
+		|        private static void IterateIcons()
+		|        {
+		|            while (_animatingThread != null)
+		|            {
+		|                if (_index < _gif.FrameCount - 1)
+		|                {
+		|                    _index++;
+		|                }
+		|                else
+		|                {
+		|                    _index = 0;
+		|                }
+		|
+		|                if (IconChanged != null)
+		|                {
+		|                    IconChanged(null, EventArgs.Empty);
+		|                }
+		|
+		|                int delay = _gif.GetFrame(_index).Delay;
+		|                Thread.Sleep(delay);
+		|            }
+		|            System.Diagnostics.Debug.WriteLine(""IterateIcons Stopped"");
+		|        }
+		|
+		|        public static event EventHandler IconChanged;
+		|    }
+		|
+		|    public abstract class InteractiveControl : BindableControl
+		|    {
+		|        private bool _editEnabled = false;
+		|        [DefaultValue(false)]
+		|        public bool EditEnabled
+		|        {
+		|            get { return _editEnabled; }
+		|            set { _editEnabled = value; }
+		|        }
+		|
+		|        protected bool IsEditEnabled(TreeNodeAdv node)
+		|        {
+		|            if (EditEnabled)
+		|            {
+		|                NodeControlValueEventArgs args = new NodeControlValueEventArgs(node);
+		|                args.Value = true;
+		|                OnIsEditEnabledValueNeeded(args);
+		|                return Convert.ToBoolean(args.Value);
+		|            }
+		|            else
+		|            {
+		|                return false;
+		|            }
+		|        }
+		|
+		|        public event EventHandler<NodeControlValueEventArgs> IsEditEnabledValueNeeded;
+		|
+		|        private void OnIsEditEnabledValueNeeded(NodeControlValueEventArgs args)
+		|        {
+		|            if (IsEditEnabledValueNeeded != null)
+		|            {
+		|                IsEditEnabledValueNeeded(this, args);
+		|            }
+		|        }
+		|    }
+		|
+		|    public class LabelEventArgs : EventArgs
+		|    {
+		|        private object _subject;
+		|        private object _oldLabel;
+		|        private object _newLabel;
+		|
+		|        public LabelEventArgs(object subject, object oldLabel, object newLabel)
+		|        {
+		|            _subject = subject;
+		|            _oldLabel = oldLabel;
+		|            _newLabel = newLabel;
+		|        }
+		|
+		|        public object Subject
+		|        {
+		|            get { return _subject; }
+		|        }
+		|
+		|        public object OldLabel
+		|        {
+		|            get { return _oldLabel; }
+		|        }
+		|
+		|        public object NewLabel
+		|        {
+		|            get { return _newLabel; }
+		|        }
+		|    }
+		|
+		|    public abstract class NodeControl : Component
+		|    {
+		|        public Dictionary<osf.ClToolTip, object> ObjTooltip = new Dictionary<osf.ClToolTip, object>();
+		|		
+		|        private object _tooltipText = """";
+		|        public object TooltipText
+		|        {
+		|            get { return _tooltipText; }
+		|            set { _tooltipText = value; }
+		|        }
+		|
+		|        private TreeViewAdv _parent;
+		|        public TreeViewAdv Parent
+		|        {
+		|            get { return _parent; }
+		|            set
+		|            {
+		|                if (value != _parent)
+		|                {
+		|                    if (_parent != null)
+		|                    {
+		|                        _parent.NodeControls.Remove(this);
+		|                    }
+		|                    if (value != null)
+		|                    {
+		|                        value.NodeControls.Add(this);
+		|                        _parent = value;
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        private IToolTipProvider _toolTipProvider;
+		|        public IToolTipProvider ToolTipProvider
+		|        {
+		|            get { return _toolTipProvider; }
+		|            set { _toolTipProvider = value; }
+		|        }
+		|
+		|        private TreeColumn _parentColumn;
+		|        public TreeColumn ParentColumn
+		|        {
+		|            get { return _parentColumn; }
+		|            set
+		|            {
+		|                _parentColumn = value;
+		|                if (_parent != null)
+		|                {
+		|                    _parent.FullUpdate();
+		|                }
+		|            }
+		|        }
+		|
+		|        private VerticalAlignment _verticalAlign = VerticalAlignment.Center;
+		|        [DefaultValue(VerticalAlignment.Center)]
+		|        public VerticalAlignment VerticalAlign
+		|        {
+		|            get { return _verticalAlign; }
+		|            set
+		|            {
+		|                _verticalAlign = value;
+		|                if (_parent != null)
+		|                {
+		|                    _parent.FullUpdate();
+		|                }
+		|            }
+		|        }
+		|
+		|        private int _leftMargin = 0;
+		|        public int LeftMargin
+		|        {
+		|            get { return _leftMargin; }
+		|            set
+		|            {
+		|                if (value < 0)
+		|                {
+		|                    throw new ArgumentOutOfRangeException();
+		|                }
+		|
+		|                _leftMargin = value;
+		|                if (_parent != null)
+		|                {
+		|                    _parent.FullUpdate();
+		|                }
+		|            }
+		|        }
+		|
+		|        internal virtual void AssignParent(TreeViewAdv parent)
+		|        {
+		|            _parent = parent;
+		|        }
+		|
+		|        protected virtual Rectangle GetBounds(TreeNodeAdv node, DrawContext context)
+		|        {
+		|            Rectangle r = context.Bounds;
+		|            Size s = GetActualSize(node, context);
+		|            Size bs = new Size(r.Width - LeftMargin, Math.Min(r.Height, s.Height));
+		|            switch (VerticalAlign)
+		|            {
+		|                case VerticalAlignment.Top:
+		|                    return new Rectangle(new Point(r.X + LeftMargin, r.Y), bs);
+		|                case VerticalAlignment.Bottom:
+		|                    return new Rectangle(new Point(r.X + LeftMargin, r.Bottom - s.Height), bs);
+		|                default:
+		|                    return new Rectangle(new Point(r.X + LeftMargin, r.Y + (r.Height - s.Height) / 2), bs);
+		|            }
+		|        }
+		|
+		|        protected void CheckThread()
+		|        {
+		|            if (Parent != null && Control.CheckForIllegalCrossThreadCalls)
+		|            {
+		|                if (Parent.InvokeRequired)
+		|                {
+		|                    throw new InvalidOperationException(""Cross-thread calls are not allowed"");
+		|                }
+		|            }
+		|        }
+		|
+		|        public bool IsVisible(TreeNodeAdv node)
+		|        {
+		|            NodeControlValueEventArgs args = new NodeControlValueEventArgs(node);
+		|            args.Value = true;
+		|            OnIsVisibleValueNeeded(args);
+		|            return Convert.ToBoolean(args.Value);
+		|        }
+		|
+		|        internal Size GetActualSize(TreeNodeAdv node, DrawContext context)
+		|        {
+		|            if (IsVisible(node))
+		|            {
+		|                Size s = MeasureSize(node, context);
+		|                return new Size(s.Width + LeftMargin, s.Height);
+		|            }
+		|            else
+		|            {
+		|                return Size.Empty;
+		|            }
+		|        }
+		|
+		|        public abstract Size MeasureSize(TreeNodeAdv node, DrawContext context);
+		|        public abstract void Draw(TreeNodeAdv node, DrawContext context);
+		|
+		|        public virtual string GetToolTip(TreeNodeAdv node)
+		|        {
+		|            if (ToolTipProvider != null)
+		|            {
+		|                return ToolTipProvider.GetToolTip(node, this);
+		|            }
+		|            else
+		|            {
+		|                return string.Empty;
+		|            }
+		|        }
+		|
+		|        public virtual void MouseDown(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|        }
+		|
+		|        public virtual void MouseUp(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|        }
+		|
+		|        public virtual void MouseDoubleClick(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|        }
+		|
+		|        public virtual void KeyDown(KeyEventArgs args)
+		|        {
+		|        }
+		|
+		|        public virtual void KeyUp(KeyEventArgs args)
+		|        {
+		|        }
+		|
+		|        public event EventHandler<NodeControlValueEventArgs> IsVisibleValueNeeded;
+		|        protected virtual void OnIsVisibleValueNeeded(NodeControlValueEventArgs args)
+		|        {
+		|            if (IsVisibleValueNeeded != null)
+		|            {
+		|                IsVisibleValueNeeded(this, args);
+		|            }
+		|        }
+		|    }
+		|
+		|    public class NodeControlValueEventArgs : NodeEventArgs
+		|    {
+		|        private object _value;
+		|        public object Value
+		|        {
+		|            get { return _value; }
+		|            set { _value = value; }
+		|        }
+		|
+		|        public NodeControlValueEventArgs(TreeNodeAdv node) : base(node)
+		|        {
+		|        }
+		|    }
+		|
+		|    public class NodeEventArgs : EventArgs
+		|    {
+		|        private TreeNodeAdv _node;
+		|        public TreeNodeAdv Node
+		|        {
+		|            get { return _node; }
+		|        }
+		|
+		|        public NodeEventArgs(TreeNodeAdv node)
+		|        {
+		|            _node = node;
+		|        }
+		|    }
+		|
+		|    public class NodeIcon : BindableControl
+		|    {
+		|        public NodeIcon()
+		|        {
+		|            LeftMargin = 1;
+		|        }
+		|
+		|        public override Size MeasureSize(TreeNodeAdv node, DrawContext context)
+		|        {
+		|            Image image = GetIcon(node);
+		|            if (image != null)
+		|            {
+		|                return image.Size;
+		|            }
+		|            else
+		|            {
+		|                return Size.Empty;
+		|            }
+		|        }
+		|
+		|        public override void Draw(TreeNodeAdv node, DrawContext context)
+		|        {
+		|            Image image = GetIcon(node);
+		|            if (image != null)
+		|            {
+		|                Rectangle r = GetBounds(node, context);
+		|                if (image.Width > 0 && image.Height > 0)
+		|                {
+		|                    float f = (float)(image.Height - node.Tree.RowHeight) / 2;
+		|                    switch (_scaleMode)
+		|                    {
+		|                        case ImageScaleMode.Fit:
+		|                            {
+		|                                r.Y = r.Y + Convert.ToInt32(f);
+		|                                r.Height = node.Tree.RowHeight;
+		|                                context.Graphics.DrawImage(image, r);
+		|                            }
+		|                            break;
+		|                        case ImageScaleMode.AlwaysScale:
+		|                            {
+		|                                float fh = (float)node.Tree.RowHeight / (float)image.Height;
+		|                                if (node.Tree.RowHeight > image.Height) // высота строки больше высоты рисунка - увеличиваем рисунок
+		|                                {
+		|                                    context.Graphics.DrawImage(image, r.X, r.Y + f, image.Width * fh, image.Height * fh);
+		|                                }
+		|                                else if (node.Tree.RowHeight < image.Height) // высота строки меньше высоты рисунка - уменьшаем рисунок
+		|                                {
+		|                                    context.Graphics.DrawImage(image, r.X, r.Y + f, image.Width * fh, image.Height * fh);
+		|                                }
+		|                                else // не масштабируем
+		|                                {
+		|                                    context.Graphics.DrawImage(image, r.X, r.Y, image.Width, image.Height);
+		|                                }
+		|                            }
+		|                            break;
+		|                        case ImageScaleMode.Clip:
+		|                        default:
+		|                            context.Graphics.DrawImage(image, r.X, r.Y, image.Width, image.Height);
+		|                            break;
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        protected virtual Image GetIcon(TreeNodeAdv node)
+		|        {
+		|            return GetValue(node) as Image;
+		|        }
+		|
+		|        private ImageScaleMode _scaleMode = ImageScaleMode.AlwaysScale;
+		|        public ImageScaleMode ScaleMode
+		|        {
+		|            get { return _scaleMode; }
+		|            set { _scaleMode = value; }
+		|        }
+		|    }
+		|
+		|    public class NodeIntegerTextBox : NodeTextBox
+		|    {
+		|        private bool _allowNegativeSign = true;
+		|        [DefaultValue(true)]
+		|        public bool AllowNegativeSign
+		|        {
+		|            get { return _allowNegativeSign; }
+		|            set { _allowNegativeSign = value; }
+		|        }
+		|
+		|        public NodeIntegerTextBox()
+		|        {
+		|        }
+		|
+		|        protected override TextBox CreateTextBox()
+		|        {
+		|            NumericTextBox textBox = new NumericTextBox();
+		|            textBox.AllowDecimalSeparator = false;
+		|            textBox.AllowNegativeSign = AllowNegativeSign;
+		|            return textBox;
+		|        }
+		|
+		|        protected override void DoApplyChanges(TreeNodeAdv node, Control editor)
+		|        {
+		|            SetValue(node, (editor as NumericTextBox).IntValue);
+		|        }
+		|    }
+		|
+		|    internal class NodePlusMinus : NodeControl
+		|    {
+		|        public const int ImageSize = 9;
+		|        public const int Width = 16;
+		|        private Bitmap _plus;
+		|        private Bitmap _minus;
+		|
+		|        private VisualStyleRenderer _openedRenderer;
+		|        private VisualStyleRenderer OpenedRenderer
+		|        {
+		|            get
+		|            {
+		|                if (_openedRenderer == null)
+		|                {
+		|                    _openedRenderer = new VisualStyleRenderer(VisualStyleElement.TreeView.Glyph.Opened);
+		|                }
+		|                return _openedRenderer;
+		|            }
+		|        }
+		|
+		|        private VisualStyleRenderer _closedRenderer;
+		|        private VisualStyleRenderer ClosedRenderer
+		|        {
+		|            get
+		|            {
+		|                if (_closedRenderer == null)
+		|                {
+		|                    _closedRenderer = new VisualStyleRenderer(VisualStyleElement.TreeView.Glyph.Closed);
+		|                }
+		|                return _closedRenderer;
+		|            }
+		|        }
+		|
+		|        public NodePlusMinus()
+		|        {
+		|            _plus = new Bitmap(new MemoryStream(Convert.FromBase64String(""Qk0yAQAAAAAAADYAAAAoAAAACQAAAAkAAAABABgAAAAAAPwAAAAAAAAAAAAAAAAAAAAAAAAAfWVPfWVPfWVPfWVPfWVPfWVPfWVPfWVPfWVPAH1lT////////////////////////////31lTwB9ZU////////////8AAAD///////////99ZU8AfWVP////////////AAAA////////////fWVPAH1lT////wAAAAAAAAAAAAAAAAAAAP///31lTwB9ZU////////////8AAAD///////////99ZU8AfWVP////////////AAAA////////////fWVPAH1lT////////////////////////////31lTwB9ZU99ZU99ZU99ZU99ZU99ZU99ZU99ZU99ZU8A"")));
+		|            _minus = new Bitmap(new MemoryStream(Convert.FromBase64String(""Qk0yAQAAAAAAADYAAAAoAAAACQAAAAkAAAABABgAAAAAAPwAAAAAAAAAAAAAAAAAAAAAAAAAfWVPfWVPfWVPfWVPfWVPfWVPfWVPfWVPfWVPAH1lT////////////////////////////31lTwB9ZU////////////////////////////99ZU8AfWVP////////////////////////////fWVPAH1lT////wAAAAAAAAAAAAAAAAAAAP///31lTwB9ZU////////////////////////////99ZU8AfWVP////////////////////////////fWVPAH1lT////////////////////////////31lTwB9ZU99ZU99ZU99ZU99ZU99ZU99ZU99ZU99ZU8A"")));
+		|        }
+		|
+		|        public override Size MeasureSize(TreeNodeAdv node, DrawContext context)
+		|        {
+		|            return new Size(Width, Width);
+		|        }
+		|
+		|        public override void Draw(TreeNodeAdv node, DrawContext context)
+		|        {
+		|            if (node.CanExpand)
+		|            {
+		|                Rectangle r = context.Bounds;
+		|                int dy = (int)Math.Round((float)(r.Height - ImageSize) / 2);
+		|                if (Application.RenderWithVisualStyles)
+		|                {
+		|                    VisualStyleRenderer renderer;
+		|                    if (node.IsExpanded)
+		|                    {
+		|                        renderer = OpenedRenderer;
+		|                    }
+		|                    else
+		|                    {
+		|                        renderer = ClosedRenderer;
+		|                    }
+		|                    renderer.DrawBackground(context.Graphics, new Rectangle(r.X, r.Y + dy, ImageSize, ImageSize));
+		|                }
+		|                else
+		|                {
+		|                    Image img;
+		|                    if (node.IsExpanded)
+		|                    {
+		|                        img = _minus;
+		|                    }
+		|                    else
+		|                    {
+		|                        img = _plus;
+		|                    }
+		|                    context.Graphics.DrawImageUnscaled(img, new Point(r.X, r.Y + dy));
+		|                }
+		|            }
+		|        }
+		|
+		|        public override void MouseDown(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            if (args.Button == MouseButtons.Left)
+		|            {
+		|                args.Handled = true;
+		|                if (args.Node.CanExpand)
+		|                {
+		|                    args.Node.IsExpanded = !args.Node.IsExpanded;
+		|                }
+		|            }
+		|        }
+		|
+		|        public override void MouseDoubleClick(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            args.Handled = true; // Подавление разворачивания/сворачивания при двойном щелчке на плюс/минус
+		|        }
+		|    }
+		|}
+		|
+		|    #endregion Aga.Controls.Tree.NodeControls
+		|
+		|    #region Aga.Controls.Tree
+		|
+		|namespace Aga.Controls.Tree
+		|{
+		|    internal interface IHeaderLayout
+		|    {
+		|        int PreferredHeaderHeight { get; set; }
+		|        void ClearCache();
+		|    }
+		|
+		|    internal class FixedHeaderHeightLayout : IHeaderLayout
+		|    {
+		|        private TreeViewAdv _treeView;
+		|        private int _headerHeight;
+		|
+		|        public FixedHeaderHeightLayout(TreeViewAdv treeView, int headerHeight)
+		|        {
+		|            _treeView = treeView;
+		|            PreferredHeaderHeight = headerHeight;
+		|        }
+		|
+		|        public int PreferredHeaderHeight
+		|        {
+		|            get { return _headerHeight; }
+		|            set { _headerHeight = value; }
+		|        }
+		|
+		|        public void ClearCache()
+		|        {
+		|        }
+		|    }
+		|
+		|    public class AutoHeaderHeightLayout : IHeaderLayout
+		|    {
+		|        private DrawContext _measureContext;
+		|        private TreeViewAdv _treeView;
+		|        private int? _headerHeight;
+		|        private bool _computed;
+		|
+		|        public AutoHeaderHeightLayout(TreeViewAdv treeView, int headerHeight)
+		|        {
+		|            _treeView = treeView;
+		|            PreferredHeaderHeight = headerHeight;
+		|            _measureContext = new DrawContext();
+		|            _measureContext.Graphics = Graphics.FromImage((Image)new Bitmap(1, 1));
+		|        }
+		|
+		|        public int PreferredHeaderHeight
+		|        {
+		|            get { return GetHeaderHeight(); }
+		|            set
+		|            {
+		|                _headerHeight = new int?(value);
+		|                _computed = false;
+		|            }
+		|        }
+		|
+		|        public void ClearCache()
+		|        {
+		|            _computed = false;
+		|        }
+		|
+		|        private int GetHeaderHeight()
+		|        {
+		|            if (!_computed)
+		|            {
+		|                int num = 0;
+		|                _measureContext.Font = _treeView.Font;
+		|                foreach (TreeColumn column in _treeView.Columns)
+		|                {
+		|                    int height = column.GetActualSize(_measureContext).Height;
+		|                    if (height > num)
+		|                    {
+		|                        num = height;
+		|                    }
+		|                }
+		|                _headerHeight = new int?(num);
+		|                _computed = true;
+		|            }
+		|            return _headerHeight.Value;
+		|        }
+		|    }
+		|		
+		|    public class TreeViewAdvCancelEventArgs : TreeViewAdvEventArgs
+		|    {
+		|        private bool _cancel;
+		|
+		|        public TreeViewAdvCancelEventArgs(TreeNodeAdv node) : base(node)
+		|        {
+		|        }
+		|
+		|        public bool Cancel
+		|        {
+		|            get { return _cancel; }
+		|            set { _cancel = value; }
+		|        }
+		|    }
+		|
+		|    public class TreeViewAdvEventArgs : EventArgs
+		|    {
+		|        private TreeNodeAdv _node;
+		|
+		|        public TreeNodeAdv Node
+		|        {
+		|            get { return _node; }
+		|        }
+		|
+		|        public TreeViewAdvEventArgs(TreeNodeAdv node)
+		|        {
+		|            _node = node;
+		|        }
+		|    }
+		|
+		|    public class TreeViewRowDrawEventArgs : PaintEventArgs
+		|    {
+		|        TreeNodeAdv _node;
+		|        DrawContext _context;
+		|        int _row;
+		|        Rectangle _rowRect;
+		|
+		|        public TreeViewRowDrawEventArgs(Graphics graphics, Rectangle clipRectangle, TreeNodeAdv node, DrawContext context, int row, Rectangle rowRect) : base(graphics, clipRectangle)
+		|        {
+		|            _node = node;
+		|            _context = context;
+		|            _row = row;
+		|            _rowRect = rowRect;
+		|        }
+		|
+		|        public TreeNodeAdv Node
+		|        {
+		|            get { return _node; }
+		|        }
+		|
+		|        public DrawContext Context
+		|        {
+		|            get { return _context; }
+		|        }
+		|
+		|        public int Row
+		|        {
+		|            get { return _row; }
+		|        }
+		|
+		|        public Rectangle RowRect
+		|        {
+		|            get { return _rowRect; }
+		|        }
+		|    }
+		|
+		|    internal class ClickColumnState : ColumnState
+		|    {
+		|        private Point _location;
+		|
+		|        public ClickColumnState(TreeViewAdv tree, TreeColumn column, Point location) : base(tree, column)
+		|        {
+		|            _location = location;
+		|        }
+		|
+		|        public override void KeyDown(KeyEventArgs args)
+		|        {
+		|        }
+		|
+		|        public override void MouseDown(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|        }
+		|
+		|        public override bool MouseMove(MouseEventArgs args)
+		|        {
+		|            if (TreeViewAdv.Dist(_location, args.Location) > TreeViewAdv.ItemDragSensivity && Tree.AllowColumnReorder)
+		|            {
+		|                Tree.Input = new ReorderColumnState(Tree, Column, args.Location);
+		|                Tree.UpdateView();
+		|            }
+		|            return true;
+		|        }
+		|
+		|        public override void MouseUp(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            Tree.ChangeInput();
+		|            Tree.UpdateView();
+		|            Tree.OnColumnClicked(Column);
+		|        }
+		|    }
+		|
+		|    internal abstract class ColumnState : InputState
+		|    {
+		|        private TreeColumn _column;
+		|        public TreeColumn Column
+		|        {
+		|            get { return _column; }
+		|        }
+		|
+		|        public ColumnState(TreeViewAdv tree, TreeColumn column) : base(tree)
+		|        {
+		|            _column = column;
+		|        }
+		|    }
+		|
+		|    internal abstract class InputState
+		|    {
+		|        private TreeViewAdv _tree;
+		|
+		|        public TreeViewAdv Tree
+		|        {
+		|            get { return _tree; }
+		|        }
+		|
+		|        public InputState(TreeViewAdv tree)
+		|        {
+		|            _tree = tree;
+		|        }
+		|
+		|        public abstract void KeyDown(System.Windows.Forms.KeyEventArgs args);
+		|        public abstract void MouseDown(TreeNodeAdvMouseEventArgs args);
+		|        public abstract void MouseUp(TreeNodeAdvMouseEventArgs args);
+		|
+		|        // Обработайте событие OnMouseMove.
+		|        // true, если событие было обработано и должно быть отправлено.
+		|        public virtual bool MouseMove(MouseEventArgs args)
+		|        {
+		|            return false;
+		|        }
+		|
+		|        public virtual void MouseDoubleClick(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|        }
+		|    }
+		|
+		|    internal class InputWithControl : NormalInputState
+		|    {
+		|        public InputWithControl(TreeViewAdv tree) : base(tree)
+		|        {
+		|        }
+		|
+		|        protected override void DoMouseOperation(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            if (Tree.SelectionMode == TreeSelectionMode.Single)
+		|            {
+		|                base.DoMouseOperation(args);
+		|            }
+		|            else if (CanSelect(args.Node))
+		|            {
+		|                args.Node.IsSelected = !args.Node.IsSelected;
+		|                Tree.SelectionStart = args.Node;
+		|            }
+		|        }
+		|
+		|        protected override void MouseDownAtEmptySpace(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|        }
+		|    }
+		|
+		|    internal class InputWithShift : NormalInputState
+		|    {
+		|        public InputWithShift(TreeViewAdv tree) : base(tree)
+		|        {
+		|        }
+		|
+		|        protected override void FocusRow(TreeNodeAdv node)
+		|        {
+		|            Tree.SuspendSelectionEvent = true;
+		|            try
+		|            {
+		|                if (Tree.SelectionMode == TreeSelectionMode.Single || Tree.SelectionStart == null)
+		|                {
+		|                    base.FocusRow(node);
+		|                }
+		|                else if (CanSelect(node))
+		|                {
+		|                    SelectAllFromStart(node);
+		|                    Tree.CurrentNode = node;
+		|                    Tree.ScrollTo(node);
+		|                }
+		|            }
+		|            finally
+		|            {
+		|                Tree.SuspendSelectionEvent = false;
+		|            }
+		|        }
+		|
+		|        protected override void DoMouseOperation(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            if (Tree.SelectionMode == TreeSelectionMode.Single || Tree.SelectionStart == null)
+		|            {
+		|                base.DoMouseOperation(args);
+		|            }
+		|            else if (CanSelect(args.Node))
+		|            {
+		|                Tree.SuspendSelectionEvent = true;
+		|                try
+		|                {
+		|                    SelectAllFromStart(args.Node);
+		|                }
+		|                finally
+		|                {
+		|                    Tree.SuspendSelectionEvent = false;
+		|                }
+		|            }
+		|        }
+		|
+		|        protected override void MouseDownAtEmptySpace(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|        }
+		|
+		|        private void SelectAllFromStart(TreeNodeAdv node)
+		|        {
+		|            Tree.ClearSelectionInternal();
+		|            int a = node.Row;
+		|            int b = Tree.SelectionStart.Row;
+		|            for (int i = Math.Min(a, b); i <= Math.Max(a, b); i++)
+		|            {
+		|                if (Tree.SelectionMode == TreeSelectionMode.Multi || Tree.RowMap[i].Parent == node.Parent)
+		|                {
+		|                    Tree.RowMap[i].IsSelected = true;
+		|                }
+		|            }
+		|        }
+		|    }
+		|
+		|    internal class NormalInputState : InputState
+		|    {
+		|        private bool _mouseDownFlag = false;
+		|
+		|        public NormalInputState(TreeViewAdv tree) : base(tree)
+		|        {
+		|        }
+		|
+		|        public override void KeyDown(KeyEventArgs args)
+		|        {
+		|            if (Tree.CurrentNode == null && Tree.Root.Nodes.Count > 0)
+		|            {
+		|                Tree.CurrentNode = Tree.Root.Nodes[0];
+		|            }
+		|
+		|            if (Tree.CurrentNode != null)
+		|            {
+		|                switch (args.KeyCode)
+		|                {
+		|                    case Keys.Right:
+		|                        if (!Tree.CurrentNode.IsExpanded)
+		|                        {
+		|                            Tree.CurrentNode.IsExpanded = true;
+		|                        }
+		|                        else if (Tree.CurrentNode.Nodes.Count > 0)
+		|                        {
+		|                            Tree.SelectedNode = Tree.CurrentNode.Nodes[0];
+		|                        }
+		|                        args.Handled = true;
+		|                        break;
+		|                    case Keys.Left:
+		|                        if (Tree.CurrentNode.IsExpanded)
+		|                        {
+		|                            Tree.CurrentNode.IsExpanded = false;
+		|                        }
+		|                        else if (Tree.CurrentNode.Parent != Tree.Root)
+		|                        {
+		|                            Tree.SelectedNode = Tree.CurrentNode.Parent;
+		|                        }
+		|                        args.Handled = true;
+		|                        break;
+		|                    case Keys.Down:
+		|                        NavigateForward(1);
+		|                        args.Handled = true;
+		|                        break;
+		|                    case Keys.Up:
+		|                        NavigateBackward(1);
+		|                        args.Handled = true;
+		|                        break;
+		|                    case Keys.PageDown:
+		|                        NavigateForward(Math.Max(1, Tree.CurrentPageSize - 1));
+		|                        args.Handled = true;
+		|                        break;
+		|                    case Keys.PageUp:
+		|                        NavigateBackward(Math.Max(1, Tree.CurrentPageSize - 1));
+		|                        args.Handled = true;
+		|                        break;
+		|                    case Keys.Home:
+		|                        if (Tree.RowMap.Count > 0)
+		|                        {
+		|                            FocusRow(Tree.RowMap[0]);
+		|                        }
+		|                        args.Handled = true;
+		|                        break;
+		|                    case Keys.End:
+		|                        if (Tree.RowMap.Count > 0)
+		|                        {
+		|                            FocusRow(Tree.RowMap[Tree.RowMap.Count - 1]);
+		|                        }
+		|                        args.Handled = true;
+		|                        break;
+		|                    case Keys.Subtract:
+		|                        Tree.CurrentNode.Collapse();
+		|                        args.Handled = true;
+		|                        args.SuppressKeyPress = true;
+		|                        break;
+		|                    case Keys.Add:
+		|                        Tree.CurrentNode.Expand();
+		|                        args.Handled = true;
+		|                        args.SuppressKeyPress = true;
+		|                        break;
+		|                    case Keys.Multiply:
+		|                        Tree.CurrentNode.ExpandAll();
+		|                        args.Handled = true;
+		|                        args.SuppressKeyPress = true;
+		|                        break;
+		|                    case Keys.A:
+		|                        if (args.Modifiers == Keys.Control)
+		|                        {
+		|                            Tree.SelectAllNodes();
+		|                        }
+		|                        break;
+		|                }
+		|            }
+		|        }
+		|
+		|        public override void MouseDown(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            if (args.Node != null)
+		|            {
+		|                Tree.ItemDragMode = true;
+		|                Tree.ItemDragStart = args.Location;
+		|
+		|                if (args.Button == MouseButtons.Left || args.Button == MouseButtons.Right)
+		|                {
+		|                    Tree.BeginUpdate();
+		|                    try
+		|                    {
+		|                        Tree.CurrentNode = args.Node;
+		|                        if (args.Node.IsSelected)
+		|                        {
+		|                            _mouseDownFlag = true;
+		|                        }
+		|                        else
+		|                        {
+		|                            _mouseDownFlag = false;
+		|                            DoMouseOperation(args);
+		|                        }
+		|                    }
+		|                    finally
+		|                    {
+		|                        Tree.EndUpdate();
+		|                    }
+		|                }
+		|            }
+		|            else
+		|            {
+		|                Tree.ItemDragMode = false;
+		|                MouseDownAtEmptySpace(args);
+		|            }
+		|        }
+		|
+		|        public override void MouseUp(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            Tree.ItemDragMode = false;
+		|            if (_mouseDownFlag && args.Node != null)
+		|            {
+		|                if (args.Button == MouseButtons.Left)
+		|                {
+		|                    DoMouseOperation(args);
+		|                }
+		|                else if (args.Button == MouseButtons.Right)
+		|                {
+		|                    Tree.CurrentNode = args.Node;
+		|                }
+		|            }
+		|            _mouseDownFlag = false;
+		|        }
+		|
+		|        private void NavigateBackward(int n)
+		|        {
+		|            int row = Math.Max(Tree.CurrentNode.Row - n, 0);
+		|            if (row != Tree.CurrentNode.Row)
+		|            {
+		|                FocusRow(Tree.RowMap[row]);
+		|            }
+		|        }
+		|
+		|        private void NavigateForward(int n)
+		|        {
+		|            int row = Math.Min(Tree.CurrentNode.Row + n, Tree.RowCount - 1);
+		|            if (row != Tree.CurrentNode.Row)
+		|            {
+		|                FocusRow(Tree.RowMap[row]);
+		|            }
+		|        }
+		|
+		|        protected virtual void MouseDownAtEmptySpace(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            Tree.ClearSelection();
+		|        }
+		|
+		|        protected virtual void FocusRow(TreeNodeAdv node)
+		|        {
+		|            Tree.SuspendSelectionEvent = true;
+		|            try
+		|            {
+		|                Tree.ClearSelectionInternal();
+		|                Tree.CurrentNode = node;
+		|                Tree.SelectionStart = node;
+		|                node.IsSelected = true;
+		|                Tree.ScrollTo(node);
+		|            }
+		|            finally
+		|            {
+		|                Tree.SuspendSelectionEvent = false;
+		|            }
+		|        }
+		|
+		|        protected bool CanSelect(TreeNodeAdv node)
+		|        {
+		|            if (Tree.SelectionMode == TreeSelectionMode.MultiSameParent)
+		|            {
+		|                return (Tree.SelectionStart == null || node.Parent == Tree.SelectionStart.Parent);
+		|            }
+		|            else
+		|            {
+		|                return true;
+		|            }
+		|        }
+		|
+		|        protected virtual void DoMouseOperation(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            if (Tree.SelectedNodes.Count == 1 && args.Node != null && args.Node.IsSelected)
+		|            {
+		|                return;
+		|            }
+		|
+		|            Tree.SuspendSelectionEvent = true;
+		|            try
+		|            {
+		|                Tree.ClearSelectionInternal();
+		|                if (args.Node != null)
+		|                {
+		|                    args.Node.IsSelected = true;
+		|                }
+		|                Tree.SelectionStart = args.Node;
+		|            }
+		|            finally
+		|            {
+		|                Tree.SuspendSelectionEvent = false;
+		|            }
+		|        }
+		|    }
+		|
+		|    internal class ReorderColumnState : ColumnState
+		|    {
+		|        private Point _location;
+		|        public Point Location
+		|        {
+		|            get { return _location; }
+		|        }
+		|
+		|        private Bitmap _ghostImage;
+		|        public Bitmap GhostImage
+		|        {
+		|            get { return _ghostImage; }
+		|        }
+		|
+		|        private TreeColumn _dropColumn;
+		|        public TreeColumn DropColumn
+		|        {
+		|            get { return _dropColumn; }
+		|        }
+		|
+		|        private int _dragOffset;
+		|        public int DragOffset
+		|        {
+		|            get { return _dragOffset; }
+		|        }
+		|
+		|        public ReorderColumnState(TreeViewAdv tree, TreeColumn column, Point initialMouseLocation) : base(tree, column)
+		|        {
+		|            _location = new Point(initialMouseLocation.X + Tree.OffsetX, 0);
+		|            _dragOffset = tree.GetColumnX(column) - initialMouseLocation.X;
+		|            _ghostImage = column.CreateGhostImage(new Rectangle(0, 0, column.Width, tree.ColumnHeaderHeight), tree.Font);
+		|        }
+		|
+		|        public override void KeyDown(KeyEventArgs args)
+		|        {
+		|            args.Handled = true;
+		|            if (args.KeyCode == Keys.Escape)
+		|            {
+		|                FinishResize();
+		|            }
+		|        }
+		|
+		|        public override void MouseDown(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|        }
+		|
+		|        public override void MouseUp(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            FinishResize();
+		|        }
+		|
+		|        public override bool MouseMove(MouseEventArgs args)
+		|        {
+		|            _dropColumn = null;
+		|            _location = new Point(args.X + Tree.OffsetX, 0);
+		|            int x = 0;
+		|            foreach (TreeColumn c in Tree.Columns)
+		|            {
+		|                if (c.IsVisible)
+		|                {
+		|                    if (_location.X < x + c.Width / 2)
+		|                    {
+		|                        _dropColumn = c;
+		|                        break;
+		|                    }
+		|                    x += c.Width;
+		|                }
+		|            }
+		|            Tree.UpdateHeaders();
+		|            return true;
+		|        }
+		|
+		|        private void FinishResize()
+		|        {
+		|            Tree.ChangeInput();
+		|            if (Column == DropColumn)
+		|            {
+		|                Tree.UpdateView();
+		|            }
+		|            else
+		|            {
+		|                Tree.Columns.Remove(Column);
+		|                if (DropColumn == null)
+		|                {
+		|                    Tree.Columns.Add(Column);
+		|                }
+		|                else
+		|                {
+		|                    Tree.Columns.Insert(Tree.Columns.IndexOf(DropColumn), Column);
+		|                }
+		|                Tree.OnColumnReordered(Column);
+		|            }
+		|        }
+		|    }
+		|
+		|    internal class ResizeColumnState : ColumnState
+		|    {
+		|        private Point _initLocation;
+		|        private int _initWidth;
+		|
+		|        public ResizeColumnState(TreeViewAdv tree, TreeColumn column, Point p) : base(tree, column)
+		|        {
+		|            _initLocation = p;
+		|            _initWidth = column.Width;
+		|        }
+		|
+		|        public override void KeyDown(KeyEventArgs args)
+		|        {
+		|            args.Handled = true;
+		|            if (args.KeyCode == Keys.Escape)
+		|            {
+		|                FinishResize();
+		|            }
+		|        }
+		|
+		|        public override void MouseDown(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|        }
+		|
+		|        public override void MouseUp(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            FinishResize();
+		|        }
+		|
+		|        private void FinishResize()
+		|        {
+		|            Tree.ChangeInput();
+		|            Tree.FullUpdate();
+		|            Tree.OnColumnWidthChanged(Column);
+		|        }
+		|
+		|        public override bool MouseMove(MouseEventArgs args)
+		|        {
+		|            Column.Width = _initWidth + args.Location.X - _initLocation.X;
+		|            Tree.UpdateView();
+		|            return true;
+		|        }
+		|
+		|        public override void MouseDoubleClick(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            Tree.AutoSizeColumn(Column);
+		|        }
+		|    }
+		|
+		|    public class AutoRowHeightLayout : IRowLayout
+		|    {
+		|        private DrawContext _measureContext;
+		|        private TreeViewAdv _treeView;
+		|        private List<Rectangle> _rowCache;
+		|        private int _rowHeight;
+		|
+		|        public AutoRowHeightLayout(TreeViewAdv treeView, int rowHeight)
+		|        {
+		|            _rowCache = new List<Rectangle>();
+		|            _treeView = treeView;
+		|            PreferredRowHeight = rowHeight;
+		|            _measureContext = new DrawContext();
+		|            _measureContext.Graphics = Graphics.FromImage(new Bitmap(1, 1));
+		|        }
+		|
+		|        public int PreferredRowHeight
+		|        {
+		|            get { return _rowHeight; }
+		|            set { _rowHeight = value; }
+		|        }
+		|
+		|        public int PageRowCount
+		|        {
+		|            get
+		|            {
+		|                if (_treeView.RowCount == 0)
+		|                {
+		|                    return 0;
+		|                }
+		|                else
+		|                {
+		|                    int pageHeight = _treeView.DisplayRectangle.Height - _treeView.ColumnHeaderHeight;
+		|                    int y = 0;
+		|                    for (int i = _treeView.RowCount - 1; i >= 0; i--)
+		|                    {
+		|                        y += GetRowHeight(i);
+		|                        if (y > pageHeight)
+		|                        {
+		|                            return Math.Max(0, _treeView.RowCount - 1 - i);
+		|                        }
+		|                    }
+		|                    return _treeView.RowCount;
+		|                }
+		|            }
+		|        }
+		|
+		|        public int CurrentPageSize
+		|        {
+		|            get
+		|            {
+		|                if (_treeView.RowCount == 0)
+		|                {
+		|                    return 0;
+		|                }
+		|                else
+		|                {
+		|                    int pageHeight = _treeView.DisplayRectangle.Height - _treeView.ColumnHeaderHeight;
+		|                    int y = 0;
+		|                    for (int i = _treeView.FirstVisibleRow; i < _treeView.RowCount; i++)
+		|                    {
+		|                        y += GetRowHeight(i);
+		|                        if (y > pageHeight)
+		|                        {
+		|                            return Math.Max(0, i - _treeView.FirstVisibleRow);
+		|                        }
+		|                    }
+		|                    return Math.Max(0, _treeView.RowCount - _treeView.FirstVisibleRow);
+		|                }
+		|            }
+		|        }
+		|
+		|        public Rectangle GetRowBounds(int rowNo)
+		|        {
+		|            if (rowNo >= _rowCache.Count)
+		|            {
+		|                int count = _rowCache.Count;
+		|                int y = count > 0 ? _rowCache[count - 1].Bottom : 0;
+		|                for (int i = count; i <= rowNo; i++)
+		|                {
+		|                    int height = GetRowHeight(i);
+		|                    _rowCache.Add(new Rectangle(0, y, 0, height));
+		|                    y += height;
+		|                }
+		|                if (rowNo < _rowCache.Count - 1)
+		|                {
+		|                    return Rectangle.Empty;
+		|                }
+		|            }
+		|            if (rowNo >= 0 && rowNo < _rowCache.Count)
+		|            {
+		|                return _rowCache[rowNo];
+		|            }
+		|            else
+		|            {
+		|                return Rectangle.Empty;
+		|            }
+		|        }
+		|
+		|        private int GetRowHeight(int rowNo)
+		|        {
+		|            if (rowNo < _treeView.RowMap.Count)
+		|            {
+		|                TreeNodeAdv node = _treeView.RowMap[rowNo];
+		|                if (node.Height == null)
+		|                {
+		|                    int res = 0;
+		|                    _measureContext.Font = _treeView.Font;
+		|                    foreach (NodeControl nc in _treeView.NodeControls)
+		|                    {
+		|                        int h = nc.GetActualSize(node, _measureContext).Height;
+		|                        if (h > res)
+		|                        {
+		|                            res = h;
+		|                        }
+		|                    }
+		|                    node.Height = res;
+		|                }
+		|                return node.Height.Value;
+		|            }
+		|            else
+		|            {
+		|                return 0;
+		|            }
+		|        }
+		|
+		|        public int GetRowAt(Point point)
+		|        {
+		|            int py = point.Y - _treeView.ColumnHeaderHeight;
+		|            int y = 0;
+		|            for (int i = _treeView.FirstVisibleRow; i < _treeView.RowCount; i++)
+		|            {
+		|                int h = GetRowHeight(i);
+		|                if (py >= y && py < y + h)
+		|                {
+		|                    return i;
+		|                }
+		|                else
+		|                {
+		|                    y += h;
+		|                }
+		|            }
+		|            return -1;
+		|        }
+		|
+		|        public int GetFirstRow(int lastPageRow)
+		|        {
+		|            int pageHeight = _treeView.DisplayRectangle.Height - _treeView.ColumnHeaderHeight;
+		|            int y = 0;
+		|            for (int i = lastPageRow; i >= 0; i--)
+		|            {
+		|                y += GetRowHeight(i);
+		|                if (y > pageHeight)
+		|                {
+		|                    return Math.Max(0, i + 1);
+		|                }
+		|            }
+		|            return 0;
+		|        }
+		|
+		|        public void ClearCache()
+		|        {
+		|            _rowCache.Clear();
+		|        }
+		|    }
+		|
+		|    public struct DrawContext
+		|    {
+		|        private Graphics _graphics;
+		|        private Rectangle _bounds;
+		|        private Font _font;
+		|        private DrawSelectionMode _drawSelection;
+		|        private bool _drawFocus;
+		|        private NodeControl _currentEditorOwner;
+		|        private bool _enabled;
+		|
+		|        public Graphics Graphics
+		|        {
+		|            get { return _graphics; }
+		|            set { _graphics = value; }
+		|        }
+		|
+		|        public Rectangle Bounds
+		|        {
+		|            get { return _bounds; }
+		|            set { _bounds = value; }
+		|        }
+		|
+		|        public Font Font
+		|        {
+		|            get { return _font; }
+		|            set { _font = value; }
+		|        }
+		|
+		|        public DrawSelectionMode DrawSelection
+		|        {
+		|            get { return _drawSelection; }
+		|            set { _drawSelection = value; }
+		|        }
+		|
+		|        public bool DrawFocus
+		|        {
+		|            get { return _drawFocus; }
+		|            set { _drawFocus = value; }
+		|        }
+		|
+		|        public NodeControl CurrentEditorOwner
+		|        {
+		|            get { return _currentEditorOwner; }
+		|            set { _currentEditorOwner = value; }
+		|        }
+		|
+		|        public bool Enabled
+		|        {
+		|            get { return _enabled; }
+		|            set { _enabled = value; }
+		|        }
+		|    }
+		|
+		|    public class DropNodeValidatingEventArgs : EventArgs
+		|    {
+		|        Point _point;
+		|        TreeNodeAdv _node;
+		|
+		|        public DropNodeValidatingEventArgs(Point point, TreeNodeAdv node)
+		|        {
+		|            _point = point;
+		|            _node = node;
+		|        }
+		|
+		|        public Point Point
+		|        {
+		|            get { return _point; }
+		|        }
+		|
+		|        public TreeNodeAdv Node
+		|        {
+		|            get { return _node; }
+		|            set { _node = value; }
+		|        }
+		|    }
+		|
+		|    public struct DropPosition
+		|    {
+		|        private TreeNodeAdv _node;
+		|        private NodePosition _position;
+		|
+		|        public TreeNodeAdv Node
+		|        {
+		|            get { return _node; }
+		|            set { _node = value; }
+		|        }
+		|
+		|        public NodePosition Position
+		|        {
+		|            get { return _position; }
+		|            set { _position = value; }
+		|        }
+		|    }
+		|
+		|    public struct EditorContext
+		|    {
+		|        private TreeNodeAdv _currentNode;
+		|        private Control _editor;
+		|        private NodeControl _owner;
+		|        private Rectangle _bounds;
+		|        private DrawContext _drawContext;
+		|
+		|        public TreeNodeAdv CurrentNode
+		|        {
+		|            get { return _currentNode; }
+		|            set { _currentNode = value; }
+		|        }
+		|
+		|        public Control Editor
+		|        {
+		|            get { return _editor; }
+		|            set { _editor = value; }
+		|        }
+		|
+		|        public NodeControl Owner
+		|        {
+		|            get { return _owner; }
+		|            set { _owner = value; }
+		|        }
+		|
+		|        public Rectangle Bounds
+		|        {
+		|            get { return _bounds; }
+		|            set { _bounds = value; }
+		|        }
+		|
+		|        public DrawContext DrawContext
+		|        {
+		|            get { return _drawContext; }
+		|            set { _drawContext = value; }
+		|        }
+		|    }
+		|
+		|    public enum DrawSelectionMode
+		|    {
+		|        None, Active, Inactive, FullRowSelect
+		|    }
+		|
+		|    public enum TreeSelectionMode
+		|    {
+		|        Single, Multi, MultiSameParent
+		|    }
+		|
+		|    public enum NodePosition
+		|    {
+		|        Inside, Before, After
+		|    }
+		|
+		|    public enum VerticalAlignment
+		|    {
+		|        Top, Bottom, Center
+		|    }
+		|
+		|    public enum IncrementalSearchMode
+		|    {
+		|        None, Standard, Continuous
+		|    }
+		|
+		|    [Flags]
+		|    public enum GridLineStyle
+		|    {
+		|        None = 0,
+		|        Horizontal = 1,
+		|        Vertical = 2,
+		|        HorizontalAndVertical = 3
+		|    }
+		|
+		|    public enum ImageScaleMode
+		|    {
+		|        Clip, // Не масштабировать.
+		|        Fit, // Масштабирует изображение так, чтобы оно соответствовало прямоугольнику дисплея, соотношение сторон не фиксировано.
+		|        AlwaysScale // Масштабирование изображения в соответствии с отображаемым прямоугольником с учетом соотношения сторон.
+		|    }
+		|
+		|    internal class FixedRowHeightLayout : IRowLayout
+		|    {
+		|        private TreeViewAdv _treeView;
+		|        private int _rowHeight;
+		|
+		|        public FixedRowHeightLayout(TreeViewAdv treeView, int rowHeight)
+		|        {
+		|            _treeView = treeView;
+		|            PreferredRowHeight = rowHeight;
+		|        }
+		|
+		|        public int PreferredRowHeight
+		|        {
+		|            get { return _rowHeight; }
+		|            set { _rowHeight = value; }
+		|        }
+		|
+		|        public Rectangle GetRowBounds(int rowNo)
+		|        {
+		|            return new Rectangle(0, rowNo * _rowHeight, 0, _rowHeight);
+		|        }
+		|
+		|        public int PageRowCount
+		|        {
+		|            get { return Math.Max((_treeView.DisplayRectangle.Height - _treeView.ColumnHeaderHeight) / _rowHeight, 0); }
+		|        }
+		|
+		|        public int CurrentPageSize
+		|        {
+		|            get { return PageRowCount; }
+		|        }
+		|
+		|        public int GetRowAt(Point point)
+		|        {
+		|            point = new Point(point.X, point.Y + (_treeView.FirstVisibleRow * _rowHeight) - _treeView.ColumnHeaderHeight);
+		|            return point.Y / _rowHeight;
+		|        }
+		|
+		|        public int GetFirstRow(int lastPageRow)
+		|        {
+		|            return Math.Max(0, lastPageRow - PageRowCount + 1);
+		|        }
+		|
+		|        public void ClearCache()
+		|        {
+		|        }
+		|    }
+		|
+		|    internal class IncrementalSearch
+		|    {
+		|        private const int SearchTimeout = 300; // Окончание инкрементного времени поиска в мсек.
+		|        private TreeViewAdv _tree;
+		|        private TreeNodeAdv _currentNode;
+		|        private string _searchString = """";
+		|        private DateTime _lastKeyPressed = DateTime.Now;
+		|
+		|        public IncrementalSearch(TreeViewAdv tree)
+		|        {
+		|            _tree = tree;
+		|        }
+		|
+		|        public void Search(Char value)
+		|        {
+		|            if (!Char.IsControl(value))
+		|            {
+		|                Char ch = Char.ToLowerInvariant(value);
+		|                DateTime dt = DateTime.Now;
+		|                TimeSpan ts = dt - _lastKeyPressed;
+		|                _lastKeyPressed = dt;
+		|                if (ts.TotalMilliseconds < SearchTimeout)
+		|                {
+		|                    if (_searchString == value.ToString())
+		|                    {
+		|                        FirstCharSearch(ch);
+		|                    }
+		|                    else
+		|                    {
+		|                        ContinuousSearch(ch);
+		|                    }
+		|                }
+		|                else
+		|                {
+		|                    FirstCharSearch(ch);
+		|                }
+		|            }
+		|        }
+		|
+		|        private void ContinuousSearch(Char value)
+		|        {
+		|            if (value == ' ' && String.IsNullOrEmpty(_searchString))
+		|            {
+		|                return; // Игнорировать ведущие пробелы.
+		|            }
+		|
+		|            _searchString += value;
+		|            DoContinuousSearch();
+		|        }
+		|
+		|        private void FirstCharSearch(Char value)
+		|        {
+		|            if (value == ' ')
+		|            {
+		|                return;
+		|            }
+		|
+		|            _searchString = value.ToString();
+		|            TreeNodeAdv node = null;
+		|            if (_tree.SelectedNode != null)
+		|            {
+		|                node = _tree.SelectedNode.NextVisibleNode;
+		|            }
+		|            if (node == null)
+		|            {
+		|                node = _tree.Root.NextVisibleNode;
+		|            }
+		|
+		|            if (node != null)
+		|            {
+		|                foreach (string label in IterateNodeLabels(node))
+		|                {
+		|                    if (label.StartsWith(_searchString))
+		|                    {
+		|                        _tree.SelectedNode = _currentNode;
+		|                        return;
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        public virtual void EndSearch()
+		|        {
+		|            _currentNode = null;
+		|            _searchString = """";
+		|        }
+		|
+		|        protected IEnumerable<string> IterateNodeLabels(TreeNodeAdv start)
+		|        {
+		|            _currentNode = start;
+		|            while (_currentNode != null)
+		|            {
+		|                foreach (string label in GetNodeLabels(_currentNode))
+		|                {
+		|                    yield return label;
+		|                }
+		|
+		|                _currentNode = _currentNode.NextVisibleNode;
+		|                if (_currentNode == null)
+		|                {
+		|                    _currentNode = _tree.Root;
+		|                }
+		|
+		|                if (start == _currentNode)
+		|                {
+		|                    break;
+		|                }
+		|            }
+		|        }
+		|
+		|        private IEnumerable<string> GetNodeLabels(TreeNodeAdv node)
+		|        {
+		|            foreach (NodeControl nc in _tree.NodeControls)
+		|            {
+		|                BindableControl bc = nc as BindableControl;
+		|                if (bc != null && bc.IncrementalSearchEnabled)
+		|                {
+		|                    object obj = bc.GetValue(node);
+		|                    if (obj != null)
+		|                    {
+		|                        yield return obj.ToString().ToLowerInvariant();
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        private bool DoContinuousSearch()
+		|        {
+		|            bool found = false;
+		|            if (!String.IsNullOrEmpty(_searchString))
+		|            {
+		|                TreeNodeAdv node = null;
+		|                if (_tree.SelectedNode != null)
+		|                {
+		|                    node = _tree.SelectedNode;
+		|                }
+		|                if (node == null)
+		|                {
+		|                    node = _tree.Root.NextVisibleNode;
+		|                }
+		|
+		|                if (!String.IsNullOrEmpty(_searchString))
+		|                {
+		|                    foreach (string label in IterateNodeLabels(node))
+		|                    {
+		|                        if (label.StartsWith(_searchString))
+		|                        {
+		|                            found = true;
+		|                            _tree.SelectedNode = _currentNode;
+		|                            break;
+		|                        }
+		|                    }
+		|                }
+		|            }
+		|            return found;
+		|        }
+		|    }
+		|
+		|    internal interface IRowLayout
+		|    {
+		|        int PreferredRowHeight { get; set; }
+		|        int PageRowCount { get; }
+		|        int CurrentPageSize { get; }
+		|        Rectangle GetRowBounds(int rowNo);
+		|        int GetRowAt(Point point);
+		|        int GetFirstRow(int lastPageRow);
+		|        void ClearCache();
+		|    }
+		|
+		|    public interface IToolTipProvider
+		|    {
+		|        string GetToolTip(TreeNodeAdv node, NodeControl nodeControl);
+		|    }
+		|
+		|    public interface ITreeModel
+		|    {
+		|        IEnumerable GetChildren(TreePath treePath);
+		|        bool IsLeaf(TreePath treePath);
+		|
+		|        event EventHandler<TreeModelEventArgs> NodesChanged;
+		|        event EventHandler<TreeModelEventArgs> NodesInserted;
+		|        event EventHandler<TreeModelEventArgs> NodesRemoved;
+		|        event EventHandler<TreePathEventArgs> StructureChanged;
+		|    }
+		|
+		|    public class ListModel : TreeModelBase
+		|    {
+		|        private IList _list;
+		|
+		|        public int Count
+		|        {
+		|            get { return _list.Count; }
+		|        }
+		|
+		|        public ListModel()
+		|        {
+		|            _list = new List<object>();
+		|        }
+		|
+		|        public ListModel(IList list)
+		|        {
+		|            _list = list;
+		|        }
+		|
+		|        public override IEnumerable GetChildren(TreePath treePath)
+		|        {
+		|            return _list;
+		|        }
+		|
+		|        public override bool IsLeaf(TreePath treePath)
+		|        {
+		|            return true;
+		|        }
+		|
+		|        public void AddRange(IEnumerable items)
+		|        {
+		|            foreach (object obj in items)
+		|            {
+		|                _list.Add(obj);
+		|            }
+		|            OnStructureChanged(new TreePathEventArgs(TreePath.Empty));
+		|        }
+		|
+		|        public void Add(object item)
+		|        {
+		|            _list.Add(item);
+		|            OnNodesInserted(new TreeModelEventArgs(TreePath.Empty, new int[] { _list.Count - 1 }, new object[] { item }));
+		|        }
+		|
+		|        public void Clear()
+		|        {
+		|            _list.Clear();
+		|            OnStructureChanged(new TreePathEventArgs(TreePath.Empty));
+		|        }
+		|    }
+		|
+		|    public struct NodeControlInfo
+		|    {
+		|        public static readonly NodeControlInfo Empty = new NodeControlInfo(null, Rectangle.Empty, null);
+		|        private NodeControl _control;
+		|        private Rectangle _bounds;
+		|        private TreeNodeAdv _node;
+		|
+		|        public NodeControl Control
+		|        {
+		|            get { return _control; }
+		|        }
+		|
+		|        public Rectangle Bounds
+		|        {
+		|            get { return _bounds; }
+		|        }
+		|
+		|        public TreeNodeAdv Node
+		|        {
+		|            get { return _node; }
+		|        }
+		|
+		|        public NodeControlInfo(NodeControl control, Rectangle bounds, TreeNodeAdv node)
+		|        {
+		|            _control = control;
+		|            _bounds = bounds;
+		|            _node = node;
+		|        }
+		|    }
+		|
+		|    public class SortedTreeModel : TreeModelBase
+		|    {
+		|        private ITreeModel _innerModel;
+		|        private IComparer _comparer;
+		|
+		|        public ITreeModel InnerModel
+		|        {
+		|            get { return _innerModel; }
+		|        }
+		|
+		|        public IComparer Comparer
+		|        {
+		|            get { return _comparer; }
+		|            set
+		|            {
+		|                _comparer = value;
+		|                OnStructureChanged(new TreePathEventArgs(TreePath.Empty));
+		|            }
+		|        }
+		|
+		|        public SortedTreeModel(ITreeModel innerModel)
+		|        {
+		|            _innerModel = innerModel;
+		|            _innerModel.NodesChanged += new EventHandler<TreeModelEventArgs>(_innerModel_NodesChanged);
+		|            _innerModel.NodesInserted += new EventHandler<TreeModelEventArgs>(_innerModel_NodesInserted);
+		|            _innerModel.NodesRemoved += new EventHandler<TreeModelEventArgs>(_innerModel_NodesRemoved);
+		|            _innerModel.StructureChanged += new EventHandler<TreePathEventArgs>(_innerModel_StructureChanged);
+		|        }
+		|
+		|        void _innerModel_StructureChanged(object sender, TreePathEventArgs e)
+		|        {
+		|            OnStructureChanged(e);
+		|        }
+		|
+		|        void _innerModel_NodesRemoved(object sender, TreeModelEventArgs e)
+		|        {
+		|            OnStructureChanged(new TreePathEventArgs(e.Path));
+		|        }
+		|
+		|        void _innerModel_NodesInserted(object sender, TreeModelEventArgs e)
+		|        {
+		|            OnStructureChanged(new TreePathEventArgs(e.Path));
+		|        }
+		|
+		|        void _innerModel_NodesChanged(object sender, TreeModelEventArgs e)
+		|        {
+		|            OnStructureChanged(new TreePathEventArgs(e.Path));
+		|        }
+		|
+		|        public override IEnumerable GetChildren(TreePath treePath)
+		|        {
+		|            if (Comparer != null)
+		|            {
+		|                ArrayList list = new ArrayList();
+		|                IEnumerable res = InnerModel.GetChildren(treePath);
+		|                if (res != null)
+		|                {
+		|                    foreach (object obj in res)
+		|                    {
+		|                        list.Add(obj);
+		|                    }
+		|                    list.Sort(Comparer);
+		|                    return list;
+		|                }
+		|                else
+		|                {
+		|                    return null;
+		|                }
+		|            }
+		|            else
+		|            {
+		|                return InnerModel.GetChildren(treePath);
+		|            }
+		|        }
+		|
+		|        public override bool IsLeaf(TreePath treePath)
+		|        {
+		|            return InnerModel.IsLeaf(treePath);
+		|        }
+		|    }
+		|
+		|    public class TreeColumnEventArgs : EventArgs
+		|    {
+		|        private TreeColumn _column;
+		|
+		|        public TreeColumn Column
+		|        {
+		|            get { return _column; }
+		|        }
+		|
+		|        public TreeColumnEventArgs(TreeColumn column)
+		|        {
+		|            _column = column;
+		|        }
+		|    }
+		|
+		|    public class TreeListAdapter : ITreeModel
+		|    {
+		|        // Преобразует интерфейс IEnumerable в ITreeModel.
+		|        // Позволяет отображать простой список в TreeView.
+		|
+		|        private System.Collections.IEnumerable _list;
+		|        public event EventHandler<TreeModelEventArgs> NodesChanged;
+		|        public event EventHandler<TreePathEventArgs> StructureChanged;
+		|        public event EventHandler<TreeModelEventArgs> NodesInserted;
+		|        public event EventHandler<TreeModelEventArgs> NodesRemoved;
+		|
+		|        public TreeListAdapter(System.Collections.IEnumerable list)
+		|        {
+		|            _list = list;
+		|        }
+		|
+		|        public System.Collections.IEnumerable GetChildren(TreePath treePath)
+		|        {
+		|            if (treePath.IsEmpty())
+		|            {
+		|                return _list;
+		|            }
+		|            else
+		|            {
+		|                return null;
+		|            }
+		|        }
+		|
+		|        public bool IsLeaf(TreePath treePath)
+		|        {
+		|            return true;
+		|        }
+		|
+		|        public void OnNodesChanged(TreeModelEventArgs args)
+		|        {
+		|            if (NodesChanged != null)
+		|            {
+		|                NodesChanged(this, args);
+		|            }
+		|        }
+		|
+		|        public void OnStructureChanged(TreePathEventArgs args)
+		|        {
+		|            if (StructureChanged != null)
+		|            {
+		|                StructureChanged(this, args);
+		|            }
+		|        }
+		|
+		|        public void OnNodeInserted(TreeModelEventArgs args)
+		|        {
+		|            if (NodesInserted != null)
+		|            {
+		|                NodesInserted(this, args);
+		|            }
+		|        }
+		|
+		|        public void OnNodeRemoved(TreeModelEventArgs args)
+		|        {
+		|            if (NodesRemoved != null)
+		|            {
+		|                NodesRemoved(this, args);
+		|            }
+		|        }
+		|    }
+		|
+		|    public abstract class TreeModelBase : ITreeModel
+		|    {
+		|        public abstract System.Collections.IEnumerable GetChildren(TreePath treePath);
+		|        public abstract bool IsLeaf(TreePath treePath);
+		|        public event EventHandler<TreeModelEventArgs> NodesChanged;
+		|        public event EventHandler<TreePathEventArgs> StructureChanged;
+		|        public event EventHandler<TreeModelEventArgs> NodesInserted;
+		|        public event EventHandler<TreeModelEventArgs> NodesRemoved;
+		|
+		|        protected void OnNodesChanged(TreeModelEventArgs args)
+		|        {
+		|            if (NodesChanged != null)
+		|            {
+		|                NodesChanged(this, args);
+		|            }
+		|        }
+		|
+		|        protected void OnStructureChanged(TreePathEventArgs args)
+		|        {
+		|            if (StructureChanged != null)
+		|            {
+		|                StructureChanged(this, args);
+		|            }
+		|        }
+		|
+		|        protected void OnNodesInserted(TreeModelEventArgs args)
+		|        {
+		|            if (NodesInserted != null)
+		|            {
+		|                NodesInserted(this, args);
+		|            }
+		|        }
+		|
+		|        protected void OnNodesRemoved(TreeModelEventArgs args)
+		|        {
+		|            if (NodesRemoved != null)
+		|            {
+		|                NodesRemoved(this, args);
+		|            }
+		|        }
+		|
+		|        public virtual void Refresh()
+		|        {
+		|            OnStructureChanged(new TreePathEventArgs(TreePath.Empty));
+		|        }
+		|    }
+		|
+		|    public class TreeModelEventArgs : TreePathEventArgs
+		|    {
+		|        private object[] _children;
+		|        private int[] _indices;
+		|
+		|        public object[] Children
+		|        {
+		|            get { return _children; }
+		|        }
+		|
+		|        public int[] Indices
+		|        {
+		|            get { return _indices; }
+		|        }
+		|
+		|        public TreeModelEventArgs(TreePath parent, object[] children) : this(parent, null, children)
+		|        {
+		|        }
+		|
+		|        public TreeModelEventArgs(TreePath parent, int[] indices, object[] children) : base(parent)
+		|        {
+		|            if (children == null)
+		|            {
+		|                throw new ArgumentNullException();
+		|            }
+		|
+		|            if (indices != null && indices.Length != children.Length)
+		|            {
+		|                throw new ArgumentException(""Индексы и дочерние массивы должны иметь одинаковую длину."");
+		|            }
+		|            _indices = indices;
+		|            _children = children;
+		|        }
+		|    }
+		|
+		|    public class TreeNodeAdvMouseEventArgs : MouseEventArgs
+		|    {
+		|        private TreeNodeAdv _node;
+		|        private NodeControl _control;
+		|        private Point _viewLocation;
+		|        private Keys _modifierKeys;
+		|        private bool _handled;
+		|        private Rectangle _controlBounds;
+		|
+		|        public TreeNodeAdv Node
+		|        {
+		|            get { return _node; }
+		|            internal set { _node = value; }
+		|        }
+		|
+		|        public NodeControl Control
+		|        {
+		|            get { return _control; }
+		|            internal set { _control = value; }
+		|        }
+		|
+		|        public Point ViewLocation
+		|        {
+		|            get { return _viewLocation; }
+		|            internal set { _viewLocation = value; }
+		|        }
+		|
+		|        public Keys ModifierKeys
+		|        {
+		|            get { return _modifierKeys; }
+		|            internal set { _modifierKeys = value; }
+		|        }
+		|
+		|        public bool Handled
+		|        {
+		|            get { return _handled; }
+		|            set { _handled = value; }
+		|        }
+		|
+		|        public Rectangle ControlBounds
+		|        {
+		|            get { return _controlBounds; }
+		|            internal set { _controlBounds = value; }
+		|        }
+		|
+		|        public TreeNodeAdvMouseEventArgs(MouseEventArgs args) : base(args.Button, args.Clicks, args.X, args.Y, args.Delta)
+		|        {
+		|        }
+		|    }
+		|
+		|    public class TreePath
+		|    {
+		|        public static readonly TreePath Empty = new TreePath();
+		|        private object[] _path;
+		|
+		|        public TreePath()
+		|        {
+		|            _path = new object[0];
+		|        }
+		|
+		|        public TreePath(object node)
+		|        {
+		|            _path = new object[] { node };
+		|        }
+		|
+		|        public TreePath(object[] path)
+		|        {
+		|            _path = path;
+		|        }
+		|
+		|        public TreePath(TreePath parent, object node)
+		|        {
+		|            _path = new object[parent.FullPath.Length + 1];
+		|            for (int i = 0; i < _path.Length - 1; i++)
+		|            {
+		|                _path[i] = parent.FullPath[i];
+		|            }
+		|            _path[_path.Length - 1] = node;
+		|        }
+		|
+		|        public object[] FullPath
+		|        {
+		|            get { return _path; }
+		|        }
+		|
+		|        public object LastNode
+		|        {
+		|            get
+		|            {
+		|                if (_path.Length > 0)
+		|                {
+		|                    return _path[_path.Length - 1];
+		|                }
+		|                else
+		|                {
+		|                    return null;
+		|                }
+		|            }
+		|        }
+		|
+		|        public object FirstNode
+		|        {
+		|            get
+		|            {
+		|                if (_path.Length > 0)
+		|                {
+		|                    return _path[0];
+		|                }
+		|                else
+		|                {
+		|                    return null;
+		|                }
+		|            }
+		|        }
+		|
+		|        public bool IsEmpty()
+		|        {
+		|            return (_path.Length == 0);
+		|        }
+		|    }
+		|
+		|    public class TreePathEventArgs : EventArgs
+		|    {
+		|        private TreePath _path;
+		|
+		|        public TreePath Path
+		|        {
+		|            get { return _path; }
+		|        }
+		|
+		|        public TreePathEventArgs()
+		|        {
+		|            _path = new TreePath();
+		|        }
+		|
+		|        public TreePathEventArgs(TreePath path)
+		|        {
+		|            if (path == null)
+		|            {
+		|                throw new ArgumentNullException();
+		|            }
+		|            _path = path;
+		|        }
+		|    }
+		|
+		|    public class TreeModel : ITreeModel
+		|    {
+		|        // Предоставляет простую готовую к использованию реализацию ITreeModel.
+		|        // Предупреждение: этот класс не оптимизирован для работы с большим объемом данных.
+		|        // В этом случае создайте свою собственную реализацию ITreeModel и обратите внимание на методы getChildren и isLeaf.
+		|
+		|        private Node _root;
+		|        public event EventHandler<TreeModelEventArgs> NodesChanged;
+		|        public event EventHandler<TreePathEventArgs> StructureChanged;
+		|        public event EventHandler<TreeModelEventArgs> NodesInserted;
+		|        public event EventHandler<TreeModelEventArgs> NodesRemoved;
+		|
+		|        public TreeModel()
+		|        {
+		|            _root = new Node();
+		|            _root.Model = this;
+		|        }
+		|
+		|        public Node Root
+		|        {
+		|            get { return _root; }
+		|        }
+		|
+		|        public Aga.Controls.Tree.Node.NodeCollection Nodes
+		|        {
+		|            get { return _root.Nodes; }
+		|        }
+		|
+		|        public TreePath GetPath(Node node)
+		|        {
+		|            if (node == _root)
+		|            {
+		|                return TreePath.Empty;
+		|            }
+		|            else
+		|            {
+		|                Stack<object> stack = new Stack<object>();
+		|                while (node != _root)
+		|                {
+		|                    stack.Push(node);
+		|                    node = node.Parent;
+		|                }
+		|                return new TreePath(stack.ToArray());
+		|            }
+		|        }
+		|
+		|        public Node FindNode(TreePath path)
+		|        {
+		|            if (path.IsEmpty())
+		|            {
+		|                return _root;
+		|            }
+		|            else
+		|            {
+		|                return FindNode(_root, path, 0);
+		|            }
+		|        }
+		|
+		|        private Node FindNode(Node root, TreePath path, int level)
+		|        {
+		|            foreach (Node node in root.Nodes)
+		|            {
+		|                if (node == path.FullPath[level])
+		|                {
+		|                    if (level == path.FullPath.Length - 1)
+		|                    {
+		|                        return node;
+		|                    }
+		|                    else
+		|                    {
+		|                        return FindNode(node, path, level + 1);
+		|                    }
+		|                }
+		|            }
+		|            return null;
+		|        }
+		|
+		|        public System.Collections.IEnumerable GetChildren(TreePath treePath)
+		|        {
+		|            Node node = FindNode(treePath);
+		|            if (node != null)
+		|            {
+		|                foreach (Node n in node.Nodes)
+		|                {
+		|                    yield return n;
+		|                }
+		|            }
+		|            else
+		|            {
+		|                yield break;
+		|            }
+		|        }
+		|
+		|        public bool IsLeaf(TreePath treePath)
+		|        {
+		|            Node node = FindNode(treePath);
+		|            if (node != null)
+		|            {
+		|                return node.IsLeaf;
+		|            }
+		|            else
+		|            {
+		|                throw new ArgumentException(""treePath"");
+		|            }
+		|        }
+		|
+		|        internal void OnNodesChanged(TreeModelEventArgs args)
+		|        {
+		|            if (NodesChanged != null)
+		|            {
+		|                NodesChanged(this, args);
+		|            }
+		|        }
+		|
+		|        public void OnStructureChanged(TreePathEventArgs args)
+		|        {
+		|            if (StructureChanged != null)
+		|            {
+		|                StructureChanged(this, args);
+		|            }
+		|        }
+		|
+		|        internal void OnNodeInserted(Node parent, int index, Node node)
+		|        {
+		|            if (NodesInserted != null)
+		|            {
+		|                TreeModelEventArgs args = new TreeModelEventArgs(GetPath(parent), new int[] { index }, new object[] { node });
+		|                NodesInserted(this, args);
+		|            }
+		|        }
+		|
+		|        internal void OnNodeRemoved(Node parent, int index, Node node)
+		|        {
+		|            if (NodesRemoved != null)
+		|            {
+		|                TreeModelEventArgs args = new TreeModelEventArgs(GetPath(parent), new int[] { index }, new object[] { node });
+		|                NodesRemoved(this, args);
+		|            }
+		|        }
+		|    }
+		|}
+		|
+		|#endregion Aga.Controls.Tree
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "NodeControlsCollection" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace Aga.Controls.Tree.NodeControls
+		|{
+		|    public class NodeControlsCollection : Collection<NodeControl>
+		|    {
+		|        private TreeViewAdv _tree;
+		|
+		|        public NodeControlsCollection(TreeViewAdv tree)
+		|        {
+		|            _tree = tree;
+		|        }
+		|
+		|        protected new void ClearItems()
+		|        {
+		|            _tree.BeginUpdate();
+		|            try
+		|            {
+		|                while (this.Count != 0)
+		|                {
+		|                    this.RemoveAt(this.Count - 1);
+		|                }
+		|            }
+		|            finally
+		|            {
+		|                _tree.EndUpdate();
+		|            }
+		|        }
+		|
+		|        protected new void InsertItem(int index, NodeControl item)
+		|        {
+		|            if (item == null)
+		|            {
+		|                throw new ArgumentNullException(""item"");
+		|            }
+		|
+		|            if (item.Parent != _tree)
+		|            {
+		|                if (item.Parent != null)
+		|                {
+		|                    item.Parent.NodeControls.Remove(item);
+		|                }
+		|                base.InsertItem(index, item);
+		|                item.AssignParent(_tree);
+		|                _tree.FullUpdate();
+		|            }
+		|        }
+		|
+		|        protected new void RemoveItem(int index)
+		|        {
+		|            NodeControl value = this[index];
+		|            value.AssignParent(null);
+		|            base.RemoveItem(index);
+		|            _tree.FullUpdate();
+		|        }
+		|
+		|        protected new void SetItem(int index, NodeControl item)
+		|        {
+		|            if (item == null)
+		|            {
+		|                throw new ArgumentNullException(""item"");
+		|            }
+		|
+		|            _tree.BeginUpdate();
+		|            try
+		|            {
+		|                RemoveAt(index);
+		|                InsertItem(index, item);
+		|            }
+		|            finally
+		|            {
+		|                _tree.EndUpdate();
+		|            }
+		|        }
+		|		
+		|        public void SetControl(int p1, NodeControl p2)
+		|        {
+		|            SetItem(p1, p2);
+		|        }
+		|    }
+		|}
+		|
+		|namespace osf
+		|{
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "NodeCheckBox" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace Aga.Controls.Tree.NodeControls
+		|{
+		|    public class NodeCheckBox : InteractiveControl
+		|    {
+		|        public const int ImageSize = 13;
+		|        private Bitmap _check;
+		|        private Bitmap _uncheck;
+		|        private Bitmap _unknown;
+		|        private bool _threeState;
+		|        public event EventHandler<TreePathEventArgs> CheckStateChanged;
+		|        public string CheckChanged;
+		|        public osf.ClNodeCheckBox dll_obj;
+		|
+		|        public NodeCheckBox() : this(string.Empty)
+		|        {
+		|        }
+		|
+		|        public NodeCheckBox(string propertyName)
+		|        {
+		|            _check = new Bitmap(new MemoryStream(Convert.FromBase64String(""Qk0+AgAAAAAAADYAAAAoAAAADQAAAA0AAAABABgAAAAAAAgCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////////////////////////////8AAAAAAAAAAAAAAAAA////////////AAAA////////////////////AAAAAAAAAAAAAAAAAP///////wAAAAAAAAAAAP///////////////wAAAAAAAAAAAAAAAAD///8AAAAAAAAAAAAAAAAAAAD///////////8AAAAAAAAAAAAAAAAA////AAAAAAAA////AAAAAAAAAAAA////////AAAAAAAAAAAAAAAAAP///wAAAP///////////wAAAAAAAAAAAP///wAAAAAAAAAAAAAAAAD///////////////////////8AAAAAAAD///8AAAAAAAAAAAAAAAAA////////////////////////////AAAA////AAAAAAAAAAAAAAAAAP///////////////////////////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="")));
+		|            _uncheck = new Bitmap(new MemoryStream(Convert.FromBase64String(""Qk0+AgAAAAAAADYAAAAoAAAADQAAAA0AAAABABgAAAAAAAgCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////////////////////////////8AAAAAAAAAAAAAAAAA////////////////////////////////////AAAAAAAAAAAAAAAAAP///////////////////////////////////wAAAAAAAAAAAAAAAAD///////////////////////////////////8AAAAAAAAAAAAAAAAA////////////////////////////////////AAAAAAAAAAAAAAAAAP///////////////////////////////////wAAAAAAAAAAAAAAAAD///////////////////////////////////8AAAAAAAAAAAAAAAAA////////////////////////////////////AAAAAAAAAAAAAAAAAP///////////////////////////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="")));
+		|            _unknown = new Bitmap(new MemoryStream(Convert.FromBase64String(""Qk0+AgAAAAAAADYAAAAoAAAADQAAAA0AAAABABgAAAAAAAgCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADI0NTI0NTI0NTI0NTI0NTI0NTI0NTI0NTI0NQAAAAAAAAAAAAAAAAAyNDUyNDUyNDUgICAyNDUyNDUyNDUyNDUyNDUAAAAAAAAAAAAAAAAAMjQ1MjQ1ICAgICAgICAgMjQ1MjQ1MjQ1MjQ1AAAAAAAAAAAAAAAAADI0NSAgICAgICAgICAgICAgIDI0NTI0NTI0NQAAAAAAAAAAAAAAAAAyNDUgICAgICAyNDUgICAgICAgICAyNDUyNDUAAAAAAAAAAAAAAAAAMjQ1ICAgMjQ1MjQ1MjQ1ICAgICAgICAgMjQ1AAAAAAAAAAAAAAAAADI0NTI0NTI0NTI0NTI0NTI0NSAgICAgIDI0NQAAAAAAAAAAAAAAAAAyNDUyNDUyNDUyNDUyNDUyNDUyNDUgICAyNDUAAAAAAAAAAAAAAAAAMjQ1MjQ1MjQ1MjQ1MjQ1MjQ1MjQ1MjQ1MjQ1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="")));
+		|
+		|            DataPropertyName = propertyName;
+		|            LeftMargin = 0;
+		|            this.CheckStateChanged += NodeCheckBox_CheckStateChanged;
+		|            CheckChanged = """";
+		|        }
+		|
+		|        private void NodeCheckBox_CheckStateChanged(object sender, TreePathEventArgs e)
+		|        {
+		|            if (CheckChanged.Length > 0)
+		|            {
+		|                osf.TreeViewAdvEventArgs TreeViewAdvEventArgs1 = new osf.TreeViewAdvEventArgs(((Aga.Controls.Tree.Node)e.Path.LastNode).TreeNodeAdv);
+		|                TreeViewAdvEventArgs1.EventString = CheckChanged;
+		|                TreeViewAdvEventArgs1.Sender = ((dynamic)sender).dll_obj;
+		|                TreeViewAdvEventArgs1.Parameter = osf.OneScriptForms.GetEventParameter(((dynamic)sender).dll_obj.CheckStateChanged);
+		|                osf.ClTreeViewAdvEventArgs ClTreeViewAdvEventArgs1 = new osf.ClTreeViewAdvEventArgs(TreeViewAdvEventArgs1);
+		|                osf.OneScriptForms.Event = ClTreeViewAdvEventArgs1;
+		|                osf.OneScriptForms.ExecuteEvent(((dynamic)sender).dll_obj.CheckStateChanged);
+		|            }
+		|        }
+		|
+		|        public bool ThreeState
+		|        {
+		|            get { return _threeState; }
+		|            set { _threeState = value; }
+		|        }
+		|
+		|        public override Size MeasureSize(TreeNodeAdv node, DrawContext context)
+		|        {
+		|            return new Size(ImageSize, ImageSize);
+		|        }
+		|
+		|        public override void Draw(TreeNodeAdv node, DrawContext context)
+		|        {
+		|            Rectangle bounds = GetBounds(node, context);
+		|		
+		|            //////CheckState state = GetCheckState(node);
+		|            CheckState state = System.Windows.Forms.CheckState.Unchecked;
+		|            try
+		|            {
+		|                state = (System.Windows.Forms.CheckState)((Node)node.Tag).nodeControlValue[this];
+		|            }
+		|            catch { }
+		|		
+		|            if (Application.RenderWithVisualStyles)
+		|            {
+		|                VisualStyleRenderer renderer;
+		|                if (state == CheckState.Indeterminate)
+		|                {
+		|                    renderer = new VisualStyleRenderer(VisualStyleElement.Button.CheckBox.MixedNormal);
+		|                }
+		|                else if (state == CheckState.Checked)
+		|                {
+		|                    renderer = new VisualStyleRenderer(VisualStyleElement.Button.CheckBox.CheckedNormal);
+		|                }
+		|                else
+		|                {
+		|                    renderer = new VisualStyleRenderer(VisualStyleElement.Button.CheckBox.UncheckedNormal);
+		|                }
+		|                renderer.DrawBackground(context.Graphics, new Rectangle(bounds.X, bounds.Y, ImageSize, ImageSize));
+		|            }
+		|            else
+		|            {
+		|                Image img;
+		|                if (state == CheckState.Indeterminate)
+		|                {
+		|                    img = _unknown;
+		|                }
+		|                else if (state == CheckState.Checked)
+		|                {
+		|                    img = _check;
+		|                }
+		|                else
+		|                {
+		|                    img = _uncheck;
+		|                }
+		|                context.Graphics.DrawImage(img, bounds.Location);
+		|            }
+		|        }
+		|
+		|        protected virtual CheckState GetCheckState(TreeNodeAdv node)
+		|        {
+		|            object obj = ((Node)node.Tag).GetControlValue(this);
+		|
+		|            if (obj is CheckState)
+		|            {
+		|                return (CheckState)obj;
+		|            }
+		|            else if (obj is System.Int32)
+		|            {
+		|                return (CheckState)obj;
+		|            }
+		|            else if (obj is bool)
+		|            {
+		|                return (bool)obj ? CheckState.Checked : CheckState.Unchecked;
+		|            }
+		|            else
+		|            {
+		|                return CheckState.Unchecked;
+		|            }
+		|        }
+		|
+		|        protected virtual void SetCheckState(TreeNodeAdv node, CheckState value)
+		|        {
+		|            if (VirtualMode)
+		|            {
+		|                //////SetValue(node, value);
+		|                ((Node)node.Tag).SetControlValue(this, value);
+		|                OnCheckStateChanged(node);
+		|            }
+		|            else
+		|            {
+		|                //////Type type = GetPropertyType(node);
+		|                Type type = ((Node)node.Tag).GetControlValue(this).GetType();
+		|                if (type == typeof(CheckState))
+		|                {
+		|                    //////SetValue(node, value);
+		|                    ((Node)node.Tag).SetControlValue(this, value);
+		|                    OnCheckStateChanged(node);
+		|                }
+		|                else if (type == typeof(bool))
+		|                {
+		|                    //////SetValue(node, value != CheckState.Unchecked);
+		|                    ((Node)node.Tag).SetControlValue(this, value != CheckState.Unchecked);
+		|                    OnCheckStateChanged(node);
+		|                }
+		|            }
+		|        }
+		|
+		|        public override void MouseDown(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            if (args.Button == MouseButtons.Left && IsEditEnabled(args.Node))
+		|            {
+		|                DrawContext context = new DrawContext();
+		|                context.Bounds = args.ControlBounds;
+		|                Rectangle rect = GetBounds(args.Node, context);
+		|                if (rect.Contains(args.ViewLocation))
+		|                {
+		|                    CheckState state = GetCheckState(args.Node);
+		|                    state = GetNewState(state);
+		|                    SetCheckState(args.Node, state);
+		|                    Parent.UpdateView();
+		|                    args.Handled = true;
+		|                }
+		|            }
+		|        }
+		|
+		|        public override void MouseDoubleClick(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            args.Handled = true;
+		|        }
+		|
+		|        private CheckState GetNewState(CheckState state)
+		|        {
+		|            if (state == CheckState.Indeterminate)
+		|            {
+		|                return CheckState.Unchecked;
+		|            }
+		|            else if (state == CheckState.Unchecked)
+		|            {
+		|                return CheckState.Checked;
+		|            }
+		|            else
+		|            {
+		|                return ThreeState ? CheckState.Indeterminate : CheckState.Unchecked;
+		|            }
+		|        }
+		|
+		|        public override void KeyDown(KeyEventArgs args)
+		|        {
+		|            if (args.KeyCode == Keys.Space && EditEnabled)
+		|            {
+		|                Parent.BeginUpdate();
+		|                try
+		|                {
+		|                    if (Parent.CurrentNode != null)
+		|                    {
+		|                        CheckState value = GetNewState(GetCheckState(Parent.CurrentNode));
+		|                        foreach (TreeNodeAdv node in Parent.Selection)
+		|                        {
+		|                            if (IsEditEnabled(node))
+		|                            {
+		|                                SetCheckState(node, value);
+		|                            }
+		|                        }
+		|                    }
+		|                }
+		|                finally
+		|                {
+		|                    Parent.EndUpdate();
+		|                }
+		|                args.Handled = true;
+		|            }
+		|        }
+		|
+		|        protected void OnCheckStateChanged(TreePathEventArgs args)
+		|        {
+		|            if (CheckStateChanged != null)
+		|            {
+		|                CheckStateChanged(this, args);
+		|            }
+		|        }
+		|
+		|        protected void OnCheckStateChanged(TreeNodeAdv node)
+		|        {
+		|            TreePath path = this.Parent.GetPath(node);
+		|            OnCheckStateChanged(new TreePathEventArgs(path));
+		|        }
+		|    }
+		|}
+		|
+		|namespace osf
+		|{
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "TreeNodeAdv" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace Aga.Controls.Tree
+		|{
+		|    public class Node
+		|    {
+		|        private TreeModel _model;
+		|        private NodeCollection _nodes;
+		|        private Node _parent;
+		|        private int _index = -1;
+		|        private string _text;
+		|        private CheckState _checkState;
+		|        private Image _image;
+		|        private object _tag;
+		|        public Dictionary<osf.ClToolTip, object> ObjTooltip = new Dictionary<osf.ClToolTip, object>();
+		|        public Dictionary<NodeControl, object> nodeControlValue = new Dictionary<NodeControl, object>();
+		|        public osf.ClNode dll_obj;
+		|
+		|        public Node() : this(string.Empty)
+		|        {
+		|        }
+		|
+		|        public Node(string text)
+		|        {
+		|            _text = text;
+		|            _nodes = new NodeCollection(this);
+		|            NodeName = text;
+		|        }
+		|
+		|        public TreeNodeAdv TreeNodeAdv { get; set; }
+		|		
+		|        public string NodeName { get; set; }
+		|
+		|        internal TreeModel Model
+		|        {
+		|            get { return _model; }
+		|            set { _model = value; }
+		|        }
+		|
+		|        public NodeCollection Nodes
+		|        {
+		|            get { return _nodes; }
+		|        }
+		|		
+		|        public object TooltipText { get; set; }
+		|
+		|        public Node Parent
+		|        {
+		|            get { return _parent; }
+		|            set
+		|            {
+		|                if (value != _parent)
+		|                {
+		|                    if (_parent != null)
+		|                    {
+		|                        _parent._nodes.Remove(this);
+		|                    }
+		|
+		|                    if (value != null)
+		|                    {
+		|                        value._nodes.Add(this);
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        public int Index
+		|        {
+		|            get { return _index; }
+		|        }
+		|
+		|        public Node PreviousNode
+		|        {
+		|            get
+		|            {
+		|                int index = Index;
+		|                if (index > 0)
+		|                {
+		|                    return _parent._nodes[index - 1];
+		|                }
+		|                else
+		|                {
+		|                    return null;
+		|                }
+		|            }
+		|        }
+		|
+		|        public Node NextNode
+		|        {
+		|            get
+		|            {
+		|                int index = Index;
+		|                if (index >= 0 && index < _parent._nodes.Count - 1)
+		|                {
+		|                    return _parent._nodes[index + 1];
+		|                }
+		|                else
+		|                {
+		|                    return null;
+		|                }
+		|            }
+		|        }
+		|
+		|        public virtual string Text
+		|        {
+		|            get { return _text; }
+		|            set
+		|            {
+		|                if (_text != value)
+		|                {
+		|                    _text = value;
+		|                    NotifyModel();
+		|                }
+		|            }
+		|        }
+		|
+		|        public virtual CheckState CheckState
+		|        {
+		|            get { return _checkState; }
+		|            set
+		|            {
+		|                if (_checkState != value)
+		|                {
+		|                    _checkState = value;
+		|                    NotifyModel();
+		|                }
+		|            }
+		|        }
+		|
+		|        public Image Image
+		|        {
+		|            get { return _image; }
+		|            set
+		|            {
+		|                if (_image != value)
+		|                {
+		|                    _image = value;
+		|                    NotifyModel();
+		|                }
+		|            }
+		|        }
+		|
+		|        public object Tag
+		|        {
+		|            get { return _tag; }
+		|            set { _tag = value; }
+		|        }
+		|
+		|        public bool IsChecked
+		|        {
+		|            get { return CheckState != CheckState.Unchecked; }
+		|            set
+		|            {
+		|                if (value)
+		|                {
+		|                    CheckState = CheckState.Checked;
+		|                }
+		|                else
+		|                {
+		|                    CheckState = CheckState.Unchecked;
+		|                }
+		|            }
+		|        }
+		|
+		|        public bool Checked
+		|        {
+		|            get { return IsChecked; }
+		|            set { IsChecked = value; }
+		|        }
+		|
+		|        public virtual bool IsLeaf
+		|        {
+		|            get { return false; }
+		|        }
+		|
+		|        public override string ToString()
+		|        {
+		|            return Text;
+		|        }
+		|
+		|        private TreeModel FindModel()
+		|        {
+		|            Node node = this;
+		|            while (node != null)
+		|            {
+		|                if (node.Model != null)
+		|                {
+		|                    return node.Model;
+		|                }
+		|                node = node.Parent;
+		|            }
+		|            return null;
+		|        }
+		|
+		|        protected void NotifyModel()
+		|        {
+		|            TreeModel model = FindModel();
+		|            if (model != null && Parent != null)
+		|            {
+		|                TreePath path = model.GetPath(Parent);
+		|                if (path != null)
+		|                {
+		|                    TreeModelEventArgs args = new TreeModelEventArgs(path, new int[] { Index }, new object[] { this });
+		|                    model.OnNodesChanged(args);
+		|                }
+		|            }
+		|        }
+		|		
+		|        public string FullPath
+		|        {
+		|            get { return GetFullPath(); }
+		|        }
+		|
+		|        public string GetFullPath()
+		|        {
+		|            string fullPath = this.NodeName;
+		|            Node node = this;
+		|            while (node.Parent != null)
+		|            {
+		|                node = node.Parent;
+		|                fullPath = node.NodeName + this.TreeNodeAdv.Tree.PathSeparator + fullPath;
+		|            }
+		|            return fullPath.TrimStart(this.TreeNodeAdv.Tree.PathSeparator.ToCharArray());
+		|        }
+		|		
+		|        public void SetControlValue(NodeControl p1, object p2)
+		|        {
+		|            if (p2 == null)
+		|            {
+		|                return;
+		|            }
+		|            if (!nodeControlValue.ContainsKey(p1))
+		|            {
+		|                nodeControlValue.Add(p1, p2);
+		|            }
+		|            else
+		|            {
+		|                if (!((object)nodeControlValue[p1]).Equals(p2))
+		|                {
+		|                    nodeControlValue[p1] = p2;
+		|                }
+		|            }
+		|        }
+		|		
+		|        public object GetControlValue(NodeControl p1)
+		|        {
+		|            object obj;
+		|            if (p1.GetType() == typeof(Aga.Controls.Tree.NodeControls.NodeCheckBox))
+		|            {
+		|                try
+		|                {
+		|                    obj = nodeControlValue[p1];
+		|                }
+		|                catch
+		|                {
+		|                    nodeControlValue[p1] = System.Windows.Forms.CheckState.Unchecked;
+		|                }
+		|            }
+		|            if (p1.GetType() == typeof(Aga.Controls.Tree.NodeControls.NodeNumericUpDown))
+		|            {
+		|                try
+		|                {
+		|                    obj = nodeControlValue[p1];
+		|                }
+		|                catch
+		|                {
+		|                    nodeControlValue[p1] = Decimal.Zero;
+		|                }
+		|            }
+		|            if (p1.GetType() == typeof(Aga.Controls.Tree.NodeControls.NodeTextBox))
+		|            {
+		|                try
+		|                {
+		|                    obj = nodeControlValue[p1];
+		|                }
+		|                catch
+		|                {
+		|                    nodeControlValue[p1] = String.Empty;
+		|                }
+		|            }
+		|            if (p1.GetType() == typeof(Aga.Controls.Tree.NodeControls.NodeDecimalTextBox))
+		|            {
+		|                try
+		|                {
+		|                    obj = nodeControlValue[p1];
+		|                }
+		|                catch
+		|                {
+		|                    nodeControlValue[p1] = Decimal.Zero;
+		|                }
+		|            }
+		|            if (p1.GetType() == typeof(Aga.Controls.Tree.NodeControls.NodeStateIcon))
+		|            {
+		|                Aga.Controls.Tree.NodeControls.NodeStateIcon nodeStateIcon = (Aga.Controls.Tree.NodeControls.NodeStateIcon)p1;
+		|                try
+		|                {
+		|                    obj = nodeControlValue[p1];
+		|                }
+		|                catch
+		|                {
+		|                    try
+		|                    {
+		|                        // Сначала проверим установлено ли ИзображениеВыбранного.
+		|                        nodeControlValue[p1] = nodeStateIcon.StateIconImage[this];
+		|                    }
+		|                    catch
+		|                    {
+		|                        // Иначе получим Изображение.
+		|                        nodeControlValue[p1] = (osf.ClBitmap)osf.OneScriptForms.RevertEqualsObj(nodeStateIcon.Image);
+		|                    }
+		|                }
+		|            }
+		|            obj = nodeControlValue[p1];
+		|            return obj;
+		|        }
+		|
+		|        public class NodeCollection : Collection<Node>
+		|        {
+		|            private Node _owner;
+		|
+		|            public NodeCollection(Node owner)
+		|            {
+		|                _owner = owner;
+		|            }
+		|
+		|            protected override void ClearItems()
+		|            {
+		|                while (this.Count != 0)
+		|                {
+		|                    this.RemoveAt(this.Count - 1);
+		|                }
+		|            }
+		|
+		|            public new void Clear()
+		|            {
+		|                ClearItems();
+		|            }
+		|
+		|            protected override void InsertItem(int index, Node item)
+		|            {
+		|                if (item == null)
+		|                {
+		|                    throw new ArgumentNullException(""item"");
+		|                }
+		|
+		|                if (item.Parent != _owner)
+		|                {
+		|                    if (item.Parent != null)
+		|                    {
+		|                        item.Parent._nodes.Remove(item);
+		|                    }
+		|                    item._parent = _owner;
+		|                    item._index = index;
+		|                    for (int i = index; i < Count; i++)
+		|                    {
+		|                        this[i]._index++;
+		|                    }
+		|                    base.InsertItem(index, item);
+		|
+		|                    TreeModel model = _owner.FindModel();
+		|                    if (model != null)
+		|                    {
+		|                        model.OnNodeInserted(_owner, index, item);
+		|                    }
+		|                }
+		|            }
+		|
+		|            protected override void RemoveItem(int index)
+		|            {
+		|                Node item = this[index];
+		|                item._parent = null;
+		|                item._index = -1;
+		|                for (int i = index + 1; i < Count; i++)
+		|                {
+		|                    this[i]._index--;
+		|                }
+		|                base.RemoveItem(index);
+		|
+		|                TreeModel model = _owner.FindModel();
+		|                if (model != null)
+		|                {
+		|                    model.OnNodeRemoved(_owner, index, item);
+		|                }
+		|            }
+		|
+		|            protected override void SetItem(int index, Node item)
+		|            {
+		|                if (item == null)
+		|                {
+		|                    throw new ArgumentNullException(""item"");
+		|                }
+		|                RemoveAt(index);
+		|                InsertItem(index, item);
+		|            }
+		|
+		|            public void SetNode(int p1, Node p2)
+		|            {
+		|                SetItem(p1, p2);
+		|            }
+		|        }
+		|    }
+		|
+		|    public sealed class TreeNodeAdv
+		|    {
+		|        public event EventHandler<TreeViewAdvEventArgs> Collapsing;
+		|        public event EventHandler<TreeViewAdvEventArgs> Collapsed;
+		|        public event EventHandler<TreeViewAdvEventArgs> Expanding;
+		|        public event EventHandler<TreeViewAdvEventArgs> Expanded;
+		|        private TreeViewAdv _tree;
+		|        private int _row;
+		|        private int _index = -1;
+		|        private bool _isSelected;
+		|        private bool _isLeaf;
+		|        private bool _isExpandedOnce;
+		|        private bool _isExpanded;
+		|        private TreeNodeAdv _parent;
+		|        private object _tag;
+		|        private NodeCollection _nodes;
+		|        private ReadOnlyCollection<TreeNodeAdv> _children;
+		|        private int? _rightBounds;
+		|        private int? _height;
+		|        private bool _isExpandingNow;
+		|        private bool _autoExpandOnStructureChanged = false;
+		|        private System.Drawing.Font nodeFont;
+		|
+		|        public TreeNodeAdv(object tag) : this(null, tag)
+		|        {
+		|        }
+		|
+		|        internal TreeNodeAdv(TreeViewAdv tree, object tag)
+		|        {
+		|            _row = -1;
+		|            _tree = tree;
+		|            _nodes = new NodeCollection(this);
+		|            _children = new ReadOnlyCollection<TreeNodeAdv>(_nodes);
+		|            _tag = tag;
+		|            if (tag != null)
+		|            {
+		|                ((Aga.Controls.Tree.Node)tag).TreeNodeAdv = this;
+		|            }
+		|        }
+		|
+		|        internal void OnCollapsing()
+		|        {
+		|            if (Collapsing != null)
+		|            {
+		|                Collapsing(this, new TreeViewAdvEventArgs(this));
+		|            }
+		|        }
+		|
+		|        internal void OnCollapsed()
+		|        {
+		|            if (Collapsed != null)
+		|            {
+		|                Collapsed(this, new TreeViewAdvEventArgs(this));
+		|            }
+		|        }
+		|
+		|        internal void OnExpanding()
+		|        {
+		|            if (Expanding != null)
+		|            {
+		|                Expanding(this, new TreeViewAdvEventArgs(this));
+		|            }
+		|        }
+		|
+		|        internal void OnExpanded()
+		|        {
+		|            if (Expanded != null)
+		|            {
+		|                Expanded(this, new TreeViewAdvEventArgs(this));
+		|            }
+		|        }
+		|
+		|        public TreeViewAdv Tree
+		|        {
+		|            get { return _tree; }
+		|        }
+		|
+		|        public int Row
+		|        {
+		|            get { return _row; }
+		|            internal set { _row = value; }
+		|        }
+		|
+		|        public int Index
+		|        {
+		|            get { return _index; }
+		|        }
+		|
+		|        public bool IsSelected
+		|        {
+		|            get { return _isSelected; }
+		|            set
+		|            {
+		|                if (_isSelected != value)
+		|                {
+		|                    if (Tree.IsMyNode(this))
+		|                    {
+		|                        //_tree.OnSelectionChanging
+		|                        if (value)
+		|                        {
+		|                            if (!_tree.Selection.Contains(this))
+		|                            {
+		|                                _tree.Selection.Add(this);
+		|                            }
+		|
+		|                            if (_tree.Selection.Count == 1)
+		|                            {
+		|                                _tree.CurrentNode = this;
+		|                            }
+		|                        }
+		|                        else
+		|                        {
+		|                            _tree.Selection.Remove(this);
+		|                        }
+		|                        _tree.UpdateView();
+		|                        _tree.OnSelectionChanged();
+		|                    }
+		|                    _isSelected = value;
+		|                }
+		|            }
+		|        }
+		|
+		|        // Возвращает значение true, если все родительские узлы этого узла развернуты.
+		|        internal bool IsVisible
+		|        {
+		|            get
+		|            {
+		|                TreeNodeAdv node = _parent;
+		|                while (node != null)
+		|                {
+		|                    if (!node.IsExpanded)
+		|                    {
+		|                        return false;
+		|                    }
+		|                    node = node.Parent;
+		|                }
+		|                return true;
+		|            }
+		|        }
+		|
+		|        public bool IsLeaf
+		|        {
+		|            get { return _isLeaf; }
+		|            internal set { _isLeaf = value; }
+		|        }
+		|
+		|        public bool IsExpandedOnce
+		|        {
+		|            get { return _isExpandedOnce; }
+		|            internal set { _isExpandedOnce = value; }
+		|        }
+		|
+		|        public bool IsExpanded
+		|        {
+		|            get { return _isExpanded; }
+		|            set
+		|            {
+		|                if (value)
+		|                {
+		|                    Expand();
+		|                }
+		|                else
+		|                {
+		|                    Collapse();
+		|                }
+		|            }
+		|        }
+		|
+		|        internal void AssignIsExpanded(bool value)
+		|        {
+		|            _isExpanded = value;
+		|        }
+		|
+		|        public TreeNodeAdv Parent
+		|        {
+		|            get { return _parent; }
+		|        }
+		|
+		|        public int Level
+		|        {
+		|            get
+		|            {
+		|                if (_parent == null)
+		|                {
+		|                    return 0;
+		|                }
+		|                else
+		|                {
+		|                    return _parent.Level + 1;
+		|                }
+		|            }
+		|        }
+		|
+		|        public TreeNodeAdv PreviousNode
+		|        {
+		|            get
+		|            {
+		|                if (_parent != null)
+		|                {
+		|                    int index = Index;
+		|                    if (index > 0)
+		|                    {
+		|                        return _parent.Nodes[index - 1];
+		|                    }
+		|                }
+		|                return null;
+		|            }
+		|        }
+		|
+		|        public TreeNodeAdv NextNode
+		|        {
+		|            get
+		|            {
+		|                if (_parent != null)
+		|                {
+		|                    int index = Index;
+		|                    if (index < _parent.Nodes.Count - 1)
+		|                    {
+		|                        return _parent.Nodes[index + 1];
+		|                    }
+		|                }
+		|                return null;
+		|            }
+		|        }
+		|
+		|        internal TreeNodeAdv BottomNode
+		|        {
+		|            get
+		|            {
+		|                TreeNodeAdv parent = this.Parent;
+		|                if (parent != null)
+		|                {
+		|                    if (parent.NextNode != null)
+		|                    {
+		|                        return parent.NextNode;
+		|                    }
+		|                    else
+		|                    {
+		|                        return parent.BottomNode;
+		|                    }
+		|                }
+		|                return null;
+		|            }
+		|        }
+		|
+		|        internal TreeNodeAdv NextVisibleNode
+		|        {
+		|            get
+		|            {
+		|                if (IsExpanded && Nodes.Count > 0)
+		|                {
+		|                    return Nodes[0];
+		|                }
+		|                else
+		|                {
+		|                    TreeNodeAdv nn = NextNode;
+		|                    if (nn != null)
+		|                    {
+		|                        return nn;
+		|                    }
+		|                    else
+		|                    {
+		|                        return BottomNode;
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        public bool CanExpand
+		|        {
+		|            get { return (Nodes.Count > 0 || (!IsExpandedOnce && !IsLeaf)); }
+		|        }
+		|
+		|        public object Tag
+		|        {
+		|            get { return _tag; }
+		|        }
+		|
+		|        public NodeCollection Nodes
+		|        {
+		|            get { return _nodes; }
+		|        }
+		|
+		|        public ReadOnlyCollection<TreeNodeAdv> Children
+		|        {
+		|            get { return _children; }
+		|        }
+		|
+		|        internal int? RightBounds
+		|        {
+		|            get { return _rightBounds; }
+		|            set { _rightBounds = value; }
+		|        }
+		|
+		|        internal int? Height
+		|        {
+		|            get { return _height; }
+		|            set { _height = value; }
+		|        }
+		|
+		|        internal bool IsExpandingNow
+		|        {
+		|            get { return _isExpandingNow; }
+		|            set { _isExpandingNow = value; }
+		|        }
+		|
+		|        public bool AutoExpandOnStructureChanged
+		|        {
+		|            get { return _autoExpandOnStructureChanged; }
+		|            set { _autoExpandOnStructureChanged = value; }
+		|        }
+		|
+		|        public override string ToString()
+		|        {
+		|            if (Tag != null)
+		|            {
+		|                return Tag.ToString();
+		|            }
+		|            else
+		|            {
+		|                return base.ToString();
+		|            }
+		|        }
+		|
+		|        public void Collapse()
+		|        {
+		|            if (_isExpanded)
+		|            {
+		|                Collapse(true);
+		|            }
+		|        }
+		|
+		|        public void CollapseAll()
+		|        {
+		|            Collapse(false);
+		|        }
+		|
+		|        public void Collapse(bool ignoreChildren)
+		|        {
+		|            SetIsExpanded(false, ignoreChildren);
+		|        }
+		|
+		|        public void Expand()
+		|        {
+		|            if (!_isExpanded)
+		|            {
+		|                Expand(true);
+		|            }
+		|        }
+		|
+		|        public void ExpandAll()
+		|        {
+		|            Expand(false);
+		|        }
+		|
+		|        public void Expand(bool ignoreChildren)
+		|        {
+		|            SetIsExpanded(true, ignoreChildren);
+		|        }
+		|
+		|        private void SetIsExpanded(bool value, bool ignoreChildren)
+		|        {
+		|            if (Tree == null)
+		|            {
+		|                _isExpanded = value;
+		|            }
+		|            else
+		|            {
+		|                Tree.SetIsExpanded(this, value, ignoreChildren);
+		|            }
+		|        }
+		|
+		|        public System.Drawing.Image Image
+		|        {
+		|            get { return ((Node)Tag).Image; }
+		|            set { ((Node)Tag).Image = value; }
+		|        }
+		|
+		|        public bool Checked
+		|        {
+		|            get { return ((Node)Tag).Checked; }
+		|            set { ((Node)Tag).Checked = value; }
+		|        }
+		|
+		|        public CheckState CheckState
+		|        {
+		|            get { return ((Node)Tag).CheckState; }
+		|            set { ((Node)Tag).CheckState = value; }
+		|        }
+		|
+		|        public string Text
+		|        {
+		|            get { return ((Node)Tag).Text; }
+		|            set { ((Node)Tag).Text = value; }
+		|        }
+		|
+		|        public System.Drawing.Font NodeFont
+		|        {
+		|            get { return nodeFont; }
+		|            set { nodeFont = value; }
+		|        }
+		|
+		|        public void Remove()
+		|        {
+		|            ((Node)Tag).Parent.Nodes.Remove(((Node)Tag));
+		|        }
+		|
+		|        public class NodeCollection : Collection<TreeNodeAdv>
+		|        {
+		|            private TreeNodeAdv _owner;
+		|
+		|            public NodeCollection(TreeNodeAdv owner)
+		|            {
+		|                _owner = owner;
+		|            }
+		|
+		|            protected override void ClearItems()
+		|            {
+		|                while (this.Count != 0)
+		|                {
+		|                    this.RemoveAt(this.Count - 1);
+		|                }
+		|            }
+		|
+		|            protected override void InsertItem(int index, TreeNodeAdv item)
+		|            {
+		|                if (item == null)
+		|                {
+		|                    throw new ArgumentNullException(""item"");
+		|                }
+		|
+		|                if (item.Parent != _owner)
+		|                {
+		|                    if (item.Parent != null)
+		|                    {
+		|                        item.Parent.Nodes.Remove(item);
+		|                    }
+		|                    item._parent = _owner;
+		|                    item._index = index;
+		|                    for (int i = index; i < Count; i++)
+		|                    {
+		|                        this[i]._index++;
+		|                    }
+		|                    base.InsertItem(index, item);
+		|                }
+		|
+		|                if (_owner.Tree != null && _owner.Tree.Model == null)
+		|                {
+		|                    _owner.Tree.SmartFullUpdate();
+		|                }
+		|            }
+		|
+		|            protected override void RemoveItem(int index)
+		|            {
+		|                TreeNodeAdv item = this[index];
+		|                item._parent = null;
+		|                item._index = -1;
+		|                for (int i = index + 1; i < Count; i++)
+		|                {
+		|                    this[i]._index--;
+		|                }
+		|                base.RemoveItem(index);
+		|
+		|                if (_owner.Tree != null && _owner.Tree.Model == null)
+		|                {
+		|                    _owner.Tree.UpdateSelection();
+		|                    _owner.Tree.SmartFullUpdate();
+		|                }
+		|            }
+		|
+		|            protected override void SetItem(int index, TreeNodeAdv item)
+		|            {
+		|                if (item == null)
+		|                {
+		|                    throw new ArgumentNullException(""item"");
+		|                }
+		|                RemoveAt(index);
+		|                InsertItem(index, item);
+		|            }
+		|
+		|            public void SetNode(int p1, TreeNodeAdv p2)
+		|            {
+		|                SetItem(p1, p2);
+		|            }
+		|        }
+		|    }
+		|}
+		|
+		|namespace osf
+		|{
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "TreeNodeAdvCollection" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "SelectedTreeNodeAdvCollection" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "TreeColumn" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace Aga.Controls.Tree
+		|{
+		|    public class TreeColumn : System.ComponentModel.Component
+		|    {
+		|        private const int HeaderLeftMargin = 5;
+		|        private const int HeaderRightMargin = 5;
+		|        private const int SortOrderMarkMargin = 8;
+		|        private TextFormatFlags _headerFlags;
+		|        private TextFormatFlags _baseHeaderFlags = TextFormatFlags.NoPadding | TextFormatFlags.EndEllipsis | TextFormatFlags.VerticalCenter | TextFormatFlags.PreserveGraphicsTranslateTransform;
+		|        private TreeColumnCollection _owner;
+		|        private string _header;
+		|        private int _width;
+		|        private int _minColumnWidth;
+		|        private int _maxColumnWidth;
+		|        private bool _visible = true;
+		|        private HorizontalAlignment _textAlign = HorizontalAlignment.Left;
+		|        private bool _sortable = false;
+		|        private SortOrder _sort_order = SortOrder.None;
+		|        private static VisualStyleRenderer _normalRenderer;
+		|        private static VisualStyleRenderer _pressedRenderer;
+		|        private static VisualStyleRenderer _hotRenderer;
+		|        public event EventHandler HeaderChanged;
+		|        public event EventHandler SortOrderChanged;
+		|        public event EventHandler IsVisibleChanged;
+		|        public event EventHandler WidthChanged;
+		|        public Dictionary<osf.ClToolTip, object> ObjTooltip = new Dictionary<osf.ClToolTip, object>();
+		|
+		|        public TreeColumn() : this(string.Empty, 50)
+		|        {
+		|        }
+		|
+		|        public TreeColumn(string header, int width)
+		|        {
+		|            _header = header;
+		|            _width = width;
+		|            _headerFlags = _baseHeaderFlags | TextFormatFlags.Left;
+		|        }
+		|
+		|        internal TreeColumnCollection Owner
+		|        {
+		|            get { return _owner; }
+		|            set { _owner = value; }
+		|        }
+		|
+		|        public int Index
+		|        {
+		|            get
+		|            {
+		|                if (Owner != null)
+		|                {
+		|                    return Owner.IndexOf(this);
+		|                }
+		|                else
+		|                {
+		|                    return -1;
+		|                }
+		|            }
+		|        }
+		|
+		|        public string Header
+		|        {
+		|            get { return _header; }
+		|            set
+		|            {
+		|                _header = value;
+		|                OnHeaderChanged();
+		|            }
+		|        }
+		|
+		|        public object TooltipText { get; set; }
+		|
+		|        public int Width
+		|        {
+		|            get { return _width; }
+		|            set
+		|            {
+		|                if (_width != value)
+		|                {
+		|                    _width = Math.Max(MinColumnWidth, value);
+		|                    if (_maxColumnWidth > 0)
+		|                    {
+		|                        _width = Math.Min(_width, MaxColumnWidth);
+		|                    }
+		|                    OnWidthChanged();
+		|                }
+		|            }
+		|        }
+		|
+		|        public int MinColumnWidth
+		|        {
+		|            get { return _minColumnWidth; }
+		|            set
+		|            {
+		|                if (value < 0)
+		|                {
+		|                    throw new ArgumentOutOfRangeException(""value"");
+		|                }
+		|
+		|                _minColumnWidth = value;
+		|                Width = Math.Max(value, Width);
+		|            }
+		|        }
+		|
+		|        public int MaxColumnWidth
+		|        {
+		|            get { return _maxColumnWidth; }
+		|            set
+		|            {
+		|                if (value < 0)
+		|                {
+		|                    throw new ArgumentOutOfRangeException(""value"");
+		|                }
+		|
+		|                _maxColumnWidth = value;
+		|                if (value > 0)
+		|                {
+		|                    Width = Math.Min(value, _width);
+		|                }
+		|            }
+		|        }
+		|
+		|        public bool IsVisible
+		|        {
+		|            get { return _visible; }
+		|            set
+		|            {
+		|                _visible = value;
+		|                OnIsVisibleChanged();
+		|            }
+		|        }
+		|		
+		|        public bool Visible
+		|        {
+		|            get { return IsVisible; }
+		|            set { IsVisible = value; }
+		|        }
+		|
+		|        public HorizontalAlignment TextAlign
+		|        {
+		|            get { return _textAlign; }
+		|            set
+		|            {
+		|                if (value != _textAlign)
+		|                {
+		|                    _textAlign = value;
+		|                    _headerFlags = _baseHeaderFlags | TextHelper.TranslateAligmentToFlag(value);
+		|                    OnHeaderChanged();
+		|                }
+		|            }
+		|        }
+		|
+		|        public bool Sortable
+		|        {
+		|            get { return _sortable; }
+		|            set { _sortable = value; }
+		|        }
+		|
+		|        public SortOrder SortOrder
+		|        {
+		|            get { return _sort_order; }
+		|            set
+		|            {
+		|                if (value == _sort_order)
+		|                {
+		|                    return;
+		|                }
+		|                _sort_order = value;
+		|                OnSortOrderChanged();
+		|            }
+		|        }
+		|
+		|        public Size SortMarkSize
+		|        {
+		|            get
+		|            {
+		|                if (Application.RenderWithVisualStyles)
+		|                {
+		|                    return new Size(9, 5);
+		|                }
+		|                else
+		|                {
+		|                    return new Size(7, 4);
+		|                }
+		|            }
+		|        }
+		|		
+		|        public TextFormatFlags HeaderFlags
+		|        {
+		|            get { return _headerFlags; }
+		|            set { _headerFlags = value; }
+		|        }
+		|
+		|        public TextFormatFlags BaseHeaderFlags
+		|        {
+		|            get { return _baseHeaderFlags; }
+		|            set { _baseHeaderFlags = value; }
+		|        }
+		|
+		|        public override string ToString()
+		|        {
+		|            if (string.IsNullOrEmpty(Header))
+		|            {
+		|                return GetType().Name;
+		|            }
+		|            else
+		|            {
+		|                return Header;
+		|            }
+		|        }
+		|
+		|        protected override void Dispose(bool disposing)
+		|        {
+		|            base.Dispose(disposing);
+		|        }
+		|
+		|        private static void CreateRenderers()
+		|        {
+		|            if (Application.RenderWithVisualStyles && _normalRenderer == null)
+		|            {
+		|                _normalRenderer = new VisualStyleRenderer(VisualStyleElement.Header.Item.Normal);
+		|                _pressedRenderer = new VisualStyleRenderer(VisualStyleElement.Header.Item.Pressed);
+		|                _hotRenderer = new VisualStyleRenderer(VisualStyleElement.Header.Item.Hot);
+		|            }
+		|        }
+		|
+		|        internal Bitmap CreateGhostImage(Rectangle bounds, Font font)
+		|        {
+		|            Bitmap b = new Bitmap(bounds.Width, bounds.Height, PixelFormat.Format32bppArgb);
+		|            Graphics gr = Graphics.FromImage(b);
+		|            gr.FillRectangle(SystemBrushes.ControlDark, bounds);
+		|            DrawContent(gr, bounds, font);
+		|            BitmapHelper.SetAlphaChanelValue(b, 150);
+		|            return b;
+		|        }
+		|
+		|        internal void Draw(Graphics gr, Rectangle bounds, Font font, bool pressed, bool hot)
+		|        {
+		|            DrawBackground(gr, bounds, pressed, hot);
+		|            DrawContent(gr, bounds, font);
+		|        }
+		|
+		|        private void DrawContent(Graphics gr, Rectangle bounds, Font font)
+		|        {
+		|            Rectangle innerBounds = new Rectangle(bounds.X + HeaderLeftMargin, bounds.Y, bounds.Width - HeaderLeftMargin - HeaderRightMargin, bounds.Height);
+		|
+		|            if (SortOrder != SortOrder.None)
+		|            {
+		|                innerBounds.Width -= (SortMarkSize.Width + SortOrderMarkMargin);
+		|            }
+		|
+		|            Size maxTextSize = TextRenderer.MeasureText(gr, Header, font, innerBounds.Size, TextFormatFlags.NoPadding);
+		|            Size textSize = TextRenderer.MeasureText(gr, Header, font, innerBounds.Size, _baseHeaderFlags);
+		|
+		|            if (SortOrder != SortOrder.None)
+		|            {
+		|                int tw = Math.Min(textSize.Width, innerBounds.Size.Width);
+		|
+		|                int x = 0;
+		|                if (TextAlign == HorizontalAlignment.Left)
+		|                {
+		|                    x = innerBounds.X + tw + SortOrderMarkMargin;
+		|                }
+		|                else if (TextAlign == HorizontalAlignment.Right)
+		|                {
+		|                    x = innerBounds.Right + SortOrderMarkMargin;
+		|                }
+		|                else
+		|                {
+		|                    x = innerBounds.X + tw + (innerBounds.Width - tw) / 2 + SortOrderMarkMargin;
+		|                }
+		|                DrawSortMark(gr, bounds, x);
+		|            }
+		|
+		|            if (textSize.Width < maxTextSize.Width)
+		|            {
+		|                TextRenderer.DrawText(gr, Header, font, innerBounds, SystemColors.ControlText, _baseHeaderFlags | TextFormatFlags.Left);
+		|            }
+		|            else
+		|            {
+		|                TextRenderer.DrawText(gr, Header, font, innerBounds, SystemColors.ControlText, _headerFlags);
+		|            }
+		|        }
+		|
+		|        private void DrawSortMark(Graphics gr, Rectangle bounds, int x)
+		|        {
+		|            int y = bounds.Y + bounds.Height / 2 - 2;
+		|            x = Math.Max(x, bounds.X + SortOrderMarkMargin);
+		|
+		|            int w2 = SortMarkSize.Width / 2;
+		|            if (SortOrder == SortOrder.Ascending)
+		|            {
+		|                Point[] points = new Point[] { new Point(x, y), new Point(x + SortMarkSize.Width, y), new Point(x + w2, y + SortMarkSize.Height) };
+		|                gr.FillPolygon(SystemBrushes.ControlDark, points);
+		|            }
+		|            else if (SortOrder == SortOrder.Descending)
+		|            {
+		|                Point[] points = new Point[] { new Point(x - 1, y + SortMarkSize.Height), new Point(x + SortMarkSize.Width, y + SortMarkSize.Height), new Point(x + w2, y - 1) };
+		|                gr.FillPolygon(SystemBrushes.ControlDark, points);
+		|            }
+		|        }
+		|
+		|        internal static void DrawDropMark(Graphics gr, Rectangle rect)
+		|        {
+		|            gr.FillRectangle(SystemBrushes.HotTrack, rect.X - 1, rect.Y, 2, rect.Height);
+		|        }
+		|
+		|        internal static void DrawBackground(Graphics gr, Rectangle bounds, bool pressed, bool hot)
+		|        {
+		|            if (Application.RenderWithVisualStyles)
+		|            {
+		|                CreateRenderers();
+		|                if (pressed)
+		|                {
+		|                    _pressedRenderer.DrawBackground(gr, bounds);
+		|                }
+		|                else if (hot)
+		|                {
+		|                    _hotRenderer.DrawBackground(gr, bounds);
+		|                }
+		|                else
+		|                {
+		|                    _normalRenderer.DrawBackground(gr, bounds);
+		|                }
+		|            }
+		|            else
+		|            {
+		|                gr.FillRectangle(SystemBrushes.Control, bounds);
+		|                Pen p1 = SystemPens.ControlLightLight;
+		|                Pen p2 = SystemPens.ControlDark;
+		|                Pen p3 = SystemPens.ControlDarkDark;
+		|                if (pressed)
+		|                {
+		|                    gr.DrawRectangle(p2, bounds.X, bounds.Y, bounds.Width, bounds.Height);
+		|                }
+		|                else
+		|                {
+		|                    gr.DrawLine(p1, bounds.X, bounds.Y, bounds.Right, bounds.Y);
+		|                    gr.DrawLine(p3, bounds.X, bounds.Bottom, bounds.Right, bounds.Bottom);
+		|                    gr.DrawLine(p3, bounds.Right - 1, bounds.Y, bounds.Right - 1, bounds.Bottom - 1);
+		|                    gr.DrawLine(p1, bounds.Left, bounds.Y + 1, bounds.Left, bounds.Bottom - 2);
+		|                    gr.DrawLine(p2, bounds.Right - 2, bounds.Y + 1, bounds.Right - 2, bounds.Bottom - 2);
+		|                    gr.DrawLine(p2, bounds.X, bounds.Bottom - 1, bounds.Right - 2, bounds.Bottom - 1);
+		|                }
+		|            }
+		|        }
+		|
+		|        private void OnHeaderChanged()
+		|        {
+		|            if (HeaderChanged != null)
+		|            {
+		|                HeaderChanged(this, EventArgs.Empty);
+		|            }
+		|        }
+		|
+		|        private void OnSortOrderChanged()
+		|        {
+		|            if (SortOrderChanged != null)
+		|            {
+		|                SortOrderChanged(this, EventArgs.Empty);
+		|            }
+		|        }
+		|
+		|        private void OnIsVisibleChanged()
+		|        {
+		|            if (IsVisibleChanged != null)
+		|            {
+		|                IsVisibleChanged(this, EventArgs.Empty);
+		|            }
+		|        }
+		|
+		|        private void OnWidthChanged()
+		|        {
+		|            if (WidthChanged != null)
+		|            {
+		|                WidthChanged(this, EventArgs.Empty);
+		|            }
+		|        }
+		|		
+		|        internal Size GetActualSize(DrawContext context)
+		|        {
+		|            if (!IsVisible)
+		|            {
+		|                return Size.Empty;
+		|            }
+		|            Size size = MeasureSize(context);
+		|            return new Size(size.Width + 5, 3 + size.Height + 3);
+		|        }
+		|
+		|        public Size MeasureSize(DrawContext context)
+		|        {
+		|            return GetLabelSize(context);
+		|        }
+		|
+		|        protected Size GetLabelSize(DrawContext context)
+		|        {
+		|            return GetLabelSize(context, Header);
+		|        }
+		|
+		|        protected Size GetLabelSize(DrawContext context, string label)
+		|        {
+		|            Font drawingFont = GetDrawingFont(context, label);
+		|            Size size = Size.Empty;
+		|            if (UseCompatibleTextRendering)
+		|            {
+		|                size = TextRenderer.MeasureText(label, drawingFont);
+		|            }
+		|            else
+		|            {
+		|                SizeF sizeF = context.Graphics.MeasureString(label, drawingFont);
+		|                size = new Size((int)Math.Ceiling((double)sizeF.Width), (int)Math.Ceiling((double)sizeF.Height));
+		|            }
+		|            if (!size.IsEmpty)
+		|            {
+		|                return size;
+		|            }
+		|            return new Size(10, drawingFont.Height);
+		|        }
+		|
+		|        protected Font GetDrawingFont(DrawContext context, string label)
+		|        {
+		|            return context.Font;
+		|        }
+		|
+		|        private bool _useCompatibleTextRendering;
+		|        public bool UseCompatibleTextRendering
+		|        {
+		|            get { return _useCompatibleTextRendering; }
+		|            set { _useCompatibleTextRendering = value; }
+		|        }
+		|    }
+		|}
+		|
+		|namespace osf
+		|{
+		|    public class TreeColumnEx : Aga.Controls.Tree.TreeColumn
+		|    {
+		|        public osf.TreeColumn M_Object;
+		|
+		|        public TreeColumnEx() : base(string.Empty, 50)
+		|        {
+		|        }
+		|
+		|        public TreeColumnEx(string header, int width) : base(header, width)
+		|        {
+		|        }
+		|    }
+		|
+		|    public class TreeColumn : osf.Component
+		|    {
+		|        public ClTreeColumn dll_obj;
+		|        public TreeColumnEx M_TreeColumn;
+		|        public string HeaderChanged;
+		|        public string SortOrderChanged;
+		|        public string IsVisibleChanged;
+		|        public string WidthChanged;
+		|
+		|        public TreeColumn()
+		|        {
+		|            M_TreeColumn = new TreeColumnEx();
+		|            M_TreeColumn.M_Object = this;
+		|            base.M_Component = M_TreeColumn;
+		|
+		|            HeaderChanged = """";
+		|            SortOrderChanged = """";
+		|            IsVisibleChanged = """";
+		|            WidthChanged = """";
+		|        }
+		|
+		|        public TreeColumn(string header, int width)
+		|        {
+		|            M_TreeColumn = new TreeColumnEx(header, width);
+		|            M_TreeColumn.M_Object = this;
+		|            base.M_Component = M_TreeColumn;
+		|
+		|            HeaderChanged = """";
+		|            SortOrderChanged = """";
+		|            IsVisibleChanged = """";
+		|            WidthChanged = """";
+		|        }
+		|
+		|        public TreeColumn(Aga.Controls.Tree.TreeColumn p1)
+		|        {
+		|            M_TreeColumn = (TreeColumnEx)p1;
+		|            M_TreeColumn.M_Object = this;
+		|            base.M_Component = M_TreeColumn;
+		|
+		|            HeaderChanged = """";
+		|            SortOrderChanged = """";
+		|            IsVisibleChanged = """";
+		|            WidthChanged = """";
+		|        }
+		|
+		|        public int Index
+		|        {
+		|            get { return M_TreeColumn.Index; }
+		|        }
+		|		
+		|        public int TextAlign
+		|        {
+		|            get { return (int)M_TreeColumn.TextAlign; }
+		|            set { M_TreeColumn.TextAlign = (System.Windows.Forms.HorizontalAlignment)value; }
+		|        }
+		|
+		|        public string Header
+		|        {
+		|            get { return M_TreeColumn.Header; }
+		|            set { M_TreeColumn.Header = value; }
+		|        }
+		|
+		|        public int MaxColumnWidth
+		|        {
+		|            get { return M_TreeColumn.MaxColumnWidth; }
+		|            set { M_TreeColumn.MaxColumnWidth = value; }
+		|        }
+		|
+		|        public int MinColumnWidth
+		|        {
+		|            get { return M_TreeColumn.MinColumnWidth; }
+		|            set { M_TreeColumn.MinColumnWidth = value; }
+		|        }
+		|
+		|        public bool Visible
+		|        {
+		|            get { return M_TreeColumn.Visible; }
+		|            set { M_TreeColumn.Visible = value; }
+		|        }
+		|
+		|        public int SortOrder
+		|        {
+		|            get { return (int)M_TreeColumn.SortOrder; }
+		|            set { M_TreeColumn.SortOrder = (System.Windows.Forms.SortOrder)value; }
+		|        }
+		|
+		|        public bool Sortable
+		|        {
+		|            get { return M_TreeColumn.Sortable; }
+		|            set { M_TreeColumn.Sortable = value; }
+		|        }
+		|
+		|        public Dictionary<osf.ClToolTip, object> ObjTooltip
+		|        {
+		|            get { return M_TreeColumn.ObjTooltip; }
+		|        }
+		|
+		|        public object TooltipText
+		|        {
+		|            get { return M_TreeColumn.TooltipText; }
+		|            set { M_TreeColumn.TooltipText = value; }
+		|        }
+		|
+		|        public int Width
+		|        {
+		|            get { return M_TreeColumn.Width; }
+		|            set { M_TreeColumn.Width = value; }
+		|        }
+		|    }
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "TreeColumnCollection" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace Aga.Controls.Tree
+		|{
+		|    public class TreeColumnCollection : Collection<TreeColumn>
+		|    {
+		|        private TreeViewAdv _treeView;
+		|
+		|        public TreeColumnCollection(TreeViewAdv treeView)
+		|        {
+		|            _treeView = treeView;
+		|        }
+		|
+		|        protected override void InsertItem(int index, TreeColumn item)
+		|        {
+		|            base.InsertItem(index, item);
+		|            BindEvents(item);
+		|            _treeView.UpdateColumns();
+		|        }
+		|
+		|        protected override void RemoveItem(int index)
+		|        {
+		|            UnbindEvents(this[index]);
+		|            base.RemoveItem(index);
+		|            _treeView.UpdateColumns();
+		|        }
+		|
+		|        protected override void SetItem(int index, TreeColumn item)
+		|        {
+		|            UnbindEvents(this[index]);
+		|            base.SetItem(index, item);
+		|            item.Owner = this;
+		|            BindEvents(item);
+		|            _treeView.UpdateColumns();
+		|        }
+		|
+		|        protected override void ClearItems()
+		|        {
+		|            foreach (TreeColumn c in Items)
+		|            {
+		|                UnbindEvents(c);
+		|            }
+		|            Items.Clear();
+		|            _treeView.UpdateColumns();
+		|        }
+		|
+		|        private void BindEvents(TreeColumn item)
+		|        {
+		|            item.Owner = this;
+		|            item.HeaderChanged += HeaderChanged;
+		|            item.IsVisibleChanged += IsVisibleChanged;
+		|            item.WidthChanged += WidthChanged;
+		|            item.SortOrderChanged += SortOrderChanged;
+		|        }
+		|
+		|        private void UnbindEvents(TreeColumn item)
+		|        {
+		|            item.Owner = null;
+		|            item.HeaderChanged -= HeaderChanged;
+		|            item.IsVisibleChanged -= IsVisibleChanged;
+		|            item.WidthChanged -= WidthChanged;
+		|            item.SortOrderChanged -= SortOrderChanged;
+		|        }
+		|
+		|        void SortOrderChanged(object sender, EventArgs e)
+		|        {
+		|            TreeColumn changed = sender as TreeColumn;
+		|            // Свойство сортировки может быть установлено только для одного столбца одновременно.
+		|            if (changed.SortOrder != SortOrder.None)
+		|            {
+		|                foreach (TreeColumn col in this)
+		|                {
+		|                    if (col != changed)
+		|                    {
+		|                        col.SortOrder = SortOrder.None;
+		|                    }
+		|                }
+		|            }
+		|            _treeView.UpdateHeaders();
+		|        }
+		|
+		|        void WidthChanged(object sender, EventArgs e)
+		|        {
+		|            _treeView.ChangeColumnWidth(sender as TreeColumn);
+		|        }
+		|
+		|        void IsVisibleChanged(object sender, EventArgs e)
+		|        {
+		|            _treeView.FullUpdate();
+		|        }
+		|
+		|        void HeaderChanged(object sender, EventArgs e)
+		|        {
+		|            _treeView.UpdateView();
+		|        }
+		|		
+		|        public void SetColumn(int p1, TreeColumn p2)
+		|        {
+		|            SetItem(p1, p2);
+		|        }
+		|    }
+		|}
+		|
+		|namespace osf
+		|{
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "TreeViewAdv" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"    #region Aga.Controls.Tree
+		|
+		|namespace Aga.Controls.Tree
+		|{
+		|    // Код создан на основе разработки автора Andrey Gliznetsov https://www.codeproject.com/Articles/14741/Advanced-TreeView-for-NET под лицензией 
+		|    // == license.txt ===========================================
+		|    // The BSD License
+		|
+		|    //Copyright(c) 2009, Andrey Gliznetsov(a.gliznetsov @gmail.com)
+		|
+		|    //All rights reserved.
+		|
+		|    //Redistribution and use in source and binary forms, with or without modification, are permitted provided
+		|    //that the following conditions are met
+		|
+		|    //- Redistributions of source code must retain the above copyright notice, this list of conditions
+		|    //and the following disclaimer.
+		|    //- Redistributions in binary form must reproduce the above copyright notice, this list of conditions
+		|    //and the following disclaimer in the documentation andor other materials provided with the distribution.
+		|
+		|    //THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+		|    //AS IS AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+		|    //LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+		|    //A PARTICULAR PURPOSE ARE DISCLAIMED.IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+		|    //CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+		|    //EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+		|    //PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+		|    //PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+		|    //LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+		|    //NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+		|    //SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+		|    // =============================================
+		|
+		|    // Расширенный TreeView, реализованный на 100% в управляемом коде C#.
+		|    // Особенности: 
+		|    //    Архитектура - модель/представление. 
+		|    //    Несколько колонок на узел. 
+		|    //    Возможность выбора нескольких узлов дерева.
+		|    //    Различные типы элементов управления для каждого столбца узла: CheckBox, Icon, Label... 
+		|    //    Подсветка, выделение при перетаскивании. 
+		|    //    Загрузка узлов по требованию. 
+		|    //    Инкрементный поиск узлов.
+		|
+		|    public class TreeViewAdv : Control
+		|    {
+		|        static string str_dVSplitCursor = ""AAACAAEAICACAAgACQAwAQAAFgAAACgAAAAgAAAAQAAAAAEAAQAAAAAAAAEAAAAAAAAAAAAAAgAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwAAAA8AAAAPAAAADwAAAA8AAAAPAAAADwAAAA8AAAAPAAAADwAAAA8AAAAPAAAADwAAAA8AAAAPAAAADwAAAAAAAA/////////////////////////////////////////////////////////////////////////////////gf///4H///+B////gf///4H///uB3//zgc//4AAH/+AAB//zgc//+4Hf//+B////gf///4H///+B////gf///////8="";
+		|        public static Cursor DVSplitCursor = GetCursor(str_dVSplitCursor);
+		|        static string str_loadingIcon = ""R0lGODlhEAAQAPcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQICAgMDAwUFBQgICAsLCw4ODhAQEBQUFBcXFxwcHB0dHR4eHh8fHyAgICEhISIiIiMjIyQkJCYmJigoKCsrKy4uLjAwMDExMTIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjMzMzMzMzMzMzMzMzMzMzMzMzMzMzQ0NDQ0NDY2Njc3Nzk5OTs7Oz09PT8/P0JCQkNDQ0REREVFRUZGRkdHR0hISElJSUpKSktLS0xMTE1NTU5OTk9PT1BQUFFRUVJSUlNTU1RUVFVVVVZWVldXV1hYWFlZWVpaWltbW1xcXF1dXV5eXl9fX2BgYGFhYWJiYmRkZGVlZWVlZWZmZmZmZmdnZ2hoaGlpaWtra2xsbG1tbW5ubm9vb3BwcHFxcXJycnNzc3R0dHV1dXZ2dnd3d3h4eHl5eXp6ent7e3x8fH19fX5+fn9/f4CAgIGBgYKCgoODg4SEhIWFhYaGhoeHh4iIiImJiYqKiouLi4yMjI2NjZCQkJaWlpmZmZ2dnaGhoaWlpaqqqq2trbCwsLKysrOzs7S0tLS0tLS0tLS0tLS0tLS0tLS0tLW1tbW1tbW1tbW1tba2tre3t729vcXFxdPT0+np6fv7+/7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v////7+/v7+/v7+/v///yH/C05FVFNDQVBFMi4wAwEAAAAh+QQFCAD/ACwAAAAAEAAQAAAIXAD3CRy4L0ECgggJGjSYcKAoUQUX7rNhA+HDhxEnUqzo8CLBjRw7JqRIEGNDgWfO7LsIsWHKlCxPvlRpUqZKkQghQbLocaBOnSU9Yvy5M+hKj0BPxjxplOC/fwEBACH5BAUIAP8ALAAAAAAQABAAhwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAQICAgMDAwUFBQkJCQsLCw0NDRISEhUVFRoaGiAgICYmJisrKy4uLjAwMDExMTIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzQ0NDQ0NDU1NTY2Njc3Nzg4ODo6Ojw8PD4+PkBAQENDQ0ZGRklJSUxMTE9PT1BQUFFRUVJSUlNTU1RUVFVVVVZWVldXV1lZWVtbW15eXmFhYWNjY2RkZGVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWZmZmZmZmZmZmZmZmZmZmZmZmZmZmdnZ2dnZ2lpaWpqamxsbG5ubnBwcHJycnV1dXZ2dnd3d3h4eHl5eXp6ent7e3x8fH19fX5+fn9/f4CAgIGBgYKCgoODg4SEhIWFhYaGhoeHh4iIiImJiYqKiouLi4yMjI2NjY6Ojo+Pj5CQkJGRkZKSkpOTk5SUlJWVlZeXl5iYmJiYmJmZmZmZmZqampubm6Kiora2ttXV1evr6/b29vz8/P7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v////7+/v7+/v7+/v///whPAPcJHLhPhw6CCAkaNJhwYIECBRfuS5MG4cOHESdSrOjwIsGNHDsmpNiw5D5NmkwSRIlSpUCWKV2ejKnSkyeZ+2zalKnzJk+fOIMS/PcvIAAh+QQFCAD/ACwAAAAAEAAQAIcAAAAAAAAAAAABAQECAgIEBAQGBgYHBwcICAgJCQkKCgoLCwsMDAwNDQ0ODg4PDw8QEBARERESEhITExMUFBQVFRUWFhYXFxcYGBgZGRkaGhobGxscHBwdHR0eHh4fHx8gICAhISEjIyMlJSUoKCgqKiotLS0wMDAxMTEyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM0NDQ0NDQ1NTU3Nzc5OTk6Ojo8PDw+Pj5AQEBFRUVISEhNTU1TU1NZWVleXl5hYWFjY2NkZGRlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZnZ2dnZ2doaGhpaWlqampra2ttbW1vb29xcXFzc3N2dnZ5eXl8fHx/f3+CgoKDg4OEhISFhYWGhoaHh4eIiIiJiYmKioqMjIyOjo6RkZGUlJSWlpaXl5eYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiZmZmZmZmZmZmcnJyhoaGqqqqwsLC0tLS4uLjDw8Pg4OD09PT+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7////+/v7+/v7+/v7///8ITgD3CRy4r00bgggJGjSYcOCNGwUX7tOkCeHDhxEnUqzo8CLBjRw7JqRIMECAhgNBgdpn0iRKlSpbnmwIc6VLlPtU4tzJs6fPn0B5/vsXEAAh+QQFBwD/ACwAAAAAEAAQAIcAAAABAQECAgIDAwMEBAQFBQUGBgYHBwcICAgJCQkKCgoLCwsMDAwNDQ0ODg4PDw8QEBARERESEhITExMUFBQVFRUWFhYXFxcYGBgZGRkaGhobGxscHBwdHR0eHh4fHx8gICAhISEiIiIjIyMkJCQlJSUmJiYnJycoKCgpKSkqKiorKyssLCwtLS0uLi4wMDAxMTEyMjIyMjIzMzMzMzM0NDQ0NDQ2NjY3Nzc5OTk6Ojo7Ozs8PDw9PT0+Pj4/Pz9AQEBBQUFCQkJDQ0NERERFRUVGRkZHR0dISEhJSUlKSkpLS0tMTExNTU1OTk5PT09QUFBRUVFSUlJTU1NUVFRWVlZYWFhbW1tdXV1gYGBjY2NkZGRlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZnZ2dnZ2doaGhqampsbGxtbW1vb29xcXFzc3N4eHh7e3uAgICGhoaLi4uRkZGUlJSWlpaXl5eYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJibm5uenp6hoaGnp6erq6uvr6+xsbGzs7O0tLS0tLS0tLS0tLS0tLS0tLS0tLS1tbW2tra3t7e5ubm/v7/Ly8vf39/39/f8/Pz+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7////+/v7+/v7+/v7///8ITAD3CRy479EjgggJGjSYcKAaNQUX7vv0CeHDhxEnUqzo8CLBjRw7JqRIkAaNhglNmkRZUiXLli8TAgAQU+DMmTVv0sy5s6bPn//+BQQAIfkEBQgA/wAsAAAAABAAEACHAAAAAQEBAgICAwMDBAQEBQUFBgYGBwcHCAgICQkJCgoKCwsLDAwMDQ0NDg4ODw8PEBAQEREREhISExMTFBQUFRUVFhYWFxcXGBgYGRkZGhoaGxsbHBwcHR0dHh4eHx8fICAgISEhIiIiIyMjJCQkJSUlJiYmJycnKCgoKSkpKioqKysrLCwsLS0tLi4uLy8vMDAwMTExMjIyMzMzNDQ0NTU1NjY2Nzc3ODg4OTk5Ojo6Ozs7PDw8PT09Pj4+Pz8/QEBAQUFBQkJCQ0NDRERERUVFRkZGR0dHSEhISUlJSkpKS0tLTExMTU1NTk5OT09PUFBQUVFRUlJSU1NTVFRUVVVVVlZWV1dXWFhYWVlZWlpaW1tbXFxcXV1dXl5eX19fYGBgYWFhY2NjZGRkZWVlZWVlZmZmZmZmZ2dnZ2dnaWlpampqbGxsbW1tbm5ub29vcHBwcXFxcnJyc3NzdHR0dXV1dnZ2d3d3eHh4eXl5enp6e3t7fHx8fX19fn5+f39/gYGBg4ODh4eHiYmJjIyMjo6OkpKSlJSUlZWVl5eXmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmZmZmZmZmZmZmZmZmZmZmZmZmpqam5ubnp6eo6Ojqqqqra2tsbGxtLS0tLS0tLS0tLS0tLS0tLS0tLS0tbW1tbW1u7u7xcXFzc3N29vb6+vr9fX1/Pz8/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/////v7+/v7+/v7+////CEwA9wkcuO/UKYIICRo0mHBgpUoFFzbc9/BhxIkUK2IkaHHjvjNnPAoECVIkyZAmUYoUOGPGypYtRcJ0CQDAxpg1a4rMaXNnz4H//gUEACH5BAUIAP8ALAAAAAAQABAAhwAAAAEBAQICAgMDAwQEBAUFBQYGBgcHBwgICAkJCQoKCgsLCwwMDA0NDQ4ODg8PDxAQEBERERISEhMTExQUFBUVFRYWFhcXFxgYGBkZGRoaGhsbGxwcHB0dHR4eHh8fHyAgICEhISIiIiMjIyQkJCUlJSYmJicnJygoKCkpKSoqKisrKywsLC0tLS4uLi8vLzAwMDExMTIyMjMzMzQ0NDU1NTY2Njc3Nzg4ODk5OTo6Ojs7Ozw8PD09PT4+Pj8/P0BAQEFBQUJCQkNDQ0REREVFRUZGRkdHR0hISElJSUpKSktLS0xMTE1NTU5OTk9PT1BQUFFRUVJSUlNTU1RUVFVVVVZWVldXV1hYWFlZWVpaWltbW1xcXF1dXV5eXl9fX2BgYGFhYWJiYmNjY2RkZGVlZWZmZmdnZ2hoaGlpaWpqamtra2xsbG1tbW5ubm9vb3BwcHFxcXJycnNzc3R0dHV1dXZ2dnd3d3h4eHl5eXp6ent7e3x8fH19fX5+fn9/f4KCgoyMjJSUlJeXl5iYmJmZmZqamp6enqOjo6ioqK6urrOzs7Ozs7S0tLS0tLS0tLS0tLS0tLS0tLW1tbW1tbW1tba2tre3t7i4uMHBwdDQ0OHh4fX19f7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v////7+/v7+/v7+/v///whOAPcJHEiwoMGDBylRQlhQoUKGAx0uhCjwIcVChSgKxIhRI8eMHkFqFGjGjEEAAAqWLEkQJUqCK03OmLHPZUqYMmfSfIlQJ02NMwv++xcQACH5BAUIAP8ALAAAAAAQABAAhwAAAAAAAAAAAAEBAQMDAwUFBQYGBgcHBwgICAkJCQoKCgsLCwwMDA0NDQ4ODg8PDxAQEBERERISEhMTExQUFBUVFRYWFhcXFxgYGBkZGRoaGhsbGxwcHB0dHR4eHh8fHyAgICEhISIiIiMjIyQkJCUlJSYmJicnJygoKCkpKSoqKisrKywsLC0tLS4uLi8vLzAwMDExMTIyMjMzMzQ0NDU1NTY2Njc3Nzg4ODk5OTo6Ojs7Ozw8PD09PT4+Pj8/P0BAQEFBQUJCQkNDQ0REREVFRUZGRkdHR0hISElJSUpKSktLS0xMTE1NTU5OTk9PT1BQUFFRUVJSUlNTU1RUVFVVVVZWVldXV1hYWFlZWVpaWltbW1xcXF1dXV5eXl9fX2BgYGFhYWJiYmNjY2RkZGVlZWZmZmdnZ2hoaGlpaWpqamtra2xsbG1tbW5ubm9vb3BwcHFxcXJycnNzc3R0dHV1dXZ2dnd3d3h4eHl5eXp6ent7e3x8fH19fX5+fn9/f4CAgIGBgYKCgoODg4SEhIWFhY2NjZaWlpycnKioqK2trbOzs7q6usTExNjY2Ojo6PX19f7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v////7+/v7+/v7+/v///whNAPcJHEiwoMGDCBMqXMiwocFFixQGCLAPIkSEEydajHgwI8WLCScSRITI4IwZBUmSJHjy5EiV+8yY2dcS5cuYMme6RJhzJkOZBf/9CwgAIfkEBQgA/wAsAAAAABAAEACHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAgICBAQEBwcHCgoKDAwMDw8PEBAQEREREhISExMTFBQUFRUVFhYWFxcXGBgYGRkZGhoaGxsbHBwcHR0dHh4eHx8fICAgISEhIiIiIyMjJCQkJSUlJiYmJycnKCgoKSkpKioqKysrLCwsLS0tLi4uLy8vMTExMjIyMjIyMzMzMzMzNDQ0NTU1NjY2ODg4OTk5Ojo6Ozs7PDw8PT09Pj4+Pz8/QEBAQUFBQkJCQ0NDRERERUVFRkZGR0dHSEhISUlJSkpKS0tLTExMTU1NTk5OT09PUFBQUVFRUlJSU1NTVFRUVVVVVlZWV1dXWFhYWVlZWlpaW1tbXFxcXV1dXl5eX19fYGBgYWFhYmJiY2NjZGRkZWVlZmZmZ2dnaGhoaWlpampqa2trbGxsbW1tbm5ub29vcHBwcXFxcnJyc3NzdHR0dXV1dnZ2d3d3eHh4eXl5enp6e3t7fHx8fX19fn5+f39/gICAgYGBgoKCg4ODhISEhYWFhoaGh4eHiIiIiYmJioqKnp6evb294ODg9/f3/f39/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/////v7+/v7+/v7+////CE4A9wkcSLCgwYMIDxIgkJDgwoUNBT5kGHEfxIoDadDAqFFjxY4bP4YUyIiRQTNmCpYsSRAlSoIrTS5atM9lSpgyZ9J8iVAnzYozC/77FxAAOw=="";
+		|        public static GifDecoder LoadingIcon = GetGifDecoder(str_loadingIcon);
+		|        private const int LeftMargin = 7;
+		|        internal const int ItemDragSensivity = 4;
+		|        private int _columnHeaderHeight;
+		|        private const int DividerWidth = 9;
+		|        private const int DividerCorrectionGap = -2;
+		|        private Pen _linePen;
+		|        private Pen _markPen;
+		|        private bool _suspendUpdate;
+		|        private bool _needFullUpdate;
+		|        private bool _fireSelectionEvent;
+		|        private NodePlusMinus _plusMinus;
+		|        private ToolTip _toolTip;
+		|        private DrawContext _measureContext;
+		|        private TreeColumn _hotColumn;
+		|        private IncrementalSearch _search;
+		|        private List<TreeNodeAdv> _expandingNodes = new List<TreeNodeAdv>();
+		|        private AbortableThreadPool _threadPool = new AbortableThreadPool();
+		|        private IContainer components = null;
+		|        private VScrollBar _vScrollBar;
+		|        private HScrollBar _hScrollBar;
+		|        private ErrorProvider _errorProvider;
+		|        public event EventHandler<TreeNodeAdvMouseEventArgs> NodeMouseDoubleClick;
+		|        public event EventHandler<TreeColumnEventArgs> ColumnWidthChanged;
+		|        public event EventHandler<TreeColumnEventArgs> ColumnReordered;
+		|        public event EventHandler<TreeColumnEventArgs> ColumnClicked;
+		|        public event EventHandler SelectionChanged;
+		|        public event EventHandler<TreeViewAdvEventArgs> Collapsing;
+		|        public event EventHandler<TreeViewAdvEventArgs> Collapsed;
+		|        public event EventHandler<TreeViewAdvEventArgs> Expanding;
+		|        public event EventHandler<TreeViewAdvEventArgs> Expanded;
+		|        public event EventHandler GridLineStyleChanged;
+		|        public event ScrollEventHandler Scroll;
+		|        public event EventHandler<TreeViewRowDrawEventArgs> RowDraw;
+		|        public event EventHandler<DrawEventArgs> DrawControl;
+		|        public event ItemDragEventHandler ItemDrag;
+		|        public event EventHandler<TreeNodeAdvMouseEventArgs> NodeMouseClick;
+		|        public event EventHandler<DropNodeValidatingEventArgs> DropNodeValidating;
+		|        private delegate void UpdateContentWidthDelegate(TreeModelEventArgs e, TreeNodeAdv parent);
+		|        public osf.ClTreeViewAdv dll_obj;
+		|        private TreeNodeAdv _editingNode;
+		|        public EditableControl CurrentEditorOwner { get; private set; }
+		|        public Control CurrentEditor { get; private set; }
+		|        TreeColumn _tooltipColumn;
+		|        TreeNodeAdv _tooltipTreeNodeAdv;
+		|        NodeControl _tooltipNodeControl;
+		|        TreeNodeAdv _hotNode;
+		|        NodeControl _hotControl;
+		|        private bool _dragAutoScrollFlag = false;
+		|        private Bitmap _dragBitmap = null;
+		|        private System.Threading.Timer _dragTimer;
+		|        private Cursor _innerCursor = null;
+		|        private IRowLayout _rowLayout;
+		|        private bool _dragMode;
+		|        private bool _suspendSelectionEvent;
+		|        private List<TreeNodeAdv> _rowMap;
+		|        private TreeNodeAdv _selectionStart;
+		|        private InputState _input;
+		|        private int _contentWidth = 0;
+		|        private bool _itemDragMode;
+		|        private Point _itemDragStart;
+		|        private int _firstVisibleRow;
+		|        private int _offsetX;
+		|        private List<TreeNodeAdv> _selection;
+		|        private bool _shiftFirstNode;
+		|        private bool _displayDraggingNodes;
+		|        private bool _fullRowSelect;
+		|        private bool _useColumns;
+		|        private bool _allowColumnReorder;
+		|        private bool _showLines = true;
+		|        private bool _showPlusMinus = true;
+		|        private bool _showNodeToolTips = true;
+		|        private ITreeModel _model;
+		|        private static Font _font = new Font(""Tahoma"", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)), false); // Шрифт Tahoma используется по умолчанию.
+		|        private BorderStyle _borderStyle = BorderStyle.Fixed3D;
+		|        private bool _autoRowHeight = false;
+		|        private GridLineStyle _gridLineStyle = GridLineStyle.None;
+		|        private int _rowHeight = 16;
+		|        private TreeSelectionMode _selectionMode = TreeSelectionMode.Single;
+		|        private bool _hideSelection;
+		|        private float _topEdgeSensivity = 0.3f;
+		|        private float _bottomEdgeSensivity = 0.3f;
+		|        private bool _loadOnDemand;
+		|        private bool _unloadCollapsedOnReload = false;
+		|        private int _indent = 19;
+		|        private Color _lineColor = SystemColors.ControlDark;
+		|        private Color _dragDropMarkColor = Color.Black;
+		|        private float _dragDropMarkWidth = 3.0f;
+		|        private bool _highlightDropPosition = true;
+		|        private TreeColumnCollection _columns;
+		|        private NodeControlsCollection _controls;
+		|        private bool _asyncExpanding;
+		|        private IToolTipProvider _defaultToolTipProvider = null;
+		|        private DropPosition _dropPosition;
+		|        private TreeNodeAdv _root;
+		|        private ReadOnlyCollection<TreeNodeAdv> _readonlySelection;
+		|        private TreeNodeAdv _currentNode;
+		|        private IHeaderLayout _headerLayout;
+		|        private bool _autoHeaderHeight;
+		|        private string pathSeparator = @""\"";
+		|        private Image image;
+		|        private Image selectedImage;
+		|
+		|        public TreeViewAdv()
+		|        {
+		|            components = new System.ComponentModel.Container();
+		|            _vScrollBar = new System.Windows.Forms.VScrollBar();
+		|            _hScrollBar = new System.Windows.Forms.HScrollBar();
+		|            _errorProvider = new System.Windows.Forms.ErrorProvider(components);
+		|            ((System.ComponentModel.ISupportInitialize)(_errorProvider)).BeginInit();
+		|            SuspendLayout();
+		|
+		|            _vScrollBar.LargeChange = 1;
+		|            _vScrollBar.Location = new System.Drawing.Point(0, 0);
+		|            _vScrollBar.Maximum = 0;
+		|            _vScrollBar.Name = ""_vScrollBar"";
+		|            _vScrollBar.Size = new System.Drawing.Size(13, 80);
+		|            _vScrollBar.TabIndex = 1;
+		|            _vScrollBar.ValueChanged += new System.EventHandler(_vScrollBar_ValueChanged);
+		|            _vScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(_vScrollBar_Scroll);
+		|
+		|            _hScrollBar.LargeChange = 1;
+		|            _hScrollBar.Location = new System.Drawing.Point(0, 0);
+		|            _hScrollBar.Maximum = 0;
+		|            _hScrollBar.Name = ""_hScrollBar"";
+		|            _hScrollBar.Size = new System.Drawing.Size(80, 13);
+		|            _hScrollBar.TabIndex = 2;
+		|            _hScrollBar.ValueChanged += new System.EventHandler(_hScrollBar_ValueChanged);
+		|            _hScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(_hScrollBar_Scroll);
+		|
+		|            BackColor = System.Drawing.SystemColors.Window;
+		|            Controls.Add(_vScrollBar);
+		|            Controls.Add(_hScrollBar);
+		|            ((System.ComponentModel.ISupportInitialize)(_errorProvider)).EndInit();
+		|            ResumeLayout(false);
+		|
+		|            SetStyle(ControlStyles.AllPaintingInWmPaint
+		|                | ControlStyles.UserPaint
+		|                | ControlStyles.OptimizedDoubleBuffer
+		|                | ControlStyles.ResizeRedraw
+		|                | ControlStyles.Selectable
+		|                , true);
+		|
+		|            if (Application.RenderWithVisualStyles)
+		|            {
+		|                _columnHeaderHeight = 20;
+		|            }
+		|            else
+		|            {
+		|                _columnHeaderHeight = 17;
+		|            }
+		|
+		|            //BorderStyle = BorderStyle.Fixed3D;
+		|            _hScrollBar.Height = SystemInformation.HorizontalScrollBarHeight;
+		|            _vScrollBar.Width = SystemInformation.VerticalScrollBarWidth;
+		|            _rowLayout = new FixedRowHeightLayout(this, RowHeight);
+		|            _rowMap = new List<TreeNodeAdv>();
+		|            _selection = new List<TreeNodeAdv>();
+		|            _readonlySelection = new ReadOnlyCollection<TreeNodeAdv>(_selection);
+		|            _columns = new TreeColumnCollection(this);
+		|            _toolTip = new ToolTip();
+		|
+		|            _measureContext = new DrawContext();
+		|            _measureContext.Font = Font;
+		|            _measureContext.Graphics = Graphics.FromImage(new Bitmap(1, 1));
+		|
+		|            Input = new NormalInputState(this);
+		|            _search = new IncrementalSearch(this);
+		|            CreateNodes();
+		|            CreatePens();
+		|
+		|            ArrangeControls();
+		|
+		|            _plusMinus = new NodePlusMinus();
+		|            _controls = new NodeControlsCollection(this);
+		|
+		|            Font = _font;
+		|            Size = new System.Drawing.Size(121, 97);
+		|            ExpandingIcon.IconChanged += ExpandingIconChanged;
+		|        }
+		|		
+		|        public string PathSeparator
+		|        {
+		|            get { return pathSeparator; }
+		|            set { pathSeparator = value; }
+		|        }
+		|
+		|        protected override void Dispose(bool disposing)
+		|        {
+		|            if (disposing && (components != null))
+		|            {
+		|                components.Dispose();
+		|                if (_dragBitmap != null)
+		|                {
+		|                    _dragBitmap.Dispose();
+		|                }
+		|                if (_dragTimer != null)
+		|                {
+		|                    _dragTimer.Dispose();
+		|                }
+		|                if (_linePen != null)
+		|                {
+		|                    _linePen.Dispose();
+		|                }
+		|                if (_markPen != null)
+		|                {
+		|                    _markPen.Dispose();
+		|                }
+		|            }
+		|            base.Dispose(disposing);
+		|        }
+		|
+		|		private void OnItemDrag(MouseButtons buttons, object item)
+		|		{
+		|			if (ItemDrag != null)
+		|            {
+		|                ItemDrag(this, new ItemDragEventArgs(buttons, item));
+		|            }
+		|        }
+		|
+		|		private void OnNodeMouseClick(TreeNodeAdvMouseEventArgs args)
+		|		{
+		|			if (NodeMouseClick != null)
+		|            {
+		|                NodeMouseClick(this, args);
+		|            }
+		|        }
+		|
+		|		private void OnNodeMouseDoubleClick(TreeNodeAdvMouseEventArgs args)
+		|		{
+		|			if (NodeMouseDoubleClick != null)
+		|            {
+		|                NodeMouseDoubleClick(this, args);
+		|            }
+		|        }
+		|
+		|		internal void OnColumnWidthChanged(TreeColumn column)
+		|		{
+		|			if (ColumnWidthChanged != null)
+		|            {
+		|                ColumnWidthChanged(this, new TreeColumnEventArgs(column));
+		|            }
+		|        }
+		|
+		|		internal void OnColumnReordered(TreeColumn column)
+		|		{
+		|			if (ColumnReordered != null)
+		|            {
+		|                ColumnReordered(this, new TreeColumnEventArgs(column));
+		|            }
+		|        }
+		|
+		|		internal void OnColumnClicked(TreeColumn column)
+		|		{
+		|			if (ColumnClicked != null)
+		|            {
+		|                ColumnClicked(this, new TreeColumnEventArgs(column));
+		|            }
+		|        }
+		|
+		|		internal void OnSelectionChanged()
+		|		{
+		|			if (SuspendSelectionEvent)
+		|            {
+		|                _fireSelectionEvent = true;
+		|            }
+		|            else
+		|			{
+		|				_fireSelectionEvent = false;
+		|				if (SelectionChanged != null)
+		|                {
+		|                    SelectionChanged(this, EventArgs.Empty);
+		|                }
+		|            }
+		|		}
+		|
+		|		private void OnCollapsing(TreeNodeAdv node)
+		|		{
+		|			if (Collapsing != null)
+		|            {
+		|                Collapsing(this, new TreeViewAdvEventArgs(node));
+		|            }
+		|        }
+		|
+		|		private void OnCollapsed(TreeNodeAdv node)
+		|		{
+		|			if (Collapsed != null)
+		|            {
+		|                Collapsed(this, new TreeViewAdvEventArgs(node));
+		|            }
+		|        }
+		|
+		|		private void OnExpanding(TreeNodeAdv node)
+		|		{
+		|			if (Expanding != null)
+		|            {
+		|                Expanding(this, new TreeViewAdvEventArgs(node));
+		|            }
+		|        }
+		|
+		|		private void OnExpanded(TreeNodeAdv node)
+		|		{
+		|			if (Expanded != null)
+		|            {
+		|                Expanded(this, new TreeViewAdvEventArgs(node));
+		|            }
+		|        }
+		|
+		|		private void OnGridLineStyleChanged()
+		|		{
+		|			if (GridLineStyleChanged != null)
+		|            {
+		|                GridLineStyleChanged(this, EventArgs.Empty);
+		|            }
+		|        }
+		|
+		|		protected virtual void OnScroll(ScrollEventArgs e)
+		|		{
+		|			if (Scroll != null)
+		|            {
+		|                Scroll(this, e);
+		|            }
+		|        }
+		|
+		|		protected virtual void OnRowDraw(PaintEventArgs e, TreeNodeAdv node, DrawContext context, int row, Rectangle rowRect)
+		|		{
+		|			if (RowDraw != null)
+		|			{
+		|				TreeViewRowDrawEventArgs args = new TreeViewRowDrawEventArgs(e.Graphics, e.ClipRectangle, node, context, row, rowRect);
+		|				RowDraw(this, args);
+		|			}
+		|		}
+		|
+		|        // Срабатывает, когда управление переходит в режим прорисовки. Может использоваться для изменения текста или цвета задней панели.
+		|		internal bool DrawControlMustBeFired()
+		|		{
+		|			return DrawControl != null;
+		|		}
+		|
+		|		internal void FireDrawControl(DrawEventArgs args)
+		|		{
+		|			OnDrawControl(args);
+		|		}
+		|
+		|		protected virtual void OnDrawControl(DrawEventArgs args)
+		|		{
+		|			if (DrawControl != null)
+		|            {
+		|                DrawControl(this, args);
+		|            }
+		|        }
+		|
+		|		protected virtual void OnDropNodeValidating(Point point, ref TreeNodeAdv node)
+		|		{
+		|			if (DropNodeValidating != null)
+		|			{
+		|				DropNodeValidatingEventArgs args = new DropNodeValidatingEventArgs(point, node);
+		|				DropNodeValidating(this, args);
+		|				node = args.Node;
+		|			}
+		|		}
+		|
+		|        private static Cursor GetCursor(string str)
+		|        {
+		|            byte[] bytes_dVSplitCursor = Convert.FromBase64String(str);
+		|            MemoryStream ms = new MemoryStream(bytes_dVSplitCursor);
+		|            return new Cursor(ms);
+		|        }
+		|
+		|        private static GifDecoder GetGifDecoder(string str)
+		|        {
+		|            byte[] bytes_loadingIcon = Convert.FromBase64String(str);
+		|            MemoryStream ms = new MemoryStream(bytes_loadingIcon);
+		|            return new GifDecoder(ms, true);
+		|        }
+		|
+		|        void ExpandingIconChanged(object sender, EventArgs e)
+		|		{
+		|			if (IsHandleCreated && !IsDisposed)
+		|            {
+		|                BeginInvoke(new MethodInvoker(DrawIcons));
+		|            }
+		|        }
+		|
+		|		private void DrawIcons()
+		|		{
+		|			using (Graphics gr = Graphics.FromHwnd(this.Handle))
+		|			{
+		|                // Примените ту же логику преобразования графики, что и в OnPaint.
+		|                int y = 0;
+		|				if (UseColumns)
+		|				{
+		|					y += ColumnHeaderHeight;
+		|					if (Columns.Count == 0)
+		|                    {
+		|                        return;
+		|                    }
+		|                }
+		|				int firstRowY = _rowLayout.GetRowBounds(FirstVisibleRow).Y;
+		|				y -= firstRowY;
+		|				gr.ResetTransform();
+		|				gr.TranslateTransform(-OffsetX, y);
+		|
+		|				DrawContext context = new DrawContext();
+		|				context.Graphics = gr;
+		|				for (int i = 0; i < _expandingNodes.Count; i++)
+		|				{
+		|					foreach (NodeControlInfo item in GetNodeControls(_expandingNodes[i]))
+		|					{
+		|						if (item.Control is ExpandingIcon)
+		|						{
+		|							Rectangle bounds = item.Bounds;
+		|							if (item.Node.Parent == null && UseColumns)
+		|                            {
+		|                                bounds.Location = Point.Empty; // Отображение значка расширения корня на уровне 0,0
+		|                            }
+		|
+		|                            context.Bounds = bounds;
+		|							item.Control.Draw(item.Node, context);
+		|						}
+		|					}
+		|				}
+		|			}
+		|		}
+		|
+		|		public TreePath GetPath(TreeNodeAdv node)
+		|		{
+		|			if (node == _root)
+		|            {
+		|                return TreePath.Empty;
+		|            }
+		|            else
+		|			{
+		|				Stack<object> stack = new Stack<object>();
+		|				while (node != _root && node != null)
+		|				{
+		|					stack.Push(node.Tag);
+		|					node = node.Parent;
+		|				}
+		|				return new TreePath(stack.ToArray());
+		|			}
+		|		}
+		|		
+		|        public string GetFullPath(TreeNodeAdv node)
+		|        {
+		|            Node _node = (Node)node.Tag;
+		|            string fullPath = _node.NodeName;
+		|            while (_node.Parent != null)
+		|            {
+		|                _node = _node.Parent;
+		|                fullPath = _node.NodeName + this.PathSeparator + fullPath;
+		|            }
+		|            return fullPath.TrimStart(this.PathSeparator.ToCharArray());
+		|        }
+		|
+		|		public TreeNodeAdv GetNodeAt(Point point)
+		|		{
+		|			NodeControlInfo info = GetNodeControlInfoAt(point);
+		|			return info.Node;
+		|		}
+		|
+		|		public NodeControlInfo GetNodeControlInfoAt(Point point)
+		|		{
+		|			if (point.X < 0 || point.Y < 0)
+		|            {
+		|                return NodeControlInfo.Empty;
+		|            }
+		|
+		|            int row = _rowLayout.GetRowAt(point);
+		|			if (row < RowCount && row >= 0)
+		|            {
+		|                return GetNodeControlInfoAt(RowMap[row], point);
+		|            }
+		|            else
+		|            {
+		|                return NodeControlInfo.Empty;
+		|            }
+		|        }
+		|
+		|		private NodeControlInfo GetNodeControlInfoAt(TreeNodeAdv node, Point point)
+		|		{
+		|			Rectangle rect = _rowLayout.GetRowBounds(FirstVisibleRow);
+		|			point.Y += (rect.Y - ColumnHeaderHeight);
+		|			point.X += OffsetX;
+		|			foreach (NodeControlInfo info in GetNodeControls(node))
+		|				if (info.Bounds.Contains(point))
+		|                {
+		|                    return info;
+		|                }
+		|
+		|            if (FullRowSelect)
+		|            {
+		|                return new NodeControlInfo(null, Rectangle.Empty, node);
+		|            }
+		|            else
+		|            {
+		|                return NodeControlInfo.Empty;
+		|            }
+		|        }
+		|
+		|		public void BeginUpdate()
+		|		{
+		|			_suspendUpdate = true;
+		|			SuspendSelectionEvent = true;
+		|		}
+		|
+		|		public void EndUpdate()
+		|		{
+		|			_suspendUpdate = false;
+		|			if (_needFullUpdate)
+		|            {
+		|                FullUpdate();
+		|            }
+		|            else
+		|            {
+		|                UpdateView();
+		|            }
+		|            SuspendSelectionEvent = false;
+		|		}
+		|
+		|		public void ExpandAll()
+		|		{
+		|			_root.ExpandAll();
+		|		}
+		|
+		|		public void CollapseAll()
+		|		{
+		|			_root.CollapseAll();
+		|		}
+		|
+		|        // Разверните все родительские узлы, а затем прокрутите до указанного узла.
+		|        public void EnsureVisible(TreeNodeAdv node)
+		|		{
+		|			if (node == null)
+		|            {
+		|                throw new ArgumentNullException(""node"");
+		|            }
+		|
+		|            if (!IsMyNode(node))
+		|            {
+		|                throw new ArgumentException();
+		|            }
+		|
+		|            TreeNodeAdv parent = node.Parent;
+		|			while (parent != _root)
+		|			{
+		|				parent.IsExpanded = true;
+		|				parent = parent.Parent;
+		|			}
+		|			ScrollTo(node);
+		|		}
+		|
+		|        // Сделайте узел видимым, при необходимости прокрутите его. Все родительские узлы указанного узла должны быть развернуты.
+		|        public void ScrollTo(TreeNodeAdv node)
+		|		{
+		|			if (node == null)
+		|            {
+		|                throw new ArgumentNullException(""node"");
+		|            }
+		|            if (!IsMyNode(node))
+		|            {
+		|                throw new ArgumentException();
+		|            }
+		|            if (node.Row < 0)
+		|            {
+		|                CreateRowMap();
+		|            }
+		|
+		|            int row = -1;
+		|
+		|			if (node.Row < FirstVisibleRow)
+		|            {
+		|                row = node.Row;
+		|            }
+		|            else
+		|			{
+		|				int pageStart = _rowLayout.GetRowBounds(FirstVisibleRow).Top;
+		|				int rowBottom = _rowLayout.GetRowBounds(node.Row).Bottom;
+		|				if (rowBottom > pageStart + DisplayRectangle.Height - ColumnHeaderHeight)
+		|                {
+		|                    row = _rowLayout.GetFirstRow(node.Row);
+		|                }
+		|            }
+		|
+		|			if (row >= _vScrollBar.Minimum && row <= _vScrollBar.Maximum)
+		|            {
+		|                _vScrollBar.Value = row;
+		|            }
+		|        }
+		|
+		|		public void ClearSelection()
+		|		{
+		|			BeginUpdate();
+		|			try
+		|			{
+		|				ClearSelectionInternal();
+		|			}
+		|			finally
+		|			{
+		|				EndUpdate();
+		|			}
+		|		}
+		|
+		|		internal void ClearSelectionInternal()
+		|		{
+		|			while (Selection.Count > 0)
+		|			{
+		|				var t = Selection[0];
+		|				t.IsSelected = false;
+		|				Selection.Remove(t); // Трюк.
+		|			}
+		|		}
+		|
+		|		protected override void OnSizeChanged(EventArgs e)
+		|		{
+		|			ArrangeControls();
+		|			SafeUpdateScrollBars();
+		|			base.OnSizeChanged(e);
+		|		}
+		|
+		|		private void ArrangeControls()
+		|		{
+		|			int hBarSize = _hScrollBar.Height;
+		|			int vBarSize = _vScrollBar.Width;
+		|			Rectangle clientRect = ClientRectangle;
+		|
+		|			_hScrollBar.SetBounds(clientRect.X, clientRect.Bottom - hBarSize, clientRect.Width - vBarSize, hBarSize);
+		|			_vScrollBar.SetBounds(clientRect.Right - vBarSize, clientRect.Y, vBarSize, clientRect.Height - hBarSize);
+		|		}
+		|
+		|		private void SafeUpdateScrollBars()
+		|		{
+		|			if (InvokeRequired)
+		|            {
+		|                BeginInvoke(new MethodInvoker(UpdateScrollBars));
+		|            }
+		|            else
+		|            {
+		|                UpdateScrollBars();
+		|            }
+		|        }
+		|
+		|		private void UpdateScrollBars()
+		|		{
+		|			UpdateVScrollBar();
+		|			UpdateHScrollBar();
+		|			UpdateVScrollBar();
+		|			UpdateHScrollBar();
+		|			_hScrollBar.Width = DisplayRectangle.Width;
+		|			_vScrollBar.Height = DisplayRectangle.Height;
+		|		}
+		|
+		|		private void UpdateHScrollBar()
+		|		{
+		|			_hScrollBar.Maximum = ContentWidth;
+		|			_hScrollBar.LargeChange = Math.Max(DisplayRectangle.Width, 0);
+		|			_hScrollBar.SmallChange = 5;
+		|			_hScrollBar.Visible = _hScrollBar.LargeChange < _hScrollBar.Maximum;
+		|			_hScrollBar.Value = Math.Min(_hScrollBar.Value, _hScrollBar.Maximum - _hScrollBar.LargeChange + 1);
+		|		}
+		|
+		|		private void UpdateVScrollBar()
+		|		{
+		|			_vScrollBar.Maximum = Math.Max(RowCount - 1, 0);
+		|			_vScrollBar.LargeChange = _rowLayout.PageRowCount;
+		|			_vScrollBar.Visible = (RowCount > 0) && (_vScrollBar.LargeChange <= _vScrollBar.Maximum);
+		|			_vScrollBar.Value = Math.Min(_vScrollBar.Value, _vScrollBar.Maximum - _vScrollBar.LargeChange + 1);
+		|		}
+		|
+		|		protected override CreateParams CreateParams
+		|		{
+		|			[SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
+		|			get
+		|			{
+		|				CreateParams res = base.CreateParams;
+		|				switch (BorderStyle)
+		|				{
+		|					case BorderStyle.FixedSingle:
+		|						res.Style |= 0x800000;
+		|						break;
+		|					case BorderStyle.Fixed3D:
+		|						res.ExStyle |= 0x200;
+		|						break;
+		|				}
+		|				return res;
+		|			}
+		|		}
+		|
+		|		protected override void OnGotFocus(EventArgs e)
+		|		{
+		|			UpdateView();
+		|			ChangeInput();
+		|			base.OnGotFocus(e);
+		|		}
+		|
+		|		protected override void OnFontChanged(EventArgs e)
+		|		{
+		|			base.OnFontChanged(e);
+		|			_measureContext.Font = Font;
+		|			FullUpdate();
+		|		}
+		|
+		|		internal IEnumerable<NodeControlInfo> GetNodeControls(TreeNodeAdv node)
+		|		{
+		|			if (node == null)
+		|            {
+		|                yield break;
+		|            }
+		|            Rectangle rowRect = _rowLayout.GetRowBounds(node.Row);
+		|			foreach (NodeControlInfo n in GetNodeControls(node, rowRect))
+		|            {
+		|                yield return n;
+		|            }
+		|        }
+		|
+		|		internal IEnumerable<NodeControlInfo> GetNodeControls(TreeNodeAdv node, Rectangle rowRect)
+		|		{
+		|			if (node == null)
+		|            {
+		|                yield break;
+		|            }
+		|
+		|            int y = rowRect.Y;
+		|			int x = (node.Level - 1) * _indent + LeftMargin;
+		|			int width = 0;
+		|			if (node.Row == 0 && ShiftFirstNode)
+		|            {
+		|                x -= _indent;
+		|            }
+		|            Rectangle rect = Rectangle.Empty;
+		|
+		|			if (ShowPlusMinus)
+		|			{
+		|				width = _plusMinus.GetActualSize(node, _measureContext).Width;
+		|				rect = new Rectangle(x, y, width, rowRect.Height);
+		|				if (UseColumns && Columns.Count > 0 && Columns[0].Width < rect.Right)
+		|                {
+		|                    rect.Width = Columns[0].Width - x;
+		|                }
+		|
+		|                yield return new NodeControlInfo(_plusMinus, rect, node);
+		|				x += width;
+		|			}
+		|
+		|			if (!UseColumns)
+		|			{
+		|				foreach (NodeControl c in NodeControls)
+		|				{
+		|					Size s = c.GetActualSize(node, _measureContext);
+		|					if (!s.IsEmpty)
+		|					{
+		|						width = s.Width;
+		|						rect = new Rectangle(x, y, width, rowRect.Height);
+		|						x += rect.Width;
+		|						yield return new NodeControlInfo(c, rect, node);
+		|					}
+		|				}
+		|			}
+		|			else
+		|			{
+		|				int right = 0;
+		|				foreach (TreeColumn col in Columns)
+		|				{
+		|					if (col.IsVisible && col.Width > 0)
+		|					{
+		|						right += col.Width;
+		|						for (int i = 0; i < NodeControls.Count; i++)
+		|						{
+		|							NodeControl nc = NodeControls[i];
+		|							if (nc.ParentColumn == col)
+		|							{
+		|								Size s = nc.GetActualSize(node, _measureContext);
+		|								if (!s.IsEmpty)
+		|								{
+		|									bool isLastControl = true;
+		|									for (int k = i + 1; k < NodeControls.Count; k++)
+		|										if (NodeControls[k].ParentColumn == col)
+		|										{
+		|											isLastControl = false;
+		|											break;
+		|										}
+		|
+		|									width = right - x;
+		|									if (!isLastControl)
+		|                                    {
+		|                                        width = s.Width;
+		|                                    }
+		|                                    int maxWidth = Math.Max(0, right - x);
+		|									rect = new Rectangle(x, y, Math.Min(maxWidth, width), rowRect.Height);
+		|									x += width;
+		|									yield return new NodeControlInfo(nc, rect, node);
+		|								}
+		|							}
+		|						}
+		|						x = right;
+		|					}
+		|				}
+		|			}
+		|		}
+		|
+		|		internal static double Dist(Point p1, Point p2)
+		|		{
+		|			return Math.Sqrt(Math.Pow(p1.X - p2.X, 2) + Math.Pow(p1.Y - p2.Y, 2));
+		|		}
+		|
+		|		public void FullUpdate()
+		|		{
+		|			HideEditor();
+		|			if (InvokeRequired)
+		|            {
+		|                BeginInvoke(new MethodInvoker(UnsafeFullUpdate));
+		|            }
+		|            else
+		|            {
+		|                UnsafeFullUpdate();
+		|            }
+		|        }
+		|
+		|		private void UnsafeFullUpdate()
+		|		{
+		|			_rowLayout.ClearCache();
+		|			CreateRowMap();
+		|			SafeUpdateScrollBars();
+		|			UpdateView();
+		|			_needFullUpdate = false;
+		|		}
+		|
+		|		internal void UpdateView()
+		|		{
+		|			if (!_suspendUpdate)
+		|            {
+		|                Invalidate(false);
+		|            }
+		|        }
+		|
+		|		internal void UpdateHeaders()
+		|		{
+		|			Invalidate(new Rectangle(0, 0, Width, ColumnHeaderHeight));
+		|		}
+		|
+		|		internal void UpdateColumns()
+		|		{
+		|			FullUpdate();
+		|		}
+		|
+		|		private void CreateNodes()
+		|		{
+		|			Selection.Clear();
+		|			SelectionStart = null;
+		|			_root = new TreeNodeAdv(this, null);
+		|			_root.IsExpanded = true;
+		|			if (_root.Nodes.Count > 0)
+		|            {
+		|                CurrentNode = _root.Nodes[0];
+		|            }
+		|            else
+		|            {
+		|                CurrentNode = null;
+		|            }
+		|        }
+		|
+		|		internal void ReadChilds(TreeNodeAdv parentNode)
+		|		{
+		|			ReadChilds(parentNode, false);
+		|		}
+		|
+		|		internal void ReadChilds(TreeNodeAdv parentNode, bool performFullUpdate)
+		|		{
+		|			if (!parentNode.IsLeaf)
+		|			{
+		|				parentNode.IsExpandedOnce = true;
+		|				parentNode.Nodes.Clear();
+		|
+		|				if (Model != null)
+		|				{
+		|					IEnumerable items = Model.GetChildren(GetPath(parentNode));
+		|					if (items != null)
+		|                    {
+		|                        foreach (object obj in items)
+		|                        {
+		|                            AddNewNode(parentNode, obj, -1);
+		|                            if (performFullUpdate)
+		|                            {
+		|                                FullUpdate();
+		|                            }
+		|                        }
+		|                    }
+		|                }
+		|
+		|				if (parentNode.AutoExpandOnStructureChanged)
+		|                {
+		|                    parentNode.ExpandAll();
+		|                }
+		|            }
+		|		}
+		|
+		|		private void AddNewNode(TreeNodeAdv parent, object tag, int index)
+		|		{
+		|			TreeNodeAdv node = new TreeNodeAdv(this, tag);
+		|			AddNode(parent, index, node);
+		|		}
+		|
+		|		private void AddNode(TreeNodeAdv parent, int index, TreeNodeAdv node)
+		|		{
+		|			if (index >= 0 && index < parent.Nodes.Count)
+		|            {
+		|                parent.Nodes.Insert(index, node);
+		|            }
+		|            else
+		|            {
+		|                parent.Nodes.Add(node);
+		|            }
+		|
+		|            node.IsLeaf = Model.IsLeaf(GetPath(node));
+		|			if (node.IsLeaf)
+		|            {
+		|                node.Nodes.Clear();
+		|            }
+		|            if (!LoadOnDemand || node.IsExpandedOnce)
+		|            {
+		|                ReadChilds(node);
+		|            }
+		|        }
+		|
+		|		private struct ExpandArgs
+		|		{
+		|			public TreeNodeAdv Node;
+		|			public bool Value;
+		|			public bool IgnoreChildren;
+		|		}
+		|
+		|		public void AbortBackgroundExpandingThreads()
+		|		{
+		|			_threadPool.CancelAll(true);
+		|			for (int i = 0; i < _expandingNodes.Count; i++)
+		|            {
+		|                _expandingNodes[i].IsExpandingNow = false;
+		|            }
+		|            _expandingNodes.Clear();
+		|			Invalidate();
+		|		}
+		|
+		|		internal void SetIsExpanded(TreeNodeAdv node, bool value, bool ignoreChildren)
+		|		{
+		|			ExpandArgs eargs = new ExpandArgs();
+		|			eargs.Node = node;
+		|			eargs.Value = value;
+		|			eargs.IgnoreChildren = ignoreChildren;
+		|
+		|			if (AsyncExpanding && LoadOnDemand && !_threadPool.IsMyThread(Thread.CurrentThread))
+		|			{
+		|				WaitCallback wc = delegate(object argument) { SetIsExpanded((ExpandArgs)argument); };
+		|				_threadPool.QueueUserWorkItem(wc, eargs);
+		|			}
+		|            else
+		|            {
+		|                SetIsExpanded(eargs);
+		|            }
+		|        }
+		|
+		|		private void SetIsExpanded(ExpandArgs eargs)
+		|		{
+		|			bool update = !eargs.IgnoreChildren && !AsyncExpanding;
+		|			if (update)
+		|            {
+		|                BeginUpdate();
+		|            }
+		|            try
+		|			{
+		|				if (IsMyNode(eargs.Node) && eargs.Node.IsExpanded != eargs.Value)
+		|                {
+		|                    SetIsExpanded(eargs.Node, eargs.Value);
+		|                }
+		|                if (!eargs.IgnoreChildren)
+		|                {
+		|                    SetIsExpandedRecursive(eargs.Node, eargs.Value);
+		|                }
+		|            }
+		|			finally
+		|			{
+		|				if (update)
+		|                {
+		|                    EndUpdate();
+		|                }
+		|            }
+		|		}
+		|
+		|		internal void SetIsExpanded(TreeNodeAdv node, bool value)
+		|		{
+		|			if (Root == node && !value)
+		|            {
+		|                return; // Не удается свернуть корневой узел.
+		|            }
+		|
+		|            if (value)
+		|			{
+		|				OnExpanding(node);
+		|				node.OnExpanding();
+		|			}
+		|			else
+		|			{
+		|				OnCollapsing(node);
+		|				node.OnCollapsing();
+		|			}
+		|
+		|			if (value && !node.IsExpandedOnce)
+		|			{
+		|				if (AsyncExpanding && LoadOnDemand)
+		|				{
+		|					AddExpandingNode(node);
+		|					node.AssignIsExpanded(true);
+		|					Invalidate();
+		|				}
+		|				ReadChilds(node, AsyncExpanding);
+		|				RemoveExpandingNode(node);
+		|			}
+		|			node.AssignIsExpanded(value);
+		|			SmartFullUpdate();
+		|
+		|			if (value)
+		|			{
+		|				OnExpanded(node);
+		|				node.OnExpanded();
+		|			}
+		|			else
+		|			{
+		|				OnCollapsed(node);
+		|				node.OnCollapsed();
+		|			}
+		|		}
+		|
+		|		private void RemoveExpandingNode(TreeNodeAdv node)
+		|		{
+		|			node.IsExpandingNow = false;
+		|			_expandingNodes.Remove(node);
+		|			if (_expandingNodes.Count <= 0)
+		|            {
+		|                ExpandingIcon.Stop();
+		|            }
+		|        }
+		|
+		|		private void AddExpandingNode(TreeNodeAdv node)
+		|		{
+		|			node.IsExpandingNow = true;
+		|			_expandingNodes.Add(node);
+		|			ExpandingIcon.Start();
+		|		}
+		|
+		|		internal void SetIsExpandedRecursive(TreeNodeAdv root, bool value)
+		|		{
+		|			for (int i = 0; i < root.Nodes.Count; i++)
+		|			{
+		|				TreeNodeAdv node = root.Nodes[i];
+		|				node.IsExpanded = value;
+		|				SetIsExpandedRecursive(node, value);
+		|			}
+		|		}
+		|
+		|		private void CreateRowMap()
+		|		{
+		|			RowMap.Clear();
+		|			int row = 0;
+		|			_contentWidth = 0;
+		|			foreach (TreeNodeAdv node in VisibleNodes)
+		|			{
+		|				node.Row = row;
+		|				RowMap.Add(node);
+		|				if (!UseColumns)
+		|				{
+		|					_contentWidth = Math.Max(_contentWidth, GetNodeWidth(node));
+		|				}
+		|				row++;
+		|			}
+		|			if (UseColumns)
+		|			{
+		|				_contentWidth = 0;
+		|				foreach (TreeColumn col in _columns)
+		|                {
+		|                    if (col.IsVisible)
+		|                    {
+		|                        _contentWidth += col.Width;
+		|                    }
+		|                }
+		|            }
+		|		}
+		|
+		|		private int GetNodeWidth(TreeNodeAdv node)
+		|		{
+		|			if (node.RightBounds == null)
+		|			{
+		|				Rectangle res = GetNodeBounds(GetNodeControls(node, Rectangle.Empty));
+		|				node.RightBounds = res.Right;
+		|			}
+		|			return node.RightBounds.Value;
+		|		}
+		|
+		|		internal Rectangle GetNodeBounds(TreeNodeAdv node)
+		|		{
+		|			return GetNodeBounds(GetNodeControls(node));
+		|		}
+		|
+		|		private Rectangle GetNodeBounds(IEnumerable<NodeControlInfo> nodeControls)
+		|		{
+		|			Rectangle res = Rectangle.Empty;
+		|			foreach (NodeControlInfo info in nodeControls)
+		|			{
+		|				if (res == Rectangle.Empty)
+		|                {
+		|                    res = info.Bounds;
+		|                }
+		|                else
+		|                {
+		|                    res = Rectangle.Union(res, info.Bounds);
+		|                }
+		|            }
+		|			return res;
+		|		}
+		|
+		|		private void _vScrollBar_ValueChanged(object sender, EventArgs e)
+		|		{
+		|			FirstVisibleRow = _vScrollBar.Value;
+		|		}
+		|
+		|		private void _hScrollBar_ValueChanged(object sender, EventArgs e)
+		|		{
+		|			OffsetX = _hScrollBar.Value;
+		|		}
+		|
+		|		private void _vScrollBar_Scroll(object sender, ScrollEventArgs e)
+		|		{
+		|			OnScroll(e);
+		|		}
+		|
+		|		private void _hScrollBar_Scroll(object sender, ScrollEventArgs e)
+		|		{
+		|			OnScroll(e);
+		|		}
+		|
+		|		internal void SmartFullUpdate()
+		|		{
+		|			if (_suspendUpdate)
+		|            {
+		|                _needFullUpdate = true;
+		|            }
+		|            else
+		|            {
+		|                FullUpdate();
+		|            }
+		|        }
+		|
+		|		internal bool IsMyNode(TreeNodeAdv node)
+		|		{
+		|			if (node == null)
+		|            {
+		|                return false;
+		|            }
+		|
+		|            if (node.Tree != this)
+		|            {
+		|                return false;
+		|            }
+		|
+		|            while (node.Parent != null)
+		|            {
+		|                node = node.Parent;
+		|            }
+		|
+		|            return node == _root;
+		|		}
+		|
+		|		internal void UpdateSelection()
+		|		{
+		|			bool flag = false;
+		|
+		|			if (!IsMyNode(CurrentNode))
+		|            {
+		|                CurrentNode = null;
+		|            }
+		|            if (!IsMyNode(_selectionStart))
+		|            {
+		|                _selectionStart = null;
+		|            }
+		|
+		|            for (int i = Selection.Count - 1; i >= 0; i--)
+		|            {
+		|                if (!IsMyNode(Selection[i]))
+		|                {
+		|                    flag = true;
+		|                    Selection.RemoveAt(i);
+		|                }
+		|            }
+		|
+		|            if (flag)
+		|            {
+		|                OnSelectionChanged();
+		|            }
+		|        }
+		|
+		|		internal void ChangeColumnWidth(TreeColumn column)
+		|		{
+		|			if (!(_input is ResizeColumnState))
+		|			{
+		|				FullUpdate();
+		|				OnColumnWidthChanged(column);
+		|			}
+		|		}
+		|
+		|		public TreeNodeAdv FindNode(TreePath path)
+		|		{
+		|			return FindNode(path, false);
+		|		}
+		|
+		|		public TreeNodeAdv FindNode(TreePath path, bool readChilds)
+		|		{
+		|			if (path.IsEmpty())
+		|            {
+		|                return _root;
+		|            }
+		|            else
+		|            {
+		|                return FindNode(_root, path, 0, readChilds);
+		|            }
+		|        }
+		|
+		|		private TreeNodeAdv FindNode(TreeNodeAdv root, TreePath path, int level, bool readChilds)
+		|		{
+		|			if (!root.IsExpandedOnce && readChilds)
+		|            {
+		|                ReadChilds(root);
+		|            }
+		|
+		|            for (int i = 0; i < root.Nodes.Count; i++)
+		|			{
+		|				TreeNodeAdv node = root.Nodes[i];
+		|				if (node.Tag == path.FullPath[level])
+		|				{
+		|					if (level == path.FullPath.Length - 1)
+		|                    {
+		|                        return node;
+		|                    }
+		|                    else
+		|                    {
+		|                        return FindNode(node, path, level + 1, readChilds);
+		|                    }
+		|                }
+		|			}
+		|			return null;
+		|		}
+		|
+		|		public TreeNodeAdv FindNodeByTag(object tag)
+		|		{
+		|			return FindNodeByTag(_root, tag);
+		|		}
+		|
+		|		private TreeNodeAdv FindNodeByTag(TreeNodeAdv root, object tag)
+		|		{
+		|			foreach (TreeNodeAdv node in root.Nodes)
+		|			{
+		|				if (node.Tag == tag)
+		|                {
+		|                    return node;
+		|                }
+		|                TreeNodeAdv res = FindNodeByTag(node, tag);
+		|				if (res != null)
+		|                {
+		|                    return res;
+		|                }
+		|            }
+		|			return null;
+		|		}
+		|
+		|		public void SelectAllNodes()
+		|		{
+		|			SuspendSelectionEvent = true;
+		|			try
+		|			{
+		|				if (SelectionMode == TreeSelectionMode.MultiSameParent)
+		|				{
+		|					if (CurrentNode != null)
+		|					{
+		|						foreach (TreeNodeAdv n in CurrentNode.Parent.Nodes)
+		|                        {
+		|                            n.IsSelected = true;
+		|                        }
+		|                    }
+		|				}
+		|				else if (SelectionMode == TreeSelectionMode.Multi)
+		|				{
+		|					SelectNodes(Root.Nodes);
+		|				}
+		|			}
+		|			finally
+		|			{
+		|				SuspendSelectionEvent = false;
+		|			}
+		|		}
+		|
+		|		private void SelectNodes(Collection<TreeNodeAdv> nodes)
+		|		{
+		|			foreach (TreeNodeAdv n in nodes)
+		|			{
+		|				n.IsSelected = true;
+		|				if (n.IsExpanded)
+		|                {
+		|                    SelectNodes(n.Nodes);
+		|                }
+		|            }
+		|		}
+		|
+		|		private void BindModelEvents()
+		|		{
+		|			_model.NodesChanged += new EventHandler<TreeModelEventArgs>(_model_NodesChanged);
+		|			_model.NodesInserted += new EventHandler<TreeModelEventArgs>(_model_NodesInserted);
+		|			_model.NodesRemoved += new EventHandler<TreeModelEventArgs>(_model_NodesRemoved);
+		|			_model.StructureChanged += new EventHandler<TreePathEventArgs>(_model_StructureChanged);
+		|		}
+		|
+		|		private void UnbindModelEvents()
+		|		{
+		|			_model.NodesChanged -= new EventHandler<TreeModelEventArgs>(_model_NodesChanged);
+		|			_model.NodesInserted -= new EventHandler<TreeModelEventArgs>(_model_NodesInserted);
+		|			_model.NodesRemoved -= new EventHandler<TreeModelEventArgs>(_model_NodesRemoved);
+		|			_model.StructureChanged -= new EventHandler<TreePathEventArgs>(_model_StructureChanged);
+		|		}
+		|
+		|		private void _model_StructureChanged(object sender, TreePathEventArgs e)
+		|		{
+		|			if (e.Path == null)
+		|            {
+		|                throw new ArgumentNullException();
+		|            }
+		|
+		|            TreeNodeAdv node = FindNode(e.Path);
+		|			if (node != null)
+		|			{
+		|				if (node != Root)
+		|                {
+		|                    node.IsLeaf = Model.IsLeaf(GetPath(node));
+		|                }
+		|
+		|                var list = new Dictionary<object, object>();
+		|				SaveExpandedNodes(node, list);
+		|				ReadChilds(node);
+		|				RestoreExpandedNodes(node, list);
+		|
+		|				UpdateSelection();
+		|				SmartFullUpdate();
+		|			}
+		|			//else 
+		|			//	throw new ArgumentException(""Path not found"");
+		|		}
+		|
+		|		private void RestoreExpandedNodes(TreeNodeAdv node, Dictionary<object, object> list)
+		|		{
+		|			if (node.Tag != null && list.ContainsKey(node.Tag))
+		|			{
+		|				node.IsExpanded = true;
+		|				foreach (var child in node.Children)
+		|                {
+		|                    RestoreExpandedNodes(child, list);
+		|                }
+		|            }
+		|		}
+		|
+		|		private void SaveExpandedNodes(TreeNodeAdv node, Dictionary<object, object> list)
+		|		{
+		|			if (node.IsExpanded && node.Tag != null)
+		|			{
+		|				list.Add(node.Tag, null);
+		|				foreach (var child in node.Children)
+		|                {
+		|                    SaveExpandedNodes(child, list);
+		|                }
+		|            }
+		|		}
+		|
+		|		private void _model_NodesRemoved(object sender, TreeModelEventArgs e)
+		|		{
+		|			TreeNodeAdv parent = FindNode(e.Path);
+		|			if (parent != null)
+		|			{
+		|				if (e.Indices != null)
+		|				{
+		|					List<int> list = new List<int>(e.Indices);
+		|					list.Sort();
+		|					for (int n = list.Count - 1; n >= 0; n--)
+		|					{
+		|						int index = list[n];
+		|						if (index >= 0 && index <= parent.Nodes.Count)
+		|                        {
+		|                            parent.Nodes.RemoveAt(index);
+		|                        }
+		|                        else
+		|                        {
+		|                            throw new ArgumentOutOfRangeException(""Index out of range"");
+		|                        }
+		|                    }
+		|				}
+		|				else
+		|				{
+		|					for (int i = parent.Nodes.Count - 1; i >= 0; i--)
+		|					{
+		|						for (int n = 0; n < e.Children.Length; n++)
+		|                        {
+		|                            if (parent.Nodes[i].Tag == e.Children[n])
+		|                            {
+		|                                parent.Nodes.RemoveAt(i);
+		|                                break;
+		|                            }
+		|                        }
+		|                    }
+		|				}
+		|			}
+		|			UpdateSelection();
+		|			SmartFullUpdate();
+		|		}
+		|
+		|		private void _model_NodesInserted(object sender, TreeModelEventArgs e)
+		|		{
+		|			if (e.Indices == null)
+		|            {
+		|                throw new ArgumentNullException(""Indices"");
+		|            }
+		|
+		|            TreeNodeAdv parent = FindNode(e.Path);
+		|			if (parent != null)
+		|			{
+		|				for (int i = 0; i < e.Children.Length; i++)
+		|                {
+		|                    AddNewNode(parent, e.Children[i], e.Indices[i]);
+		|                }
+		|            }
+		|			SmartFullUpdate();
+		|		}
+		|
+		|		private void _model_NodesChanged(object sender, TreeModelEventArgs e)
+		|		{
+		|			TreeNodeAdv parent = FindNode(e.Path);
+		|			if (parent != null && parent.IsVisible && parent.IsExpanded)
+		|			{
+		|				if (InvokeRequired)
+		|                {
+		|                    BeginInvoke(new UpdateContentWidthDelegate(ClearNodesSize), e, parent);
+		|                }
+		|                else
+		|                {
+		|                    ClearNodesSize(e, parent);
+		|                }
+		|                SmartFullUpdate();
+		|			}
+		|		}
+		|
+		|		private void ClearNodesSize(TreeModelEventArgs e, TreeNodeAdv parent)
+		|		{
+		|			if (e.Indices != null)
+		|			{
+		|				foreach (int index in e.Indices)
+		|				{
+		|					if (index >= 0 && index < parent.Nodes.Count)
+		|					{
+		|						TreeNodeAdv node = parent.Nodes[index];
+		|						node.Height = node.RightBounds = null;
+		|					}
+		|                    else
+		|                    {
+		|                        throw new ArgumentOutOfRangeException(""Index out of range"");
+		|                    }
+		|                }
+		|			}
+		|			else
+		|			{
+		|				foreach (TreeNodeAdv node in parent.Nodes)
+		|				{
+		|					foreach (object obj in e.Children)
+		|                    {
+		|                        if (node.Tag == obj)
+		|                        {
+		|                            node.Height = node.RightBounds = null;
+		|                        }
+		|                    }
+		|                }
+		|			}
+		|		}
+		|
+		|        public void HideEditor()
+		|        {
+		|            if (CurrentEditorOwner != null)
+		|            {
+		|                CurrentEditorOwner.EndEdit(false);
+		|            }
+		|        }
+		|
+		|        internal void DisplayEditor(Control editor, EditableControl owner)
+		|        {
+		|            if (editor == null || owner == null || CurrentNode == null)
+		|            {
+		|                throw new ArgumentNullException();
+		|            }
+		|
+		|            HideEditor(false);
+		|
+		|            CurrentEditor = editor;
+		|            CurrentEditorOwner = owner;
+		|            _editingNode = CurrentNode;
+		|
+		|            editor.Validating += EditorValidating;
+		|            UpdateEditorBounds();
+		|            UpdateView();
+		|            editor.Parent = this;
+		|            editor.Focus();
+		|            owner.UpdateEditor(editor);
+		|        }
+		|
+		|        internal bool HideEditor(bool applyChanges)
+		|        {
+		|            if (CurrentEditor != null)
+		|            {
+		|                if (applyChanges)
+		|                {
+		|                    if (!ApplyChanges())
+		|                    {
+		|                        return false;
+		|                    }
+		|                }
+		|
+		|                // Проверьте еще раз, был ли редактор закрыт в ApplyChanges.
+		|                if (CurrentEditor != null)
+		|                {
+		|                    CurrentEditor.Validating -= EditorValidating;
+		|                    CurrentEditorOwner.DoDisposeEditor(CurrentEditor);
+		|
+		|                    CurrentEditor.Parent = null;
+		|                    CurrentEditor.Dispose();
+		|
+		|                    CurrentEditor = null;
+		|                    CurrentEditorOwner = null;
+		|                    _editingNode = null;
+		|                }
+		|            }
+		|            return true;
+		|        }
+		|
+		|        private bool ApplyChanges()
+		|        {
+		|            try
+		|            {
+		|                CurrentEditorOwner.ApplyChanges(_editingNode, CurrentEditor);
+		|                _errorProvider.Clear();
+		|                return true;
+		|            }
+		|            catch (ArgumentException ex)
+		|            {
+		|                _errorProvider.SetError(CurrentEditor, ex.Message);
+		|                /*CurrentEditor.Validating -= EditorValidating;
+		|				MessageBox.Show(this, ex.Message, ""Value is not valid"", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+		|				CurrentEditor.Focus();
+		|				CurrentEditor.Validating += EditorValidating;*/
+		|                return false;
+		|            }
+		|        }
+		|
+		|        void EditorValidating(object sender, System.ComponentModel.CancelEventArgs e)
+		|        {
+		|            e.Cancel = !ApplyChanges();
+		|        }
+		|
+		|        public void UpdateEditorBounds()
+		|        {
+		|            if (CurrentEditor != null)
+		|            {
+		|                EditorContext context = new EditorContext();
+		|                context.Owner = CurrentEditorOwner;
+		|                context.CurrentNode = CurrentNode;
+		|                context.Editor = CurrentEditor;
+		|                context.DrawContext = _measureContext;
+		|                SetEditorBounds(context);
+		|            }
+		|        }
+		|
+		|        private void SetEditorBounds(EditorContext context)
+		|        {
+		|            foreach (NodeControlInfo info in GetNodeControls(context.CurrentNode))
+		|            {
+		|                if (context.Owner == info.Control && info.Control is EditableControl)
+		|                {
+		|                    Point p = info.Bounds.Location;
+		|                    p.X += info.Control.LeftMargin;
+		|                    p.X -= OffsetX;
+		|                    p.Y -= (_rowLayout.GetRowBounds(FirstVisibleRow).Y - ColumnHeaderHeight);
+		|                    int width = DisplayRectangle.Width - p.X;
+		|                    if (UseColumns && info.Control.ParentColumn != null && Columns.Contains(info.Control.ParentColumn))
+		|                    {
+		|                        Rectangle rect = GetColumnBounds(info.Control.ParentColumn.Index);
+		|                        width = rect.Right - OffsetX - p.X;
+		|                    }
+		|                    context.Bounds = new Rectangle(p.X, p.Y, width, info.Bounds.Height);
+		|                    ((EditableControl)info.Control).SetEditorBounds(context);
+		|                    return;
+		|                }
+		|            }
+		|        }
+		|
+		|        private Rectangle GetColumnBounds(int column)
+		|        {
+		|            int x = 0;
+		|            for (int i = 0; i < Columns.Count; i++)
+		|            {
+		|                if (Columns[i].IsVisible)
+		|                {
+		|                    if (i < column)
+		|                    {
+		|                        x += Columns[i].Width;
+		|                    }
+		|                    else
+		|                    {
+		|                        return new Rectangle(x, 0, Columns[i].Width, 0);
+		|                    }
+		|                }
+		|            }
+		|            return Rectangle.Empty;
+		|        }
+		|
+		|        protected override bool IsInputChar(char charCode)
+		|        {
+		|            return true;
+		|        }
+		|
+		|        protected override bool IsInputKey(Keys keyData)
+		|        {
+		|            if (((keyData & Keys.Up) == Keys.Up) ||
+		|                ((keyData & Keys.Down) == Keys.Down) ||
+		|                ((keyData & Keys.Left) == Keys.Left) ||
+		|                ((keyData & Keys.Right) == Keys.Right))
+		|            {
+		|                return true;
+		|            }
+		|            else
+		|            {
+		|                return base.IsInputKey(keyData);
+		|            }
+		|        }
+		|
+		|        internal void ChangeInput()
+		|        {
+		|            if ((ModifierKeys & Keys.Shift) == Keys.Shift)
+		|            {
+		|                if (!(Input is InputWithShift))
+		|                {
+		|                    Input = new InputWithShift(this);
+		|                }
+		|            }
+		|            else if ((ModifierKeys & Keys.Control) == Keys.Control)
+		|            {
+		|                if (!(Input is InputWithControl))
+		|                {
+		|                    Input = new InputWithControl(this);
+		|                }
+		|            }
+		|            else
+		|            {
+		|                if (!(Input.GetType() == typeof(NormalInputState)))
+		|                {
+		|                    Input = new NormalInputState(this);
+		|                }
+		|            }
+		|        }
+		|
+		|        protected override void OnKeyDown(KeyEventArgs e)
+		|        {
+		|            base.OnKeyDown(e);
+		|            if (!e.Handled)
+		|            {
+		|                if (e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.ControlKey)
+		|                {
+		|                    ChangeInput();
+		|                }
+		|                Input.KeyDown(e);
+		|                if (!e.Handled)
+		|                {
+		|                    foreach (NodeControlInfo item in GetNodeControls(CurrentNode))
+		|                    {
+		|                        item.Control.KeyDown(e);
+		|                        if (e.Handled)
+		|                        {
+		|                            break;
+		|                        }
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        protected override void OnKeyUp(KeyEventArgs e)
+		|        {
+		|            base.OnKeyUp(e);
+		|            if (!e.Handled)
+		|            {
+		|                if (e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.ControlKey)
+		|                {
+		|                    ChangeInput();
+		|                }
+		|                if (!e.Handled)
+		|                {
+		|                    foreach (NodeControlInfo item in GetNodeControls(CurrentNode))
+		|                    {
+		|                        item.Control.KeyUp(e);
+		|                        if (e.Handled)
+		|                        {
+		|                            return;
+		|                        }
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        protected override void OnKeyPress(KeyPressEventArgs e)
+		|        {
+		|            base.OnKeyPress(e);
+		|            if (!e.Handled)
+		|            {
+		|                _search.Search(e.KeyChar);
+		|            }
+		|        }
+		|
+		|        private TreeNodeAdvMouseEventArgs CreateMouseArgs(MouseEventArgs e)
+		|        {
+		|            TreeNodeAdvMouseEventArgs args = new TreeNodeAdvMouseEventArgs(e);
+		|            args.ViewLocation = new Point(e.X + OffsetX, e.Y + _rowLayout.GetRowBounds(FirstVisibleRow).Y - ColumnHeaderHeight);
+		|            args.ModifierKeys = ModifierKeys;
+		|            args.Node = GetNodeAt(e.Location);
+		|            NodeControlInfo info = GetNodeControlInfoAt(args.Node, e.Location);
+		|            args.ControlBounds = info.Bounds;
+		|            args.Control = info.Control;
+		|            return args;
+		|        }
+		|
+		|        protected override void OnMouseWheel(MouseEventArgs e)
+		|        {
+		|            _search.EndSearch();
+		|            if (SystemInformation.MouseWheelScrollLines > 0)
+		|            {
+		|                int lines = e.Delta / 120 * SystemInformation.MouseWheelScrollLines;
+		|                int newValue = _vScrollBar.Value - lines;
+		|                newValue = Math.Min(_vScrollBar.Maximum - _vScrollBar.LargeChange + 1, newValue);
+		|                newValue = Math.Min(_vScrollBar.Maximum, newValue);
+		|                _vScrollBar.Value = Math.Max(_vScrollBar.Minimum, newValue);
+		|            }
+		|            base.OnMouseWheel(e);
+		|        }
+		|
+		|        protected override void OnMouseDown(MouseEventArgs e)
+		|        {
+		|            if (CurrentEditorOwner != null)
+		|            {
+		|                CurrentEditorOwner.EndEdit(true);
+		|                return;
+		|            }
+		|
+		|            if (!Focused)
+		|            {
+		|                Focus();
+		|            }
+		|
+		|            _search.EndSearch();
+		|            if (e.Button == MouseButtons.Left)
+		|            {
+		|                TreeColumn c;
+		|                c = GetColumnDividerAt(e.Location);
+		|                if (c != null)
+		|                {
+		|                    Input = new ResizeColumnState(this, c, e.Location);
+		|                    return;
+		|                }
+		|                c = GetColumnAt(e.Location);
+		|                if (c != null)
+		|                {
+		|                    Input = new ClickColumnState(this, c, e.Location);
+		|                    UpdateView();
+		|                    return;
+		|                }
+		|            }
+		|
+		|            ChangeInput();
+		|            TreeNodeAdvMouseEventArgs args = CreateMouseArgs(e);
+		|
+		|            if (args.Node != null && args.Control != null)
+		|            {
+		|                args.Control.MouseDown(args);
+		|            }
+		|
+		|            if (!args.Handled)
+		|            {
+		|                Input.MouseDown(args);
+		|            }
+		|            base.OnMouseDown(e);
+		|        }
+		|
+		|        protected override void OnMouseClick(MouseEventArgs e)
+		|        {
+		|            // ЗАДАЧА: Отключить при нажатии на значок plusminus.
+		|            TreeNodeAdvMouseEventArgs args = CreateMouseArgs(e);
+		|            if (args.Node != null)
+		|            {
+		|                OnNodeMouseClick(args);
+		|            }
+		|            base.OnMouseClick(e);
+		|        }
+		|
+		|        protected override void OnMouseDoubleClick(MouseEventArgs e)
+		|        {
+		|            TreeNodeAdvMouseEventArgs args = CreateMouseArgs(e);
+		|
+		|            if (args.Node != null && args.Control != null)
+		|            {
+		|                args.Control.MouseDoubleClick(args);
+		|            }
+		|
+		|            if (!args.Handled)
+		|            {
+		|                if (args.Node != null)
+		|                {
+		|                    OnNodeMouseDoubleClick(args);
+		|                }
+		|                else
+		|                {
+		|                    Input.MouseDoubleClick(args);
+		|                }
+		|
+		|                if (!args.Handled)
+		|                {
+		|                    if (args.Node != null && args.Button == MouseButtons.Left)
+		|                    {
+		|                        args.Node.IsExpanded = !args.Node.IsExpanded;
+		|                    }
+		|                }
+		|            }
+		|            base.OnMouseDoubleClick(e);
+		|        }
+		|
+		|        protected override void OnMouseUp(MouseEventArgs e)
+		|        {
+		|            TreeNodeAdvMouseEventArgs args = CreateMouseArgs(e);
+		|            if (Input is ResizeColumnState)
+		|            {
+		|                Input.MouseUp(args);
+		|            }
+		|            else
+		|            {
+		|                if (args.Node != null && args.Control != null)
+		|                {
+		|                    args.Control.MouseUp(args);
+		|                }
+		|                if (!args.Handled)
+		|                {
+		|                    Input.MouseUp(args);
+		|                }
+		|                base.OnMouseUp(e);
+		|            }
+		|        }
+		|
+		|        protected override void OnMouseMove(MouseEventArgs e)
+		|        {
+		|            if (Input.MouseMove(e))
+		|            {
+		|                return;
+		|            }
+		|
+		|            base.OnMouseMove(e);
+		|            SetCursor(e);
+		|            UpdateToolTip(e);
+		|            if (ItemDragMode && Dist(e.Location, ItemDragStart) > ItemDragSensivity && CurrentNode != null && CurrentNode.IsSelected)
+		|            {
+		|                ItemDragMode = false;
+		|                _toolTip.Active = false;
+		|                OnItemDrag(e.Button, Selection.ToArray());
+		|            }
+		|        }
+		|
+		|        protected override void OnMouseLeave(EventArgs e)
+		|        {
+		|            _hotColumn = null;
+		|            UpdateHeaders();
+		|            base.OnMouseLeave(e);
+		|        }
+		|
+		|        private void SetCursor(MouseEventArgs e)
+		|        {
+		|            TreeColumn col;
+		|            col = GetColumnDividerAt(e.Location);
+		|            if (col == null)
+		|            {
+		|                _innerCursor = null;
+		|            }
+		|            else
+		|            {
+		|                if (col.Width == 0)
+		|                {
+		|                    _innerCursor = Aga.Controls.Tree.TreeViewAdv.DVSplitCursor;
+		|                }
+		|                else
+		|                {
+		|                    _innerCursor = Cursors.VSplit;
+		|                }
+		|            }
+		|
+		|            col = GetColumnAt(e.Location);
+		|            if (col != _hotColumn)
+		|            {
+		|                _hotColumn = col;
+		|                UpdateHeaders();
+		|            }
+		|        }
+		|
+		|        internal TreeColumn GetColumnAt(Point p)
+		|        {
+		|            if (p.Y > ColumnHeaderHeight)
+		|            {
+		|                return null;
+		|            }
+		|
+		|            int x = -OffsetX;
+		|            foreach (TreeColumn col in Columns)
+		|            {
+		|                if (col.IsVisible)
+		|                {
+		|                    Rectangle rect = new Rectangle(x, 0, col.Width, ColumnHeaderHeight);
+		|                    x += col.Width;
+		|                    if (rect.Contains(p))
+		|                    {
+		|                        return col;
+		|                    }
+		|                }
+		|            }
+		|            return null;
+		|        }
+		|
+		|        internal int GetColumnX(TreeColumn column)
+		|        {
+		|            int x = -OffsetX;
+		|            foreach (TreeColumn col in Columns)
+		|            {
+		|                if (col.IsVisible)
+		|                {
+		|                    if (column == col)
+		|                    {
+		|                        return x;
+		|                    }
+		|                    else
+		|                    {
+		|                        x += col.Width;
+		|                    }
+		|                }
+		|            }
+		|            return x;
+		|        }
+		|
+		|        internal TreeColumn GetColumnDividerAt(Point p)
+		|        {
+		|            if (p.Y > ColumnHeaderHeight)
+		|            {
+		|                return null;
+		|            }
+		|
+		|            int x = -OffsetX;
+		|            TreeColumn prevCol = null;
+		|            Rectangle left, right;
+		|            foreach (TreeColumn col in Columns)
+		|            {
+		|                if (col.IsVisible)
+		|                {
+		|                    if (col.Width > 0)
+		|                    {
+		|                        left = new Rectangle(x, 0, DividerWidth / 2, ColumnHeaderHeight);
+		|                        right = new Rectangle(x + col.Width - (DividerWidth / 2), 0, DividerWidth / 2, ColumnHeaderHeight);
+		|                        if (left.Contains(p) && prevCol != null)
+		|                        {
+		|                            return prevCol;
+		|                        }
+		|                        else if (right.Contains(p))
+		|                        {
+		|                            return col;
+		|                        }
+		|                    }
+		|                    prevCol = col;
+		|                    x += col.Width;
+		|                }
+		|            }
+		|
+		|            left = new Rectangle(x, 0, DividerWidth / 2, ColumnHeaderHeight);
+		|            if (left.Contains(p) && prevCol != null)
+		|            {
+		|                return prevCol;
+		|            }
+		|            return null;
+		|        }
+		|
+		|        private void UpdateToolTip(MouseEventArgs e)
+		|        {
+		|            if (!ShowNodeToolTips)
+		|            {
+		|                return;
+		|            }
+		|
+		|            NodeControlInfo nodeControlInfo = GetNodeControlInfoAt(e.Location);
+		|            NodeControl nodeControl = nodeControlInfo.Control;
+		|            TreeNodeAdv treeNodeAdv = nodeControlInfo.Node;
+		|            TreeColumn col = GetColumnAt(e.Location);
+		|
+		|            if (col != null)
+		|            {
+		|                // курсор находится на заголовке колонки
+		|                if (col != _tooltipColumn)
+		|                {
+		|                    dynamic colTooltipText = col.TooltipText;
+		|                    if (colTooltipText != null)
+		|                    {
+		|                        if (colTooltipText.GetType() == typeof(osf.ClAction))
+		|                        {
+		|                            osf.ClAction ClAction1 = (osf.ClAction)colTooltipText;
+		|                            IRuntimeContextInstance script = ClAction1.Script;
+		|                            string method = ClAction1.MethodName;
+		|                            ScriptEngine.HostedScript.Library.ArrayImpl ArrayImpl1 = new ScriptEngine.HostedScript.Library.ArrayImpl();
+		|                            ArrayImpl1.Add(ClAction1.Parameter);
+		|                            ScriptEngine.HostedScript.Library.ReflectorContext reflector = new ScriptEngine.HostedScript.Library.ReflectorContext();
+		|
+		|                            foreach (KeyValuePair<osf.ClToolTip, object> keyValue in col.ObjTooltip)
+		|                            {
+		|                                if (keyValue.Value.Equals(colTooltipText))
+		|                                {
+		|                                    osf.ClToolTip ClToolTip1 = keyValue.Key;
+		|                                    if (ClToolTip1.Active)
+		|                                    {
+		|                                        _toolTip = ClToolTip1.Base_obj.M_ToolTip;
+		|                                        SetTooltip(reflector.CallMethod(script, method, ArrayImpl1).AsString());
+		|                                    }
+		|                                }
+		|                            }
+		|                        }
+		|                        else if (colTooltipText.GetType() == typeof(string))
+		|                        {
+		|                            foreach (KeyValuePair<osf.ClToolTip, object> keyValue in col.ObjTooltip)
+		|                            {
+		|                                if (keyValue.Value.Equals(colTooltipText))
+		|                                {
+		|                                    osf.ClToolTip ClToolTip1 = keyValue.Key;
+		|                                    if (ClToolTip1.Active)
+		|                                    {
+		|                                        _toolTip = ClToolTip1.Base_obj.M_ToolTip;
+		|                                        SetTooltip((string)colTooltipText);
+		|                                    }
+		|                                }
+		|                            }
+		|                        }
+		|                    }
+		|                }
+		|            }
+		|            else if (treeNodeAdv != null && nodeControl != null)
+		|            {
+		|                // курсор находится в табличной части на элементе и одновременно на узле
+		|                Node node = (Node)treeNodeAdv.Tag;
+		|                dynamic tooltipText = null;
+		|                dynamic obj = null;
+		|
+		|                if (treeNodeAdv != _tooltipTreeNodeAdv || nodeControl != _tooltipNodeControl)
+		|                {
+		|                    if (node.TooltipText != null)
+		|                    {
+		|                        tooltipText = node.TooltipText;
+		|                        obj = node;
+		|                    }
+		|                    if (nodeControl.TooltipText != null)
+		|                    {
+		|                        tooltipText = nodeControl.TooltipText;
+		|                        obj = nodeControl;
+		|                    }
+		|                }
+		|
+		|                if (tooltipText != null)
+		|                {
+		|                    if (tooltipText.GetType() == typeof(osf.ClAction))
+		|                    {
+		|                        osf.ClAction ClAction1 = (osf.ClAction)tooltipText;
+		|                        IRuntimeContextInstance script = ClAction1.Script;
+		|                        string method = ClAction1.MethodName;
+		|                        ScriptEngine.HostedScript.Library.ArrayImpl ArrayImpl1 = new ScriptEngine.HostedScript.Library.ArrayImpl();
+		|                        ArrayImpl1.Add(ClAction1.Parameter);
+		|                        ScriptEngine.HostedScript.Library.ReflectorContext reflector = new ScriptEngine.HostedScript.Library.ReflectorContext();
+		|
+		|                        foreach (KeyValuePair<osf.ClToolTip, object> keyValue in obj.ObjTooltip)
+		|                        {
+		|                            if (keyValue.Value.Equals(tooltipText))
+		|                            {
+		|                                osf.ClToolTip ClToolTip1 = keyValue.Key;
+		|                                if (ClToolTip1.Active)
+		|                                {
+		|                                    _toolTip = ClToolTip1.Base_obj.M_ToolTip;
+		|                                    SetTooltip(reflector.CallMethod(script, method, ArrayImpl1).AsString());
+		|                                }
+		|                            }
+		|                        }
+		|                    }
+		|                    else if (tooltipText.GetType() == typeof(string))
+		|                    {
+		|                        if (tooltipText == """")
+		|                        {
+		|                            SetTooltip((string)tooltipText);
+		|                        }
+		|                        foreach (KeyValuePair<osf.ClToolTip, object> keyValue in obj.ObjTooltip)
+		|                        {
+		|                            if (keyValue.Value.Equals(tooltipText))
+		|                            {
+		|                                osf.ClToolTip ClToolTip1 = keyValue.Key;
+		|                                if (ClToolTip1.Active)
+		|                                {
+		|                                    _toolTip = ClToolTip1.Base_obj.M_ToolTip;
+		|                                    SetTooltip((string)tooltipText);
+		|                                }
+		|                            }
+		|                        }
+		|                    }
+		|                }
+		|            }
+		|            else
+		|            {
+		|                // курсор находится вне табличной части или заголовка колонки
+		|                DisplayNodesTooltip(e);
+		|            }
+		|            _tooltipColumn = col;
+		|            _tooltipNodeControl = nodeControl;
+		|            _tooltipTreeNodeAdv = treeNodeAdv;
+		|        }
+		|
+		|        private void DisplayNodesTooltip(MouseEventArgs e)
+		|        {
+		|            if (ShowNodeToolTips)
+		|            {
+		|                TreeNodeAdvMouseEventArgs args = CreateMouseArgs(e);
+		|                if (args.Node != null && args.Control != null)
+		|                {
+		|                    if (args.Node != _hotNode || args.Control != _hotControl)
+		|                    {
+		|                        SetTooltip(GetNodeToolTip(args));
+		|                    }
+		|                }
+		|                else
+		|                {
+		|                    _toolTip.SetToolTip(this, null);
+		|                }
+		|                _hotControl = args.Control;
+		|                _hotNode = args.Node;
+		|            }
+		|            else
+		|            {
+		|                _toolTip.SetToolTip(this, null);
+		|            }
+		|        }
+		|
+		|        private void SetTooltip(string text)
+		|        {
+		|            if (!String.IsNullOrEmpty(text))
+		|            {
+		|                _toolTip.Active = false;
+		|                _toolTip.SetToolTip(this, text);
+		|                _toolTip.Active = true;
+		|            }
+		|            else
+		|            {
+		|                _toolTip.SetToolTip(this, null);
+		|            }
+		|        }
+		|
+		|        private string GetNodeToolTip(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            string msg = args.Control.GetToolTip(args.Node);
+		|
+		|            BaseTextControl btc = args.Control as BaseTextControl;
+		|            if (btc != null && btc.DisplayHiddenContentInToolTip && String.IsNullOrEmpty(msg))
+		|            {
+		|                Size ms = btc.GetActualSize(args.Node, _measureContext);
+		|                if (ms.Width > args.ControlBounds.Size.Width || ms.Height > args.ControlBounds.Size.Height || args.ControlBounds.Right - OffsetX > DisplayRectangle.Width)
+		|                {
+		|                    msg = btc.GetLabel(args.Node);
+		|                }
+		|            }
+		|
+		|            if (String.IsNullOrEmpty(msg) && DefaultToolTipProvider != null)
+		|            {
+		|                msg = DefaultToolTipProvider.GetToolTip(args.Node, args.Control);
+		|            }
+		|            return msg;
+		|        }
+		|
+		|        private void StartDragTimer()
+		|        {
+		|            if (_dragTimer == null)
+		|            {
+		|                _dragTimer = new System.Threading.Timer(new TimerCallback(DragTimerTick), null, 0, 100);
+		|            }
+		|        }
+		|
+		|        private void StopDragTimer()
+		|        {
+		|            if (_dragTimer != null)
+		|            {
+		|                _dragTimer.Dispose();
+		|                _dragTimer = null;
+		|            }
+		|        }
+		|
+		|        private void SetDropPosition(Point pt)
+		|        {
+		|            TreeNodeAdv node = GetNodeAt(pt);
+		|            OnDropNodeValidating(pt, ref node);
+		|            _dropPosition.Node = node;
+		|            if (node != null)
+		|            {
+		|                Rectangle first = _rowLayout.GetRowBounds(FirstVisibleRow);
+		|                Rectangle bounds = _rowLayout.GetRowBounds(node.Row);
+		|                float pos = (pt.Y + first.Y - ColumnHeaderHeight - bounds.Y) / (float)bounds.Height;
+		|                if (pos < TopEdgeSensivity)
+		|                {
+		|                    _dropPosition.Position = NodePosition.Before;
+		|                }
+		|                else if (pos > (1 - BottomEdgeSensivity))
+		|                {
+		|                    _dropPosition.Position = NodePosition.After;
+		|                }
+		|                else
+		|                {
+		|                    _dropPosition.Position = NodePosition.Inside;
+		|                }
+		|            }
+		|        }
+		|
+		|        private void DragTimerTick(object state)
+		|        {
+		|            _dragAutoScrollFlag = true;
+		|        }
+		|
+		|        private void DragAutoScroll()
+		|        {
+		|            _dragAutoScrollFlag = false;
+		|            Point pt = PointToClient(MousePosition);
+		|            if (pt.Y < 20 && _vScrollBar.Value > 0)
+		|            {
+		|                _vScrollBar.Value--;
+		|            }
+		|            else if (pt.Y > Height - 20 && _vScrollBar.Value <= _vScrollBar.Maximum - _vScrollBar.LargeChange)
+		|            {
+		|                _vScrollBar.Value++;
+		|            }
+		|        }
+		|
+		|        public void DoDragDropSelectedNodes(DragDropEffects allowedEffects)
+		|        {
+		|            if (SelectedNodes.Count > 0)
+		|            {
+		|                TreeNodeAdv[] nodes = new TreeNodeAdv[SelectedNodes.Count];
+		|                SelectedNodes.CopyTo(nodes, 0);
+		|                DoDragDrop(nodes, allowedEffects);
+		|            }
+		|        }
+		|
+		|        private void CreateDragBitmap(IDataObject data)
+		|        {
+		|            if (UseColumns || !DisplayDraggingNodes)
+		|            {
+		|                return;
+		|            }
+		|
+		|            TreeNodeAdv[] nodes = data.GetData(typeof(TreeNodeAdv[])) as TreeNodeAdv[];
+		|            if (nodes != null && nodes.Length > 0)
+		|            {
+		|                Rectangle rect = DisplayRectangle;
+		|                Bitmap bitmap = new Bitmap(rect.Width, rect.Height);
+		|                using (Graphics gr = Graphics.FromImage(bitmap))
+		|                {
+		|                    gr.Clear(BackColor);
+		|                    DrawContext context = new DrawContext();
+		|                    context.Graphics = gr;
+		|                    context.Font = Font;
+		|                    context.Enabled = true;
+		|                    int y = 0;
+		|                    int maxWidth = 0;
+		|                    foreach (TreeNodeAdv node in nodes)
+		|                    {
+		|                        if (node.Tree == this)
+		|                        {
+		|                            int x = 0;
+		|                            int height = _rowLayout.GetRowBounds(node.Row).Height;
+		|                            foreach (NodeControl c in NodeControls)
+		|                            {
+		|                                Size s = c.GetActualSize(node, context);
+		|                                if (!s.IsEmpty)
+		|                                {
+		|                                    int width = s.Width;
+		|                                    rect = new Rectangle(x, y, width, height);
+		|                                    x += (width + 1);
+		|                                    context.Bounds = rect;
+		|                                    c.Draw(node, context);
+		|                                }
+		|                            }
+		|                            y += height;
+		|                            maxWidth = Math.Max(maxWidth, x);
+		|                        }
+		|                    }
+		|
+		|                    if (maxWidth > 0 && y > 0)
+		|                    {
+		|                        _dragBitmap = new Bitmap(maxWidth, y, PixelFormat.Format32bppArgb);
+		|                        using (Graphics tgr = Graphics.FromImage(_dragBitmap))
+		|                        {
+		|                            tgr.DrawImage(bitmap, Point.Empty);
+		|                        }
+		|                        BitmapHelper.SetAlphaChanelValue(_dragBitmap, 150);
+		|                    }
+		|                    else
+		|                    {
+		|                        _dragBitmap = null;
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        protected override void OnDragOver(DragEventArgs drgevent)
+		|        {
+		|            ItemDragMode = false;
+		|            Point pt = PointToClient(new Point(drgevent.X, drgevent.Y));
+		|            if (_dragAutoScrollFlag)
+		|            {
+		|                DragAutoScroll();
+		|            }
+		|            SetDropPosition(pt);
+		|            UpdateView();
+		|            base.OnDragOver(drgevent);
+		|        }
+		|
+		|        protected override void OnDragEnter(DragEventArgs drgevent)
+		|        {
+		|            _search.EndSearch();
+		|            DragMode = true;
+		|            CreateDragBitmap(drgevent.Data);
+		|            base.OnDragEnter(drgevent);
+		|        }
+		|
+		|        protected override void OnDragLeave(EventArgs e)
+		|        {
+		|            DragMode = false;
+		|            UpdateView();
+		|            base.OnDragLeave(e);
+		|        }
+		|
+		|        protected override void OnDragDrop(DragEventArgs drgevent)
+		|        {
+		|            DragMode = false;
+		|            UpdateView();
+		|            base.OnDragDrop(drgevent);
+		|        }
+		|
+		|        public override Cursor Cursor
+		|        {
+		|            get
+		|            {
+		|                if (_innerCursor != null)
+		|                {
+		|                    return _innerCursor;
+		|                }
+		|                else
+		|                {
+		|                    return base.Cursor;
+		|                }
+		|            }
+		|            set { base.Cursor = value; }
+		|        }
+		|
+		|        private bool DragMode
+		|        {
+		|            get { return _dragMode; }
+		|            set
+		|            {
+		|                _dragMode = value;
+		|                if (!value)
+		|                {
+		|                    StopDragTimer();
+		|                    if (_dragBitmap != null)
+		|                    {
+		|                        _dragBitmap.Dispose();
+		|                    }
+		|                    _dragBitmap = null;
+		|                }
+		|                else
+		|                {
+		|                    StartDragTimer();
+		|                }
+		|            }
+		|        }
+		|
+		|        internal int ColumnHeaderHeight
+		|        {
+		|            get
+		|            {
+		|                if (UseColumns)
+		|                {
+		|                    return _columnHeaderHeight;
+		|                }
+		|                else
+		|                {
+		|                    return 0;
+		|                }
+		|            }
+		|        }
+		|		
+		|        public int ColumnHeadersHeight
+		|        {
+		|            get { return _columnHeaderHeight; }
+		|            set
+		|            {
+		|                _columnHeaderHeight = value;
+		|                FullUpdate();
+		|            }
+		|        }
+		|
+		|        //public int ColumnHeadersHeight
+		|        //{
+		|        //    get
+		|        //    {
+		|        //        if (UseColumns)
+		|        //        {
+		|        //            return _headerLayout.PreferredHeaderHeight;
+		|        //        }
+		|        //        return 0;
+		|        //    }
+		|        //    set
+		|        //    {
+		|        //        if (value < 0)
+		|        //        {
+		|        //            throw new ArgumentOutOfRangeException(nameof(value));
+		|        //        }
+		|        //        _headerLayout.PreferredHeaderHeight = value;
+		|        //        FullUpdate();
+		|        //    }
+		|        //}
+		|
+		|        // Возвращает все узлы, родительский элемент которых развернут.
+		|        private IEnumerable<TreeNodeAdv> VisibleNodes
+		|        {
+		|            get
+		|            {
+		|                TreeNodeAdv node = Root;
+		|                while (node != null)
+		|                {
+		|                    node = node.NextVisibleNode;
+		|                    if (node != null)
+		|                    {
+		|                        yield return node;
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        internal bool SuspendSelectionEvent
+		|        {
+		|            get { return _suspendSelectionEvent; }
+		|            set
+		|            {
+		|                if (value != _suspendSelectionEvent)
+		|                {
+		|                    _suspendSelectionEvent = value;
+		|                    if (!_suspendSelectionEvent && _fireSelectionEvent)
+		|                    {
+		|                        OnSelectionChanged();
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        internal List<TreeNodeAdv> RowMap
+		|        {
+		|            get { return _rowMap; }
+		|        }
+		|
+		|        internal TreeNodeAdv SelectionStart
+		|        {
+		|            get { return _selectionStart; }
+		|            set { _selectionStart = value; }
+		|        }
+		|
+		|        internal InputState Input
+		|        {
+		|            get { return _input; }
+		|            set { _input = value; }
+		|        }
+		|
+		|        internal bool ItemDragMode
+		|        {
+		|            get { return _itemDragMode; }
+		|            set { _itemDragMode = value; }
+		|        }
+		|
+		|        internal Point ItemDragStart
+		|        {
+		|            get { return _itemDragStart; }
+		|            set { _itemDragStart = value; }
+		|        }
+		|
+		|
+		|        // Количество строк, подходящих для текущей страницы.
+		|        internal int CurrentPageSize
+		|        {
+		|            get { return _rowLayout.CurrentPageSize; }
+		|        }
+		|
+		|        // Количество всех видимых узлов (какой родительский узел развернут).
+		|        internal int RowCount
+		|        {
+		|            get { return RowMap.Count; }
+		|        }
+		|
+		|        private int ContentWidth
+		|        {
+		|            get { return _contentWidth; }
+		|        }
+		|
+		|        internal int FirstVisibleRow
+		|        {
+		|            get { return _firstVisibleRow; }
+		|            set
+		|            {
+		|                HideEditor();
+		|                _firstVisibleRow = value;
+		|                UpdateView();
+		|            }
+		|        }
+		|
+		|        public int OffsetX
+		|        {
+		|            get { return _offsetX; }
+		|            private set
+		|            {
+		|                HideEditor();
+		|                _offsetX = value;
+		|                UpdateView();
+		|            }
+		|        }
+		|
+		|        public override Rectangle DisplayRectangle
+		|        {
+		|            get
+		|            {
+		|                Rectangle r = ClientRectangle;
+		|                //r.Y += ColumnHeaderHeight;
+		|                //r.Height -= ColumnHeaderHeight;
+		|                int w = _vScrollBar.Visible ? _vScrollBar.Width : 0;
+		|                int h = _hScrollBar.Visible ? _hScrollBar.Height : 0;
+		|                return new Rectangle(r.X, r.Y, r.Width - w, r.Height - h);
+		|            }
+		|        }
+		|
+		|        internal List<TreeNodeAdv> Selection
+		|        {
+		|            get { return _selection; }
+		|        }
+		|
+		|        public bool ShiftFirstNode
+		|        {
+		|            get { return _shiftFirstNode; }
+		|            set { _shiftFirstNode = value; }
+		|        }
+		|
+		|        public bool DisplayDraggingNodes
+		|        {
+		|            get { return _displayDraggingNodes; }
+		|            set { _displayDraggingNodes = value; }
+		|        }
+		|
+		|        public bool FullRowSelect
+		|        {
+		|            get { return _fullRowSelect; }
+		|            set
+		|            {
+		|                _fullRowSelect = value;
+		|                UpdateView();
+		|            }
+		|        }
+		|
+		|        public bool UseColumns
+		|        {
+		|            get { return _useColumns; }
+		|            set
+		|            {
+		|                _useColumns = value;
+		|                FullUpdate();
+		|            }
+		|        }
+		|
+		|        public bool AllowColumnReorder
+		|        {
+		|            get { return _allowColumnReorder; }
+		|            set { _allowColumnReorder = value; }
+		|        }
+		|
+		|        public bool ShowLines
+		|        {
+		|            get { return _showLines; }
+		|            set
+		|            {
+		|                _showLines = value;
+		|                UpdateView();
+		|            }
+		|        }
+		|
+		|        public bool ShowPlusMinus
+		|        {
+		|            get { return _showPlusMinus; }
+		|            set
+		|            {
+		|                _showPlusMinus = value;
+		|                FullUpdate();
+		|            }
+		|        }
+		|
+		|        public bool ShowNodeToolTips
+		|        {
+		|            get { return _showNodeToolTips; }
+		|            set { _showNodeToolTips = value; }
+		|        }
+		|
+		|        public bool KeepNodesExpanded
+		|        {
+		|            get { return true; }
+		|            set { }
+		|        }
+		|
+		|        // Модель, связанная с этим TreeViewAdv.
+		|        public ITreeModel Model
+		|        {
+		|            get { return _model; }
+		|            set
+		|            {
+		|                if (_model != value)
+		|                {
+		|                    AbortBackgroundExpandingThreads();
+		|                    if (_model != null)
+		|                    {
+		|                        UnbindModelEvents();
+		|                    }
+		|                    _model = value;
+		|                    CreateNodes();
+		|                    FullUpdate();
+		|                    if (_model != null)
+		|                    {
+		|                        BindModelEvents();
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        // Шрифт для отображения содержимого TreeViewAdv.
+		|        public override Font Font
+		|        {
+		|            get { return (base.Font); }
+		|            set
+		|            {
+		|                if (value == null)
+		|                {
+		|                    base.Font = _font;
+		|                }
+		|                else
+		|                {
+		|                    if (value == DefaultFont)
+		|                    {
+		|                        base.Font = _font;
+		|                    }
+		|                    else
+		|                    {
+		|                        base.Font = value;
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        public override void ResetFont()
+		|        {
+		|            Font = null;
+		|        }
+		|
+		|        private bool ShouldSerializeFont()
+		|        {
+		|            return (!Font.Equals(_font));
+		|        }
+		|
+		|        public BorderStyle BorderStyle
+		|        {
+		|            get { return this._borderStyle; }
+		|            set
+		|            {
+		|                if (_borderStyle != value)
+		|                {
+		|                    _borderStyle = value;
+		|                    base.UpdateStyles();
+		|                }
+		|            }
+		|        }
+		|
+		|        // Установите значение true, чтобы увеличить высоту каждой строки, чтобы она соответствовала тексту самого большого столбца.
+		|        public bool AutoRowHeight
+		|        {
+		|            get { return _autoRowHeight; }
+		|            set
+		|            {
+		|                _autoRowHeight = value;
+		|                if (value)
+		|                {
+		|                    _rowLayout = new AutoRowHeightLayout(this, RowHeight);
+		|                }
+		|                else
+		|                {
+		|                    _rowLayout = new FixedRowHeightLayout(this, RowHeight);
+		|                }
+		|                FullUpdate();
+		|            }
+		|        }
+		|		
+		|        public bool AutoHeaderHeight
+		|        {
+		|            get { return _autoHeaderHeight; }
+		|            set
+		|            {
+		|                _autoHeaderHeight = value;
+		|                _headerLayout = !value ? (IHeaderLayout)new FixedHeaderHeightLayout(this, ColumnHeaderHeight) : (IHeaderLayout)new AutoHeaderHeightLayout(this, ColumnHeaderHeight);
+		|                FullUpdate();
+		|            }
+		|        }
+		|
+		|        public GridLineStyle GridLineStyle
+		|        {
+		|            get { return _gridLineStyle; }
+		|            set
+		|            {
+		|                if (value != _gridLineStyle)
+		|                {
+		|                    _gridLineStyle = value;
+		|                    UpdateView();
+		|                    OnGridLineStyleChanged();
+		|                }
+		|            }
+		|        }
+		|
+		|        public int RowHeight
+		|        {
+		|            get { return _rowHeight; }
+		|            set
+		|            {
+		|                if (value <= 0)
+		|                {
+		|                    throw new ArgumentOutOfRangeException(""value"");
+		|                }
+		|                _rowHeight = value;
+		|                _rowLayout.PreferredRowHeight = value;
+		|                FullUpdate();
+		|            }
+		|        }
+		|
+		|        public TreeSelectionMode SelectionMode
+		|        {
+		|            get { return _selectionMode; }
+		|            set { _selectionMode = value; }
+		|        }
+		|
+		|        public bool HideSelection
+		|        {
+		|            get { return _hideSelection; }
+		|            set
+		|            {
+		|                _hideSelection = value;
+		|                UpdateView();
+		|            }
+		|        }
+		|
+		|        public float TopEdgeSensivity
+		|        {
+		|            get { return _topEdgeSensivity; }
+		|            set
+		|            {
+		|                if (value < 0 || value > 1)
+		|                {
+		|                    throw new ArgumentOutOfRangeException();
+		|                }
+		|                _topEdgeSensivity = value;
+		|            }
+		|        }
+		|
+		|        public float BottomEdgeSensivity
+		|        {
+		|            get { return _bottomEdgeSensivity; }
+		|            set
+		|            {
+		|                if (value < 0 || value > 1)
+		|                {
+		|                    throw new ArgumentOutOfRangeException(""value should be from 0 to 1"");
+		|                }
+		|                _bottomEdgeSensivity = value;
+		|            }
+		|        }
+		|
+		|        public bool LoadOnDemand
+		|        {
+		|            get { return _loadOnDemand; }
+		|            set { _loadOnDemand = value; }
+		|        }
+		|
+		|        public bool UnloadCollapsedOnReload
+		|        {
+		|            get { return _unloadCollapsedOnReload; }
+		|            set { _unloadCollapsedOnReload = value; }
+		|        }
+		|
+		|        public int Indent
+		|        {
+		|            get { return _indent; }
+		|            set
+		|            {
+		|                _indent = value;
+		|                UpdateView();
+		|            }
+		|        }
+		|
+		|        public Color LineColor
+		|        {
+		|            get { return _lineColor; }
+		|            set
+		|            {
+		|                _lineColor = value;
+		|                CreateLinePen();
+		|                UpdateView();
+		|            }
+		|        }
+		|
+		|        public Color DragDropMarkColor
+		|        {
+		|            get { return _dragDropMarkColor; }
+		|            set
+		|            {
+		|                _dragDropMarkColor = value;
+		|                CreateMarkPen();
+		|            }
+		|        }
+		|
+		|        public float DragDropMarkWidth
+		|        {
+		|            get { return _dragDropMarkWidth; }
+		|            set
+		|            {
+		|                _dragDropMarkWidth = value;
+		|                CreateMarkPen();
+		|            }
+		|        }
+		|
+		|        public bool HighlightDropPosition
+		|        {
+		|            get { return _highlightDropPosition; }
+		|            set { _highlightDropPosition = value; }
+		|        }
+		|
+		|        public TreeColumnCollection Columns
+		|        {
+		|            get { return _columns; }
+		|        }
+		|
+		|        public Aga.Controls.Tree.NodeControls.NodeControlsCollection NodeControls
+		|        {
+		|            get { return _controls; }
+		|        }
+		|
+		|        // Если установлено значение true, содержимое узла будет считываться в фоновом потоке.
+		|        public bool AsyncExpanding
+		|        {
+		|            get { return _asyncExpanding; }
+		|            set { _asyncExpanding = value; }
+		|        }
+		|
+		|        public IToolTipProvider DefaultToolTipProvider
+		|        {
+		|            get { return _defaultToolTipProvider; }
+		|            set { _defaultToolTipProvider = value; }
+		|        }
+		|		
+		|        public Aga.Controls.Tree.TreeNodeAdv.NodeCollection Nodes
+		|        {
+		|            get { return _root.Nodes; }
+		|        }
+		|
+		|        public IEnumerable<TreeNodeAdv> AllNodes
+		|        {
+		|            get
+		|            {
+		|                if (_root.Nodes.Count > 0)
+		|                {
+		|                    TreeNodeAdv node = _root.Nodes[0];
+		|                    while (node != null)
+		|                    {
+		|                        yield return node;
+		|                        if (node.Nodes.Count > 0)
+		|                        {
+		|                            node = node.Nodes[0];
+		|                        }
+		|                        else if (node.NextNode != null)
+		|                        {
+		|                            node = node.NextNode;
+		|                        }
+		|                        else
+		|                        {
+		|                            node = node.BottomNode;
+		|                        }
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        public DropPosition DropPosition
+		|        {
+		|            get { return _dropPosition; }
+		|            set { _dropPosition = value; }
+		|        }
+		|
+		|        public TreeNodeAdv Root
+		|        {
+		|            get { return _root; }
+		|        }
+		|
+		|        public ReadOnlyCollection<TreeNodeAdv> SelectedNodes
+		|        {
+		|            get { return _readonlySelection; }
+		|        }
+		|
+		|        public TreeNodeAdv SelectedNode
+		|        {
+		|            get
+		|            {
+		|                if (Selection.Count > 0)
+		|                {
+		|                    if (CurrentNode != null && CurrentNode.IsSelected)
+		|                    {
+		|                        return CurrentNode;
+		|                    }
+		|                    else
+		|                    {
+		|                        return Selection[0];
+		|                    }
+		|                }
+		|                else
+		|                {
+		|                    return null;
+		|                }
+		|            }
+		|            set
+		|            {
+		|                if (SelectedNode == value)
+		|                {
+		|                    return;
+		|                }
+		|
+		|                BeginUpdate();
+		|                try
+		|                {
+		|                    if (value == null)
+		|                    {
+		|                        ClearSelectionInternal();
+		|                    }
+		|                    else
+		|                    {
+		|                        if (!IsMyNode(value))
+		|                        {
+		|                            throw new ArgumentException();
+		|                        }
+		|
+		|                        ClearSelectionInternal();
+		|                        value.IsSelected = true;
+		|                        CurrentNode = value;
+		|                        EnsureVisible(value);
+		|                    }
+		|                }
+		|                finally
+		|                {
+		|                    EndUpdate();
+		|                }
+		|            }
+		|        }
+		|
+		|        public TreeNodeAdv CurrentNode
+		|        {
+		|            get { return _currentNode; }
+		|            internal set { _currentNode = value; }
+		|        }
+		|
+		|        public int ItemCount
+		|        {
+		|            get { return RowMap.Count; }
+		|        }
+		|
+		|        // Указывает расстояние, на котором содержимое прокручивается влево.
+		|        public int HorizontalScrollPosition
+		|        {
+		|            get
+		|            {
+		|                if (_hScrollBar.Visible)
+		|                {
+		|                    return _hScrollBar.Value;
+		|                }
+		|                else
+		|                {
+		|                    return 0;
+		|                }
+		|            }
+		|        }
+		|
+		|        public void AutoSizeColumn(TreeColumn column = null)
+		|        {
+		|            if (column != null)
+		|            {
+		|                if (!Columns.Contains(column))
+		|                {
+		|                    throw new ArgumentException(""column"");
+		|                }
+		|
+		|                DrawContext context = new DrawContext();
+		|                context.Graphics = Graphics.FromImage(new Bitmap(1, 1));
+		|                context.Font = this.Font;
+		|                int res = 0;
+		|                IEnumerable allNodes = this.AllNodes;
+		|                foreach (TreeNodeAdv node in allNodes)
+		|                {
+		|                    int w = 0;
+		|                    foreach (NodeControl nc in NodeControls)
+		|                    {
+		|                        if (nc.ParentColumn == column)
+		|                        {
+		|                            w += nc.GetActualSize(node, _measureContext).Width;
+		|                        }
+		|                    }
+		|                    if (column.Index == 0)
+		|                    {
+		|                        w += node.Level * _indent + LeftMargin;
+		|                    }
+		|                    res = Math.Max(res, w);
+		|                }
+		|                if (res > 0)
+		|                {
+		|                    column.Width = res;
+		|                }
+		|            }
+		|            else
+		|            {
+		|                foreach (TreeColumn col in this.Columns)
+		|                {
+		|                    DrawContext context = new DrawContext();
+		|                    context.Graphics = Graphics.FromImage(new Bitmap(1, 1));
+		|                    context.Font = this.Font;
+		|                    int res = 0;
+		|                    IEnumerable allNodes = this.AllNodes;
+		|                    foreach (TreeNodeAdv node in allNodes)
+		|                    {
+		|                        int w = 0;
+		|                        foreach (NodeControl nc in NodeControls)
+		|                        {
+		|                            if (nc.ParentColumn == col)
+		|                            {
+		|                                w += nc.GetActualSize(node, _measureContext).Width;
+		|                            }
+		|                        }
+		|                        if (col.Index == 0)
+		|                        {
+		|                            w += node.Level * _indent + LeftMargin;
+		|                        }
+		|                        res = Math.Max(res, w);
+		|                    }
+		|                    if (res > 0)
+		|                    {
+		|                        col.Width = res;
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        private void CreatePens()
+		|        {
+		|            CreateLinePen();
+		|            CreateMarkPen();
+		|        }
+		|
+		|        private void CreateMarkPen()
+		|        {
+		|            GraphicsPath path = new GraphicsPath();
+		|            path.AddLines(new Point[] { new Point(0, 0), new Point(1, 1), new Point(-1, 1), new Point(0, 0) });
+		|            CustomLineCap cap = new CustomLineCap(null, path);
+		|            cap.WidthScale = 1.0f;
+		|
+		|            _markPen = new Pen(_dragDropMarkColor, _dragDropMarkWidth);
+		|            _markPen.CustomStartCap = cap;
+		|            _markPen.CustomEndCap = cap;
+		|        }
+		|
+		|        private void CreateLinePen()
+		|        {
+		|            _linePen = new Pen(_lineColor);
+		|            _linePen.DashStyle = DashStyle.Dot;
+		|        }
+		|
+		|        protected override void OnPaint(PaintEventArgs e)
+		|        {
+		|
+		|            DrawContext context = new DrawContext();
+		|            context.Graphics = e.Graphics;
+		|            context.Font = this.Font;
+		|            context.Enabled = Enabled;
+		|
+		|            int y = 0;
+		|            int gridHeight = 0;
+		|
+		|            if (UseColumns)
+		|            {
+		|                DrawColumnHeaders(e.Graphics);
+		|                y += ColumnHeaderHeight;
+		|                if (Columns.Count == 0 || e.ClipRectangle.Height <= y)
+		|                {
+		|                    return;
+		|                }
+		|            }
+		|
+		|            int firstRowY = _rowLayout.GetRowBounds(FirstVisibleRow).Y;
+		|            y -= firstRowY;
+		|
+		|            e.Graphics.ResetTransform();
+		|            e.Graphics.TranslateTransform(-OffsetX, y);
+		|            Rectangle displayRect = DisplayRectangle;
+		|            for (int row = FirstVisibleRow; row < RowCount; row++)
+		|            {
+		|                Rectangle rowRect = _rowLayout.GetRowBounds(row);
+		|                gridHeight += rowRect.Height;
+		|                if (rowRect.Y + y > displayRect.Bottom)
+		|                {
+		|                    break;
+		|                }
+		|                else
+		|                {
+		|                    DrawRow(e, ref context, row, rowRect);
+		|                }
+		|            }
+		|
+		|            if ((GridLineStyle & GridLineStyle.Vertical) == GridLineStyle.Vertical && UseColumns)
+		|            {
+		|                DrawVerticalGridLines(e.Graphics, firstRowY);
+		|            }
+		|
+		|            if (_dropPosition.Node != null && DragMode && HighlightDropPosition)
+		|            {
+		|                DrawDropMark(e.Graphics);
+		|            }
+		|
+		|            e.Graphics.ResetTransform();
+		|            DrawScrollBarsBox(e.Graphics);
+		|
+		|            if (DragMode && _dragBitmap != null)
+		|            {
+		|                e.Graphics.DrawImage(_dragBitmap, PointToClient(MousePosition));
+		|            }
+		|        }
+		|
+		|        private void DrawRow(PaintEventArgs e, ref DrawContext context, int row, Rectangle rowRect)
+		|        {
+		|            TreeNodeAdv node = RowMap[row];
+		|            context.DrawSelection = DrawSelectionMode.None;
+		|            context.CurrentEditorOwner = CurrentEditorOwner;
+		|            if (DragMode)
+		|            {
+		|                if ((_dropPosition.Node == node) && _dropPosition.Position == NodePosition.Inside && HighlightDropPosition)
+		|                {
+		|                    context.DrawSelection = DrawSelectionMode.Active;
+		|                }
+		|            }
+		|            else
+		|            {
+		|                if (node.IsSelected && Focused)
+		|                {
+		|                    context.DrawSelection = DrawSelectionMode.Active;
+		|                }
+		|                else if (node.IsSelected && !Focused && !HideSelection)
+		|                {
+		|                    context.DrawSelection = DrawSelectionMode.Inactive;
+		|                }
+		|            }
+		|            context.DrawFocus = Focused && CurrentNode == node;
+		|
+		|            OnRowDraw(e, node, context, row, rowRect);
+		|
+		|            if (FullRowSelect)
+		|            {
+		|                context.DrawFocus = false;
+		|                if (context.DrawSelection == DrawSelectionMode.Active || context.DrawSelection == DrawSelectionMode.Inactive)
+		|                {
+		|                    Rectangle focusRect = new Rectangle(OffsetX, rowRect.Y, ClientRectangle.Width, rowRect.Height);
+		|                    if (context.DrawSelection == DrawSelectionMode.Active)
+		|                    {
+		|                        e.Graphics.FillRectangle(SystemBrushes.Highlight, focusRect);
+		|                        context.DrawSelection = DrawSelectionMode.FullRowSelect;
+		|                    }
+		|                    else
+		|                    {
+		|                        e.Graphics.FillRectangle(SystemBrushes.InactiveBorder, focusRect);
+		|                        context.DrawSelection = DrawSelectionMode.None;
+		|                    }
+		|                }
+		|            }
+		|
+		|            if ((GridLineStyle & GridLineStyle.Horizontal) == GridLineStyle.Horizontal)
+		|            {
+		|                e.Graphics.DrawLine(SystemPens.InactiveBorder, 0, rowRect.Bottom, e.Graphics.ClipBounds.Right, rowRect.Bottom);
+		|            }
+		|
+		|            if (ShowLines)
+		|            {
+		|                DrawLines(e.Graphics, node, rowRect);
+		|            }
+		|            DrawNode(node, context);
+		|        }
+		|
+		|        private void DrawVerticalGridLines(Graphics gr, int y)
+		|        {
+		|            int x = 0;
+		|            foreach (TreeColumn c in Columns)
+		|            {
+		|                if (c.IsVisible)
+		|                {
+		|                    x += c.Width;
+		|                    gr.DrawLine(SystemPens.InactiveBorder, x - 1, y, x - 1, gr.ClipBounds.Bottom);
+		|                }
+		|            }
+		|        }
+		|
+		|        private void DrawColumnHeaders(Graphics gr)
+		|        {
+		|            ReorderColumnState reorder = Input as ReorderColumnState;
+		|            int x = 0;
+		|            TreeColumn.DrawBackground(gr, new Rectangle(0, 0, ClientRectangle.Width + 2, ColumnHeaderHeight - 1), false, false);
+		|            gr.TranslateTransform(-OffsetX, 0);
+		|            foreach (TreeColumn c in Columns)
+		|            {
+		|                if (c.IsVisible)
+		|                {
+		|                    if (x >= OffsetX && x - OffsetX < this.Bounds.Width)// skip invisible columns
+		|                    {
+		|                        Rectangle rect = new Rectangle(x, 0, c.Width, ColumnHeaderHeight - 1);
+		|                        gr.SetClip(rect);
+		|                        bool pressed = ((Input is ClickColumnState || reorder != null) && ((Input as ColumnState).Column == c));
+		|                        c.Draw(gr, rect, Font, pressed, _hotColumn == c);
+		|                        gr.ResetClip();
+		|
+		|                        if (reorder != null && reorder.DropColumn == c)
+		|                        {
+		|                            TreeColumn.DrawDropMark(gr, rect);
+		|                        }
+		|                    }
+		|                    x += c.Width;
+		|                }
+		|            }
+		|
+		|            if (reorder != null)
+		|            {
+		|                if (reorder.DropColumn == null)
+		|                {
+		|                    TreeColumn.DrawDropMark(gr, new Rectangle(x, 0, 0, ColumnHeaderHeight));
+		|                }
+		|                gr.DrawImage(reorder.GhostImage, new Point(reorder.Location.X + +reorder.DragOffset, reorder.Location.Y));
+		|            }
+		|        }
+		|
+		|        public void DrawNode(TreeNodeAdv node, DrawContext context)
+		|        {
+		|            foreach (NodeControlInfo item in GetNodeControls(node))
+		|            {
+		|                if (item.Bounds.Right >= OffsetX && item.Bounds.X - OffsetX < this.Bounds.Width) // Пропустить невидимые узлы.
+		|                {
+		|                    context.Bounds = item.Bounds;
+		|                    context.Graphics.SetClip(context.Bounds);
+		|                    item.Control.Draw(node, context);
+		|                    context.Graphics.ResetClip();
+		|                }
+		|            }
+		|        }
+		|
+		|        private void DrawScrollBarsBox(Graphics gr)
+		|        {
+		|            Rectangle r1 = DisplayRectangle;
+		|            Rectangle r2 = ClientRectangle;
+		|            gr.FillRectangle(SystemBrushes.Control, new Rectangle(r1.Right, r1.Bottom, r2.Width - r1.Width, r2.Height - r1.Height));
+		|        }
+		|
+		|        private void DrawDropMark(Graphics gr)
+		|        {
+		|            if (_dropPosition.Position == NodePosition.Inside)
+		|            {
+		|                return;
+		|            }
+		|
+		|            Rectangle rect = GetNodeBounds(_dropPosition.Node);
+		|            int right = DisplayRectangle.Right - LeftMargin + OffsetX;
+		|            int y = rect.Y;
+		|            if (_dropPosition.Position == NodePosition.After)
+		|            {
+		|                y = rect.Bottom;
+		|            }
+		|            gr.DrawLine(_markPen, rect.X, y, right, y);
+		|        }
+		|
+		|        private void DrawLines(Graphics gr, TreeNodeAdv node, Rectangle rowRect)
+		|        {
+		|            if (UseColumns && Columns.Count > 0)
+		|            {
+		|                gr.SetClip(new Rectangle(0, rowRect.Y, Columns[0].Width, rowRect.Bottom));
+		|            }
+		|
+		|            TreeNodeAdv curNode = node;
+		|            while (curNode != _root && curNode != null)
+		|            {
+		|                int level = curNode.Level;
+		|                int x = (level - 1) * _indent + NodePlusMinus.ImageSize / 2 + LeftMargin;
+		|                int width = NodePlusMinus.Width - NodePlusMinus.ImageSize / 2;
+		|                int y = rowRect.Y;
+		|                int y2 = y + rowRect.Height;
+		|
+		|                if (curNode == node)
+		|                {
+		|                    int midy = y + rowRect.Height / 2;
+		|                    gr.DrawLine(_linePen, x, midy, x + width, midy);
+		|                    if (curNode.NextNode == null)
+		|                    {
+		|                        y2 = y + rowRect.Height / 2;
+		|                    }
+		|                }
+		|
+		|                if (node.Row == 0)
+		|                {
+		|                    y = rowRect.Height / 2;
+		|                }
+		|                if (curNode.NextNode != null || curNode == node)
+		|                {
+		|                    gr.DrawLine(_linePen, x, y, x, y2);
+		|                }
+		|                curNode = curNode.Parent;
+		|            }
+		|            gr.ResetClip();
+		|        }
+		|		
+		|        public System.Drawing.Image Image
+		|        {
+		|            get { return image; }
+		|            set { image = value; }
+		|        }
+		|
+		|        public System.Drawing.Image SelectedImage
+		|        {
+		|            get { return selectedImage; }
+		|            set { selectedImage = value; }
+		|        }
+		|    }
+		|}
+		|
+		|    #endregion Aga.Controls.Tree
+		|
+		|		
+		|namespace osf
+		|{
+		|    public class TreeViewAdvEx : Aga.Controls.Tree.TreeViewAdv
+		|    {
+		|        public osf.TreeViewAdv M_Object;
+		|
+		|        public TreeViewAdvEx() : base()
+		|        {
+		|        }
+		|    }
+		|
+		|    public class TreeViewAdv : Control
+		|    {
+		|        public ClTreeViewAdv dll_obj;
+		|        public TreeViewAdvEx M_TreeViewAdv;
+		|        public string SelectionChanged;
+		|        public string ColumnReordered;
+		|        public string ColumnClicked;
+		|        public string NodeMouseClick;
+		|        public string ItemDrag;
+		|        public string Scroll;
+		|        public string Expanding;
+		|        public string Collapsing;
+		|        public string Expanded;
+		|        public string Collapsed;
+		|        public bool selectNodeControl = false;
+		|        public System.Collections.DictionaryEntry CurrentControl = new System.Collections.DictionaryEntry(null, null);
+		|
+		|        public TreeViewAdv()
+		|        {
+		|            M_TreeViewAdv = new TreeViewAdvEx();
+		|            M_TreeViewAdv.M_Object = this;
+		|            base.M_Control = M_TreeViewAdv;
+		|		
+		|            M_TreeViewAdv.SelectionChanged += M_TreeViewAdv_SelectionChanged;
+		|            SelectionChanged = """";
+		|            M_TreeViewAdv.ColumnReordered += M_TreeViewAdv_ColumnReordered;
+		|            ColumnReordered = """";
+		|            M_TreeViewAdv.ColumnClicked += M_TreeViewAdv_ColumnClicked;
+		|            ColumnClicked = """";
+		|            M_TreeViewAdv.NodeMouseClick += M_TreeViewAdv_NodeMouseClick;
+		|            NodeMouseClick = """";
+		|            M_TreeViewAdv.ItemDrag += M_TreeViewAdv_ItemDrag;
+		|            ItemDrag = """";
+		|            M_TreeViewAdv.Scroll += M_TreeViewAdv_Scroll;
+		|            Scroll = """";
+		|            M_TreeViewAdv.Expanding += M_TreeViewAdv_Expanding;
+		|            Expanding = """";
+		|            M_TreeViewAdv.Collapsing += M_TreeViewAdv_Collapsing;
+		|            Collapsing = """";
+		|            M_TreeViewAdv.Expanded += M_TreeViewAdv_Expanded;
+		|            Expanded = """";
+		|            M_TreeViewAdv.Collapsed += M_TreeViewAdv_Collapsed;
+		|            Collapsed = """";
+		|        }
+		|
+		|        public TreeViewAdv(osf.TreeViewAdv p1)
+		|        {
+		|            M_TreeViewAdv = p1.M_TreeViewAdv;
+		|            M_TreeViewAdv.M_Object = this;
+		|            base.M_Control = M_TreeViewAdv;
+		|		
+		|            M_TreeViewAdv.SelectionChanged += M_TreeViewAdv_SelectionChanged;
+		|            SelectionChanged = """";
+		|            M_TreeViewAdv.ColumnReordered += M_TreeViewAdv_ColumnReordered;
+		|            ColumnReordered = """";
+		|            M_TreeViewAdv.ColumnClicked += M_TreeViewAdv_ColumnClicked;
+		|            ColumnClicked = """";
+		|            M_TreeViewAdv.NodeMouseClick += M_TreeViewAdv_NodeMouseClick;
+		|            NodeMouseClick = """";
+		|            M_TreeViewAdv.ItemDrag += M_TreeViewAdv_ItemDrag;
+		|            ItemDrag = """";
+		|            M_TreeViewAdv.Scroll += M_TreeViewAdv_Scroll;
+		|            Scroll = """";
+		|            M_TreeViewAdv.Expanding += M_TreeViewAdv_Expanding;
+		|            Expanding = """";
+		|            M_TreeViewAdv.Collapsing += M_TreeViewAdv_Collapsing;
+		|            Collapsing = """";
+		|            M_TreeViewAdv.Expanded += M_TreeViewAdv_Expanded;
+		|            Expanded = """";
+		|            M_TreeViewAdv.Collapsed += M_TreeViewAdv_Collapsed;
+		|            Collapsed = """";
+		|        }
+		|
+		|        public TreeViewAdv(Aga.Controls.Tree.TreeViewAdv p1)
+		|        {
+		|            M_TreeViewAdv = (TreeViewAdvEx)p1;
+		|            M_TreeViewAdv.M_Object = this;
+		|            base.M_Control = M_TreeViewAdv;
+		|		
+		|            M_TreeViewAdv.SelectionChanged += M_TreeViewAdv_SelectionChanged;
+		|            SelectionChanged = """";
+		|            M_TreeViewAdv.ColumnReordered += M_TreeViewAdv_ColumnReordered;
+		|            ColumnReordered = """";
+		|            M_TreeViewAdv.ColumnClicked += M_TreeViewAdv_ColumnClicked;
+		|            ColumnClicked = """";
+		|            M_TreeViewAdv.NodeMouseClick += M_TreeViewAdv_NodeMouseClick;
+		|            NodeMouseClick = """";
+		|            M_TreeViewAdv.ItemDrag += M_TreeViewAdv_ItemDrag;
+		|            ItemDrag = """";
+		|            M_TreeViewAdv.Scroll += M_TreeViewAdv_Scroll;
+		|            Scroll = """";
+		|            M_TreeViewAdv.Expanding += M_TreeViewAdv_Expanding;
+		|            Expanding = """";
+		|            M_TreeViewAdv.Collapsing += M_TreeViewAdv_Collapsing;
+		|            Collapsing = """";
+		|            M_TreeViewAdv.Expanded += M_TreeViewAdv_Expanded;
+		|            Expanded = """";
+		|            M_TreeViewAdv.Collapsed += M_TreeViewAdv_Collapsed;
+		|            Collapsed = """";
+		|        }
+		|		
+		|        private void M_TreeViewAdv_Collapsed(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
+		|        {
+		|            if (Collapsed.Length > 0)
+		|            {
+		|                TreeViewAdvEventArgs TreeViewAdvEventArgs1 = new TreeViewAdvEventArgs(e);
+		|                TreeViewAdvEventArgs1.EventString = Collapsed;
+		|                TreeViewAdvEventArgs1.Sender = this;
+		|                TreeViewAdvEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Collapsed);
+		|                ClTreeViewAdvEventArgs ClTreeViewAdvEventArgs1 = new ClTreeViewAdvEventArgs(TreeViewAdvEventArgs1);
+		|                OneScriptForms.Event = ClTreeViewAdvEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Collapsed);
+		|            }
+		|        }
+		|
+		|        private void M_TreeViewAdv_Expanded(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
+		|        {
+		|            if (Expanded.Length > 0)
+		|            {
+		|                TreeViewAdvEventArgs TreeViewAdvEventArgs1 = new TreeViewAdvEventArgs(e);
+		|                TreeViewAdvEventArgs1.EventString = Expanded;
+		|                TreeViewAdvEventArgs1.Sender = this;
+		|                TreeViewAdvEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Expanded);
+		|                ClTreeViewAdvEventArgs ClTreeViewAdvEventArgs1 = new ClTreeViewAdvEventArgs(TreeViewAdvEventArgs1);
+		|                OneScriptForms.Event = ClTreeViewAdvEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Expanded);
+		|            }
+		|        }
+		|
+		|        private void M_TreeViewAdv_Collapsing(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
+		|        {
+		|            if (Collapsing.Length > 0)
+		|            {
+		|                TreeViewAdvEventArgs TreeViewAdvEventArgs1 = new TreeViewAdvEventArgs(e);
+		|                TreeViewAdvEventArgs1.EventString = Collapsing;
+		|                TreeViewAdvEventArgs1.Sender = this;
+		|                TreeViewAdvEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Collapsing);
+		|                ClTreeViewAdvEventArgs ClTreeViewAdvEventArgs1 = new ClTreeViewAdvEventArgs(TreeViewAdvEventArgs1);
+		|                OneScriptForms.Event = ClTreeViewAdvEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Collapsing);
+		|            }
+		|        }
+		|
+		|        private void M_TreeViewAdv_Expanding(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
+		|        {
+		|            if (Expanding.Length > 0)
+		|            {
+		|                TreeViewAdvEventArgs TreeViewAdvEventArgs1 = new TreeViewAdvEventArgs(e);
+		|                TreeViewAdvEventArgs1.EventString = Expanding;
+		|                TreeViewAdvEventArgs1.Sender = this;
+		|                TreeViewAdvEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Expanding);
+		|                ClTreeViewAdvEventArgs ClTreeViewAdvEventArgs1 = new ClTreeViewAdvEventArgs(TreeViewAdvEventArgs1);
+		|                OneScriptForms.Event = ClTreeViewAdvEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Expanding);
+		|            }
+		|        }
+		|
+		|        private void M_TreeViewAdv_Scroll(object sender, System.Windows.Forms.ScrollEventArgs e)
+		|        {
+		|            if (Scroll.Length > 0)
+		|            {
+		|                ScrollEventArgs ScrollEventArgs1 = new ScrollEventArgs();
+		|                ScrollEventArgs1.EventString = Scroll;
+		|                ScrollEventArgs1.Sender = this;
+		|                ScrollEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.Scroll);
+		|                ScrollEventArgs1.OldValue = e.OldValue;
+		|                ScrollEventArgs1.NewValue = e.NewValue;
+		|                ScrollEventArgs1.ScrollOrientation = (int)e.ScrollOrientation;
+		|                ScrollEventArgs1.EventType = (int)e.Type;
+		|                ClScrollEventArgs ClScrollEventArgs1 = new ClScrollEventArgs(ScrollEventArgs1);
+		|                OneScriptForms.Event = ClScrollEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Scroll);
+		|            }
+		|        }
+		|
+		|        private void M_TreeViewAdv_ItemDrag(object sender, ItemDragEventArgs e)
+		|        {
+		|            
+		|        }
+		|
+		|        private void M_TreeViewAdv_NodeMouseClick(object sender, Aga.Controls.Tree.TreeNodeAdvMouseEventArgs e)
+		|        {
+		|            if (SelectNodeControl)
+		|            {
+		|                if (e.Control.GetType() == typeof(Aga.Controls.Tree.NodeControls.NodeComboBox) ||
+		|                    e.Control.GetType() == typeof(Aga.Controls.Tree.NodeControls.NodeDecimalTextBox) ||
+		|                    e.Control.GetType() == typeof(Aga.Controls.Tree.NodeControls.NodeNumericUpDown) ||
+		|                    e.Control.GetType() == typeof(Aga.Controls.Tree.NodeControls.NodeTextBox))
+		|                {
+		|                    var nodeControl = (Aga.Controls.Tree.NodeControls.BaseTextControl)e.Control;
+		|                    if (e.Node == nodeControl.Parent.CurrentNode)
+		|                    {
+		|                        CurrentControl.Key = e.Node;
+		|                        CurrentControl.Value = nodeControl;
+		|                        this.Refresh();
+		|                    }
+		|                }
+		|            }
+		|            if (NodeMouseClick.Length > 0)
+		|            {
+		|                TreeNodeAdvMouseEventArgs TreeNodeAdvMouseEventArgs1 = new TreeNodeAdvMouseEventArgs(e);
+		|                TreeNodeAdvMouseEventArgs1.EventString = NodeMouseClick;
+		|                TreeNodeAdvMouseEventArgs1.Sender = this;
+		|                TreeNodeAdvMouseEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.NodeMouseClick);
+		|                ClTreeNodeAdvMouseEventArgs ClTreeNodeAdvMouseEventArgs1 = new ClTreeNodeAdvMouseEventArgs(TreeNodeAdvMouseEventArgs1);
+		|                OneScriptForms.Event = ClTreeNodeAdvMouseEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.NodeMouseClick);
+		|            }
+		|        }
+		|
+		|        private void M_TreeViewAdv_ColumnClicked(object sender, Aga.Controls.Tree.TreeColumnEventArgs e)
+		|        {
+		|            if (ColumnClicked.Length > 0)
+		|            {
+		|                TreeColumnEventArgs TreeColumnEventArgs1 = new TreeColumnEventArgs(e.Column);
+		|                TreeColumnEventArgs1.EventString = ColumnClicked;
+		|                TreeColumnEventArgs1.Sender = this;
+		|                TreeColumnEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.ColumnClicked);
+		|                ClTreeColumnEventArgs ClTreeColumnEventArgs1 = new ClTreeColumnEventArgs(TreeColumnEventArgs1);
+		|                OneScriptForms.Event = ClTreeColumnEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.ColumnClicked);
+		|            }
+		|        }
+		|
+		|        private void M_TreeViewAdv_ColumnReordered(object sender, Aga.Controls.Tree.TreeColumnEventArgs e)
+		|        {
+		|            if (ColumnReordered.Length > 0)
+		|            {
+		|                TreeColumnEventArgs TreeColumnEventArgs1 = new TreeColumnEventArgs(e.Column);
+		|                TreeColumnEventArgs1.EventString = ColumnReordered;
+		|                TreeColumnEventArgs1.Sender = this;
+		|                TreeColumnEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.ColumnReordered);
+		|                ClTreeColumnEventArgs ClTreeColumnEventArgs1 = new ClTreeColumnEventArgs(TreeColumnEventArgs1);
+		|                OneScriptForms.Event = ClTreeColumnEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.ColumnReordered);
+		|            }
+		|        }
+		|
+		|        private void M_TreeViewAdv_SelectionChanged(object sender, System.EventArgs e)
+		|        {
+		|            if (this.SelectedNodes.Count > 1)
+		|            {
+		|                CurrentControl.Key = null;
+		|                CurrentControl.Value = null;
+		|            }
+		|		
+		|            if (SelectionChanged.Length > 0)
+		|            {
+		|                EventArgs EventArgs1 = new EventArgs();
+		|                EventArgs1.EventString = SelectionChanged;
+		|                EventArgs1.Sender = this;
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.SelectionChanged);
+		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.SelectionChanged);
+		|            }
+		|        }
+		|		
+		|        public bool UseColumns
+		|        {
+		|            get { return M_TreeViewAdv.UseColumns; }
+		|            set
+		|            {
+		|                M_TreeViewAdv.UseColumns = value;
+		|                M_TreeViewAdv.FullUpdate();
+		|            }
+		|        }
+		|
+		|        public void CollapseAll()
+		|        {
+		|            M_TreeViewAdv.CollapseAll();
+		|        }
+		|
+		|        public Aga.Controls.Tree.ITreeModel TreeModel
+		|        {
+		|            get { return M_TreeViewAdv.Model; }
+		|            set { M_TreeViewAdv.Model = (Aga.Controls.Tree.ITreeModel)value; }
+		|        }
+		|
+		|        public Aga.Controls.Tree.NodeControls.NodeControlsCollection NodeControls
+		|        {
+		|            get { return M_TreeViewAdv.NodeControls; }
+		|        }
+		|
+		|        public Aga.Controls.Tree.TreeColumnCollection Columns
+		|        {
+		|            get { return M_TreeViewAdv.Columns; }
+		|        }
+		|		
+		|        public void FullUpdate()
+		|        {
+		|            M_TreeViewAdv.FullUpdate();
+		|        }
+		|		
+		|        public Aga.Controls.Tree.TreeNodeAdv.NodeCollection Nodes
+		|        {
+		|            get { return M_TreeViewAdv.Nodes; }
+		|        }
+		|		
+		|        public osf.Rectangle DisplayRectangle
+		|        {
+		|            get { return new Rectangle(M_TreeViewAdv.DisplayRectangle); }
+		|        }
+		|
+		|        public osf.Color LineColor
+		|        {
+		|            get { return new Color(M_TreeViewAdv.LineColor); }
+		|            set { M_TreeViewAdv.LineColor = value.M_Color; }
+		|        }
+		|
+		|        public bool AutoRowHeight
+		|        {
+		|            get { return M_TreeViewAdv.AutoRowHeight; }
+		|            set { M_TreeViewAdv.AutoRowHeight = value; }
+		|        }
+		|
+		|        public bool AsyncExpanding
+		|        {
+		|            get { return M_TreeViewAdv.AsyncExpanding; }
+		|            set { M_TreeViewAdv.AsyncExpanding = value; }
+		|        }
+		|
+		|        public bool FullRowSelect
+		|        {
+		|            get { return M_TreeViewAdv.FullRowSelect; }
+		|            set { M_TreeViewAdv.FullRowSelect = value; }
+		|        }
+		|
+		|        public Aga.Controls.Tree.TreeNodeAdv SelectedNode
+		|        {
+		|            get { return M_TreeViewAdv.SelectedNode; }
+		|            set { M_TreeViewAdv.SelectedNode = value; }
+		|        }
+		|
+		|        public System.Collections.ObjectModel.ReadOnlyCollection<Aga.Controls.Tree.TreeNodeAdv> SelectedNodes
+		|        {
+		|            get { return M_TreeViewAdv.SelectedNodes; }
+		|        }
+		|
+		|        public bool HighlightDropPosition
+		|        {
+		|            get { return M_TreeViewAdv.HighlightDropPosition; }
+		|            set { M_TreeViewAdv.HighlightDropPosition = value; }
+		|        }
+		|
+		|        public int ColumnHeadersHeight
+		|        {
+		|            get { return M_TreeViewAdv.ColumnHeadersHeight; }
+		|            set { M_TreeViewAdv.ColumnHeadersHeight = value; }
+		|        }
+		|
+		|        public int RowHeight
+		|        {
+		|            get { return M_TreeViewAdv.RowHeight; }
+		|            set { M_TreeViewAdv.RowHeight = value; }
+		|        }
+		|
+		|        public bool LoadOnDemand
+		|        {
+		|            get { return M_TreeViewAdv.LoadOnDemand; }
+		|            set { M_TreeViewAdv.LoadOnDemand = value; }
+		|        }
+		|
+		|        public int ItemCount
+		|        {
+		|            get { return M_TreeViewAdv.ItemCount; }
+		|        }
+		|        
+		|        public Aga.Controls.Tree.TreeNodeAdv Root
+		|        {
+		|            get { return M_TreeViewAdv.Root; }
+		|        }
+		|
+		|        public bool DisplayDraggingNodes
+		|        {
+		|            get { return M_TreeViewAdv.DisplayDraggingNodes; }
+		|            set { M_TreeViewAdv.DisplayDraggingNodes = value; }
+		|        }
+		|
+		|        public int Indent
+		|        {
+		|            get { return M_TreeViewAdv.Indent; }
+		|            set { M_TreeViewAdv.Indent = value; }
+		|        }
+		|
+		|        public int HorizontalScrollPosition
+		|        {
+		|            get { return M_TreeViewAdv.HorizontalScrollPosition; }
+		|        }
+		|
+		|        public bool ShowLines
+		|        {
+		|            get { return M_TreeViewAdv.ShowLines; }
+		|            set { M_TreeViewAdv.ShowLines = value; }
+		|        }
+		|
+		|        public bool ShowPlusMinus
+		|        {
+		|            get { return M_TreeViewAdv.ShowPlusMinus; }
+		|            set { M_TreeViewAdv.ShowPlusMinus = value; }
+		|        }
+		|
+		|        public bool ShowNodeToolTips
+		|        {
+		|            get { return M_TreeViewAdv.ShowNodeToolTips; }
+		|            set { M_TreeViewAdv.ShowNodeToolTips = value; }
+		|        }
+		|
+		|        public bool UnloadCollapsedOnReload
+		|        {
+		|            get { return M_TreeViewAdv.UnloadCollapsedOnReload; }
+		|            set { M_TreeViewAdv.UnloadCollapsedOnReload = value; }
+		|        }
+		|
+		|        public bool AllowColumnReorder
+		|        {
+		|            get { return M_TreeViewAdv.AllowColumnReorder; }
+		|            set { M_TreeViewAdv.AllowColumnReorder = value; }
+		|        }
+		|
+		|        public Aga.Controls.Tree.TreeSelectionMode SelectionMode
+		|        {
+		|            get { return M_TreeViewAdv.SelectionMode; }
+		|            set { M_TreeViewAdv.SelectionMode = value; }
+		|        }
+		|
+		|        public bool HideSelection
+		|        {
+		|            get { return M_TreeViewAdv.HideSelection; }
+		|            set { M_TreeViewAdv.HideSelection = value; }
+		|        }
+		|
+		|        public int BorderStyle
+		|        {
+		|            get { return (int)M_TreeViewAdv.BorderStyle; }
+		|            set
+		|            {
+		|                M_TreeViewAdv.BorderStyle = (System.Windows.Forms.BorderStyle)value;
+		|                //System.Windows.Forms.Application.DoEvents();
+		|            }
+		|        }
+		|
+		|        public Aga.Controls.Tree.GridLineStyle GridLineStyle
+		|        {
+		|            get { return M_TreeViewAdv.GridLineStyle; }
+		|            set { M_TreeViewAdv.GridLineStyle = value; }
+		|        }
+		|
+		|        public Aga.Controls.Tree.TreeNodeAdv CurrentNode
+		|        {
+		|            get { return M_TreeViewAdv.CurrentNode; }
+		|        }
+		|
+		|        public osf.Color DragDropMarkColor
+		|        {
+		|            get { return new Color(M_TreeViewAdv.DragDropMarkColor); }
+		|            set { M_TreeViewAdv.DragDropMarkColor = value.M_Color; }
+		|        }
+		|
+		|        public float TopEdgeSensivity
+		|        {
+		|            get { return M_TreeViewAdv.TopEdgeSensivity; }
+		|            set { M_TreeViewAdv.TopEdgeSensivity = value; }
+		|        }
+		|
+		|        public float BottomEdgeSensivity
+		|        {
+		|            get { return M_TreeViewAdv.BottomEdgeSensivity; }
+		|            set { M_TreeViewAdv.BottomEdgeSensivity = value; }
+		|        }
+		|        
+		|        public float DragDropMarkWidth
+		|        {
+		|            get { return M_TreeViewAdv.DragDropMarkWidth; }
+		|            set { M_TreeViewAdv.DragDropMarkWidth = value; }
+		|        }
+		|		
+		|        public void AutoSizeColumn(TreeColumn p1 = null)
+		|        {
+		|            if (p1 != null)
+		|            {
+		|                M_TreeViewAdv.AutoSizeColumn(p1.M_TreeColumn);
+		|            }
+		|            else
+		|            {
+		|                M_TreeViewAdv.AutoSizeColumn();
+		|            }
+		|        }
+		|
+		|        public void SelectAllNodes()
+		|        {
+		|            M_TreeViewAdv.SelectAllNodes();
+		|        }
+		|
+		|        public void EnsureVisible(Aga.Controls.Tree.TreeNodeAdv p1)
+		|        {
+		|            M_TreeViewAdv.EnsureVisible(p1);
+		|        }
+		|
+		|        public void ClearSelection()
+		|        {
+		|            M_TreeViewAdv.ClearSelection();
+		|        }
+		|
+		|        public string GetFullPath(Aga.Controls.Tree.TreeNodeAdv p1)
+		|        {
+		|            return M_TreeViewAdv.GetFullPath(p1);
+		|        }
+		|
+		|        public void ScrollTo(Aga.Controls.Tree.TreeNodeAdv p1)
+		|        {
+		|            M_TreeViewAdv.ScrollTo(p1);
+		|        }
+		|
+		|        public void ExpandAll()
+		|        {
+		|            M_TreeViewAdv.ExpandAll();
+		|        }
+		|		
+		|        public string PathSeparator
+		|        {
+		|            get { return M_TreeViewAdv.PathSeparator; }
+		|            set { M_TreeViewAdv.PathSeparator = value; }
+		|        }
+		|		
+		|        public System.Drawing.Image Image
+		|        {
+		|            get { return M_TreeViewAdv.Image; }
+		|            set { M_TreeViewAdv.Image = value; }
+		|        }
+		|
+		|        public System.Drawing.Image SelectedImage
+		|        {
+		|            get { return M_TreeViewAdv.SelectedImage; }
+		|            set { M_TreeViewAdv.SelectedImage = value; }
+		|        }
+		|		
+		|        public bool SelectNodeControl
+		|        {
+		|            get { return selectNodeControl; }
+		|            set { selectNodeControl = value; }
+		|        }
+		|    }
+		|}//endnamespace
+		|//endTreeViewAdv
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "DataGridViewGrouperControl" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace Subro.Controls
@@ -19468,7 +33969,14 @@
 		|		
 		|        public int DisplayIndex
 		|        {
-		|            get { return M_DataGridViewColumn.DisplayIndex; }
+		|            get
+		|            {
+		|                if (OneScriptForms.systemVersionIsMicrosoft)
+		|                {
+		|                    return M_DataGridViewColumn.DisplayIndex;
+		|                }
+		|                return M_DataGridViewColumn.DisplayIndex - 1;
+		|            }
 		|            set { M_DataGridViewColumn.DisplayIndex = value; }
 		|        }
 		|		
@@ -20066,7 +34574,7 @@
 		|            set
 		|            {
 		|                M_DataGridView.BackgroundColor = value.M_Color;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -20146,7 +34654,7 @@
 		|                    string strType1 = Type1.ToString();
 		|                    string str1 = strType1.Substring(strType1.LastIndexOf(""."") + 1);
 		|                    M_DataGridView.DataSource = Type1.GetField(""M_"" + str1).GetValue(value);
-		|                    System.Windows.Forms.Application.DoEvents();
+		|                    //System.Windows.Forms.Application.DoEvents();
 		|                }
 		|                else
 		|                {
@@ -20703,13 +35211,13 @@
 		|        public void Add(object key, object value)
 		|        {
 		|            M_HashTable.Add(key, value);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public void Clear()
 		|        {
 		|            M_HashTable.Clear();
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public int Count
@@ -20730,13 +35238,13 @@
 		|        public void Remove(object key)
 		|        {
 		|            M_HashTable.Remove(key);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public void Set(object key, object value)
 		|        {
 		|            M_HashTable[key] = value;
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public IEnumerator GetEnumerator()
@@ -21050,8 +35558,6 @@
 		|        public string LinkClicked;
 		|        public string SelectionChanged;
 		|
-		|        [DllImport(""user32"", EntryPoint = ""SendMessageA"", CharSet = CharSet.Auto, SetLastError = true)] private static extern new bool SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-		|
 		|        public RichTextBoxEx M_RichTextBox
 		|        {
 		|            get { return m_RichTextBox; }
@@ -21094,19 +35600,6 @@
 		|        {
 		|            get { return M_RichTextBox.AutoWordSelection; }
 		|            set { M_RichTextBox.AutoWordSelection = value; }
-		|        }
-		|
-		|        public override void BeginUpdate()
-		|        {
-		|            RichTextBox.SendMessage(M_RichTextBox.Handle, 11, 0, 0);
-		|            System.Windows.Forms.Application.DoEvents();
-		|        }
-		|
-		|        public override void EndUpdate()
-		|        {
-		|            RichTextBox.SendMessage(M_RichTextBox.Handle, 11, -1, 0);
-		|            M_RichTextBox.Invalidate();
-		|            System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public int GetCharIndexFromPosition(osf.Point pt)
@@ -21154,7 +35647,7 @@
 		|        public void Redo()
 		|        {
 		|            M_RichTextBox.Redo();
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public int RightMargin
@@ -21356,7 +35849,7 @@
 		|            set
 		|            {
 		|                M_UpDownBase.BorderStyle = (System.Windows.Forms.BorderStyle)value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -21366,7 +35859,7 @@
 		|            set
 		|            {
 		|                M_UpDownBase.ReadOnly = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|    }//endClass
@@ -21430,7 +35923,7 @@
 		|            set
 		|            {
 		|                M_NumericUpDown.DecimalPlaces = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -21440,7 +35933,7 @@
 		|            set
 		|            {
 		|                M_NumericUpDown.Increment = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -21450,7 +35943,7 @@
 		|            set
 		|            {
 		|                M_NumericUpDown.Maximum = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -21460,7 +35953,7 @@
 		|            set
 		|            {
 		|                M_NumericUpDown.Minimum = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -21470,7 +35963,7 @@
 		|            set
 		|            {
 		|                M_NumericUpDown.Value = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -21701,7 +36194,7 @@
 		|        public void EnableVisualStyles()
 		|        {
 		|            System.Windows.Forms.Application.EnableVisualStyles();
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public string ProductName
@@ -21777,7 +36270,7 @@
 		|            set
 		|            {
 		|                M_DateTimePicker.ShowCheckBox = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -21787,7 +36280,7 @@
 		|            set
 		|            {
 		|                M_DateTimePicker.ShowUpDown = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -21797,7 +36290,7 @@
 		|            set
 		|            {
 		|                M_DateTimePicker.DropDownAlign = (System.Windows.Forms.LeftRightAlignment)value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -21807,7 +36300,7 @@
 		|            set
 		|            {
 		|                M_DateTimePicker.Value = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -21817,7 +36310,7 @@
 		|            set
 		|            {
 		|                M_DateTimePicker.MaxDate = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -21827,7 +36320,7 @@
 		|            set
 		|            {
 		|                M_DateTimePicker.MinDate = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -21844,7 +36337,7 @@
 		|            set
 		|            {
 		|                M_DateTimePicker.CustomFormat = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -21876,7 +36369,7 @@
 		|            set
 		|            {
 		|                M_DateTimePicker.Text = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -21896,7 +36389,7 @@
 		|            set
 		|            {
 		|                M_DateTimePicker.Format = (System.Windows.Forms.DateTimePickerFormat)value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -21941,14 +36434,14 @@
 		|        public new object Add(object item)
 		|        {
 		|            M_ComboBoxObjectCollection.Add(item);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|            return item;
 		|        }
 		|
 		|        public new object Insert(int index, object item)
 		|        {
 		|            M_ComboBoxObjectCollection.Insert(index, item);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|            return item;
 		|        }
 		|
@@ -21960,7 +36453,7 @@
 		|        public new void Remove(object item)
 		|        {
 		|            M_ComboBoxObjectCollection.Remove(item);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public override object Current
@@ -22120,7 +36613,7 @@
 		|            {
 		|                M_ComboBox.Text = Convert.ToString(dataObject.GetData(System.Windows.Forms.DataFormats.Text));
 		|            }
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public virtual int PreferredHeight
@@ -22778,7 +37271,7 @@
 		|            set
 		|            {
 		|                M_FileSystemWatcher.EnableRaisingEvents = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -22788,7 +37281,7 @@
 		|            set
 		|            {
 		|                M_FileSystemWatcher.Filter = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -22798,7 +37291,7 @@
 		|            set
 		|            {
 		|                M_FileSystemWatcher.EnableRaisingEvents = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -22808,7 +37301,7 @@
 		|            set
 		|            {
 		|                M_FileSystemWatcher.InternalBufferSize = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -22818,7 +37311,7 @@
 		|            set
 		|            {
 		|                M_FileSystemWatcher.NotifyFilter = (System.IO.NotifyFilters)value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -22828,7 +37321,7 @@
 		|            set
 		|            {
 		|                M_FileSystemWatcher.Path = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -22952,7 +37445,7 @@
 		|        public void Remove(object key)
 		|        {
 		|            M_SortedList.Remove(RuntimeHelpers.GetObjectValue(key));
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public virtual IEnumerator GetEnumerator()
@@ -23389,7 +37882,7 @@
 		|        public int Add(osf.DataGridColumnStyle p1)
 		|        {
 		|            int res = Convert.ToInt32(M_GridColumnStylesCollection.Add((System.Windows.Forms.DataGridColumnStyle)p1.M_DataGridColumnStyle));
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|            return res;
 		|        }
 		|
@@ -23562,7 +38055,7 @@
 		|        public int Add(osf.DataGridTableStyle p1)
 		|        {
 		|            int res = Convert.ToInt32(M_GridTableStylesCollection.Add((System.Windows.Forms.DataGridTableStyle)p1.M_DataGridTableStyle));
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|            return res;
 		|        }
 		|
@@ -23611,7 +38104,7 @@
 		|            set
 		|            {
 		|                M_DataGridCell.ColumnNumber = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -23621,7 +38114,7 @@
 		|            set
 		|            {
 		|                M_DataGridCell.RowNumber = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|    }//endClass
@@ -23686,7 +38179,7 @@
 		|            set
 		|            {
 		|                M_DataGrid.AllowSorting = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -23696,7 +38189,7 @@
 		|            set
 		|            {
 		|                M_DataGrid.BackgroundColor = value.M_Color;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -23706,7 +38199,7 @@
 		|            set
 		|            {
 		|                M_DataGrid.CaptionBackColor = value.M_Color;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -23716,7 +38209,7 @@
 		|            set
 		|            {
 		|                M_DataGrid.CaptionText = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -23726,7 +38219,7 @@
 		|            set
 		|            {
 		|                M_DataGrid.CaptionVisible = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -23736,7 +38229,7 @@
 		|            set
 		|            {
 		|                M_DataGrid.CurrentCell = value.M_DataGridCell;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -23746,7 +38239,7 @@
 		|            set
 		|            {
 		|                M_DataGrid.CurrentRowIndex = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -23780,7 +38273,7 @@
 		|                string strType1 = Type1.ToString();
 		|                string str1 = strType1.Substring(strType1.LastIndexOf(""."") + 1);
 		|                M_DataGrid.DataSource = Type1.GetField(""M_"" + str1).GetValue(value);
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -23800,7 +38293,7 @@
 		|            set
 		|            {
 		|                M_DataGrid.ReadOnly = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -23822,7 +38315,7 @@
 		|            {
 		|                M_DataGrid.SetDataBinding((System.Collections.ArrayList)((osf.ArrayList)source).M_ArrayList, member);
 		|            }
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public osf.GridTableStylesCollection TableStyles
@@ -24068,7 +38561,7 @@
 		|            {
 		|                M_DataRow[(int)index] = item;
 		|            }
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|		
 		|        public void BeginEdit()
@@ -24150,7 +38643,7 @@
 		|            set
 		|            {
 		|                M_DataView.AllowEdit = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -24160,7 +38653,7 @@
 		|            set
 		|            {
 		|                M_DataView.AllowNew = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -24170,7 +38663,7 @@
 		|            set
 		|            {
 		|                M_DataView.ApplyDefaultSort = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -24477,7 +38970,7 @@
 		|            {
 		|                M_DataTableCollection.Remove(Convert.ToString(p1));
 		|            }
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public void RemoveAt(int p1)
@@ -24561,14 +39054,14 @@
 		|        {
 		|            DataColumn DataColumn1 = new DataColumn(p1);
 		|            M_DataColumnCollection.Add(DataColumn1.M_DataColumn);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|            return DataColumn1;
 		|        }
 		|
 		|        public osf.DataColumn Add(osf.DataColumn p1)
 		|        {
 		|            M_DataColumnCollection.Add(p1.M_DataColumn);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|            return p1;
 		|        }
 		|
@@ -24789,7 +39282,7 @@
 		|            M_Link = new LinkEx();
 		|            M_Link.M_Object = this;
 		|        }
-		|		
+		|
 		|        public Link(osf.Link p1)
 		|        {
 		|            M_Link = p1.M_Link;
@@ -24802,16 +39295,28 @@
 		|            M_Link.M_Object = this;
 		|        }
 		|
-		|        public int Length
+		|        public string Description
 		|        {
-		|            get { return M_Link.Length; }
-		|            set { M_Link.Length = value; }
+		|            get { return M_Link.Description; }
+		|            set { M_Link.Description = value; }
 		|        }
 		|
 		|        public bool Enabled
 		|        {
 		|            get { return M_Link.Enabled; }
 		|            set { M_Link.Enabled = value; }
+		|        }
+		|
+		|        public int Length
+		|        {
+		|            get { return M_Link.Length; }
+		|            set { M_Link.Length = value; }
+		|        }
+		|
+		|        public object LinkData
+		|        {
+		|            get { return M_Link.LinkData; }
+		|            set { M_Link.LinkData = value; }
 		|        }
 		|
 		|        public string Name
@@ -24826,22 +39331,10 @@
 		|            set { M_Link.Start = value; }
 		|        }
 		|
-		|        public string Description
-		|        {
-		|            get { return M_Link.Description; }
-		|            set { M_Link.Description = value; }
-		|        }
-		|
 		|        public bool Visited
 		|        {
 		|            get { return M_Link.Visited; }
 		|            set { M_Link.Visited = value; }
-		|        }
-		|
-		|        public object LinkData
-		|        {
-		|            get { return M_Link.LinkData; }
-		|            set { M_Link.LinkData = value; }
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -24940,7 +39433,7 @@
 		|            set
 		|            {
 		|                M_Label.AutoSize = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -24950,7 +39443,7 @@
 		|            set
 		|            {
 		|                M_Label.BorderStyle = (System.Windows.Forms.BorderStyle)value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -24961,7 +39454,7 @@
 		|            {
 		|                image = value;
 		|                M_Label.Image = value.M_Image;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -24971,7 +39464,7 @@
 		|            set
 		|            {
 		|                M_Label.ImageAlign = (System.Drawing.ContentAlignment)value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -24981,7 +39474,7 @@
 		|            set
 		|            {
 		|                M_Label.ImageIndex = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -24991,7 +39484,7 @@
 		|            set
 		|            {
 		|                M_Label.ImageList = value.M_ImageList;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -25011,7 +39504,7 @@
 		|            set
 		|            {
 		|                M_Label.TextAlign = (System.Drawing.ContentAlignment)value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|    }//endClass
@@ -25032,9 +39525,9 @@
 		|    public class LinkLabel : Label
 		|    {
 		|        public new ClLinkLabel dll_obj;
-		|        public LinkLabelEx M_LinkLabel;
-		|        public string LinkClicked;
 		|        private osf.Bitmap image;
+		|        public string LinkClicked;
+		|        public LinkLabelEx M_LinkLabel;
 		|
 		|        public LinkLabel()
 		|        {
@@ -25063,46 +39556,10 @@
 		|            LinkClicked = """";
 		|        }
 		|
-		|        public osf.Color VisitedLinkColor
-		|        {
-		|            get { return new Color(M_LinkLabel.VisitedLinkColor); }
-		|            set { M_LinkLabel.VisitedLinkColor = value.M_Color; }
-		|        }
-		|
-		|        public osf.Color LinkColor
-		|        {
-		|            get { return new Color(M_LinkLabel.LinkColor); }
-		|            set { M_LinkLabel.LinkColor = value.M_Color; }
-		|        }
-		|
-		|        public bool LinkVisited
-		|        {
-		|            get { return M_LinkLabel.LinkVisited; }
-		|            set { M_LinkLabel.LinkVisited = value; }
-		|        }
-		|
 		|        public osf.Color ActiveLinkColor
 		|        {
 		|            get { return new Color(M_LinkLabel.ActiveLinkColor); }
 		|            set { M_LinkLabel.ActiveLinkColor = value.M_Color; }
-		|        }
-		|
-		|
-		|        public osf.LinkArea LinkArea
-		|        {
-		|            get { return new LinkArea(M_LinkLabel.LinkArea); }
-		|            set { M_LinkLabel.LinkArea = value.M_LinkArea; }
-		|        }
-		|
-		|        public osf.LinkCollection Links
-		|        {
-		|            get { return new LinkCollection(M_LinkLabel.Links); }
-		|        }
-		|
-		|        public int LinkBehavior
-		|        {
-		|            get { return (int)M_LinkLabel.LinkBehavior; }
-		|            set { M_LinkLabel.LinkBehavior = (System.Windows.Forms.LinkBehavior)value; }
 		|        }
 		|
 		|        public new bool AutoSize
@@ -25111,7 +39568,7 @@
 		|            set
 		|            {
 		|                M_LinkLabel.AutoSize = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -25121,7 +39578,7 @@
 		|            set
 		|            {
 		|                M_LinkLabel.ImageAlign = (System.Drawing.ContentAlignment)value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -25131,28 +39588,7 @@
 		|            set
 		|            {
 		|                M_LinkLabel.TextAlign = (System.Drawing.ContentAlignment)value;
-		|                System.Windows.Forms.Application.DoEvents();
-		|            }
-		|        }
-		|
-		|        public new osf.Bitmap Image
-		|        {
-		|            get { return image; }
-		|            set
-		|            {
-		|                image = value;
-		|                M_LinkLabel.Image = value.M_Image;
-		|                System.Windows.Forms.Application.DoEvents();
-		|            }
-		|        }
-		|
-		|        public new osf.ImageList ImageList
-		|        {
-		|            get { return new ImageList(M_LinkLabel.ImageList); }
-		|            set
-		|            {
-		|                M_LinkLabel.ImageList = value.M_ImageList;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -25162,7 +39598,7 @@
 		|            set
 		|            {
 		|                M_LinkLabel.ImageIndex = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -25182,10 +39618,66 @@
 		|            set
 		|            {
 		|                M_LinkLabel.BorderStyle = (System.Windows.Forms.BorderStyle)value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
-		|		
+		|
+		|        public osf.LinkArea LinkArea
+		|        {
+		|            get { return new LinkArea(M_LinkLabel.LinkArea); }
+		|            set { M_LinkLabel.LinkArea = value.M_LinkArea; }
+		|        }
+		|
+		|        public int LinkBehavior
+		|        {
+		|            get { return (int)M_LinkLabel.LinkBehavior; }
+		|            set { M_LinkLabel.LinkBehavior = (System.Windows.Forms.LinkBehavior)value; }
+		|        }
+		|
+		|        public osf.Color LinkColor
+		|        {
+		|            get { return new Color(M_LinkLabel.LinkColor); }
+		|            set { M_LinkLabel.LinkColor = value.M_Color; }
+		|        }
+		|
+		|        public osf.LinkCollection Links
+		|        {
+		|            get { return new LinkCollection(M_LinkLabel.Links); }
+		|        }
+		|
+		|        public bool LinkVisited
+		|        {
+		|            get { return M_LinkLabel.LinkVisited; }
+		|            set { M_LinkLabel.LinkVisited = value; }
+		|        }
+		|
+		|        public new osf.Bitmap Image
+		|        {
+		|            get { return image; }
+		|            set
+		|            {
+		|                image = value;
+		|                M_LinkLabel.Image = value.M_Image;
+		|                //System.Windows.Forms.Application.DoEvents();
+		|            }
+		|        }
+		|
+		|        public new osf.ImageList ImageList
+		|        {
+		|            get { return new ImageList(M_LinkLabel.ImageList); }
+		|            set
+		|            {
+		|                M_LinkLabel.ImageList = value.M_ImageList;
+		|                //System.Windows.Forms.Application.DoEvents();
+		|            }
+		|        }
+		|
+		|        public osf.Color VisitedLinkColor
+		|        {
+		|            get { return new Color(M_LinkLabel.VisitedLinkColor); }
+		|            set { M_LinkLabel.VisitedLinkColor = value.M_Color; }
+		|        }
+		|
 		|        private void M_LinkLabel_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		|        {
 		|            if (LinkClicked.Length > 0)
@@ -25220,7 +39712,7 @@
 		|        {
 		|            M_LinkCollection = p1.Links;
 		|        }
-		|		
+		|
 		|        public LinkCollection(System.Windows.Forms.LinkLabel.LinkCollection p1)
 		|        {
 		|            M_LinkCollection = p1;
@@ -25231,16 +39723,28 @@
 		|            get { return M_LinkCollection.Count; }
 		|        }
 		|
-		|        public bool LinksAdded
-		|        {
-		|            get { return M_LinkCollection.LinksAdded; }
-		|        }
-		|
 		|        public bool IsReadOnly
 		|        {
 		|            get { return M_LinkCollection.IsReadOnly; }
 		|        }
 		|
+		|        public bool LinksAdded
+		|        {
+		|            get
+		|            {
+		|                if (M_LinkCollection.Count > 0)
+		|                {
+		|                    return true;
+		|                }
+		|                return false;
+		|            }
+		|        }
+		|
+		|        public virtual object this[int index]
+		|        {
+		|            get { return M_LinkCollection[index]; }
+		|            set { M_LinkCollection[index] = (System.Windows.Forms.LinkLabel.Link)value; }
+		|        }
 		|
 		|        public int Add(osf.Link p1)
 		|        {
@@ -25260,12 +39764,6 @@
 		|        public void RemoveAt(int p1)
 		|        {
 		|            M_LinkCollection.RemoveAt(p1);
-		|        }
-		|
-		|        public virtual object this[int index]
-		|        {
-		|            get { return M_LinkCollection[index]; }
-		|            set { M_LinkCollection[index] = (System.Windows.Forms.LinkLabel.Link)value; }
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -25412,7 +39910,7 @@
 		|            set
 		|            {
 		|                M_ToolBarButton.Enabled = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -25892,7 +40390,7 @@
 		|            {
 		|                M_UserControl.Text = value;
 		|                M_UserControl.Invalidate();
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -25903,7 +40401,7 @@
 		|            {
 		|                M_Value = value;
 		|                M_UserControl.Invalidate();
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|    }//endClass
@@ -25986,7 +40484,7 @@
 		|            set
 		|            {
 		|                M_NotifyIcon.Icon = (System.Drawing.Icon)value.M_Icon;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -25996,7 +40494,7 @@
 		|            set
 		|            {
 		|                M_NotifyIcon.Text = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -26006,7 +40504,7 @@
 		|            set
 		|            {
 		|                M_NotifyIcon.Visible = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -26461,6 +40959,12 @@
 		|        {
 		|            M_Timer.Stop();
 		|        }
+		|		
+		|        public bool Enabled
+		|        {
+		|            get { return M_Timer.Enabled; }
+		|            set { M_Timer.Enabled = value; }
+		|        }
 		|
 		|        public void M_Timer_Tick1(object sender, System.EventArgs e)
 		|        {
@@ -26601,13 +41105,13 @@
 		|            if (p1 is TreeNode)
 		|            {
 		|                M_TreeNodeCollection.Add((System.Windows.Forms.TreeNode)((TreeNode)p1).M_TreeNode);
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|                return (TreeNode)p1;
 		|            }
 		|            TreeNode TreeNode1 = new TreeNode();
 		|            TreeNode1.Text = Convert.ToString(p1);
 		|            M_TreeNodeCollection.Add((System.Windows.Forms.TreeNode)((TreeNode)TreeNode1).M_TreeNode);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|            return TreeNode1;
 		|        }
 		|
@@ -26679,7 +41183,7 @@
 		|        public void BeginEdit()
 		|        {
 		|            M_TreeNode.BeginEdit();
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public bool Checked
@@ -26791,6 +41295,7 @@
 		|        public string BeforeExpand;
 		|        public string BeforeLabelEdit;
 		|        public string BeforeSelect;
+		|        private int selectedImageIndex;		
 		|
 		|        public TreeView()
 		|        {
@@ -26806,6 +41311,7 @@
 		|            BeforeExpand = """";
 		|            BeforeLabelEdit = """";
 		|            BeforeSelect = """";
+		|            selectedImageIndex = -1;
 		|        }
 		|
 		|        public TreeView(osf.TreeView p1)
@@ -26838,11 +41344,7 @@
 		|            BeforeExpand = """";
 		|            BeforeLabelEdit = """";
 		|            BeforeSelect = """";
-		|        }
-		|
-		|        public override void BeginUpdate()
-		|        {
-		|            M_TreeView.BeginUpdate();
+		|            selectedImageIndex = -1;
 		|        }
 		|
 		|        public int BorderStyle
@@ -26855,11 +41357,6 @@
 		|        {
 		|            get { return M_TreeView.CheckBoxes; }
 		|            set { M_TreeView.CheckBoxes = value; }
-		|        }
-		|
-		|        public override void EndUpdate()
-		|        {
-		|            M_TreeView.EndUpdate();
 		|        }
 		|
 		|        public bool FullRowSelect
@@ -26938,8 +41435,14 @@
 		|
 		|        public int SelectedImageIndex
 		|        {
-		|            get { return M_TreeView.SelectedImageIndex; }
-		|            set { M_TreeView.SelectedImageIndex = value; }
+		|            get { return selectedImageIndex; }
+		|            set 
+		|            {
+		|                // В документации к MONO SelectedImageIndex всегда равен -1
+		|                // поэтому пишем свой код.
+		|                // в событии AfterSelect сами устанавливаем для узла изображение
+		|                selectedImageIndex = value; 
+		|            }
 		|        }
 		|
 		|        public osf.TreeNode SelectedNode
@@ -27000,6 +41503,24 @@
 		|
 		|        public void M_TreeView_AfterSelect(object sender, System.Windows.Forms.TreeViewEventArgs e)
 		|        {
+		|		
+		|            // Установим изображение для узла согласно заданному SelectedImageIndex
+		|            if (e.Node.SelectedImageIndex < 0)
+		|            {
+		|                e.Node.SelectedImageIndex = SelectedImageIndex;
+		|            }
+		|            else
+		|            {
+		|                if (e.Node.ImageIndex < 0)
+		|                {
+		|                    e.Node.ImageIndex = ImageIndex;
+		|                }
+		|            }
+		|            if (e.Node.ImageIndex < 0)
+		|            {
+		|                e.Node.ImageIndex = ImageIndex;
+		|            }
+		|		
 		|            if (AfterSelect.Length > 0)
 		|            {
 		|                TreeViewEventArgs TreeViewEventArgs1 = new TreeViewEventArgs();
@@ -27244,7 +41765,7 @@
 		|            set
 		|            {
 		|                M_MonthCalendar.SelectionStart = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -27254,7 +41775,7 @@
 		|            set
 		|            {
 		|                M_MonthCalendar.SelectionEnd = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -27276,7 +41797,7 @@
 		|            set
 		|            {
 		|                M_MonthCalendar.MaxDate = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -27286,7 +41807,7 @@
 		|            set
 		|            {
 		|                M_MonthCalendar.MinDate = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -27572,7 +42093,7 @@
 		|            set
 		|            {
 		|                M_TextBox.AcceptsReturn = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -27627,14 +42148,14 @@
 		|            set
 		|            {
 		|                M_TextBoxBase.AcceptsTab = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
 		|        public void AppendText(string text)
 		|        {
 		|            M_TextBoxBase.AppendText(text);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public bool AutoSize
@@ -27643,7 +42164,7 @@
 		|            set
 		|            {
 		|                M_TextBoxBase.AutoSize = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -27653,7 +42174,7 @@
 		|            set
 		|            {
 		|                M_TextBoxBase.BorderStyle = (System.Windows.Forms.BorderStyle)value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -27665,13 +42186,13 @@
 		|        public void Copy()
 		|        {
 		|            M_TextBoxBase.Copy();
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public void Cut()
 		|        {
 		|            M_TextBoxBase.Cut();
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public bool HideSelection
@@ -27680,7 +42201,7 @@
 		|            set
 		|            {
 		|                M_TextBoxBase.HideSelection = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -27690,7 +42211,7 @@
 		|            set
 		|            {
 		|                M_TextBoxBase.MaxLength = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -27700,7 +42221,7 @@
 		|            set
 		|            {
 		|                M_TextBoxBase.Modified = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -27710,7 +42231,7 @@
 		|            set
 		|            {
 		|                M_TextBoxBase.Multiline = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -27722,7 +42243,7 @@
 		|        public void Paste()
 		|        {
 		|            M_TextBoxBase.Paste();
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public bool ReadOnly
@@ -27731,20 +42252,20 @@
 		|            set
 		|            {
 		|                M_TextBoxBase.ReadOnly = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
 		|        public void ScrollToCaret()
 		|        {
 		|            M_TextBoxBase.ScrollToCaret();
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public void SelectAll()
 		|        {
 		|            M_TextBoxBase.SelectAll();
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public string SelectedText
@@ -27753,7 +42274,7 @@
 		|            set
 		|            {
 		|                M_TextBoxBase.SelectedText = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -27763,7 +42284,7 @@
 		|            set
 		|            {
 		|                M_TextBoxBase.SelectionLength = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -27773,7 +42294,7 @@
 		|            set
 		|            {
 		|                M_TextBoxBase.SelectionStart = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -27785,7 +42306,7 @@
 		|        public void Undo()
 		|        {
 		|            M_TextBoxBase.Undo();
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public bool WordWrap
@@ -27794,7 +42315,7 @@
 		|            set
 		|            {
 		|                M_TextBoxBase.WordWrap = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|    }//endClass
@@ -28116,13 +42637,13 @@
 		|            if (item is ListViewSubItem)
 		|            {
 		|                M_ListViewSubItemCollection.Add((((ListViewSubItem)item).M_ListViewSubItem));
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|                return (ListViewSubItem)item;
 		|            }
 		|            ListViewSubItem ListViewSubItem1 = new ListViewSubItem("""");
 		|            ListViewSubItem1.Text = Convert.ToString(item);
 		|            M_ListViewSubItemCollection.Add(ListViewSubItem1.M_ListViewSubItem);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|            return (ListViewSubItem)ListViewSubItem1;
 		|        }
 		|
@@ -28181,7 +42702,7 @@
 		|            set
 		|            {
 		|                M_ListViewSubItem.BackColor = value.M_Color;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -28203,7 +42724,7 @@
 		|            set
 		|            {
 		|                M_ListViewSubItem.Tag = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -28213,7 +42734,7 @@
 		|            set
 		|            {
 		|                M_ListViewSubItem.Text = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|    }//endClass
@@ -28281,13 +42802,13 @@
 		|            if (item is ListViewItem)
 		|            {
 		|                M_ListViewItemCollection.Add((ListViewItemEx)((ListViewItem)item).M_ListViewItem);
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|                return (ListViewItem)item;
 		|            }
 		|            ListViewItem ListViewItem1 = new ListViewItem("""", -1);
 		|            ListViewItem1.Text = Convert.ToString(item);
 		|            M_ListViewItemCollection.Add((ListViewItemEx)ListViewItem1.M_ListViewItem);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|            return (ListViewItem)ListViewItem1;
 		|        }
 		|
@@ -28305,7 +42826,7 @@
 		|        public void Remove(ListViewItem item)
 		|        {
 		|            M_ListViewItemCollection.Remove((System.Windows.Forms.ListViewItem)item.M_ListViewItem);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public override object Current
@@ -28332,18 +42853,18 @@
 		|        public ClListViewItem dll_obj;
 		|        public ListViewItemEx M_ListViewItem;
 		|
+		|        public ListViewItem(osf.ListViewItem p1)
+		|        {
+		|            M_ListViewItem = p1.M_ListViewItem;
+		|            M_ListViewItem.M_Object = this;
+		|        }
+		|
 		|        public ListViewItem(string text = """", int imageIndex = -1)
 		|        {
 		|            M_ListViewItem = new ListViewItemEx();
 		|            M_ListViewItem.M_Object = this;
 		|            M_ListViewItem.Text = text;
 		|            M_ListViewItem.ImageIndex = imageIndex;
-		|        }
-		|
-		|        public ListViewItem(osf.ListViewItem p1)
-		|        {
-		|            M_ListViewItem = p1.M_ListViewItem;
-		|            M_ListViewItem.M_Object = this;
 		|        }
 		|
 		|        public ListViewItem(System.Windows.Forms.ListViewItem p1)
@@ -28358,14 +42879,8 @@
 		|            set
 		|            {
 		|                M_ListViewItem.BackColor = value.M_Color;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
-		|        }
-		|
-		|        public void BeginEdit()
-		|        {
-		|            M_ListViewItem.BeginEdit();
-		|            System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public osf.Rectangle Bounds
@@ -28379,14 +42894,8 @@
 		|            set
 		|            {
 		|                M_ListViewItem.Checked = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
-		|        }
-		|
-		|        public void EnsureVisible()
-		|        {
-		|            M_ListViewItem.EnsureVisible();
-		|            System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public bool Focused
@@ -28395,7 +42904,7 @@
 		|            set
 		|            {
 		|                M_ListViewItem.Focused = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -28405,7 +42914,7 @@
 		|            set
 		|            {
 		|                M_ListViewItem.Font = value.M_Font;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -28415,7 +42924,7 @@
 		|            set
 		|            {
 		|                M_ListViewItem.ForeColor = value.M_Color;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -28425,7 +42934,7 @@
 		|            set
 		|            {
 		|                M_ListViewItem.ImageIndex = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -28439,19 +42948,13 @@
 		|            get { return M_ListViewItem.Index; }
 		|        }
 		|
-		|        public void Remove()
-		|        {
-		|            M_ListViewItem.Remove();
-		|            System.Windows.Forms.Application.DoEvents();
-		|        }
-		|
 		|        public bool Selected
 		|        {
 		|            get { return M_ListViewItem.Selected; }
 		|            set
 		|            {
 		|                M_ListViewItem.Selected = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -28466,7 +42969,7 @@
 		|            set
 		|            {
 		|                M_ListViewItem.Tag = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -28476,7 +42979,7 @@
 		|            set
 		|            {
 		|                M_ListViewItem.Text = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -28486,8 +42989,26 @@
 		|            set
 		|            {
 		|                M_ListViewItem.UseItemStyleForSubItems = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
+		|        }
+		|
+		|        public void BeginEdit()
+		|        {
+		|            M_ListViewItem.BeginEdit();
+		|            //System.Windows.Forms.Application.DoEvents();
+		|        }
+		|
+		|        public void EnsureVisible()
+		|        {
+		|            M_ListViewItem.EnsureVisible();
+		|            //System.Windows.Forms.Application.DoEvents();
+		|        }
+		|
+		|        public void Remove()
+		|        {
+		|            M_ListViewItem.Remove();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -28519,7 +43040,7 @@
 		|            if (column is ColumnHeader)
 		|            {
 		|                M_ColumnHeaderCollection.Add((ColumnHeaderEx)((ColumnHeader)column).M_ColumnHeader);
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|                return (ColumnHeader)column;
 		|            }
 		|            ColumnHeader ColumnHeader1 = new ColumnHeader();
@@ -28528,7 +43049,7 @@
 		|                ColumnHeader1.Text = Convert.ToString(column);
 		|            }
 		|            M_ColumnHeaderCollection.Add((ColumnHeaderEx)ColumnHeader1.M_ColumnHeader);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|            return ColumnHeader1;
 		|        }
 		|
@@ -28606,17 +43127,17 @@
 		|
 		|    public class ListView : Control
 		|    {
+		|        public string AfterLabelEdit;
+		|        public bool AllowSorting;
+		|        public string BeforeLabelEdit;
+		|        public string ColumnClick;
 		|        public ClListView dll_obj;
+		|        public string ItemActivate;
+		|        public string ItemCheck;
+		|        public ListViewEx M_ListView;
+		|        public string SelectedIndexChanged;
 		|        public osf.ColumnHeader SortedColumn;
 		|        public int SortOrder;
-		|        public bool AllowSorting;
-		|        public string AfterLabelEdit;
-		|        public string BeforeLabelEdit;
-		|        public string SelectedIndexChanged;
-		|        public string ColumnClick;
-		|        public string ItemCheck;
-		|        public string ItemActivate;
-		|        public ListViewEx M_ListView;
 		|
 		|        public ListView()
 		|        {
@@ -28684,128 +43205,6 @@
 		|            ItemActivate = """";
 		|        }
 		|
-		|        public void M_ListView_BeforeLabelEdit(object sender, System.Windows.Forms.LabelEditEventArgs e)
-		|        {
-		|            if (BeforeLabelEdit.Length > 0)
-		|            {
-		|                LabelEditEventArgs LabelEditEventArgs1 = new LabelEditEventArgs();
-		|                LabelEditEventArgs1.EventString = BeforeLabelEdit;
-		|                LabelEditEventArgs1.Sender = this;
-		|                LabelEditEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.BeforeLabelEdit);
-		|                LabelEditEventArgs1.CancelEdit = e.CancelEdit;
-		|                LabelEditEventArgs1.Item = e.Item;
-		|                LabelEditEventArgs1.Label = e.Label;
-		|                ClLabelEditEventArgs ClLabelEditEventArgs1 = new ClLabelEditEventArgs(LabelEditEventArgs1);
-		|                OneScriptForms.Event = ClLabelEditEventArgs1;
-		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.BeforeLabelEdit);
-		|                e.CancelEdit = LabelEditEventArgs1.CancelEdit;
-		|            }
-		|        }
-		|
-		|        private void M_ListView_ItemActivate(object sender, System.EventArgs e)
-		|        {
-		|            if (ItemActivate.Length > 0)
-		|            {
-		|                EventArgs EventArgs1 = new EventArgs();
-		|                EventArgs1.EventString = ItemActivate;
-		|                EventArgs1.Sender = this;
-		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.ItemActivate);
-		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
-		|                OneScriptForms.Event = ClEventArgs1;
-		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.ItemActivate);
-		|            }
-		|        }
-		|
-		|        public void M_ListView_ItemCheck(object sender, System.Windows.Forms.ItemCheckEventArgs e)
-		|        {
-		|            if (ItemCheck.Length > 0)
-		|            {
-		|                ItemCheckEventArgs ItemCheckEventArgs1 = new ItemCheckEventArgs();
-		|                ItemCheckEventArgs1.EventString = ItemCheck;
-		|                ItemCheckEventArgs1.Sender = this;
-		|                ItemCheckEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.ItemCheck);
-		|                ItemCheckEventArgs1.CurrentValue = (int)e.CurrentValue;
-		|                ItemCheckEventArgs1.Index = e.Index;
-		|                ItemCheckEventArgs1.NewValue = (int)e.NewValue;
-		|                ClItemCheckEventArgs ClItemCheckEventArgs1 = new ClItemCheckEventArgs(ItemCheckEventArgs1);
-		|                OneScriptForms.Event = ClItemCheckEventArgs1;
-		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.ItemCheck);
-		|            }
-		|        }
-		|
-		|        private void M_ListView_SelectedIndexChanged(object sender, System.EventArgs e)
-		|        {
-		|            if (SelectedIndexChanged.Length > 0)
-		|            {
-		|                EventArgs EventArgs1 = new EventArgs();
-		|                EventArgs1.EventString = SelectedIndexChanged;
-		|                EventArgs1.Sender = this;
-		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.SelectedIndexChanged);
-		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
-		|                OneScriptForms.Event = ClEventArgs1;
-		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.SelectedIndexChanged);
-		|            }
-		|        }
-		|
-		|        private void M_ListView_ColumnClick(object sender, System.Windows.Forms.ColumnClickEventArgs e)
-		|        {
-		|            if (ColumnClick.Length > 0)
-		|            {
-		|                ColumnClickEventArgs ColumnClickEventArgs1 = new ColumnClickEventArgs();
-		|                ColumnClickEventArgs1.EventString = ColumnClick;
-		|                ColumnClickEventArgs1.Sender = this;
-		|                ColumnClickEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.ColumnClick);
-		|                ColumnClickEventArgs1.Column = e.Column;
-		|                ClColumnClickEventArgs ClColumnClickEventArgs1 = new ClColumnClickEventArgs(ColumnClickEventArgs1);
-		|                OneScriptForms.Event = ClColumnClickEventArgs1;
-		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.ColumnClick);
-		|            }
-		|            if (!AllowSorting)
-		|            {
-		|                return;
-		|            }
-		|            if (SortedColumn == null)
-		|            {
-		|                SortedColumn = Columns[e.Column];
-		|            }
-		|            else if (SortedColumn.Index != e.Column)
-		|            {
-		|                SortedColumn = Columns[e.Column];
-		|            }
-		|            if (Sorting == (int)System.Windows.Forms.SortOrder.None)
-		|            {
-		|                Sorting = (int)System.Windows.Forms.SortOrder.Ascending;
-		|            }
-		|            else if (Sorting == (int)System.Windows.Forms.SortOrder.Ascending)
-		|            {
-		|                Sorting = (int)System.Windows.Forms.SortOrder.Descending;
-		|            }
-		|            else
-		|            {
-		|                Sorting = (int)System.Windows.Forms.SortOrder.Ascending;
-		|            }
-		|            M_ListView.ListViewItemSorter = new ListViewItemSorter(Sorting, this);
-		|            M_ListView.ListViewItemSorter = null;
-		|        }
-		|
-		|        public void M_ListView_AfterLabelEdit(object sender, System.Windows.Forms.LabelEditEventArgs e)
-		|        {
-		|            if (AfterLabelEdit.Length > 0)
-		|            {
-		|                LabelEditEventArgs LabelEditEventArgs1 = new LabelEditEventArgs();
-		|                LabelEditEventArgs1.EventString = AfterLabelEdit;
-		|                LabelEditEventArgs1.Sender = this;
-		|                LabelEditEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.AfterLabelEdit);
-		|                LabelEditEventArgs1.CancelEdit = e.CancelEdit;
-		|                LabelEditEventArgs1.Label = e.Label;
-		|                LabelEditEventArgs1.Item = e.Item;
-		|                ClLabelEditEventArgs ClLabelEditEventArgs1 = new ClLabelEditEventArgs(LabelEditEventArgs1);
-		|                OneScriptForms.Event = ClLabelEditEventArgs1;
-		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.AfterLabelEdit);
-		|                e.CancelEdit = LabelEditEventArgs1.CancelEdit;
-		|            }
-		|        }
-		|
 		|        public int Activation
 		|        {
 		|            get { return (int)M_ListView.Activation; }
@@ -28830,12 +43229,6 @@
 		|            set { M_ListView.AutoArrange = value; }
 		|        }
 		|
-		|        public override void BeginUpdate()
-		|        {
-		|            M_ListView.BeginUpdate();
-		|            System.Windows.Forms.Application.DoEvents();
-		|        }
-		|
 		|        public int BorderStyle
 		|        {
 		|            get { return (int)M_ListView.BorderStyle; }
@@ -28858,17 +43251,6 @@
 		|            get { return new ListViewColumnHeaderCollection(M_ListView.Columns); }
 		|        }
 		|
-		|        public override void EndUpdate()
-		|        {
-		|            M_ListView.EndUpdate();
-		|            System.Windows.Forms.Application.DoEvents();
-		|        }
-		|
-		|        public void EnsureVisible(int index)
-		|        {
-		|            M_ListView.EnsureVisible(index);
-		|        }
-		|
 		|        public osf.ListViewItem FocusedItem
 		|        {
 		|            get
@@ -28885,16 +43267,6 @@
 		|        {
 		|            get { return M_ListView.FullRowSelect; }
 		|            set { M_ListView.FullRowSelect = value; }
-		|        }
-		|
-		|        public osf.ListViewItem GetItemAt(int x, int y)
-		|        {
-		|            System.Windows.Forms.ListViewItem item = M_ListView.GetItemAt(x, y);
-		|            if (item != null)
-		|            {
-		|                return ((ListViewItemEx)item).M_Object;
-		|            }
-		|            return null;
 		|        }
 		|
 		|        public bool GridLines
@@ -28956,14 +43328,14 @@
 		|            set { M_ListView.Scrollable = value; }
 		|        }
 		|
-		|        public osf.ListViewSelectedItemCollection SelectedItems
-		|        {
-		|            get { return new ListViewSelectedItemCollection(M_ListView.SelectedItems); }
-		|        }
-		|
 		|        public object SelectedIndices
 		|        {
 		|            get { return (object)""""; }
+		|        }
+		|
+		|        public osf.ListViewSelectedItemCollection SelectedItems
+		|        {
+		|            get { return new ListViewSelectedItemCollection(M_ListView.SelectedItems); }
 		|        }
 		|
 		|        public osf.ImageList SmallImageList
@@ -28971,23 +43343,14 @@
 		|            get
 		|            {
 		|                ImageList ImageList1 = new ImageList(M_ListView.SmallImageList);
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|                return ImageList1;
 		|            }
 		|            set
 		|            {
 		|                M_ListView.SmallImageList = value.M_ImageList;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
-		|        }
-		|
-		|        public void Sort(ColumnHeader column, int order)
-		|        {
-		|            SortedColumn = column;
-		|            SortOrder = order;
-		|            M_ListView.ListViewItemSorter = new ListViewItemSorter(SortOrder, this);
-		|            M_ListView.ListViewItemSorter = (IComparer)null;
-		|            System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public int Sorting
@@ -29001,13 +43364,171 @@
 		|            get { return (int)M_ListView.View; }
 		|            set { M_ListView.View = (System.Windows.Forms.View)value; }
 		|        }
+		|
+		|        public void EnsureVisible(int index)
+		|        {
+		|            M_ListView.EnsureVisible(index);
+		|        }
+		|
+		|        public osf.ListViewItem GetItemAt(int x, int y)
+		|        {
+		|            System.Windows.Forms.ListViewItem item = M_ListView.GetItemAt(x, y);
+		|            if (item != null)
+		|            {
+		|                return ((ListViewItemEx)item).M_Object;
+		|            }
+		|            return null;
+		|        }
+		|
+		|        public void M_ListView_AfterLabelEdit(object sender, System.Windows.Forms.LabelEditEventArgs e)
+		|        {
+		|            if (AfterLabelEdit.Length > 0)
+		|            {
+		|                LabelEditEventArgs LabelEditEventArgs1 = new LabelEditEventArgs();
+		|                LabelEditEventArgs1.EventString = AfterLabelEdit;
+		|                LabelEditEventArgs1.Sender = this;
+		|                LabelEditEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.AfterLabelEdit);
+		|                LabelEditEventArgs1.CancelEdit = e.CancelEdit;
+		|                LabelEditEventArgs1.Label = e.Label;
+		|                LabelEditEventArgs1.Item = e.Item;
+		|                ClLabelEditEventArgs ClLabelEditEventArgs1 = new ClLabelEditEventArgs(LabelEditEventArgs1);
+		|                OneScriptForms.Event = ClLabelEditEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.AfterLabelEdit);
+		|                e.CancelEdit = LabelEditEventArgs1.CancelEdit;
+		|            }
+		|        }
+		|
+		|        public void M_ListView_BeforeLabelEdit(object sender, System.Windows.Forms.LabelEditEventArgs e)
+		|        {
+		|            if (BeforeLabelEdit.Length > 0)
+		|            {
+		|                LabelEditEventArgs LabelEditEventArgs1 = new LabelEditEventArgs();
+		|                LabelEditEventArgs1.EventString = BeforeLabelEdit;
+		|                LabelEditEventArgs1.Sender = this;
+		|                LabelEditEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.BeforeLabelEdit);
+		|                LabelEditEventArgs1.CancelEdit = e.CancelEdit;
+		|                LabelEditEventArgs1.Item = e.Item;
+		|                LabelEditEventArgs1.Label = e.Label;
+		|                ClLabelEditEventArgs ClLabelEditEventArgs1 = new ClLabelEditEventArgs(LabelEditEventArgs1);
+		|                OneScriptForms.Event = ClLabelEditEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.BeforeLabelEdit);
+		|                e.CancelEdit = LabelEditEventArgs1.CancelEdit;
+		|            }
+		|        }
+		|
+		|        private void M_ListView_ColumnClick(object sender, System.Windows.Forms.ColumnClickEventArgs e)
+		|        {
+		|            if (ColumnClick.Length > 0)
+		|            {
+		|                ColumnClickEventArgs ColumnClickEventArgs1 = new ColumnClickEventArgs();
+		|                ColumnClickEventArgs1.EventString = ColumnClick;
+		|                ColumnClickEventArgs1.Sender = this;
+		|                ColumnClickEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.ColumnClick);
+		|                ColumnClickEventArgs1.Column = e.Column;
+		|                ClColumnClickEventArgs ClColumnClickEventArgs1 = new ClColumnClickEventArgs(ColumnClickEventArgs1);
+		|                OneScriptForms.Event = ClColumnClickEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.ColumnClick);
+		|            }
+		|            if (!AllowSorting)
+		|            {
+		|                return;
+		|            }
+		|            if (SortedColumn == null)
+		|            {
+		|                SortedColumn = Columns[e.Column];
+		|            }
+		|            else if (SortedColumn.Index != e.Column)
+		|            {
+		|                SortedColumn = Columns[e.Column];
+		|            }
+		|            if (Sorting == (int)System.Windows.Forms.SortOrder.None)
+		|            {
+		|                Sorting = (int)System.Windows.Forms.SortOrder.Ascending;
+		|            }
+		|            else if (Sorting == (int)System.Windows.Forms.SortOrder.Ascending)
+		|            {
+		|                Sorting = (int)System.Windows.Forms.SortOrder.Descending;
+		|            }
+		|            else
+		|            {
+		|                Sorting = (int)System.Windows.Forms.SortOrder.Ascending;
+		|            }
+		|            M_ListView.ListViewItemSorter = new ListViewItemSorter(Sorting, this);
+		|            M_ListView.ListViewItemSorter = null;
+		|        }
+		|
+		|        private void M_ListView_ItemActivate(object sender, System.EventArgs e)
+		|        {
+		|            if (ItemActivate.Length > 0)
+		|            {
+		|                EventArgs EventArgs1 = new EventArgs();
+		|                EventArgs1.EventString = ItemActivate;
+		|                EventArgs1.Sender = this;
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.ItemActivate);
+		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.ItemActivate);
+		|            }
+		|        }
+		|
+		|        public void M_ListView_ItemCheck(object sender, System.Windows.Forms.ItemCheckEventArgs e)
+		|        {
+		|            if (ItemCheck.Length > 0)
+		|            {
+		|                ItemCheckEventArgs ItemCheckEventArgs1 = new ItemCheckEventArgs();
+		|                ItemCheckEventArgs1.EventString = ItemCheck;
+		|                ItemCheckEventArgs1.Sender = this;
+		|                ItemCheckEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.ItemCheck);
+		|                ItemCheckEventArgs1.CurrentValue = (int)e.CurrentValue;
+		|                ItemCheckEventArgs1.Index = e.Index;
+		|                ItemCheckEventArgs1.NewValue = (int)e.NewValue;
+		|                ClItemCheckEventArgs ClItemCheckEventArgs1 = new ClItemCheckEventArgs(ItemCheckEventArgs1);
+		|                OneScriptForms.Event = ClItemCheckEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.ItemCheck);
+		|            }
+		|        }
+		|
+		|        private void M_ListView_SelectedIndexChanged(object sender, System.EventArgs e)
+		|        {
+		|            if (SelectedIndexChanged.Length > 0)
+		|            {
+		|                EventArgs EventArgs1 = new EventArgs();
+		|                EventArgs1.EventString = SelectedIndexChanged;
+		|                EventArgs1.Sender = this;
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.SelectedIndexChanged);
+		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.SelectedIndexChanged);
+		|            }
+		|        }
+		|
+		|        public void Sort(ColumnHeader column, int order)
+		|        {
+		|            SortedColumn = column;
+		|            SortOrder = order;
+		|            M_ListView.ListViewItemSorter = new ListViewItemSorter(SortOrder, this);
+		|            M_ListView.ListViewItemSorter = (IComparer)null;
+		|            //System.Windows.Forms.Application.DoEvents();
+		|        }
+		|
+		|        public override void BeginUpdate()
+		|        {
+		|            M_ListView.BeginUpdate();
+		|            //System.Windows.Forms.Application.DoEvents();
+		|        }
+		|
+		|        public override void EndUpdate()
+		|        {
+		|            M_ListView.EndUpdate();
+		|            //System.Windows.Forms.Application.DoEvents();
+		|        }
 		|    }//endClass
 		|
 		|    public class ListViewItemSorter : IComparer
 		|    {
 		|        private int col;
-		|        private int sortOrder;
 		|        public osf.ListView owner;
+		|        private int sortOrder;
 		|
 		|        public ListViewItemSorter(int Sorting, osf.ListView p1)
 		|        {
@@ -29075,7 +43596,7 @@
 		|                {
 		|                    num = 1;
 		|                }
-		|                else if(DateTime1 == null && DateTime2 != null)
+		|                else if (DateTime1 == null && DateTime2 != null)
 		|                {
 		|                    num = -1;
 		|                }
@@ -29221,7 +43742,7 @@
 		|            {
 		|                M_DataRowView[(int)index] = item;
 		|            }
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -29352,14 +43873,14 @@
 		|        public new object Add(object item)
 		|        {
 		|            M_ListBoxObjectCollection.Add(item);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|            return item;
 		|        }
 		|
 		|        public new object Insert(int index, object item)
 		|        {
 		|            M_ListBoxObjectCollection.Insert(index, item);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|            return item;
 		|        }
 		|
@@ -29371,7 +43892,7 @@
 		|        public new void Remove(object item)
 		|        {
 		|            M_ListBoxObjectCollection.Remove(item);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public override object Current
@@ -29418,7 +43939,7 @@
 		|            set
 		|            {
 		|                M_ForeColor = value.M_Color;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -29439,7 +43960,7 @@
 		|            set
 		|            {
 		|                M_Value = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -29460,7 +43981,7 @@
 		|            set
 		|            {
 		|                M_Text = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -29731,7 +44252,7 @@
 		|            set
 		|            {
 		|                M_ListBox.SelectedItem = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -29825,7 +44346,7 @@
 		|                {
 		|                    M_ListControl.DataSource = value;
 		|                }
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -29835,7 +44356,7 @@
 		|            set
 		|            {
 		|                M_ListControl.DisplayMember = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -29845,7 +44366,7 @@
 		|            set
 		|            {
 		|                M_ListControl.SelectedValue = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -29855,7 +44376,7 @@
 		|            set
 		|            {
 		|                M_ListControl.ValueMember = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|    }//endClass
@@ -29878,7 +44399,7 @@
 		|            M_ImageList = new System.Windows.Forms.ImageList();
 		|            OneScriptForms.AddToHashtable(M_ImageList, this);
 		|        }
-		|		
+		|
 		|        public ImageList(osf.ImageList p1)
 		|        {
 		|            M_ImageList = p1.M_ImageList;
@@ -30246,7 +44767,7 @@
 		|            if (page is TabPage)
 		|            {
 		|                M_TabPageCollection.Insert(index, ((dynamic)page).M_TabPage);
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|                return (TabPage)page;
 		|            }
 		|            if (!(page is string))
@@ -30339,6 +44860,11 @@
 		|        {
 		|            get { return (int)M_Panel.BorderStyle; }
 		|            set { M_Panel.BorderStyle = (System.Windows.Forms.BorderStyle)value; }
+		|        }
+		|		
+		|        public void SetRoundedShape(osf.Panel p1, int p2)
+		|        {
+		|            JonasKohl.Graphics.RoundRect.SetRoundedShape(p1.M_Panel, p2);
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -30524,7 +45050,7 @@
 		|            set
 		|            {
 		|                M_ScrollBar.LargeChange = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -30534,7 +45060,7 @@
 		|            set
 		|            {
 		|                M_ScrollBar.Maximum = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -30544,7 +45070,7 @@
 		|            set
 		|            {
 		|                M_ScrollBar.Minimum = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -30554,7 +45080,7 @@
 		|            set
 		|            {
 		|                M_ScrollBar.SmallChange = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -30564,7 +45090,7 @@
 		|            set
 		|            {
 		|                M_ScrollBar.Value = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|    }//endClass
@@ -30637,7 +45163,7 @@
 		|                menuItem = new MenuItem();
 		|            }
 		|            M_MenuItemCollection.Add(menuItem.M_MenuItem);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|            return menuItem;
 		|        }
 		|
@@ -30907,7 +45433,7 @@
 		|            M_MainMenu = new MainMenuEx();
 		|            M_MainMenu.M_Object = this;
 		|            base.M_Menu = M_MainMenu;
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public MainMenu(osf.MainMenu p1)
@@ -30915,7 +45441,7 @@
 		|            M_MainMenu = p1.M_MainMenu;
 		|            M_MainMenu.M_Object = this;
 		|            base.M_Menu = M_MainMenu;
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public MainMenu(System.Windows.Forms.MainMenu MainMenu)
@@ -30923,7 +45449,7 @@
 		|            M_MainMenu = (MainMenuEx)MainMenu;
 		|            M_MainMenu.M_Object = this;
 		|            base.M_Menu = M_MainMenu;
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public osf.Form GetForm()
@@ -31013,7 +45539,7 @@
 		|        public object Add(object value)
 		|        {
 		|            M_ArrayList.Add(value);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|            return value;
 		|        }
 		|
@@ -31284,7 +45810,7 @@
 		|            set
 		|            {
 		|                M_PictureBox.BorderStyle = (System.Windows.Forms.BorderStyle)value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -31295,7 +45821,7 @@
 		|            {
 		|                image = value;
 		|                M_PictureBox.Image = value.M_Image;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -31305,7 +45831,7 @@
 		|            set
 		|            {
 		|                M_PictureBox.SizeMode = (System.Windows.Forms.PictureBoxSizeMode)value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -31315,7 +45841,7 @@
 		|            set
 		|            {
 		|                M_PictureBox.BackgroundImageLayout = (System.Windows.Forms.ImageLayout)value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|    }//endClass
@@ -31746,13 +46272,13 @@
 		|        public void Clear(Color p1)
 		|        {
 		|            M_Graphics.Clear(p1.M_Color);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public void DrawEllipse(osf.Pen pen, float x, float y, float width, float height)
 		|        {
 		|            M_Graphics.DrawEllipse(pen.M_Pen, x, y, width, height);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public void DrawImage(osf.Image image, float dx, float dy, float dw, float dh, float sx = 0.0f, float sy = 0.0f, float sw = -1f, float sh = -1f)
@@ -31771,37 +46297,53 @@
 		|                sh = (float)image.Height;
 		|            }
 		|            M_Graphics.DrawImage(image.M_Image, Rectangle1, sx, sy, sw, sh, System.Drawing.GraphicsUnit.Pixel);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public void DrawLine(osf.Pen pen, float x1, float y1, float x2, float y2)
 		|        {
 		|            M_Graphics.DrawLine(pen.M_Pen, x1, y1, x2, y2);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public void DrawString(string str, osf.Font font, osf.Brush brush, float x, float y)
 		|        {
 		|            M_Graphics.DrawString(str, font.M_Font, (System.Drawing.Brush)brush.M_Brush, x, y);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public void DrawRectangle(osf.Pen pen, float x, float y, float width, float height)
 		|        {
 		|            M_Graphics.DrawRectangle(pen.M_Pen, x, y, width, height);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public void FillRectangle(osf.Brush brush, float x, float y, float width, float height)
 		|        {
 		|            M_Graphics.FillRectangle((System.Drawing.Brush)brush.M_Brush, x, y, width, height);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
+		|        }
+		|		
+		|        public void FillRoundRect(System.Drawing.Brush pBrush, System.Drawing.Rectangle r, System.Drawing.Color border, int radius)
+		|        {
+		|            JonasKohl.Graphics.RoundRect.FillRoundRect(this.M_Graphics, pBrush, r, border, radius);
+		|        }
+		|
+		|        public void DrawRoundRect(System.Drawing.Rectangle r, System.Drawing.Color color, int radius, int width)
+		|        {
+		|            JonasKohl.Graphics.RoundRect.DrawRoundRect(this.M_Graphics, r, color, radius, width);
+		|        }
+		|		
+		|        public void FillEllipse(osf.Brush brush, float x, float y, float width, float height)
+		|        {
+		|            M_Graphics.FillEllipse((System.Drawing.Brush)brush.M_Brush, x, y, width, height);
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public osf.Graphics FromImage(osf.Image p1)
 		|        {
 		|            Graphics Graphics1 = new Graphics(System.Drawing.Graphics.FromImage(p1.M_Image));
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|            return Graphics1;
 		|        }
 		|		
@@ -31877,7 +46419,15 @@
 		|
 		|        public int Count
 		|        {
-		|            get { return M_Collection.Count; }
+		|            get
+		|            {
+		|                int count = 0;;
+		|                foreach (var item in M_Collection)
+		|                {
+		|                    count = count + 1;
+		|                }
+		|                return count;
+		|            }
 		|        }
 		|
 		|        public object this[object index]
@@ -32272,6 +46822,157 @@
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
 		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "TreeViewAdvEventArgs" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class TreeViewAdvEventArgs : osf.EventArgs
+		|    {
+		|        public new ClTreeViewAdvEventArgs dll_obj;
+		|        private Aga.Controls.Tree.TreeNodeAdv node;
+		|
+		|        public TreeViewAdvEventArgs(Aga.Controls.Tree.TreeNodeAdv treeNodeAdv)
+		|        {
+		|            node = treeNodeAdv;
+		|        }
+		|		
+		|        public TreeViewAdvEventArgs(Aga.Controls.Tree.TreeViewAdvEventArgs args)
+		|        {
+		|            node = args.Node;
+		|        }
+		|
+		|        public Aga.Controls.Tree.TreeNodeAdv Node
+		|        {
+		|            get { return node; }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "ValueTreeViewAdvEventArgs" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class ValueTreeViewAdvEventArgs : osf.EventArgs
+		|    {
+		|        private object _newValue;
+		|        private object _oldValue;
+		|        private Aga.Controls.Tree.NodeControls.NodeControl _subject;
+		|        public new ClValueTreeViewAdvEventArgs dll_obj;
+		|
+		|        public ValueTreeViewAdvEventArgs(Aga.Controls.Tree.NodeControls.NodeControl subject, object oldLabel, object newLabel)
+		|        {
+		|            _newValue = newLabel;
+		|            _oldValue = oldLabel;
+		|            _subject = subject;
+		|        }
+		|
+		|        public object NewValue
+		|        {
+		|            get { return _newValue; }
+		|        }
+		|
+		|        public object OldValue
+		|        {
+		|            get { return _oldValue; }
+		|        }
+		|
+		|        public object Subject
+		|        {
+		|            get { return _subject; }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "TreeNodeAdvMouseEventArgs" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class TreeNodeAdvMouseEventArgs : osf.EventArgs
+		|    {
+		|        public new ClTreeNodeAdvMouseEventArgs dll_obj;
+		|        private Aga.Controls.Tree.TreeNodeAdv node;
+		|        private Aga.Controls.Tree.NodeControls.NodeControl control;
+		|        private osf.Point viewLocation;
+		|        private System.Windows.Forms.Keys modifierKeys;
+		|        private bool handled;
+		|        private osf.Rectangle controlBounds;
+		|
+		|        public TreeNodeAdvMouseEventArgs(Aga.Controls.Tree.TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            node = args.Node;
+		|            control = args.Control;
+		|            viewLocation = new Point(args.ViewLocation);
+		|            modifierKeys = args.ModifierKeys;
+		|            handled = args.Handled;
+		|            controlBounds = new Rectangle(args.ControlBounds);
+		|        }
+		|
+		|        public Aga.Controls.Tree.TreeNodeAdv Node
+		|        {
+		|            get { return node; }
+		|        }
+		|
+		|        public Aga.Controls.Tree.NodeControls.NodeControl Control
+		|        {
+		|            get { return control; }
+		|        }
+		|
+		|        public Point ViewLocation
+		|        {
+		|            get { return viewLocation; }
+		|        }
+		|
+		|        public System.Windows.Forms.Keys ModifierKeys
+		|        {
+		|            get { return modifierKeys; }
+		|        }
+		|
+		|        public bool Handled
+		|        {
+		|            get { return handled; }
+		|            set { handled = value; }
+		|        }
+		|
+		|        public Rectangle ControlBounds
+		|        {
+		|            get { return controlBounds; }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "TreeColumnEventArgs" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class TreeColumnEventArgs : osf.EventArgs
+		|    {
+		|        public new ClTreeColumnEventArgs dll_obj;
+		|        public osf.TreeColumn column;
+		|
+		|        public TreeColumnEventArgs(Aga.Controls.Tree.TreeColumn col)
+		|        {
+		|            column = ((TreeColumnEx)col).M_Object;
+		|        }
+		|
+		|        public osf.TreeColumn Column
+		|        {
+		|            get { return column; }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ColumnClickEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -32350,7 +47051,7 @@
 		|            Button1.Width = width;
 		|            Button1.Height = height;
 		|            M_ControlCollection.Add((System.Windows.Forms.Control)Button1.M_Button);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|            return Button1;
 		|        }
 		|
@@ -32374,13 +47075,13 @@
 		|        public void Remove(Control p1)
 		|        {
 		|            M_ControlCollection.Remove(p1.M_Control);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public void SetChildIndex(Control p1, int p2)
 		|        {
 		|            M_ControlCollection.SetChildIndex(p1.M_Control, p2);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public override object Current
@@ -32470,7 +47171,7 @@
 		|        public void RemoveAt(int Index)
 		|        {
 		|            List.RemoveAt(Index);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public virtual object SyncRoot
@@ -34324,12 +49025,14 @@
 		|            if (OneScriptForms.useMainForm && sender == OneScriptForms.FirstForm.Base_obj.M_Form)
 		|            {
 		|                OneScriptForms.goOn = false;
+		|                System.Windows.Forms.Application.Exit();
 		|            }
 		|
 		|            OneScriptForms.formsCollection.Remove(((dynamic)sender).M_Object.dll_obj);
 		|            if (OneScriptForms.formsCollection.CountForm == 0)
 		|            {
 		|                OneScriptForms.goOn = false;
+		|                System.Windows.Forms.Application.Exit();
 		|            }
 		|        }
 		|
@@ -34348,7 +49051,7 @@
 		|        public void Activate()
 		|        {
 		|            M_Form.Activate();
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public osf.Control AcceptButton
@@ -34388,7 +49091,7 @@
 		|            set
 		|            {
 		|                M_Form.AutoScaleBaseSize = value.M_Size;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34405,14 +49108,14 @@
 		|            set
 		|            {
 		|                M_Form.CancelButton = (IButtonControl)value.M_Control;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
 		|        public void Close()
 		|        {
 		|            M_Form.Close();
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public string Closing;
@@ -34423,7 +49126,7 @@
 		|            set
 		|            {
 		|                M_Form.ControlBox = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34433,7 +49136,7 @@
 		|            set
 		|            {
 		|                deactivate = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34443,7 +49146,7 @@
 		|            set
 		|            {
 		|                M_Form.DesktopLocation = value.M_Point;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34453,7 +49156,7 @@
 		|            set
 		|            {
 		|                M_Form.DialogResult = (System.Windows.Forms.DialogResult)value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34463,7 +49166,7 @@
 		|            set
 		|            {
 		|                M_Form.FormBorderStyle = (System.Windows.Forms.FormBorderStyle)value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34478,7 +49181,7 @@
 		|            set
 		|            {
 		|                M_Form.Icon = (System.Drawing.Icon)value.M_Icon;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34493,7 +49196,7 @@
 		|            set
 		|            {
 		|                M_Form.IsMdiContainer = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34503,14 +49206,14 @@
 		|            set
 		|            {
 		|                M_Form.KeyPreview = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
 		|        public void LayoutMdi(MdiLayout value)
 		|        {
 		|            M_Form.LayoutMdi((System.Windows.Forms.MdiLayout)value);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public new int Left
@@ -34520,7 +49223,7 @@
 		|            {
 		|                M_Form.Left = value;
 		|                M_Form.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34530,7 +49233,7 @@
 		|            set
 		|            {
 		|                load = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34540,7 +49243,7 @@
 		|            set
 		|            {
 		|                M_Form.MaximizeBox = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34550,7 +49253,7 @@
 		|            set
 		|            {
 		|                M_Form.MaximumSize = value.M_Size;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34560,7 +49263,7 @@
 		|            set
 		|            {
 		|                mdiChildActivate = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34570,7 +49273,7 @@
 		|            set
 		|            {
 		|                M_Form.Menu = (System.Windows.Forms.MainMenu)value.M_MainMenu;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34580,7 +49283,7 @@
 		|            set
 		|            {
 		|                M_Form.MinimizeBox = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34590,7 +49293,7 @@
 		|            set
 		|            {
 		|                M_Form.MinimumSize = value.M_Size;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34607,7 +49310,7 @@
 		|            set
 		|            {
 		|                M_Form.Owner = (System.Windows.Forms.Form)value.M_Form;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34624,7 +49327,7 @@
 		|            set
 		|            {
 		|                Form.SetParent(M_Form.Handle, ((Control)value).M_Control.Handle);
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34634,7 +49337,7 @@
 		|            set
 		|            {
 		|                resize = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34649,7 +49352,7 @@
 		|            set
 		|            {
 		|                M_Form.ShowInTaskbar = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34659,7 +49362,7 @@
 		|            set
 		|            {
 		|                M_Form.StartPosition = (System.Windows.Forms.FormStartPosition)value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34670,7 +49373,7 @@
 		|            {
 		|                M_Form.Top = value;
 		|                M_Form.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34680,7 +49383,7 @@
 		|            set
 		|            {
 		|                M_Form.TopMost = value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34690,7 +49393,7 @@
 		|            set
 		|            {
 		|                M_Form.TransparencyKey = value.M_Color;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -34700,7 +49403,7 @@
 		|            set
 		|            {
 		|                M_Form.WindowState = (System.Windows.Forms.FormWindowState)value;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|    }//endClass
@@ -34716,8 +49419,6 @@
 		|    public class Control : Component
 		|    {
 		|        private System.Windows.Forms.Control m_Control;
-		|		
-		|        [DllImport(""user32"", EntryPoint = ""SendMessageA"", CharSet = CharSet.Auto, SetLastError = true)] public static extern bool SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 		|		
 		|        public System.Windows.Forms.Control M_Control
 		|        {
@@ -35410,7 +50111,7 @@
 		|            set
 		|            {
 		|                M_Control.BackgroundImage = value.M_Image;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -35556,7 +50257,7 @@
 		|        public void ResetBackgroundImage()
 		|        {
 		|            M_Control.BackgroundImage = null;
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public void Select()
@@ -35580,9 +50281,9 @@
 		|
 		|        public virtual void EndUpdate()
 		|        {
-		|            SendMessage(M_Control.Handle, 11, -1, 0);
+		|            M_Control.ResumeLayout();
 		|            M_Control.Invalidate();
-		|            System.Windows.Forms.Application.DoEvents();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|
 		|        public void SendToBack()
@@ -35618,8 +50319,8 @@
 		|
 		|        public virtual void BeginUpdate()
 		|        {
-		|            SendMessage(M_Control.Handle, 11, 0, 0);
-		|            System.Windows.Forms.Application.DoEvents();
+		|            M_Control.SuspendLayout();
+		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
 		|		
 		|        public void Update()
@@ -35793,7 +50494,7 @@
 		|            {
 		|                image = value;
 		|                M_ButtonBase.Image = value.M_Image;
-		|                System.Windows.Forms.Application.DoEvents();
+		|                //System.Windows.Forms.Application.DoEvents();
 		|            }
 		|        }
 		|
@@ -35856,21 +50557,34 @@
 		Классы2Уровня = Новый СписокЗначений;
 		Классы3Уровня = Новый СписокЗначений;
 		
-		Если ВыбранныеФайлы[А].Имя = "ExtractIconClass.cs" Тогда
-			Продолжить;
-		КонецЕсли;
-		Если ВыбранныеФайлы[А].Имя = "FormsCollection.cs" Тогда
-			Продолжить;
-		КонецЕсли;
+		Если ВыбранныеФайлы[А].Имя = "ExtractIconClass.cs" или 
+			ВыбранныеФайлы[А].Имя = "FormsCollection.cs" или 
+			ВыбранныеФайлы[А].Имя = "DataGridViewGrouper.cs" или 
+			ВыбранныеФайлы[А].Имя = "DataGridViewGrouperControl.cs" или 
+			ВыбранныеФайлы[А].Имя = "TreeViewAdv.cs" или 
+			ВыбранныеФайлы[А].Имя = "TreeColumnCollection.cs" или 
+			ВыбранныеФайлы[А].Имя = "TreeNodeAdvCollection.cs" или 
+			ВыбранныеФайлы[А].Имя = "TreeNodeAdv.cs" или 
+			ВыбранныеФайлы[А].Имя = "NodeCheckBox.cs" или 
+			ВыбранныеФайлы[А].Имя = "NodeControlsCollection.cs" или 
+			ВыбранныеФайлы[А].Имя = "TreeViewAdvSupport.cs" или 
+			ВыбранныеФайлы[А].Имя = "NodeStateIcon.cs" или 
+			ВыбранныеФайлы[А].Имя = "NodeComboBox.cs" или 
+			ВыбранныеФайлы[А].Имя = "NodeDecimalTextBox.cs" или 
+			ВыбранныеФайлы[А].Имя = "NodeNumericUpDown.cs" или 
+			ВыбранныеФайлы[А].Имя = "NodeTextBox.cs" или 
+			ВыбранныеФайлы[А].Имя = "NodeComboBoxObjectCollection.cs" или 
+			ВыбранныеФайлы[А].Имя = "SelectedTreeNodeAdvCollection.cs" или 
+			ВыбранныеФайлы[А].Имя = "RoundRect.cs" или 
+			
+			
 		
-		
-		Если ВыбранныеФайлы[А].Имя = "DataGridViewGrouper.cs" Тогда
-			Продолжить;
-		КонецЕсли;
-		Если ВыбранныеФайлы[А].Имя = "DataGridViewGrouperControl.cs" Тогда
-			Продолжить;
-		КонецЕсли;
 
+			
+			ВыбранныеФайлы[А].Имя = "TreeColumn.cs" Тогда
+		
+			Продолжить;
+		КонецЕсли;
 		
 		
 		
@@ -36110,9 +50824,22 @@
 			
 			ТекстДок.УстановитьТекст(Стр);
 			ТекстДок.Записать(ВыбранныеФайлы[А].ПолноеИмя);
+		ИначеЕсли ВыбранныеФайлы[А].Имя = "TreeViewAdv.cs" Тогда
+			ТекстДок = Новый ТекстовыйДокумент;
+			ТекстДок.Прочитать(ВыбранныеФайлы[А].ПолноеИмя);
+			Стр = ТекстДок.ПолучитьТекст();
+			
+			ПодстрокаПоиска = "//endTreeViewAdv";
+			ПодстрокаЗамены = "";
+			Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+			
+			ТекстДок.УстановитьТекст(Стр);
+			ТекстДок.Записать(ВыбранныеФайлы[А].ПолноеИмя);
+			
 		Иначе
 			Продолжить;
 		КонецЕсли;
+
 	КонецЦикла;
 	
 	Сообщить("Найдено " + ВыбранныеФайлы.Количество());

@@ -145,9 +145,25 @@ namespace osf
         }
         
         [ContextMethod("ПолучитьПодсказку", "GetToolTip")]
-        public string GetToolTip(IValue p1)
+        public IValue GetToolTip(IValue p1)
         {
-            return Base_obj.GetToolTip(((dynamic)p1).Base_obj);
+            dynamic p3 = ((dynamic)p1).Base_obj;
+            if ((p3.GetType() == typeof(Aga.Controls.Tree.Node)) ||
+                (p3.GetType().ToString().Contains("Aga.Controls.Tree.NodeControls.")) ||
+                (p3.GetType() == typeof(osf.TreeColumn)))
+            {
+                System.Collections.Generic.Dictionary<osf.ClToolTip, object> dict = p3.ObjTooltip;
+                object toolTip = dict[this];
+                if (toolTip.GetType() == typeof(System.String))
+                {
+                    return ValueFactory.Create((string)toolTip);
+                }
+                return (IValue)toolTip;
+            }
+            else
+            {
+                return ValueFactory.Create(Base_obj.GetToolTip(((dynamic)p1).Base_obj));
+            }
         }
         
         [ContextMethod("УдалитьВсе", "RemoveAll")]
@@ -157,9 +173,52 @@ namespace osf
         }
 					
         [ContextMethod("УстановитьПодсказку", "SetToolTip")]
-        public void SetToolTip(IValue p1, string p2)
+        public void SetToolTip(IValue p1, IValue p2)
         {
-            Base_obj.SetToolTip(((dynamic)p1).Base_obj, p2);
+            dynamic p3 = ((dynamic)p1).Base_obj;
+            if (p2.SystemType.Name == "Строка")
+            {
+                string str = p2.AsString();
+                if ((p3.GetType() == typeof(Aga.Controls.Tree.Node)) ||
+                    (p3.GetType().ToString().Contains("Aga.Controls.Tree.NodeControls.")) ||
+                    (p3.GetType() == typeof(osf.TreeColumn)))
+                {
+                    p3.TooltipText = str;
+                    System.Collections.Generic.Dictionary<osf.ClToolTip, object> dict = p3.ObjTooltip;
+                    if (!dict.ContainsKey(this))
+                    {
+                        dict.Add(this, str);
+                    }
+                    else
+                    {
+                        if (!((object)dict[this]).Equals(str))
+                        {
+                            dict[this] = str;
+                        }
+                    }
+                }
+                else
+                {
+                    Base_obj.SetToolTip(p3, str);
+                }
+            }
+            else
+            {
+                ClAction action = (ClAction)p2;
+                p3.TooltipText = action;
+                System.Collections.Generic.Dictionary<osf.ClToolTip, object> dict = p3.ObjTooltip;
+                if (!dict.ContainsKey(this))
+                {
+                    dict.Add(this, action);
+                }
+                else
+                {
+                    if (!((object)dict[this]).Equals(action))
+                    {
+                        dict[this] = action;
+                    }
+                }
+            }
         }
     }
 }
