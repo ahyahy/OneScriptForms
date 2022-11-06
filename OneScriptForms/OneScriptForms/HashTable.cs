@@ -56,13 +56,13 @@ namespace osf
         public void Add(object key, object value)
         {
             M_HashTable.Add(key, value);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void Clear()
         {
             M_HashTable.Clear();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public IEnumerator GetEnumerator()
@@ -79,13 +79,13 @@ namespace osf
         public void Remove(object key)
         {
             M_HashTable.Remove(key);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void Set(object key, object value)
         {
             M_HashTable[key] = value;
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
     }
 

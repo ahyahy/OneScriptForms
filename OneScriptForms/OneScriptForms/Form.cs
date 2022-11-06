@@ -127,7 +127,7 @@ namespace osf
             set
             {
                 M_Form.AutoScaleBaseSize = value.M_Size;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -144,7 +144,7 @@ namespace osf
             set
             {
                 M_Form.CancelButton = (IButtonControl)value.M_Control;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -154,7 +154,7 @@ namespace osf
             set
             {
                 M_Form.ControlBox = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -164,7 +164,7 @@ namespace osf
             set
             {
                 deactivate = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -174,7 +174,7 @@ namespace osf
             set
             {
                 M_Form.DesktopLocation = value.M_Point;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -184,7 +184,7 @@ namespace osf
             set
             {
                 M_Form.DialogResult = (System.Windows.Forms.DialogResult)value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -194,7 +194,7 @@ namespace osf
             set
             {
                 M_Form.FormBorderStyle = (System.Windows.Forms.FormBorderStyle)value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -204,7 +204,7 @@ namespace osf
             set
             {
                 M_Form.Icon = (System.Drawing.Icon)value.M_Icon;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -215,7 +215,7 @@ namespace osf
             {
                 M_Form.Top = value;
                 M_Form.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -226,7 +226,7 @@ namespace osf
             {
                 M_Form.Left = value;
                 M_Form.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -241,7 +241,7 @@ namespace osf
             set
             {
                 M_Form.IsMdiContainer = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -251,7 +251,7 @@ namespace osf
             set
             {
                 M_Form.KeyPreview = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -261,7 +261,7 @@ namespace osf
             set
             {
                 load = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -271,7 +271,7 @@ namespace osf
             set
             {
                 M_Form.MaximizeBox = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -281,7 +281,7 @@ namespace osf
             set
             {
                 M_Form.MaximumSize = value.M_Size;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -291,7 +291,7 @@ namespace osf
             set
             {
                 mdiChildActivate = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -301,7 +301,7 @@ namespace osf
             set
             {
                 M_Form.Menu = (System.Windows.Forms.MainMenu)value.M_MainMenu;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -311,7 +311,7 @@ namespace osf
             set
             {
                 M_Form.MinimizeBox = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -321,7 +321,7 @@ namespace osf
             set
             {
                 M_Form.MinimumSize = value.M_Size;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -338,7 +338,7 @@ namespace osf
             set
             {
                 Form.SetParent(M_Form.Handle, ((Control)value).M_Control.Handle);
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -355,7 +355,7 @@ namespace osf
             set
             {
                 M_Form.Owner = (System.Windows.Forms.Form)value.M_Form;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -365,7 +365,7 @@ namespace osf
             set
             {
                 resize = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -375,7 +375,7 @@ namespace osf
             set
             {
                 M_Form.ShowInTaskbar = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -385,7 +385,7 @@ namespace osf
             set
             {
                 M_Form.StartPosition = (System.Windows.Forms.FormStartPosition)value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -395,7 +395,7 @@ namespace osf
             set
             {
                 M_Form.TopMost = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -405,7 +405,7 @@ namespace osf
             set
             {
                 M_Form.TransparencyKey = value.M_Color;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -415,20 +415,20 @@ namespace osf
             set
             {
                 M_Form.WindowState = (System.Windows.Forms.FormWindowState)value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
         public void Activate()
         {
             M_Form.Activate();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void Close()
         {
             M_Form.Close();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public int GetKeyState(Keys Key)
@@ -439,7 +439,7 @@ namespace osf
         public void LayoutMdi(MdiLayout value)
         {
             M_Form.LayoutMdi((System.Windows.Forms.MdiLayout)value);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         private void M_Form_Activated(object sender, System.EventArgs e)
@@ -486,12 +486,14 @@ namespace osf
             if (OneScriptForms.useMainForm && sender == OneScriptForms.FirstForm.Base_obj.M_Form)
             {
                 OneScriptForms.goOn = false;
+                System.Windows.Forms.Application.Exit();
             }
 
             OneScriptForms.formsCollection.Remove(((dynamic)sender).M_Object.dll_obj);
             if (OneScriptForms.formsCollection.CountForm == 0)
             {
                 OneScriptForms.goOn = false;
+                System.Windows.Forms.Application.Exit();
             }
         }
 
@@ -566,8 +568,11 @@ namespace osf
         private ClRectangle bounds;
         private ClRectangle clientRectangle;
         private ClControlCollection controls;
+        private ClCursor cursor;
         private ClDockPaddingEdges dockPadding;
+        private ClFont font;
         private ClColor foreColor;
+        private ClIcon icon = null;
         [DllImport("user32.dll")] static extern int SetParent(int hWndChild, int hWndNewParent);
         private ClCollection tag = new ClCollection();
         private ClColor transparencyKey;
@@ -739,11 +744,11 @@ namespace osf
         [ContextProperty("Значок", "Icon")]
         public ClIcon Icon
         {
-            get { return (ClIcon)OneScriptForms.RevertObj(Base_obj.Icon); }
+            get { return icon; }
             set 
             {
-                Base_obj.Icon = value.Base_obj; 
-                Base_obj.Icon.dll_obj = value;
+                icon = value;
+                Base_obj.Icon = value.Base_obj;
             }
         }
 
@@ -909,10 +914,21 @@ namespace osf
         [ContextProperty("Курсор", "Cursor")]
         public ClCursor Cursor
         {
-            get { return (ClCursor)OneScriptForms.RevertObj(Base_obj.Cursor); }
-            set { Base_obj.Cursor = value.Base_obj; }
+            get
+            {
+                if (cursor != null)
+                {
+                    return cursor;
+                }
+                return new ClCursor(Base_obj.Cursor);
+            }
+            set
+            {
+                cursor = value;
+                Base_obj.Cursor = value.Base_obj;
+            }
         }
-
+        
         [ContextProperty("Лево", "Left")]
         public int Left
         {
@@ -1534,14 +1550,21 @@ namespace osf
         [ContextProperty("Шрифт", "Font")]
         public ClFont Font
         {
-            get { return (ClFont)OneScriptForms.RevertObj(Base_obj.Font); }
-            set 
+            get
             {
-                Base_obj.Font = value.Base_obj; 
-                Base_obj.Font.dll_obj = value;
+                if (font != null)
+                {
+                    return font;
+                }
+                return new ClFont(Base_obj.Font);
+            }
+            set
+            {
+                font = value;
+                Base_obj.Font = value.Base_obj;
             }
         }
-
+        
         [ContextProperty("ЭлементВерхнегоУровня", "TopLevelControl")]
         public IValue TopLevelControl
         {

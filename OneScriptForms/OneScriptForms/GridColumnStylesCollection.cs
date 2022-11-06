@@ -23,7 +23,7 @@ namespace osf
         public int Add(osf.DataGridColumnStyle p1)
         {
             int res = Convert.ToInt32(M_GridColumnStylesCollection.Add((System.Windows.Forms.DataGridColumnStyle)p1.M_DataGridColumnStyle));
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
             return res;
         }
     }

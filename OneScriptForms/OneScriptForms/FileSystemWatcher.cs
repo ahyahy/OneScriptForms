@@ -54,7 +54,7 @@ namespace osf
             set
             {
                 M_FileSystemWatcher.EnableRaisingEvents = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -64,7 +64,7 @@ namespace osf
             set
             {
                 M_FileSystemWatcher.Filter = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -74,7 +74,7 @@ namespace osf
             set
             {
                 M_FileSystemWatcher.EnableRaisingEvents = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -84,7 +84,7 @@ namespace osf
             set
             {
                 M_FileSystemWatcher.InternalBufferSize = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -111,7 +111,7 @@ namespace osf
             set
             {
                 M_FileSystemWatcher.NotifyFilter = (System.IO.NotifyFilters)value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -121,7 +121,7 @@ namespace osf
             set
             {
                 M_FileSystemWatcher.Path = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 

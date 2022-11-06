@@ -22,7 +22,7 @@ namespace osf
         public int Add(osf.DataGridTableStyle p1)
         {
             int res = Convert.ToInt32(M_GridTableStylesCollection.Add((System.Windows.Forms.DataGridTableStyle)p1.M_DataGridTableStyle));
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
             return res;
         }
     }

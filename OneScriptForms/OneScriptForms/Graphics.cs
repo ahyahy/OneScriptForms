@@ -34,7 +34,7 @@ namespace osf
         public void Clear(Color p1)
         {
             M_Graphics.Clear(p1.M_Color);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void CopyFromScreen(int p1, int p2, int p3, int p4, Size p5)
@@ -50,7 +50,7 @@ namespace osf
         public void DrawEllipse(osf.Pen pen, float x, float y, float width, float height)
         {
             M_Graphics.DrawEllipse(pen.M_Pen, x, y, width, height);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void DrawImage(osf.Image image, float dx, float dy, float dw, float dh, float sx = 0.0f, float sy = 0.0f, float sw = -1f, float sh = -1f)
@@ -69,37 +69,53 @@ namespace osf
                 sh = (float)image.Height;
             }
             M_Graphics.DrawImage(image.M_Image, Rectangle1, sx, sy, sw, sh, System.Drawing.GraphicsUnit.Pixel);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void DrawLine(osf.Pen pen, float x1, float y1, float x2, float y2)
         {
             M_Graphics.DrawLine(pen.M_Pen, x1, y1, x2, y2);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void DrawRectangle(osf.Pen pen, float x, float y, float width, float height)
         {
             M_Graphics.DrawRectangle(pen.M_Pen, x, y, width, height);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
+        }
+
+        public void DrawRoundRect(System.Drawing.Rectangle r, System.Drawing.Color color, int radius, int width)
+        {
+            JonasKohl.Graphics.RoundRect.DrawRoundRect(this.M_Graphics, r, color, radius, width);
         }
 
         public void DrawString(string str, osf.Font font, osf.Brush brush, float x, float y)
         {
             M_Graphics.DrawString(str, font.M_Font, (System.Drawing.Brush)brush.M_Brush, x, y);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
+        }
+
+        public void FillEllipse(osf.Brush brush, float x, float y, float width, float height)
+        {
+            M_Graphics.FillEllipse((System.Drawing.Brush)brush.M_Brush, x, y, width, height);
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void FillRectangle(osf.Brush brush, float x, float y, float width, float height)
         {
             M_Graphics.FillRectangle((System.Drawing.Brush)brush.M_Brush, x, y, width, height);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
+        }
+
+        public void FillRoundRect(System.Drawing.Brush pBrush, System.Drawing.Rectangle r, System.Drawing.Color border, int radius)
+        {
+            JonasKohl.Graphics.RoundRect.FillRoundRect(this.M_Graphics, pBrush, r, border, radius);
         }
 
         public osf.Graphics FromImage(osf.Image p1)
         {
             Graphics Graphics1 = new Graphics(System.Drawing.Graphics.FromImage(p1.M_Image));
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
             return Graphics1;
         }
 
@@ -143,10 +159,22 @@ namespace osf
             get { return ValueFactory.Create((Convert.ToDecimal(Base_obj.DpiX))); }
         }
         
+        [ContextMethod("ЗаполнитьЗакругленныйПрямоугольник", "FillRoundRect")]
+        public void FillRoundRect(IValue p1, ClRectangle p2, ClColor p3, int p4)
+        {
+            Base_obj.FillRoundRect(((dynamic)p1).Base_obj.M_Brush, p2.Base_obj.M_Rectangle, p3.Base_obj.M_Color, p4);
+        }
+        
         [ContextMethod("ЗаполнитьПрямоугольник", "FillRectangle")]
         public void FillRectangle(IValue p1, IValue p2, IValue p3, IValue p4, IValue p5)
         {
             Base_obj.FillRectangle(((dynamic)p1).Base_obj, Convert.ToSingle(p2.AsNumber()), Convert.ToSingle(p3.AsNumber()), Convert.ToSingle(p4.AsNumber()), Convert.ToSingle(p5.AsNumber()));
+        }
+        
+        [ContextMethod("ЗаполнитьЭллипс", "FillEllipse")]
+        public void FillEllipse(IValue p1, IValue p2, IValue p3, IValue p4, IValue p5)
+        {
+            Base_obj.FillEllipse(((dynamic)p1).Base_obj, Convert.ToSingle(p2.AsNumber()), Convert.ToSingle(p3.AsNumber()), Convert.ToSingle(p4.AsNumber()), Convert.ToSingle(p5.AsNumber()));
         }
         
         [ContextMethod("ИзИзображения", "FromImage")]
@@ -185,6 +213,12 @@ namespace osf
             Base_obj.RotateTransform(Convert.ToSingle(p1.AsNumber()));
         }
         
+        [ContextMethod("РисоватьЗакругленныйПрямоугольник", "DrawRoundRect")]
+        public void DrawRoundRect(ClRectangle p1, ClColor p2, int p3, int p4)
+        {
+            Base_obj.DrawRoundRect(p1.Base_obj.M_Rectangle, p2.Base_obj.M_Color, p3, p4);
+        }
+        
         [ContextMethod("РисоватьИзображение", "DrawImage")]
         public void DrawImage(ClBitmap p1, IValue p2, IValue p3, IValue p4, IValue p5)
         {
@@ -209,7 +243,7 @@ namespace osf
             Base_obj.DrawString(p1, p2.Base_obj, ((dynamic)p3).Base_obj, Convert.ToSingle(p4.AsNumber()), Convert.ToSingle(p5.AsNumber()));
         }
         
-        [ContextMethod("РисоватьЭлипс", "DrawEllipse")]
+        [ContextMethod("РисоватьЭллипс", "DrawEllipse")]
         public void DrawEllipse(ClPen p1, IValue p2, IValue p3, IValue p4, IValue p5)
         {
             Base_obj.DrawEllipse(p1.Base_obj, Convert.ToSingle(p2.AsNumber()), Convert.ToSingle(p3.AsNumber()), Convert.ToSingle(p4.AsNumber()), Convert.ToSingle(p5.AsNumber()));
