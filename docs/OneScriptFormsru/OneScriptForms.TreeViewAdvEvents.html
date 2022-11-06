@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>TreeView Events</TITLE>
+<HTML><HEAD><TITLE>TreeViewAdv Events</TITLE>
 <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
 <LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
 <BODY id=bodyID class=dtBODY>
@@ -11,26 +11,35 @@
     <TD class=runninghead></TD>
     <TD class=product></TD></TR></TBODY></TABLE></DIV>
 <DIV id=TitleRow>
-<H1 class=dtH1>Дерево (TreeView)&nbsp;События</H1></DIV></DIV>
+<H1 class=dtH1>ДеревоЗначений (TreeViewAdv)&nbsp;События</H1></DIV></DIV>
 <DIV id=nstext>
-<P>События, поддерживаемые библиотекой для класса <B>Дерево&nbsp;(TreeView)</B>, и ссылка на свойство задающее обработчик события, перечислены ниже. Полный список членов класса <B>Дерево&nbsp;(TreeView)</B> смотрите в разделе <A 
-href="OneScriptForms.TreeViewMembers.html">Дерево&nbsp;(TreeView)&nbsp;Члены</A>.</P>
+<P>События, поддерживаемые библиотекой для класса <B>ДеревоЗначений&nbsp;(TreeViewAdv)</B>, и ссылка на свойство задающее обработчик события, перечислены ниже. Полный список членов класса <B>ДеревоЗначений&nbsp;(TreeViewAdv)</B> смотрите в разделе <A 
+href="OneScriptForms.TreeViewAdvMembers.html">ДеревоЗначений&nbsp;(TreeViewAdv)&nbsp;Члены</A>.</P>
 <H4 class=dtH4>События</H4>
 <DIV class=tablediv>
 <TABLE class=dtTABLE cellSpacing=0>
   <TBODY>
   <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.TreeViewAdv.SelectionChanged.html">ВыделениеИзменено&nbsp;(SelectionChanged)</A></TD>
+    <TD width="50%">Происходит при изменении выделения в дереве значений.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.DoubleClick.html">ДвойноеНажатие&nbsp;(DoubleClick)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Происходит когда элемент управления дважды щелкнут.</TD></TR>
+    <TD width="50%">Происходит, когда элемент управления дважды щелкнут.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.KeyUp.html">КлавишаВверх&nbsp;(KeyUp)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Происходит когда отпускается клавиша, если элемент управления имеет фокус. Аргументы события представлены классом <A href="OneScriptForms.KeyEventArgs.html">КлавишаАрг&nbsp;(KeyEventArgs)</A>.</TD></TR>
+    <TD width="50%">Происходит, когда отпускается клавиша, если элемент управления имеет фокус.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.KeyDown.html">КлавишаВниз&nbsp;(KeyDown)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Происходит при нажатии клавиши в то время как элемент управления имеет фокус. Аргументы события представлены классом <A href="OneScriptForms.KeyEventArgs.html">КлавишаАрг&nbsp;(KeyEventArgs)</A>.</TD></TR>
+    <TD width="50%">Происходит при нажатии клавиши в то время как элемент управления имеет фокус.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.KeyPress.html">КлавишаНажата&nbsp;(KeyPress)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Происходит при нажатии клавиши в то время как элемент управления имеет фокус. Аргументы события представлены классом <A href="OneScriptForms.KeyPressEventArgs.html">КлавишаНажатаАрг&nbsp;(KeyPressEventArgs)</A>.</TD></TR>
+    <TD width="50%">Происходит при нажатии клавиши в то время как элемент управления имеет фокус.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.TreeViewAdv.ColumnClicked.html">КолонкаНажата&nbsp;(ColumnClicked)</A></TD>
+    <TD width="50%">Происходит при нажатии заголовка колонки дерева значений.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.TreeViewAdv.ColumnReordered.html">КолонкаПерестроена&nbsp;(ColumnReordered)</A></TD>
+    <TD width="50%">Происходит когда перестроена колонка дерева значений.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.MouseEnter.html">МышьНадЭлементом&nbsp;(MouseEnter)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
     <TD width="50%">Происходит когда указатель мыши находится над элементом управления.</TD></TR>
@@ -41,17 +50,8 @@ href="OneScriptForms.TreeViewMembers.html">Дерево&nbsp;(TreeView)&nbsp;Ч�
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.Click.html">Нажатие&nbsp;(Click)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
     <TD width="50%">Происходит при нажатии элемента управления.</TD></TR>
   <TR vAlign=top>
-    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.TreeView.BeforeExpand.html">ПередРазвертыванием&nbsp;(BeforeExpand)</A></TD>
-    <TD width="50%">Происходит перед развертыванием узла дерева. Аргументы события представлены классом <A href="OneScriptForms.TreeViewCancelEventArgs.html">ДеревоОтменаАрг&nbsp;(TreeViewCancelEventArgs)</A>.</TD></TR>
-  <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.LocationChanged.html">ПоложениеИзменено&nbsp;(LocationChanged)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
     <TD width="50%">Происходит при изменении свойства <B>Положение&nbsp;(Location)</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.TreeView.AfterSelect.html">ПослеВыбора&nbsp;(AfterSelect)</A></TD>
-    <TD width="50%">Происходит после выбора узла дерева. Аргументы события представлены классом <A href="OneScriptForms.TreeViewEventArgs.html">ДеревоАрг&nbsp;(TreeViewEventArgs)</A>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.TreeView.AfterLabelEdit.html">ПослеРедактированияНадписи&nbsp;(AfterLabelEdit)</A></TD>
-    <TD width="50%">Происходит после изменения текстовой надписи узла дерева. Аргументы события представлены классом <A href="OneScriptForms.NodeLabelEditEventArgs.html">РедактированиеНадписиУзлаАрг&nbsp;(NodeLabelEditEventArgs)</A>.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.Enter.html">ПриВходе&nbsp;(Enter)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
     <TD width="50%">Происходит при входе в элемент управления.</TD></TR>
@@ -60,37 +60,55 @@ href="OneScriptForms.TreeViewMembers.html">Дерево&nbsp;(TreeView)&nbsp;Ч�
     <TD width="50%">Происходит когда указатель мыши задерживается на элементе управления.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.MouseDown.html">ПриНажатииКнопкиМыши&nbsp;(MouseDown)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Происходит при нажатии кнопки мыши, если указатель мыши находится на элементе управления. Аргументы события представлены классом <A href="OneScriptForms.MouseEventArgs.html">МышьАрг&nbsp;(MouseEventArgs)</A>.</TD></TR>
+    <TD width="50%">Происходит при нажатии кнопки мыши, если указатель мыши находится на элементе управления.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.TreeViewAdv.NodeMouseClick.html">ПриНажатииУзла&nbsp;(NodeMouseClick)</A></TD>
+    <TD width="50%">Происходит когда пользователь нажимает кнопку мыши, а указатель мыши находится на узле дерева значений.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.MouseUp.html">ПриОтпусканииМыши&nbsp;(MouseUp)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Происходит при отпускании кнопки мыши, когда указатель мыши находится на элементе управления. Аргументы события представлены классом <A href="OneScriptForms.MouseEventArgs.html">МышьАрг&nbsp;(MouseEventArgs)</A>.</TD></TR>
+    <TD width="50%">Происходит при отпускании кнопки мыши, когда указатель мыши находится на элементе управления.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.Move.html">ПриПеремещении&nbsp;(Move)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
     <TD width="50%">Происходит при перемещении элемента управления.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.MouseMove.html">ПриПеремещенииМыши&nbsp;(MouseMove)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Происходит когда указатель мыши переместился над элементом управления. Аргументы события представлены классом <A href="OneScriptForms.MouseEventArgs.html">МышьАрг&nbsp;(MouseEventArgs)</A>.</TD></TR>
+    <TD width="50%">Происходит когда указатель мыши переместился над элементом управления.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.Paint.html">ПриПерерисовке&nbsp;(Paint)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Происходит когда элемент управления перерисован. Аргументы события представлены классом <A href="OneScriptForms.PaintEventArgs.html">РисованиеАрг&nbsp;(PaintEventArgs)</A>.</TD></TR>
+    <TD width="50%">Происходит когда элемент управления перерисован.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.LostFocus.html">ПриПотереФокуса&nbsp;(LostFocus)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
     <TD width="50%">Происходит когда элемент управления теряет фокус.</TD></TR>
   <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.TreeViewAdv.Scroll.html">ПриПрокручивании&nbsp;(Scroll)</A></TD>
+    <TD width="50%">Происходит при перемещении ползунка полосы прокрутки, с помощью мыши или клавиатурой.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.TreeViewAdv.Expanding.html">ПриРазворачивании&nbsp;(Expanding)</A></TD>
+    <TD width="50%">Происходит до разворачивания узла в дереве значений.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.TreeViewAdv.Collapsing.html">ПриСвертывании&nbsp;(Collapsing)</A></TD>
+    <TD width="50%">Происходит до сворачивания узла в дереве значений.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.Leave.html">ПриУходе&nbsp;(Leave)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
     <TD width="50%">Происходит когда фокус ввода покидает элемент управления.</TD></TR>
   <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.TreeViewAdv.Expanded.html">Развернут&nbsp;(Expanded)</A></TD>
+    <TD width="50%">Происходит после разворачивания узла в дереве значений.</TD></TR>
+  <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.SizeChanged.html">РазмерИзменен&nbsp;(SizeChanged)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
     <TD width="50%">Происходит при изменении значения свойства <B>Размер&nbsp;(Size)</B>.</TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.TreeViewAdv.Collapsed.html">Свернут&nbsp;(Collapsed)</A></TD>
+    <TD width="50%">Происходит после сворачивания узла в дереве значений.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.TextChanged.html">ТекстИзменен&nbsp;(TextChanged)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
     <TD width="50%">Происходит при изменении свойства <B>Текст&nbsp;(Text)</B>.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.ControlAdded.html">ЭлементДобавлен&nbsp;(ControlAdded)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Происходит при добавлении нового элемента управления в <A href="OneScriptForms.ControlCollection.html">ЭлементыУправления&nbsp;(ControlCollection)</A>. Аргументы события представлены классом <A href="OneScriptForms.ControlEventArgs.html">ЭлементУправленияАрг&nbsp;(ControlEventArgs)</A>.</TD></TR>
+    <TD width="50%">Происходит при добавлении нового элемента управления в <A href="OneScriptForms.ControlCollection.html">ЭлементыУправления&nbsp;(ControlCollection)</A>.</TD></TR>
   <TR vAlign=top>
     <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.Control.ControlRemoved.html">ЭлементУдален&nbsp;(ControlRemoved)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Происходит при удалении элемента управления из <A href="OneScriptForms.ControlCollection.html">ЭлементыУправления&nbsp;(ControlCollection)</A>. Аргументы события представлены классом <A href="OneScriptForms.ControlEventArgs.html">ЭлементУправленияАрг&nbsp;(ControlEventArgs)</A>.</TD></TR></TBODY></TABLE></DIV>
+    <TD width="50%">Происходит при удалении элемента управления из <A href="OneScriptForms.ControlCollection.html">ЭлементыУправления&nbsp;(ControlCollection)</A>.</TD></TR></TBODY></TABLE></DIV>
 <H4 class=dtH4>Смотрите также</H4>
-<P><A href="OneScriptForms.TreeView.html">Дерево&nbsp;(TreeView)&nbsp;Класс</A> | <A 
+<P><A href="OneScriptForms.TreeViewAdv.html">ДеревоЗначений&nbsp;(TreeViewAdv)&nbsp;Класс</A> | <A 
 href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P></DIV></BODY></HTML>
