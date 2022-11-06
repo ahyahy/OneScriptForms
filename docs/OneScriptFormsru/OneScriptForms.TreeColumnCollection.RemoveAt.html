@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>ToolTip.SetToolTip Method</TITLE>
+<HTML><HEAD><TITLE>TreeColumnCollection.RemoveAt Method</TITLE>
 <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
 <LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
 <BODY id=bodyID class=dtBODY>
@@ -11,49 +11,29 @@
     <TD class=runninghead></TD>
     <TD class=product></TD></TR></TBODY></TABLE></DIV>
 <DIV id=TitleRow>
-<H1 class=dtH1>Подсказка.УстановитьПодсказку (ToolTip.SetToolTip)&nbsp;Метод</H1></DIV></DIV>
+<H1 class=dtH1>КолонкиДереваЗначений.УдалитьПоИндексу (TreeColumnCollection.RemoveAt)&nbsp;Метод</H1></DIV></DIV>
 <DIV id=nstext>
 <H4 class=dtH4>Синтаксис</H4>
-<P>УстановитьПодсказку(&lt;ЭлементУправления&gt;, &lt;Заголовок&gt;)</P>
+<P>УдалитьПоИндексу(&lt;Индекс&gt;)</P>
 <H4 class=dtH4>Параметры</H4>
 <DL>
-<DT><I>ЭлементУправления</I> (обязательный)</DT>
-<DD>Тип: Произвольный.</DD>
-<DD></DD>
-<DT><I>Заголовок</I> (обязательный)</DT>
-<DD>Тип: Строка; </DD>
-<DD></DD></DL>
+<DT><I>Индекс</I> (обязательный)</DT>
+<DD>Тип: Число.</DD>
+<DD>Индекс удаляемой колонки.</DD></DL>
 <H4 class=dtH4>Возвращаемое значение</H4>
 <P></P>
 <H4 class=dtH4>Описание</H4>
-<P>Связывает текст всплывающей подсказки с указанным элементом управления.</P>
+<P>Удаляет колонку по указанному индексу из коллекции.</P>
 <H4 class=dtH4>Примечание</H4>
-<P>Если параметр <B>ЭлементУправления</B> имеет тип значения 
-<A href="OneScriptForms.TreeNodeAdv.html">УзелДереваЗначений&nbsp;(TreeNodeAdv)</A>, или 
-<A href="OneScriptForms.TreeColumn.html">КолонкаДереваЗначений&nbsp;(TreeColumn)</A>, или 
-<A href="OneScriptForms.NodeCheckBox.html">ФлажокУзла&nbsp;(NodeCheckBox)</A>,  или 
-<A href="OneScriptForms.NodeStateIcon.html">ЗначокУзла&nbsp;(NodeStateIcon)</A>,  или 
-<A href="OneScriptForms.NodeComboBox.html">ПолеВыбораУзла&nbsp;(NodeComboBox)</A>,  или 
-<A href="OneScriptForms.NodeDecimalTextBox.html">ЧисловоеПолеУзла&nbsp;(NodeDecimalTextBox)</A>,  или 
-<A href="OneScriptForms.NodeNumericUpDown.html">РегуляторВверхВнизУзла&nbsp;(NodeNumericUpDown)</A>,  или 
-<A href="OneScriptForms.NodeTextBox.html">ПолеВводаУзла&nbsp;(NodeTextBox)</A>,
-параметр <B>Заголовок</B> может быть задан не только типом значения <B>Строка</B>, но и типом значения <B>Действие&nbsp;(Action)</B>.</P>
-<P>Это дает возможность динамисески формировать подсказку для узлов, заголовков колонок и элементов узлов дерева значений.</P>
+<P></P>
 <H4 class=dtH4>Пример</H4>
 <P><PRE class=code>
-Подсказка1.УстановитьПодсказку(ДеревоЗначений1, "Это подсказка" + Символы.ПС + "в две строки.");
+ДеревоЗначений1.Колонки.УдалитьПоИндексу(1);
 </PRE>
 <details><summary>Полный пример кода</summary>
 <P><PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
-Функция Ф_Действие(Параметр) Экспорт
-	Возврат Параметр[0];
-КонецФункции
-Функция Ф_Действие2(Параметр) Экспорт
-	Возврат "ПолеВводаУзла1";
-КонецФункции
-
 ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();
 Форма1 = Ф.Форма();
@@ -86,7 +66,6 @@
 ЗначокУзла1.Колонка = КолонкаДереваЗначений1;
 ЗначокУзла1.РежимМасштабирования = Ф.РежимМасштабированияКартинки.Масштабировать;
 СтрИзображение = "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAWUlEQVR42u3XMQoAIAxDUbN6/7O6Vg8gFsHWQPPBxaE8dCra58AMsAdQdwYNwPxZIUGAHeB0d5s7lxoQFT8gM07A9y8QQIC6gLFOL/0CAghAA8hMAFAvpylNvi01IRb0KhIAAAAASUVORK5CYII=";
-СтрИзображение2 = "Qk02BQAAAAAAADYEAAAoAAAAEAAAABAAAAABAAgAAAAAAAABAABiCwAAYgsAAAABAAAAAQAAGKXGABilzgAppdYAMaXWABit1gAhrdYAKa3WABit3gAxtd4AOb3nAFK95wBKxucASsbvAJze7wCt3u8Aa973AHPe9wCl7/cA/wD/AITv/wCM7/8AlO//AIz3/wCU9/8Apff/AJT//wCc//8Arf//AMb//wDW//8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////ABISEhISEhISEhISEhISEhISBggFEhISEhISEhISEhISEgYNEwsFAAAAEhISEhISEhIGChoZEBAQEAsFABISEhISBgobFhQUFBAQEAwFEhISEgYGDhcXFBQUFBAQDBISEhIGEAYaFhYWFBQUEBAAEhISBhcGDhERGBQUFBAQCRISEgYaEAYAAAAOFhMTEBAAEhIGGhcQEBAPBg4TExMVAxISBhoXFxcXEBAGAAICAgASEgYcGRodHRQVEBAHEhISEhIFDRwcDQQAAAAAARISEhISEggGAAASEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhI=";
 ЗначокУзла1.Изображение = Ф.Картинка(СтрИзображение);
 
 ПолеВводаУзла1 = Ф.ПолеВводаУзла();
@@ -97,17 +76,13 @@
 ЧисловоеПолеУзла1.ВыравниваниеТекста = Ф.ГоризонтальноеВыравнивание.Центр;
 
 ДеревоЗначений1.ЭлементыУзла.Добавить(ФлажокУзла1);
-
 ДеревоЗначений1.ЭлементыУзла.Добавить(ЗначокУзла1);
-
-
 ДеревоЗначений1.ЭлементыУзла.Добавить(ПолеВводаУзла1);
 ДеревоЗначений1.ЭлементыУзла.Добавить(ЧисловоеПолеУзла1);
 
 СолнечнаяСистема = Ф.УзелДереваЗначений("Солнечная система");
 ДеревоЗначений1.Узлы.Добавить(СолнечнаяСистема);
 СолнечнаяСистема.УстановитьЗначение(ПолеВводаУзла1, "Солнечная система");
-СолнечнаяСистема.УстановитьЗначение(ПолеВводаУзла1, "Первая строка" + Ф.Окружение().НоваяСтрока + "Вторая строка");
 
 Солнце = Ф.УзелДереваЗначений("Солнце");
 СолнечнаяСистема.Узлы.Добавить(Солнце);
@@ -154,23 +129,10 @@
 Нептун.УстановитьЗначение(ЧисловоеПолеУзла1, 30.06);
 
 ДеревоЗначений1.РазвернутьВсе();
-М = Новый Массив();
-М.Добавить("Элемент1");
-М.Добавить("Элемент2");
 
-Подсказка0 = Ф.Подсказка();
-Подсказка0.АвтоЗадержкаПоказа = 2000;
-Подсказка0.УстановитьПодсказку(КолонкаДереваЗначений1, Ф.Действие(ЭтотОбъект, "Ф_Действие", М));
-Подсказка0.УстановитьПодсказку(ЧисловоеПолеУзла1, "Это ЧисловоеПолеУзла1");
-Подсказка0.УстановитьПодсказку(ПолеВводаУзла1, Ф.Действие(ЭтотОбъект, "Ф_Действие2"));
+ДеревоЗначений1.Колонки.УдалитьПоИндексу(1);
 
-Сообщить("Подсказка0.ПолучитьПодсказку(КолонкаДереваЗначений1).ИмяМетода = " + Подсказка0.ПолучитьПодсказку(КолонкаДереваЗначений1).ИмяМетода);
-Сообщить("Подсказка0.ПолучитьПодсказку(ЧисловоеПолеУзла1) = " + Подсказка0.ПолучитьПодсказку(ЧисловоеПолеУзла1));
-Сообщить("Подсказка0.ПолучитьПодсказку(ПолеВводаУзла1) = " + Подсказка0.ПолучитьПодсказку(ПолеВводаУзла1));
-
-Подсказка1 = Ф.Подсказка();
-Подсказка1.УстановитьПодсказку(ДеревоЗначений1, "Это подсказка" + Символы.ПС + "в две строки.");
-Сообщить("Подсказка1.ПолучитьПодсказку(ДеревоЗначений1) = " + Подсказка1.ПолучитьПодсказку(ДеревоЗначений1));
+Сообщить("ДеревоЗначений1.Колонки.Содержит(КолонкаДереваЗначений2) = " + ДеревоЗначений1.Колонки.Содержит(КолонкаДереваЗначений2));
 
 Ф.ЗапуститьОбработкуСобытий();
 </DIV>
@@ -181,13 +143,6 @@
 <P><PRE class=code>
 <a id="copy2" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select2" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont2">
-Функция Ф_Действие(Параметр) Экспорт
-	Возврат Параметр[0];
-КонецФункции
-Функция Ф_Действие2(Параметр) Экспорт
-	Возврат "ПолеВводаУзла1";
-КонецФункции
-
 ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();
 Форма1 = Ф.Форма();
@@ -220,7 +175,6 @@
 ЗначокУзла1.Колонка = КолонкаДереваЗначений1;
 ЗначокУзла1.РежимМасштабирования = Ф.РежимМасштабированияКартинки.Масштабировать;
 СтрИзображение = "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAWUlEQVR42u3XMQoAIAxDUbN6/7O6Vg8gFsHWQPPBxaE8dCra58AMsAdQdwYNwPxZIUGAHeB0d5s7lxoQFT8gM07A9y8QQIC6gLFOL/0CAghAA8hMAFAvpylNvi01IRb0KhIAAAAASUVORK5CYII=";
-СтрИзображение2 = "Qk02BQAAAAAAADYEAAAoAAAAEAAAABAAAAABAAgAAAAAAAABAABiCwAAYgsAAAABAAAAAQAAGKXGABilzgAppdYAMaXWABit1gAhrdYAKa3WABit3gAxtd4AOb3nAFK95wBKxucASsbvAJze7wCt3u8Aa973AHPe9wCl7/cA/wD/AITv/wCM7/8AlO//AIz3/wCU9/8Apff/AJT//wCc//8Arf//AMb//wDW//8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////ABISEhISEhISEhISEhISEhISBggFEhISEhISEhISEhISEgYNEwsFAAAAEhISEhISEhIGChoZEBAQEAsFABISEhISBgobFhQUFBAQEAwFEhISEgYGDhcXFBQUFBAQDBISEhIGEAYaFhYWFBQUEBAAEhISBhcGDhERGBQUFBAQCRISEgYaEAYAAAAOFhMTEBAAEhIGGhcQEBAPBg4TExMVAxISBhoXFxcXEBAGAAICAgASEgYcGRodHRQVEBAHEhISEhIFDRwcDQQAAAAAARISEhISEggGAAASEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhI=";
 ЗначокУзла1.Изображение = Ф.Картинка(СтрИзображение);
 
 ПолеВводаУзла1 = Ф.ПолеВводаУзла();
@@ -231,17 +185,13 @@
 ЧисловоеПолеУзла1.ВыравниваниеТекста = Ф.ГоризонтальноеВыравнивание.Центр;
 
 ДеревоЗначений1.ЭлементыУзла.Добавить(ФлажокУзла1);
-
 ДеревоЗначений1.ЭлементыУзла.Добавить(ЗначокУзла1);
-
-
 ДеревоЗначений1.ЭлементыУзла.Добавить(ПолеВводаУзла1);
 ДеревоЗначений1.ЭлементыУзла.Добавить(ЧисловоеПолеУзла1);
 
 СолнечнаяСистема = Ф.УзелДереваЗначений("Солнечная система");
 ДеревоЗначений1.Узлы.Добавить(СолнечнаяСистема);
 СолнечнаяСистема.УстановитьЗначение(ПолеВводаУзла1, "Солнечная система");
-СолнечнаяСистема.УстановитьЗначение(ПолеВводаУзла1, "Первая строка" + Ф.Окружение().НоваяСтрока + "Вторая строка");
 
 Солнце = Ф.УзелДереваЗначений("Солнце");
 СолнечнаяСистема.Узлы.Добавить(Солнце);
@@ -288,31 +238,18 @@
 Нептун.УстановитьЗначение(ЧисловоеПолеУзла1, 30.06);
 
 ДеревоЗначений1.РазвернутьВсе();
-М = Новый Массив();
-М.Добавить("Элемент1");
-М.Добавить("Элемент2");
 
-Подсказка0 = Ф.Подсказка();
-Подсказка0.АвтоЗадержкаПоказа = 2000;
-Подсказка0.УстановитьПодсказку(КолонкаДереваЗначений1, Ф.Действие(ЭтотОбъект, "Ф_Действие", М));
-Подсказка0.УстановитьПодсказку(ЧисловоеПолеУзла1, "Это ЧисловоеПолеУзла1");
-Подсказка0.УстановитьПодсказку(ПолеВводаУзла1, Ф.Действие(ЭтотОбъект, "Ф_Действие2"));
-
-Подсказка1 = Ф.Подсказка();
-Подсказка1.УстановитьПодсказку(ДеревоЗначений1, "Это подсказка" + Символы.ПС + "в две строки.");
+ДеревоЗначений1.Колонки.УдалитьПоИндексу(1);
 
 Сообщить(?(
-Подсказка0.ПолучитьПодсказку(КолонкаДереваЗначений1).ИмяМетода = "Ф_Действие" и 
-Подсказка0.ПолучитьПодсказку(ЧисловоеПолеУзла1) = "Это ЧисловоеПолеУзла1" и 
-"" + Подсказка0.ПолучитьПодсказку(ПолеВводаУзла1) = "КлДействие" и 
-Подсказка1.ПолучитьПодсказку(ДеревоЗначений1) = "Это подсказка" + Символы.ПС + "в две строки."
-, "", "!!! ") + "Подсказка.УстановитьПодсказку (ToolTip.SetToolTip) Метод" + " " + ТекущаяДата());
+Не ДеревоЗначений1.Колонки.Содержит(КолонкаДереваЗначений2)
+, "", "!!! ") + "КолонкиДереваЗначений.УдалитьПоИндексу (TreeColumnCollection.RemoveAt) Метод" + " " + ТекущаяДата());
 </DIV>
 </PRE>
 </details>
 <P></P>
 <H4 class=dtH4>Смотрите также</H4>
-<P><A href="OneScriptForms.ToolTip.html">Подсказка&nbsp;(ToolTip)&nbsp;Класс</A> | <A 
+<P><A href="OneScriptForms.TreeColumnCollection.html">КолонкиДереваЗначений&nbsp;(TreeColumnCollection)&nbsp;Класс</A> | <A 
 href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P></DIV>
 <script>
 window.onload = function () {
