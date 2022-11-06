@@ -78,6 +78,7 @@ namespace osf
     public class ClDataGridViewCellStyle : AutoContext<ClDataGridViewCellStyle>
     {
         private ClColor backColor;
+        private ClFont font;
         private ClColor foreColor;
         private ClColor selectionBackColor;
         private ClColor selectionForeColor;
@@ -104,7 +105,7 @@ namespace osf
             backColor = new ClColor(Base_obj.BackColor);
             selectionBackColor = new ClColor(Base_obj.SelectionBackColor);
         }
-        
+
         public DataGridViewCellStyle Base_obj;
         
         [ContextProperty("Выравнивание", "Alignment")]
@@ -181,11 +182,18 @@ namespace osf
         [ContextProperty("Шрифт", "Font")]
         public ClFont Font
         {
-            get { return (ClFont)OneScriptForms.RevertObj(Base_obj.Font); }
-            set 
+            get
             {
-                Base_obj.Font = value.Base_obj; 
-                Base_obj.Font.dll_obj = value;
+                if (font != null)
+                {
+                    return font;
+                }
+                return new ClFont(Base_obj.Font);
+            }
+            set
+            {
+                font = value;
+                Base_obj.Font = value.Base_obj;
             }
         }
         

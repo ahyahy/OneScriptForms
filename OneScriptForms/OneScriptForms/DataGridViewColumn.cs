@@ -54,7 +54,14 @@ namespace osf
 
         public int DisplayIndex
         {
-            get { return M_DataGridViewColumn.DisplayIndex; }
+            get
+            {
+                if (OneScriptForms.systemVersionIsMicrosoft)
+                {
+                    return M_DataGridViewColumn.DisplayIndex;
+                }
+                return M_DataGridViewColumn.DisplayIndex - 1;
+            }
             set { M_DataGridViewColumn.DisplayIndex = value; }
         }
 

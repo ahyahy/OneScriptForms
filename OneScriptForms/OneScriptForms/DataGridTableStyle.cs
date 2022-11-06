@@ -145,6 +145,7 @@ namespace osf
         private ClGridColumnStylesCollection gridColumnStyles;
         private ClColor gridLineColor;
         private ClColor headerBackColor;
+        private ClFont headerFont;
         private ClColor headerForeColor;
 
         public ClDataGridTableStyle()
@@ -174,7 +175,7 @@ namespace osf
             headerBackColor = new ClColor(Base_obj.HeaderBackColor);
             alternatingBackColor = new ClColor(Base_obj.AlternatingBackColor);
         }
-        
+
         public DataGridTableStyle Base_obj;
         
         [ContextProperty("ИмяОтображаемого", "MappingName")]
@@ -321,11 +322,11 @@ namespace osf
         [ContextProperty("ШрифтЗаголовков", "HeaderFont")]
         public ClFont HeaderFont
         {
-            get { return (ClFont)OneScriptForms.RevertObj(Base_obj.HeaderFont); }
+            get { return headerFont; }
             set 
             {
-                Base_obj.HeaderFont = value.Base_obj; 
-                Base_obj.HeaderFont.dll_obj = value;
+                Base_obj.HeaderFont = value.Base_obj;
+                headerFont = value;
             }
         }
         

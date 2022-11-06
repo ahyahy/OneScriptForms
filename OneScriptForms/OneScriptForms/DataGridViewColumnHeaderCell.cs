@@ -135,18 +135,6 @@ namespace osf
             get { return Base_obj.ToolTipText; }
             set { Base_obj.ToolTipText = value; }
         }
-
-        [ContextProperty("ФорматированноеЗначение", "FormattedValue")]
-        public IValue FormattedValue
-        {
-            get { return OneScriptForms.RevertObj(Base_obj.FormattedValue); }
-        }
-        
-        [ContextProperty("ФорматированноеЗначениеРедактируемого", "EditedFormattedValue")]
-        public IValue EditedFormattedValue
-        {
-            get { return OneScriptForms.RevertObj(Base_obj.EditedFormattedValue); }
-        }
         
     }
 }

@@ -59,7 +59,7 @@ namespace osf
         public osf.DataColumn Add(osf.DataColumn p1)
         {
             M_DataColumnCollection.Add(p1.M_DataColumn);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
             return p1;
         }
 
@@ -67,7 +67,7 @@ namespace osf
         {
             DataColumn DataColumn1 = new DataColumn(p1);
             M_DataColumnCollection.Add(DataColumn1.M_DataColumn);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
             return DataColumn1;
         }
 

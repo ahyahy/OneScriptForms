@@ -206,7 +206,13 @@ namespace osf
         public int MaxDropDownItems
         {
             get { return Base_obj.MaxDropDownItems; }
-            set { Base_obj.MaxDropDownItems = value; }
+            set
+            {
+                if (OneScriptForms.systemVersionIsMicrosoft)
+                {
+                    Base_obj.MaxDropDownItems = value;
+                }
+            }
         }
 
         [ContextProperty("Метка", "Tag")]
@@ -238,7 +244,13 @@ namespace osf
         public bool Sorted
         {
             get { return Base_obj.Sorted; }
-            set { Base_obj.Sorted = value; }
+            set
+            {
+                if (OneScriptForms.systemVersionIsMicrosoft)
+                {
+                    Base_obj.Sorted = value;
+                }
+            }
         }
 
         [ContextProperty("ПлоскийСтиль", "FlatStyle")]

@@ -72,7 +72,7 @@ namespace osf
         public void RemoveAt(int Index)
         {
             List.RemoveAt(Index);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public virtual System.Collections.IEnumerator GetEnumerator()

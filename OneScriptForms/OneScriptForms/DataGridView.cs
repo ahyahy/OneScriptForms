@@ -234,7 +234,7 @@ namespace osf
             set
             {
                 M_DataGridView.BackgroundColor = value.M_Color;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -314,7 +314,7 @@ namespace osf
                     string strType1 = Type1.ToString();
                     string str1 = strType1.Substring(strType1.LastIndexOf(".") + 1);
                     M_DataGridView.DataSource = Type1.GetField("M_" + str1).GetValue(value);
-                    System.Windows.Forms.Application.DoEvents();
+                    //System.Windows.Forms.Application.DoEvents();
                 }
                 else
                 {
@@ -784,6 +784,8 @@ namespace osf
         private ClRectangle bounds;
         private ClRectangle clientRectangle;
         private ClControlCollection controls;
+        private ClCursor cursor;
+        private ClFont font;
         private ClColor foreColor;
         private ClCollection tag = new ClCollection();
 
@@ -1143,10 +1145,21 @@ namespace osf
         [ContextProperty("Курсор", "Cursor")]
         public ClCursor Cursor
         {
-            get { return (ClCursor)OneScriptForms.RevertObj(Base_obj.Cursor); }
-            set { Base_obj.Cursor = value.Base_obj; }
+            get
+            {
+                if (cursor != null)
+                {
+                    return cursor;
+                }
+                return new ClCursor(Base_obj.Cursor);
+            }
+            set
+            {
+                cursor = value;
+                Base_obj.Cursor = value.Base_obj;
+            }
         }
-
+        
         [ContextProperty("Лево", "Left")]
         public int Left
         {
@@ -1987,14 +2000,21 @@ namespace osf
         [ContextProperty("Шрифт", "Font")]
         public ClFont Font
         {
-            get { return (ClFont)OneScriptForms.RevertObj(Base_obj.Font); }
-            set 
+            get
             {
-                Base_obj.Font = value.Base_obj; 
-                Base_obj.Font.dll_obj = value;
+                if (font != null)
+                {
+                    return font;
+                }
+                return new ClFont(Base_obj.Font);
+            }
+            set
+            {
+                font = value;
+                Base_obj.Font = value.Base_obj;
             }
         }
-
+        
         [ContextProperty("ЭлементВерхнегоУровня", "TopLevelControl")]
         public IValue TopLevelControl
         {
@@ -2093,12 +2113,6 @@ namespace osf
         {
             dynamic p3 = ((dynamic)p1).Base_obj;
             Base_obj.Location = new Point(p3.Left, p3.Top - Base_obj.Height - p2);
-        }
-        
-        [ContextMethod("ДочернийПоКоординатам", "GetChildAtPoint")]
-        public IValue GetChildAtPoint(ClPoint p1)
-        {
-            return ((dynamic)Base_obj.GetChildAtPoint(p1.Base_obj)).dll_obj;
         }
         
         [ContextMethod("ЗавершитьОбновление", "EndUpdate")]

@@ -37,6 +37,7 @@ namespace osf
     public class ClDataGridTextBox : AutoContext<ClDataGridTextBox>
     {
         private ClColor backColor;
+        private ClFont font;
         private ClColor foreColor;
         private ClCollection tag = new ClCollection();
 
@@ -139,11 +140,18 @@ namespace osf
         [ContextProperty("Шрифт", "Font")]
         public ClFont Font
         {
-            get { return (ClFont)OneScriptForms.RevertObj(Base_obj.Font); }
-            set 
+            get
             {
-                Base_obj.Font = value.Base_obj; 
-                Base_obj.Font.dll_obj = value;
+                if (font != null)
+                {
+                    return font;
+                }
+                return new ClFont(Base_obj.Font);
+            }
+            set
+            {
+                font = value;
+                Base_obj.Font = value.Base_obj;
             }
         }
         

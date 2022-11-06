@@ -88,7 +88,7 @@ namespace osf
             {
                 M_DataTableCollection.Remove(Convert.ToString(p1));
             }
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void RemoveAt(int p1)

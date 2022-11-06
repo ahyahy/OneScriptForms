@@ -59,7 +59,7 @@ namespace osf
             {
                 M_DataRowView[(int)index] = item;
             }
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
     }
 

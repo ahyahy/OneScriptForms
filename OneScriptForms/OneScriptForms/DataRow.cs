@@ -76,7 +76,7 @@ namespace osf
             {
                 M_DataRow[(int)index] = item;
             }
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
     }
 

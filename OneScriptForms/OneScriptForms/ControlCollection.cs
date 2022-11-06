@@ -60,7 +60,7 @@ namespace osf
             Button1.Width = width;
             Button1.Height = height;
             M_ControlCollection.Add((System.Windows.Forms.Control)Button1.M_Button);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
             return Button1;
         }
 
@@ -72,13 +72,13 @@ namespace osf
         public void Remove(Control p1)
         {
             M_ControlCollection.Remove(p1.M_Control);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void SetChildIndex(Control p1, int p2)
         {
             M_ControlCollection.SetChildIndex(p1.M_Control, p2);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
     }
 
@@ -134,7 +134,7 @@ namespace osf
         public IValue Add(IValue p1)
         {
             Base_obj.Add(((dynamic)p1).Base_obj);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
             return p1;
         }
         

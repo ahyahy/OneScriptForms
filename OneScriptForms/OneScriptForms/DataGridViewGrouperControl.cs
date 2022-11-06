@@ -460,7 +460,7 @@ namespace Subro.Controls
             DataGridViewGrouperControl1.CmbFields.SelectedItem = prop;
             if (prop == null)
             {
-                // Значит колонка группировки не задана. Нужно усановить группировку по первой колонке и снять флажок Группировать
+                // Значит колонка группировки не задана. Нужно установить группировку по первой колонке и снять флажок Группировать
                 DataGridViewGrouperControl1.Grouper.SetGroupOn(DataGridViewGrouperControl1.Grouper.DataGridView.Columns[0]);
                 DataGridViewGrouperControl1.Chk.CheckState = CheckState.Unchecked;
             }

@@ -7,7 +7,6 @@ namespace osf
 {
     public class Control : Component
     {
-        [DllImport("user32", EntryPoint = "SendMessageA", CharSet = CharSet.Auto, SetLastError = true)] public static extern bool SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         public string Click;
         public string ControlAdded;
         public string ControlRemoved;
@@ -63,7 +62,7 @@ namespace osf
             set
             {
                 M_Control.BackgroundImage = value.M_Image;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -380,7 +379,7 @@ namespace osf
         public void ResetBackgroundImage()
         {
             M_Control.BackgroundImage = null;
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public int Right
@@ -952,15 +951,15 @@ namespace osf
 
         public virtual void EndUpdate()
         {
-            SendMessage(M_Control.Handle, 11, -1, 0);
+            M_Control.ResumeLayout();
             M_Control.Invalidate();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public virtual void BeginUpdate()
         {
-            SendMessage(M_Control.Handle, 11, 0, 0);
-            System.Windows.Forms.Application.DoEvents();
+            M_Control.SuspendLayout();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public virtual void Center()

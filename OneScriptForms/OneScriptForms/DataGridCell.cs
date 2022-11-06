@@ -33,7 +33,7 @@ namespace osf
             set
             {
                 M_DataGridCell.ColumnNumber = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -43,7 +43,7 @@ namespace osf
             set
             {
                 M_DataGridCell.RowNumber = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
     }

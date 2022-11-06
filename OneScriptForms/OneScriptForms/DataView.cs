@@ -33,7 +33,7 @@ namespace osf
             set
             {
                 M_DataView.AllowEdit = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -43,7 +43,7 @@ namespace osf
             set
             {
                 M_DataView.AllowNew = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -53,7 +53,7 @@ namespace osf
             set
             {
                 M_DataView.ApplyDefaultSort = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
