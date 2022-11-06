@@ -33,7 +33,7 @@ namespace osf
             set
             {
                 M_ForeColor = value.M_Color;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -54,7 +54,7 @@ namespace osf
             set
             {
                 M_Text = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -75,7 +75,7 @@ namespace osf
             set
             {
                 M_Value = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 

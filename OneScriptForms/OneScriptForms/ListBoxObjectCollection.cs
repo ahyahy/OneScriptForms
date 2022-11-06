@@ -32,21 +32,21 @@ namespace osf
         public new object Add(object item)
         {
             M_ListBoxObjectCollection.Add(item);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
             return item;
         }
 
         public new object Insert(int index, object item)
         {
             M_ListBoxObjectCollection.Insert(index, item);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
             return item;
         }
 
         public new void Remove(object item)
         {
             M_ListBoxObjectCollection.Remove(item);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
     }
 

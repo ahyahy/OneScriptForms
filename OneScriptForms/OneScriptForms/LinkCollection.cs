@@ -31,7 +31,14 @@ namespace osf
 
         public bool LinksAdded
         {
-            get { return M_LinkCollection.LinksAdded; }
+            get
+            {
+                if (M_LinkCollection.Count > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
         }
 
         public virtual object this[int index]

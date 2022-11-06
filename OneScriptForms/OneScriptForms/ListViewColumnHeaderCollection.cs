@@ -40,7 +40,7 @@ namespace osf
             if (column is ColumnHeader)
             {
                 M_ColumnHeaderCollection.Add((ColumnHeaderEx)((ColumnHeader)column).M_ColumnHeader);
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
                 return (ColumnHeader)column;
             }
             ColumnHeader ColumnHeader1 = new ColumnHeader();
@@ -49,7 +49,7 @@ namespace osf
                 ColumnHeader1.Text = Convert.ToString(column);
             }
             M_ColumnHeaderCollection.Add((ColumnHeaderEx)ColumnHeader1.M_ColumnHeader);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
             return ColumnHeader1;
         }
 

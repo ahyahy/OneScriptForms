@@ -37,7 +37,7 @@
                 {
                     M_ListControl.DataSource = value;
                 }
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -47,7 +47,7 @@
             set
             {
                 M_ListControl.DisplayMember = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -67,7 +67,7 @@
             set
             {
                 M_ListControl.SelectedValue = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -77,7 +77,7 @@
             set
             {
                 M_ListControl.ValueMember = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
     }

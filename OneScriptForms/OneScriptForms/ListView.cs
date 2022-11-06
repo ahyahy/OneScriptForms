@@ -229,13 +229,13 @@ namespace osf
             get
             {
                 ImageList ImageList1 = new ImageList(M_ListView.SmallImageList);
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
                 return ImageList1;
             }
             set
             {
                 M_ListView.SmallImageList = value.M_ImageList;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -394,19 +394,19 @@ namespace osf
             SortOrder = order;
             M_ListView.ListViewItemSorter = new ListViewItemSorter(SortOrder, this);
             M_ListView.ListViewItemSorter = (IComparer)null;
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public override void BeginUpdate()
         {
             M_ListView.BeginUpdate();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public override void EndUpdate()
         {
             M_ListView.EndUpdate();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
     }
 
@@ -482,7 +482,7 @@ namespace osf
                 {
                     num = 1;
                 }
-                else if(DateTime1 == null && DateTime2 != null)
+                else if (DateTime1 == null && DateTime2 != null)
                 {
                     num = -1;
                 }
@@ -601,9 +601,13 @@ namespace osf
         private ClRectangle clientRectangle;
         private ClListViewColumnHeaderCollection columns;
         private ClControlCollection controls;
+        private ClCursor cursor;
+        private ClFont font;
         private ClColor foreColor;
         private ClListViewItemCollection items;
+        private ClImageList largeImageList;
         private ClListViewSelectedItemCollection selectedItems;
+        private ClImageList smallImageList;
         private ClCollection tag = new ClCollection();
 
         public ClListView()
@@ -665,13 +669,6 @@ namespace osf
         {
             get { return Base_obj.Top; }
             set { Base_obj.Top = value; }
-        }
-
-        [ContextProperty("ВыбиратьПодэлементы", "FullRowSelect")]
-        public bool FullRowSelect
-        {
-            get { return Base_obj.FullRowSelect; }
-            set { Base_obj.FullRowSelect = value; }
         }
 
         [ContextProperty("ВыборПриНаведении", "HoverSelection")]
@@ -942,10 +939,21 @@ namespace osf
         [ContextProperty("Курсор", "Cursor")]
         public ClCursor Cursor
         {
-            get { return (ClCursor)OneScriptForms.RevertObj(Base_obj.Cursor); }
-            set { Base_obj.Cursor = value.Base_obj; }
+            get
+            {
+                if (cursor != null)
+                {
+                    return cursor;
+                }
+                return new ClCursor(Base_obj.Cursor);
+            }
+            set
+            {
+                cursor = value;
+                Base_obj.Cursor = value.Base_obj;
+            }
         }
-
+        
         [ContextProperty("Лево", "Left")]
         public int Left
         {
@@ -1079,6 +1087,21 @@ namespace osf
             get { return new ClPoint(System.Windows.Forms.Control.MousePosition); }
         }
         
+        [ContextProperty("ВыбиратьПодэлементы", "FullRowSelect")]
+        public bool FullRowSelect
+        {
+            // Устаревшее свойство, оставить для совместимости.
+            get { return Base_obj.FullRowSelect; }
+            set { Base_obj.FullRowSelect = value; }
+        }
+
+        [ContextProperty("ПолныйВыборСтроки", "FullRowSelect4")]
+        public bool FullRowSelect4
+        {
+            get { return FullRowSelect; }
+            set { FullRowSelect = value; }
+        }
+
         [ContextProperty("Положение", "Location")]
         public ClPoint Location
         {
@@ -1432,17 +1455,39 @@ namespace osf
         [ContextProperty("СписокБольшихИзображений", "LargeImageList")]
         public ClImageList LargeImageList
         {
-            get { return (ClImageList)OneScriptForms.RevertObj(Base_obj.LargeImageList); }
-            set { Base_obj.LargeImageList = value.Base_obj; }
+            get
+            {
+                if (largeImageList != null)
+                {
+                    return largeImageList;
+                }
+                return new ClImageList(Base_obj.LargeImageList);
+            }
+            set
+            {
+                largeImageList = value;
+                Base_obj.LargeImageList = value.Base_obj;
+            }
         }
-
+        
         [ContextProperty("СписокМаленькихИзображений", "SmallImageList")]
         public ClImageList SmallImageList
         {
-            get { return (ClImageList)OneScriptForms.RevertObj(Base_obj.SmallImageList); }
-            set { Base_obj.SmallImageList = value.Base_obj; }
+            get
+            {
+                if (smallImageList != null)
+                {
+                    return smallImageList;
+                }
+                return new ClImageList(Base_obj.SmallImageList);
+            }
+            set
+            {
+                smallImageList = value;
+                Base_obj.SmallImageList = value.Base_obj;
+            }
         }
-
+        
         [ContextProperty("СтильГраницы", "BorderStyle")]
         public int BorderStyle
         {
@@ -1556,14 +1601,21 @@ namespace osf
         [ContextProperty("Шрифт", "Font")]
         public ClFont Font
         {
-            get { return (ClFont)OneScriptForms.RevertObj(Base_obj.Font); }
-            set 
+            get
             {
-                Base_obj.Font = value.Base_obj; 
-                Base_obj.Font.dll_obj = value;
+                if (font != null)
+                {
+                    return font;
+                }
+                return new ClFont(Base_obj.Font);
+            }
+            set
+            {
+                font = value;
+                Base_obj.Font = value.Base_obj;
             }
         }
-
+        
         [ContextProperty("ЭлементВерхнегоУровня", "TopLevelControl")]
         public IValue TopLevelControl
         {

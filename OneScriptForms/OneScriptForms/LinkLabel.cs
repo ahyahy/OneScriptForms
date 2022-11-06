@@ -56,7 +56,7 @@ namespace osf
             set
             {
                 M_LinkLabel.AutoSize = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -66,7 +66,7 @@ namespace osf
             set
             {
                 M_LinkLabel.ImageAlign = (System.Drawing.ContentAlignment)value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -76,7 +76,7 @@ namespace osf
             set
             {
                 M_LinkLabel.TextAlign = (System.Drawing.ContentAlignment)value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -86,7 +86,7 @@ namespace osf
             set
             {
                 M_LinkLabel.ImageIndex = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -106,7 +106,7 @@ namespace osf
             set
             {
                 M_LinkLabel.BorderStyle = (System.Windows.Forms.BorderStyle)value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -146,7 +146,7 @@ namespace osf
             {
                 image = value;
                 M_LinkLabel.Image = value.M_Image;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -156,7 +156,7 @@ namespace osf
             set
             {
                 M_LinkLabel.ImageList = value.M_ImageList;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -213,7 +213,11 @@ namespace osf
         private ClRectangle bounds;
         private ClRectangle clientRectangle;
         private ClControlCollection controls;
+        private ClCursor cursor;
+        private ClFont font;
         private ClColor foreColor;
+        private ClImageList imageList;
+        private ClLinkArea linkArea;
         private ClColor linkColor;
         private ClLinkCollection links;
         private ClCollection tag = new ClCollection();
@@ -462,10 +466,21 @@ namespace osf
         [ContextProperty("Курсор", "Cursor")]
         public ClCursor Cursor
         {
-            get { return (ClCursor)OneScriptForms.RevertObj(Base_obj.Cursor); }
-            set { Base_obj.Cursor = value.Base_obj; }
+            get
+            {
+                if (cursor != null)
+                {
+                    return cursor;
+                }
+                return new ClCursor(Base_obj.Cursor);
+            }
+            set
+            {
+                cursor = value;
+                Base_obj.Cursor = value.Base_obj;
+            }
         }
-
+        
         [ContextProperty("Лево", "Left")]
         public int Left
         {
@@ -545,8 +560,8 @@ namespace osf
         [ContextProperty("ОбластьСсылки", "LinkArea")]
         public ClLinkArea LinkArea
         {
-            get { return (ClLinkArea)OneScriptForms.RevertObj(Base_obj.LinkArea); }
-            set { Base_obj.LinkArea = value.Base_obj; }
+            get { return linkArea; }
+            set { linkArea = value; }
         }
 
         [ContextProperty("ОсновнойЦвет", "ForeColor")]
@@ -832,10 +847,14 @@ namespace osf
         [ContextProperty("СписокИзображений", "ImageList")]
         public ClImageList ImageList
         {
-            get { return (ClImageList)OneScriptForms.RevertObj(Base_obj.ImageList); }
-            set { Base_obj.ImageList = value.Base_obj; }
+            get { return imageList; }
+            set
+            {
+                imageList = value;
+                Base_obj.ImageList = value.Base_obj;
+            }
         }
-
+        
         [ContextProperty("СсылкаНажата", "LinkClicked")]
         public IValue LinkClicked
         {
@@ -988,14 +1007,21 @@ namespace osf
         [ContextProperty("Шрифт", "Font")]
         public ClFont Font
         {
-            get { return (ClFont)OneScriptForms.RevertObj(Base_obj.Font); }
-            set 
+            get
             {
-                Base_obj.Font = value.Base_obj; 
-                Base_obj.Font.dll_obj = value;
+                if (font != null)
+                {
+                    return font;
+                }
+                return new ClFont(Base_obj.Font);
+            }
+            set
+            {
+                font = value;
+                Base_obj.Font = value.Base_obj;
             }
         }
-
+        
         [ContextProperty("ЭлементВерхнегоУровня", "TopLevelControl")]
         public IValue TopLevelControl
         {

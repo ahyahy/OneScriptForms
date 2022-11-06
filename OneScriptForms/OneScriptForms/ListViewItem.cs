@@ -38,7 +38,7 @@ namespace osf
             set
             {
                 M_ListViewItem.BackColor = value.M_Color;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -53,7 +53,7 @@ namespace osf
             set
             {
                 M_ListViewItem.Checked = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -63,7 +63,7 @@ namespace osf
             set
             {
                 M_ListViewItem.Focused = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -73,7 +73,7 @@ namespace osf
             set
             {
                 M_ListViewItem.Font = value.M_Font;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -83,7 +83,7 @@ namespace osf
             set
             {
                 M_ListViewItem.ForeColor = value.M_Color;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -93,7 +93,7 @@ namespace osf
             set
             {
                 M_ListViewItem.ImageIndex = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -113,7 +113,7 @@ namespace osf
             set
             {
                 M_ListViewItem.Selected = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -128,7 +128,7 @@ namespace osf
             set
             {
                 M_ListViewItem.Tag = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -138,7 +138,7 @@ namespace osf
             set
             {
                 M_ListViewItem.Text = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -148,26 +148,26 @@ namespace osf
             set
             {
                 M_ListViewItem.UseItemStyleForSubItems = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
         public void BeginEdit()
         {
             M_ListViewItem.BeginEdit();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void EnsureVisible()
         {
             M_ListViewItem.EnsureVisible();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void Remove()
         {
             M_ListViewItem.Remove();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
     }
 
@@ -176,6 +176,7 @@ namespace osf
     {
         private ClColor backColor;
         private ClRectangle bounds;
+        private ClFont font;
         private ClColor foreColor;
         private ClListViewSubItemCollection subItems;
         private ClCollection tag = new ClCollection();
@@ -272,7 +273,7 @@ namespace osf
         {
             get { return (ClImageList)OneScriptForms.RevertObj(Base_obj.ImageList); }
         }
-
+        
         [ContextProperty("Сфокусирован", "Focused")]
         public bool Focused
         {
@@ -301,11 +302,18 @@ namespace osf
         [ContextProperty("Шрифт", "Font")]
         public ClFont Font
         {
-            get { return (ClFont)OneScriptForms.RevertObj(Base_obj.Font); }
-            set 
+            get
             {
-                Base_obj.Font = value.Base_obj; 
-                Base_obj.Font.dll_obj = value;
+                if (font != null)
+                {
+                    return font;
+                }
+                return new ClFont(Base_obj.Font);
+            }
+            set
+            {
+                font = value;
+                Base_obj.Font = value.Base_obj;
             }
         }
         
