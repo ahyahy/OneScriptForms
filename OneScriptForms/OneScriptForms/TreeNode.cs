@@ -112,7 +112,7 @@ namespace osf
         public void BeginEdit()
         {
             M_TreeNode.BeginEdit();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void Collapse()
@@ -134,6 +134,7 @@ namespace osf
     [ContextClass ("КлУзелДерева", "ClTreeNode")]
     public class ClTreeNode : AutoContext<ClTreeNode>
     {
+        private ClFont nodeFont;
         private ClTreeNodeCollection nodes;
         private ClCollection tag = new ClCollection();
 
@@ -250,11 +251,11 @@ namespace osf
         [ContextProperty("ШрифтУзла", "NodeFont")]
         public ClFont NodeFont
         {
-            get { return (ClFont)OneScriptForms.RevertObj(Base_obj.NodeFont); }
+            get { return nodeFont; }
             set 
             {
-                Base_obj.NodeFont = value.Base_obj; 
-                Base_obj.NodeFont.dll_obj = value;
+                nodeFont = value;
+                Base_obj.NodeFont = value.Base_obj;
             }
         }
         

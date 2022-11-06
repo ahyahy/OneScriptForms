@@ -40,13 +40,13 @@ namespace osf
             if (p1 is TreeNode)
             {
                 M_TreeNodeCollection.Add((System.Windows.Forms.TreeNode)((TreeNode)p1).M_TreeNode);
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
                 return (TreeNode)p1;
             }
             TreeNode TreeNode1 = new TreeNode();
             TreeNode1.Text = Convert.ToString(p1);
             M_TreeNodeCollection.Add((System.Windows.Forms.TreeNode)((TreeNode)TreeNode1).M_TreeNode);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
             return TreeNode1;
         }
 

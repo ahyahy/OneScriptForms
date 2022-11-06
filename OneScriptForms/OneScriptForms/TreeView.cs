@@ -19,6 +19,7 @@ namespace osf
         public string BeforeSelect;
         public ClTreeView dll_obj;
         public TreeViewEx M_TreeView;
+        private int selectedImageIndex;
 
         public TreeView()
         {
@@ -34,6 +35,7 @@ namespace osf
             BeforeExpand = "";
             BeforeLabelEdit = "";
             BeforeSelect = "";
+            selectedImageIndex = -1;
         }
 
         public TreeView(osf.TreeView p1)
@@ -66,6 +68,7 @@ namespace osf
             BeforeExpand = "";
             BeforeLabelEdit = "";
             BeforeSelect = "";
+            selectedImageIndex = -1;
         }
 
         public int BorderStyle
@@ -147,8 +150,14 @@ namespace osf
 
         public int SelectedImageIndex
         {
-            get { return M_TreeView.SelectedImageIndex; }
-            set { M_TreeView.SelectedImageIndex = value; }
+            get { return selectedImageIndex; }
+            set 
+            {
+                // В документации к MONO SelectedImageIndex всегда равен -1
+                // поэтому пишем свой код.
+                // в событии AfterSelect сами устанавливаем для узла изображение
+                selectedImageIndex = value; 
+            }
         }
 
         public osf.TreeNode SelectedNode
@@ -218,6 +227,24 @@ namespace osf
 
         public void M_TreeView_AfterSelect(object sender, System.Windows.Forms.TreeViewEventArgs e)
         {
+		
+            // Установим изображение для узла согласно заданному SelectedImageIndex
+            if (e.Node.SelectedImageIndex < 0)
+            {
+                e.Node.SelectedImageIndex = SelectedImageIndex;
+            }
+            else
+            {
+                if (e.Node.ImageIndex < 0)
+                {
+                    e.Node.ImageIndex = ImageIndex;
+                }
+            }
+            if (e.Node.ImageIndex < 0)
+            {
+                e.Node.ImageIndex = ImageIndex;
+            }
+		
             if (AfterSelect.Length > 0)
             {
                 TreeViewEventArgs TreeViewEventArgs1 = new TreeViewEventArgs();
@@ -267,16 +294,6 @@ namespace osf
                 e.Cancel = TreeViewCancelEventArgs1.Cancel;
             }
         }
-
-        public override void BeginUpdate()
-        {
-            M_TreeView.BeginUpdate();
-        }
-
-        public override void EndUpdate()
-        {
-            M_TreeView.EndUpdate();
-        }
     }
 
     [ContextClass ("КлДерево", "ClTreeView")]
@@ -310,7 +327,10 @@ namespace osf
         private ClRectangle bounds;
         private ClRectangle clientRectangle;
         private ClControlCollection controls;
+        private ClCursor cursor;
+        private ClFont font;
         private ClColor foreColor;
+        private ClImageList imageList;
         private ClTreeNodeCollection nodes;
         private ClCollection tag = new ClCollection();
 
@@ -353,13 +373,6 @@ namespace osf
         {
             get { return Base_obj.Top; }
             set { Base_obj.Top = value; }
-        }
-
-        [ContextProperty("ВыбиратьПодэлементы", "FullRowSelect")]
-        public bool FullRowSelect
-        {
-            get { return Base_obj.FullRowSelect; }
-            set { Base_obj.FullRowSelect = value; }
         }
 
         [ContextProperty("ВыбранныйУзел", "SelectedNode")]
@@ -588,10 +601,21 @@ namespace osf
         [ContextProperty("Курсор", "Cursor")]
         public ClCursor Cursor
         {
-            get { return (ClCursor)OneScriptForms.RevertObj(Base_obj.Cursor); }
-            set { Base_obj.Cursor = value.Base_obj; }
+            get
+            {
+                if (cursor != null)
+                {
+                    return cursor;
+                }
+                return new ClCursor(Base_obj.Cursor);
+            }
+            set
+            {
+                cursor = value;
+                Base_obj.Cursor = value.Base_obj;
+            }
         }
-
+        
         [ContextProperty("Лево", "Left")]
         public int Left
         {
@@ -744,6 +768,21 @@ namespace osf
         {
             get { return Base_obj.ShowPlusMinus; }
             set { Base_obj.ShowPlusMinus = value; }
+        }
+
+        [ContextProperty("ВыбиратьПодэлементы", "FullRowSelect")]
+        public bool FullRowSelect
+        {
+            // Устаревшее свойство, оставить для совместимости.
+            get { return Base_obj.FullRowSelect; }
+            set { Base_obj.FullRowSelect = value; }
+        }
+
+        [ContextProperty("ПолныйВыборСтроки", "FullRowSelect4")]
+        public bool FullRowSelect4
+        {
+            get { return FullRowSelect; }
+            set { FullRowSelect = value; }
         }
 
         [ContextProperty("Положение", "Location")]
@@ -1065,10 +1104,14 @@ namespace osf
         [ContextProperty("СписокИзображений", "ImageList")]
         public ClImageList ImageList
         {
-            get { return (ClImageList)OneScriptForms.RevertObj(Base_obj.ImageList); }
-            set { Base_obj.ImageList = value.Base_obj; }
+            get { return imageList; }
+            set
+            {
+                imageList = value;
+                Base_obj.ImageList = value.Base_obj;
+            }
         }
-
+        
         [ContextProperty("СтильГраницы", "BorderStyle")]
         public int BorderStyle
         {
@@ -1175,14 +1218,21 @@ namespace osf
         [ContextProperty("Шрифт", "Font")]
         public ClFont Font
         {
-            get { return (ClFont)OneScriptForms.RevertObj(Base_obj.Font); }
-            set 
+            get
             {
-                Base_obj.Font = value.Base_obj; 
-                Base_obj.Font.dll_obj = value;
+                if (font != null)
+                {
+                    return font;
+                }
+                return new ClFont(Base_obj.Font);
+            }
+            set
+            {
+                font = value;
+                Base_obj.Font = value.Base_obj;
             }
         }
-
+        
         [ContextProperty("ЭлементВерхнегоУровня", "TopLevelControl")]
         public IValue TopLevelControl
         {
