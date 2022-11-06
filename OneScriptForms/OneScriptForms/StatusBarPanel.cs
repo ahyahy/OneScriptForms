@@ -77,6 +77,8 @@ namespace osf
     [ContextClass ("КлПанельСтрокиСостояния", "ClStatusBarPanel")]
     public class ClStatusBarPanel : AutoContext<ClStatusBarPanel>
     {
+        public ClIcon icon;
+
         public ClStatusBarPanel()
         {
             StatusBarPanel StatusBarPanel1 = new StatusBarPanel();
@@ -103,14 +105,14 @@ namespace osf
         [ContextProperty("Значок", "Icon")]
         public ClIcon Icon
         {
-            get { return (ClIcon)OneScriptForms.RevertObj(Base_obj.Icon); }
+            get { return icon; }
             set 
             {
-                Base_obj.Icon = value.Base_obj; 
-                Base_obj.Icon.dll_obj = value;
+                icon = value;
+                Base_obj.Icon = value.Base_obj;
             }
         }
-
+        
         [ContextProperty("МинимальнаяШирина", "MinWidth")]
         public int MinWidth
         {

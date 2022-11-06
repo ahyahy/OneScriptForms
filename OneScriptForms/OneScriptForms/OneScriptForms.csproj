@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -208,6 +209,7 @@
     <Compile Include="Day.cs" />
     <Compile Include="DialogResult.cs" />
     <Compile Include="DictionaryEntry.cs" />
+    <Compile Include="Dns.cs" />
     <Compile Include="DockPaddingEdges.cs" />
     <Compile Include="DockStyle.cs" />
     <Compile Include="DrawMode.cs" />
@@ -245,6 +247,7 @@
     <Compile Include="GridItem.cs" />
     <Compile Include="GridItemCollection.cs" />
     <Compile Include="GridItemType.cs" />
+    <Compile Include="GridLineStyle.cs" />
     <Compile Include="GridTableStylesCollection.cs" />
     <Compile Include="GroupBox.cs">
       <SubType>Component</SubType>
@@ -262,7 +265,10 @@
     <Compile Include="ImageFormat.cs" />
     <Compile Include="ImageLayout.cs" />
     <Compile Include="ImageList.cs" />
+    <Compile Include="ImageScaleMode.cs" />
     <Compile Include="InputBox.cs" />
+    <Compile Include="IpAddress.cs" />
+    <Compile Include="IpHostEntry.cs" />
     <Compile Include="ItemActivation.cs" />
     <Compile Include="ItemCheckEventArgs.cs" />
     <Compile Include="KeyEventArgs.cs" />
@@ -323,7 +329,28 @@
     <Compile Include="MouseButtons.cs" />
     <Compile Include="MouseEventArgs.cs" />
     <Compile Include="MouseFlags.cs" />
+    <Compile Include="NetworkStream.cs" />
+    <Compile Include="NodeCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NodeComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NodeComboBoxObjectCollection.cs" />
+    <Compile Include="NodeControlsCollection.cs" />
+    <Compile Include="NodeDecimalTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="NodeLabelEditEventArgs.cs" />
+    <Compile Include="NodeNumericUpDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NodeStateIcon.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NodeTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="NotifyFilters.cs" />
     <Compile Include="NotifyIcon.cs">
       <SubType>Component</SubType>
@@ -371,6 +398,7 @@
     </Compile>
     <Compile Include="RichTextBoxFinds.cs" />
     <Compile Include="RichTextBoxStreamType.cs" />
+    <Compile Include="RoundRect.cs" />
     <Compile Include="SaveFileDialog.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -387,6 +415,7 @@
     <Compile Include="ScrollOrientation.cs" />
     <Compile Include="SeekOrigin.cs" />
     <Compile Include="SelectedGridItemChangedEventArgs.cs" />
+    <Compile Include="SelectedTreeNodeAdvCollection.cs" />
     <Compile Include="SelectionMode.cs" />
     <Compile Include="SelectionRange.cs" />
     <Compile Include="Shortcut.cs" />
@@ -412,6 +441,7 @@
     <Compile Include="StatusBarPanelCollection.cs" />
     <Compile Include="Stream.cs" />
     <Compile Include="StreamReader.cs" />
+    <Compile Include="StringTrimming.cs" />
     <Compile Include="TabAlignment.cs" />
     <Compile Include="TabAppearance.cs" />
     <Compile Include="TabControl.cs">
@@ -422,6 +452,8 @@
     </Compile>
     <Compile Include="TabPageCollection.cs" />
     <Compile Include="TabSizeMode.cs" />
+    <Compile Include="TCPClient.cs" />
+    <Compile Include="TCPListener.cs" />
     <Compile Include="TextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -446,12 +478,26 @@
     <Compile Include="ToolTip.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="TreeColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TreeColumnCollection.cs" />
+    <Compile Include="TreeColumnEventArgs.cs" />
     <Compile Include="TreeNode.cs" />
+    <Compile Include="TreeNodeAdv.cs" />
+    <Compile Include="TreeNodeAdvCollection.cs" />
+    <Compile Include="TreeNodeAdvMouseEventArgs.cs" />
     <Compile Include="TreeNodeCollection.cs" />
+    <Compile Include="TreeSelectionMode.cs" />
     <Compile Include="TreeView.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="TreeViewAction.cs" />
+    <Compile Include="TreeViewAdv.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TreeViewAdvEventArgs.cs" />
+    <Compile Include="TreeViewAdvSupport.cs" />
     <Compile Include="TreeViewCancelEventArgs.cs" />
     <Compile Include="TreeViewEventArgs.cs" />
     <Compile Include="Type.cs" />
@@ -461,7 +507,9 @@
     <Compile Include="UserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ValueTreeViewAdvEventArgs.cs" />
     <Compile Include="Version.cs" />
+    <Compile Include="VerticalAlign.cs" />
     <Compile Include="View.cs" />
     <Compile Include="VScrollBar.cs">
       <SubType>Component</SubType>

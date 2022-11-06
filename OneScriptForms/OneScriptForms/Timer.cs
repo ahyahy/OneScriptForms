@@ -41,6 +41,12 @@ namespace osf
             Tick = "";
         }
 
+        public bool Enabled
+        {
+            get { return M_Timer.Enabled; }
+            set { M_Timer.Enabled = value; }
+        }
+
         public int Interval
         {
             get { return M_Timer.Interval; }
@@ -94,6 +100,13 @@ namespace osf
         
         public Timer Base_obj;
         
+        [ContextProperty("Активен", "Enabled")]
+        public bool Enabled
+        {
+            get { return Base_obj.Enabled; }
+            set { Base_obj.Enabled = value; }
+        }
+
         [ContextProperty("Интервал", "Interval")]
         public int Interval
         {

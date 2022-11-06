@@ -14,7 +14,7 @@
             set
             {
                 M_TextBoxBase.AcceptsTab = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -24,7 +24,7 @@
             set
             {
                 M_TextBoxBase.AutoSize = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -34,7 +34,7 @@
             set
             {
                 M_TextBoxBase.BorderStyle = (System.Windows.Forms.BorderStyle)value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -49,7 +49,7 @@
             set
             {
                 M_TextBoxBase.HideSelection = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -74,7 +74,7 @@
             set
             {
                 M_TextBoxBase.MaxLength = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -84,7 +84,7 @@
             set
             {
                 M_TextBoxBase.Modified = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -94,7 +94,7 @@
             set
             {
                 M_TextBoxBase.Multiline = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -104,7 +104,7 @@
             set
             {
                 M_TextBoxBase.ReadOnly = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -114,7 +114,7 @@
             set
             {
                 M_TextBoxBase.SelectedText = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -124,7 +124,7 @@
             set
             {
                 M_TextBoxBase.SelectionLength = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -134,7 +134,7 @@
             set
             {
                 M_TextBoxBase.SelectionStart = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -149,50 +149,50 @@
             set
             {
                 M_TextBoxBase.WordWrap = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
         public void AppendText(string text)
         {
             M_TextBoxBase.AppendText(text);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void Copy()
         {
             M_TextBoxBase.Copy();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void Cut()
         {
             M_TextBoxBase.Cut();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void Paste()
         {
             M_TextBoxBase.Paste();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void ScrollToCaret()
         {
             M_TextBoxBase.ScrollToCaret();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void SelectAll()
         {
             M_TextBoxBase.SelectAll();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void Undo()
         {
             M_TextBoxBase.Undo();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
     }
 }

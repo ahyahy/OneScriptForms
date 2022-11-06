@@ -18,7 +18,7 @@ namespace osf
             set
             {
                 M_ScrollBar.LargeChange = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -38,7 +38,7 @@ namespace osf
             set
             {
                 M_ScrollBar.Maximum = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -48,7 +48,7 @@ namespace osf
             set
             {
                 M_ScrollBar.Minimum = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -58,7 +58,7 @@ namespace osf
             set
             {
                 M_ScrollBar.SmallChange = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -68,7 +68,7 @@ namespace osf
             set
             {
                 M_ScrollBar.Value = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 

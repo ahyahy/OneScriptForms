@@ -43,7 +43,7 @@ namespace osf
             set
             {
                 M_ToolBarButton.Enabled = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 

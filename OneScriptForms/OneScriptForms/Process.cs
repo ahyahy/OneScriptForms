@@ -56,6 +56,8 @@ namespace osf
     [ContextClass ("КлПроцесс", "ClProcess")]
     public class ClProcess : AutoContext<ClProcess>
     {
+        private ClProcessStartInfo startInfo;
+
         public ClProcess()
         {
             Process Process1 = new Process();
@@ -81,10 +83,14 @@ namespace osf
         [ContextProperty("НачальнаяИнформация", "StartInfo")]
         public ClProcessStartInfo StartInfo
         {
-            get { return (ClProcessStartInfo)OneScriptForms.RevertObj(Base_obj.StartInfo); }
-            set { Base_obj.StartInfo = value.Base_obj; }
+            get { return startInfo; }
+            set
+            {
+                startInfo = value;
+                Base_obj.StartInfo = value.Base_obj;
+            }
         }
-
+        
         [ContextProperty("СтандартныйВывод", "StandardOutput")]
         public ClStreamReader StandardOutput
         {

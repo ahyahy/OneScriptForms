@@ -41,6 +41,11 @@ namespace osf
             get { return (int)M_Panel.BorderStyle; }
             set { M_Panel.BorderStyle = (System.Windows.Forms.BorderStyle)value; }
         }
+
+        public void SetRoundedShape(osf.Panel p1, int p2)
+        {
+            JonasKohl.Graphics.RoundRect.SetRoundedShape(p1.M_Panel, p2);
+        }
     }
 
     [ContextClass ("КлПанель", "ClPanel")]
@@ -71,7 +76,9 @@ namespace osf
         private ClRectangle bounds;
         private ClRectangle clientRectangle;
         private ClControlCollection controls;
+        private ClCursor cursor;
         private ClDockPaddingEdges dockPadding;
+        private ClFont font;
         private ClColor foreColor;
         private ClCollection tag = new ClCollection();
 
@@ -320,10 +327,21 @@ namespace osf
         [ContextProperty("Курсор", "Cursor")]
         public ClCursor Cursor
         {
-            get { return (ClCursor)OneScriptForms.RevertObj(Base_obj.Cursor); }
-            set { Base_obj.Cursor = value.Base_obj; }
+            get
+            {
+                if (cursor != null)
+                {
+                    return cursor;
+                }
+                return new ClCursor(Base_obj.Cursor);
+            }
+            set
+            {
+                cursor = value;
+                Base_obj.Cursor = value.Base_obj;
+            }
         }
-
+        
         [ContextProperty("Лево", "Left")]
         public int Left
         {
@@ -774,14 +792,21 @@ namespace osf
         [ContextProperty("Шрифт", "Font")]
         public ClFont Font
         {
-            get { return (ClFont)OneScriptForms.RevertObj(Base_obj.Font); }
-            set 
+            get
             {
-                Base_obj.Font = value.Base_obj; 
-                Base_obj.Font.dll_obj = value;
+                if (font != null)
+                {
+                    return font;
+                }
+                return new ClFont(Base_obj.Font);
+            }
+            set
+            {
+                font = value;
+                Base_obj.Font = value.Base_obj;
             }
         }
-
+        
         [ContextProperty("ЭлементВерхнегоУровня", "TopLevelControl")]
         public IValue TopLevelControl
         {
@@ -875,6 +900,13 @@ namespace osf
             Base_obj.PerformLayout();
         }
 					
+        [ContextMethod("Выше", "PlaceTop")]
+        public void PlaceTop(IValue p1, int p2)
+        {
+            dynamic p3 = ((dynamic)p1).Base_obj;
+            Base_obj.Location = new Point(p3.Left, p3.Top - Base_obj.Height - p2);
+        }
+        
         [ContextMethod("ДочернийПоКоординатам", "GetChildAtPoint")]
         public IValue GetChildAtPoint(ClPoint p1)
         {
@@ -887,6 +919,13 @@ namespace osf
             Base_obj.EndUpdate();
         }
 					
+        [ContextMethod("Левее", "PlaceLeft")]
+        public void PlaceLeft(IValue p1, int p2)
+        {
+            dynamic p3 = ((dynamic)p1).Base_obj;
+            Base_obj.Location = new Point(p3.Left - Base_obj.Width - p2, p3.Top);
+        }
+        
         [ContextMethod("НаЗаднийПлан", "SendToBack")]
         public void SendToBack()
         {
@@ -921,6 +960,13 @@ namespace osf
             Base_obj.BeginUpdate();
         }
 					
+        [ContextMethod("Ниже", "PlaceBottom")]
+        public void PlaceBottom(IValue p1, int p2)
+        {
+            dynamic p3 = ((dynamic)p1).Base_obj;
+            Base_obj.Location = new Point(p3.Left, p3.Top + p3.Height + p2);
+        }
+        
         [ContextMethod("Обновить", "Update")]
         public void Update()
         {
@@ -1006,6 +1052,12 @@ namespace osf
             Base_obj.SetBounds(p1, p2, p3, p4);
         }
 
+        [ContextMethod("УстановитьЗакругленныеУглы", "SetRoundedShape")]
+        public void SetRoundedShape(int p2)
+        {
+            Base_obj.SetRoundedShape(this.Base_obj, p2);
+        }
+        
         [ContextMethod("УстановитьСтиль", "SetStyle")]
         public void SetStyle(int p1, bool p2)
         {

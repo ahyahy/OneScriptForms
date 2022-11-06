@@ -13,7 +13,6 @@ namespace osf
 
     public class RichTextBox : TextBoxBase
     {
-        [DllImport("user32", EntryPoint = "SendMessageA", CharSet = CharSet.Auto, SetLastError = true)] private static extern new bool SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         public ClRichTextBox dll_obj;
         public string LinkClicked;
         private RichTextBoxEx m_RichTextBox;
@@ -191,25 +190,12 @@ namespace osf
         public void Redo()
         {
             M_RichTextBox.Redo();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void SaveFile(string path, System.Windows.Forms.RichTextBoxStreamType fileType = System.Windows.Forms.RichTextBoxStreamType.RichText)
         {
             M_RichTextBox.SaveFile(path, (System.Windows.Forms.RichTextBoxStreamType)fileType);
-        }
-
-        public override void BeginUpdate()
-        {
-            RichTextBox.SendMessage(M_RichTextBox.Handle, 11, 0, 0);
-            System.Windows.Forms.Application.DoEvents();
-        }
-
-        public override void EndUpdate()
-        {
-            RichTextBox.SendMessage(M_RichTextBox.Handle, 11, -1, 0);
-            M_RichTextBox.Invalidate();
-            System.Windows.Forms.Application.DoEvents();
         }
     }
 
@@ -243,8 +229,11 @@ namespace osf
         private ClRectangle bounds;
         private ClRectangle clientRectangle;
         private ClControlCollection controls;
+        private ClCursor cursor;
+        private ClFont font;
         private ClColor foreColor;
         private ClColor selectionColor;
+        private ClFont selectionFont;
         private ClCollection tag = new ClCollection();
 
         public ClRichTextBox()
@@ -589,10 +578,21 @@ namespace osf
         [ContextProperty("Курсор", "Cursor")]
         public ClCursor Cursor
         {
-            get { return (ClCursor)OneScriptForms.RevertObj(Base_obj.Cursor); }
-            set { Base_obj.Cursor = value.Base_obj; }
+            get
+            {
+                if (cursor != null)
+                {
+                    return cursor;
+                }
+                return new ClCursor(Base_obj.Cursor);
+            }
+            set
+            {
+                cursor = value;
+                Base_obj.Cursor = value.Base_obj;
+            }
         }
-
+        
         [ContextProperty("Лево", "Left")]
         public int Left
         {
@@ -1182,25 +1182,39 @@ namespace osf
         [ContextProperty("Шрифт", "Font")]
         public ClFont Font
         {
-            get { return (ClFont)OneScriptForms.RevertObj(Base_obj.Font); }
-            set 
+            get
             {
-                Base_obj.Font = value.Base_obj; 
-                Base_obj.Font.dll_obj = value;
+                if (font != null)
+                {
+                    return font;
+                }
+                return new ClFont(Base_obj.Font);
+            }
+            set
+            {
+                font = value;
+                Base_obj.Font = value.Base_obj;
             }
         }
-
+        
         [ContextProperty("ШрифтВыделения", "SelectionFont")]
         public ClFont SelectionFont
         {
-            get { return (ClFont)OneScriptForms.RevertObj(Base_obj.SelectionFont); }
-            set 
+            get
             {
-                Base_obj.SelectionFont = value.Base_obj; 
-                Base_obj.SelectionFont.dll_obj = value;
+                if (selectionFont != null)
+                {
+                    return selectionFont;
+                }
+                return new ClFont(Base_obj.SelectionFont);
+            }
+            set
+            {
+                selectionFont = value;
+                Base_obj.SelectionFont = value.Base_obj;
             }
         }
-
+        
         [ContextProperty("ЭлементВерхнегоУровня", "TopLevelControl")]
         public IValue TopLevelControl
         {

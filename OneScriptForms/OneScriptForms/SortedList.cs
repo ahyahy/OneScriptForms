@@ -77,7 +77,7 @@ namespace osf
         public void Remove(object key)
         {
             M_SortedList.Remove(RuntimeHelpers.GetObjectValue(key));
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
     }
 

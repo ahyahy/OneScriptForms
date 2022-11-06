@@ -58,7 +58,7 @@ namespace osf
             set
             {
                 M_NotifyIcon.Icon = (System.Drawing.Icon)value.M_Icon;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -83,7 +83,7 @@ namespace osf
             set
             {
                 M_NotifyIcon.Text = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -93,7 +93,7 @@ namespace osf
             set
             {
                 M_NotifyIcon.Visible = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 

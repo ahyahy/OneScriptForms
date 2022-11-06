@@ -63,7 +63,7 @@ namespace osf
             if (page is TabPage)
             {
                 M_TabPageCollection.Insert(index, ((dynamic)page).M_TabPage);
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
                 return (TabPage)page;
             }
             if (!(page is string))

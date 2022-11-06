@@ -13,7 +13,6 @@ namespace osf
     [ContextClass ("ФормыДляОдноСкрипта", "OneScriptForms")]
     public class OneScriptForms : AutoContext<OneScriptForms>
     {
-        [DllImport("user32", CharSet = CharSet.Ansi, SetLastError = true)] public static extern int WaitMessage();
         [DllImport("user32.dll", SetLastError = true)] static extern int MessageBoxTimeout(IntPtr hwnd, String text, String title, MesBoxFlags type, Int16 wLanguageId, Int32 milliseconds);
         private static ClAnchorStyles cl_AnchorStyles = new ClAnchorStyles();
         private static ClAppearance cl_Appearance = new ClAppearance();
@@ -51,9 +50,11 @@ namespace osf
         private static ClFormStartPosition cl_FormStartPosition = new ClFormStartPosition();
         private static ClFormWindowState cl_FormWindowState = new ClFormWindowState();
         private static ClGridItemType cl_GridItemType = new ClGridItemType();
+        private static ClGridLineStyle cl_GridLineStyle = new ClGridLineStyle();
         private static ClHatchStyle cl_HatchStyle = new ClHatchStyle();
         private static ClHorizontalAlignment cl_HorizontalAlignment = new ClHorizontalAlignment();
         private static ClImageLayout cl_ImageLayout = new ClImageLayout();
+        private static ClImageScaleMode cl_ImageScaleMode = new ClImageScaleMode();
         private static ClItemActivation cl_ItemActivation = new ClItemActivation();
         private static ClKeys cl_Keys = new ClKeys();
         private static ClLeftRightAlignment cl_LeftRightAlignment = new ClLeftRightAlignment();
@@ -83,13 +84,16 @@ namespace osf
         private static ClSpecialFolder cl_SpecialFolder = new ClSpecialFolder();
         private static ClStatusBarPanelAutoSize cl_StatusBarPanelAutoSize = new ClStatusBarPanelAutoSize();
         private static ClStatusBarPanelBorderStyle cl_StatusBarPanelBorderStyle = new ClStatusBarPanelBorderStyle();
+        private static ClStringTrimming cl_StringTrimming = new ClStringTrimming();
         private static ClTabAlignment cl_TabAlignment = new ClTabAlignment();
         private static ClTabAppearance cl_TabAppearance = new ClTabAppearance();
         private static ClTabSizeMode cl_TabSizeMode = new ClTabSizeMode();
         private static ClToolBarAppearance cl_ToolBarAppearance = new ClToolBarAppearance();
         private static ClToolBarButtonStyle cl_ToolBarButtonStyle = new ClToolBarButtonStyle();
         private static ClToolBarTextAlign cl_ToolBarTextAlign = new ClToolBarTextAlign();
+        private static ClTreeSelectionMode cl_TreeSelectionMode = new ClTreeSelectionMode();
         private static ClTreeViewAction cl_TreeViewAction = new ClTreeViewAction();
+        private static ClVerticalAlign cl_VerticalAlign = new ClVerticalAlign();
         private static ClView cl_View = new ClView();
         private static ClWatcherChangeTypes cl_WatcherChangeTypes = new ClWatcherChangeTypes();
         public static IValue Event = null;
@@ -103,8 +107,10 @@ namespace osf
         private static OneScriptForms instance;
         public static System.Random Random = new Random();
         private static object syncRoot = new Object();
+        public static bool systemVersionIsMicrosoft = false;
         public static bool useMainForm = true;
         [DllImport("User32.dll")] static extern void mouse_event(uint dwFlags, int dx, int dy, int dwData, UIntPtr dwExtraInfo);
+        public static bool xdotoolIsInstall = Xdotool();
 
         public static OneScriptForms getInstance()
         {
@@ -116,10 +122,69 @@ namespace osf
                     {
                         instance = new OneScriptForms();
                         formsCollection = new FormsCollection();
+                        System.Windows.Forms.Application.ThreadException += Application_ThreadException;
                     }
                 }
             }
+            if (System.Environment.OSVersion.VersionString.Contains("Microsoft"))
+            {
+                systemVersionIsMicrosoft = true;
+            }
             return instance;
+        }
+		
+        private static bool Xdotool()
+        {
+            try
+            {
+                System.Diagnostics.Process process = new System.Diagnostics.Process();
+                process.StartInfo.FileName = "xdotool";
+                process.StartInfo.Arguments = " version";
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.RedirectStandardOutput = true;
+                process.StartInfo.CreateNoWindow = false;
+                string s = "";
+                process.OutputDataReceived += (sender, data) =>
+                {
+                    s = s + data.Data;
+                };
+                process.Start();
+                process.BeginOutputReadLine();
+                process.WaitForExit();
+                if (s.Contains("xdotool version"))
+                {
+                    return true;
+                }
+            }
+            catch { }
+            return false;
+        }
+		
+        private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            if (e.Exception.TargetSite.ToString() != "Void SetDataObject(System.Object, Boolean, Int32, Int32)")
+            {
+                return;
+            }
+            osf.Form form = null;
+            try
+            {
+                form = ((Form)((FormEx)System.Windows.Forms.Form.ActiveForm).M_Object);
+            }
+            catch { }
+            if (form == null)
+            {
+                return;
+            }
+            System.Windows.Forms.Control activeControl = form.M_Form.ActiveControl;
+            System.Windows.Forms.Control parent1 = activeControl.Parent;
+            if (parent1.GetType() != typeof(osf.DataGridEx))
+            {
+                return;
+            }
+            System.Windows.Forms.DataGridTextBox dataGridTextBox = (System.Windows.Forms.DataGridTextBox)activeControl;
+
+            dataGridTextBox.Copy();
         }
 
         [ScriptConstructor]
@@ -165,6 +230,12 @@ namespace osf
             get { return OneScriptForms.RevertObj(((dynamic)Event).Base_obj.Sender); }
         }
         
+        [ContextProperty("ПлатформаWin", "WinPlatform")]
+        public bool WinPlatform
+        {
+            get { return systemVersionIsMicrosoft; }
+        }
+
         [ContextProperty("Продолжать", "GoOn")]
         public bool GoOn
         {
@@ -200,6 +271,12 @@ namespace osf
         public ClItemActivation ItemActivation
         {
             get { return cl_ItemActivation; }
+        }
+
+        [ContextProperty("ВертикальноеВыравнивание", "VerticalAlign")]
+        public ClVerticalAlign VerticalAlign
+        {
+            get { return cl_VerticalAlign; }
         }
 
         [ContextProperty("ВыравниваниеВкладок", "TabAlignment")]
@@ -418,10 +495,22 @@ namespace osf
             get { return cl_SelectionMode; }
         }
 
+        [ContextProperty("РежимВыбораДереваЗначений", "TreeSelectionMode")]
+        public ClTreeSelectionMode TreeSelectionMode
+        {
+            get { return cl_TreeSelectionMode; }
+        }
+
         [ContextProperty("РежимВыбораТаблицы", "DataGridViewSelectionMode")]
         public ClDataGridViewSelectionMode DataGridViewSelectionMode
         {
             get { return cl_DataGridViewSelectionMode; }
+        }
+
+        [ContextProperty("РежимМасштабированияКартинки", "ImageScaleMode")]
+        public ClImageScaleMode ImageScaleMode
+        {
+            get { return cl_ImageScaleMode; }
         }
 
         [ContextProperty("РежимОтображения", "View")]
@@ -470,6 +559,12 @@ namespace osf
         public ClMenuMerge MenuMerge
         {
             get { return cl_MenuMerge; }
+        }
+
+        [ContextProperty("СокращениеСтроки", "StringTrimming")]
+        public ClStringTrimming StringTrimming
+        {
+            get { return cl_StringTrimming; }
         }
 
         [ContextProperty("СортировкаСвойств", "PropertySort")]
@@ -562,6 +657,12 @@ namespace osf
             get { return cl_DataGridViewComboBoxDisplayStyle; }
         }
 
+        [ContextProperty("СтильСетки", "GridLineStyle")]
+        public ClGridLineStyle GridLineStyle
+        {
+            get { return cl_GridLineStyle; }
+        }
+
         [ContextProperty("СтильСтыковки", "DockStyle")]
         public ClDockStyle DockStyle
         {
@@ -652,6 +753,36 @@ namespace osf
             get { return cl_FormatDateTimePicker; }
         }
         
+        [ContextMethod("Dns", "Dns")]
+        public ClDns Dns()
+        {
+            return new ClDns();
+        }
+        
+        [ContextMethod("IpАдрес", "IpAddress")]
+        public ClIpAddress IpAddress(string p1)
+        {
+            return new ClIpAddress(p1);
+        }
+        
+        [ContextMethod("IpУзел", "IpHostEntry")]
+        public ClIpHostEntry IpHostEntry(string p1)
+        {
+            return new ClIpHostEntry(p1);
+        }
+        
+        [ContextMethod("TCPКлиент", "TCPClient")]
+        public ClTCPClient TCPClient(string HostName = null, int port = 0)
+        {
+            return new ClTCPClient(HostName, port);
+        }
+        
+        [ContextMethod("TCPСлушатель", "TCPListener")]
+        public ClTCPListener TCPListener(ClIpAddress p1, int p2)
+        {
+            return new ClTCPListener(p1, p2);
+        }
+        
         [ContextMethod("БуферОбмена", "Clipboard")]
         public ClClipboard Clipboard()
         {
@@ -674,7 +805,7 @@ namespace osf
         public void EnableVisualStyles()
         {
             System.Windows.Forms.Application.EnableVisualStyles();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         [DllImport("User32")] private static extern int ShowWindow(IntPtr hwnd, int nCmdShow);
@@ -735,6 +866,12 @@ namespace osf
             return new ClTreeView();
         }
 
+        [ContextMethod("ДеревоЗначений", "TreeViewAdv")]
+        public ClTreeViewAdv TreeViewAdv()
+        {
+            return new ClTreeViewAdv();
+        }		
+
         [ContextMethod("ДиалогВыбораКаталога", "FolderBrowserDialog")]
         public ClFolderBrowserDialog FolderBrowserDialog()
         {
@@ -785,17 +922,10 @@ namespace osf
             handleEvents = true;
             while (GoOn)
             {
-                WaitMessage();
-                System.Windows.Forms.Application.DoEvents();
+                System.Windows.Forms.Application.Run();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
-        //Функция WaitMessage передает управление к другим потокам тогда, когда поток не имеет никаких других сообщений 
-        //в своей очереди сообщений. Функция WaitMessage приостанавливает работу потока и не возвращает управление до 
-        //тех пор, пока не будет помещено новое сообщение в очередь сообщений потока.
-        //При вызове DoEvents в коде, приложение может выполнять другие события. Например, если имеется форма, добавляющая 
-        //данные в ListBox, добавление DoEvents в код позволит форме перерисовывается при перетаскивании над ней другого окна. 
-        //Если удалить DoEvents из кода, форма не будет перерисовываться до завершения выполнения обработчика события.
-        //DoEvents передает управление Windows чтобы она выполнила обработку своих событий
         
         [ContextMethod("Звук", "Sound")]
         public ClSound Sound()
@@ -834,6 +964,12 @@ namespace osf
             return new ClNotifyIcon();
         }
 
+        [ContextMethod("ЗначокУзла", "NodeStateIcon")]
+        public ClNodeStateIcon NodeStateIcon()
+        {
+            return new ClNodeStateIcon();
+        }
+        
         [ContextMethod("Индикатор", "ProgressBar")]
         public ClProgressBar ProgressBar(bool p1)
         {
@@ -987,6 +1123,12 @@ namespace osf
             return null;
         }
 
+        [ContextMethod("КолонкаДереваЗначений", "TreeColumn")]
+        public ClTreeColumn TreeColumn(string p1 = null, int p2 = 50)
+        {
+            return new ClTreeColumn(p1, p2);
+        }
+
         [ContextMethod("КолонкаКартинка", "DataGridViewImageColumn")]
         public ClDataGridViewImageColumn DataGridViewImageColumn()
         {
@@ -1125,13 +1267,83 @@ namespace osf
         [ContextMethod("НажатьКнопкуМыши", "MouseKeyPress")]
         public void MouseKeyPress(int p1, IValue p2 = null, IValue p3 = null)
         {
-            if (p2 != null &&  p3 != null)
+            if (OneScriptForms.systemVersionIsMicrosoft)
             {
-                mouse_event(Convert.ToUInt32(p1), Convert.ToInt32(p2.AsNumber()), Convert.ToInt32(p3.AsNumber()), 0, UIntPtr.Zero);
+                if (p2 != null && p3 != null)
+                {
+                    mouse_event(Convert.ToUInt32(p1), Convert.ToInt32(p2.AsNumber()), Convert.ToInt32(p3.AsNumber()), 0, UIntPtr.Zero);
+                }
+                else
+                {
+                    mouse_event(Convert.ToUInt32(p1), System.Windows.Forms.Cursor.Position.X, System.Windows.Forms.Cursor.Position.Y, 0, UIntPtr.Zero);
+                }
+                System.Windows.Forms.Application.DoEvents();
             }
             else
             {
-                mouse_event(Convert.ToUInt32(p1), System.Windows.Forms.Cursor.Position.X, System.Windows.Forms.Cursor.Position.Y, 0, UIntPtr.Zero);
+                int p4 = 0;
+                int p5 = 0;
+                if (p2 != null && p3 != null)
+                {
+                    p4 = Convert.ToInt32(p2.AsNumber());
+                    p5 = Convert.ToInt32(p3.AsNumber());
+                }
+                else
+                {
+                    p4 = System.Windows.Forms.Cursor.Position.X;
+                    p5 = System.Windows.Forms.Cursor.Position.Y;
+                }
+
+                string args = "";
+                if (p1 == 1)
+                {
+                    args = args + " mousemove_relative " + p4 + " " + p5 + " sleep 0.3";
+                }
+                else if (p1 == 2)
+                {
+                    args = args + " mousedown 1";
+                }
+                else if (p1 == 4)
+                {
+                    args = args + " mouseup 1";
+                }
+                else if (p1 == 6)
+                {
+                    args = args + " mousedown 1" + " sleep 1.0" + " mouseup 1";
+                }
+                else if (p1 == 8)
+                {
+                    args = args + " mousedown 3";
+                }
+                else if (p1 == 16)
+                {
+                    args = args + " mouseup 3";
+                }
+                else if (p1 == 24)
+                {
+                    args = args + " mousedown 3" + " sleep 1.0" + " mouseup 3";
+                }
+                else if (p1 == 32)
+                {
+                    args = args + " mousedown 2";
+                }
+                else if (p1 == 64)
+                {
+                    args = args + " mouseup 2";
+                }
+                else if (p1 == 96)
+                {
+                    args = args + " mousedown 2" + " sleep 1.0" + " mouseup 2";
+                }
+
+                if (args != "")
+                {
+                    System.Diagnostics.Process process = new System.Diagnostics.Process();
+                    process.StartInfo.FileName = "xdotool";
+                    process.StartInfo.Arguments = args;
+                    process.Start();
+                    process.WaitForExit();
+                }
             }
         }
 
@@ -1202,8 +1414,35 @@ namespace osf
         [ContextMethod("НайтиОкноПоЗаголовку", "FindWindowByCaption")]
         public IValue FindWindowByCaption(string WindowName)
         {
-            IntPtr numWnd = FindWindowByCaption(IntPtr.Zero, WindowName);
-            return ValueFactory.Create((int)numWnd);
+            if (OneScriptForms.systemVersionIsMicrosoft)
+            {
+                IntPtr numWnd = FindWindowByCaption(IntPtr.Zero, WindowName);
+                return ValueFactory.Create((int)numWnd);
+            }
+            else
+            {
+                string args = " search --name \u0022" + WindowName + "\u0022";
+                string s = "";
+                try
+                {
+                    System.Diagnostics.Process process = new System.Diagnostics.Process();
+                    process.StartInfo.FileName = "xdotool";
+                    process.StartInfo.Arguments = args;
+                    process.StartInfo.UseShellExecute = false;
+                    process.StartInfo.RedirectStandardOutput = true;
+                    process.StartInfo.CreateNoWindow = false;
+                    
+                    process.OutputDataReceived += (sender, data) =>
+                    {
+                        s = s + data.Data;
+                    };
+                    process.Start();
+                    process.BeginOutputReadLine();
+                    process.WaitForExit();
+                }
+                catch { }
+                return ValueFactory.Create(s);
+            }
         }
         
         [ContextMethod("ОбластьСсылки", "LinkArea")]
@@ -1234,7 +1473,7 @@ namespace osf
         public void SendKeys(string p1)
         {
             System.Windows.Forms.SendKeys.SendWait(p1);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
         
         [ContextMethod("Панель", "Panel")]
@@ -1259,6 +1498,12 @@ namespace osf
         public ClStatusBarPanel StatusBarPanel()
         {
             return new ClStatusBarPanel();
+        }
+
+        [ContextMethod("ПередатьУправление", "EventControlTransfer")]
+        public void EventControlTransfer()
+        {
+            System.Windows.Forms.Application.DoEvents();
         }
 
         [ContextMethod("Переключатель", "RadioButton")]
@@ -1300,12 +1545,24 @@ namespace osf
             return new ClTextBox();
         }
 
+        [ContextMethod("ПолеВводаУзла", "NodeTextBox")]
+        public ClNodeTextBox NodeTextBox()
+        {
+            return new ClNodeTextBox();
+        }
+        
         [ContextMethod("ПолеВыбора", "ComboBox")]
         public ClComboBox ComboBox()
         {
             return new ClComboBox();
         }
 
+        [ContextMethod("ПолеВыбораУзла", "NodeComboBox")]
+        public ClNodeComboBox NodeComboBox()
+        {
+            return new ClNodeComboBox();
+        }
+        
         [ContextMethod("ПолеКалендаря", "DateTimePicker")]
         public ClDateTimePicker DateTimePicker()
         {
@@ -1416,6 +1673,12 @@ namespace osf
             return new ClNumericUpDown();
         }
 
+        [ContextMethod("РегуляторВверхВнизУзла", "NodeNumericUpDown")]
+        public ClNodeNumericUpDown NodeNumericUpDown()
+        {
+            return new ClNodeNumericUpDown();
+        }
+        
         [ContextMethod("СвернутьКонсоль", "MinimizedConsole")]
         public void MinimizedConsole()
         {
@@ -1838,12 +2101,24 @@ namespace osf
             return new ClTreeNode(p1);
         }
         
+        [ContextMethod("УзелДереваЗначений", "TreeNodeAdv")]
+        public ClNode Node(string p1)
+        {
+            return new ClNode(p1);
+        }
+        
         [ContextMethod("Флажок", "CheckBox")]
         public ClCheckBox CheckBox()
         {
             return new ClCheckBox();
         }
 
+        [ContextMethod("ФлажокУзла", "NodeCheckBox")]
+        public ClNodeCheckBox NodeCheckBox()
+        {
+            return new ClNodeCheckBox();
+        }
+        
         [ContextMethod("Форма", "Form")]
         public ClForm Form()
         {
@@ -1889,6 +2164,12 @@ namespace osf
             return new ClColor();
         }
 
+        [ContextMethod("ЧисловоеПолеУзла", "NodeDecimalTextBox")]
+        public ClNodeDecimalTextBox NodeDecimalTextBox()
+        {
+            return new ClNodeDecimalTextBox();
+        }
+        
         [ContextMethod("Шрифт", "Font")]
         public ClFont Font(string p1 = null, IValue p2 = null, int p3 = 0)
         {
@@ -2066,6 +2347,24 @@ namespace osf
         	return (ClToolBarButtonClickEventArgs)Event;
         }
         
+        [ContextMethod("КолонкаДереваЗначенийАрг", "TreeColumnEventArgs")]
+        public ClTreeColumnEventArgs TreeColumnEventArgs()
+        {
+        	return (ClTreeColumnEventArgs)Event;
+        }
+        
+        [ContextMethod("УзелДереваЗначенийАрг", "TreeNodeAdvMouseEventArgs")]
+        public ClTreeNodeAdvMouseEventArgs TreeNodeAdvMouseEventArgs()
+        {
+        	return (ClTreeNodeAdvMouseEventArgs)Event;
+        }
+        
+        [ContextMethod("ДеревоЗначенийАрг", "TreeViewAdvEventArgs")]
+        public ClTreeViewAdvEventArgs TreeViewAdvEventArgs()
+        {
+        	return (ClTreeViewAdvEventArgs)Event;
+        }
+        
         [ContextMethod("ДеревоОтменаАрг", "TreeViewCancelEventArgs")]
         public ClTreeViewCancelEventArgs TreeViewCancelEventArgs()
         {
@@ -2076,6 +2375,12 @@ namespace osf
         public ClTreeViewEventArgs TreeViewEventArgs()
         {
         	return (ClTreeViewEventArgs)Event;
+        }
+        
+        [ContextMethod("ЗначениеДереваЗначенийАрг", "ValueTreeViewAdvEventArgs")]
+        public ClValueTreeViewAdvEventArgs ValueTreeViewAdvEventArgs()
+        {
+        	return (ClValueTreeViewAdvEventArgs)Event;
         }
         
         [ContextMethod("ДанныеДляДизайнера", "DataForDesigner")] // метод нужен только для дизайнера форм
@@ -2195,6 +2500,25 @@ namespace osf
             if (!OneScriptForms.hashtable.ContainsKey(p1))
             {
                 OneScriptForms.hashtable.Add(p1, p2);
+            }
+            else
+            {
+                if (!((object)OneScriptForms.hashtable[p1]).Equals(p2))
+                {
+                    OneScriptForms.hashtable[p1] = p2;
+                }
+            }
+        }
+			
+        public static dynamic RevertEqualsObj(dynamic initialObject)
+        {
+            try
+            {
+                return OneScriptForms.hashtable[initialObject];
+            }
+            catch
+            {
+                return null;
             }
         }
 
@@ -2412,7 +2736,11 @@ namespace osf
             }
             if (dll_objEvent.GetType() == typeof(DelegateAction))
             {
-                ((DelegateAction)dll_objEvent).CallAsProcedure(0, null);
+                try
+                {
+                    ((DelegateAction)dll_objEvent).CallAsProcedure(0, null);
+                }
+                catch { }
             }
             else if (dll_objEvent.GetType() == typeof(ClAction))
             {
@@ -2420,7 +2748,11 @@ namespace osf
                 IRuntimeContextInstance script = Action1.Script;
                 string method = Action1.MethodName;
                 ReflectorContext reflector = new ReflectorContext();
-                reflector.CallMethod(script, method, null);
+                try
+                {
+                    reflector.CallMethod(script, method, null);
+                }
+                catch { }
             }
             else
             {

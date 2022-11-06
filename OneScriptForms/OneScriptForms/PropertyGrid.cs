@@ -149,8 +149,11 @@ namespace osf
         private ClRectangle bounds;
         private ClRectangle clientRectangle;
         private ClControlCollection controls;
+        private ClCursor cursor;
         private ClDockPaddingEdges dockPadding;
+        private ClFont font;
         private ClColor foreColor;
+        private ClGridItem selectedGridItem;
         private ClCollection tag = new ClCollection();
 
         public ClPropertyGrid()
@@ -218,10 +221,14 @@ namespace osf
         [ContextProperty("ВыбранныйЭлементСетки", "SelectedGridItem")]
         public ClGridItem SelectedGridItem
         {
-            get { return (ClGridItem)OneScriptForms.RevertObj(Base_obj.SelectedGridItem); }
-            set { Base_obj.SelectedGridItem = value.Base_obj; }
+            get { return selectedGridItem; }
+            set
+            {
+                selectedGridItem = value;
+                Base_obj.SelectedGridItem = value.Base_obj;
+            }
         }
-
+        
         [ContextProperty("ВыбранныйЭлементСеткиИзменен", "SelectedGridItemChanged")]
         public IValue SelectedGridItemChanged
         {
@@ -457,10 +464,21 @@ namespace osf
         [ContextProperty("Курсор", "Cursor")]
         public ClCursor Cursor
         {
-            get { return (ClCursor)OneScriptForms.RevertObj(Base_obj.Cursor); }
-            set { Base_obj.Cursor = value.Base_obj; }
+            get
+            {
+                if (cursor != null)
+                {
+                    return cursor;
+                }
+                return new ClCursor(Base_obj.Cursor);
+            }
+            set
+            {
+                cursor = value;
+                Base_obj.Cursor = value.Base_obj;
+            }
         }
-
+        
         [ContextProperty("Лево", "Left")]
         public int Left
         {
@@ -918,14 +936,21 @@ namespace osf
         [ContextProperty("Шрифт", "Font")]
         public ClFont Font
         {
-            get { return (ClFont)OneScriptForms.RevertObj(Base_obj.Font); }
-            set 
+            get
             {
-                Base_obj.Font = value.Base_obj; 
-                Base_obj.Font.dll_obj = value;
+                if (font != null)
+                {
+                    return font;
+                }
+                return new ClFont(Base_obj.Font);
+            }
+            set
+            {
+                font = value;
+                Base_obj.Font = value.Base_obj;
             }
         }
-
+        
         [ContextProperty("ЭлементВерхнегоУровня", "TopLevelControl")]
         public IValue TopLevelControl
         {
