@@ -27,7 +27,15 @@ namespace osf
 
         public int Count
         {
-            get { return M_Collection.Count; }
+            get
+            {
+                int count = 0;;
+                foreach (var item in M_Collection)
+                {
+                    count = count + 1;
+                }
+                return count;
+            }
         }
 
         public object this[object index]

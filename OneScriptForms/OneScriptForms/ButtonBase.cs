@@ -22,7 +22,7 @@
             {
                 image = value;
                 M_ButtonBase.Image = value.M_Image;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 

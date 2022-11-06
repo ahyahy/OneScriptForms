@@ -36,7 +36,7 @@ namespace osf
         public void EnableVisualStyles()
         {
             System.Windows.Forms.Application.EnableVisualStyles();
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public void Exit()

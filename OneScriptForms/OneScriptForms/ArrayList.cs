@@ -57,7 +57,7 @@ namespace osf
         public object Add(object value)
         {
             M_ArrayList.Add(value);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
             return value;
         }
 
