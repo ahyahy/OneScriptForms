@@ -32,7 +32,7 @@ namespace osf
             set
             {
                 M_ListViewSubItem.BackColor = value.M_Color;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -54,7 +54,7 @@ namespace osf
             set
             {
                 M_ListViewSubItem.Tag = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -64,7 +64,7 @@ namespace osf
             set
             {
                 M_ListViewSubItem.Text = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
     }
@@ -73,6 +73,7 @@ namespace osf
     public class ClListViewSubItem : AutoContext<ClListViewSubItem>
     {
         private ClColor backColor;
+        private ClFont font;
         private ClColor foreColor;
         private ClCollection tag = new ClCollection();
 
@@ -134,11 +135,18 @@ namespace osf
         [ContextProperty("Шрифт", "Font")]
         public ClFont Font
         {
-            get { return (ClFont)OneScriptForms.RevertObj(Base_obj.Font); }
-            set 
+            get
             {
-                Base_obj.Font = value.Base_obj; 
-                Base_obj.Font.dll_obj = value;
+                if (font != null)
+                {
+                    return font;
+                }
+                return new ClFont(Base_obj.Font);
+            }
+            set
+            {
+                font = value;
+                Base_obj.Font = value.Base_obj;
             }
         }
         

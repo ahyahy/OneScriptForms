@@ -40,13 +40,13 @@ namespace osf
             if (item is ListViewSubItem)
             {
                 M_ListViewSubItemCollection.Add((((ListViewSubItem)item).M_ListViewSubItem));
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
                 return (ListViewSubItem)item;
             }
             ListViewSubItem ListViewSubItem1 = new ListViewSubItem("");
             ListViewSubItem1.Text = Convert.ToString(item);
             M_ListViewSubItemCollection.Add(ListViewSubItem1.M_ListViewSubItem);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
             return (ListViewSubItem)ListViewSubItem1;
         }
     }

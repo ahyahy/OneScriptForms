@@ -19,6 +19,12 @@ namespace osf
             get { return System.Math.PI; }
         }
         
+        [ContextMethod("Абсолютное", "Abs")]
+        public decimal Abs(decimal p1)
+        {
+            return System.Math.Abs(p1);
+        }
+
         [ContextMethod("АКосинус", "Acos")]
         public double Acos(double p1)
         {
@@ -43,6 +49,12 @@ namespace osf
            return System.Math.Atan2(p1, p2);
         }
         
+        [ContextMethod("Большее", "Max")]
+        public decimal Max(decimal p1, decimal p2)
+        {
+            return System.Math.Max(p1, p2);
+        }
+
         [ContextMethod("ГКосинус", "Cosh")]
         public double Cosh(double p1)
         {
@@ -61,6 +73,12 @@ namespace osf
             return System.Math.Tanh(p1);
         }
         
+        [ContextMethod("Знак", "Sign")]
+        public int Sign(decimal p1)
+        {
+            return System.Math.Sign(p1);
+        }
+
         [ContextMethod("ККорень", "Sqrt")]
         public double Sqrt(double p1)
         {
@@ -85,6 +103,12 @@ namespace osf
             return System.Math.Log10(p1);
         }
         
+        [ContextMethod("Меньшее", "Min")]
+        public decimal Min(decimal p1, decimal p2)
+        {
+            return System.Math.Min(p1, p2);
+        }
+
         [ContextMethod("НаибольшееЦелое", "Floor")]
         public double Floor(double p1)
         {
@@ -103,6 +127,12 @@ namespace osf
             return System.Math.Round(p1, p2);
         }
         
+        [ContextMethod("ОстатокДеления", "DivRem")]
+        public decimal DivRem(decimal p1, decimal p2)
+        {
+            return p1 % p2;
+        }
+
         [ContextMethod("Синус", "Sin")]
         public double Sin(double p1)
         {
@@ -127,6 +157,12 @@ namespace osf
             return System.Math.Tan(p1);
         }
         
+        [ContextMethod("Целое", "Truncate")]
+        public decimal Truncate(decimal p1)
+        {
+            return System.Math.Truncate(p1);
+        }
+
         [ContextMethod("Четное", "Even")]
         public IValue Even(IValue p1)
         {

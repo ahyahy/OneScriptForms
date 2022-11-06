@@ -40,20 +40,20 @@ namespace osf
             if (item is ListViewItem)
             {
                 M_ListViewItemCollection.Add((ListViewItemEx)((ListViewItem)item).M_ListViewItem);
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
                 return (ListViewItem)item;
             }
             ListViewItem ListViewItem1 = new ListViewItem("", -1);
             ListViewItem1.Text = Convert.ToString(item);
             M_ListViewItemCollection.Add((ListViewItemEx)ListViewItem1.M_ListViewItem);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
             return (ListViewItem)ListViewItem1;
         }
 
         public void Remove(ListViewItem item)
         {
             M_ListViewItemCollection.Remove((System.Windows.Forms.ListViewItem)item.M_ListViewItem);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
     }
 

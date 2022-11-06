@@ -19,7 +19,7 @@ namespace osf
             M_MainMenu = new MainMenuEx();
             M_MainMenu.M_Object = this;
             base.M_Menu = M_MainMenu;
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public MainMenu(osf.MainMenu p1)
@@ -27,7 +27,7 @@ namespace osf
             M_MainMenu = p1.M_MainMenu;
             M_MainMenu.M_Object = this;
             base.M_Menu = M_MainMenu;
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public MainMenu(System.Windows.Forms.MainMenu MainMenu)
@@ -35,7 +35,7 @@ namespace osf
             M_MainMenu = (MainMenuEx)MainMenu;
             M_MainMenu.M_Object = this;
             base.M_Menu = M_MainMenu;
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
         }
 
         public osf.Form GetForm()

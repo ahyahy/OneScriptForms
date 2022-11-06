@@ -42,7 +42,7 @@ namespace osf
                 menuItem = new MenuItem();
             }
             M_MenuItemCollection.Add(menuItem.M_MenuItem);
-            System.Windows.Forms.Application.DoEvents();
+            //System.Windows.Forms.Application.DoEvents();
             return menuItem;
         }
 
