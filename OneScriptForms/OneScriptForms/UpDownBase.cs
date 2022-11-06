@@ -26,7 +26,7 @@
             set
             {
                 M_UpDownBase.BorderStyle = (System.Windows.Forms.BorderStyle)value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
 
@@ -46,7 +46,7 @@
             set
             {
                 M_UpDownBase.ReadOnly = value;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
             }
         }
     }
