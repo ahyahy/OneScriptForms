@@ -1,31 +1,5 @@
 ﻿using System;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using System.Threading;
-using System.Text;
-using System.Security.Permissions;
-using System.Runtime.Serialization;
-using System.Runtime.InteropServices;
-using System.Reflection;
-using System.IO;
-using System.Globalization;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Drawing.Drawing2D;
-using System.Drawing.Design;
-using System.ComponentModel;
-using System.Collections;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using Aga.Controls.Tree.NodeControls;
-using Aga.Controls.Threading;
 using ScriptEngine.Machine.Contexts;
-using ScriptEngine.Machine;
-
-using System.Net;
-using System.Runtime.CompilerServices;
-using Microsoft.VisualBasic.CompilerServices;
-using System.Net.Sockets;
 
 namespace osf
 {
@@ -71,7 +45,7 @@ namespace osf
             int num = p3 - 1;
             for (int i = 0; i < num; i++)
             {
-                buffer[i] = Conversions.ToByte(ArrayList1[i + p2]);
+                buffer[i] = Convert.ToByte(ArrayList1[i + p2]);
             }
             Base_obj.Write(buffer, 0, p3);
         }

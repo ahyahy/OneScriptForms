@@ -1,6 +1,5 @@
 ﻿using System;
 using ScriptEngine.Machine.Contexts;
-using Microsoft.VisualBasic;
 using System.Security;
 
 namespace osf
@@ -58,7 +57,7 @@ namespace osf
             set
             {
                 SecureString secureString = new SecureString();
-                for (int i = 0; i < Strings.Len(value); i++)
+                for (int i = 0; i < value.Length; i++)
                 {
                     secureString.AppendChar(Convert.ToChar(value.Substring(i, 1)));
                 }

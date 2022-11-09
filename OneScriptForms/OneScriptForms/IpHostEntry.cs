@@ -1,31 +1,5 @@
-﻿using System;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using System.Threading;
-using System.Text;
-using System.Security.Permissions;
-using System.Runtime.Serialization;
-using System.Runtime.InteropServices;
-using System.Reflection;
-using System.IO;
-using System.Globalization;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Drawing.Drawing2D;
-using System.Drawing.Design;
-using System.ComponentModel;
-using System.Collections;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using Aga.Controls.Tree.NodeControls;
-using Aga.Controls.Threading;
-using ScriptEngine.Machine.Contexts;
+﻿using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
-
-using System.Net;
-using System.Runtime.CompilerServices;
-using Microsoft.VisualBasic.CompilerServices;
-using System.Net.Sockets;
 
 namespace osf
 {
@@ -40,13 +14,13 @@ namespace osf
 
         public IpHostEntry(string HostName)
         {
-            M_IPHostEntry = new IPHostEntry();
+            M_IPHostEntry = new System.Net.IPHostEntry();
             M_IPHostEntry.HostName = HostName;
 
             string[] aliases = new string[0];
             M_IPHostEntry.Aliases = aliases;
 
-            IPAddress[] addressList = new IPAddress[0];
+            System.Net.IPAddress[] addressList = new System.Net.IPAddress[0];
             M_IPHostEntry.AddressList = addressList;
         }
 
@@ -99,7 +73,7 @@ namespace osf
             }
             set
             {
-                Base_obj.M_IPHostEntry.AddressList = new IPAddress[value.Count];
+                Base_obj.M_IPHostEntry.AddressList = new System.Net.IPAddress[value.Count];
                 for (int i = 0; i < value.Count; i++)
                 {
                     ClIpAddress ClIpAddress1 = (ClIpAddress)value.Item(i);

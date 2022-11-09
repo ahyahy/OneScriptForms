@@ -1,21 +1,21 @@
-﻿using System;
-using ScriptEngine.Machine.Contexts;
+﻿using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
+using System.Collections.Generic;
 
 namespace osf
 {
-    public class Collection : System.Collections.IEnumerable
+    public class Collection : Dictionary<string, object>
     {
         public ClCollection dll_obj;
-        public Microsoft.VisualBasic.Collection M_Collection;
+        public Dictionary<string, object> M_Collection;
 
         public Collection()
         {
-            M_Collection = new Microsoft.VisualBasic.Collection();
+            M_Collection = new Dictionary<string, object>();
             OneScriptForms.AddToHashtable(M_Collection, this);
         }
 
-        public Collection(Microsoft.VisualBasic.Collection p1)
+        public Collection(Dictionary<string, object> p1)
         {
             M_Collection = p1;
         }
@@ -25,12 +25,12 @@ namespace osf
             M_Collection = p1.M_Collection;
         }
 
-        public int Count
+        public new int Count
         {
             get
             {
-                int count = 0;;
-                foreach (var item in M_Collection)
+                int count = 0;
+                foreach (KeyValuePair<string, object>  DictionaryEntry in M_Collection)
                 {
                     count = count + 1;
                 }
@@ -38,42 +38,24 @@ namespace osf
             }
         }
 
-        public object this[object index]
+        public new object this[string index]
         {
-            get
-            {
-                if (index is int)
-                {
-                    return M_Collection[checked(Convert.ToInt32(index) + 1)];
-                }
-                if (index is string)
-                {
-                    return M_Collection[Convert.ToString(index)];
-                }
-                return M_Collection[index];
-            }
+            get { return M_Collection[index]; }
         }
 
-        public void Add(object item, string key = null)
-        {
-            M_Collection.Add(item, key);
-        }
-
-        public System.Collections.IEnumerator GetEnumerator()
+        public new System.Collections.IEnumerator GetEnumerator()
         {
             return M_Collection.GetEnumerator();
         }
 
-        public void Remove(object index)
+        public new void Add(string key, object item)
         {
-            if (index is int)
-            {
-                M_Collection.Remove(checked(Convert.ToInt32(index) + 1));
-            }
-            else if (index is string)
-            {
-                M_Collection.Remove(checked(Convert.ToString(index)));
-            }
+            M_Collection.Add(key, item);
+        }
+
+        public new void Remove(string index)
+        {
+            M_Collection.Remove(index);
         }
     }
 
@@ -103,36 +85,21 @@ namespace osf
         }
         
         [ContextMethod("Добавить", "Add")]
-        public void Add(IValue p1, string p2 = null)
+        public void Add(IValue p2, string p1)
         {
             Base_obj.Add(p1, p2);
         }
 
         [ContextMethod("Удалить", "Remove")]
-        public void Remove(IValue p1)
+        public void Remove(string p1)
         {
-            if (p1.SystemType.Name == "Строка")
-            {
-                Base_obj.Remove(p1.AsString());
-            }
-            else if (p1.SystemType.Name == "Число")
-            {
-                Base_obj.Remove(Convert.ToInt32(p1.AsNumber()));
-            }
+            Base_obj.Remove(p1);
         }
 
         [ContextMethod("Элемент", "Item")]
-        public IValue Item(IValue p1)
+        public IValue Item(string p1)
         {
-            if (p1.SystemType.Name == "Строка")
-            {
-                return (IValue)Base_obj[p1.AsString()];
-            }
-            else if (p1.SystemType.Name == "Число")
-            {
-                return (IValue)Base_obj[Convert.ToInt32(p1.AsNumber())];
-            }
-            return null;
+            return (IValue)Base_obj[p1];
         }
     }
 }

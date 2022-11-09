@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.VisualBasic;
 using ScriptEngine.HostedScript.Library;
 using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
