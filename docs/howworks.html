@@ -74,6 +74,43 @@
 					<pre class="code">ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");<br>Ф = Новый ФормыДляОдноСкрипта();<br>Форма1 = Ф.Форма();<br>Форма1.Текст = "Форма примеров";<br>Форма1.Ширина = 400;<br>Форма1.Высота = 300;<br>Форма1.Отображать = Истина;<br>Форма1.Показать();<br>Форма1.Активизировать();<br><br>Ф.ЗапуститьОбработкуСобытий();<br></pre>
 				</div>
 			</div>
+			
+			<div style="margin-left: 40px; font-size: 120%;">
+				<p>Запуск в Linux</p>
+			</div>
+			<div style="margin-left: 40px; font-size: 100%;">
+				<p>Начиная с версии OneScriptForms.dll 2.2.0.0 библиотека работает и под Linux. При установке пакета <b>OneScript</b> в систему будут 
+				установлены библиотеки из набора фреймворка <b>MONO</b> достаточные для работы односкрипта, но для работы с формами этого будет недостаточно. 
+				Потребуется более расширенный набор библиотек из <b>MONO</b>.</p>
+				
+				<li>При тестировании в Linux Mint 20.3 Una.</li><b></b>
+				<div style="margin-left: 20px;">
+					<p>Установите пакет <b>mono-complete</b> (тестировалось на версии 6.12.0.182-0xamarin1+ubuntu1804b1)</p>
+				</div>
+				
+				<li>При тестировании в Astra Linux (Orel) 2.12.45</li>
+				<div style="margin-left: 20px;">
+					<p>При сообщении системы: 
+						<br>Gtk-WARNING **: Загружаемый модуль тем не найден в module_path: «adwaita»
+						<br>установите пакет <b>gnome-themes-standard</b>
+						<br><b>sudo apt-get install gnome-themes-standard</b>
+					</p>
+					<p>При сообщении системы: 
+						<br>Gtk-Message: Failed to load module "gail" .......
+						<br>установите пакеты <b>libatk-adaptor</b> и <b>libgail-common</b>
+						<br><b>sudo apt-get install libatk-adaptor libgail-common</b>
+					</p>
+				</div>
+				
+				<li>При тестировании в Альт Рабочая станция 10.0</li>
+				<div style="margin-left: 20px;">
+					<br>Установите пакет <b>mono-full</b> Версия 6.12.0.147-alt1:p10+282075.100.7.1@1629802335 (ALT Linux p10)
+				</div>
+			</div>
+			
+			<div style="margin-left: 40px; font-size: 100%;">
+				<p>Сообщение "Could not set X locale modifiers" не влияет на работу библиотеки форм ни в одной из сборок Linux.</p>
+			</div>
 		</td>
     </tr>
 	</tbody>
