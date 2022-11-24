@@ -100,7 +100,7 @@ namespace osf
             }
         }
 
-        private void M_NumericUpDown_ValueChanged(object sender, System.EventArgs e)
+        public void M_NumericUpDown_ValueChanged(object sender, System.EventArgs e)
         {
             if (ValueChanged.Length > 0)
             {

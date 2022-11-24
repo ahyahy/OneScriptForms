@@ -100,7 +100,7 @@ namespace osf
             }
         }
 
-        private void M_PropertyGrid_SelectedGridItemChanged(object sender, System.Windows.Forms.SelectedGridItemChangedEventArgs e)
+        public void M_PropertyGrid_SelectedGridItemChanged(object sender, System.Windows.Forms.SelectedGridItemChangedEventArgs e)
         {
             if (SelectedGridItemChanged.Length > 0)
             {

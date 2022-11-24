@@ -302,7 +302,7 @@ namespace osf
             }
         }
 
-        private void M_ListView_ColumnClick(object sender, System.Windows.Forms.ColumnClickEventArgs e)
+        public void M_ListView_ColumnClick(object sender, System.Windows.Forms.ColumnClickEventArgs e)
         {
             if (ColumnClick.Length > 0)
             {
@@ -343,7 +343,7 @@ namespace osf
             M_ListView.ListViewItemSorter = null;
         }
 
-        private void M_ListView_ItemActivate(object sender, System.EventArgs e)
+        public void M_ListView_ItemActivate(object sender, System.EventArgs e)
         {
             if (ItemActivate.Length > 0)
             {
@@ -374,7 +374,7 @@ namespace osf
             }
         }
 
-        private void M_ListView_SelectedIndexChanged(object sender, System.EventArgs e)
+        public void M_ListView_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             if (SelectedIndexChanged.Length > 0)
             {

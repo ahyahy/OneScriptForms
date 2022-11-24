@@ -54,7 +54,7 @@ namespace Aga.Controls.Tree.NodeControls
             }
         }
 		
-        private void NodeNumericUpDown_LabelChanged(object sender, LabelEventArgs e)
+        public void NodeNumericUpDown_LabelChanged(object sender, LabelEventArgs e)
         {
             if (ValueChanged.Length > 0)
             {

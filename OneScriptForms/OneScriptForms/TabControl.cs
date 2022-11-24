@@ -115,7 +115,7 @@ namespace osf
             get { return new TabPageCollection(M_TabControl.TabPages); }
         }
 
-        private void M_TabControl_SelectedIndexChanged(object sender, System.EventArgs e)
+        public void M_TabControl_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             if (M_SelectedIndexChanged.Length > 0)
             {

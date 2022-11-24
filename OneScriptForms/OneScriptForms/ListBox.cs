@@ -279,7 +279,7 @@ namespace osf
             e.ItemHeight = ((osf.Control)M_ListBox.M_Object).FontHeight;
         }
 
-        private void M_ListBox_SelectedIndexChanged(object sender, System.EventArgs e)
+        public void M_ListBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             if (M_SelectedIndexChanged.Length > 0)
             {

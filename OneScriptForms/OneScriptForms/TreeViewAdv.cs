@@ -548,6 +548,11 @@ namespace Aga.Controls.Tree
                 return NodeControlInfo.Empty;
             }
         }
+		
+        public NodeControlInfo GetNodeControlInfoAt2(TreeNodeAdv node, Point point)
+        {
+            return GetNodeControlInfoAt(node, point);
+        }
 
 		private NodeControlInfo GetNodeControlInfoAt(TreeNodeAdv node, Point point)
 		{
@@ -3551,7 +3556,7 @@ namespace osf
             Collapsed = "";
         }
 		
-        private void M_TreeViewAdv_Collapsed(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
+        public void M_TreeViewAdv_Collapsed(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
         {
             if (Collapsed.Length > 0)
             {
@@ -3565,7 +3570,7 @@ namespace osf
             }
         }
 
-        private void M_TreeViewAdv_Expanded(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
+        public void M_TreeViewAdv_Expanded(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
         {
             if (Expanded.Length > 0)
             {
@@ -3579,7 +3584,7 @@ namespace osf
             }
         }
 
-        private void M_TreeViewAdv_Collapsing(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
+        public void M_TreeViewAdv_Collapsing(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
         {
             if (Collapsing.Length > 0)
             {
@@ -3593,7 +3598,7 @@ namespace osf
             }
         }
 
-        private void M_TreeViewAdv_Expanding(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
+        public void M_TreeViewAdv_Expanding(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
         {
             if (Expanding.Length > 0)
             {
@@ -3607,7 +3612,7 @@ namespace osf
             }
         }
 
-        private void M_TreeViewAdv_Scroll(object sender, System.Windows.Forms.ScrollEventArgs e)
+        public void M_TreeViewAdv_Scroll(object sender, System.Windows.Forms.ScrollEventArgs e)
         {
             if (Scroll.Length > 0)
             {
@@ -3630,7 +3635,7 @@ namespace osf
             
         }
 
-        private void M_TreeViewAdv_NodeMouseClick(object sender, Aga.Controls.Tree.TreeNodeAdvMouseEventArgs e)
+        public void M_TreeViewAdv_NodeMouseClick(object sender, Aga.Controls.Tree.TreeNodeAdvMouseEventArgs e)
         {
             if (SelectNodeControl)
             {
@@ -3660,7 +3665,7 @@ namespace osf
             }
         }
 
-        private void M_TreeViewAdv_ColumnClicked(object sender, Aga.Controls.Tree.TreeColumnEventArgs e)
+        public void M_TreeViewAdv_ColumnClicked(object sender, Aga.Controls.Tree.TreeColumnEventArgs e)
         {
             if (ColumnClicked.Length > 0)
             {
@@ -3674,7 +3679,7 @@ namespace osf
             }
         }
 
-        private void M_TreeViewAdv_ColumnReordered(object sender, Aga.Controls.Tree.TreeColumnEventArgs e)
+        public void M_TreeViewAdv_ColumnReordered(object sender, Aga.Controls.Tree.TreeColumnEventArgs e)
         {
             if (ColumnReordered.Length > 0)
             {
@@ -3688,7 +3693,7 @@ namespace osf
             }
         }
 
-        private void M_TreeViewAdv_SelectionChanged(object sender, System.EventArgs e)
+        public void M_TreeViewAdv_SelectionChanged(object sender, System.EventArgs e)
         {
             if (this.SelectedNodes.Count > 1)
             {

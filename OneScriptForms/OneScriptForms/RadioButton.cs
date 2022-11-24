@@ -74,7 +74,7 @@ namespace osf
             }
         }
 
-        private void M_RadioButton_CheckedChanged(object sender, System.EventArgs e)
+        public void M_RadioButton_CheckedChanged(object sender, System.EventArgs e)
         {
             if (CheckChanged.Length > 0)
             {

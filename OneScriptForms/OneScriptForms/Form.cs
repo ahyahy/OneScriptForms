@@ -442,7 +442,7 @@ namespace osf
             //System.Windows.Forms.Application.DoEvents();
         }
 
-        private void M_Form_Activated(object sender, System.EventArgs e)
+        public void M_Form_Activated(object sender, System.EventArgs e)
         {
             if (Activated.Length > 0)
             {
@@ -456,7 +456,7 @@ namespace osf
             }
         }
 
-        private void M_Form_Deactivate(object sender, System.EventArgs e)
+        public void M_Form_Deactivate(object sender, System.EventArgs e)
         {
             if (Deactivate.Length > 0)
             {
@@ -470,7 +470,7 @@ namespace osf
             }
         }
 
-        private void M_Form_FormClosed(object sender, FormClosedEventArgs e)
+        public void M_Form_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (Closed.Length > 0)
             {
@@ -514,7 +514,7 @@ namespace osf
             }
         }
 
-        private void M_Form_Load(object sender, System.EventArgs e)
+        public void M_Form_Load(object sender, System.EventArgs e)
         {
             if (Load.Length > 0)
             {

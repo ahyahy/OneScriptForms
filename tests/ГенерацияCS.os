@@ -105,7 +105,6 @@
 		ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxDisplayStyle" Тогда
 		Стр = 
 		"using System;
-		|using Microsoft.VisualBasic;
 		|using ScriptEngine.HostedScript.Library;
 		|using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
@@ -259,7 +258,6 @@
 		ИмяКонтекстКлассаАнгл = "DataItem" или
 		ИмяКонтекстКлассаАнгл = "DataColumn" или
 		ИмяКонтекстКлассаАнгл = "ContextMenu" или
-		ИмяКонтекстКлассаАнгл = "Collection" или
 		ИмяКонтекстКлассаАнгл = "BoldedDates" или
 		ИмяКонтекстКлассаАнгл = "Font" или
 		ИмяКонтекстКлассаАнгл = "Graphics" или
@@ -282,6 +280,23 @@
 		"using System;
 		|using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "Collection" Тогда
+		Стр = 
+		"using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using System.Collections.Generic;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "Dictionary" Тогда
+		Стр = 
+		"using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using System.Collections.Generic;
+		|using System.Collections;
 		|
 		|";
 		Возврат Стр;
@@ -355,41 +370,32 @@
 		|
 		|";
 		Возврат Стр;
-	ИначеЕсли ИмяКонтекстКлассаАнгл = "Dns" или 
-		ИмяКонтекстКлассаАнгл = "IpAddress" или 
-		ИмяКонтекстКлассаАнгл = "IpHostEntry" или 
-		ИмяКонтекстКлассаАнгл = "NetworkStream" или 
-		ИмяКонтекстКлассаАнгл = "TCPClient" или 
-		ИмяКонтекстКлассаАнгл = "TCPListener" Тогда
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "IpHostEntry" или 
+		ИмяКонтекстКлассаАнгл = "TCPClient" Тогда
 		Стр = 
-		"using System;
-		|using System.Windows.Forms;
-		|using System.Windows.Forms.VisualStyles;
-		|using System.Threading;
-		|using System.Text;
-		|using System.Security.Permissions;
-		|using System.Runtime.Serialization;
-		|using System.Runtime.InteropServices;
-		|using System.Reflection;
-		|using System.IO;
-		|using System.Globalization;
-		|using System.Drawing;
-		|using System.Drawing.Imaging;
-		|using System.Drawing.Drawing2D;
-		|using System.Drawing.Design;
-		|using System.ComponentModel;
-		|using System.Collections;
-		|using System.Collections.ObjectModel;
-		|using System.Collections.Generic;
-		|using Aga.Controls.Tree.NodeControls;
-		|using Aga.Controls.Threading;
-		|using ScriptEngine.Machine.Contexts;
+		"using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
 		|
-		|using System.Net;
-		|using System.Runtime.CompilerServices;
-		|using Microsoft.VisualBasic.CompilerServices;
-		|using System.Net.Sockets;
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "TCPListener" Тогда
+		Стр = 
+		"using ScriptEngine.Machine.Contexts;
+		|using System.Reflection;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "Dns" или 
+		ИмяКонтекстКлассаАнгл = "IpAddress" Тогда
+		Стр = 
+		"using ScriptEngine.Machine.Contexts;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "NetworkStream" Тогда
+		Стр = 
+		"using System;
+		|using ScriptEngine.Machine.Contexts;
 		|
 		|";
 		Возврат Стр;
@@ -407,8 +413,6 @@
 		ИмяКонтекстКлассаАнгл = "NodeTextBox" или 
 		ИмяКонтекстКлассаАнгл = "NodeComboBoxObjectCollection" или 
 		ИмяКонтекстКлассаАнгл = "SelectedTreeNodeAdvCollection" или 
-		
-		
 		ИмяКонтекстКлассаАнгл = "TreeNodeAdvCollection" Тогда
 		Стр = 
 		"using System;
@@ -639,7 +643,7 @@
 	ИначеЕсли ИмяКонтекстКлассаАнгл = "InputBox" Тогда
 		Стр = 
 		"using ScriptEngine.Machine.Contexts;
-		|using System.Threading;
+		|using System.Windows.Forms;
 		|
 		|";
 		Возврат Стр;
@@ -678,7 +682,6 @@
 		Стр = 
 		"using System;
 		|using ScriptEngine.Machine.Contexts;
-		|using Microsoft.VisualBasic;
 		|using System.Security;
 		|
 		|";
@@ -792,7 +795,6 @@
 		|        private static object syncRoot = new Object();
 		|		
 		|        public static bool systemVersionIsMicrosoft = false;
-		|        public static bool xdotoolIsInstall = Xdotool();
 		|        public static bool goOn = true;";
 	ИначеЕсли ИмяКласса = "ManagedProperty" Тогда
 		Стр = 
@@ -852,33 +854,6 @@
 		|                systemVersionIsMicrosoft = true;
 		|            }
 		|            return instance;
-		|        }
-		|		
-		|        private static bool Xdotool()
-		|        {
-		|            try
-		|            {
-		|                System.Diagnostics.Process process = new System.Diagnostics.Process();
-		|                process.StartInfo.FileName = ""xdotool"";
-		|                process.StartInfo.Arguments = "" version"";
-		|                process.StartInfo.UseShellExecute = false;
-		|                process.StartInfo.RedirectStandardOutput = true;
-		|                process.StartInfo.CreateNoWindow = false;
-		|                string s = """";
-		|                process.OutputDataReceived += (sender, data) =>
-		|                {
-		|                    s = s + data.Data;
-		|                };
-		|                process.Start();
-		|                process.BeginOutputReadLine();
-		|                process.WaitForExit();
-		|                if (s.Contains(""xdotool version""))
-		|                {
-		|                    return true;
-		|                }
-		|            }
-		|            catch { }
-		|            return false;
 		|        }
 		|		
 		|        private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
@@ -2624,6 +2599,44 @@
 				|        }				
 				|        
 				|";
+			ИначеЕсли (СвойствоРус = "Значения") и (ИмяКонтекстКлассаАнгл = "Dictionary") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Значения"", ""Values"")]
+				|        public ClArrayList Values
+				|        {
+				|            get
+				|            {
+				|                System.Collections.Generic.Dictionary<object, object> Dictionary1 = (System.Collections.Generic.Dictionary<object, object>)Base_obj.M_Dictionary;
+				|                osf.ArrayList ArrayList1 = new osf.ArrayList();
+				|                System.Collections.ICollection Values1 = Dictionary1.Values;
+				|                foreach (dynamic val1 in Values1)
+				|                {
+				|                    ArrayList1.Add(val1);
+				|                }
+				|                return new ClArrayList(ArrayList1);
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "Ключи") и (ИмяКонтекстКлассаАнгл = "Dictionary") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Ключи"", ""Keys"")]
+				|        public ClArrayList Keys
+				|        {
+				|            get
+				|            {
+				|                System.Collections.Generic.Dictionary<object, object> Dictionary1 = (System.Collections.Generic.Dictionary<object, object>)Base_obj.M_Dictionary;
+				|                osf.ArrayList ArrayList1 = new osf.ArrayList();
+				|                System.Collections.ICollection Keys1 = Dictionary1.Keys;
+				|                foreach (dynamic key1 in Keys1)
+				|                {
+				|                    ArrayList1.Add(key1);
+				|                }
+				|                return new ClArrayList(ArrayList1);
+				|            }
+				|        }
+				|
+				|";
 			ИначеЕсли (СвойствоРус = "Позиция") и (ИмяКонтекстКлассаАнгл = "NetworkStream") Тогда
 				Стр = Стр +
 				"        [ContextProperty(""Позиция"", ""Position"")]
@@ -2675,7 +2688,7 @@
 				|            }
 				|            set
 				|            {
-				|                Base_obj.M_IPHostEntry.AddressList = new IPAddress[value.Count];
+				|                Base_obj.M_IPHostEntry.AddressList = new System.Net.IPAddress[value.Count];
 				|                for (int i = 0; i < value.Count; i++)
 				|                {
 				|                    ClIpAddress ClIpAddress1 = (ClIpAddress)value.Item(i);
@@ -5645,6 +5658,72 @@
 				|        }
 				|        
 				|";
+			ИначеЕсли (МетодРус = "НайтиЦентр") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""НайтиЦентр"", ""FindCenter"")]
+				|        public ClPoint FindCenter(IValue p1)
+				|        {
+				|            dynamic obj = (dynamic)p1.AsObject();
+				|            try
+				|            {
+				|                int left = obj.Left;
+				|                int top = obj.Top;
+				|                int offsetY = 0;
+				|                int offset = 0;
+				|                int offsetX = 0;
+				|                if (obj.Parent != null)
+				|                {
+				|                    GetParentTop(obj, ref offsetY);
+				|                    if (obj.GetType() == typeof(osf.ClForm))
+				|                    {
+				|                        top = offsetY + obj.Top + (obj.Parent.Height - obj.Parent.ClientRectangle.Height) - 3;
+				|                    }
+				|                    if (offset == 0)
+				|                    {
+				|                        offset = (obj.TopLevelControl.Height - obj.TopLevelControl.ClientRectangle.Height) - 3;
+				|                    }
+				|                    top = offsetY + obj.Top + offset;
+				|                    GetParentLeft(obj, ref offsetX);
+				|                    left = offsetX + obj.Left + 3;
+				|                }
+				|                decimal x = Convert.ToDecimal(left + (obj.Width / 2));
+				|                decimal y = Convert.ToDecimal(top + (obj.Height / 2));
+				|                ClPoint ClPoint1 = new ClPoint(Convert.ToInt32(System.Math.Truncate(x)), Convert.ToInt32(System.Math.Truncate(y)));
+				|                return ClPoint1;
+				|            }
+				|            catch
+				|            {
+				|                return null;
+				|            }
+				|        }
+				|
+				|        private void GetParentLeft(dynamic obj, ref int offsetX)
+				|        {
+				|            dynamic Parent = obj.Parent;
+				|            if (Parent != null)
+				|            {
+				|                offsetX = offsetX + Parent.Left + 2;
+				|            }
+				|            if (Parent.Parent != null)
+				|            {
+				|                GetParentLeft(Parent, ref offsetX);
+				|            }
+				|        }
+				|
+				|        private void GetParentTop(dynamic obj, ref int offsetY)
+				|        {
+				|            dynamic Parent = obj.Parent;
+				|            if (Parent != null)
+				|            {
+				|                offsetY = offsetY + Parent.Top + 2;
+				|            }
+				|            if (Parent.Parent != null)
+				|            {
+				|                GetParentTop(Parent, ref offsetY);
+				|            }
+				|        }
+				|        
+				|";
 			ИначеЕсли (МетодРус = "IpАдрес") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""IpАдрес"", ""IpAddress"")]
@@ -5745,7 +5824,7 @@
 				|            int num = p3 - 1;
 				|            for (int i = 0; i < num; i++)
 				|            {
-				|                buffer[i] = Conversions.ToByte(ArrayList1[i + p2]);
+				|                buffer[i] = Convert.ToByte(ArrayList1[i + p2]);
 				|            }
 				|            Base_obj.Write(buffer, 0, p3);
 				|        }
@@ -5778,7 +5857,6 @@
 				|        }
 				|        
 				|";
-				
 			ИначеЕсли (МетодРус = "ПолучитьПоток") и (ИмяКонтекстКлассаАнгл = "TCPClient") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""ПолучитьПоток"", ""GetStream"")]
@@ -5788,18 +5866,227 @@
 				|        }
 				|        
 				|";
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+			ИначеЕсли (МетодРус = "ВызватьСобытие") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ВызватьСобытие"", ""CallEvent"")]
+				|        public void CallEvent(IValue p1, string p2, ClDictionary p3 = null)
+				|        {
+				|            dynamic obj = ((dynamic)p1.AsObject()).Base_obj;
+				|            osf.Dictionary dictionary = new osf.Dictionary();
+				|            if (p3 != null)
+				|            {
+				|                dictionary = p3.Base_obj;
+				|            }
+				|            if (p1.GetType() == typeof(osf.ClListView) && p2 == ""КолонкаНажатие"")
+				|            {
+				|                obj.M_ListView_ColumnClick(obj.M_ListView, new System.Windows.Forms.ColumnClickEventArgs(
+				|                    Convert.ToInt32(dictionary.get_Item(""Колонка""))));
+				|            }
+				|            if (p1.GetType() == typeof(osf.ClRichTextBox) && p2 == ""СсылкаНажата"")
+				|            {
+				|                obj.M_RichTextBox_LinkClicked(obj.M_RichTextBox, new System.Windows.Forms.LinkClickedEventArgs(
+				|                    (string)dictionary.get_Item(""ТекстСсылки"")));
+				|            }
+				|            if (p1.GetType() == typeof(osf.ClDataGridView) && p2 == ""МышьПокинулаЯчейку"")
+				|            {
+				|                obj.M_DataGridView_CellMouseLeave(obj.M_DataGridView, new System.Windows.Forms.DataGridViewCellEventArgs(
+				|                    Convert.ToInt32(dictionary.get_Item(""ИндексКолонки"")),
+				|                    Convert.ToInt32(dictionary.get_Item(""ИндексСтроки""))));
+				|            }
+				|            if ((
+				|                p1.GetType() == typeof(osf.ClButton) ||
+				|                p1.GetType() == typeof(osf.ClCheckBox) ||
+				|                p1.GetType() == typeof(osf.ClComboBox) ||
+				|                p1.GetType() == typeof(osf.ClDataGrid) ||
+				|                p1.GetType() == typeof(osf.ClDataGridTextBox) ||
+				|                p1.GetType() == typeof(osf.ClDataGridView) ||
+				|                p1.GetType() == typeof(osf.ClDateTimePicker) ||
+				|                p1.GetType() == typeof(osf.ClForm) ||
+				|                p1.GetType() == typeof(osf.ClGroupBox) ||
+				|                p1.GetType() == typeof(osf.ClHScrollBar) ||
+				|                p1.GetType() == typeof(osf.ClLabel) ||
+				|                p1.GetType() == typeof(osf.ClLinkLabel) ||
+				|                p1.GetType() == typeof(osf.ClListBox) ||
+				|                p1.GetType() == typeof(osf.ClListView) ||
+				|                p1.GetType() == typeof(osf.ClMonthCalendar) ||
+				|                p1.GetType() == typeof(osf.ClNotifyIcon) ||
+				|                p1.GetType() == typeof(osf.ClNumericUpDown) ||
+				|                p1.GetType() == typeof(osf.ClPanel) ||
+				|                p1.GetType() == typeof(osf.ClPictureBox) ||
+				|                p1.GetType() == typeof(osf.ClProgressBar) ||
+				|                p1.GetType() == typeof(osf.ClPropertyGrid) ||
+				|                p1.GetType() == typeof(osf.ClRadioButton) ||
+				|                p1.GetType() == typeof(osf.ClRichTextBox) ||
+				|                p1.GetType() == typeof(osf.ClSplitter) ||
+				|                p1.GetType() == typeof(osf.ClStatusBar) ||
+				|                p1.GetType() == typeof(osf.ClTabControl) ||
+				|                p1.GetType() == typeof(osf.ClTabPage) ||
+				|                p1.GetType() == typeof(osf.ClTextBox) ||
+				|                p1.GetType() == typeof(osf.ClToolBar) ||
+				|                p1.GetType() == typeof(osf.ClTreeView) ||
+				|                p1.GetType() == typeof(osf.ClTreeViewAdv) ||
+				|                p1.GetType() == typeof(osf.ClUserControl) ||
+				|                p1.GetType() == typeof(osf.ClVScrollBar)) && (p2 == ""ПриНажатииКнопкиМыши""))
+				|            {
+				|                obj.m_Control_MouseDown(obj.M_Control, new System.Windows.Forms.MouseEventArgs(
+				|                    (System.Windows.Forms.MouseButtons)Convert.ToInt32(dictionary.get_Item(""Кнопка"")),
+				|                    Convert.ToInt32(dictionary.get_Item(""Нажатия"")),
+				|                    Convert.ToInt32(dictionary.get_Item(""Икс"")),
+				|                    Convert.ToInt32(dictionary.get_Item(""Игрек"")),
+				|                    0));
+				|            }
+				|            if ((
+				|                p1.GetType() == typeof(osf.ClButton) ||
+				|                p1.GetType() == typeof(osf.ClCheckBox) ||
+				|                p1.GetType() == typeof(osf.ClComboBox) ||
+				|                p1.GetType() == typeof(osf.ClDataGrid) ||
+				|                p1.GetType() == typeof(osf.ClDataGridView) ||
+				|                p1.GetType() == typeof(osf.ClDateTimePicker) ||
+				|                p1.GetType() == typeof(osf.ClForm) ||
+				|                p1.GetType() == typeof(osf.ClGroupBox) ||
+				|                p1.GetType() == typeof(osf.ClHScrollBar) ||
+				|                p1.GetType() == typeof(osf.ClLabel) ||
+				|                p1.GetType() == typeof(osf.ClLinkLabel) ||
+				|                p1.GetType() == typeof(osf.ClListBox) ||
+				|                p1.GetType() == typeof(osf.ClListView) ||
+				|                p1.GetType() == typeof(osf.ClMenuItem) ||
+				|                p1.GetType() == typeof(osf.ClMonthCalendar) ||
+				|                p1.GetType() == typeof(osf.ClNotifyIcon) ||
+				|                p1.GetType() == typeof(osf.ClNumericUpDown) ||
+				|                p1.GetType() == typeof(osf.ClPanel) ||
+				|                p1.GetType() == typeof(osf.ClPictureBox) ||
+				|                p1.GetType() == typeof(osf.ClProgressBar) ||
+				|                p1.GetType() == typeof(osf.ClPropertyGrid) ||
+				|                p1.GetType() == typeof(osf.ClRadioButton) ||
+				|                p1.GetType() == typeof(osf.ClRichTextBox) ||
+				|                p1.GetType() == typeof(osf.ClSplitter) ||
+				|                p1.GetType() == typeof(osf.ClStatusBar) ||
+				|                p1.GetType() == typeof(osf.ClTabControl) ||
+				|                p1.GetType() == typeof(osf.ClTabPage) ||
+				|                p1.GetType() == typeof(osf.ClTextBox) ||
+				|                p1.GetType() == typeof(osf.ClToolBar) ||
+				|                p1.GetType() == typeof(osf.ClTreeView) ||
+				|                p1.GetType() == typeof(osf.ClTreeViewAdv) ||
+				|                p1.GetType() == typeof(osf.ClUserControl) ||
+				|                p1.GetType() == typeof(osf.ClVScrollBar)) && (p2 == ""Нажатие""))
+				|            {
+				|                obj.m_Control_Click(obj.M_Control, new System.EventArgs());
+				|            }
+				|            if ((p1.GetType() == typeof(osf.ClTreeViewAdv)) && (p2 == ""ВыделениеИзменено""))
+				|            {
+				|                obj.M_TreeViewAdv_SelectionChanged(obj.M_TreeViewAdv, new System.EventArgs());
+				|            }
+				|            if ((p1.GetType() == typeof(osf.ClRichTextBox)) && (p2 == ""ВыделениеИзменено""))
+				|            {
+				|                obj.M_RichTextBox_SelectionChanged(obj.M_RichTextBox, new System.EventArgs());
+				|            }
+				|            if ((p1.GetType() == typeof(osf.ClMenuItem)) && (p2 == ""Нажатие""))
+				|            {
+				|                obj.M_MenuItem_Click(obj.M_MenuItem, new System.EventArgs());
+				|            }
+				|            if ((p1.GetType() == typeof(osf.ClNotifyIcon)) && (p2 == ""ДвойноеНажатие""))
+				|            {
+				|                obj.M_NotifyIcon_DoubleClick(obj.M_NotifyIcon, new System.EventArgs());
+				|            }
+				|            if ((
+				|                p1.GetType() == typeof(osf.ClButton) ||
+				|                p1.GetType() == typeof(osf.ClCheckBox) ||
+				|                p1.GetType() == typeof(osf.ClComboBox) ||
+				|                p1.GetType() == typeof(osf.ClDataGrid) ||
+				|                p1.GetType() == typeof(osf.ClDataGridTextBoxColumn) ||
+				|                p1.GetType() == typeof(osf.ClDataGridView) ||
+				|                p1.GetType() == typeof(osf.ClDateTimePicker) ||
+				|                p1.GetType() == typeof(osf.ClGroupBox) ||
+				|                p1.GetType() == typeof(osf.ClHScrollBar) ||
+				|                p1.GetType() == typeof(osf.ClLabel) ||
+				|                p1.GetType() == typeof(osf.ClLinkLabel) ||
+				|                p1.GetType() == typeof(osf.ClListBox) ||
+				|                p1.GetType() == typeof(osf.ClListView) ||
+				|                p1.GetType() == typeof(osf.ClMonthCalendar) ||
+				|                p1.GetType() == typeof(osf.ClNumericUpDown) ||
+				|                p1.GetType() == typeof(osf.ClPanel) ||
+				|                p1.GetType() == typeof(osf.ClPictureBox) ||
+				|                p1.GetType() == typeof(osf.ClProgressBar) ||
+				|                p1.GetType() == typeof(osf.ClPropertyGrid) ||
+				|                p1.GetType() == typeof(osf.ClRadioButton) ||
+				|                p1.GetType() == typeof(osf.ClRichTextBox) ||
+				|                p1.GetType() == typeof(osf.ClSplitter) ||
+				|                p1.GetType() == typeof(osf.ClStatusBar) ||
+				|                p1.GetType() == typeof(osf.ClTabControl) ||
+				|                p1.GetType() == typeof(osf.ClTabPage) ||
+				|                p1.GetType() == typeof(osf.ClTextBox) ||
+				|                p1.GetType() == typeof(osf.ClToolBar) ||
+				|                p1.GetType() == typeof(osf.ClTreeView) ||
+				|                p1.GetType() == typeof(osf.ClTreeViewAdv) ||
+				|                p1.GetType() == typeof(osf.ClUserControl) ||
+				|                p1.GetType() == typeof(osf.ClVScrollBar)) && (p2 == ""ДвойноеНажатие""))
+				|            {
+				|                obj.m_Control_DoubleClick(obj.M_Control, new System.EventArgs());
+				|            }
+				|				
+				|            if (p1.GetType() == typeof(osf.ClLinkLabel) && p2 == ""СсылкаНажата"")
+				|            {
+				|                obj.M_LinkLabel_LinkClicked(obj.M_LinkLabel, new System.Windows.Forms.LinkLabelLinkClickedEventArgs(
+				|                    ((osf.ClLink)dictionary.get_Item(""Ссылка"")).Base_obj.M_Link,
+				|                    (System.Windows.Forms.MouseButtons)Convert.ToInt32(dictionary.get_Item(""Кнопка""))));
+				|            }
+				|            if (p1.GetType() == typeof(osf.ClMonthCalendar) && p2 == ""ДатаИзменена"")
+				|            {
+				|                obj.MonthCalendar_DateChanged(obj.M_MonthCalendar, new System.Windows.Forms.DateRangeEventArgs(
+				|                    DateTime.Today,
+				|                    DateTime.Today));
+				|            }
+				|            if (p1.GetType() == typeof(osf.ClMonthCalendar) && p2 == ""ДатаВыбрана"")
+				|            {
+				|                obj.MonthCalendar_DateSelected(obj.M_MonthCalendar, new System.Windows.Forms.DateRangeEventArgs(
+				|                    DateTime.Today,
+				|                    DateTime.Today));
+				|            }
+				|            if ((p1.GetType() == typeof(osf.ClRadioButton)) && (p2 == ""ПометкаИзменена""))
+				|            {
+				|                obj.M_RadioButton_CheckedChanged(obj.M_RadioButton, new System.EventArgs());
+				|            }
+				|            if ((p1.GetType() == typeof(osf.ClTabControl)) && (p2 == ""ИндексВыбранногоИзменен""))
+				|            {
+				|                obj.M_TabControl_SelectedIndexChanged(obj.M_TabControl, new System.EventArgs());
+				|            }
+				|            if (p1.GetType() == typeof(osf.ClToolBar) && p2 == ""ПриНажатииКнопки"")
+				|            {
+				|                obj.M_ToolBar_ButtonClick(obj.M_ToolBar, new System.Windows.Forms.ToolBarButtonClickEventArgs(
+				|                    ((osf.ClToolBarButton)dictionary.get_Item(""Кнопка"")).Base_obj.M_ToolBarButton));
+				|            }
+				|            if (p1.GetType() == typeof(osf.ClTreeViewAdv) && p2 == ""ПриНажатииУзла"")
+				|            {
+				|                System.Windows.Forms.MouseEventArgs mouseEventArgs = new System.Windows.Forms.MouseEventArgs(
+				|                    (System.Windows.Forms.MouseButtons)Convert.ToInt32(dictionary.get_Item(""Кнопка"")),
+				|                    Convert.ToInt32(dictionary.get_Item(""Нажатия"")),
+				|                    Convert.ToInt32(dictionary.get_Item(""Икс"")),
+				|                    Convert.ToInt32(dictionary.get_Item(""Игрек"")),
+				|                    0);
+				|
+				|                System.Drawing.Point point = ((osf.ClPoint)dictionary.get_Item(""Положение"")).Base_obj.M_Point;
+				|                Aga.Controls.Tree.TreeNodeAdvMouseEventArgs args = new Aga.Controls.Tree.TreeNodeAdvMouseEventArgs(mouseEventArgs);
+				|                args.ViewLocation = point;
+				|                args.ModifierKeys = (System.Windows.Forms.Keys)Convert.ToInt32(dictionary.get_Item(""Модификаторы""));
+				|                args.Node = obj.M_TreeViewAdv.GetNodeAt(point);
+				|                Aga.Controls.Tree.NodeControlInfo info = obj.M_TreeViewAdv.GetNodeControlInfoAt2(args.Node, point);
+				|                args.ControlBounds = info.Bounds;
+				|                args.Control = info.Control;
+				|
+				|                obj.M_TreeViewAdv_NodeMouseClick(obj.M_TreeViewAdv, args);
+				|            }
+				|				
+				|				
+				|				
+				|
+				|
+				|
+				|
+				|
+				|
+				|        }
+				|        
+				|";
 			ИначеЕсли (МетодРус = "УстановитьЗакругленныеУглы") и (ИмяКонтекстКлассаАнгл = "Panel") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""УстановитьЗакругленныеУглы"", ""SetRoundedShape"")]
@@ -6952,20 +7239,47 @@
 			ИначеЕсли (МетодРус = "Показать") и (ИмяКонтекстКлассаАнгл = "InputBox") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""Показать"", ""Show"")]
-				|        public string Show(string p1, string p2, string p3 = """", int p4 = -1, int p5 = -1)
+				|        public string Show(string Prompt, string Title = """", string DefaultResponse = """", int XPos = -1, int YPos = -1)
 				|        {
-				|            string str1 = """";
-				|            var thread = new Thread(() =>
-				|            {
-				|                str1 = Microsoft.VisualBasic.Interaction.InputBox(p1, p2, p3, p4, p5);
-				|            }
-				|            );
-				|            thread.IsBackground = true;
-				|            thread.SetApartmentState(ApartmentState.STA);
-				|            thread.Start();
-				|            thread.Join();
+				|            System.Windows.Forms.Form form = new System.Windows.Forms.Form();
+				|            System.Windows.Forms.Label label = new System.Windows.Forms.Label();
+				|            System.Windows.Forms.TextBox textBox = new System.Windows.Forms.TextBox();
+				|            System.Windows.Forms.Button buttonOk = new System.Windows.Forms.Button();
+				|            System.Windows.Forms.Button buttonCancel = new System.Windows.Forms.Button();
 				|
-				|            return str1;
+				|            form.Text = Title;
+				|            label.Text = Prompt;
+				|            textBox.Text = DefaultResponse;
+				|
+				|            buttonOk.Text = ""OK"";
+				|            buttonCancel.Text = ""Cancel"";
+				|            buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+				|            buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+				|
+				|            label.SetBounds(9, 15, 340, 60);
+				|            textBox.SetBounds(12, 110, 425, 20);
+				|            buttonOk.SetBounds(360, 18, 75, 28);
+				|            buttonCancel.SetBounds(360, 52, 75, 28);
+				|
+				|            form.Size = new System.Drawing.Size(457, 182);
+				|            form.Controls.Add(label);
+				|            form.Controls.Add(textBox);
+				|            form.Controls.Add(buttonOk); 
+				|            form.Controls.Add(buttonCancel); 
+				|
+				|            form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+				|            form.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+				|            form.MinimizeBox = false;
+				|            form.MaximizeBox = false;
+				|            form.AcceptButton = buttonOk;
+				|            form.CancelButton = buttonCancel;
+				|
+				|            DialogResult dialogResult = (System.Windows.Forms.DialogResult)form.ShowDialog();
+				|            if (dialogResult == DialogResult.OK)
+				|            {
+				|                return textBox.Text;
+				|            }
+				|            return DefaultResponse;
 				|        }
 				|        
 				|";
@@ -8445,35 +8759,8 @@
 				|        [ContextMethod(""НайтиОкноПоЗаголовку"", ""FindWindowByCaption"")]
 				|        public IValue FindWindowByCaption(string WindowName)
 				|        {
-				|            if (OneScriptForms.systemVersionIsMicrosoft)
-				|            {
-				|                IntPtr numWnd = FindWindowByCaption(IntPtr.Zero, WindowName);
-				|                return ValueFactory.Create((int)numWnd);
-				|            }
-				|            else
-				|            {
-				|                string args = "" search --name \u0022"" + WindowName + ""\u0022"";
-				|                string s = """";
-				|                try
-				|                {
-				|                    System.Diagnostics.Process process = new System.Diagnostics.Process();
-				|                    process.StartInfo.FileName = ""xdotool"";
-				|                    process.StartInfo.Arguments = args;
-				|                    process.StartInfo.UseShellExecute = false;
-				|                    process.StartInfo.RedirectStandardOutput = true;
-				|                    process.StartInfo.CreateNoWindow = false;
-				|                    
-				|                    process.OutputDataReceived += (sender, data) =>
-				|                    {
-				|                        s = s + data.Data;
-				|                    };
-				|                    process.Start();
-				|                    process.BeginOutputReadLine();
-				|                    process.WaitForExit();
-				|                }
-				|                catch { }
-				|                return ValueFactory.Create(s);
-				|            }
+				|            IntPtr numWnd = FindWindowByCaption(IntPtr.Zero, WindowName);
+				|            return ValueFactory.Create((int)numWnd);
 				|        }
 				|        
 				|";
@@ -8800,84 +9087,15 @@
 				"        [ContextMethod(""НажатьКнопкуМыши"", ""MouseKeyPress"")]
 				|        public void MouseKeyPress(int p1, IValue p2 = null, IValue p3 = null)
 				|        {
-				|            if (OneScriptForms.systemVersionIsMicrosoft)
+				|            if (p2 != null && p3 != null)
 				|            {
-				|                if (p2 != null && p3 != null)
-				|                {
-				|                    mouse_event(Convert.ToUInt32(p1), Convert.ToInt32(p2.AsNumber()), Convert.ToInt32(p3.AsNumber()), 0, UIntPtr.Zero);
-				|                }
-				|                else
-				|                {
-				|                    mouse_event(Convert.ToUInt32(p1), System.Windows.Forms.Cursor.Position.X, System.Windows.Forms.Cursor.Position.Y, 0, UIntPtr.Zero);
-				|                }
-				|                System.Windows.Forms.Application.DoEvents();
+				|                mouse_event(Convert.ToUInt32(p1), Convert.ToInt32(p2.AsNumber()), Convert.ToInt32(p3.AsNumber()), 0, UIntPtr.Zero);
 				|            }
 				|            else
 				|            {
-				|                int p4 = 0;
-				|                int p5 = 0;
-				|                if (p2 != null && p3 != null)
-				|                {
-				|                    p4 = Convert.ToInt32(p2.AsNumber());
-				|                    p5 = Convert.ToInt32(p3.AsNumber());
-				|                }
-				|                else
-				|                {
-				|                    p4 = System.Windows.Forms.Cursor.Position.X;
-				|                    p5 = System.Windows.Forms.Cursor.Position.Y;
-				|                }
-				|
-				|                string args = """";
-				|                if (p1 == 1)
-				|                {
-				|                    args = args + "" mousemove_relative "" + p4 + "" "" + p5 + "" sleep 0.3"";
-				|                }
-				|                else if (p1 == 2)
-				|                {
-				|                    args = args + "" mousedown 1"";
-				|                }
-				|                else if (p1 == 4)
-				|                {
-				|                    args = args + "" mouseup 1"";
-				|                }
-				|                else if (p1 == 6)
-				|                {
-				|                    args = args + "" mousedown 1"" + "" sleep 1.0"" + "" mouseup 1"";
-				|                }
-				|                else if (p1 == 8)
-				|                {
-				|                    args = args + "" mousedown 3"";
-				|                }
-				|                else if (p1 == 16)
-				|                {
-				|                    args = args + "" mouseup 3"";
-				|                }
-				|                else if (p1 == 24)
-				|                {
-				|                    args = args + "" mousedown 3"" + "" sleep 1.0"" + "" mouseup 3"";
-				|                }
-				|                else if (p1 == 32)
-				|                {
-				|                    args = args + "" mousedown 2"";
-				|                }
-				|                else if (p1 == 64)
-				|                {
-				|                    args = args + "" mouseup 2"";
-				|                }
-				|                else if (p1 == 96)
-				|                {
-				|                    args = args + "" mousedown 2"" + "" sleep 1.0"" + "" mouseup 2"";
-				|                }
-				|
-				|                if (args != """")
-				|                {
-				|                    System.Diagnostics.Process process = new System.Diagnostics.Process();
-				|                    process.StartInfo.FileName = ""xdotool"";
-				|                    process.StartInfo.Arguments = args;
-				|                    process.Start();
-				|                    process.WaitForExit();
-				|                }
+				|                mouse_event(Convert.ToUInt32(p1), System.Windows.Forms.Cursor.Position.X, System.Windows.Forms.Cursor.Position.Y, 0, UIntPtr.Zero);
 				|            }
+				|            System.Windows.Forms.Application.DoEvents();
 				|        }
 				|
 				|";
@@ -8896,6 +9114,15 @@
 				|        public ClNotifyIcon NotifyIcon()
 				|        {
 				|            return new ClNotifyIcon();
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Словарь") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Словарь"", ""Dictionary"")]
+				|        public ClDictionary Dictionary()
+				|        {
+				|            return new ClDictionary();
 				|        }
 				|
 				|";
@@ -8929,7 +9156,7 @@
 			ИначеЕсли (МетодРус = "Добавить") и (ИмяКонтекстКлассаАнгл = "Collection") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""Добавить"", ""Add"")]
-				|        public void Add(IValue p1, string p2 = null)
+				|        public void Add(IValue p2, string p1)
 				|        {
 				|            Base_obj.Add(p1, p2);
 				|        }
@@ -8938,17 +9165,9 @@
 			ИначеЕсли (МетодРус = "Элемент") и (ИмяКонтекстКлассаАнгл = "Collection") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""Элемент"", ""Item"")]
-				|        public IValue Item(IValue p1)
+				|        public IValue Item(string p1)
 				|        {
-				|            if (p1.SystemType.Name == ""Строка"")
-				|            {
-				|                return (IValue)Base_obj[p1.AsString()];
-				|            }
-				|            else if (p1.SystemType.Name == ""Число"")
-				|            {
-				|                return (IValue)Base_obj[Convert.ToInt32(p1.AsNumber())];
-				|            }
-				|            return null;
+				|            return (IValue)Base_obj[p1];
 				|        }
 				|
 				|";
@@ -8972,16 +9191,9 @@
 			ИначеЕсли (МетодРус = "Удалить") и (ИмяКонтекстКлассаАнгл = "Collection") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""Удалить"", ""Remove"")]
-				|        public void Remove(IValue p1)
+				|        public void Remove(string p1)
 				|        {
-				|            if (p1.SystemType.Name == ""Строка"")
-				|            {
-				|                Base_obj.Remove(p1.AsString());
-				|            }
-				|            else if (p1.SystemType.Name == ""Число"")
-				|            {
-				|                Base_obj.Remove(Convert.ToInt32(p1.AsNumber()));
-				|            }
+				|            Base_obj.Remove(p1);
 				|        }
 				|
 				|";
@@ -11346,15 +11558,67 @@
 				|        }
 				|
 				|";
+			ИначеЕсли (МетодРус = "Установить") и (ИмяКонтекстКлассаАнгл = "Dictionary") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Установить"", ""Set"")]
+				|        public void Set(IValue p1, IValue p2)
+				|        {
+				|            Base_obj.Set(OneScriptForms.DefineTypeIValue(p1), OneScriptForms.DefineTypeIValue(p2));
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Элемент") и (ИмяКонтекстКлассаАнгл = "Dictionary") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Элемент"", ""Item"")]
+				|        public IValue Item(IValue p1)
+				|        {
+				|            return (IValue)ValueFactory.Create(Base_obj.get_Item(OneScriptForms.DefineTypeIValue(p1)));
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Добавить") и (ИмяКонтекстКлассаАнгл = "Dictionary") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Добавить"", ""Add"")]
+				|        public void Add(IValue p1, IValue p2)
+				|        {
+				|            Base_obj.Add(OneScriptForms.DefineTypeIValue(p1), OneScriptForms.DefineTypeIValue(p2));
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "СодержитКлюч") и (ИмяКонтекстКлассаАнгл = "Dictionary") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""СодержитКлюч"", ""ContainsKey"")]
+				|        public bool ContainsKey(object p1)
+				|        {
+				|            return Base_obj.ContainsKey(OneScriptForms.DefineTypeIValue(p1));
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "СодержитЗначение") и (ИмяКонтекстКлассаАнгл = "Dictionary") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""СодержитЗначение"", ""ContainsValue"")]
+				|        public bool ContainsValue(object p1)
+				|        {
+				|            return Base_obj.ContainsValue(OneScriptForms.DefineTypeIValue(p1));
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Удалить") и (ИмяКонтекстКлассаАнгл = "Dictionary") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Удалить"", ""Remove"")]
+				|        public void Remove(object p1)
+				|        {
+				|            Base_obj.Remove(OneScriptForms.DefineTypeIValue(p1));
+				|        }
+				|
+				|";
 				
 				
 				
 				
 				
 				
-				
-				
-				
+
 
 
 				
@@ -11823,6 +12087,7 @@
 	СоздатьФайлCs("Sound");
 	СоздатьФайлCs("FormClosingEventArgs");
 	СоздатьФайлCs("Collection");
+	СоздатьФайлCs("Dictionary");
 	СоздатьФайлCs("Graphics");
 	СоздатьФайлCs("Brush");
 	СоздатьФайлCs("SolidBrush");
@@ -11995,19 +12260,12 @@
 	СоздатьФайлCs("TreeViewAdvEventArgs");
 	СоздатьФайлCs("ValueTreeViewAdvEventArgs");
 	СоздатьФайлCs("RoundRect");
-	
-	
-	
 	СоздатьФайлCs("Dns");
 	СоздатьФайлCs("IpAddress");
 	СоздатьФайлCs("IpHostEntry");
 	СоздатьФайлCs("NetworkStream");
 	СоздатьФайлCs("TCPClient");
 	СоздатьФайлCs("TCPListener");
-	
-	
-	
-	
 	
 	
 	
@@ -12947,13 +13205,13 @@
 		|
 		|        public IpHostEntry(string HostName)
 		|        {
-		|            M_IPHostEntry = new IPHostEntry();
+		|            M_IPHostEntry = new System.Net.IPHostEntry();
 		|            M_IPHostEntry.HostName = HostName;
 		|
 		|            string[] aliases = new string[0];
 		|            M_IPHostEntry.Aliases = aliases;
 		|
-		|            IPAddress[] addressList = new IPAddress[0];
+		|            System.Net.IPAddress[] addressList = new System.Net.IPAddress[0];
 		|            M_IPHostEntry.AddressList = addressList;
 		|        }
 		|
@@ -13551,7 +13809,7 @@
 		|            }
 		|        }
 		|		
-		|        private void NodeComboBox_LabelChanged(object sender, LabelEventArgs e)
+		|        public void NodeComboBox_LabelChanged(object sender, LabelEventArgs e)
 		|        {
 		|            if (ValueChanged.Length > 0)
 		|            {
@@ -13877,7 +14135,7 @@
 		|            ValueChanged = """";
 		|        }
 		|		
-		|        private void NodeDecimalTextBox_LabelChanged(object sender, LabelEventArgs e)
+		|        public void NodeDecimalTextBox_LabelChanged(object sender, LabelEventArgs e)
 		|        {
 		|            if (ValueChanged.Length > 0)
 		|            {
@@ -14022,7 +14280,7 @@
 		|            }
 		|        }
 		|		
-		|        private void NodeNumericUpDown_LabelChanged(object sender, LabelEventArgs e)
+		|        public void NodeNumericUpDown_LabelChanged(object sender, LabelEventArgs e)
 		|        {
 		|            if (ValueChanged.Length > 0)
 		|            {
@@ -14161,7 +14419,7 @@
 		|            ValueChanged = """";
 		|        }
 		|		
-		|        private void NodeTextBox_LabelChanged(object sender, LabelEventArgs e)
+		|        public void NodeTextBox_LabelChanged(object sender, LabelEventArgs e)
 		|        {
 		|            if (ValueChanged.Length > 0)
 		|            {
@@ -19026,7 +19284,7 @@
 		|            CheckChanged = """";
 		|        }
 		|
-		|        private void NodeCheckBox_CheckStateChanged(object sender, TreePathEventArgs e)
+		|        public void NodeCheckBox_CheckStateChanged(object sender, TreePathEventArgs e)
 		|        {
 		|            if (CheckChanged.Length > 0)
 		|            {
@@ -21352,6 +21610,11 @@
 		|            {
 		|                return NodeControlInfo.Empty;
 		|            }
+		|        }
+		|		
+		|        public NodeControlInfo GetNodeControlInfoAt2(TreeNodeAdv node, Point point)
+		|        {
+		|            return GetNodeControlInfoAt(node, point);
 		|        }
 		|
 		|		private NodeControlInfo GetNodeControlInfoAt(TreeNodeAdv node, Point point)
@@ -24356,7 +24619,7 @@
 		|            Collapsed = """";
 		|        }
 		|		
-		|        private void M_TreeViewAdv_Collapsed(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
+		|        public void M_TreeViewAdv_Collapsed(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
 		|        {
 		|            if (Collapsed.Length > 0)
 		|            {
@@ -24370,7 +24633,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_TreeViewAdv_Expanded(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
+		|        public void M_TreeViewAdv_Expanded(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
 		|        {
 		|            if (Expanded.Length > 0)
 		|            {
@@ -24384,7 +24647,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_TreeViewAdv_Collapsing(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
+		|        public void M_TreeViewAdv_Collapsing(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
 		|        {
 		|            if (Collapsing.Length > 0)
 		|            {
@@ -24398,7 +24661,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_TreeViewAdv_Expanding(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
+		|        public void M_TreeViewAdv_Expanding(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
 		|        {
 		|            if (Expanding.Length > 0)
 		|            {
@@ -24412,7 +24675,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_TreeViewAdv_Scroll(object sender, System.Windows.Forms.ScrollEventArgs e)
+		|        public void M_TreeViewAdv_Scroll(object sender, System.Windows.Forms.ScrollEventArgs e)
 		|        {
 		|            if (Scroll.Length > 0)
 		|            {
@@ -24435,7 +24698,7 @@
 		|            
 		|        }
 		|
-		|        private void M_TreeViewAdv_NodeMouseClick(object sender, Aga.Controls.Tree.TreeNodeAdvMouseEventArgs e)
+		|        public void M_TreeViewAdv_NodeMouseClick(object sender, Aga.Controls.Tree.TreeNodeAdvMouseEventArgs e)
 		|        {
 		|            if (SelectNodeControl)
 		|            {
@@ -24465,7 +24728,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_TreeViewAdv_ColumnClicked(object sender, Aga.Controls.Tree.TreeColumnEventArgs e)
+		|        public void M_TreeViewAdv_ColumnClicked(object sender, Aga.Controls.Tree.TreeColumnEventArgs e)
 		|        {
 		|            if (ColumnClicked.Length > 0)
 		|            {
@@ -24479,7 +24742,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_TreeViewAdv_ColumnReordered(object sender, Aga.Controls.Tree.TreeColumnEventArgs e)
+		|        public void M_TreeViewAdv_ColumnReordered(object sender, Aga.Controls.Tree.TreeColumnEventArgs e)
 		|        {
 		|            if (ColumnReordered.Length > 0)
 		|            {
@@ -24493,7 +24756,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_TreeViewAdv_SelectionChanged(object sender, System.EventArgs e)
+		|        public void M_TreeViewAdv_SelectionChanged(object sender, System.EventArgs e)
 		|        {
 		|            if (this.SelectedNodes.Count > 1)
 		|            {
@@ -34714,7 +34977,7 @@
 		|            return M_DataGridView.EndEdit();
 		|        }
 		|
-		|        private void M_DataGridView_CellBeginEdit(object sender, System.Windows.Forms.DataGridViewCellCancelEventArgs e)
+		|        public void M_DataGridView_CellBeginEdit(object sender, System.Windows.Forms.DataGridViewCellCancelEventArgs e)
 		|        {
 		|            if (CellBeginEdit.Length > 0)
 		|            {
@@ -34732,7 +34995,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_DataGridView_CellClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        public void M_DataGridView_CellClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
 		|        {
 		|            if (CellClick.Length > 0)
 		|            {
@@ -34748,7 +35011,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_DataGridView_CellContentClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        public void M_DataGridView_CellContentClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
 		|        {
 		|            if (CellContentClick.Length > 0)
 		|            {
@@ -34764,7 +35027,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_DataGridView_CellDoubleClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        public void M_DataGridView_CellDoubleClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
 		|        {
 		|            if (CellDoubleClick.Length > 0)
 		|            {
@@ -34780,7 +35043,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_DataGridView_CellEndEdit(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        public void M_DataGridView_CellEndEdit(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
 		|        {
 		|            if (CellEndEdit.Length > 0)
 		|            {
@@ -34796,7 +35059,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_DataGridView_CellEnter(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        public void M_DataGridView_CellEnter(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
 		|        {
 		|            if (CellEnter.Length > 0)
 		|            {
@@ -34820,7 +35083,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_DataGridView_CellLeave(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        public void M_DataGridView_CellLeave(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
 		|        {
 		|            if (CellLeave.Length > 0)
 		|            {
@@ -34836,7 +35099,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_DataGridView_CellMouseDown(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
+		|        public void M_DataGridView_CellMouseDown(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
 		|        {
 		|            if (CellMouseDown.Length > 0)
 		|            {
@@ -34856,7 +35119,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_DataGridView_CellMouseEnter(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        public void M_DataGridView_CellMouseEnter(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
 		|        {
 		|            if (CellMouseEnter.Length > 0)
 		|            {
@@ -34872,7 +35135,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_DataGridView_CellMouseLeave(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        public void M_DataGridView_CellMouseLeave(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
 		|        {
 		|            if (CellMouseLeave.Length > 0)
 		|            {
@@ -34888,7 +35151,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_DataGridView_CellMouseMove(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
+		|        public void M_DataGridView_CellMouseMove(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
 		|        {
 		|            if (CellMouseMove.Length > 0)
 		|            {
@@ -34908,7 +35171,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_DataGridView_CellMouseUp(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
+		|        public void M_DataGridView_CellMouseUp(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
 		|        {
 		|            if (CellMouseUp.Length > 0)
 		|            {
@@ -34928,7 +35191,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_DataGridView_CellValueChanged(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        public void M_DataGridView_CellValueChanged(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
 		|        {
 		|            if (CellValueChanged.Length > 0)
 		|            {
@@ -34944,7 +35207,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_DataGridView_ColumnHeaderMouseClick(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
+		|        public void M_DataGridView_ColumnHeaderMouseClick(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
 		|        {
 		|            if (ColumnHeaderMouseClick.Length > 0)
 		|            {
@@ -34978,7 +35241,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_DataGridView_RowEnter(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        public void M_DataGridView_RowEnter(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
 		|        {
 		|            if (RowEnter.Length > 0)
 		|            {
@@ -34994,7 +35257,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_DataGridView_RowHeaderMouseClick(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
+		|        public void M_DataGridView_RowHeaderMouseClick(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
 		|        {
 		|            if (RowHeaderMouseClick.Length > 0)
 		|            {
@@ -35014,7 +35277,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_DataGridView_RowLeave(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        public void M_DataGridView_RowLeave(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
 		|        {
 		|            if (RowLeave.Length > 0)
 		|            {
@@ -35967,7 +36230,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_NumericUpDown_ValueChanged(object sender, System.EventArgs e)
+		|        public void M_NumericUpDown_ValueChanged(object sender, System.EventArgs e)
 		|        {
 		|            if (ValueChanged.Length > 0)
 		|            {
@@ -36993,7 +37256,7 @@
 		|            set { M_RadioButton.Checked = value; }
 		|        }
 		|
-		|        private void M_RadioButton_CheckedChanged(object sender, System.EventArgs e)
+		|        public void M_RadioButton_CheckedChanged(object sender, System.EventArgs e)
 		|        {
 		|            if (CheckChanged.Length > 0)
 		|            {
@@ -37731,7 +37994,7 @@
 		|            get { return new DataGridTextBox((System.Windows.Forms.DataGridTextBox)M_DataGridTextBoxColumn.TextBox); }
 		|        }
 		|		
-		|        private void TextBox_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+		|        public void TextBox_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
 		|        {
 		|            if (System.DateTime.Now < OneScriptForms.gridMouseDownTime.AddMilliseconds(System.Windows.Forms.SystemInformation.DoubleClickTime))
 		|            {
@@ -37748,7 +38011,7 @@
 		|            }
 		|        }
 		|
-		|        private void TextBox_DoubleClick(object sender, System.EventArgs e)
+		|        public void TextBox_DoubleClick(object sender, System.EventArgs e)
 		|        {
 		|            if (DoubleClick.Length > 0)
 		|            {
@@ -38285,6 +38548,11 @@
 		|        public bool IsSelected(int row)
 		|        {
 		|            return M_DataGrid.IsSelected(row);
+		|        }
+		|		
+		|        public void SelectRow(int row)
+		|        {
+		|            M_DataGrid.Select(row);
 		|        }
 		|
 		|        public bool ReadOnly
@@ -39678,7 +39946,7 @@
 		|            set { M_LinkLabel.VisitedLinkColor = value.M_Color; }
 		|        }
 		|
-		|        private void M_LinkLabel_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		|        public void M_LinkLabel_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		|        {
 		|            if (LinkClicked.Length > 0)
 		|            {
@@ -41816,7 +42084,7 @@
 		|            get { return new Size(M_MonthCalendar.PreferredSize); }
 		|        }
 		|
-		|        private void MonthCalendar_DateChanged(object sender, System.Windows.Forms.DateRangeEventArgs e)
+		|        public void MonthCalendar_DateChanged(object sender, System.Windows.Forms.DateRangeEventArgs e)
 		|        {
 		|            if (M_DateChanged.Length > 0)
 		|            {
@@ -41830,7 +42098,7 @@
 		|            }
 		|        }
 		|
-		|        private void MonthCalendar_DateSelected(object sender, System.Windows.Forms.DateRangeEventArgs e)
+		|        public void MonthCalendar_DateSelected(object sender, System.Windows.Forms.DateRangeEventArgs e)
 		|        {
 		|            if (M_DateSelected.Length > 0)
 		|            {
@@ -42015,7 +42283,7 @@
 		|            set
 		|            {
 		|                SecureString secureString = new SecureString();
-		|                for (int i = 0; i < Strings.Len(value); i++)
+		|                for (int i = 0; i < value.Length; i++)
 		|                {
 		|                    secureString.AppendChar(Convert.ToChar(value.Substring(i, 1)));
 		|                }
@@ -42373,7 +42641,7 @@
 		|            SelectedGridItemChanged = """";
 		|        }
 		|
-		|        private void M_PropertyGrid_SelectedGridItemChanged(object sender, System.Windows.Forms.SelectedGridItemChangedEventArgs e)
+		|        public void M_PropertyGrid_SelectedGridItemChanged(object sender, System.Windows.Forms.SelectedGridItemChangedEventArgs e)
 		|        {
 		|            if (SelectedGridItemChanged.Length > 0)
 		|            {
@@ -43416,7 +43684,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_ListView_ColumnClick(object sender, System.Windows.Forms.ColumnClickEventArgs e)
+		|        public void M_ListView_ColumnClick(object sender, System.Windows.Forms.ColumnClickEventArgs e)
 		|        {
 		|            if (ColumnClick.Length > 0)
 		|            {
@@ -43457,7 +43725,7 @@
 		|            M_ListView.ListViewItemSorter = null;
 		|        }
 		|
-		|        private void M_ListView_ItemActivate(object sender, System.EventArgs e)
+		|        public void M_ListView_ItemActivate(object sender, System.EventArgs e)
 		|        {
 		|            if (ItemActivate.Length > 0)
 		|            {
@@ -43488,7 +43756,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_ListView_SelectedIndexChanged(object sender, System.EventArgs e)
+		|        public void M_ListView_SelectedIndexChanged(object sender, System.EventArgs e)
 		|        {
 		|            if (SelectedIndexChanged.Length > 0)
 		|            {
@@ -44060,7 +44328,7 @@
 		|            M_SelectedIndexChanged = """";
 		|        }
 		|		
-		|        private void M_ListBox_SelectedIndexChanged(object sender, System.EventArgs e)
+		|        public void M_ListBox_SelectedIndexChanged(object sender, System.EventArgs e)
 		|        {
 		|            if (M_SelectedIndexChanged.Length > 0)
 		|            {
@@ -44579,7 +44847,7 @@
 		|            M_SelectedIndexChanged = """";
 		|        }
 		|
-		|        private void M_TabControl_SelectedIndexChanged(object sender, System.EventArgs e)
+		|        public void M_TabControl_SelectedIndexChanged(object sender, System.EventArgs e)
 		|        {
 		|            if (M_SelectedIndexChanged.Length > 0)
 		|            {
@@ -46387,42 +46655,69 @@
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
 		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
-	ИначеЕсли ИмяФайлаCs = "Collection" Тогда
+	ИначеЕсли ИмяФайлаCs = "Dictionary" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
 		|{
-		|    public class Collection : System.Collections.IEnumerable
+		|    public class Dictionary : IEnumerable, IEnumerator
 		|    {
-		|        public ClCollection dll_obj;
-		|        public Microsoft.VisualBasic.Collection M_Collection;
+		|        public ClDictionary dll_obj;
+		|        public System.Collections.IEnumerator Enumerator;
+		|        public System.Collections.Generic.Dictionary<object, object> M_Dictionary;
 		|
-		|        public Collection()
+		|        public Dictionary()
 		|        {
-		|            M_Collection = new Microsoft.VisualBasic.Collection();
-		|            OneScriptForms.AddToHashtable(M_Collection, this);
+		|            M_Dictionary = new System.Collections.Generic.Dictionary<object, object>();
+		|            OneScriptForms.AddToHashtable(M_Dictionary, this);
 		|        }
 		|
-		|        public Collection(osf.Collection p1)
+		|        public Dictionary(Dictionary<object, object> p1)
 		|        {
-		|            M_Collection = p1.M_Collection;
+		|            M_Dictionary = p1;
 		|        }
 		|
-		|        public Collection(Microsoft.VisualBasic.Collection p1)
+		|        public Dictionary(osf.Dictionary p1)
 		|        {
-		|            M_Collection = p1;
+		|            M_Dictionary = p1.M_Dictionary;
 		|        }
 		|
-		|        public void Add(object item, string key = null)
+		|        public IEnumerator GetEnumerator()
 		|        {
-		|            M_Collection.Add(item, key);
+		|            Enumerator = M_Dictionary.GetEnumerator();
+		|            return (System.Collections.IEnumerator)this;
+		|        }
+		|
+		|        public bool MoveNext()
+		|        {
+		|            return Enumerator.MoveNext();
+		|        }
+		|
+		|        public void Reset()
+		|        {
+		|            Enumerator.Reset();
+		|        }
+		|
+		|        public object Current
+		|        {
+		|            get { return Enumerator.Current; }
+		|        }
+		|
+		|        public void Add(object key, object value)
+		|        {
+		|            M_Dictionary.Add(key, value);
+		|        }
+		|
+		|        public object get_Item(object key)
+		|        {
+		|            return M_Dictionary[key];
 		|        }
 		|
 		|        public int Count
 		|        {
 		|            get
 		|            {
-		|                int count = 0;;
-		|                foreach (var item in M_Collection)
+		|                int count = 0;
+		|                foreach (KeyValuePair<object, object> DictionaryEntry in M_Dictionary)
 		|                {
 		|                    count = count + 1;
 		|                }
@@ -46430,37 +46725,92 @@
 		|            }
 		|        }
 		|
-		|        public object this[object index]
+		|        public void Set(object key, object value)
+		|        {
+		|            M_Dictionary[key] = value;
+		|        }
+		|
+		|        public void Clear()
+		|        {
+		|            M_Dictionary.Clear();
+		|        }
+		|
+		|        public void Remove(object key)
+		|        {
+		|            M_Dictionary.Remove(key);
+		|        }
+		|
+		|        public bool ContainsKey(object p1)
+		|        {
+		|            return M_Dictionary.ContainsKey(p1);
+		|        }
+		|
+		|        public bool ContainsValue(object p1)
+		|        {
+		|            return M_Dictionary.ContainsValue(p1);
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "Collection" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class Collection : Dictionary<string, object>
+		|    {
+		|        public ClCollection dll_obj;
+		|        public Dictionary<string, object> M_Collection;
+		|
+		|        public Collection()
+		|        {
+		|            M_Collection = new Dictionary<string, object>();
+		|            OneScriptForms.AddToHashtable(M_Collection, this);
+		|        }
+		|
+		|        public Collection(Dictionary<string, object> p1)
+		|        {
+		|            M_Collection = p1;
+		|        }
+		|
+		|        public Collection(osf.Collection p1)
+		|        {
+		|            M_Collection = p1.M_Collection;
+		|        }
+		|
+		|        public new int Count
 		|        {
 		|            get
 		|            {
-		|                if (index is int)
+		|                int count = 0;
+		|                foreach (KeyValuePair<string, object>  DictionaryEntry in M_Collection)
 		|                {
-		|                    return M_Collection[checked(Convert.ToInt32(index) + 1)];
+		|                    count = count + 1;
 		|                }
-		|                if (index is string)
-		|                {
-		|                    return M_Collection[Convert.ToString(index)];
-		|                }
-		|                return M_Collection[index];
+		|                return count;
 		|            }
 		|        }
 		|
-		|        public void Remove(object index)
+		|        public new object this[string index]
 		|        {
-		|            if (index is int)
-		|            {
-		|                M_Collection.Remove(checked(Convert.ToInt32(index) + 1));
-		|            }
-		|            else if (index is string)
-		|            {
-		|                M_Collection.Remove(checked(Convert.ToString(index)));
-		|            }
+		|            get { return M_Collection[index]; }
 		|        }
 		|
-		|        public System.Collections.IEnumerator GetEnumerator()
+		|        public new void Add(string key, object item)
+		|        {
+		|            M_Collection.Add(key, item);
+		|        }
+		|
+		|        public new System.Collections.IEnumerator GetEnumerator()
 		|        {
 		|            return M_Collection.GetEnumerator();
+		|        }
+		|
+		|        public new void Remove(string index)
+		|        {
+		|            M_Collection.Remove(index);
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -48967,7 +49317,7 @@
 		|            }
 		|        }
 		|		
-		|        private void M_Form_Activated(object sender, System.EventArgs e)
+		|        public void M_Form_Activated(object sender, System.EventArgs e)
 		|        {
 		|            if (Activated.Length > 0)
 		|            {
@@ -48981,7 +49331,7 @@
 		|            }
 		|        }
 		|		
-		|        private void M_Form_Deactivate(object sender, System.EventArgs e)
+		|        public void M_Form_Deactivate(object sender, System.EventArgs e)
 		|        {
 		|            if (Deactivate.Length > 0)
 		|            {
@@ -48995,7 +49345,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_Form_Load(object sender, System.EventArgs e)
+		|        public void M_Form_Load(object sender, System.EventArgs e)
 		|        {
 		|            if (Load.Length > 0)
 		|            {
@@ -49009,7 +49359,7 @@
 		|            }
 		|        }
 		|
-		|        private void M_Form_FormClosed(object sender, FormClosedEventArgs e)
+		|        public void M_Form_FormClosed(object sender, FormClosedEventArgs e)
 		|        {
 		|            if (Closed.Length > 0)
 		|            {
@@ -49476,7 +49826,7 @@
 		|        {
 		|        }
 		|        
-		|        private void m_Control_DoubleClick(object sender, System.EventArgs e)
+		|        public void m_Control_DoubleClick(object sender, System.EventArgs e)
 		|        {
 		|            if (DoubleClick.Length > 0)
 		|            {
@@ -49490,7 +49840,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+		|        public void m_Control_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
 		|        {
 		|            if (KeyUp.Length > 0)
 		|            {
@@ -49509,7 +49859,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+		|        public void m_Control_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
 		|        {
 		|            if (KeyDown.Length > 0)
 		|            {
@@ -49528,7 +49878,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+		|        public void m_Control_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
 		|        {
 		|            if (KeyPress.Length > 0)
 		|            {
@@ -49543,7 +49893,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_MouseEnter(object sender, System.EventArgs e)
+		|        public void m_Control_MouseEnter(object sender, System.EventArgs e)
 		|        {
 		|            if (MouseEnter.Length > 0)
 		|            {
@@ -49557,7 +49907,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_MouseLeave(object sender, System.EventArgs e)
+		|        public void m_Control_MouseLeave(object sender, System.EventArgs e)
 		|        {
 		|            if (MouseLeave.Length > 0)
 		|            {
@@ -49571,7 +49921,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_Click(object sender, System.EventArgs e)
+		|        public void m_Control_Click(object sender, System.EventArgs e)
 		|        {
 		|            if (Click.Length > 0)
 		|            {
@@ -49585,7 +49935,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_LocationChanged(object sender, System.EventArgs e)
+		|        public void m_Control_LocationChanged(object sender, System.EventArgs e)
 		|        {
 		|            if (LocationChanged.Length > 0)
 		|            {
@@ -49599,7 +49949,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_Enter(object sender, System.EventArgs e)
+		|        public void m_Control_Enter(object sender, System.EventArgs e)
 		|        {
 		|            if (Enter.Length > 0)
 		|            {
@@ -49613,7 +49963,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_MouseHover(object sender, System.EventArgs e)
+		|        public void m_Control_MouseHover(object sender, System.EventArgs e)
 		|        {
 		|            if (MouseHover.Length > 0)
 		|            {
@@ -49627,7 +49977,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+		|        public void m_Control_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
 		|        {
 		|            if (MouseDown.Length > 0)
 		|            {
@@ -49645,7 +49995,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+		|        public void m_Control_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
 		|        {
 		|            if (MouseUp.Length > 0)
 		|            {
@@ -49663,7 +50013,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_Move(object sender, System.EventArgs e)
+		|        public void m_Control_Move(object sender, System.EventArgs e)
 		|        {
 		|            if (Move.Length > 0)
 		|            {
@@ -49677,7 +50027,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+		|        public void m_Control_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
 		|        {
 		|            if (MouseMove.Length > 0)
 		|            {
@@ -49695,7 +50045,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
+		|        public void m_Control_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
 		|        {
 		|            if (Paint.Length > 0)
 		|            {
@@ -49711,7 +50061,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_LostFocus(object sender, System.EventArgs e)
+		|        public void m_Control_LostFocus(object sender, System.EventArgs e)
 		|        {
 		|            if (LostFocus.Length > 0)
 		|            {
@@ -49725,7 +50075,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_Leave(object sender, System.EventArgs e)
+		|        public void m_Control_Leave(object sender, System.EventArgs e)
 		|        {
 		|            if (Leave.Length > 0)
 		|            {
@@ -49739,7 +50089,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_SizeChanged(object sender, System.EventArgs e)
+		|        public void m_Control_SizeChanged(object sender, System.EventArgs e)
 		|        {
 		|            if (SizeChanged.Length > 0)
 		|            {
@@ -49753,7 +50103,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_TextChanged(object sender, System.EventArgs e)
+		|        public void m_Control_TextChanged(object sender, System.EventArgs e)
 		|        {
 		|            if (TextChanged.Length > 0)
 		|            {
@@ -49767,7 +50117,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_ControlAdded(object sender, System.Windows.Forms.ControlEventArgs e)
+		|        public void m_Control_ControlAdded(object sender, System.Windows.Forms.ControlEventArgs e)
 		|        {
 		|            if (ControlAdded.Length > 0)
 		|            {
@@ -49782,7 +50132,7 @@
 		|            }
 		|        }
 		|        
-		|        private void m_Control_ControlRemoved(object sender, System.Windows.Forms.ControlEventArgs e)
+		|        public void m_Control_ControlRemoved(object sender, System.Windows.Forms.ControlEventArgs e)
 		|        {
 		|            if (ControlRemoved.Length > 0)
 		|            {

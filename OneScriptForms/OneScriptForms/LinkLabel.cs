@@ -166,7 +166,7 @@ namespace osf
             set { M_LinkLabel.VisitedLinkColor = value.M_Color; }
         }
 
-        private void M_LinkLabel_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+        public void M_LinkLabel_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
             if (LinkClicked.Length > 0)
             {

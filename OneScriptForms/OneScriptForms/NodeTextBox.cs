@@ -38,7 +38,7 @@ namespace Aga.Controls.Tree.NodeControls
             ValueChanged = "";
         }
 		
-        private void NodeTextBox_LabelChanged(object sender, LabelEventArgs e)
+        public void NodeTextBox_LabelChanged(object sender, LabelEventArgs e)
         {
             if (ValueChanged.Length > 0)
             {

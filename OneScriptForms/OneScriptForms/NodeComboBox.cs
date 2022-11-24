@@ -55,7 +55,7 @@ namespace Aga.Controls.Tree.NodeControls
             }
         }
 		
-        private void NodeComboBox_LabelChanged(object sender, LabelEventArgs e)
+        public void NodeComboBox_LabelChanged(object sender, LabelEventArgs e)
         {
             if (ValueChanged.Length > 0)
             {

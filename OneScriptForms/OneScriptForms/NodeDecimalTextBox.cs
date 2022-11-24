@@ -39,7 +39,7 @@ namespace Aga.Controls.Tree.NodeControls
             ValueChanged = "";
         }
 		
-        private void NodeDecimalTextBox_LabelChanged(object sender, LabelEventArgs e)
+        public void NodeDecimalTextBox_LabelChanged(object sender, LabelEventArgs e)
         {
             if (ValueChanged.Length > 0)
             {

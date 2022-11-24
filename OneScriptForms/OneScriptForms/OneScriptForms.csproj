@@ -227,6 +227,7 @@
     </Compile>
     <Compile Include="Day.cs" />
     <Compile Include="DialogResult.cs" />
+    <Compile Include="Dictionary.cs" />
     <Compile Include="DictionaryEntry.cs" />
     <Compile Include="Dns.cs" />
     <Compile Include="DockPaddingEdges.cs" />

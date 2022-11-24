@@ -161,7 +161,7 @@ namespace osf
             set { M_MonthCalendar.TodayDate = value; }
         }
 
-        private void MonthCalendar_DateChanged(object sender, System.Windows.Forms.DateRangeEventArgs e)
+        public void MonthCalendar_DateChanged(object sender, System.Windows.Forms.DateRangeEventArgs e)
         {
             if (M_DateChanged.Length > 0)
             {
@@ -175,7 +175,7 @@ namespace osf
             }
         }
 
-        private void MonthCalendar_DateSelected(object sender, System.Windows.Forms.DateRangeEventArgs e)
+        public void MonthCalendar_DateSelected(object sender, System.Windows.Forms.DateRangeEventArgs e)
         {
             if (M_DateSelected.Length > 0)
             {

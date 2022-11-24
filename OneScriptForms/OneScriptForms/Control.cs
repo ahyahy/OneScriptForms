@@ -533,7 +533,7 @@ namespace osf
             M_Control.Invalidate();
         }
 
-        private void m_Control_Click(object sender, System.EventArgs e)
+        public void m_Control_Click(object sender, System.EventArgs e)
         {
             if (Click.Length > 0)
             {
@@ -547,7 +547,7 @@ namespace osf
             }
         }
 
-        private void m_Control_ControlAdded(object sender, System.Windows.Forms.ControlEventArgs e)
+        public void m_Control_ControlAdded(object sender, System.Windows.Forms.ControlEventArgs e)
         {
             if (ControlAdded.Length > 0)
             {
@@ -562,7 +562,7 @@ namespace osf
             }
         }
 
-        private void m_Control_ControlRemoved(object sender, System.Windows.Forms.ControlEventArgs e)
+        public void m_Control_ControlRemoved(object sender, System.Windows.Forms.ControlEventArgs e)
         {
             if (ControlRemoved.Length > 0)
             {
@@ -577,7 +577,7 @@ namespace osf
             }
         }
 
-        private void m_Control_DoubleClick(object sender, System.EventArgs e)
+        public void m_Control_DoubleClick(object sender, System.EventArgs e)
         {
             if (DoubleClick.Length > 0)
             {
@@ -591,7 +591,7 @@ namespace osf
             }
         }
 
-        private void m_Control_Enter(object sender, System.EventArgs e)
+        public void m_Control_Enter(object sender, System.EventArgs e)
         {
             if (Enter.Length > 0)
             {
@@ -605,7 +605,7 @@ namespace osf
             }
         }
 
-        private void m_Control_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        public void m_Control_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             if (KeyDown.Length > 0)
             {
@@ -624,7 +624,7 @@ namespace osf
             }
         }
 
-        private void m_Control_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        public void m_Control_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
             if (KeyPress.Length > 0)
             {
@@ -639,7 +639,7 @@ namespace osf
             }
         }
 
-        private void m_Control_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        public void m_Control_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             if (KeyUp.Length > 0)
             {
@@ -658,7 +658,7 @@ namespace osf
             }
         }
 
-        private void m_Control_Leave(object sender, System.EventArgs e)
+        public void m_Control_Leave(object sender, System.EventArgs e)
         {
             if (Leave.Length > 0)
             {
@@ -672,7 +672,7 @@ namespace osf
             }
         }
 
-        private void m_Control_LocationChanged(object sender, System.EventArgs e)
+        public void m_Control_LocationChanged(object sender, System.EventArgs e)
         {
             if (LocationChanged.Length > 0)
             {
@@ -686,7 +686,7 @@ namespace osf
             }
         }
 
-        private void m_Control_LostFocus(object sender, System.EventArgs e)
+        public void m_Control_LostFocus(object sender, System.EventArgs e)
         {
             if (LostFocus.Length > 0)
             {
@@ -700,7 +700,7 @@ namespace osf
             }
         }
 
-        private void m_Control_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        public void m_Control_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             if (MouseDown.Length > 0)
             {
@@ -718,7 +718,7 @@ namespace osf
             }
         }
 
-        private void m_Control_MouseEnter(object sender, System.EventArgs e)
+        public void m_Control_MouseEnter(object sender, System.EventArgs e)
         {
             if (MouseEnter.Length > 0)
             {
@@ -732,7 +732,7 @@ namespace osf
             }
         }
 
-        private void m_Control_MouseHover(object sender, System.EventArgs e)
+        public void m_Control_MouseHover(object sender, System.EventArgs e)
         {
             if (MouseHover.Length > 0)
             {
@@ -746,7 +746,7 @@ namespace osf
             }
         }
 
-        private void m_Control_MouseLeave(object sender, System.EventArgs e)
+        public void m_Control_MouseLeave(object sender, System.EventArgs e)
         {
             if (MouseLeave.Length > 0)
             {
@@ -760,7 +760,7 @@ namespace osf
             }
         }
 
-        private void m_Control_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        public void m_Control_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             if (MouseMove.Length > 0)
             {
@@ -778,7 +778,7 @@ namespace osf
             }
         }
 
-        private void m_Control_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        public void m_Control_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             if (MouseUp.Length > 0)
             {
@@ -796,7 +796,7 @@ namespace osf
             }
         }
 
-        private void m_Control_Move(object sender, System.EventArgs e)
+        public void m_Control_Move(object sender, System.EventArgs e)
         {
             if (Move.Length > 0)
             {
@@ -810,7 +810,7 @@ namespace osf
             }
         }
 
-        private void m_Control_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
+        public void m_Control_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
             if (Paint.Length > 0)
             {
@@ -826,7 +826,7 @@ namespace osf
             }
         }
 
-        private void m_Control_SizeChanged(object sender, System.EventArgs e)
+        public void m_Control_SizeChanged(object sender, System.EventArgs e)
         {
             if (SizeChanged.Length > 0)
             {
@@ -840,7 +840,7 @@ namespace osf
             }
         }
 
-        private void m_Control_TextChanged(object sender, System.EventArgs e)
+        public void m_Control_TextChanged(object sender, System.EventArgs e)
         {
             if (TextChanged.Length > 0)
             {

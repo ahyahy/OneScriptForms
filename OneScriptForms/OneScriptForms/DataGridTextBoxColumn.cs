@@ -49,7 +49,7 @@ namespace osf
             get { return new DataGridTextBox((System.Windows.Forms.DataGridTextBox)M_DataGridTextBoxColumn.TextBox); }
         }
 
-        private void TextBox_DoubleClick(object sender, System.EventArgs e)
+        public void TextBox_DoubleClick(object sender, System.EventArgs e)
         {
             if (DoubleClick.Length > 0)
             {
@@ -63,7 +63,7 @@ namespace osf
             }
         }
 
-        private void TextBox_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        public void TextBox_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             if (System.DateTime.Now < OneScriptForms.gridMouseDownTime.AddMilliseconds(System.Windows.Forms.SystemInformation.DoubleClickTime))
             {

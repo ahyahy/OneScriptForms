@@ -374,7 +374,7 @@ namespace osf
             return M_DataGridView.EndEdit();
         }
 
-        private void M_DataGridView_CellBeginEdit(object sender, System.Windows.Forms.DataGridViewCellCancelEventArgs e)
+        public void M_DataGridView_CellBeginEdit(object sender, System.Windows.Forms.DataGridViewCellCancelEventArgs e)
         {
             if (CellBeginEdit.Length > 0)
             {
@@ -392,7 +392,7 @@ namespace osf
             }
         }
 
-        private void M_DataGridView_CellClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        public void M_DataGridView_CellClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
             if (CellClick.Length > 0)
             {
@@ -408,7 +408,7 @@ namespace osf
             }
         }
 
-        private void M_DataGridView_CellContentClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        public void M_DataGridView_CellContentClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
             if (CellContentClick.Length > 0)
             {
@@ -424,7 +424,7 @@ namespace osf
             }
         }
 
-        private void M_DataGridView_CellDoubleClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        public void M_DataGridView_CellDoubleClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
             if (CellDoubleClick.Length > 0)
             {
@@ -440,7 +440,7 @@ namespace osf
             }
         }
 
-        private void M_DataGridView_CellEndEdit(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        public void M_DataGridView_CellEndEdit(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
             if (CellEndEdit.Length > 0)
             {
@@ -456,7 +456,7 @@ namespace osf
             }
         }
 
-        private void M_DataGridView_CellEnter(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        public void M_DataGridView_CellEnter(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
             if (CellEnter.Length > 0)
             {
@@ -480,7 +480,7 @@ namespace osf
             }
         }
 
-        private void M_DataGridView_CellLeave(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        public void M_DataGridView_CellLeave(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
             if (CellLeave.Length > 0)
             {
@@ -496,7 +496,7 @@ namespace osf
             }
         }
 
-        private void M_DataGridView_CellMouseDown(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
+        public void M_DataGridView_CellMouseDown(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
         {
             if (CellMouseDown.Length > 0)
             {
@@ -516,7 +516,7 @@ namespace osf
             }
         }
 
-        private void M_DataGridView_CellMouseEnter(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        public void M_DataGridView_CellMouseEnter(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
             if (CellMouseEnter.Length > 0)
             {
@@ -532,7 +532,7 @@ namespace osf
             }
         }
 
-        private void M_DataGridView_CellMouseLeave(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        public void M_DataGridView_CellMouseLeave(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
             if (CellMouseLeave.Length > 0)
             {
@@ -548,7 +548,7 @@ namespace osf
             }
         }
 
-        private void M_DataGridView_CellMouseMove(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
+        public void M_DataGridView_CellMouseMove(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
         {
             if (CellMouseMove.Length > 0)
             {
@@ -568,7 +568,7 @@ namespace osf
             }
         }
 
-        private void M_DataGridView_CellMouseUp(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
+        public void M_DataGridView_CellMouseUp(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
         {
             if (CellMouseUp.Length > 0)
             {
@@ -588,7 +588,7 @@ namespace osf
             }
         }
 
-        private void M_DataGridView_CellValueChanged(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        public void M_DataGridView_CellValueChanged(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
             if (CellValueChanged.Length > 0)
             {
@@ -604,7 +604,7 @@ namespace osf
             }
         }
 
-        private void M_DataGridView_ColumnHeaderMouseClick(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
+        public void M_DataGridView_ColumnHeaderMouseClick(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
         {
             if (ColumnHeaderMouseClick.Length > 0)
             {
@@ -646,7 +646,7 @@ namespace osf
             }
         }
 
-        private void M_DataGridView_RowEnter(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        public void M_DataGridView_RowEnter(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
             if (RowEnter.Length > 0)
             {
@@ -662,7 +662,7 @@ namespace osf
             }
         }
 
-        private void M_DataGridView_RowHeaderMouseClick(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
+        public void M_DataGridView_RowHeaderMouseClick(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
         {
             if (RowHeaderMouseClick.Length > 0)
             {
@@ -682,7 +682,7 @@ namespace osf
             }
         }
 
-        private void M_DataGridView_RowLeave(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+        public void M_DataGridView_RowLeave(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
             if (RowLeave.Length > 0)
             {

@@ -210,6 +210,11 @@ namespace osf
             OneScriptForms.gridMouseDownTime = DateTime.Now;
         }
 
+        public void SelectRow(int row)
+        {
+            M_DataGrid.Select(row);
+        }
+
         public void SetDataBinding(object source, string member = null)
         {
             if (source is osf.DataView)
@@ -1184,6 +1189,12 @@ namespace osf
             Base_obj.Select();
         }
 					
+        [ContextMethod("ВыбратьСтроку", "SelectRow")]
+        public void SelectRow(int p1)
+        {
+            Base_obj.SelectRow(p1);
+        }
+
         [ContextMethod("ВыполнитьРазмещение", "PerformLayout")]
         public void PerformLayout()
         {

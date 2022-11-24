@@ -51,7 +51,7 @@ namespace Aga.Controls.Tree.NodeControls
             CheckChanged = "";
         }
 
-        private void NodeCheckBox_CheckStateChanged(object sender, TreePathEventArgs e)
+        public void NodeCheckBox_CheckStateChanged(object sender, TreePathEventArgs e)
         {
             if (CheckChanged.Length > 0)
             {

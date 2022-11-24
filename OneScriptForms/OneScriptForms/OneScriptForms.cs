@@ -110,7 +110,6 @@ namespace osf
         public static bool systemVersionIsMicrosoft = false;
         public static bool useMainForm = true;
         [DllImport("User32.dll")] static extern void mouse_event(uint dwFlags, int dx, int dy, int dwData, UIntPtr dwExtraInfo);
-        public static bool xdotoolIsInstall = Xdotool();
 
         public static OneScriptForms getInstance()
         {
@@ -131,33 +130,6 @@ namespace osf
                 systemVersionIsMicrosoft = true;
             }
             return instance;
-        }
-		
-        private static bool Xdotool()
-        {
-            try
-            {
-                System.Diagnostics.Process process = new System.Diagnostics.Process();
-                process.StartInfo.FileName = "xdotool";
-                process.StartInfo.Arguments = " version";
-                process.StartInfo.UseShellExecute = false;
-                process.StartInfo.RedirectStandardOutput = true;
-                process.StartInfo.CreateNoWindow = false;
-                string s = "";
-                process.OutputDataReceived += (sender, data) =>
-                {
-                    s = s + data.Data;
-                };
-                process.Start();
-                process.BeginOutputReadLine();
-                process.WaitForExit();
-                if (s.Contains("xdotool version"))
-                {
-                    return true;
-                }
-            }
-            catch { }
-            return false;
         }
 		
         private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
@@ -830,6 +802,216 @@ namespace osf
             return null;
         }
         
+        [ContextMethod("ВызватьСобытие", "CallEvent")]
+        public void CallEvent(IValue p1, string p2, ClDictionary p3 = null)
+        {
+            dynamic obj = ((dynamic)p1.AsObject()).Base_obj;
+            osf.Dictionary dictionary = new osf.Dictionary();
+            if (p3 != null)
+            {
+                dictionary = p3.Base_obj;
+            }
+            if (p1.GetType() == typeof(osf.ClListView) && p2 == "КолонкаНажатие")
+            {
+                obj.M_ListView_ColumnClick(obj.M_ListView, new System.Windows.Forms.ColumnClickEventArgs(
+                    Convert.ToInt32(dictionary.get_Item("Колонка"))));
+            }
+            if (p1.GetType() == typeof(osf.ClRichTextBox) && p2 == "СсылкаНажата")
+            {
+                obj.M_RichTextBox_LinkClicked(obj.M_RichTextBox, new System.Windows.Forms.LinkClickedEventArgs(
+                    (string)dictionary.get_Item("ТекстСсылки")));
+            }
+            if (p1.GetType() == typeof(osf.ClDataGridView) && p2 == "МышьПокинулаЯчейку")
+            {
+                obj.M_DataGridView_CellMouseLeave(obj.M_DataGridView, new System.Windows.Forms.DataGridViewCellEventArgs(
+                    Convert.ToInt32(dictionary.get_Item("ИндексКолонки")),
+                    Convert.ToInt32(dictionary.get_Item("ИндексСтроки"))));
+            }
+            if ((
+                p1.GetType() == typeof(osf.ClButton) ||
+                p1.GetType() == typeof(osf.ClCheckBox) ||
+                p1.GetType() == typeof(osf.ClComboBox) ||
+                p1.GetType() == typeof(osf.ClDataGrid) ||
+                p1.GetType() == typeof(osf.ClDataGridTextBox) ||
+                p1.GetType() == typeof(osf.ClDataGridView) ||
+                p1.GetType() == typeof(osf.ClDateTimePicker) ||
+                p1.GetType() == typeof(osf.ClForm) ||
+                p1.GetType() == typeof(osf.ClGroupBox) ||
+                p1.GetType() == typeof(osf.ClHScrollBar) ||
+                p1.GetType() == typeof(osf.ClLabel) ||
+                p1.GetType() == typeof(osf.ClLinkLabel) ||
+                p1.GetType() == typeof(osf.ClListBox) ||
+                p1.GetType() == typeof(osf.ClListView) ||
+                p1.GetType() == typeof(osf.ClMonthCalendar) ||
+                p1.GetType() == typeof(osf.ClNotifyIcon) ||
+                p1.GetType() == typeof(osf.ClNumericUpDown) ||
+                p1.GetType() == typeof(osf.ClPanel) ||
+                p1.GetType() == typeof(osf.ClPictureBox) ||
+                p1.GetType() == typeof(osf.ClProgressBar) ||
+                p1.GetType() == typeof(osf.ClPropertyGrid) ||
+                p1.GetType() == typeof(osf.ClRadioButton) ||
+                p1.GetType() == typeof(osf.ClRichTextBox) ||
+                p1.GetType() == typeof(osf.ClSplitter) ||
+                p1.GetType() == typeof(osf.ClStatusBar) ||
+                p1.GetType() == typeof(osf.ClTabControl) ||
+                p1.GetType() == typeof(osf.ClTabPage) ||
+                p1.GetType() == typeof(osf.ClTextBox) ||
+                p1.GetType() == typeof(osf.ClToolBar) ||
+                p1.GetType() == typeof(osf.ClTreeView) ||
+                p1.GetType() == typeof(osf.ClTreeViewAdv) ||
+                p1.GetType() == typeof(osf.ClUserControl) ||
+                p1.GetType() == typeof(osf.ClVScrollBar)) && (p2 == "ПриНажатииКнопкиМыши"))
+            {
+                obj.m_Control_MouseDown(obj.M_Control, new System.Windows.Forms.MouseEventArgs(
+                    (System.Windows.Forms.MouseButtons)Convert.ToInt32(dictionary.get_Item("Кнопка")),
+                    Convert.ToInt32(dictionary.get_Item("Нажатия")),
+                    Convert.ToInt32(dictionary.get_Item("Икс")),
+                    Convert.ToInt32(dictionary.get_Item("Игрек")),
+                    0));
+            }
+            if ((
+                p1.GetType() == typeof(osf.ClButton) ||
+                p1.GetType() == typeof(osf.ClCheckBox) ||
+                p1.GetType() == typeof(osf.ClComboBox) ||
+                p1.GetType() == typeof(osf.ClDataGrid) ||
+                p1.GetType() == typeof(osf.ClDataGridView) ||
+                p1.GetType() == typeof(osf.ClDateTimePicker) ||
+                p1.GetType() == typeof(osf.ClForm) ||
+                p1.GetType() == typeof(osf.ClGroupBox) ||
+                p1.GetType() == typeof(osf.ClHScrollBar) ||
+                p1.GetType() == typeof(osf.ClLabel) ||
+                p1.GetType() == typeof(osf.ClLinkLabel) ||
+                p1.GetType() == typeof(osf.ClListBox) ||
+                p1.GetType() == typeof(osf.ClListView) ||
+                p1.GetType() == typeof(osf.ClMenuItem) ||
+                p1.GetType() == typeof(osf.ClMonthCalendar) ||
+                p1.GetType() == typeof(osf.ClNotifyIcon) ||
+                p1.GetType() == typeof(osf.ClNumericUpDown) ||
+                p1.GetType() == typeof(osf.ClPanel) ||
+                p1.GetType() == typeof(osf.ClPictureBox) ||
+                p1.GetType() == typeof(osf.ClProgressBar) ||
+                p1.GetType() == typeof(osf.ClPropertyGrid) ||
+                p1.GetType() == typeof(osf.ClRadioButton) ||
+                p1.GetType() == typeof(osf.ClRichTextBox) ||
+                p1.GetType() == typeof(osf.ClSplitter) ||
+                p1.GetType() == typeof(osf.ClStatusBar) ||
+                p1.GetType() == typeof(osf.ClTabControl) ||
+                p1.GetType() == typeof(osf.ClTabPage) ||
+                p1.GetType() == typeof(osf.ClTextBox) ||
+                p1.GetType() == typeof(osf.ClToolBar) ||
+                p1.GetType() == typeof(osf.ClTreeView) ||
+                p1.GetType() == typeof(osf.ClTreeViewAdv) ||
+                p1.GetType() == typeof(osf.ClUserControl) ||
+                p1.GetType() == typeof(osf.ClVScrollBar)) && (p2 == "Нажатие"))
+            {
+                obj.m_Control_Click(obj.M_Control, new System.EventArgs());
+            }
+            if ((p1.GetType() == typeof(osf.ClTreeViewAdv)) && (p2 == "ВыделениеИзменено"))
+            {
+                obj.M_TreeViewAdv_SelectionChanged(obj.M_TreeViewAdv, new System.EventArgs());
+            }
+            if ((p1.GetType() == typeof(osf.ClRichTextBox)) && (p2 == "ВыделениеИзменено"))
+            {
+                obj.M_RichTextBox_SelectionChanged(obj.M_RichTextBox, new System.EventArgs());
+            }
+            if ((p1.GetType() == typeof(osf.ClMenuItem)) && (p2 == "Нажатие"))
+            {
+                obj.M_MenuItem_Click(obj.M_MenuItem, new System.EventArgs());
+            }
+            if ((p1.GetType() == typeof(osf.ClNotifyIcon)) && (p2 == "ДвойноеНажатие"))
+            {
+                obj.M_NotifyIcon_DoubleClick(obj.M_NotifyIcon, new System.EventArgs());
+            }
+            if ((
+                p1.GetType() == typeof(osf.ClButton) ||
+                p1.GetType() == typeof(osf.ClCheckBox) ||
+                p1.GetType() == typeof(osf.ClComboBox) ||
+                p1.GetType() == typeof(osf.ClDataGrid) ||
+                p1.GetType() == typeof(osf.ClDataGridTextBoxColumn) ||
+                p1.GetType() == typeof(osf.ClDataGridView) ||
+                p1.GetType() == typeof(osf.ClDateTimePicker) ||
+                p1.GetType() == typeof(osf.ClGroupBox) ||
+                p1.GetType() == typeof(osf.ClHScrollBar) ||
+                p1.GetType() == typeof(osf.ClLabel) ||
+                p1.GetType() == typeof(osf.ClLinkLabel) ||
+                p1.GetType() == typeof(osf.ClListBox) ||
+                p1.GetType() == typeof(osf.ClListView) ||
+                p1.GetType() == typeof(osf.ClMonthCalendar) ||
+                p1.GetType() == typeof(osf.ClNumericUpDown) ||
+                p1.GetType() == typeof(osf.ClPanel) ||
+                p1.GetType() == typeof(osf.ClPictureBox) ||
+                p1.GetType() == typeof(osf.ClProgressBar) ||
+                p1.GetType() == typeof(osf.ClPropertyGrid) ||
+                p1.GetType() == typeof(osf.ClRadioButton) ||
+                p1.GetType() == typeof(osf.ClRichTextBox) ||
+                p1.GetType() == typeof(osf.ClSplitter) ||
+                p1.GetType() == typeof(osf.ClStatusBar) ||
+                p1.GetType() == typeof(osf.ClTabControl) ||
+                p1.GetType() == typeof(osf.ClTabPage) ||
+                p1.GetType() == typeof(osf.ClTextBox) ||
+                p1.GetType() == typeof(osf.ClToolBar) ||
+                p1.GetType() == typeof(osf.ClTreeView) ||
+                p1.GetType() == typeof(osf.ClTreeViewAdv) ||
+                p1.GetType() == typeof(osf.ClUserControl) ||
+                p1.GetType() == typeof(osf.ClVScrollBar)) && (p2 == "ДвойноеНажатие"))
+            {
+                obj.m_Control_DoubleClick(obj.M_Control, new System.EventArgs());
+            }
+				
+            if (p1.GetType() == typeof(osf.ClLinkLabel) && p2 == "СсылкаНажата")
+            {
+                obj.M_LinkLabel_LinkClicked(obj.M_LinkLabel, new System.Windows.Forms.LinkLabelLinkClickedEventArgs(
+                    ((osf.ClLink)dictionary.get_Item("Ссылка")).Base_obj.M_Link,
+                    (System.Windows.Forms.MouseButtons)Convert.ToInt32(dictionary.get_Item("Кнопка"))));
+            }
+            if (p1.GetType() == typeof(osf.ClMonthCalendar) && p2 == "ДатаИзменена")
+            {
+                obj.MonthCalendar_DateChanged(obj.M_MonthCalendar, new System.Windows.Forms.DateRangeEventArgs(
+                    DateTime.Today,
+                    DateTime.Today));
+            }
+            if (p1.GetType() == typeof(osf.ClMonthCalendar) && p2 == "ДатаВыбрана")
+            {
+                obj.MonthCalendar_DateSelected(obj.M_MonthCalendar, new System.Windows.Forms.DateRangeEventArgs(
+                    DateTime.Today,
+                    DateTime.Today));
+            }
+            if ((p1.GetType() == typeof(osf.ClRadioButton)) && (p2 == "ПометкаИзменена"))
+            {
+                obj.M_RadioButton_CheckedChanged(obj.M_RadioButton, new System.EventArgs());
+            }
+            if ((p1.GetType() == typeof(osf.ClTabControl)) && (p2 == "ИндексВыбранногоИзменен"))
+            {
+                obj.M_TabControl_SelectedIndexChanged(obj.M_TabControl, new System.EventArgs());
+            }
+            if (p1.GetType() == typeof(osf.ClToolBar) && p2 == "ПриНажатииКнопки")
+            {
+                obj.M_ToolBar_ButtonClick(obj.M_ToolBar, new System.Windows.Forms.ToolBarButtonClickEventArgs(
+                    ((osf.ClToolBarButton)dictionary.get_Item("Кнопка")).Base_obj.M_ToolBarButton));
+            }
+            if (p1.GetType() == typeof(osf.ClTreeViewAdv) && p2 == "ПриНажатииУзла")
+            {
+                System.Windows.Forms.MouseEventArgs mouseEventArgs = new System.Windows.Forms.MouseEventArgs(
+                    (System.Windows.Forms.MouseButtons)Convert.ToInt32(dictionary.get_Item("Кнопка")),
+                    Convert.ToInt32(dictionary.get_Item("Нажатия")),
+                    Convert.ToInt32(dictionary.get_Item("Икс")),
+                    Convert.ToInt32(dictionary.get_Item("Игрек")),
+                    0);
+
+                System.Drawing.Point point = ((osf.ClPoint)dictionary.get_Item("Положение")).Base_obj.M_Point;
+                Aga.Controls.Tree.TreeNodeAdvMouseEventArgs args = new Aga.Controls.Tree.TreeNodeAdvMouseEventArgs(mouseEventArgs);
+                args.ViewLocation = point;
+                args.ModifierKeys = (System.Windows.Forms.Keys)Convert.ToInt32(dictionary.get_Item("Модификаторы"));
+                args.Node = obj.M_TreeViewAdv.GetNodeAt(point);
+                Aga.Controls.Tree.NodeControlInfo info = obj.M_TreeViewAdv.GetNodeControlInfoAt2(args.Node, point);
+                args.ControlBounds = info.Bounds;
+                args.Control = info.Control;
+
+                obj.M_TreeViewAdv_NodeMouseClick(obj.M_TreeViewAdv, args);
+            }
+
+        }
+        
         [ContextMethod("ГлавноеМеню", "MainMenu")]
         public ClMainMenu MainMenu()
         {
@@ -1267,84 +1449,15 @@ namespace osf
         [ContextMethod("НажатьКнопкуМыши", "MouseKeyPress")]
         public void MouseKeyPress(int p1, IValue p2 = null, IValue p3 = null)
         {
-            if (OneScriptForms.systemVersionIsMicrosoft)
+            if (p2 != null && p3 != null)
             {
-                if (p2 != null && p3 != null)
-                {
-                    mouse_event(Convert.ToUInt32(p1), Convert.ToInt32(p2.AsNumber()), Convert.ToInt32(p3.AsNumber()), 0, UIntPtr.Zero);
-                }
-                else
-                {
-                    mouse_event(Convert.ToUInt32(p1), System.Windows.Forms.Cursor.Position.X, System.Windows.Forms.Cursor.Position.Y, 0, UIntPtr.Zero);
-                }
-                System.Windows.Forms.Application.DoEvents();
+                mouse_event(Convert.ToUInt32(p1), Convert.ToInt32(p2.AsNumber()), Convert.ToInt32(p3.AsNumber()), 0, UIntPtr.Zero);
             }
             else
             {
-                int p4 = 0;
-                int p5 = 0;
-                if (p2 != null && p3 != null)
-                {
-                    p4 = Convert.ToInt32(p2.AsNumber());
-                    p5 = Convert.ToInt32(p3.AsNumber());
-                }
-                else
-                {
-                    p4 = System.Windows.Forms.Cursor.Position.X;
-                    p5 = System.Windows.Forms.Cursor.Position.Y;
-                }
-
-                string args = "";
-                if (p1 == 1)
-                {
-                    args = args + " mousemove_relative " + p4 + " " + p5 + " sleep 0.3";
-                }
-                else if (p1 == 2)
-                {
-                    args = args + " mousedown 1";
-                }
-                else if (p1 == 4)
-                {
-                    args = args + " mouseup 1";
-                }
-                else if (p1 == 6)
-                {
-                    args = args + " mousedown 1" + " sleep 1.0" + " mouseup 1";
-                }
-                else if (p1 == 8)
-                {
-                    args = args + " mousedown 3";
-                }
-                else if (p1 == 16)
-                {
-                    args = args + " mouseup 3";
-                }
-                else if (p1 == 24)
-                {
-                    args = args + " mousedown 3" + " sleep 1.0" + " mouseup 3";
-                }
-                else if (p1 == 32)
-                {
-                    args = args + " mousedown 2";
-                }
-                else if (p1 == 64)
-                {
-                    args = args + " mouseup 2";
-                }
-                else if (p1 == 96)
-                {
-                    args = args + " mousedown 2" + " sleep 1.0" + " mouseup 2";
-                }
-
-                if (args != "")
-                {
-                    System.Diagnostics.Process process = new System.Diagnostics.Process();
-                    process.StartInfo.FileName = "xdotool";
-                    process.StartInfo.Arguments = args;
-                    process.Start();
-                    process.WaitForExit();
-                }
+                mouse_event(Convert.ToUInt32(p1), System.Windows.Forms.Cursor.Position.X, System.Windows.Forms.Cursor.Position.Y, 0, UIntPtr.Zero);
             }
+            System.Windows.Forms.Application.DoEvents();
         }
 
         [ContextMethod("НайтиМежду", "ParseBetween")]
@@ -1414,34 +1527,70 @@ namespace osf
         [ContextMethod("НайтиОкноПоЗаголовку", "FindWindowByCaption")]
         public IValue FindWindowByCaption(string WindowName)
         {
-            if (OneScriptForms.systemVersionIsMicrosoft)
+            IntPtr numWnd = FindWindowByCaption(IntPtr.Zero, WindowName);
+            return ValueFactory.Create((int)numWnd);
+        }
+        
+        [ContextMethod("НайтиЦентр", "FindCenter")]
+        public ClPoint FindCenter(IValue p1)
+        {
+            dynamic obj = (dynamic)p1.AsObject();
+            try
             {
-                IntPtr numWnd = FindWindowByCaption(IntPtr.Zero, WindowName);
-                return ValueFactory.Create((int)numWnd);
-            }
-            else
-            {
-                string args = " search --name \u0022" + WindowName + "\u0022";
-                string s = "";
-                try
+                int left = obj.Left;
+                int top = obj.Top;
+                int offsetY = 0;
+                int offset = 0;
+                int offsetX = 0;
+                if (obj.Parent != null)
                 {
-                    System.Diagnostics.Process process = new System.Diagnostics.Process();
-                    process.StartInfo.FileName = "xdotool";
-                    process.StartInfo.Arguments = args;
-                    process.StartInfo.UseShellExecute = false;
-                    process.StartInfo.RedirectStandardOutput = true;
-                    process.StartInfo.CreateNoWindow = false;
-                    
-                    process.OutputDataReceived += (sender, data) =>
+                    GetParentTop(obj, ref offsetY);
+                    if (obj.GetType() == typeof(osf.ClForm))
                     {
-                        s = s + data.Data;
-                    };
-                    process.Start();
-                    process.BeginOutputReadLine();
-                    process.WaitForExit();
+                        top = offsetY + obj.Top + (obj.Parent.Height - obj.Parent.ClientRectangle.Height) - 3;
+                    }
+                    if (offset == 0)
+                    {
+                        offset = (obj.TopLevelControl.Height - obj.TopLevelControl.ClientRectangle.Height) - 3;
+                    }
+                    top = offsetY + obj.Top + offset;
+                    GetParentLeft(obj, ref offsetX);
+                    left = offsetX + obj.Left + 3;
                 }
-                catch { }
-                return ValueFactory.Create(s);
+                decimal x = Convert.ToDecimal(left + (obj.Width / 2));
+                decimal y = Convert.ToDecimal(top + (obj.Height / 2));
+                ClPoint ClPoint1 = new ClPoint(Convert.ToInt32(System.Math.Truncate(x)), Convert.ToInt32(System.Math.Truncate(y)));
+                return ClPoint1;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private void GetParentLeft(dynamic obj, ref int offsetX)
+        {
+            dynamic Parent = obj.Parent;
+            if (Parent != null)
+            {
+                offsetX = offsetX + Parent.Left + 2;
+            }
+            if (Parent.Parent != null)
+            {
+                GetParentLeft(Parent, ref offsetX);
+            }
+        }
+
+        private void GetParentTop(dynamic obj, ref int offsetY)
+        {
+            dynamic Parent = obj.Parent;
+            if (Parent != null)
+            {
+                offsetY = offsetY + Parent.Top + 2;
+            }
+            if (Parent.Parent != null)
+            {
+                GetParentTop(Parent, ref offsetY);
             }
         }
         
@@ -1883,6 +2032,12 @@ namespace osf
         public ClDictionaryEntry DictionaryEntry(IValue p1, IValue p2)
         {
             return new ClDictionaryEntry(p1, p2);
+        }
+
+        [ContextMethod("Словарь", "Dictionary")]
+        public ClDictionary Dictionary()
+        {
+            return new ClDictionary();
         }
 
         [ContextMethod("СоздатьФорму", "CreateForm")]
