@@ -81,12 +81,6 @@ namespace osf
             get { return Base_obj.RowIndex; }
         }
 
-        [ContextProperty("КолонкаВладелец", "OwningColumn")]
-        public ClDataGridViewColumn OwningColumn
-        {
-            get { return (ClDataGridViewColumn)OneScriptForms.RevertObj(Base_obj.OwningColumn); }
-        }
-
         [ContextProperty("Метка", "Tag")]
         public ClCollection Tag
         {
@@ -115,12 +109,6 @@ namespace osf
         public ClSize Size
         {
             get { return (ClSize)OneScriptForms.RevertObj(Base_obj.Size); }
-        }
-
-        [ContextProperty("СтрокаВладелец", "OwningRow")]
-        public ClDataGridViewRow OwningRow
-        {
-            get { return (ClDataGridViewRow)OneScriptForms.RevertObj(Base_obj.OwningRow); }
         }
 
         [ContextProperty("Таблица", "DataGridView")]

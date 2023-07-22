@@ -80,7 +80,6 @@ namespace Aga.Controls.Tree.NodeControls
         {
             Rectangle bounds = GetBounds(node, context);
 		
-            //////CheckState state = GetCheckState(node);
             CheckState state = System.Windows.Forms.CheckState.Unchecked;
             try
             {
@@ -150,23 +149,19 @@ namespace Aga.Controls.Tree.NodeControls
         {
             if (VirtualMode)
             {
-                //////SetValue(node, value);
                 ((Node)node.Tag).SetControlValue(this, value);
                 OnCheckStateChanged(node);
             }
             else
             {
-                //////Type type = GetPropertyType(node);
                 Type type = ((Node)node.Tag).GetControlValue(this).GetType();
                 if (type == typeof(CheckState))
                 {
-                    //////SetValue(node, value);
                     ((Node)node.Tag).SetControlValue(this, value);
                     OnCheckStateChanged(node);
                 }
                 else if (type == typeof(bool))
                 {
-                    //////SetValue(node, value != CheckState.Unchecked);
                     ((Node)node.Tag).SetControlValue(this, value != CheckState.Unchecked);
                     OnCheckStateChanged(node);
                 }

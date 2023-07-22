@@ -4,40 +4,46 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
+    public class DataGridViewButtonColumnEx : System.Windows.Forms.DataGridViewButtonColumn
+    {
+        public osf.DataGridViewButtonColumn M_Object;
+
+        public DataGridViewButtonColumnEx() : base()
+        {
+            this.CellTemplate = new DataGridViewButtonCellEx();
+        }
+    }
+
     public class DataGridViewButtonColumn : DataGridViewColumn
     {
         public new ClDataGridViewButtonColumn dll_obj;
-        private System.Windows.Forms.DataGridViewButtonColumn m_DataGridViewButtonColumn;
+        private DataGridViewButtonColumnEx M_DataGridViewButtonColumn;
 
         public DataGridViewButtonColumn()
         {
-            M_DataGridViewButtonColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            M_DataGridViewButtonColumn = new DataGridViewButtonColumnEx();
+            M_DataGridViewButtonColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewButtonColumn;
+        }
+
+        public DataGridViewButtonColumn(DataGridViewButtonColumnEx p1)
+        {
+            M_DataGridViewButtonColumn = p1;
+            M_DataGridViewButtonColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewButtonColumn;
         }
 
         public DataGridViewButtonColumn(osf.DataGridViewButtonColumn p1)
         {
             M_DataGridViewButtonColumn = p1.M_DataGridViewButtonColumn;
-        }
-
-        public DataGridViewButtonColumn(System.Windows.Forms.DataGridViewButtonColumn p1)
-        {
-            M_DataGridViewButtonColumn = p1;
+            M_DataGridViewButtonColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewButtonColumn;
         }
 
         public int FlatStyle
         {
             get { return (int)M_DataGridViewButtonColumn.FlatStyle; }
             set { M_DataGridViewButtonColumn.FlatStyle = (System.Windows.Forms.FlatStyle)value; }
-        }
-
-        public System.Windows.Forms.DataGridViewButtonColumn M_DataGridViewButtonColumn
-        {
-            get { return m_DataGridViewButtonColumn; }
-            set
-            {
-                m_DataGridViewButtonColumn = value;
-                base.M_DataGridViewColumn = m_DataGridViewButtonColumn;
-            }
         }
 
         public string Text

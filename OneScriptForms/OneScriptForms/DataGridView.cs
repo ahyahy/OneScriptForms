@@ -256,6 +256,12 @@ namespace osf
             set { M_DataGridView.ColumnHeadersHeight = value; }
         }
 
+        public bool ColumnHeadersVisible
+        {
+            get { return M_DataGridView.ColumnHeadersVisible; }
+            set { M_DataGridView.ColumnHeadersVisible = value; }
+        }
+
         public osf.DataGridViewColumnCollection Columns
         {
             get { return new osf.DataGridViewColumnCollection(M_DataGridView.Columns); }
@@ -267,11 +273,30 @@ namespace osf
             {
                 dynamic Obj1 = null;
                 string str1 = M_DataGridView.CurrentCell.GetType().ToString();
-                string str2 = str1.Replace("System.Windows.Forms.", "osf.");
-                System.Type Type1 = System.Type.GetType(str2, false, true);
-                object[] args1 = { M_DataGridView.CurrentCell };
-                Obj1 = Activator.CreateInstance(Type1, args1);
-
+                if (str1 == "osf.DataGridViewButtonCellEx")
+                {
+                    Obj1 = new DataGridViewButtonCell((DataGridViewButtonCellEx)M_DataGridView.CurrentCell);
+                }
+                else if (str1 == "osf.DataGridViewCheckBoxCellEx")
+                {
+                    Obj1 = new DataGridViewCheckBoxCell((DataGridViewCheckBoxCellEx)M_DataGridView.CurrentCell);
+                }
+                else if (str1 == "osf.DataGridViewComboBoxCellEx")
+                {
+                    Obj1 = new DataGridViewComboBoxCell((DataGridViewComboBoxCellEx)M_DataGridView.CurrentCell);
+                }
+                else if (str1 == "osf.DataGridViewImageCellEx")
+                {
+                    Obj1 = new DataGridViewImageCell((DataGridViewImageCellEx)M_DataGridView.CurrentCell);
+                }
+                else if (str1 == "osf.DataGridViewLinkCellEx")
+                {
+                    Obj1 = new DataGridViewLinkCell((DataGridViewLinkCellEx)M_DataGridView.CurrentCell);
+                }
+                else if (str1 == "osf.DataGridViewTextBoxCellEx")
+                {
+                    Obj1 = new DataGridViewTextBoxCell((DataGridViewTextBoxCellEx)M_DataGridView.CurrentCell);
+                }
                 return Obj1;
             }
             set { M_DataGridView.CurrentCell = value.M_DataGridViewCell; }
@@ -341,6 +366,12 @@ namespace osf
             set { M_DataGridView.RowHeadersDefaultCellStyle = value.M_DataGridViewCellStyle; }
         }
 
+        public bool RowHeadersVisible
+        {
+            get { return M_DataGridView.RowHeadersVisible; }
+            set { M_DataGridView.RowHeadersVisible = value; }
+        }
+
         public int RowHeadersWidth
         {
             get { return M_DataGridView.RowHeadersWidth; }
@@ -376,6 +407,17 @@ namespace osf
 
         public void M_DataGridView_CellBeginEdit(object sender, System.Windows.Forms.DataGridViewCellCancelEventArgs e)
         {
+            var cell = M_DataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            if (cell.GetType() == typeof(osf.DataGridViewCheckBoxCellEx))
+            {
+                DataGridViewCheckBoxCellEx cell1 = (DataGridViewCheckBoxCellEx)cell;
+                if (cell1.ColumnSpan > 1 || cell1.RowSpan > 1 || cell1.OwnerCell != null)  // Ячейка в составе объединенных ячеек.
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
+		
             if (CellBeginEdit.Length > 0)
             {
                 DataGridViewCellCancelEventArgs DataGridViewCellCancelEventArgs1 = new DataGridViewCellCancelEventArgs();
@@ -410,6 +452,17 @@ namespace osf
 
         public void M_DataGridView_CellContentClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
+            var cell = M_DataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            if (cell.GetType() == typeof(osf.DataGridViewLinkCellEx))
+            {
+                DataGridViewLinkCellEx cell1 = (DataGridViewLinkCellEx)cell;
+                if (cell1.OwnerCell != null) // Ячейка в составе объединенных ячеек.
+                {
+                    DataGridViewLinkCellEx cell2 = (DataGridViewLinkCellEx)cell1.OwnerCell;
+                    cell2.LinkVisited = true;
+                }
+            }
+		
             if (CellContentClick.Length > 0)
             {
                 DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
@@ -426,6 +479,45 @@ namespace osf
 
         public void M_DataGridView_CellDoubleClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
+            var cell = M_DataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            if (cell.GetType() == typeof(osf.DataGridViewCheckBoxCellEx))
+            {
+                DataGridViewCheckBoxCellEx cell1 = (DataGridViewCheckBoxCellEx)cell;
+                if (cell1.ColumnSpan > 1 || cell1.RowSpan > 1 || cell1.OwnerCell != null) // Ячейка в составе объединенных ячеек.
+                {
+                    if (cell1.ThreeState)
+                    {
+                        if (cell1.Value == null)
+                        {
+                            cell1.Value = false;
+                        }
+                        else if ((bool)cell1.Value)
+                        {
+                            cell1.Value = null;
+                        }
+                        else if (!(bool)cell1.Value)
+                        {
+                            cell1.Value = true;
+                        }
+                    }
+                    else if (!cell1.ThreeState)
+                    {
+                        if (cell1.Value == null)
+                        {
+                            cell1.Value = true;
+                        }
+                        else if ((bool)cell1.Value)
+                        {
+                            cell1.Value = false;
+                        }
+                        else if (!(bool)cell1.Value)
+                        {
+                            cell1.Value = true;
+                        }
+                    }
+                }
+            }
+		
             if (CellDoubleClick.Length > 0)
             {
                 DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
@@ -590,6 +682,11 @@ namespace osf
 
         public void M_DataGridView_CellValueChanged(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
+            if (e.ColumnIndex == -1)
+            {
+                return;
+            }
+		
             if (CellValueChanged.Length > 0)
             {
                 DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
@@ -783,10 +880,12 @@ namespace osf
         private ClColor backgroundColor;
         private ClRectangle bounds;
         private ClRectangle clientRectangle;
+        private ClDataGridViewColumnCollection columns;
         private ClControlCollection controls;
         private ClCursor cursor;
         private ClFont font;
         private ClColor foreColor;
+        private ClDataGridViewRowCollection rows;
         private ClCollection tag = new ClCollection();
 
         public ClDataGridView()
@@ -794,6 +893,8 @@ namespace osf
             DataGridView DataGridView1 = new DataGridView();
             DataGridView1.dll_obj = this;
             Base_obj = DataGridView1;
+            columns = new ClDataGridViewColumnCollection(Base_obj.Columns);
+            rows = new ClDataGridViewRowCollection(Base_obj.Rows);
             bounds = new ClRectangle(Base_obj.Bounds);
             clientRectangle = new ClRectangle(Base_obj.ClientRectangle);
             foreColor = new ClColor(Base_obj.ForeColor);
@@ -807,6 +908,8 @@ namespace osf
             DataGridView DataGridView1 = p1;
             DataGridView1.dll_obj = this;
             Base_obj = DataGridView1;
+            columns = new ClDataGridViewColumnCollection(Base_obj.Columns);
+            rows = new ClDataGridViewRowCollection(Base_obj.Rows);
             bounds = new ClRectangle(Base_obj.Bounds);
             clientRectangle = new ClRectangle(Base_obj.ClientRectangle);
             foreColor = new ClColor(Base_obj.ForeColor);
@@ -814,7 +917,7 @@ namespace osf
             backgroundColor = new ClColor(Base_obj.BackgroundColor);
             controls = new ClControlCollection(Base_obj.Controls);
         }
-        
+
         public DataGridView Base_obj;
         
         [ContextProperty("АвтоНумерацияСтрок", "AutoNumberingRows")]
@@ -1119,20 +1222,32 @@ namespace osf
         public int ColumnCount
         {
             get { return Base_obj.ColumnCount; }
-            set { Base_obj.ColumnCount = value; }
+            set
+            {
+                for (int i = 0; i < value; i++)
+                {
+                    Base_obj.Columns.Add(new DataGridViewTextBoxColumn());
+                }
+            }
         }
 
         [ContextProperty("КоличествоСтрок", "RowCount")]
         public int RowCount
         {
             get { return Base_obj.RowCount; }
-            set { Base_obj.RowCount = value; }
+            set
+            {
+                for (int i = 0; i < value; i++)
+                {
+                    Base_obj.Rows.Add(new DataGridViewRow());
+                }
+            }
         }
 
         [ContextProperty("Колонки", "Columns")]
         public ClDataGridViewColumnCollection Columns
         {
-            get { return (ClDataGridViewColumnCollection)OneScriptForms.RevertObj(Base_obj.Columns); }
+            get { return columns; }
         }
 
         [ContextProperty("КонтекстноеМеню", "ContextMenu")]
@@ -1328,6 +1443,20 @@ namespace osf
         {
             get { return Base_obj.Visible; }
             set { Base_obj.Visible = value; }
+        }
+
+        [ContextProperty("ОтображатьЗаголовкиСтолбцов", "ColumnHeadersVisible")]
+        public bool ColumnHeadersVisible
+        {
+            get { return Base_obj.ColumnHeadersVisible; }
+            set { Base_obj.ColumnHeadersVisible = value; }
+        }
+
+        [ContextProperty("ОтображатьЗаголовкиСтрок", "RowHeadersVisible")]
+        public bool RowHeadersVisible
+        {
+            get { return Base_obj.RowHeadersVisible; }
+            set { Base_obj.RowHeadersVisible = value; }
         }
 
         [ContextProperty("ПозицияМыши", "MousePosition")]
@@ -1847,7 +1976,7 @@ namespace osf
         [ContextProperty("Строки", "Rows")]
         public ClDataGridViewRowCollection Rows
         {
-            get { return (ClDataGridViewRowCollection)OneScriptForms.RevertObj(Base_obj.Rows); }
+            get { return rows; }
         }
 
         [ContextProperty("Стыковка", "Dock")]
@@ -2130,13 +2259,33 @@ namespace osf
         [ContextMethod("Колонки", "Columns")]
         public IValue Columns2(int p1)
         {
-            dynamic Obj1 = null;
+            IValue IValue1 = null;
             string str1 = Base_obj.Columns[p1].GetType().ToString();
-            string str2 = str1.Replace("System.Windows.Forms.", "osf.");
-            System.Type Type1 = System.Type.GetType(str2, false, true);
-            object[] args1 = { Base_obj.Columns[p1] };
-            Obj1 = Activator.CreateInstance(Type1, args1);
-            return OneScriptForms.RevertObj(Obj1);
+            if (str1 == "osf.DataGridViewButtonColumnEx")
+            {
+                IValue1 = new ClDataGridViewButtonColumn(new DataGridViewButtonColumn((DataGridViewButtonColumnEx)Base_obj.Columns[p1]));
+            }
+            else if (str1 == "osf.DataGridViewCheckBoxColumnEx")
+            {
+                IValue1 = new ClDataGridViewCheckBoxColumn(new DataGridViewCheckBoxColumn((DataGridViewCheckBoxColumnEx)Base_obj.Columns[p1]));
+            }
+            else if (str1 == "osf.DataGridViewComboBoxColumnEx")
+            {
+                IValue1 = new ClDataGridViewComboBoxColumn(new DataGridViewComboBoxColumn((DataGridViewComboBoxColumnEx)Base_obj.Columns[p1]));
+            }
+            else if (str1 == "osf.DataGridViewImageColumnEx")
+            {
+                IValue1 = new ClDataGridViewImageColumn(new DataGridViewImageColumn((DataGridViewImageColumnEx)Base_obj.Columns[p1]));
+            }
+            else if (str1 == "osf.DataGridViewLinkColumnEx")
+            {
+                IValue1 = new ClDataGridViewLinkColumn(new DataGridViewLinkColumn((DataGridViewLinkColumnEx)Base_obj.Columns[p1]));
+            }
+            else if (str1 == "osf.DataGridViewTextBoxColumnEx")
+            {
+                IValue1 = new ClDataGridViewTextBoxColumn(new DataGridViewTextBoxColumn((DataGridViewTextBoxColumnEx)Base_obj.Columns[p1]));
+            }
+            return IValue1;
         }
         
         [ContextMethod("Левее", "PlaceLeft")]
@@ -2205,6 +2354,48 @@ namespace osf
             Base_obj.UpdateStyles();
         }
 					
+        [ContextMethod("ОбъединитьЯчейки", "SpanCells")]
+        public void SpanCells(int p1, int p2, int p3, int p4)
+        {
+            var cell = Base_obj.M_DataGridView.Rows[p2].Cells[p1];
+            if (cell.GetType() == typeof(osf.DataGridViewTextBoxCellEx))
+            {
+                DataGridViewTextBoxCellEx DataGridViewTextBoxCellEx1 = (DataGridViewTextBoxCellEx)cell;
+                DataGridViewTextBoxCellEx1.ColumnSpan = p3;
+                DataGridViewTextBoxCellEx1.RowSpan = p4;
+            }
+            else if (cell.GetType() == typeof(osf.DataGridViewImageCellEx))
+            {
+                DataGridViewImageCellEx DataGridViewImageCellExEx1 = (DataGridViewImageCellEx)cell;
+                DataGridViewImageCellExEx1.ColumnSpan = p3;
+                DataGridViewImageCellExEx1.RowSpan = p4;
+            }
+            else if (cell.GetType() == typeof(osf.DataGridViewButtonCellEx))
+            {
+                DataGridViewButtonCellEx DataGridViewButtonCellEx1 = (DataGridViewButtonCellEx)cell;
+                DataGridViewButtonCellEx1.ColumnSpan = p3;
+                DataGridViewButtonCellEx1.RowSpan = p4;
+            }
+            else if (cell.GetType() == typeof(osf.DataGridViewCheckBoxCellEx))
+            {
+                DataGridViewCheckBoxCellEx DataGridViewCheckBoxCellEx1 = (DataGridViewCheckBoxCellEx)cell;
+                DataGridViewCheckBoxCellEx1.ColumnSpan = p3;
+                DataGridViewCheckBoxCellEx1.RowSpan = p4;
+            }
+            else if (cell.GetType() == typeof(osf.DataGridViewComboBoxCellEx))
+            {
+                DataGridViewComboBoxCellEx DataGridViewComboBoxCellEx1 = (DataGridViewComboBoxCellEx)cell;
+                DataGridViewComboBoxCellEx1.ColumnSpan = p3;
+                DataGridViewComboBoxCellEx1.RowSpan = p4;
+            }
+            else if (cell.GetType() == typeof(osf.DataGridViewLinkCellEx))
+            {
+                DataGridViewLinkCellEx DataGridViewLinkCellEx1 = (DataGridViewLinkCellEx)cell;
+                DataGridViewLinkCellEx1.ColumnSpan = p3;
+                DataGridViewLinkCellEx1.RowSpan = p4;
+            }
+        }
+        
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {
@@ -2236,6 +2427,48 @@ namespace osf
             Base_obj.SuspendLayout();
         }
 					
+        [ContextMethod("РазъединитьЯчейки", "SeparateCells")]
+        public void SeparateCells(int p1, int p2)
+        {
+            var cell = Base_obj.M_DataGridView.Rows[p2].Cells[p1];
+            if (cell.GetType() == typeof(osf.DataGridViewTextBoxCellEx))
+            {
+                DataGridViewTextBoxCellEx DataGridViewTextBoxCellEx1 = (DataGridViewTextBoxCellEx)cell;
+                DataGridViewTextBoxCellEx1.ColumnSpan = 1;
+                DataGridViewTextBoxCellEx1.RowSpan = 1;
+            }
+            else if (cell.GetType() == typeof(osf.DataGridViewImageCellEx))
+            {
+                DataGridViewImageCellEx DataGridViewImageCellExEx1 = (DataGridViewImageCellEx)cell;
+                DataGridViewImageCellExEx1.ColumnSpan = 1;
+                DataGridViewImageCellExEx1.RowSpan = 1;
+            }
+            else if (cell.GetType() == typeof(osf.DataGridViewButtonCellEx))
+            {
+                DataGridViewButtonCellEx DataGridViewButtonCellExEx1 = (DataGridViewButtonCellEx)cell;
+                DataGridViewButtonCellExEx1.ColumnSpan = 1;
+                DataGridViewButtonCellExEx1.RowSpan = 1;
+            }
+            else if (cell.GetType() == typeof(osf.DataGridViewCheckBoxCellEx))
+            {
+                DataGridViewCheckBoxCellEx DataGridViewCheckBoxCellEx1 = (DataGridViewCheckBoxCellEx)cell;
+                DataGridViewCheckBoxCellEx1.ColumnSpan = 1;
+                DataGridViewCheckBoxCellEx1.RowSpan = 1;
+            }
+            else if (cell.GetType() == typeof(osf.DataGridViewComboBoxCellEx))
+            {
+                DataGridViewComboBoxCellEx DataGridViewComboBoxCellEx1 = (DataGridViewComboBoxCellEx)cell;
+                DataGridViewComboBoxCellEx1.ColumnSpan = 1;
+                DataGridViewComboBoxCellEx1.RowSpan = 1;
+            }
+            else if (cell.GetType() == typeof(osf.DataGridViewLinkCellEx))
+            {
+                DataGridViewLinkCellEx DataGridViewLinkCellEx1 = (DataGridViewLinkCellEx)cell;
+                DataGridViewLinkCellEx1.ColumnSpan = 1;
+                DataGridViewLinkCellEx1.RowSpan = 1;
+            }
+        }
+        
         [ContextMethod("Скрыть", "Hide")]
         public void Hide()
         {
@@ -2317,13 +2550,51 @@ namespace osf
         [ContextMethod("Ячейка", "Cell")]
         public IValue Cell2(int p1, int p2)
         {
-            dynamic Obj1 = null;
-            string str1 = Base_obj.M_DataGridView.Rows[p2].Cells[p1].GetType().ToString();
-            string str2 = str1.Replace("System.Windows.Forms.", "osf.");
-            System.Type Type1 = System.Type.GetType(str2, false, true);
-            object[] args1 = { Base_obj.M_DataGridView.Rows[p2].Cells[p1] };
-            Obj1 = Activator.CreateInstance(Type1, args1);
-            return OneScriptForms.RevertObj(Obj1);
+            IValue IValue1 = null;
+            var cell = Base_obj.M_DataGridView.Rows[p2].Cells[p1];
+            if (cell.GetType() == typeof(osf.DataGridViewTextBoxCellEx))
+            {
+                DataGridViewTextBoxCellEx DataGridViewTextBoxCellEx1 = (DataGridViewTextBoxCellEx)cell;
+                DataGridViewTextBoxCell DataGridViewTextBoxCell1 = new DataGridViewTextBoxCell(DataGridViewTextBoxCellEx1);
+                ClDataGridViewTextBoxCell ClDataGridViewTextBoxCell1 = new ClDataGridViewTextBoxCell(DataGridViewTextBoxCell1);
+                IValue1 = ClDataGridViewTextBoxCell1;
+            }
+            else if (cell.GetType() == typeof(osf.DataGridViewImageCellEx))
+            {
+                DataGridViewImageCellEx DataGridViewImageCellEx1 = (DataGridViewImageCellEx)cell;
+                DataGridViewImageCell DataGridViewImageCell1 = new DataGridViewImageCell(DataGridViewImageCellEx1);
+                ClDataGridViewImageCell ClDataGridViewImageCell1 = new ClDataGridViewImageCell(DataGridViewImageCell1);
+                IValue1 = ClDataGridViewImageCell1;
+            }
+            else if (cell.GetType() == typeof(osf.DataGridViewButtonCellEx))
+            {
+                DataGridViewButtonCellEx DataGridViewButtonCellEx1 = (DataGridViewButtonCellEx)cell;
+                DataGridViewButtonCell DataGridViewButtonCell1 = new DataGridViewButtonCell(DataGridViewButtonCellEx1);
+                ClDataGridViewButtonCell ClDataGridViewButtonCell1 = new ClDataGridViewButtonCell(DataGridViewButtonCell1);
+                IValue1 = ClDataGridViewButtonCell1;
+            }
+            else if (cell.GetType() == typeof(osf.DataGridViewCheckBoxCellEx))
+            {
+                DataGridViewCheckBoxCellEx DataGridViewCheckBoxCellEx1 = (DataGridViewCheckBoxCellEx)cell;
+                DataGridViewCheckBoxCell DataGridViewCheckBoxCell1 = new DataGridViewCheckBoxCell(DataGridViewCheckBoxCellEx1);
+                ClDataGridViewCheckBoxCell ClDataGridViewCheckBoxCell1 = new ClDataGridViewCheckBoxCell(DataGridViewCheckBoxCell1);
+                IValue1 = ClDataGridViewCheckBoxCell1;
+            }
+            else if (cell.GetType() == typeof(osf.DataGridViewComboBoxCellEx))
+            {
+                DataGridViewComboBoxCellEx DataGridViewComboBoxCellEx1 = (DataGridViewComboBoxCellEx)cell;
+                DataGridViewComboBoxCell DataGridViewComboBoxCell1 = new DataGridViewComboBoxCell(DataGridViewComboBoxCellEx1);
+                ClDataGridViewComboBoxCell ClDataGridViewComboBoxCell1 = new ClDataGridViewComboBoxCell(DataGridViewComboBoxCell1);
+                IValue1 = ClDataGridViewComboBoxCell1;
+            }
+            else if (cell.GetType() == typeof(osf.DataGridViewLinkCellEx))
+            {
+                DataGridViewLinkCellEx DataGridViewLinkCellEx1 = (DataGridViewLinkCellEx)cell;
+                DataGridViewLinkCell DataGridViewLinkCell1 = new DataGridViewLinkCell(DataGridViewLinkCellEx1);
+                ClDataGridViewLinkCell ClDataGridViewLinkCell1 = new ClDataGridViewLinkCell(DataGridViewLinkCell1);
+                IValue1 = ClDataGridViewLinkCell1;
+            }
+            return IValue1;
         }
     }
 }

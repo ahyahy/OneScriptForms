@@ -63,13 +63,32 @@ namespace osf
         [ContextMethod("Элемент", "Item")]
         public IValue Item(int p1)
         {
-            dynamic Obj1 = null;
-            string str1 = Base_obj[p1].GetType().ToString();
-            string str2 = str1.Replace("System.Windows.Forms.", "osf.");
-            System.Type Type1 = System.Type.GetType(str2, false, true);
-            object[] args1 = { Base_obj[p1] };
-            Obj1 = Activator.CreateInstance(Type1, args1);
-            return OneScriptForms.RevertObj(Obj1);
+            System.Type Type1 = Base_obj[p1].GetType();
+            if (Type1 == typeof(osf.DataGridViewTextBoxCellEx))
+            {
+                return OneScriptForms.RevertObj(new osf.DataGridViewTextBoxCell((DataGridViewTextBoxCellEx)Base_obj[p1]));
+            }
+            else if (Type1 == typeof(osf.DataGridViewImageCellEx))
+            {
+                return OneScriptForms.RevertObj(new osf.DataGridViewImageCell((DataGridViewImageCellEx)Base_obj[p1]));
+            }
+            else if (Type1 == typeof(DataGridViewButtonCellEx))
+            {
+                return OneScriptForms.RevertObj(new osf.DataGridViewButtonCell((DataGridViewButtonCellEx)Base_obj[p1]));
+            }
+            else if (Type1 == typeof(osf.DataGridViewComboBoxCellEx))
+            {
+                return OneScriptForms.RevertObj(new osf.DataGridViewComboBoxCell((DataGridViewComboBoxCellEx)Base_obj[p1]));
+            }
+            else if (Type1 == typeof(osf.DataGridViewLinkCellEx))
+            {
+                return OneScriptForms.RevertObj(new osf.DataGridViewLinkCell((DataGridViewLinkCellEx)Base_obj[p1]));
+            }
+            else if (Type1 == typeof(osf.DataGridViewCheckBoxCellEx))
+            {
+                return OneScriptForms.RevertObj(new osf.DataGridViewCheckBoxCell((DataGridViewCheckBoxCellEx)Base_obj[p1]));
+            }
+            return null;
         }
     }
 }

@@ -103,29 +103,29 @@ namespace osf
         public IValue Item(int p1)
         {
             System.Type Type1 = Base_obj[p1].GetType();
-            if (Type1 == typeof(System.Windows.Forms.DataGridViewTextBoxColumn))
+            if (Type1 == typeof(osf.DataGridViewTextBoxColumnEx))
             {
-                return OneScriptForms.RevertObj(new osf.DataGridViewTextBoxColumn((System.Windows.Forms.DataGridViewTextBoxColumn)Base_obj[p1]));
+                return OneScriptForms.RevertObj(new osf.DataGridViewTextBoxColumn((DataGridViewTextBoxColumnEx)Base_obj[p1]));
             }
-            else if (Type1 == typeof(System.Windows.Forms.DataGridViewImageColumn))
+            else if (Type1 == typeof(osf.DataGridViewImageColumnEx))
             {
-                return OneScriptForms.RevertObj(new osf.DataGridViewImageColumn((System.Windows.Forms.DataGridViewImageColumn)Base_obj[p1]));
+                return OneScriptForms.RevertObj(new osf.DataGridViewImageColumn((DataGridViewImageColumnEx)Base_obj[p1]));
             }
-            else if (Type1 == typeof(System.Windows.Forms.DataGridViewButtonColumn))
+            else if (Type1 == typeof(DataGridViewButtonColumnEx))
             {
-                return OneScriptForms.RevertObj(new osf.DataGridViewButtonColumn((System.Windows.Forms.DataGridViewButtonColumn)Base_obj[p1]));
+                return OneScriptForms.RevertObj(new osf.DataGridViewButtonColumn((DataGridViewButtonColumnEx)Base_obj[p1]));
             }
-            else if (Type1 == typeof(System.Windows.Forms.DataGridViewComboBoxColumn))
+            else if (Type1 == typeof(osf.DataGridViewComboBoxColumnEx))
             {
-                return OneScriptForms.RevertObj(new osf.DataGridViewComboBoxColumn((System.Windows.Forms.DataGridViewComboBoxColumn)Base_obj[p1]));
+                return OneScriptForms.RevertObj(new osf.DataGridViewComboBoxColumn((DataGridViewComboBoxColumnEx)Base_obj[p1]));
             }
-            else if (Type1 == typeof(System.Windows.Forms.DataGridViewLinkColumn))
+            else if (Type1 == typeof(osf.DataGridViewLinkColumnEx))
             {
-                return OneScriptForms.RevertObj(new osf.DataGridViewLinkColumn((System.Windows.Forms.DataGridViewLinkColumn)Base_obj[p1]));
+                return OneScriptForms.RevertObj(new osf.DataGridViewLinkColumn((DataGridViewLinkColumnEx)Base_obj[p1]));
             }
-            else if (Type1 == typeof(System.Windows.Forms.DataGridViewCheckBoxColumn))
+            else if (Type1 == typeof(osf.DataGridViewCheckBoxColumnEx))
             {
-                return OneScriptForms.RevertObj(new osf.DataGridViewCheckBoxColumn((System.Windows.Forms.DataGridViewCheckBoxColumn)Base_obj[p1]));
+                return OneScriptForms.RevertObj(new osf.DataGridViewCheckBoxColumn((DataGridViewCheckBoxColumnEx)Base_obj[p1]));
             }
             return null;
         }

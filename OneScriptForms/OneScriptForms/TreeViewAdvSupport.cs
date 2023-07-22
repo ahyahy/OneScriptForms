@@ -1861,7 +1861,6 @@ namespace Aga.Controls.Tree.NodeControls
                 try
                 {
                     MemberAdapter ma = GetMemberAdapter(node);
-                    //////////ma.Value = value;
                 }
                 catch (TargetInvocationException ex)
                 {
@@ -2001,7 +2000,6 @@ namespace Aga.Controls.Tree.NodeControls
         protected EditableControl()
         {
             _timer = new System.Windows.Forms.Timer();
-            //////_timer.Interval = 500;
             _timer.Tick += new EventHandler(TimerTick);
         }
 

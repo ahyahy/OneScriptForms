@@ -4,40 +4,47 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
+    public class DataGridViewTextBoxColumnEx : System.Windows.Forms.DataGridViewTextBoxColumn
+    {
+        public osf.DataGridViewTextBoxColumn M_Object;
+
+        public DataGridViewTextBoxColumnEx() : base()
+        {
+            this.CellTemplate = new DataGridViewTextBoxCellEx();
+        }
+    }
+
     public class DataGridViewTextBoxColumn : DataGridViewColumn
     {
         public new ClDataGridViewTextBoxColumn dll_obj;
-        private System.Windows.Forms.DataGridViewTextBoxColumn m_DataGridViewTextBoxColumn;
+        public DataGridViewTextBoxColumnEx M_DataGridViewTextBoxColumn;
+        private int maxInputLength;
 
         public DataGridViewTextBoxColumn()
         {
-            M_DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            M_DataGridViewTextBoxColumn = new DataGridViewTextBoxColumnEx();
+            M_DataGridViewTextBoxColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewTextBoxColumn;
+        }
+
+        public DataGridViewTextBoxColumn(DataGridViewTextBoxColumnEx p1)
+        {
+            M_DataGridViewTextBoxColumn = p1;
+            M_DataGridViewTextBoxColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewTextBoxColumn;
         }
 
         public DataGridViewTextBoxColumn(osf.DataGridViewTextBoxColumn p1)
         {
             M_DataGridViewTextBoxColumn = p1.M_DataGridViewTextBoxColumn;
-        }
-
-        public DataGridViewTextBoxColumn(System.Windows.Forms.DataGridViewTextBoxColumn p1)
-        {
-            M_DataGridViewTextBoxColumn = p1;
-        }
-
-        public System.Windows.Forms.DataGridViewTextBoxColumn M_DataGridViewTextBoxColumn
-        {
-            get { return m_DataGridViewTextBoxColumn; }
-            set
-            {
-                m_DataGridViewTextBoxColumn = value;
-                base.M_DataGridViewColumn = m_DataGridViewTextBoxColumn;
-            }
+            M_DataGridViewTextBoxColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewTextBoxColumn;
         }
 
         public int MaxInputLength
         {
-            get { return M_DataGridViewTextBoxColumn.MaxInputLength; }
-            set { M_DataGridViewTextBoxColumn.MaxInputLength = value; }
+            get { return maxInputLength; }
+            set { maxInputLength = value; }
         }
     }
 

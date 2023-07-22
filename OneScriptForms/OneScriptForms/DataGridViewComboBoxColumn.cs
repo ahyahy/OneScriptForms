@@ -4,26 +4,42 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
+    public class DataGridViewComboBoxColumnEx : System.Windows.Forms.DataGridViewComboBoxColumn
+    {
+        public osf.DataGridViewComboBoxColumn M_Object;
+
+        public DataGridViewComboBoxColumnEx() : base()
+        {
+            this.CellTemplate = new DataGridViewComboBoxCellEx();
+        }
+    }
+
     public class DataGridViewComboBoxColumn : DataGridViewColumn
     {
         public new ClDataGridViewComboBoxColumn dll_obj;
-        private System.Windows.Forms.DataGridViewComboBoxColumn m_DataGridViewComboBoxColumn;
+        private DataGridViewComboBoxColumnEx M_DataGridViewComboBoxColumn;
 
         public DataGridViewComboBoxColumn()
         {
-            M_DataGridViewComboBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            M_DataGridViewComboBoxColumn = new DataGridViewComboBoxColumnEx();
+            M_DataGridViewComboBoxColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewComboBoxColumn;
             M_DataGridViewComboBoxColumn.DisplayMember = "Text";
             M_DataGridViewComboBoxColumn.ValueMember = "Value";
+        }
+
+        public DataGridViewComboBoxColumn(DataGridViewComboBoxColumnEx p1)
+        {
+            M_DataGridViewComboBoxColumn = p1;
+            M_DataGridViewComboBoxColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewComboBoxColumn;
         }
 
         public DataGridViewComboBoxColumn(osf.DataGridViewComboBoxColumn p1)
         {
             M_DataGridViewComboBoxColumn = p1.M_DataGridViewComboBoxColumn;
-        }
-
-        public DataGridViewComboBoxColumn(System.Windows.Forms.DataGridViewComboBoxColumn p1)
-        {
-            M_DataGridViewComboBoxColumn = p1;
+            M_DataGridViewComboBoxColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewComboBoxColumn;
         }
 
         public object DataSource
@@ -79,16 +95,6 @@ namespace osf
         public osf.DataGridViewComboBoxCellObjectCollection Items
         {
             get { return new DataGridViewComboBoxCellObjectCollection(M_DataGridViewComboBoxColumn.Items); }
-        }
-
-        public System.Windows.Forms.DataGridViewComboBoxColumn M_DataGridViewComboBoxColumn
-        {
-            get { return m_DataGridViewComboBoxColumn; }
-            set
-            {
-                m_DataGridViewComboBoxColumn = value;
-                base.M_DataGridViewColumn = m_DataGridViewComboBoxColumn;
-            }
         }
 
         public int MaxDropDownItems

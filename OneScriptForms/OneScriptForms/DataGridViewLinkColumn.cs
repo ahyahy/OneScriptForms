@@ -4,24 +4,40 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
+    public class DataGridViewLinkColumnEx : System.Windows.Forms.DataGridViewLinkColumn
+    {
+        public osf.DataGridViewLinkColumn M_Object;
+
+        public DataGridViewLinkColumnEx() : base()
+        {
+            this.CellTemplate = new DataGridViewLinkCellEx();
+        }
+    }
+
     public class DataGridViewLinkColumn : DataGridViewColumn
     {
         public new ClDataGridViewLinkColumn dll_obj;
-        private System.Windows.Forms.DataGridViewLinkColumn m_DataGridViewLinkColumn;
+        private DataGridViewLinkColumnEx M_DataGridViewLinkColumn;
 
         public DataGridViewLinkColumn()
         {
-            M_DataGridViewLinkColumn = new System.Windows.Forms.DataGridViewLinkColumn();
+            M_DataGridViewLinkColumn = new DataGridViewLinkColumnEx();
+            M_DataGridViewLinkColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewLinkColumn;
+        }
+
+        public DataGridViewLinkColumn(DataGridViewLinkColumnEx p1)
+        {
+            M_DataGridViewLinkColumn = p1;
+            M_DataGridViewLinkColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewLinkColumn;
         }
 
         public DataGridViewLinkColumn(osf.DataGridViewLinkColumn p1)
         {
             M_DataGridViewLinkColumn = p1.M_DataGridViewLinkColumn;
-        }
-
-        public DataGridViewLinkColumn(System.Windows.Forms.DataGridViewLinkColumn p1)
-        {
-            M_DataGridViewLinkColumn = p1;
+            M_DataGridViewLinkColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewLinkColumn;
         }
 
         public osf.Color ActiveLinkColor
@@ -40,16 +56,6 @@ namespace osf
         {
             get { return new Color(M_DataGridViewLinkColumn.LinkColor); }
             set { M_DataGridViewLinkColumn.LinkColor = value.M_Color; }
-        }
-
-        public System.Windows.Forms.DataGridViewLinkColumn M_DataGridViewLinkColumn
-        {
-            get { return m_DataGridViewLinkColumn; }
-            set
-            {
-                m_DataGridViewLinkColumn = value;
-                base.M_DataGridViewColumn = m_DataGridViewLinkColumn;
-            }
         }
 
         public string Text

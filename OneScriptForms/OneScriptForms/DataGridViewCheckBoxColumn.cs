@@ -4,24 +4,40 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
+    public class DataGridViewCheckBoxColumnEx : System.Windows.Forms.DataGridViewCheckBoxColumn
+    {
+        public osf.DataGridViewCheckBoxColumn M_Object;
+
+        public DataGridViewCheckBoxColumnEx() : base()
+        {
+            this.CellTemplate = new DataGridViewCheckBoxCellEx();
+        }
+    }
+
     public class DataGridViewCheckBoxColumn : DataGridViewColumn
     {
         public new ClDataGridViewCheckBoxColumn dll_obj;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn m_DataGridViewCheckBoxColumn;
+        private DataGridViewCheckBoxColumnEx M_DataGridViewCheckBoxColumn;
 
         public DataGridViewCheckBoxColumn()
         {
-            M_DataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            M_DataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumnEx();
+            M_DataGridViewCheckBoxColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewCheckBoxColumn;
+        }
+
+        public DataGridViewCheckBoxColumn(DataGridViewCheckBoxColumnEx p1)
+        {
+            M_DataGridViewCheckBoxColumn = p1;
+            M_DataGridViewCheckBoxColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewCheckBoxColumn;
         }
 
         public DataGridViewCheckBoxColumn(osf.DataGridViewCheckBoxColumn p1)
         {
             M_DataGridViewCheckBoxColumn = p1.M_DataGridViewCheckBoxColumn;
-        }
-
-        public DataGridViewCheckBoxColumn(System.Windows.Forms.DataGridViewCheckBoxColumn p1)
-        {
-            M_DataGridViewCheckBoxColumn = p1;
+            M_DataGridViewCheckBoxColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewCheckBoxColumn;
         }
 
         public object FalseValue
@@ -40,16 +56,6 @@ namespace osf
         {
             get { return M_DataGridViewCheckBoxColumn.IndeterminateValue; }
             set { M_DataGridViewCheckBoxColumn.IndeterminateValue = value; }
-        }
-
-        public System.Windows.Forms.DataGridViewCheckBoxColumn M_DataGridViewCheckBoxColumn
-        {
-            get { return m_DataGridViewCheckBoxColumn; }
-            set
-            {
-                m_DataGridViewCheckBoxColumn = value;
-                base.M_DataGridViewColumn = m_DataGridViewCheckBoxColumn;
-            }
         }
 
         public bool ThreeState

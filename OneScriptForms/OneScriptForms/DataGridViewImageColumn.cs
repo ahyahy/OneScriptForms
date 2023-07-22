@@ -1,33 +1,189 @@
 ﻿using System;
 using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
+using System.ComponentModel;
 
 namespace osf
 {
+    public sealed class DataGridViewImageColumnEx : System.Windows.Forms.DataGridViewColumn
+    {
+        public osf.DataGridViewImageColumn M_Object;
+        static System.Drawing.Bitmap errorBmp;
+        static System.Drawing.Icon errorIco;
+        private System.Drawing.Bitmap bitmap;
+        private System.Drawing.Icon icon;
+        private string description;
+
+        public DataGridViewImageColumnEx() : this(false)
+        {
+        }
+
+        public DataGridViewImageColumnEx(bool valuesAreIcons) : base(new DataGridViewImageCellEx(valuesAreIcons))
+        {
+            var style = new System.Windows.Forms.DataGridViewCellStyle { Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter };
+            if (valuesAreIcons)
+            {
+                style.NullValue = ErrorIcon;
+            }
+            else
+            {
+                style.NullValue = ErrorBitmap;
+            }
+            this.DefaultCellStyle = style;
+        }
+
+        public System.Drawing.Bitmap Bitmap
+        {
+            get { return bitmap; }
+            set { bitmap = value; }
+        }
+        public string Description
+        {
+            get { return description; }
+            set { description = value; }
+        }
+        public System.Drawing.Icon Icon
+        {
+            get { return icon; }
+            set { icon = (System.Drawing.Icon)value; }
+        }
+
+        static System.Drawing.Bitmap ErrorBitmap
+        {
+            get
+            {
+                string str = "Qk32AgAAAAAAADYAAAAoAAAADgAAABAAAAABABgAAAAAAMACAAB0EgAAdBIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEgoTGw8bGw8bGw8bGw8bGw8bGw8bGw8bGw8bGw8bGw8bGw8bGw8YAAAAAAISChP///////////////////////////////////////////8bDxgAAAAAAhIKE////////////////////////////////////////////xsPGAAAAAACEgoT////////////////////////////////////////////Gw8YAAAAAAISChP///////////////////////////////////////////8bDxgAAAAAAhIKE////////////AAD/AAD/////////AAD/AAD/////////xsPGAAAAAACEgoT///////////////8AAP8AAP8AAP8AAP/////////////Gw8YAAAAAAISChP///////////////////wAA/wAA/////////////////8bDxgAAAAAAhIKE////////////////AAD/AAD/AAD/AAD/////////////xsPGAAAAAACEgoT///////////8AAP8AAP////////8AAP8AAP/////////Gw8YAAAAAAISChP///////////////////////////////////////////8bDxgAAAAAAhIKE////////////////////////////////////////////xsPGAAAAAACEgoT////////////////////////////////////////////Gw8YAAAAAAISChP///////////////////////////////////////////8bDxgAAAAAAhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEAAA=";
+                return errorBmp ?? (errorBmp = new System.Drawing.Bitmap((System.IO.Stream)new System.IO.MemoryStream(Convert.FromBase64String(str))));
+            }
+        }
+
+        static System.Drawing.Icon ErrorIcon
+        {
+            get
+            {
+                string str = "AAABAAEADhAAAAEAGAAoAwAAFgAAACgAAAAOAAAAIAAAAAEAGAAAAAAAAAMAAHQSAAB0EgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAISChMbDxsbDxsbDxsbDxsbDxsbDxsbDxsbDxsbDxsbDxsbDxsbDxgAAAAAAhIKE////////////////////////////////////////////xsPGAAAAAACEgoT////////////////////////////////////////////Gw8YAAAAAAISChP///////////////////////////////////////////8bDxgAAAAAAhIKE////////////////////////////////////////////xsPGAAAAAACEgoT///////////8AAP8AAP////////8AAP8AAP/////////Gw8YAAAAAAISChP///////////////wAA/wAA/wAA/wAA/////////////8bDxgAAAAAAhIKE////////////////////AAD/AAD/////////////////xsPGAAAAAACEgoT///////////////8AAP8AAP8AAP8AAP/////////////Gw8YAAAAAAISChP///////////wAA/wAA/////////wAA/wAA/////////8bDxgAAAAAAhIKE////////////////////////////////////////////xsPGAAAAAACEgoT////////////////////////////////////////////Gw8YAAAAAAISChP///////////////////////////////////////////8bDxgAAAAAAhIKE////////////////////////////////////////////xsPGAAAAAACEgoSEgoSEgoSEgoSEgoSEgoSEgoSEgoSEgoSEgoSEgoSEgoSEgoSEgoQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+                return errorIco ?? (errorIco = new System.Drawing.Icon((System.IO.Stream)new System.IO.MemoryStream(Convert.FromBase64String(str))));
+            }
+        }
+
+        private DataGridViewImageCellEx ImageCellTemplate
+        {
+            get { return (DataGridViewImageCellEx)this.CellTemplate; }
+        }
+
+        [DefaultValue(1)]
+        public System.Windows.Forms.DataGridViewImageCellLayout ImageLayout
+        {
+            get
+            {
+                if (this.CellTemplate == null)
+                {
+                    throw new InvalidOperationException();
+                }
+                System.Windows.Forms.DataGridViewImageCellLayout imageLayout = this.ImageCellTemplate.ImageLayout;
+                if (imageLayout == System.Windows.Forms.DataGridViewImageCellLayout.NotSet)
+                {
+                    imageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Normal;
+                }
+                return imageLayout;
+            }
+            set
+            {
+                if (this.ImageLayout == value)
+                {
+                    return;
+                }
+                this.ImageCellTemplate.ImageLayout = value;
+                if (DataGridView == null)
+                {
+                    return;
+                }
+                var rows = DataGridView.Rows;
+                var count = rows.Count;
+                for (var i = 0; i < count; i++)
+                {
+                    var cell = rows.SharedRow(i).Cells[Index] as System.Windows.Forms.DataGridViewImageCell;
+                    if (cell != null)
+                    {
+                        cell.ImageLayout = value;
+                    }
+                }
+            }
+        }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public bool ValuesAreIcons
+        {
+            get
+            {
+                if (this.ImageCellTemplate == null)
+                {
+                    throw new InvalidOperationException();
+                }
+                return this.ImageCellTemplate.ValueIsIcon;
+            }
+            set
+            {
+                if (this.ValuesAreIcons == value)
+                {
+                    return;
+                }
+                this.ImageCellTemplate.ValueIsIcon = value;
+                if (DataGridView != null)
+                {
+                    var rows = DataGridView.Rows;
+                    var count = rows.Count;
+                    for (var i = 0; i < count; i++)
+                    {
+                        var cell = rows.SharedRow(i).Cells[Index] as System.Windows.Forms.DataGridViewImageCell;
+                        if (cell != null)
+                        {
+                            cell.ValueIsIcon = value;
+                        }
+                    }
+                }
+                if ((value && (this.DefaultCellStyle.NullValue is System.Drawing.Bitmap)) && (this.DefaultCellStyle.NullValue == ErrorBitmap))
+                {
+                    this.DefaultCellStyle.NullValue = ErrorIcon;
+                }
+                else if ((!value && (this.DefaultCellStyle.NullValue is Icon)) && (this.DefaultCellStyle.NullValue == ErrorIcon))
+                {
+                    this.DefaultCellStyle.NullValue = ErrorBitmap;
+                }
+            }
+        }
+    }
+
     public class DataGridViewImageColumn : DataGridViewColumn
     {
         public new ClDataGridViewImageColumn dll_obj;
-        private System.Windows.Forms.DataGridViewImageColumn m_DataGridViewImageColumn;
+        public DataGridViewImageColumnEx M_DataGridViewImageColumn;
 
         public DataGridViewImageColumn()
         {
-            M_DataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
+            M_DataGridViewImageColumn = new DataGridViewImageColumnEx();
+            M_DataGridViewImageColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewImageColumn;
+        }
+
+        public DataGridViewImageColumn(DataGridViewImageColumnEx p1)
+        {
+            M_DataGridViewImageColumn = p1;
+            M_DataGridViewImageColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewImageColumn;
         }
 
         public DataGridViewImageColumn(osf.DataGridViewImageColumn p1)
         {
             M_DataGridViewImageColumn = p1.M_DataGridViewImageColumn;
-        }
-
-        public DataGridViewImageColumn(System.Windows.Forms.DataGridViewImageColumn p1)
-        {
-            M_DataGridViewImageColumn = p1;
+            M_DataGridViewImageColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewImageColumn;
         }
 
         public osf.Bitmap Bitmap
         {
-            get { return new osf.Bitmap(M_DataGridViewImageColumn.Image); }
-            set { M_DataGridViewImageColumn.Image = value.M_Bitmap; }
+            get { return new osf.Bitmap(M_DataGridViewImageColumn.Bitmap); }
+            set { M_DataGridViewImageColumn.Bitmap = value.M_Bitmap; }
         }
 
         public string Description
@@ -46,16 +202,6 @@ namespace osf
         {
             get { return (int)M_DataGridViewImageColumn.ImageLayout; }
             set { M_DataGridViewImageColumn.ImageLayout = (System.Windows.Forms.DataGridViewImageCellLayout)value; }
-        }
-
-        public System.Windows.Forms.DataGridViewImageColumn M_DataGridViewImageColumn
-        {
-            get { return m_DataGridViewImageColumn; }
-            set
-            {
-                m_DataGridViewImageColumn = value;
-                base.M_DataGridViewColumn = m_DataGridViewImageColumn;
-            }
         }
 
         public bool ValuesAreIcons

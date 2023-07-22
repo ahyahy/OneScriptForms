@@ -101,6 +101,29 @@
 		|
 		|";
 		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "DataGridViewCellExHelper" Тогда
+		Стр = 
+		"using System.Linq;
+		|
+		|// Код создан на основе разработки автора Sergey Semyonov https://www.codeproject.com/Articles/34037/DataGridVewTextBoxCell-with-Span-Behaviour под лицензией 
+		|// The Code Project Open License (CPOL) 1.02 https://www.codeproject.com/info/cpol10.aspx
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "DataGridViewHelper" Тогда
+		Стр = 
+		"// Код создан на основе разработки автора Sergey Semyonov https://www.codeproject.com/Articles/34037/DataGridVewTextBoxCell-with-Span-Behaviour под лицензией 
+		|// The Code Project Open License (CPOL) 1.02 https://www.codeproject.com/info/cpol10.aspx
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "ISpannedCell" Тогда
+		Стр = 
+		"// Код создан на основе разработки автора Sergey Semyonov https://www.codeproject.com/Articles/34037/DataGridVewTextBoxCell-with-Span-Behaviour под лицензией 
+		|// The Code Project Open License (CPOL) 1.02 https://www.codeproject.com/info/cpol10.aspx
+		|
+		|";
+		Возврат Стр;
 	ИначеЕсли ИмяКонтекстКлассаАнгл = "DataGridViewColumnSortMode" или 
 		ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxDisplayStyle" Тогда
 		Стр = 
@@ -246,7 +269,6 @@
 		ИмяКонтекстКлассаАнгл = "DataGridViewButtonColumn" или 
 		ИмяКонтекстКлассаАнгл = "DataGridViewCheckBoxColumn" или 
 		ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxColumn" или 
-		ИмяКонтекстКлассаАнгл = "DataGridViewImageColumn" или 
 		ИмяКонтекстКлассаАнгл = "DataGridViewLinkColumn" или 
 		ИмяКонтекстКлассаАнгл = "DataGridViewTextBoxColumn" или 
 		ИмяКонтекстКлассаАнгл = "DataGridViewRow" или 
@@ -280,6 +302,15 @@
 		"using System;
 		|using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "DataGridViewImageColumn" Тогда
+		Стр = 
+		"using System;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using System.ComponentModel;
 		|
 		|";
 		Возврат Стр;
@@ -491,12 +522,6 @@
 		Возврат Стр;
 	ИначеЕсли ИмяКонтекстКлассаАнгл = "DataGridViewColumnCollection" или 
 		ИмяКонтекстКлассаАнгл = "DataGridViewCell" или 
-		ИмяКонтекстКлассаАнгл = "DataGridViewButtonCell" или 
-		ИмяКонтекстКлассаАнгл = "DataGridViewCheckBoxCell" или 
-		ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxCell" или 
-		ИмяКонтекстКлассаАнгл = "DataGridViewImageCell" или 
-		ИмяКонтекстКлассаАнгл = "DataGridViewLinkCell" или 
-		ИмяКонтекстКлассаАнгл = "DataGridViewTextBoxCell" или 
 		ИмяКонтекстКлассаАнгл = "DataGridViewHeaderCell" или 
 		ИмяКонтекстКлассаАнгл = "DataGridViewColumnHeaderCell" или 
 		ИмяКонтекстКлассаАнгл = "DataGridViewRowHeaderCell" или 
@@ -541,6 +566,20 @@
 		Стр = 
 		"using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "DataGridViewTextBoxCell" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxCell" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewCheckBoxCell" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewButtonCell" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewImageCell" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewLinkCell" Тогда
+		Стр = 
+		"using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using System.Linq;
+		|using System.Windows.Forms;
 		|
 		|";
 		Возврат Стр;
@@ -905,6 +944,44 @@
 		|            Base_obj = TCPClient1;
 		|        }//end_constr
 		|";
+	ИначеЕсли ИмяКласса = "DataGridView" Тогда
+		Стр = 
+		"        public ClDataGridView()
+		|        {
+		|            DataGridView DataGridView1 = new DataGridView();
+		|            DataGridView1.dll_obj = this;
+		|            Base_obj = DataGridView1;
+		|            columns = new ClDataGridViewColumnCollection(Base_obj.Columns);
+		|            rows = new ClDataGridViewRowCollection(Base_obj.Rows);
+		|        }//end_constr
+		|		
+		|        public ClDataGridView(DataGridView p1)
+		|        {
+		|            DataGridView DataGridView1 = p1;
+		|            DataGridView1.dll_obj = this;
+		|            Base_obj = DataGridView1;
+		|            columns = new ClDataGridViewColumnCollection(Base_obj.Columns);
+		|            rows = new ClDataGridViewRowCollection(Base_obj.Rows);
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "DataGridViewRow" Тогда
+		Стр = 
+		"        public ClDataGridViewRow()
+		|        {
+		|            DataGridViewRow DataGridViewRow1 = new DataGridViewRow();
+		|            DataGridViewRow1.dll_obj = this;
+		|            Base_obj = DataGridViewRow1;
+		|            cells = new ClDataGridViewCellCollection(Base_obj.Cells);
+		|        }//end_constr
+		|		
+		|        public ClDataGridViewRow(DataGridViewRow p1)
+		|        {
+		|            DataGridViewRow DataGridViewRow1 = p1;
+		|            DataGridViewRow1.dll_obj = this;
+		|            Base_obj = DataGridViewRow1;
+		|            cells = new ClDataGridViewCellCollection(Base_obj.Cells);
+		|        }//end_constr
+		|";
 	ИначеЕсли ИмяКласса = "DataGridViewCellStyle" Тогда
 		Стр = 
 		"        public ClDataGridViewCellStyle()
@@ -995,18 +1072,6 @@
 		|            Base_obj = TCPListener1;
 		|        }//end_constr
 		|";
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	ИначеЕсли ИмяКласса = "TreeColumnEventArgs" Тогда
 		Стр = 
 		"        public ClTreeColumnEventArgs(osf.TreeColumnEventArgs p1)
@@ -5322,6 +5387,73 @@
 				|        }
 				|
 				|";
+			ИначеЕсли (СвойствоРус = "КоличествоКолонок") и (ИмяКонтекстКлассаАнгл = "DataGridView") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""КоличествоКолонок"", ""ColumnCount"")]
+				|        public int ColumnCount
+				|        {
+				|            get { return Base_obj.ColumnCount; }
+				|            set
+				|            {
+				|                for (int i = 0; i < value; i++)
+				|                {
+				|                    Base_obj.Columns.Add(new DataGridViewTextBoxColumn());
+				|                }
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "КоличествоСтрок") и (ИмяКонтекстКлассаАнгл = "DataGridView") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""КоличествоСтрок"", ""RowCount"")]
+				|        public int RowCount
+				|        {
+				|            get { return Base_obj.RowCount; }
+				|            set
+				|            {
+				|                for (int i = 0; i < value; i++)
+				|                {
+				|                    Base_obj.Rows.Add(new DataGridViewRow());
+				|                }
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "Колонки") и (ИмяКонтекстКлассаАнгл = "DataGridView") Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        private ClDataGridViewColumnCollection columns;";
+				Стр = Стр +
+				"        [ContextProperty(""Колонки"", ""Columns"")]
+				|        public ClDataGridViewColumnCollection Columns
+				|        {
+				|            get { return columns; }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "Строки") и (ИмяКонтекстКлассаАнгл = "DataGridView") Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        private ClDataGridViewRowCollection rows;";
+				Стр = Стр +
+				"        [ContextProperty(""Строки"", ""Rows"")]
+				|        public ClDataGridViewRowCollection Rows
+				|        {
+				|            get { return rows; }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "Ячейки") и (ИмяКонтекстКлассаАнгл = "DataGridViewRow") Тогда
+				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
+				"        private ClDataGridViewCellCollection cells;";
+				Стр = Стр +
+				"        [ContextProperty(""Ячейки"", ""Cells"")]
+				|        public ClDataGridViewCellCollection Cells
+				|        {
+				|            get { return cells; }
+				|        }
+				|
+				|";
+				
+				
 				
 				
 				
@@ -6250,13 +6382,51 @@
 				"        [ContextMethod(""Ячейка"", ""Cell"")]
 				|        public IValue Cell2(int p1, int p2)
 				|        {
-				|            dynamic Obj1 = null;
-				|            string str1 = Base_obj.M_DataGridView.Rows[p2].Cells[p1].GetType().ToString();
-				|            string str2 = str1.Replace(""System.Windows.Forms."", ""osf."");
-				|            System.Type Type1 = System.Type.GetType(str2, false, true);
-				|            object[] args1 = { Base_obj.M_DataGridView.Rows[p2].Cells[p1] };
-				|            Obj1 = Activator.CreateInstance(Type1, args1);
-				|            return OneScriptForms.RevertObj(Obj1);
+				|            IValue IValue1 = null;
+				|            var cell = Base_obj.M_DataGridView.Rows[p2].Cells[p1];
+				|            if (cell.GetType() == typeof(osf.DataGridViewTextBoxCellEx))
+				|            {
+				|                DataGridViewTextBoxCellEx DataGridViewTextBoxCellEx1 = (DataGridViewTextBoxCellEx)cell;
+				|                DataGridViewTextBoxCell DataGridViewTextBoxCell1 = new DataGridViewTextBoxCell(DataGridViewTextBoxCellEx1);
+				|                ClDataGridViewTextBoxCell ClDataGridViewTextBoxCell1 = new ClDataGridViewTextBoxCell(DataGridViewTextBoxCell1);
+				|                IValue1 = ClDataGridViewTextBoxCell1;
+				|            }
+				|            else if (cell.GetType() == typeof(osf.DataGridViewImageCellEx))
+				|            {
+				|                DataGridViewImageCellEx DataGridViewImageCellEx1 = (DataGridViewImageCellEx)cell;
+				|                DataGridViewImageCell DataGridViewImageCell1 = new DataGridViewImageCell(DataGridViewImageCellEx1);
+				|                ClDataGridViewImageCell ClDataGridViewImageCell1 = new ClDataGridViewImageCell(DataGridViewImageCell1);
+				|                IValue1 = ClDataGridViewImageCell1;
+				|            }
+				|            else if (cell.GetType() == typeof(osf.DataGridViewButtonCellEx))
+				|            {
+				|                DataGridViewButtonCellEx DataGridViewButtonCellEx1 = (DataGridViewButtonCellEx)cell;
+				|                DataGridViewButtonCell DataGridViewButtonCell1 = new DataGridViewButtonCell(DataGridViewButtonCellEx1);
+				|                ClDataGridViewButtonCell ClDataGridViewButtonCell1 = new ClDataGridViewButtonCell(DataGridViewButtonCell1);
+				|                IValue1 = ClDataGridViewButtonCell1;
+				|            }
+				|            else if (cell.GetType() == typeof(osf.DataGridViewCheckBoxCellEx))
+				|            {
+				|                DataGridViewCheckBoxCellEx DataGridViewCheckBoxCellEx1 = (DataGridViewCheckBoxCellEx)cell;
+				|                DataGridViewCheckBoxCell DataGridViewCheckBoxCell1 = new DataGridViewCheckBoxCell(DataGridViewCheckBoxCellEx1);
+				|                ClDataGridViewCheckBoxCell ClDataGridViewCheckBoxCell1 = new ClDataGridViewCheckBoxCell(DataGridViewCheckBoxCell1);
+				|                IValue1 = ClDataGridViewCheckBoxCell1;
+				|            }
+				|            else if (cell.GetType() == typeof(osf.DataGridViewComboBoxCellEx))
+				|            {
+				|                DataGridViewComboBoxCellEx DataGridViewComboBoxCellEx1 = (DataGridViewComboBoxCellEx)cell;
+				|                DataGridViewComboBoxCell DataGridViewComboBoxCell1 = new DataGridViewComboBoxCell(DataGridViewComboBoxCellEx1);
+				|                ClDataGridViewComboBoxCell ClDataGridViewComboBoxCell1 = new ClDataGridViewComboBoxCell(DataGridViewComboBoxCell1);
+				|                IValue1 = ClDataGridViewComboBoxCell1;
+				|            }
+				|            else if (cell.GetType() == typeof(osf.DataGridViewLinkCellEx))
+				|            {
+				|                DataGridViewLinkCellEx DataGridViewLinkCellEx1 = (DataGridViewLinkCellEx)cell;
+				|                DataGridViewLinkCell DataGridViewLinkCell1 = new DataGridViewLinkCell(DataGridViewLinkCellEx1);
+				|                ClDataGridViewLinkCell ClDataGridViewLinkCell1 = new ClDataGridViewLinkCell(DataGridViewLinkCell1);
+				|                IValue1 = ClDataGridViewLinkCell1;
+				|            }
+				|            return IValue1;
 				|        }
 				|        
 				|";
@@ -6265,13 +6435,123 @@
 				"        [ContextMethod(""Колонки"", ""Columns"")]
 				|        public IValue Columns2(int p1)
 				|        {
-				|            dynamic Obj1 = null;
+				|            IValue IValue1 = null;
 				|            string str1 = Base_obj.Columns[p1].GetType().ToString();
-				|            string str2 = str1.Replace(""System.Windows.Forms."", ""osf."");
-				|            System.Type Type1 = System.Type.GetType(str2, false, true);
-				|            object[] args1 = { Base_obj.Columns[p1] };
-				|            Obj1 = Activator.CreateInstance(Type1, args1);
-				|            return OneScriptForms.RevertObj(Obj1);
+				|            if (str1 == ""osf.DataGridViewButtonColumnEx"")
+				|            {
+				|                IValue1 = new ClDataGridViewButtonColumn(new DataGridViewButtonColumn((DataGridViewButtonColumnEx)Base_obj.Columns[p1]));
+				|            }
+				|            else if (str1 == ""osf.DataGridViewCheckBoxColumnEx"")
+				|            {
+				|                IValue1 = new ClDataGridViewCheckBoxColumn(new DataGridViewCheckBoxColumn((DataGridViewCheckBoxColumnEx)Base_obj.Columns[p1]));
+				|            }
+				|            else if (str1 == ""osf.DataGridViewComboBoxColumnEx"")
+				|            {
+				|                IValue1 = new ClDataGridViewComboBoxColumn(new DataGridViewComboBoxColumn((DataGridViewComboBoxColumnEx)Base_obj.Columns[p1]));
+				|            }
+				|            else if (str1 == ""osf.DataGridViewImageColumnEx"")
+				|            {
+				|                IValue1 = new ClDataGridViewImageColumn(new DataGridViewImageColumn((DataGridViewImageColumnEx)Base_obj.Columns[p1]));
+				|            }
+				|            else if (str1 == ""osf.DataGridViewLinkColumnEx"")
+				|            {
+				|                IValue1 = new ClDataGridViewLinkColumn(new DataGridViewLinkColumn((DataGridViewLinkColumnEx)Base_obj.Columns[p1]));
+				|            }
+				|            else if (str1 == ""osf.DataGridViewTextBoxColumnEx"")
+				|            {
+				|                IValue1 = new ClDataGridViewTextBoxColumn(new DataGridViewTextBoxColumn((DataGridViewTextBoxColumnEx)Base_obj.Columns[p1]));
+				|            }
+				|            return IValue1;
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ОбъединитьЯчейки") и (ИмяКонтекстКлассаАнгл = "DataGridView") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ОбъединитьЯчейки"", ""SpanCells"")]
+				|        public void SpanCells(int p1, int p2, int p3, int p4)
+				|        {
+				|            var cell = Base_obj.M_DataGridView.Rows[p2].Cells[p1];
+				|            if (cell.GetType() == typeof(osf.DataGridViewTextBoxCellEx))
+				|            {
+				|                DataGridViewTextBoxCellEx DataGridViewTextBoxCellEx1 = (DataGridViewTextBoxCellEx)cell;
+				|                DataGridViewTextBoxCellEx1.ColumnSpan = p3;
+				|                DataGridViewTextBoxCellEx1.RowSpan = p4;
+				|            }
+				|            else if (cell.GetType() == typeof(osf.DataGridViewImageCellEx))
+				|            {
+				|                DataGridViewImageCellEx DataGridViewImageCellExEx1 = (DataGridViewImageCellEx)cell;
+				|                DataGridViewImageCellExEx1.ColumnSpan = p3;
+				|                DataGridViewImageCellExEx1.RowSpan = p4;
+				|            }
+				|            else if (cell.GetType() == typeof(osf.DataGridViewButtonCellEx))
+				|            {
+				|                DataGridViewButtonCellEx DataGridViewButtonCellEx1 = (DataGridViewButtonCellEx)cell;
+				|                DataGridViewButtonCellEx1.ColumnSpan = p3;
+				|                DataGridViewButtonCellEx1.RowSpan = p4;
+				|            }
+				|            else if (cell.GetType() == typeof(osf.DataGridViewCheckBoxCellEx))
+				|            {
+				|                DataGridViewCheckBoxCellEx DataGridViewCheckBoxCellEx1 = (DataGridViewCheckBoxCellEx)cell;
+				|                DataGridViewCheckBoxCellEx1.ColumnSpan = p3;
+				|                DataGridViewCheckBoxCellEx1.RowSpan = p4;
+				|            }
+				|            else if (cell.GetType() == typeof(osf.DataGridViewComboBoxCellEx))
+				|            {
+				|                DataGridViewComboBoxCellEx DataGridViewComboBoxCellEx1 = (DataGridViewComboBoxCellEx)cell;
+				|                DataGridViewComboBoxCellEx1.ColumnSpan = p3;
+				|                DataGridViewComboBoxCellEx1.RowSpan = p4;
+				|            }
+				|            else if (cell.GetType() == typeof(osf.DataGridViewLinkCellEx))
+				|            {
+				|                DataGridViewLinkCellEx DataGridViewLinkCellEx1 = (DataGridViewLinkCellEx)cell;
+				|                DataGridViewLinkCellEx1.ColumnSpan = p3;
+				|                DataGridViewLinkCellEx1.RowSpan = p4;
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "РазъединитьЯчейки") и (ИмяКонтекстКлассаАнгл = "DataGridView") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""РазъединитьЯчейки"", ""SeparateCells"")]
+				|        public void SeparateCells(int p1, int p2)
+				|        {
+				|            var cell = Base_obj.M_DataGridView.Rows[p2].Cells[p1];
+				|            if (cell.GetType() == typeof(osf.DataGridViewTextBoxCellEx))
+				|            {
+				|                DataGridViewTextBoxCellEx DataGridViewTextBoxCellEx1 = (DataGridViewTextBoxCellEx)cell;
+				|                DataGridViewTextBoxCellEx1.ColumnSpan = 1;
+				|                DataGridViewTextBoxCellEx1.RowSpan = 1;
+				|            }
+				|            else if (cell.GetType() == typeof(osf.DataGridViewImageCellEx))
+				|            {
+				|                DataGridViewImageCellEx DataGridViewImageCellExEx1 = (DataGridViewImageCellEx)cell;
+				|                DataGridViewImageCellExEx1.ColumnSpan = 1;
+				|                DataGridViewImageCellExEx1.RowSpan = 1;
+				|            }
+				|            else if (cell.GetType() == typeof(osf.DataGridViewButtonCellEx))
+				|            {
+				|                DataGridViewButtonCellEx DataGridViewButtonCellExEx1 = (DataGridViewButtonCellEx)cell;
+				|                DataGridViewButtonCellExEx1.ColumnSpan = 1;
+				|                DataGridViewButtonCellExEx1.RowSpan = 1;
+				|            }
+				|            else if (cell.GetType() == typeof(osf.DataGridViewCheckBoxCellEx))
+				|            {
+				|                DataGridViewCheckBoxCellEx DataGridViewCheckBoxCellEx1 = (DataGridViewCheckBoxCellEx)cell;
+				|                DataGridViewCheckBoxCellEx1.ColumnSpan = 1;
+				|                DataGridViewCheckBoxCellEx1.RowSpan = 1;
+				|            }
+				|            else if (cell.GetType() == typeof(osf.DataGridViewComboBoxCellEx))
+				|            {
+				|                DataGridViewComboBoxCellEx DataGridViewComboBoxCellEx1 = (DataGridViewComboBoxCellEx)cell;
+				|                DataGridViewComboBoxCellEx1.ColumnSpan = 1;
+				|                DataGridViewComboBoxCellEx1.RowSpan = 1;
+				|            }
+				|            else if (cell.GetType() == typeof(osf.DataGridViewLinkCellEx))
+				|            {
+				|                DataGridViewLinkCellEx DataGridViewLinkCellEx1 = (DataGridViewLinkCellEx)cell;
+				|                DataGridViewLinkCellEx1.ColumnSpan = 1;
+				|                DataGridViewLinkCellEx1.RowSpan = 1;
+				|            }
 				|        }
 				|        
 				|";
@@ -6280,13 +6560,33 @@
 				"        [ContextMethod(""Ячейки"", ""Cells"")]
 				|        public IValue Cells2(int p1)
 				|        {
-				|            dynamic Obj1 = null;
+				|            IValue IValue1 = null;
 				|            string str1 = Base_obj.Cells[p1].GetType().ToString();
-				|            string str2 = str1.Replace(""System.Windows.Forms."", ""osf."");
-				|            System.Type Type1 = System.Type.GetType(str2, false, true);
-				|            object[] args1 = { Base_obj.Cells[p1] };
-				|            Obj1 = Activator.CreateInstance(Type1, args1);
-				|            return OneScriptForms.RevertObj(Obj1);
+				|            if (str1 == ""osf.DataGridViewButtonCellEx"")
+				|            {
+				|                IValue1 = new ClDataGridViewButtonCell(new DataGridViewButtonCell((DataGridViewButtonCellEx)Base_obj.Cells[p1]));
+				|            }
+				|            else if (str1 == ""osf.DataGridViewCheckBoxCellEx"")
+				|            {
+				|                IValue1 = new ClDataGridViewCheckBoxCell(new DataGridViewCheckBoxCell((DataGridViewCheckBoxCellEx)Base_obj.Cells[p1]));
+				|            }
+				|            else if (str1 == ""osf.DataGridViewComboBoxCellEx"")
+				|            {
+				|                IValue1 = new ClDataGridViewComboBoxCell(new DataGridViewComboBoxCell((DataGridViewComboBoxCellEx)Base_obj.Cells[p1]));
+				|            }
+				|            else if (str1 == ""osf.DataGridViewImageCellEx"")
+				|            {
+				|                IValue1 = new ClDataGridViewImageCell(new DataGridViewImageCell((DataGridViewImageCellEx)Base_obj.Cells[p1]));
+				|            }
+				|            else if (str1 == ""osf.DataGridViewLinkCellEx"")
+				|            {
+				|                IValue1 = new ClDataGridViewLinkCell(new DataGridViewLinkCell((DataGridViewLinkCellEx)Base_obj.Cells[p1]));
+				|            }
+				|            else if (str1 == ""osf.DataGridViewTextBoxCellEx"")
+				|            {
+				|                IValue1 = new ClDataGridViewTextBoxCell(new DataGridViewTextBoxCell((DataGridViewTextBoxCellEx)Base_obj.Cells[p1]));
+				|            }
+				|            return IValue1;
 				|        }
 				|        
 				|";
@@ -7663,13 +7963,32 @@
 				"        [ContextMethod(""Элемент"", ""Item"")]
 				|        public IValue Item(int p1)
 				|        {
-				|            dynamic Obj1 = null;
-				|            string str1 = Base_obj[p1].GetType().ToString();
-				|            string str2 = str1.Replace(""System.Windows.Forms."", ""osf."");
-				|            System.Type Type1 = System.Type.GetType(str2, false, true);
-				|            object[] args1 = { Base_obj[p1] };
-				|            Obj1 = Activator.CreateInstance(Type1, args1);
-				|            return OneScriptForms.RevertObj(Obj1);
+				|            System.Type Type1 = Base_obj[p1].GetType();
+				|            if (Type1 == typeof(osf.DataGridViewTextBoxCellEx))
+				|            {
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewTextBoxCell((DataGridViewTextBoxCellEx)Base_obj[p1]));
+				|            }
+				|            else if (Type1 == typeof(osf.DataGridViewImageCellEx))
+				|            {
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewImageCell((DataGridViewImageCellEx)Base_obj[p1]));
+				|            }
+				|            else if (Type1 == typeof(DataGridViewButtonCellEx))
+				|            {
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewButtonCell((DataGridViewButtonCellEx)Base_obj[p1]));
+				|            }
+				|            else if (Type1 == typeof(osf.DataGridViewComboBoxCellEx))
+				|            {
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewComboBoxCell((DataGridViewComboBoxCellEx)Base_obj[p1]));
+				|            }
+				|            else if (Type1 == typeof(osf.DataGridViewLinkCellEx))
+				|            {
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewLinkCell((DataGridViewLinkCellEx)Base_obj[p1]));
+				|            }
+				|            else if (Type1 == typeof(osf.DataGridViewCheckBoxCellEx))
+				|            {
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewCheckBoxCell((DataGridViewCheckBoxCellEx)Base_obj[p1]));
+				|            }
+				|            return null;
 				|        }
 				|        
 				|";
@@ -7721,29 +8040,29 @@
 				|        public IValue Item(int p1)
 				|        {
 				|            System.Type Type1 = Base_obj[p1].GetType();
-				|            if (Type1 == typeof(System.Windows.Forms.DataGridViewTextBoxColumn))
+				|            if (Type1 == typeof(osf.DataGridViewTextBoxColumnEx))
 				|            {
-				|                return OneScriptForms.RevertObj(new osf.DataGridViewTextBoxColumn((System.Windows.Forms.DataGridViewTextBoxColumn)Base_obj[p1]));
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewTextBoxColumn((DataGridViewTextBoxColumnEx)Base_obj[p1]));
 				|            }
-				|            else if (Type1 == typeof(System.Windows.Forms.DataGridViewImageColumn))
+				|            else if (Type1 == typeof(osf.DataGridViewImageColumnEx))
 				|            {
-				|                return OneScriptForms.RevertObj(new osf.DataGridViewImageColumn((System.Windows.Forms.DataGridViewImageColumn)Base_obj[p1]));
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewImageColumn((DataGridViewImageColumnEx)Base_obj[p1]));
 				|            }
-				|            else if (Type1 == typeof(System.Windows.Forms.DataGridViewButtonColumn))
+				|            else if (Type1 == typeof(DataGridViewButtonColumnEx))
 				|            {
-				|                return OneScriptForms.RevertObj(new osf.DataGridViewButtonColumn((System.Windows.Forms.DataGridViewButtonColumn)Base_obj[p1]));
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewButtonColumn((DataGridViewButtonColumnEx)Base_obj[p1]));
 				|            }
-				|            else if (Type1 == typeof(System.Windows.Forms.DataGridViewComboBoxColumn))
+				|            else if (Type1 == typeof(osf.DataGridViewComboBoxColumnEx))
 				|            {
-				|                return OneScriptForms.RevertObj(new osf.DataGridViewComboBoxColumn((System.Windows.Forms.DataGridViewComboBoxColumn)Base_obj[p1]));
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewComboBoxColumn((DataGridViewComboBoxColumnEx)Base_obj[p1]));
 				|            }
-				|            else if (Type1 == typeof(System.Windows.Forms.DataGridViewLinkColumn))
+				|            else if (Type1 == typeof(osf.DataGridViewLinkColumnEx))
 				|            {
-				|                return OneScriptForms.RevertObj(new osf.DataGridViewLinkColumn((System.Windows.Forms.DataGridViewLinkColumn)Base_obj[p1]));
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewLinkColumn((DataGridViewLinkColumnEx)Base_obj[p1]));
 				|            }
-				|            else if (Type1 == typeof(System.Windows.Forms.DataGridViewCheckBoxColumn))
+				|            else if (Type1 == typeof(osf.DataGridViewCheckBoxColumnEx))
 				|            {
-				|                return OneScriptForms.RevertObj(new osf.DataGridViewCheckBoxColumn((System.Windows.Forms.DataGridViewCheckBoxColumn)Base_obj[p1]));
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewCheckBoxColumn((DataGridViewCheckBoxColumnEx)Base_obj[p1]));
 				|            }
 				|            return null;
 				|        }
@@ -12266,6 +12585,9 @@
 	СоздатьФайлCs("NetworkStream");
 	СоздатьФайлCs("TCPClient");
 	СоздатьФайлCs("TCPListener");
+	СоздатьФайлCs("DataGridViewCellExHelper");
+	СоздатьФайлCs("DataGridViewHelper");
+	СоздатьФайлCs("ISpannedCell");
 	
 	
 	
@@ -13111,8 +13433,235 @@
 		
 		
 				
-		
-		
+	ИначеЕсли ИмяФайлаCs = "ISpannedCell" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    interface ISpannedCell
+		|    {
+		|        int ColumnSpan { get; }
+		|        int RowSpan { get; }
+		|        System.Windows.Forms.DataGridViewCell OwnerCell { get; }
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewHelper" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    static class DataGridViewHelper
+		|    {
+		|        public static bool SingleHorizontalBorderAdded(this System.Windows.Forms.DataGridView dataGridView)
+		|        {
+		|            return !dataGridView.ColumnHeadersVisible &&
+		|                (dataGridView.AdvancedCellBorderStyle.All == System.Windows.Forms.DataGridViewAdvancedCellBorderStyle.Single ||
+		|                 dataGridView.CellBorderStyle == System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal);
+		|        }
+		|
+		|        public static bool SingleVerticalBorderAdded(this System.Windows.Forms.DataGridView dataGridView)
+		|        {
+		|            return !dataGridView.RowHeadersVisible &&
+		|                (dataGridView.AdvancedCellBorderStyle.All == System.Windows.Forms.DataGridViewAdvancedCellBorderStyle.Single ||
+		|                 dataGridView.CellBorderStyle == System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical);
+		|        }
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "DataGridViewCellExHelper" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    static class DataGridViewCellExHelper
+		|    {
+		|        public static System.Drawing.Rectangle GetSpannedCellClipBounds<TCell>(TCell ownerCell,
+		|            System.Drawing.Rectangle cellBounds,
+		|            bool singleVerticalBorderAdded,
+		|            bool singleHorizontalBorderAdded)
+		|            where TCell : System.Windows.Forms.DataGridViewCell, ISpannedCell
+		|        {
+		|            var dataGridView = ownerCell.DataGridView;
+		|            var clipBounds = cellBounds;
+		|            // Параметр X (пропустить невидимые колонки).
+		|            foreach (var columnIndex in Enumerable.Range(ownerCell.ColumnIndex, ownerCell.ColumnSpan))
+		|            {
+		|                var column = dataGridView.Columns[columnIndex];
+		|                if (!column.Visible)
+		|                {
+		|                    continue;
+		|                }
+		|                if (column.Frozen || columnIndex > dataGridView.FirstDisplayedScrollingColumnIndex)
+		|                {
+		|                    break;
+		|                }
+		|                if (columnIndex == dataGridView.FirstDisplayedScrollingColumnIndex)
+		|                {
+		|                    clipBounds.Width -= dataGridView.FirstDisplayedScrollingColumnHiddenWidth;
+		|                    if (dataGridView.RightToLeft != System.Windows.Forms.RightToLeft.Yes)
+		|                    {
+		|                        clipBounds.X += dataGridView.FirstDisplayedScrollingColumnHiddenWidth;
+		|                    }
+		|                    break;
+		|                }
+		|                clipBounds.Width -= column.Width;
+		|                if (dataGridView.RightToLeft != System.Windows.Forms.RightToLeft.Yes)
+		|                {
+		|                    clipBounds.X += column.Width;
+		|                }
+		|            }
+		|
+		|            // Параметр Y.
+		|            foreach (var rowIndex in Enumerable.Range(ownerCell.RowIndex, ownerCell.RowSpan))
+		|            {
+		|                var row = dataGridView.Rows[rowIndex];
+		|                if (!row.Visible)
+		|                {
+		|                    continue;
+		|                }
+		|                if (row.Frozen || rowIndex >= dataGridView.FirstDisplayedScrollingRowIndex)
+		|                {
+		|                    break;
+		|                }
+		|                clipBounds.Y += row.Height;
+		|                clipBounds.Height -= row.Height;
+		|            }
+		|
+		|            // Исключить границы.
+		|            if (dataGridView.BorderStyle != System.Windows.Forms.BorderStyle.None)
+		|            {
+		|                var clientRectangle = dataGridView.ClientRectangle;
+		|                clientRectangle.Width--;
+		|                clientRectangle.Height--;
+		|                if (dataGridView.RightToLeft == System.Windows.Forms.RightToLeft.Yes)
+		|                {
+		|                    clientRectangle.X++;
+		|                    clientRectangle.Y++;
+		|                }
+		|                clipBounds.Intersect(clientRectangle);
+		|            }
+		|            return clipBounds;
+		|        }
+		|
+		|        public static System.Drawing.Rectangle GetSpannedCellBoundsFromChildCellBounds<TCell>(TCell childCell,
+		|            System.Drawing.Rectangle childCellBounds,
+		|            bool singleVerticalBorderAdded,
+		|            bool singleHorizontalBorderAdded)
+		|            where TCell : System.Windows.Forms.DataGridViewCell, ISpannedCell
+		|        {
+		|            var dataGridView = childCell.DataGridView;
+		|            var ownerCell = childCell.OwnerCell as TCell ?? childCell;
+		|            var spannedCellBounds = childCellBounds;
+		|            
+		|            var firstVisibleColumnIndex = Enumerable.Range(ownerCell.ColumnIndex, ownerCell.ColumnSpan)
+		|                .First(i => dataGridView.Columns[i].Visible);
+		|            if (dataGridView.Columns[firstVisibleColumnIndex].Frozen)
+		|            {
+		|                spannedCellBounds.X = dataGridView.GetColumnDisplayRectangle(firstVisibleColumnIndex, false).X;
+		|            }
+		|            else
+		|            {
+		|                var dx = Enumerable.Range(firstVisibleColumnIndex, childCell.ColumnIndex - firstVisibleColumnIndex)
+		|                    .Select(i => dataGridView.Columns[i])
+		|                    .Where(columnItem => columnItem.Visible)
+		|                    .Sum(columnItem => columnItem.Width);
+		|                spannedCellBounds.X = dataGridView.RightToLeft == System.Windows.Forms.RightToLeft.Yes
+		|                                          ? spannedCellBounds.X + dx
+		|                                          : spannedCellBounds.X - dx;
+		|            }
+		|            
+		|            var firstVisibleRowIndex = Enumerable.Range(ownerCell.RowIndex, ownerCell.RowSpan)
+		|                .First(i => dataGridView.Rows[i].Visible);
+		|            if (dataGridView.Rows[firstVisibleRowIndex].Frozen)
+		|            {
+		|                spannedCellBounds.Y = dataGridView.GetRowDisplayRectangle(firstVisibleRowIndex, false).Y;
+		|            }
+		|            else
+		|            {
+		|                spannedCellBounds.Y -= Enumerable.Range(firstVisibleRowIndex, childCell.RowIndex - firstVisibleRowIndex)
+		|                    .Select(i => dataGridView.Rows[i])
+		|                    .Where(rowItem => rowItem.Visible)
+		|                    .Sum(rowItem => rowItem.Height);
+		|            }
+		|            
+		|            var spannedCellWidth = Enumerable.Range(ownerCell.ColumnIndex, ownerCell.ColumnSpan)
+		|                .Select(columnIndex => dataGridView.Columns[columnIndex])
+		|                .Where(column => column.Visible)
+		|                .Sum(column => column.Width);
+		|            if (dataGridView.RightToLeft == System.Windows.Forms.RightToLeft.Yes)
+		|            {
+		|                spannedCellBounds.X = spannedCellBounds.Right - spannedCellWidth;
+		|            }
+		|            spannedCellBounds.Width = spannedCellWidth;
+		|            
+		|            spannedCellBounds.Height = Enumerable.Range(ownerCell.RowIndex, ownerCell.RowSpan)
+		|                .Select(rowIndex => dataGridView.Rows[rowIndex])
+		|                .Where(row => row.Visible)
+		|                .Sum(row => row.Height);
+		|
+		|            if (singleVerticalBorderAdded && InFirstDisplayedColumn(ownerCell))
+		|            {
+		|                spannedCellBounds.Width++;
+		|                if (dataGridView.RightToLeft != System.Windows.Forms.RightToLeft.Yes)
+		|                {
+		|                    if (childCell.ColumnIndex != dataGridView.FirstDisplayedScrollingColumnIndex)
+		|                    {
+		|                        spannedCellBounds.X--;
+		|                    }
+		|                }
+		|                else
+		|                {
+		|                    if (childCell.ColumnIndex == dataGridView.FirstDisplayedScrollingColumnIndex)
+		|                    {
+		|                        spannedCellBounds.X--;
+		|                    }
+		|                }
+		|            }
+		|            if (singleHorizontalBorderAdded && InFirstDisplayedRow(ownerCell))
+		|            {
+		|                spannedCellBounds.Height++;
+		|                if (childCell.RowIndex != dataGridView.FirstDisplayedScrollingRowIndex)
+		|                {
+		|                    spannedCellBounds.Y--;
+		|                }
+		|            }
+		|            return spannedCellBounds;
+		|        }
+		|
+		|        public static System.Windows.Forms.DataGridViewAdvancedBorderStyle AdjustCellBorderStyle<TCell>(TCell cell) where TCell : System.Windows.Forms.DataGridViewCell, ISpannedCell
+		|        {
+		|            var dataGridViewAdvancedBorderStylePlaceholder = new System.Windows.Forms.DataGridViewAdvancedBorderStyle();
+		|            var dataGridView = cell.DataGridView;
+		|            return cell.AdjustCellBorderStyle(
+		|                dataGridView.AdvancedCellBorderStyle, 
+		|                dataGridViewAdvancedBorderStylePlaceholder,
+		|                dataGridView.SingleVerticalBorderAdded(),
+		|                dataGridView.SingleHorizontalBorderAdded(),
+		|                InFirstDisplayedColumn(cell),
+		|                InFirstDisplayedRow(cell)); 
+		|        }
+		|
+		|        public static bool InFirstDisplayedColumn<TCell>(this TCell cell) where TCell : System.Windows.Forms.DataGridViewCell, ISpannedCell
+		|        {
+		|            var dataGridView = cell.DataGridView;
+		|            return dataGridView.FirstDisplayedScrollingColumnIndex >= cell.ColumnIndex && dataGridView.FirstDisplayedScrollingColumnIndex < cell.ColumnIndex + cell.ColumnSpan;
+		|        }
+		|
+		|        public static bool InFirstDisplayedRow<TCell>(this TCell cell) where TCell : System.Windows.Forms.DataGridViewCell, ISpannedCell
+		|        {
+		|            var dataGridView = cell.DataGridView;
+		|            return dataGridView.FirstDisplayedScrollingRowIndex >= cell.RowIndex && dataGridView.FirstDisplayedScrollingRowIndex < cell.RowIndex + cell.RowSpan;
+		|        }
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "Dns" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -16410,7 +16959,6 @@
 		|                try
 		|                {
 		|                    MemberAdapter ma = GetMemberAdapter(node);
-		|                    //////////ma.Value = value;
 		|                }
 		|                catch (TargetInvocationException ex)
 		|                {
@@ -16550,7 +17098,6 @@
 		|        protected EditableControl()
 		|        {
 		|            _timer = new System.Windows.Forms.Timer();
-		|            //////_timer.Interval = 500;
 		|            _timer.Tick += new EventHandler(TimerTick);
 		|        }
 		|
@@ -19313,7 +19860,6 @@
 		|        {
 		|            Rectangle bounds = GetBounds(node, context);
 		|		
-		|            //////CheckState state = GetCheckState(node);
 		|            CheckState state = System.Windows.Forms.CheckState.Unchecked;
 		|            try
 		|            {
@@ -19383,23 +19929,19 @@
 		|        {
 		|            if (VirtualMode)
 		|            {
-		|                //////SetValue(node, value);
 		|                ((Node)node.Tag).SetControlValue(this, value);
 		|                OnCheckStateChanged(node);
 		|            }
 		|            else
 		|            {
-		|                //////Type type = GetPropertyType(node);
 		|                Type type = ((Node)node.Tag).GetControlValue(this).GetType();
 		|                if (type == typeof(CheckState))
 		|                {
-		|                    //////SetValue(node, value);
 		|                    ((Node)node.Tag).SetControlValue(this, value);
 		|                    OnCheckStateChanged(node);
 		|                }
 		|                else if (type == typeof(bool))
 		|                {
-		|                    //////SetValue(node, value != CheckState.Unchecked);
 		|                    ((Node)node.Tag).SetControlValue(this, value != CheckState.Unchecked);
 		|                    OnCheckStateChanged(node);
 		|                }
@@ -28316,13 +28858,6 @@
 		|            }
 		|        }
 		|
-		|        //////SortItem AddSortItem(SortOrder s)
-		|        //////{
-		|        //////    var si = new SortItem(s);
-		|        //////    SortMenuItem.DropDownItems.Add(si);
-		|        //////    return si;
-		|        //////}
-		|
 		|        class booloption : ToolStripMenuItem
 		|        {
 		|            public readonly GroupingOption Option;
@@ -33100,40 +33635,47 @@
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
 		|{
+		|    public class DataGridViewTextBoxColumnEx : System.Windows.Forms.DataGridViewTextBoxColumn
+		|    {
+		|        public osf.DataGridViewTextBoxColumn M_Object;
+		|
+		|        public DataGridViewTextBoxColumnEx() : base()
+		|        {
+		|            this.CellTemplate = new DataGridViewTextBoxCellEx();
+		|        }
+		|    }//endClass
+		|
 		|    public class DataGridViewTextBoxColumn : DataGridViewColumn
 		|    {
 		|        public new ClDataGridViewTextBoxColumn dll_obj;
-		|        private System.Windows.Forms.DataGridViewTextBoxColumn m_DataGridViewTextBoxColumn;
-		|		
+		|        public DataGridViewTextBoxColumnEx M_DataGridViewTextBoxColumn;
+		|        private int maxInputLength;
+		|
 		|        public DataGridViewTextBoxColumn()
 		|        {
-		|            M_DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+		|            M_DataGridViewTextBoxColumn = new DataGridViewTextBoxColumnEx();
+		|            M_DataGridViewTextBoxColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewTextBoxColumn;
 		|        }
 		|
 		|        public DataGridViewTextBoxColumn(osf.DataGridViewTextBoxColumn p1)
 		|        {
 		|            M_DataGridViewTextBoxColumn = p1.M_DataGridViewTextBoxColumn;
+		|            M_DataGridViewTextBoxColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewTextBoxColumn;
 		|        }
 		|
-		|        public DataGridViewTextBoxColumn(System.Windows.Forms.DataGridViewTextBoxColumn p1)
+		|        public DataGridViewTextBoxColumn(DataGridViewTextBoxColumnEx p1)
 		|        {
 		|            M_DataGridViewTextBoxColumn = p1;
+		|            M_DataGridViewTextBoxColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewTextBoxColumn;
 		|        }
 		|
 		|        public int MaxInputLength
 		|        {
-		|            get { return M_DataGridViewTextBoxColumn.MaxInputLength; }
-		|            set { M_DataGridViewTextBoxColumn.MaxInputLength = value; }
-		|        }
-		|		
-		|        public System.Windows.Forms.DataGridViewTextBoxColumn M_DataGridViewTextBoxColumn
-		|        {
-		|            get { return m_DataGridViewTextBoxColumn; }
-		|            set
-		|            {
-		|                m_DataGridViewTextBoxColumn = value;
-		|                base.M_DataGridViewColumn = m_DataGridViewTextBoxColumn;
-		|            }
+		|            get { return maxInputLength; }
+		|            set { maxInputLength = value; }
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -33145,35 +33687,426 @@
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
 		|{
+		|    public class DataGridViewTextBoxCellEx : System.Windows.Forms.DataGridViewTextBoxCell, ISpannedCell
+		|    {
+		|        public osf.DataGridViewTextBoxCell M_Object;
+		|
+		|        public DataGridViewTextBoxCellEx() : base()
+		|        {
+		|        }
+		|
+		|        private int m_ColumnSpan = 1;
+		|        private int m_RowSpan = 1;
+		|        private DataGridViewTextBoxCellEx m_OwnerCell;
+		|
+		|        public int ColumnSpan
+		|        {
+		|            get { return m_ColumnSpan; }
+		|            set
+		|            {
+		|                if (DataGridView == null || m_OwnerCell != null)
+		|                {
+		|                    return;
+		|                }
+		|                if (value < 1 || ColumnIndex + value - 1 >= DataGridView.ColumnCount)
+		|                {
+		|                    throw new System.ArgumentOutOfRangeException(""value"");
+		|                }
+		|                if (m_ColumnSpan != value)
+		|                {
+		|                    SetSpan(value, m_RowSpan);
+		|                }
+		|            }
+		|        }
+		|
+		|        public int RowSpan
+		|        {
+		|            get { return m_RowSpan; }
+		|            set
+		|            {
+		|                if (DataGridView == null || m_OwnerCell != null)
+		|                {
+		|                    return;
+		|                }
+		|                if (value < 1 || RowIndex + value - 1 >= DataGridView.RowCount)
+		|                {
+		|                    throw new System.ArgumentOutOfRangeException(""value"");
+		|                }
+		|                if (m_RowSpan != value)
+		|                {
+		|                    SetSpan(m_ColumnSpan, value);
+		|                }
+		|            }
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewCell OwnerCell
+		|        {
+		|            get { return m_OwnerCell; }
+		|            private set { m_OwnerCell = value as DataGridViewTextBoxCellEx; }
+		|        }
+		|
+		|        public override bool ReadOnly
+		|        {
+		|            get { return base.ReadOnly; }
+		|            set
+		|            {
+		|                base.ReadOnly = value;
+		|
+		|                if (m_OwnerCell == null && (m_ColumnSpan > 1 || m_RowSpan > 1) && DataGridView != null)
+		|                {
+		|                    foreach (var col in Enumerable.Range(ColumnIndex, m_ColumnSpan))
+		|                    {
+		|                        foreach (var row in Enumerable.Range(RowIndex, m_RowSpan))
+		|                        {
+		|                            if (col != ColumnIndex || row != RowIndex)
+		|                            {
+		|                                DataGridView[col, row].ReadOnly = value;
+		|                            }
+		|                        }
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        protected override void Paint(System.Drawing.Graphics graphics, System.Drawing.Rectangle clipBounds, System.Drawing.Rectangle cellBounds, int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue, string errorText, System.Windows.Forms.DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
+		|        {
+		|            if (m_OwnerCell != null && m_OwnerCell.DataGridView == null)
+		|            {
+		|                m_OwnerCell = null; // Ячейка-владелец была удалена.
+		|            }
+		|
+		|            if (DataGridView == null || (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1))
+		|            {
+		|                base.Paint(graphics, clipBounds, cellBounds, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
+		|                return;
+		|            }
+		|
+		|            var ownerCell = this;
+		|            var columnIndex = ColumnIndex;
+		|            var columnSpan = m_ColumnSpan;
+		|            var rowSpan = m_RowSpan;
+		|            if (m_OwnerCell != null)
+		|            {
+		|                ownerCell = m_OwnerCell;
+		|                columnIndex = m_OwnerCell.ColumnIndex;
+		|                rowIndex = m_OwnerCell.RowIndex;
+		|                columnSpan = m_OwnerCell.ColumnSpan;
+		|                rowSpan = m_OwnerCell.RowSpan;
+		|                value = m_OwnerCell.GetValue(rowIndex);
+		|                errorText = m_OwnerCell.GetErrorText(rowIndex);
+		|                cellState = m_OwnerCell.State;
+		|                cellStyle = m_OwnerCell.GetInheritedStyle(null, rowIndex, true);
+		|                formattedValue = m_OwnerCell.GetFormattedValue(value, rowIndex, ref cellStyle, null, null, DataGridViewDataErrorContexts.Display);
+		|            }
+		|
+		|            if (CellsRegionContainsSelectedCell(columnIndex, rowIndex, columnSpan, rowSpan))
+		|            {
+		|                cellState |= DataGridViewElementStates.Selected;
+		|            }
+		|
+		|            // Сохраним старые границы клипа.
+		|            System.Drawing.RectangleF oldBounds = graphics.ClipBounds;
+		|            var cellBounds2 = DataGridViewCellExHelper.GetSpannedCellBoundsFromChildCellBounds(this, cellBounds, DataGridView.SingleVerticalBorderAdded(), DataGridView.SingleHorizontalBorderAdded());
+		|            clipBounds = DataGridViewCellExHelper.GetSpannedCellClipBounds(ownerCell, cellBounds2, DataGridView.SingleVerticalBorderAdded(), DataGridView.SingleHorizontalBorderAdded());
+		|
+		|            advancedBorderStyle = DataGridViewCellExHelper.AdjustCellBorderStyle(ownerCell);
+		|
+		|            using (var g = this.DataGridView.CreateGraphics())
+		|            {
+		|                // Задайте для новых границ клипа границы, рассчитанные для объединенных строк.
+		|                g.SetClip(clipBounds);
+		|
+		|                // Нарисуйте содержимое.
+		|                ownerCell.NativePaint(g, clipBounds, cellBounds2, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts & ~DataGridViewPaintParts.Border);
+		|
+		|                // Нарисуйте границы.
+		|                if ((paintParts & DataGridViewPaintParts.Border) != DataGridViewPaintParts.None)
+		|                {
+		|                    var leftTopCell = ownerCell;
+		|                    var advancedBorderStyle2 = new DataGridViewAdvancedBorderStyle
+		|                    {
+		|                        Left = advancedBorderStyle.Left,
+		|                        Top = advancedBorderStyle.Top,
+		|                        Right = DataGridViewAdvancedCellBorderStyle.None,
+		|                        Bottom = DataGridViewAdvancedCellBorderStyle.None
+		|                    };
+		|                    leftTopCell.PaintBorder(g, clipBounds, cellBounds2, cellStyle, advancedBorderStyle2);
+		|
+		|                    var rightBottomCell = DataGridView[columnIndex + columnSpan - 1, rowIndex + rowSpan - 1] as DataGridViewTextBoxCellEx ?? this;
+		|                    var advancedBorderStyle3 = new DataGridViewAdvancedBorderStyle
+		|                    {
+		|                        Left = DataGridViewAdvancedCellBorderStyle.None,
+		|                        Top = DataGridViewAdvancedCellBorderStyle.None,
+		|                        Right = advancedBorderStyle.Right,
+		|                        Bottom = advancedBorderStyle.Bottom
+		|                    };
+		|                    rightBottomCell.PaintBorder(g, clipBounds, cellBounds2, cellStyle, advancedBorderStyle3);
+		|                }
+		|            }
+		|
+		|            // Задайте для новых границ клипа границы, рассчитанные для объединенных строк.
+		|            graphics.SetClip(clipBounds);
+		|
+		|            // Нарисуйте содержимое.
+		|            ownerCell.NativePaint(graphics, clipBounds, cellBounds2, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts & ~DataGridViewPaintParts.Border);
+		|
+		|            // Нарисуйте границы.
+		|            if ((paintParts & DataGridViewPaintParts.Border) != DataGridViewPaintParts.None)
+		|            {
+		|                var leftTopCell = ownerCell;
+		|                var advancedBorderStyle2 = new DataGridViewAdvancedBorderStyle
+		|                {
+		|                    Left = advancedBorderStyle.Left,
+		|                    Top = advancedBorderStyle.Top,
+		|                    Right = DataGridViewAdvancedCellBorderStyle.None,
+		|                    Bottom = DataGridViewAdvancedCellBorderStyle.None
+		|                };
+		|                leftTopCell.PaintBorder(graphics, clipBounds, cellBounds2, cellStyle, advancedBorderStyle2);
+		|
+		|                var rightBottomCell = DataGridView[columnIndex + columnSpan - 1, rowIndex + rowSpan - 1] as DataGridViewTextBoxCellEx ?? this;
+		|                var advancedBorderStyle3 = new DataGridViewAdvancedBorderStyle
+		|                {
+		|                    Left = DataGridViewAdvancedCellBorderStyle.None,
+		|                    Top = DataGridViewAdvancedCellBorderStyle.None,
+		|                    Right = advancedBorderStyle.Right,
+		|                    Bottom = advancedBorderStyle.Bottom
+		|                };
+		|                rightBottomCell.PaintBorder(graphics, clipBounds, cellBounds2, cellStyle, advancedBorderStyle3);
+		|            }
+		|
+		|            // Восстановите старые границы! В противном случае будет нарисована только объединенная строка.
+		|            graphics.SetClip(oldBounds);
+		|        }
+		|
+		|        private void NativePaint(
+		|            System.Drawing.Graphics graphics, 
+		|            System.Drawing.Rectangle clipBounds, 
+		|            System.Drawing.Rectangle cellBounds, 
+		|            int rowIndex,
+		|            System.Windows.Forms.DataGridViewElementStates cellState, 
+		|            object value, 
+		|            object formattedValue, 
+		|            string errorText,
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+		|            System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle,
+		|            System.Windows.Forms.DataGridViewPaintParts paintParts)
+		|        {
+		|            base.Paint(graphics, clipBounds, cellBounds, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
+		|        }
+		|
+		|        private void SetSpan(int columnSpan, int rowSpan)
+		|        {
+		|            int prevColumnSpan = m_ColumnSpan;
+		|            int prevRowSpan = m_RowSpan;
+		|            m_ColumnSpan = columnSpan;
+		|            m_RowSpan = rowSpan;
+		|
+		|            if (DataGridView != null)
+		|            {
+		|                // Очистка.
+		|                foreach (int rowIndex in Enumerable.Range(RowIndex, prevRowSpan))
+		|                {
+		|                    foreach (int columnIndex in Enumerable.Range(ColumnIndex, prevColumnSpan))
+		|                    {
+		|                        var cell = DataGridView[columnIndex, rowIndex] as DataGridViewTextBoxCellEx;
+		|                        if (cell != null)
+		|                        {
+		|                            cell.OwnerCell = null;
+		|                        }
+		|                    }
+		|                }
+		|
+		|                // Установка.
+		|                foreach (int rowIndex in Enumerable.Range(RowIndex, m_RowSpan))
+		|                {
+		|                    foreach (int columnIndex in Enumerable.Range(ColumnIndex, m_ColumnSpan))
+		|                    {
+		|                        var cell = DataGridView[columnIndex, rowIndex] as DataGridViewTextBoxCellEx;
+		|                        if (cell != null && cell != this)
+		|                        {
+		|                            if (cell.ColumnSpan > 1)
+		|                            {
+		|                                cell.ColumnSpan = 1;
+		|                            }
+		|                            if (cell.RowSpan > 1)
+		|                            {
+		|                                cell.RowSpan = 1;
+		|                            }
+		|
+		|                            // Удалим данные из объединяемых ячеек, кроме левой верхней ячейки.
+		|                            cell.Value = null;
+		|
+		|                            cell.OwnerCell = this;
+		|                        }
+		|                    }
+		|                }
+		|                OwnerCell = null;
+		|                DataGridView.Invalidate();
+		|            }
+		|        }
+		|
+		|        public override System.Drawing.Rectangle PositionEditingPanel(
+		|            System.Drawing.Rectangle cellBounds, 
+		|            System.Drawing.Rectangle cellClip,
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle, 
+		|            bool singleVerticalBorderAdded, 
+		|            bool singleHorizontalBorderAdded, 
+		|            bool isFirstDisplayedColumn, 
+		|            bool isFirstDisplayedRow)
+		|        {
+		|            if (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1)
+		|            {
+		|                return base.PositionEditingPanel( cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, isFirstDisplayedColumn, isFirstDisplayedRow);
+		|            }
+		|
+		|            var ownerCell = this;
+		|            if (m_OwnerCell != null)
+		|            {
+		|                var rowIndex = m_OwnerCell.RowIndex;
+		|                cellStyle = m_OwnerCell.GetInheritedStyle(null, rowIndex, true);
+		|                m_OwnerCell.GetFormattedValue(m_OwnerCell.Value, rowIndex, ref cellStyle, null, null, DataGridViewDataErrorContexts.Formatting);
+		|                var editingControl = DataGridView.EditingControl as IDataGridViewEditingControl;
+		|                if (editingControl != null)
+		|                {
+		|                    editingControl.ApplyCellStyleToEditingControl(cellStyle);
+		|                    var editingPanel = DataGridView.EditingControl.Parent;
+		|                    if (editingPanel != null)
+		|                    {
+		|                        editingPanel.BackColor = cellStyle.BackColor;
+		|                    }
+		|                }
+		|                ownerCell = m_OwnerCell;
+		|            }
+		|            cellBounds = DataGridViewCellExHelper.GetSpannedCellBoundsFromChildCellBounds(
+		|                this,
+		|                cellBounds,
+		|                singleVerticalBorderAdded,
+		|                singleHorizontalBorderAdded);
+		|            cellClip = DataGridViewCellExHelper.GetSpannedCellClipBounds(
+		|                ownerCell, 
+		|                cellBounds, 
+		|                singleVerticalBorderAdded, 
+		|                singleHorizontalBorderAdded);
+		|            return base.PositionEditingPanel(cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, ownerCell.InFirstDisplayedColumn(), ownerCell.InFirstDisplayedRow());
+		|        }
+		|
+		|        protected override object GetValue(int rowIndex)
+		|        {
+		|            if (m_OwnerCell != null)
+		|            {
+		|                return m_OwnerCell.GetValue(m_OwnerCell.RowIndex);
+		|            }
+		|            return base.GetValue(rowIndex);
+		|        }
+		|
+		|        protected override bool SetValue(int rowIndex, object value)
+		|        {
+		|            if (m_OwnerCell != null)
+		|            {
+		|                return m_OwnerCell.SetValue(m_OwnerCell.RowIndex, value);
+		|            }
+		|            return base.SetValue(rowIndex, value);
+		|        }
+		|
+		|        protected override void OnDataGridViewChanged()
+		|        {
+		|            base.OnDataGridViewChanged();
+		|
+		|            if (DataGridView == null)
+		|            {
+		|                m_ColumnSpan = 1;
+		|                m_RowSpan = 1;
+		|            }
+		|        }
+		|
+		|        protected override System.Drawing.Rectangle BorderWidths(System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle)
+		|        {
+		|            if (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1)
+		|            {
+		|                return base.BorderWidths(advancedBorderStyle);
+		|            }
+		|
+		|            if (m_OwnerCell != null)
+		|            {
+		|                return m_OwnerCell.BorderWidths(advancedBorderStyle);
+		|            }
+		|
+		|            var leftTop = base.BorderWidths(advancedBorderStyle);
+		|            var rightBottomCell = DataGridView[ColumnIndex + ColumnSpan - 1, RowIndex + RowSpan - 1] as DataGridViewTextBoxCellEx;
+		|            var rightBottom = rightBottomCell != null ? NativeBorderWidths(advancedBorderStyle) : leftTop;
+		|            return new System.Drawing.Rectangle(leftTop.X, leftTop.Y, rightBottom.Width, rightBottom.Height);
+		|        }
+		|
+		|        private System.Drawing.Rectangle NativeBorderWidths(System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle)
+		|        {
+		|            return base.BorderWidths(advancedBorderStyle);
+		|        }
+		|
+		|        protected override System.Drawing.Size GetPreferredSize(
+		|            System.Drawing.Graphics graphics,
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle, 
+		|            int rowIndex,
+		|            System.Drawing.Size constraintSize)
+		|        {
+		|            if (OwnerCell != null)
+		|            {
+		|                return new System.Drawing.Size(0, 0);
+		|            }
+		|            var size = base.GetPreferredSize(graphics, cellStyle, rowIndex, constraintSize);
+		|            var grid = DataGridView;
+		|            var width = size.Width - Enumerable.Range(ColumnIndex + 1, ColumnSpan - 1)
+		|                                           .Select(index => grid.Columns[index].Width)
+		|                                           .Sum();
+		|            var height = size.Height - Enumerable.Range(RowIndex + 1, RowSpan - 1)
+		|                                           .Select(index => grid.Rows[index].Height)
+		|                                           .Sum();
+		|            return new System.Drawing.Size(width, height);
+		|        }
+		|
+		|        private bool CellsRegionContainsSelectedCell(int columnIndex, int rowIndex, int columnSpan, int rowSpan)
+		|        {
+		|            if (DataGridView == null)
+		|            {
+		|                return false;
+		|            }
+		|
+		|            return (from col in Enumerable.Range(columnIndex, columnSpan)
+		|                    from row in Enumerable.Range(rowIndex, rowSpan)
+		|                    where DataGridView[col, row].Selected
+		|                    select col).Any();
+		|        }
+		|    }//endClass
+		|
 		|    public class DataGridViewTextBoxCell : DataGridViewCell
 		|    {
 		|        public new ClDataGridViewTextBoxCell dll_obj;
-		|        private System.Windows.Forms.DataGridViewTextBoxCell m_DataGridViewTextBoxCell;
-		|		
+		|        private DataGridViewTextBoxCellEx M_DataGridViewTextBoxCell;
+		|
 		|        public DataGridViewTextBoxCell()
 		|        {
-		|            M_DataGridViewTextBoxCell = new System.Windows.Forms.DataGridViewTextBoxCell();
+		|            M_DataGridViewTextBoxCell = new DataGridViewTextBoxCellEx();
+		|            M_DataGridViewTextBoxCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewTextBoxCell;
 		|        }
 		|
-		|        public DataGridViewTextBoxCell(System.Windows.Forms.DataGridViewTextBoxCell p1)
+		|        public DataGridViewTextBoxCell(osf.DataGridViewTextBoxCell p1)
+		|        {
+		|            M_DataGridViewTextBoxCell = p1.M_DataGridViewTextBoxCell;
+		|            M_DataGridViewTextBoxCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewTextBoxCell;
+		|        }
+		|
+		|        public DataGridViewTextBoxCell(DataGridViewTextBoxCellEx p1)
 		|        {
 		|            M_DataGridViewTextBoxCell = p1;
+		|            M_DataGridViewTextBoxCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewTextBoxCell;
 		|        }
 		|
 		|        public int MaxInputLength
 		|        {
 		|            get { return M_DataGridViewTextBoxCell.MaxInputLength; }
 		|            set { M_DataGridViewTextBoxCell.MaxInputLength = value; }
-		|        }
-		|
-		|        public System.Windows.Forms.DataGridViewTextBoxCell M_DataGridViewTextBoxCell
-		|        {
-		|            get { return m_DataGridViewTextBoxCell; }
-		|            set
-		|            {
-		|                m_DataGridViewTextBoxCell = value;
-		|                base.M_DataGridViewCell = m_DataGridViewTextBoxCell;
-		|            }
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -33219,54 +34152,46 @@
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
 		|{
+		|    public class DataGridViewLinkColumnEx : System.Windows.Forms.DataGridViewLinkColumn
+		|    {
+		|        public osf.DataGridViewLinkColumn M_Object;
+		|
+		|        public DataGridViewLinkColumnEx() : base()
+		|        {
+		|            this.CellTemplate = new DataGridViewLinkCellEx();
+		|        }
+		|    }//endClass
+		|
 		|    public class DataGridViewLinkColumn : DataGridViewColumn
 		|    {
 		|        public new ClDataGridViewLinkColumn dll_obj;
-		|        private System.Windows.Forms.DataGridViewLinkColumn m_DataGridViewLinkColumn;
-		|		
+		|        private DataGridViewLinkColumnEx M_DataGridViewLinkColumn;
+		|
 		|        public DataGridViewLinkColumn()
 		|        {
-		|            M_DataGridViewLinkColumn = new System.Windows.Forms.DataGridViewLinkColumn();
+		|            M_DataGridViewLinkColumn = new DataGridViewLinkColumnEx();
+		|            M_DataGridViewLinkColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewLinkColumn;
 		|        }
 		|
 		|        public DataGridViewLinkColumn(osf.DataGridViewLinkColumn p1)
 		|        {
 		|            M_DataGridViewLinkColumn = p1.M_DataGridViewLinkColumn;
+		|            M_DataGridViewLinkColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewLinkColumn;
 		|        }
 		|
-		|        public DataGridViewLinkColumn(System.Windows.Forms.DataGridViewLinkColumn p1)
+		|        public DataGridViewLinkColumn(DataGridViewLinkColumnEx p1)
 		|        {
 		|            M_DataGridViewLinkColumn = p1;
+		|            M_DataGridViewLinkColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewLinkColumn;
 		|        }
 		|
 		|        public osf.Color ActiveLinkColor
 		|        {
 		|            get { return new Color(M_DataGridViewLinkColumn.ActiveLinkColor); }
 		|            set { M_DataGridViewLinkColumn.ActiveLinkColor = value.M_Color; }
-		|        }
-		|		
-		|        public string Text
-		|        {
-		|            get { return M_DataGridViewLinkColumn.Text; }
-		|            set { M_DataGridViewLinkColumn.Text = value; }
-		|        }
-		|		
-		|        public osf.Color LinkColor
-		|        {
-		|            get { return new Color(M_DataGridViewLinkColumn.LinkColor); }
-		|            set { M_DataGridViewLinkColumn.LinkColor = value.M_Color; }
-		|        }
-		|		
-		|        public osf.Color VisitedLinkColor
-		|        {
-		|            get { return new Color(M_DataGridViewLinkColumn.VisitedLinkColor); }
-		|            set { M_DataGridViewLinkColumn.VisitedLinkColor = value.M_Color; }
-		|        }
-		|
-		|        public bool UseColumnTextForLinkValue
-		|        {
-		|            get { return M_DataGridViewLinkColumn.UseColumnTextForLinkValue; }
-		|            set { M_DataGridViewLinkColumn.UseColumnTextForLinkValue = value; }
 		|        }
 		|
 		|        public int LinkBehavior
@@ -33275,21 +34200,34 @@
 		|            set { M_DataGridViewLinkColumn.LinkBehavior = (System.Windows.Forms.LinkBehavior)value; }
 		|        }
 		|
+		|        public osf.Color LinkColor
+		|        {
+		|            get { return new Color(M_DataGridViewLinkColumn.LinkColor); }
+		|            set { M_DataGridViewLinkColumn.LinkColor = value.M_Color; }
+		|        }
+		|
+		|        public string Text
+		|        {
+		|            get { return M_DataGridViewLinkColumn.Text; }
+		|            set { M_DataGridViewLinkColumn.Text = value; }
+		|        }
+		|
 		|        public bool TrackVisitedState
 		|        {
 		|            get { return M_DataGridViewLinkColumn.TrackVisitedState; }
 		|            set { M_DataGridViewLinkColumn.TrackVisitedState = value; }
 		|        }
-		|		
 		|
-		|        public System.Windows.Forms.DataGridViewLinkColumn M_DataGridViewLinkColumn
+		|        public bool UseColumnTextForLinkValue
 		|        {
-		|            get { return m_DataGridViewLinkColumn; }
-		|            set
-		|            {
-		|                m_DataGridViewLinkColumn = value;
-		|                base.M_DataGridViewColumn = m_DataGridViewLinkColumn;
-		|            }
+		|            get { return M_DataGridViewLinkColumn.UseColumnTextForLinkValue; }
+		|            set { M_DataGridViewLinkColumn.UseColumnTextForLinkValue = value; }
+		|        }
+		|
+		|        public osf.Color VisitedLinkColor
+		|        {
+		|            get { return new Color(M_DataGridViewLinkColumn.VisitedLinkColor); }
+		|            set { M_DataGridViewLinkColumn.VisitedLinkColor = value.M_Color; }
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -33409,55 +34347,424 @@
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
 		|{
+		|    public class DataGridViewLinkCellEx : System.Windows.Forms.DataGridViewLinkCell, ISpannedCell
+		|    {
+		|        public osf.DataGridViewLinkCell M_Object;
+		|
+		|        public DataGridViewLinkCellEx() : base()
+		|        {
+		|        }
+		|
+		|        public new System.Windows.Forms.DataGridViewCellStyle Style
+		|        {
+		|            get { return base.Style; }
+		|            set { base.Style = value; }
+		|        }
+		|
+		|        private int m_ColumnSpan = 1;
+		|        private int m_RowSpan = 1;
+		|        private DataGridViewLinkCellEx m_OwnerCell;
+		|
+		|        public int ColumnSpan
+		|        {
+		|            get { return m_ColumnSpan; }
+		|            set
+		|            {
+		|                if (DataGridView == null || m_OwnerCell != null)
+		|                {
+		|                    return;
+		|                }
+		|                if (value < 1 || ColumnIndex + value - 1 >= DataGridView.ColumnCount)
+		|                {
+		|                    throw new System.ArgumentOutOfRangeException(""value"");
+		|                }
+		|                if (m_ColumnSpan != value)
+		|                {
+		|                    SetSpan(value, m_RowSpan);
+		|                }
+		|            }
+		|        }
+		|
+		|        public int RowSpan
+		|        {
+		|            get { return m_RowSpan; }
+		|            set
+		|            {
+		|                if (DataGridView == null || m_OwnerCell != null)
+		|                {
+		|                    return;
+		|                }
+		|                if (value < 1 || RowIndex + value - 1 >= DataGridView.RowCount)
+		|                {
+		|                    throw new System.ArgumentOutOfRangeException(""value"");
+		|                }
+		|                if (m_RowSpan != value)
+		|                {
+		|                    SetSpan(m_ColumnSpan, value);
+		|                }
+		|            }
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewCell OwnerCell
+		|        {
+		|            get { return m_OwnerCell; }
+		|            private set { m_OwnerCell = value as DataGridViewLinkCellEx; }
+		|        }
+		|
+		|        public override bool ReadOnly
+		|        {
+		|            get { return base.ReadOnly; }
+		|            set
+		|            {
+		|                base.ReadOnly = value;
+		|
+		|                if (m_OwnerCell == null && (m_ColumnSpan > 1 || m_RowSpan > 1) && DataGridView != null)
+		|                {
+		|                    foreach (var col in Enumerable.Range(ColumnIndex, m_ColumnSpan))
+		|                    {
+		|                        foreach (var row in Enumerable.Range(RowIndex, m_RowSpan))
+		|                        {
+		|                            if (col != ColumnIndex || row != RowIndex)
+		|                            {
+		|                                DataGridView[col, row].ReadOnly = value;
+		|                            }
+		|                        }
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        protected override void Paint(System.Drawing.Graphics graphics, System.Drawing.Rectangle clipBounds, System.Drawing.Rectangle cellBounds, int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue, string errorText, System.Windows.Forms.DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
+		|        {
+		|            if (m_OwnerCell != null && m_OwnerCell.DataGridView == null)
+		|            {
+		|                m_OwnerCell = null; // Ячейка-владелец была удалена.
+		|            }
+		|
+		|            if (DataGridView == null || (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1))
+		|            {
+		|                base.Paint(graphics, clipBounds, cellBounds, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
+		|                return;
+		|            }
+		|
+		|            var ownerCell = this;
+		|            var columnIndex = ColumnIndex;
+		|            var columnSpan = m_ColumnSpan;
+		|            var rowSpan = m_RowSpan;
+		|            if (m_OwnerCell != null)
+		|            {
+		|                ownerCell = m_OwnerCell;
+		|                columnIndex = m_OwnerCell.ColumnIndex;
+		|                rowIndex = m_OwnerCell.RowIndex;
+		|                columnSpan = m_OwnerCell.ColumnSpan;
+		|                rowSpan = m_OwnerCell.RowSpan;
+		|                value = m_OwnerCell.GetValue(rowIndex);
+		|                errorText = m_OwnerCell.GetErrorText(rowIndex);
+		|                cellState = m_OwnerCell.State;
+		|                cellStyle = m_OwnerCell.GetInheritedStyle(null, rowIndex, true);
+		|                formattedValue = m_OwnerCell.GetFormattedValue(value, rowIndex, ref cellStyle, null, null, DataGridViewDataErrorContexts.Display);
+		|            }
+		|
+		|            if (CellsRegionContainsSelectedCell(columnIndex, rowIndex, columnSpan, rowSpan))
+		|            {
+		|                cellState |= DataGridViewElementStates.Selected;
+		|            }
+		|
+		|            // Сохраним старые границы клипа.
+		|            System.Drawing.RectangleF oldBounds = graphics.ClipBounds;
+		|            var cellBounds2 = DataGridViewCellExHelper.GetSpannedCellBoundsFromChildCellBounds(this, cellBounds, DataGridView.SingleVerticalBorderAdded(), DataGridView.SingleHorizontalBorderAdded());
+		|            clipBounds = DataGridViewCellExHelper.GetSpannedCellClipBounds(ownerCell, cellBounds2, DataGridView.SingleVerticalBorderAdded(), DataGridView.SingleHorizontalBorderAdded());
+		|            advancedBorderStyle = DataGridViewCellExHelper.AdjustCellBorderStyle(ownerCell);
+		|            using (var g = this.DataGridView.CreateGraphics())
+		|            {
+		|                // Задайте для новых границ клипа границы, рассчитанные для объединенных строк.
+		|                g.SetClip(clipBounds);
+		|
+		|                // Нарисуйте содержимое.
+		|                ownerCell.NativePaint(g, clipBounds, cellBounds2, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts & ~DataGridViewPaintParts.Border);
+		|
+		|                // Нарисуйте границы.
+		|                if ((paintParts & DataGridViewPaintParts.Border) != DataGridViewPaintParts.None)
+		|                {
+		|                    var leftTopCell = ownerCell;
+		|                    var advancedBorderStyle2 = new DataGridViewAdvancedBorderStyle
+		|                    {
+		|                        Left = advancedBorderStyle.Left,
+		|                        Top = advancedBorderStyle.Top,
+		|                        Right = DataGridViewAdvancedCellBorderStyle.None,
+		|                        Bottom = DataGridViewAdvancedCellBorderStyle.None
+		|                    };
+		|                    leftTopCell.PaintBorder(g, clipBounds, cellBounds2, cellStyle, advancedBorderStyle2);
+		|
+		|                    var rightBottomCell = DataGridView[columnIndex + columnSpan - 1, rowIndex + rowSpan - 1] as DataGridViewLinkCellEx ?? this;
+		|                    var advancedBorderStyle3 = new DataGridViewAdvancedBorderStyle
+		|                    {
+		|                        Left = DataGridViewAdvancedCellBorderStyle.None,
+		|                        Top = DataGridViewAdvancedCellBorderStyle.None,
+		|                        Right = advancedBorderStyle.Right,
+		|                        Bottom = advancedBorderStyle.Bottom
+		|                    };
+		|                    rightBottomCell.PaintBorder(g, clipBounds, cellBounds2, cellStyle, advancedBorderStyle3);
+		|                }
+		|            }
+		|
+		|            // Задайте для новых границ клипа границы, рассчитанные для объединенных строк.
+		|            graphics.SetClip(clipBounds);
+		|
+		|            // Нарисуйте содержимое.
+		|            ownerCell.NativePaint(graphics, clipBounds, cellBounds2, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts & ~DataGridViewPaintParts.Border);
+		|
+		|            // Нарисуйте границы.
+		|            if ((paintParts & DataGridViewPaintParts.Border) != DataGridViewPaintParts.None)
+		|            {
+		|                var leftTopCell = ownerCell;
+		|                var advancedBorderStyle2 = new DataGridViewAdvancedBorderStyle
+		|                {
+		|                    Left = advancedBorderStyle.Left,
+		|                    Top = advancedBorderStyle.Top,
+		|                    Right = DataGridViewAdvancedCellBorderStyle.None,
+		|                    Bottom = DataGridViewAdvancedCellBorderStyle.None
+		|                };
+		|                leftTopCell.PaintBorder(graphics, clipBounds, cellBounds2, cellStyle, advancedBorderStyle2);
+		|
+		|                var rightBottomCell = DataGridView[columnIndex + columnSpan - 1, rowIndex + rowSpan - 1] as DataGridViewLinkCellEx ?? this;
+		|                var advancedBorderStyle3 = new DataGridViewAdvancedBorderStyle
+		|                {
+		|                    Left = DataGridViewAdvancedCellBorderStyle.None,
+		|                    Top = DataGridViewAdvancedCellBorderStyle.None,
+		|                    Right = advancedBorderStyle.Right,
+		|                    Bottom = advancedBorderStyle.Bottom
+		|                };
+		|                rightBottomCell.PaintBorder(graphics, clipBounds, cellBounds2, cellStyle, advancedBorderStyle3);
+		|            }
+		|
+		|            // Восстановите старые границы! В противном случае будет нарисована только объединенная строка, а всё что следует далее нарисовано не будет.
+		|            graphics.SetClip(oldBounds);
+		|        }
+		|
+		|        private void NativePaint(
+		|            System.Drawing.Graphics graphics,
+		|            System.Drawing.Rectangle clipBounds,
+		|            System.Drawing.Rectangle cellBounds,
+		|            int rowIndex,
+		|            System.Windows.Forms.DataGridViewElementStates cellState,
+		|            object value,
+		|            object formattedValue,
+		|            string errorText,
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+		|            System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle,
+		|            System.Windows.Forms.DataGridViewPaintParts paintParts)
+		|        {
+		|            base.Paint(graphics, clipBounds, cellBounds, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
+		|        }
+		|
+		|        private void SetSpan(int columnSpan, int rowSpan)
+		|        {
+		|            int prevColumnSpan = m_ColumnSpan;
+		|            int prevRowSpan = m_RowSpan;
+		|            m_ColumnSpan = columnSpan;
+		|            m_RowSpan = rowSpan;
+		|
+		|            if (DataGridView != null)
+		|            {
+		|                // Очистка.
+		|                foreach (int rowIndex in Enumerable.Range(RowIndex, prevRowSpan))
+		|                {
+		|                    foreach (int columnIndex in Enumerable.Range(ColumnIndex, prevColumnSpan))
+		|                    {
+		|                        var cell = DataGridView[columnIndex, rowIndex] as DataGridViewLinkCellEx;
+		|                        if (cell != null)
+		|                        {
+		|                            cell.OwnerCell = null;
+		|                        }
+		|                    }
+		|                }
+		|
+		|                // Установка.
+		|                foreach (int rowIndex in Enumerable.Range(RowIndex, m_RowSpan))
+		|                {
+		|                    foreach (int columnIndex in Enumerable.Range(ColumnIndex, m_ColumnSpan))
+		|                    {
+		|                        var cell = DataGridView[columnIndex, rowIndex] as DataGridViewLinkCellEx;
+		|                        if (cell != null && cell != this)
+		|                        {
+		|                            if (cell.ColumnSpan > 1)
+		|                            {
+		|                                cell.ColumnSpan = 1;
+		|                            }
+		|                            if (cell.RowSpan > 1)
+		|                            {
+		|                                cell.RowSpan = 1;
+		|                            }
+		|
+		|                            // Удалим данные из объединяемых ячеек, кроме левой верхней ячейки.
+		|                            cell.Value = null;
+		|
+		|                            cell.OwnerCell = this;
+		|                        }
+		|                    }
+		|                }
+		|                OwnerCell = null;
+		|                DataGridView.Invalidate();
+		|            }
+		|        }
+		|
+		|        public override System.Drawing.Rectangle PositionEditingPanel(
+		|            System.Drawing.Rectangle cellBounds,
+		|            System.Drawing.Rectangle cellClip,
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+		|            bool singleVerticalBorderAdded,
+		|            bool singleHorizontalBorderAdded,
+		|            bool isFirstDisplayedColumn,
+		|            bool isFirstDisplayedRow)
+		|        {
+		|            if (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1)
+		|            {
+		|                return base.PositionEditingPanel(cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, isFirstDisplayedColumn, isFirstDisplayedRow);
+		|            }
+		|
+		|            var ownerCell = this;
+		|            if (m_OwnerCell != null)
+		|            {
+		|                var rowIndex = m_OwnerCell.RowIndex;
+		|                cellStyle = m_OwnerCell.GetInheritedStyle(null, rowIndex, true);
+		|                m_OwnerCell.GetFormattedValue(m_OwnerCell.Value, rowIndex, ref cellStyle, null, null, DataGridViewDataErrorContexts.Formatting);
+		|                var editingControl = DataGridView.EditingControl as IDataGridViewEditingControl;
+		|                if (editingControl != null)
+		|                {
+		|                    editingControl.ApplyCellStyleToEditingControl(cellStyle);
+		|                    var editingPanel = DataGridView.EditingControl.Parent;
+		|                    if (editingPanel != null)
+		|                    {
+		|                        editingPanel.BackColor = cellStyle.BackColor;
+		|                    }
+		|                }
+		|                ownerCell = m_OwnerCell;
+		|            }
+		|            cellBounds = DataGridViewCellExHelper.GetSpannedCellBoundsFromChildCellBounds(
+		|                this,
+		|                cellBounds,
+		|                singleVerticalBorderAdded,
+		|                singleHorizontalBorderAdded);
+		|            cellClip = DataGridViewCellExHelper.GetSpannedCellClipBounds(
+		|                ownerCell,
+		|                cellBounds,
+		|                singleVerticalBorderAdded,
+		|                singleHorizontalBorderAdded);
+		|            return base.PositionEditingPanel(cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, ownerCell.InFirstDisplayedColumn(), ownerCell.InFirstDisplayedRow());
+		|        }
+		|
+		|        protected override object GetValue(int rowIndex)
+		|        {
+		|            if (m_OwnerCell != null)
+		|            {
+		|                return m_OwnerCell.GetValue(m_OwnerCell.RowIndex);
+		|            }
+		|            return base.GetValue(rowIndex);
+		|        }
+		|
+		|        protected override bool SetValue(int rowIndex, object value)
+		|        {
+		|            if (m_OwnerCell != null)
+		|            {
+		|                return m_OwnerCell.SetValue(m_OwnerCell.RowIndex, value);
+		|            }
+		|            return base.SetValue(rowIndex, value);
+		|        }
+		|
+		|        protected override void OnDataGridViewChanged()
+		|        {
+		|            base.OnDataGridViewChanged();
+		|
+		|            if (DataGridView == null)
+		|            {
+		|                m_ColumnSpan = 1;
+		|                m_RowSpan = 1;
+		|            }
+		|        }
+		|
+		|        protected override System.Drawing.Rectangle BorderWidths(System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle)
+		|        {
+		|            if (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1)
+		|            {
+		|                return base.BorderWidths(advancedBorderStyle);
+		|            }
+		|
+		|            if (m_OwnerCell != null)
+		|            {
+		|                return m_OwnerCell.BorderWidths(advancedBorderStyle);
+		|            }
+		|
+		|            var leftTop = base.BorderWidths(advancedBorderStyle);
+		|            var rightBottomCell = DataGridView[ColumnIndex + ColumnSpan - 1, RowIndex + RowSpan - 1] as DataGridViewLinkCellEx;
+		|            var rightBottom = rightBottomCell != null ? NativeBorderWidths(advancedBorderStyle) : leftTop;
+		|            return new System.Drawing.Rectangle(leftTop.X, leftTop.Y, rightBottom.Width, rightBottom.Height);
+		|        }
+		|
+		|        private System.Drawing.Rectangle NativeBorderWidths(System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle)
+		|        {
+		|            return base.BorderWidths(advancedBorderStyle);
+		|        }
+		|
+		|        protected override System.Drawing.Size GetPreferredSize(
+		|            System.Drawing.Graphics graphics,
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+		|            int rowIndex,
+		|            System.Drawing.Size constraintSize)
+		|        {
+		|            if (OwnerCell != null)
+		|            {
+		|                return new System.Drawing.Size(0, 0);
+		|            }
+		|            var size = base.GetPreferredSize(graphics, cellStyle, rowIndex, constraintSize);
+		|            var grid = DataGridView;
+		|            var width = size.Width - Enumerable.Range(ColumnIndex + 1, ColumnSpan - 1)
+		|                                           .Select(index => grid.Columns[index].Width)
+		|                                           .Sum();
+		|            var height = size.Height - Enumerable.Range(RowIndex + 1, RowSpan - 1)
+		|                                           .Select(index => grid.Rows[index].Height)
+		|                                           .Sum();
+		|            return new System.Drawing.Size(width, height);
+		|        }
+		|
+		|        private bool CellsRegionContainsSelectedCell(int columnIndex, int rowIndex, int columnSpan, int rowSpan)
+		|        {
+		|            if (DataGridView == null)
+		|            {
+		|                return false;
+		|            }
+		|
+		|            return (from col in Enumerable.Range(columnIndex, columnSpan)
+		|                    from row in Enumerable.Range(rowIndex, rowSpan)
+		|                    where DataGridView[col, row].Selected
+		|                    select col).Any();
+		|        }
+		|    }//endClass
+		|
 		|    public class DataGridViewLinkCell : DataGridViewCell
 		|    {
 		|        public new ClDataGridViewLinkCell dll_obj;
-		|        private System.Windows.Forms.DataGridViewLinkCell m_DataGridViewLinkCell;
-		|		
+		|        private DataGridViewLinkCellEx M_DataGridViewLinkCell;
+		|
 		|        public DataGridViewLinkCell()
 		|        {
-		|            M_DataGridViewLinkCell = new System.Windows.Forms.DataGridViewLinkCell();
+		|            M_DataGridViewLinkCell = new DataGridViewLinkCellEx();
+		|            M_DataGridViewLinkCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewLinkCell;
 		|        }
 		|
-		|        public DataGridViewLinkCell(System.Windows.Forms.DataGridViewLinkCell p1)
+		|        public DataGridViewLinkCell(osf.DataGridViewLinkCell p1)
+		|        {
+		|            M_DataGridViewLinkCell = p1.M_DataGridViewLinkCell;
+		|            M_DataGridViewLinkCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewLinkCell;
+		|        }
+		|
+		|        public DataGridViewLinkCell(DataGridViewLinkCellEx p1)
 		|        {
 		|            M_DataGridViewLinkCell = p1;
-		|        }
-		|		
-		|        public int LinkBehavior
-		|        {
-		|            get { return (int)M_DataGridViewLinkCell.LinkBehavior; }
-		|            set { M_DataGridViewLinkCell.LinkBehavior = (System.Windows.Forms.LinkBehavior)value; }
-		|        }
-		|		
-		|        public osf.Color LinkColor
-		|        {
-		|            get { return new Color(M_DataGridViewLinkCell.LinkColor); }
-		|            set { M_DataGridViewLinkCell.LinkColor = value.M_Color; }
-		|        }
-		|		
-		|        public osf.Color VisitedLinkColor
-		|        {
-		|            get { return new Color(M_DataGridViewLinkCell.VisitedLinkColor); }
-		|            set { M_DataGridViewLinkCell.VisitedLinkColor = value.M_Color; }
-		|        }
-		|		
-		|        public bool LinkVisited
-		|        {
-		|            get { return M_DataGridViewLinkCell.LinkVisited; }
-		|            set { M_DataGridViewLinkCell.LinkVisited = value; }
-		|        }
-		|		
-		|        public bool TrackVisitedState
-		|        {
-		|            get { return M_DataGridViewLinkCell.TrackVisitedState; }
-		|            set { M_DataGridViewLinkCell.TrackVisitedState = value; }
-		|        }
-		|		
-		|        public bool UseColumnTextForLinkValue
-		|        {
-		|            get { return M_DataGridViewLinkCell.UseColumnTextForLinkValue; }
-		|            set { M_DataGridViewLinkCell.UseColumnTextForLinkValue = value; }
+		|            M_DataGridViewLinkCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewLinkCell;
 		|        }
 		|
 		|        public osf.Color ActiveLinkColor
@@ -33466,14 +34773,40 @@
 		|            set { M_DataGridViewLinkCell.ActiveLinkColor = value.M_Color; }
 		|        }
 		|
-		|        public System.Windows.Forms.DataGridViewLinkCell M_DataGridViewLinkCell
+		|        public int LinkBehavior
 		|        {
-		|            get { return m_DataGridViewLinkCell; }
-		|            set
-		|            {
-		|                m_DataGridViewLinkCell = value;
-		|                base.M_DataGridViewCell = m_DataGridViewLinkCell;
-		|            }
+		|            get { return (int)M_DataGridViewLinkCell.LinkBehavior; }
+		|            set { M_DataGridViewLinkCell.LinkBehavior = (System.Windows.Forms.LinkBehavior)value; }
+		|        }
+		|
+		|        public osf.Color LinkColor
+		|        {
+		|            get { return new Color(M_DataGridViewLinkCell.LinkColor); }
+		|            set { M_DataGridViewLinkCell.LinkColor = value.M_Color; }
+		|        }
+		|
+		|        public bool LinkVisited
+		|        {
+		|            get { return M_DataGridViewLinkCell.LinkVisited; }
+		|            set { M_DataGridViewLinkCell.LinkVisited = value; }
+		|        }
+		|
+		|        public bool TrackVisitedState
+		|        {
+		|            get { return M_DataGridViewLinkCell.TrackVisitedState; }
+		|            set { M_DataGridViewLinkCell.TrackVisitedState = value; }
+		|        }
+		|
+		|        public bool UseColumnTextForLinkValue
+		|        {
+		|            get { return M_DataGridViewLinkCell.UseColumnTextForLinkValue; }
+		|            set { M_DataGridViewLinkCell.UseColumnTextForLinkValue = value; }
+		|        }
+		|
+		|        public osf.Color VisitedLinkColor
+		|        {
+		|            get { return new Color(M_DataGridViewLinkCell.VisitedLinkColor); }
+		|            set { M_DataGridViewLinkCell.VisitedLinkColor = value.M_Color; }
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -33485,30 +34818,191 @@
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
 		|{
+		|    public sealed class DataGridViewImageColumnEx : System.Windows.Forms.DataGridViewColumn
+		|    {
+		|        public osf.DataGridViewImageColumn M_Object;
+		|        static System.Drawing.Bitmap errorBmp;
+		|        static System.Drawing.Icon errorIco;
+		|        private System.Drawing.Bitmap bitmap;
+		|        private System.Drawing.Icon icon;
+		|        private string description;
+		|
+		|        public DataGridViewImageColumnEx() : this(false)
+		|        {
+		|        }
+		|
+		|        public DataGridViewImageColumnEx(bool valuesAreIcons) : base(new DataGridViewImageCellEx(valuesAreIcons))
+		|        {
+		|            var style = new System.Windows.Forms.DataGridViewCellStyle { Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter };
+		|            if (valuesAreIcons)
+		|            {
+		|                style.NullValue = ErrorIcon;
+		|            }
+		|            else
+		|            {
+		|                style.NullValue = ErrorBitmap;
+		|            }
+		|            this.DefaultCellStyle = style;
+		|        }
+		|
+		|        public System.Drawing.Bitmap Bitmap
+		|        {
+		|            get { return bitmap; }
+		|            set { bitmap = value; }
+		|        }
+		|        public string Description
+		|        {
+		|            get { return description; }
+		|            set { description = value; }
+		|        }
+		|        public System.Drawing.Icon Icon
+		|        {
+		|            get { return icon; }
+		|            set { icon = (System.Drawing.Icon)value; }
+		|        }
+		|
+		|        static System.Drawing.Bitmap ErrorBitmap
+		|        {
+		|            get
+		|            {
+		|                string str = ""Qk32AgAAAAAAADYAAAAoAAAADgAAABAAAAABABgAAAAAAMACAAB0EgAAdBIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEgoTGw8bGw8bGw8bGw8bGw8bGw8bGw8bGw8bGw8bGw8bGw8bGw8YAAAAAAISChP///////////////////////////////////////////8bDxgAAAAAAhIKE////////////////////////////////////////////xsPGAAAAAACEgoT////////////////////////////////////////////Gw8YAAAAAAISChP///////////////////////////////////////////8bDxgAAAAAAhIKE////////////AAD/AAD/////////AAD/AAD/////////xsPGAAAAAACEgoT///////////////8AAP8AAP8AAP8AAP/////////////Gw8YAAAAAAISChP///////////////////wAA/wAA/////////////////8bDxgAAAAAAhIKE////////////////AAD/AAD/AAD/AAD/////////////xsPGAAAAAACEgoT///////////8AAP8AAP////////8AAP8AAP/////////Gw8YAAAAAAISChP///////////////////////////////////////////8bDxgAAAAAAhIKE////////////////////////////////////////////xsPGAAAAAACEgoT////////////////////////////////////////////Gw8YAAAAAAISChP///////////////////////////////////////////8bDxgAAAAAAhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEAAA="";
+		|                return errorBmp ?? (errorBmp = new System.Drawing.Bitmap((System.IO.Stream)new System.IO.MemoryStream(Convert.FromBase64String(str))));
+		|            }
+		|        }
+		|
+		|        static System.Drawing.Icon ErrorIcon
+		|        {
+		|            get
+		|            {
+		|                string str = ""AAABAAEADhAAAAEAGAAoAwAAFgAAACgAAAAOAAAAIAAAAAEAGAAAAAAAAAMAAHQSAAB0EgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAISChMbDxsbDxsbDxsbDxsbDxsbDxsbDxsbDxsbDxsbDxsbDxsbDxgAAAAAAhIKE////////////////////////////////////////////xsPGAAAAAACEgoT////////////////////////////////////////////Gw8YAAAAAAISChP///////////////////////////////////////////8bDxgAAAAAAhIKE////////////////////////////////////////////xsPGAAAAAACEgoT///////////8AAP8AAP////////8AAP8AAP/////////Gw8YAAAAAAISChP///////////////wAA/wAA/wAA/wAA/////////////8bDxgAAAAAAhIKE////////////////////AAD/AAD/////////////////xsPGAAAAAACEgoT///////////////8AAP8AAP8AAP8AAP/////////////Gw8YAAAAAAISChP///////////wAA/wAA/////////wAA/wAA/////////8bDxgAAAAAAhIKE////////////////////////////////////////////xsPGAAAAAACEgoT////////////////////////////////////////////Gw8YAAAAAAISChP///////////////////////////////////////////8bDxgAAAAAAhIKE////////////////////////////////////////////xsPGAAAAAACEgoSEgoSEgoSEgoSEgoSEgoSEgoSEgoSEgoSEgoSEgoSEgoSEgoSEgoQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="";
+		|                return errorIco ?? (errorIco = new System.Drawing.Icon((System.IO.Stream)new System.IO.MemoryStream(Convert.FromBase64String(str))));
+		|            }
+		|        }
+		|
+		|        private DataGridViewImageCellEx ImageCellTemplate
+		|        {
+		|            get { return (DataGridViewImageCellEx)this.CellTemplate; }
+		|        }
+		|
+		|        [DefaultValue(1)]
+		|        public System.Windows.Forms.DataGridViewImageCellLayout ImageLayout
+		|        {
+		|            get
+		|            {
+		|                if (this.CellTemplate == null)
+		|                {
+		|                    throw new InvalidOperationException();
+		|                }
+		|                System.Windows.Forms.DataGridViewImageCellLayout imageLayout = this.ImageCellTemplate.ImageLayout;
+		|                if (imageLayout == System.Windows.Forms.DataGridViewImageCellLayout.NotSet)
+		|                {
+		|                    imageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Normal;
+		|                }
+		|                return imageLayout;
+		|            }
+		|            set
+		|            {
+		|                if (this.ImageLayout == value)
+		|                {
+		|                    return;
+		|                }
+		|                this.ImageCellTemplate.ImageLayout = value;
+		|                if (DataGridView == null)
+		|                {
+		|                    return;
+		|                }
+		|                var rows = DataGridView.Rows;
+		|                var count = rows.Count;
+		|                for (var i = 0; i < count; i++)
+		|                {
+		|                    var cell = rows.SharedRow(i).Cells[Index] as System.Windows.Forms.DataGridViewImageCell;
+		|                    if (cell != null)
+		|                    {
+		|                        cell.ImageLayout = value;
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		|        public bool ValuesAreIcons
+		|        {
+		|            get
+		|            {
+		|                if (this.ImageCellTemplate == null)
+		|                {
+		|                    throw new InvalidOperationException();
+		|                }
+		|                return this.ImageCellTemplate.ValueIsIcon;
+		|            }
+		|            set
+		|            {
+		|                if (this.ValuesAreIcons == value)
+		|                {
+		|                    return;
+		|                }
+		|                this.ImageCellTemplate.ValueIsIcon = value;
+		|                if (DataGridView != null)
+		|                {
+		|                    var rows = DataGridView.Rows;
+		|                    var count = rows.Count;
+		|                    for (var i = 0; i < count; i++)
+		|                    {
+		|                        var cell = rows.SharedRow(i).Cells[Index] as System.Windows.Forms.DataGridViewImageCell;
+		|                        if (cell != null)
+		|                        {
+		|                            cell.ValueIsIcon = value;
+		|                        }
+		|                    }
+		|                }
+		|                if ((value && (this.DefaultCellStyle.NullValue is System.Drawing.Bitmap)) && (this.DefaultCellStyle.NullValue == ErrorBitmap))
+		|                {
+		|                    this.DefaultCellStyle.NullValue = ErrorIcon;
+		|                }
+		|                else if ((!value && (this.DefaultCellStyle.NullValue is Icon)) && (this.DefaultCellStyle.NullValue == ErrorIcon))
+		|                {
+		|                    this.DefaultCellStyle.NullValue = ErrorBitmap;
+		|                }
+		|            }
+		|        }
+		|    }//endClass
+		|		
 		|    public class DataGridViewImageColumn : DataGridViewColumn
 		|    {
 		|        public new ClDataGridViewImageColumn dll_obj;
-		|        private System.Windows.Forms.DataGridViewImageColumn m_DataGridViewImageColumn;
-		|		
+		|        public DataGridViewImageColumnEx M_DataGridViewImageColumn;
+		|
 		|        public DataGridViewImageColumn()
 		|        {
-		|            M_DataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
+		|            M_DataGridViewImageColumn = new DataGridViewImageColumnEx();
+		|            M_DataGridViewImageColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewImageColumn;
+		|        }
+		|
+		|        public DataGridViewImageColumn(DataGridViewImageColumnEx p1)
+		|        {
+		|            M_DataGridViewImageColumn = p1;
+		|            M_DataGridViewImageColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewImageColumn;
 		|        }
 		|
 		|        public DataGridViewImageColumn(osf.DataGridViewImageColumn p1)
 		|        {
 		|            M_DataGridViewImageColumn = p1.M_DataGridViewImageColumn;
-		|        }
-		|
-		|        public DataGridViewImageColumn(System.Windows.Forms.DataGridViewImageColumn p1)
-		|        {
-		|            M_DataGridViewImageColumn = p1;
+		|            M_DataGridViewImageColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewImageColumn;
 		|        }
 		|
 		|        public osf.Bitmap Bitmap
 		|        {
-		|            get { return new osf.Bitmap(M_DataGridViewImageColumn.Image); }
-		|            set { M_DataGridViewImageColumn.Image = value.M_Bitmap; }
+		|            get { return new osf.Bitmap(M_DataGridViewImageColumn.Bitmap); }
+		|            set { M_DataGridViewImageColumn.Bitmap = value.M_Bitmap; }
+		|        }
+		|
+		|        public string Description
+		|        {
+		|            get { return M_DataGridViewImageColumn.Description; }
+		|            set { M_DataGridViewImageColumn.Description = value; }
 		|        }
 		|
 		|        public osf.Icon Icon
@@ -33516,33 +35010,17 @@
 		|            get { return new osf.Icon(M_DataGridViewImageColumn.Icon); }
 		|            set { M_DataGridViewImageColumn.Icon = (System.Drawing.Icon)value.M_Icon; }
 		|        }
-		|		
+		|
 		|        public int ImageLayout
 		|        {
 		|            get { return (int)M_DataGridViewImageColumn.ImageLayout; }
 		|            set { M_DataGridViewImageColumn.ImageLayout = (System.Windows.Forms.DataGridViewImageCellLayout)value; }
 		|        }
-		|		
+		|
 		|        public bool ValuesAreIcons
 		|        {
 		|            get { return M_DataGridViewImageColumn.ValuesAreIcons; }
 		|            set { M_DataGridViewImageColumn.ValuesAreIcons = value; }
-		|        }
-		|		
-		|        public string Description
-		|        {
-		|            get { return M_DataGridViewImageColumn.Description; }
-		|            set { M_DataGridViewImageColumn.Description = value; }
-		|        }
-		|
-		|        public System.Windows.Forms.DataGridViewImageColumn M_DataGridViewImageColumn
-		|        {
-		|            get { return m_DataGridViewImageColumn; }
-		|            set
-		|            {
-		|                m_DataGridViewImageColumn = value;
-		|                base.M_DataGridViewColumn = m_DataGridViewImageColumn;
-		|            }
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -33554,19 +35032,424 @@
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
 		|{
+		|    public class DataGridViewImageCellEx : System.Windows.Forms.DataGridViewImageCell, ISpannedCell
+		|    {
+		|        public osf.DataGridViewImageCell M_Object;
+		|
+		|        private int m_ColumnSpan = 1;
+		|        private int m_RowSpan = 1;
+		|        private DataGridViewImageCellEx m_OwnerCell;
+		|
+		|        public DataGridViewImageCellEx()
+		|        {
+		|        }
+		|
+		|        public DataGridViewImageCellEx(bool valueIsIcon) : base(valueIsIcon)
+		|        {
+		|        }
+		|
+		|        public int ColumnSpan
+		|        {
+		|            get { return m_ColumnSpan; }
+		|            set
+		|            {
+		|                if (DataGridView == null || m_OwnerCell != null)
+		|                {
+		|                    return;
+		|                }
+		|                if (value < 1 || ColumnIndex + value - 1 >= DataGridView.ColumnCount)
+		|                {
+		|                    throw new System.ArgumentOutOfRangeException(""value"");
+		|                }
+		|                if (m_ColumnSpan != value)
+		|                {
+		|                    SetSpan(value, m_RowSpan);
+		|                }
+		|            }
+		|        }
+		|
+		|        public int RowSpan
+		|        {
+		|            get { return m_RowSpan; }
+		|            set
+		|            {
+		|                if (DataGridView == null || m_OwnerCell != null)
+		|                {
+		|                    return;
+		|                }
+		|                if (value < 1 || RowIndex + value - 1 >= DataGridView.RowCount)
+		|                {
+		|                    throw new System.ArgumentOutOfRangeException(""value"");
+		|                }
+		|                if (m_RowSpan != value)
+		|                {
+		|                    SetSpan(m_ColumnSpan, value);
+		|                }
+		|            }
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewCell OwnerCell
+		|        {
+		|            get { return m_OwnerCell; }
+		|            private set { m_OwnerCell = value as DataGridViewImageCellEx; }
+		|        }
+		|
+		|        public override bool ReadOnly
+		|        {
+		|            get { return base.ReadOnly; }
+		|            set
+		|            {
+		|                base.ReadOnly = value;
+		|
+		|                if (m_OwnerCell == null && (m_ColumnSpan > 1 || m_RowSpan > 1) && DataGridView != null)
+		|                {
+		|                    foreach (var col in Enumerable.Range(ColumnIndex, m_ColumnSpan))
+		|                    {
+		|                        foreach (var row in Enumerable.Range(RowIndex, m_RowSpan))
+		|                        {
+		|                            if (col != ColumnIndex || row != RowIndex)
+		|                            {
+		|                                DataGridView[col, row].ReadOnly = value;
+		|                            }
+		|                        }
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        protected override void Paint(System.Drawing.Graphics graphics, System.Drawing.Rectangle clipBounds, System.Drawing.Rectangle cellBounds, int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue, string errorText, System.Windows.Forms.DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
+		|        {
+		|            if (m_OwnerCell != null && m_OwnerCell.DataGridView == null)
+		|            {
+		|                m_OwnerCell = null; // Ячейка-владелец была удалена.
+		|            }
+		|
+		|            if (DataGridView == null || (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1))
+		|            {
+		|                base.Paint(graphics, clipBounds, cellBounds, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
+		|                return;
+		|            }
+		|
+		|            var ownerCell = this;
+		|            var columnIndex = ColumnIndex;
+		|            var columnSpan = m_ColumnSpan;
+		|            var rowSpan = m_RowSpan;
+		|            if (m_OwnerCell != null)
+		|            {
+		|                ownerCell = m_OwnerCell;
+		|                columnIndex = m_OwnerCell.ColumnIndex;
+		|                rowIndex = m_OwnerCell.RowIndex;
+		|                columnSpan = m_OwnerCell.ColumnSpan;
+		|                rowSpan = m_OwnerCell.RowSpan;
+		|                value = m_OwnerCell.GetValue(rowIndex);
+		|                errorText = m_OwnerCell.GetErrorText(rowIndex);
+		|                cellState = m_OwnerCell.State;
+		|                cellStyle = m_OwnerCell.GetInheritedStyle(null, rowIndex, true);
+		|                formattedValue = m_OwnerCell.GetFormattedValue(value, rowIndex, ref cellStyle, null, null, DataGridViewDataErrorContexts.Display);
+		|            }
+		|
+		|            if (CellsRegionContainsSelectedCell(columnIndex, rowIndex, columnSpan, rowSpan))
+		|            {
+		|                cellState |= DataGridViewElementStates.Selected;
+		|            }
+		|
+		|            // Сохраним старые границы клипа.
+		|            System.Drawing.RectangleF oldBounds = graphics.ClipBounds;
+		|            var cellBounds2 = DataGridViewCellExHelper.GetSpannedCellBoundsFromChildCellBounds(this, cellBounds, DataGridView.SingleVerticalBorderAdded(), DataGridView.SingleHorizontalBorderAdded());
+		|            clipBounds = DataGridViewCellExHelper.GetSpannedCellClipBounds(ownerCell, cellBounds2, DataGridView.SingleVerticalBorderAdded(), DataGridView.SingleHorizontalBorderAdded());
+		|
+		|            advancedBorderStyle = DataGridViewCellExHelper.AdjustCellBorderStyle(ownerCell);
+		|
+		|            using (var g = this.DataGridView.CreateGraphics())
+		|            {
+		|                // Задайте для новых границ клипа границы, рассчитанные для объединенных строк.
+		|                g.SetClip(clipBounds);
+		|
+		|                // Нарисуйте содержимое.
+		|                ownerCell.NativePaint(g, clipBounds, cellBounds2, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts & ~DataGridViewPaintParts.Border);
+		|
+		|                // Нарисуйте границы.
+		|                if ((paintParts & DataGridViewPaintParts.Border) != DataGridViewPaintParts.None)
+		|                {
+		|                    var leftTopCell = ownerCell;
+		|                    var advancedBorderStyle2 = new DataGridViewAdvancedBorderStyle
+		|                    {
+		|                        Left = advancedBorderStyle.Left,
+		|                        Top = advancedBorderStyle.Top,
+		|                        Right = DataGridViewAdvancedCellBorderStyle.None,
+		|                        Bottom = DataGridViewAdvancedCellBorderStyle.None
+		|                    };
+		|                    leftTopCell.PaintBorder(g, clipBounds, cellBounds2, cellStyle, advancedBorderStyle2);
+		|
+		|                    var rightBottomCell = DataGridView[columnIndex + columnSpan - 1, rowIndex + rowSpan - 1] as DataGridViewImageCellEx ?? this;
+		|                    var advancedBorderStyle3 = new DataGridViewAdvancedBorderStyle
+		|                    {
+		|                        Left = DataGridViewAdvancedCellBorderStyle.None,
+		|                        Top = DataGridViewAdvancedCellBorderStyle.None,
+		|                        Right = advancedBorderStyle.Right,
+		|                        Bottom = advancedBorderStyle.Bottom
+		|                    };
+		|                    rightBottomCell.PaintBorder(g, clipBounds, cellBounds2, cellStyle, advancedBorderStyle3);
+		|                }
+		|            }
+		|
+		|            // Задайте для новых границ клипа границы, рассчитанные для объединенных строк.
+		|            graphics.SetClip(clipBounds);
+		|
+		|            // Нарисуйте содержимое.
+		|            ownerCell.NativePaint(graphics, clipBounds, cellBounds2, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts & ~DataGridViewPaintParts.Border);
+		|
+		|            // Нарисуйте границы.
+		|            if ((paintParts & DataGridViewPaintParts.Border) != DataGridViewPaintParts.None)
+		|            {
+		|                var leftTopCell = ownerCell;
+		|                var advancedBorderStyle2 = new DataGridViewAdvancedBorderStyle
+		|                {
+		|                    Left = advancedBorderStyle.Left,
+		|                    Top = advancedBorderStyle.Top,
+		|                    Right = DataGridViewAdvancedCellBorderStyle.None,
+		|                    Bottom = DataGridViewAdvancedCellBorderStyle.None
+		|                };
+		|                leftTopCell.PaintBorder(graphics, clipBounds, cellBounds2, cellStyle, advancedBorderStyle2);
+		|
+		|                var rightBottomCell = DataGridView[columnIndex + columnSpan - 1, rowIndex + rowSpan - 1] as DataGridViewImageCellEx ?? this;
+		|                var advancedBorderStyle3 = new DataGridViewAdvancedBorderStyle
+		|                {
+		|                    Left = DataGridViewAdvancedCellBorderStyle.None,
+		|                    Top = DataGridViewAdvancedCellBorderStyle.None,
+		|                    Right = advancedBorderStyle.Right,
+		|                    Bottom = advancedBorderStyle.Bottom
+		|                };
+		|                rightBottomCell.PaintBorder(graphics, clipBounds, cellBounds2, cellStyle, advancedBorderStyle3);
+		|            }
+		|
+		|            // Восстановите старые границы! В противном случае будет нарисована только объединенная строка.
+		|            graphics.SetClip(oldBounds);
+		|        }
+		|
+		|        private void NativePaint(
+		|            System.Drawing.Graphics graphics,
+		|            System.Drawing.Rectangle clipBounds,
+		|            System.Drawing.Rectangle cellBounds,
+		|            int rowIndex,
+		|            System.Windows.Forms.DataGridViewElementStates cellState,
+		|            object value,
+		|            object formattedValue,
+		|            string errorText,
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+		|            System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle,
+		|            System.Windows.Forms.DataGridViewPaintParts paintParts)
+		|        {
+		|            base.Paint(graphics, clipBounds, cellBounds, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
+		|        }
+		|
+		|        private void SetSpan(int columnSpan, int rowSpan)
+		|        {
+		|            int prevColumnSpan = m_ColumnSpan;
+		|            int prevRowSpan = m_RowSpan;
+		|            m_ColumnSpan = columnSpan;
+		|            m_RowSpan = rowSpan;
+		|
+		|            if (DataGridView != null)
+		|            {
+		|                // Очистка.
+		|                foreach (int rowIndex in Enumerable.Range(RowIndex, prevRowSpan))
+		|                {
+		|                    foreach (int columnIndex in Enumerable.Range(ColumnIndex, prevColumnSpan))
+		|                    {
+		|                        var cell = DataGridView[columnIndex, rowIndex] as DataGridViewImageCellEx;
+		|                        if (cell != null)
+		|                        {
+		|                            cell.OwnerCell = null;
+		|                        }
+		|                    }
+		|                }
+		|
+		|                // Установка.
+		|                foreach (int rowIndex in Enumerable.Range(RowIndex, m_RowSpan))
+		|                {
+		|                    foreach (int columnIndex in Enumerable.Range(ColumnIndex, m_ColumnSpan))
+		|                    {
+		|                        var cell = DataGridView[columnIndex, rowIndex] as DataGridViewImageCellEx;
+		|                        if (cell != null && cell != this)
+		|                        {
+		|                            if (cell.ColumnSpan > 1)
+		|                            {
+		|                                cell.ColumnSpan = 1;
+		|                            }
+		|                            if (cell.RowSpan > 1)
+		|                            {
+		|                                cell.RowSpan = 1;
+		|                            }
+		|
+		|                            // Удалим данные из объединяемых ячеек, кроме левой верхней ячейки.
+		|                            cell.Value = null;
+		|
+		|                            cell.OwnerCell = this;
+		|                        }
+		|                    }
+		|                }
+		|                OwnerCell = null;
+		|                DataGridView.Invalidate();
+		|            }
+		|        }
+		|
+		|        public override System.Drawing.Rectangle PositionEditingPanel(
+		|            System.Drawing.Rectangle cellBounds,
+		|            System.Drawing.Rectangle cellClip,
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+		|            bool singleVerticalBorderAdded,
+		|            bool singleHorizontalBorderAdded,
+		|            bool isFirstDisplayedColumn,
+		|            bool isFirstDisplayedRow)
+		|        {
+		|            if (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1)
+		|            {
+		|                return base.PositionEditingPanel(cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, isFirstDisplayedColumn, isFirstDisplayedRow);
+		|            }
+		|
+		|            var ownerCell = this;
+		|            if (m_OwnerCell != null)
+		|            {
+		|                var rowIndex = m_OwnerCell.RowIndex;
+		|                cellStyle = m_OwnerCell.GetInheritedStyle(null, rowIndex, true);
+		|                m_OwnerCell.GetFormattedValue(m_OwnerCell.Value, rowIndex, ref cellStyle, null, null, DataGridViewDataErrorContexts.Formatting);
+		|                var editingControl = DataGridView.EditingControl as IDataGridViewEditingControl;
+		|                if (editingControl != null)
+		|                {
+		|                    editingControl.ApplyCellStyleToEditingControl(cellStyle);
+		|                    var editingPanel = DataGridView.EditingControl.Parent;
+		|                    if (editingPanel != null)
+		|                    {
+		|                        editingPanel.BackColor = cellStyle.BackColor;
+		|                    }
+		|                }
+		|                ownerCell = m_OwnerCell;
+		|            }
+		|            cellBounds = DataGridViewCellExHelper.GetSpannedCellBoundsFromChildCellBounds(
+		|                this,
+		|                cellBounds,
+		|                singleVerticalBorderAdded,
+		|                singleHorizontalBorderAdded);
+		|            cellClip = DataGridViewCellExHelper.GetSpannedCellClipBounds(
+		|                ownerCell,
+		|                cellBounds,
+		|                singleVerticalBorderAdded,
+		|                singleHorizontalBorderAdded);
+		|            return base.PositionEditingPanel(cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, ownerCell.InFirstDisplayedColumn(), ownerCell.InFirstDisplayedRow());
+		|        }
+		|
+		|        protected override object GetValue(int rowIndex)
+		|        {
+		|            if (m_OwnerCell != null)
+		|            {
+		|                return m_OwnerCell.GetValue(m_OwnerCell.RowIndex);
+		|            }
+		|            return base.GetValue(rowIndex);
+		|        }
+		|
+		|        protected override bool SetValue(int rowIndex, object value)
+		|        {
+		|            if (m_OwnerCell != null)
+		|            {
+		|                return m_OwnerCell.SetValue(m_OwnerCell.RowIndex, value);
+		|            }
+		|            return base.SetValue(rowIndex, value);
+		|        }
+		|
+		|        protected override void OnDataGridViewChanged()
+		|        {
+		|            base.OnDataGridViewChanged();
+		|
+		|            if (DataGridView == null)
+		|            {
+		|                m_ColumnSpan = 1;
+		|                m_RowSpan = 1;
+		|            }
+		|        }
+		|
+		|        protected override System.Drawing.Rectangle BorderWidths(System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle)
+		|        {
+		|            if (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1)
+		|            {
+		|                return base.BorderWidths(advancedBorderStyle);
+		|            }
+		|
+		|            if (m_OwnerCell != null)
+		|            {
+		|                return m_OwnerCell.BorderWidths(advancedBorderStyle);
+		|            }
+		|
+		|            var leftTop = base.BorderWidths(advancedBorderStyle);
+		|            var rightBottomCell = DataGridView[ColumnIndex + ColumnSpan - 1, RowIndex + RowSpan - 1] as DataGridViewImageCellEx;
+		|            var rightBottom = rightBottomCell != null ? NativeBorderWidths(advancedBorderStyle) : leftTop;
+		|            return new System.Drawing.Rectangle(leftTop.X, leftTop.Y, rightBottom.Width, rightBottom.Height);
+		|        }
+		|
+		|        private System.Drawing.Rectangle NativeBorderWidths(System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle)
+		|        {
+		|            return base.BorderWidths(advancedBorderStyle);
+		|        }
+		|
+		|        protected override System.Drawing.Size GetPreferredSize(
+		|            System.Drawing.Graphics graphics,
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+		|            int rowIndex,
+		|            System.Drawing.Size constraintSize)
+		|        {
+		|            if (OwnerCell != null)
+		|            {
+		|                return new System.Drawing.Size(0, 0);
+		|            }
+		|            var size = base.GetPreferredSize(graphics, cellStyle, rowIndex, constraintSize);
+		|            var grid = DataGridView;
+		|            var width = size.Width - Enumerable.Range(ColumnIndex + 1, ColumnSpan - 1)
+		|                                           .Select(index => grid.Columns[index].Width)
+		|                                           .Sum();
+		|            var height = size.Height - Enumerable.Range(RowIndex + 1, RowSpan - 1)
+		|                                           .Select(index => grid.Rows[index].Height)
+		|                                           .Sum();
+		|            return new System.Drawing.Size(width, height);
+		|        }
+		|
+		|        private bool CellsRegionContainsSelectedCell(int columnIndex, int rowIndex, int columnSpan, int rowSpan)
+		|        {
+		|            if (DataGridView == null)
+		|            {
+		|                return false;
+		|            }
+		|
+		|            return (from col in Enumerable.Range(columnIndex, columnSpan)
+		|                    from row in Enumerable.Range(rowIndex, rowSpan)
+		|                    where DataGridView[col, row].Selected
+		|                    select col).Any();
+		|        }
+		|    }//endClass
+		|
 		|    public class DataGridViewImageCell : DataGridViewCell
 		|    {
 		|        public new ClDataGridViewImageCell dll_obj;
-		|        private System.Windows.Forms.DataGridViewImageCell m_DataGridViewImageCell;
-		|		
+		|        private DataGridViewImageCellEx M_DataGridViewImageCell;
+		|
 		|        public DataGridViewImageCell()
 		|        {
-		|            M_DataGridViewImageCell = new System.Windows.Forms.DataGridViewImageCell();
+		|            M_DataGridViewImageCell = new DataGridViewImageCellEx();
+		|            M_DataGridViewImageCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewImageCell;
 		|        }
 		|
-		|        public DataGridViewImageCell(System.Windows.Forms.DataGridViewImageCell p1)
+		|        public DataGridViewImageCell(osf.DataGridViewImageCell p1)
+		|        {
+		|            M_DataGridViewImageCell = p1.M_DataGridViewImageCell;
+		|            M_DataGridViewImageCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewImageCell;
+		|        }
+		|
+		|        public DataGridViewImageCell(DataGridViewImageCellEx p1)
 		|        {
 		|            M_DataGridViewImageCell = p1;
+		|            M_DataGridViewImageCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewImageCell;
 		|        }
 		|
 		|        public string Description
@@ -33575,26 +35458,16 @@
 		|            set { M_DataGridViewImageCell.Description = value; }
 		|        }
 		|
-		|        public bool ValueIsIcon
-		|        {
-		|            get { return M_DataGridViewImageCell.ValueIsIcon; }
-		|            set { M_DataGridViewImageCell.ValueIsIcon = value; }
-		|        }
-		|		
 		|        public int ImageLayout
 		|        {
 		|            get { return (int)M_DataGridViewImageCell.ImageLayout; }
 		|            set { M_DataGridViewImageCell.ImageLayout = (System.Windows.Forms.DataGridViewImageCellLayout)value; }
 		|        }
 		|
-		|        public System.Windows.Forms.DataGridViewImageCell M_DataGridViewImageCell
+		|        public bool ValueIsIcon
 		|        {
-		|            get { return m_DataGridViewImageCell; }
-		|            set
-		|            {
-		|                m_DataGridViewImageCell = value;
-		|                base.M_DataGridViewCell = m_DataGridViewImageCell;
-		|            }
+		|            get { return M_DataGridViewImageCell.ValueIsIcon; }
+		|            set { M_DataGridViewImageCell.ValueIsIcon = value; }
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -33606,14 +35479,26 @@
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
 		|{
+		|    public class DataGridViewComboBoxColumnEx : System.Windows.Forms.DataGridViewComboBoxColumn
+		|    {
+		|        public osf.DataGridViewComboBoxColumn M_Object;
+		|
+		|        public DataGridViewComboBoxColumnEx() : base()
+		|        {
+		|            this.CellTemplate = new DataGridViewComboBoxCellEx();
+		|        }
+		|    }//endClass
+		|
 		|    public class DataGridViewComboBoxColumn : DataGridViewColumn
 		|    {
 		|        public new ClDataGridViewComboBoxColumn dll_obj;
-		|        private System.Windows.Forms.DataGridViewComboBoxColumn m_DataGridViewComboBoxColumn;
-		|		
+		|        private DataGridViewComboBoxColumnEx M_DataGridViewComboBoxColumn;
+		|
 		|        public DataGridViewComboBoxColumn()
 		|        {
-		|            M_DataGridViewComboBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+		|            M_DataGridViewComboBoxColumn = new DataGridViewComboBoxColumnEx();
+		|            M_DataGridViewComboBoxColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewComboBoxColumn;
 		|            M_DataGridViewComboBoxColumn.DisplayMember = ""Text"";
 		|            M_DataGridViewComboBoxColumn.ValueMember = ""Value"";
 		|        }
@@ -33621,25 +35506,17 @@
 		|        public DataGridViewComboBoxColumn(osf.DataGridViewComboBoxColumn p1)
 		|        {
 		|            M_DataGridViewComboBoxColumn = p1.M_DataGridViewComboBoxColumn;
+		|            M_DataGridViewComboBoxColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewComboBoxColumn;
 		|        }
 		|
-		|        public DataGridViewComboBoxColumn(System.Windows.Forms.DataGridViewComboBoxColumn p1)
+		|        public DataGridViewComboBoxColumn(DataGridViewComboBoxColumnEx p1)
 		|        {
 		|            M_DataGridViewComboBoxColumn = p1;
+		|            M_DataGridViewComboBoxColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewComboBoxColumn;
 		|        }
 		|
-		|        public int DisplayStyle
-		|        {
-		|            get { return (int)M_DataGridViewComboBoxColumn.DisplayStyle; }
-		|            set { M_DataGridViewComboBoxColumn.DisplayStyle = (System.Windows.Forms.DataGridViewComboBoxDisplayStyle)value; }
-		|        }
-		|
-		|        public string ValueMember
-		|        {
-		|            get { return M_DataGridViewComboBoxColumn.ValueMember; }
-		|            set { M_DataGridViewComboBoxColumn.ValueMember = value; }
-		|        }
-		|		
 		|        public object DataSource
 		|        {
 		|            get
@@ -33672,22 +35549,16 @@
 		|            }
 		|        }
 		|
-		|        public int MaxDropDownItems
-		|        {
-		|            get { return M_DataGridViewComboBoxColumn.MaxDropDownItems; }
-		|            set { M_DataGridViewComboBoxColumn.MaxDropDownItems = value; }
-		|        }
-		|
 		|        public string DisplayMember
 		|        {
 		|            get { return M_DataGridViewComboBoxColumn.DisplayMember; }
 		|            set { M_DataGridViewComboBoxColumn.DisplayMember = value; }
 		|        }
 		|
-		|        public bool Sorted
+		|        public int DisplayStyle
 		|        {
-		|            get { return M_DataGridViewComboBoxColumn.Sorted; }
-		|            set { M_DataGridViewComboBoxColumn.Sorted = value; }
+		|            get { return (int)M_DataGridViewComboBoxColumn.DisplayStyle; }
+		|            set { M_DataGridViewComboBoxColumn.DisplayStyle = (System.Windows.Forms.DataGridViewComboBoxDisplayStyle)value; }
 		|        }
 		|
 		|        public int FlatStyle
@@ -33701,14 +35572,22 @@
 		|            get { return new DataGridViewComboBoxCellObjectCollection(M_DataGridViewComboBoxColumn.Items); }
 		|        }
 		|
-		|        public System.Windows.Forms.DataGridViewComboBoxColumn M_DataGridViewComboBoxColumn
+		|        public int MaxDropDownItems
 		|        {
-		|            get { return m_DataGridViewComboBoxColumn; }
-		|            set
-		|            {
-		|                m_DataGridViewComboBoxColumn = value;
-		|                base.M_DataGridViewColumn = m_DataGridViewComboBoxColumn;
-		|            }
+		|            get { return M_DataGridViewComboBoxColumn.MaxDropDownItems; }
+		|            set { M_DataGridViewComboBoxColumn.MaxDropDownItems = value; }
+		|        }
+		|
+		|        public bool Sorted
+		|        {
+		|            get { return M_DataGridViewComboBoxColumn.Sorted; }
+		|            set { M_DataGridViewComboBoxColumn.Sorted = value; }
+		|        }
+		|
+		|        public string ValueMember
+		|        {
+		|            get { return M_DataGridViewComboBoxColumn.ValueMember; }
+		|            set { M_DataGridViewComboBoxColumn.ValueMember = value; }
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -33720,63 +35599,422 @@
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
 		|{
+		|    public class DataGridViewComboBoxCellEx : System.Windows.Forms.DataGridViewComboBoxCell, ISpannedCell
+		|    {
+		|        public osf.DataGridViewComboBoxCell M_Object;
+		|
+		|        public DataGridViewComboBoxCellEx() : base()
+		|        {
+		|        }
+		|
+		|        private int m_ColumnSpan = 1;
+		|        private int m_RowSpan = 1;
+		|        private DataGridViewComboBoxCellEx m_OwnerCell;
+		|
+		|        public int ColumnSpan
+		|        {
+		|            get { return m_ColumnSpan; }
+		|            set
+		|            {
+		|                if (DataGridView == null || m_OwnerCell != null)
+		|                {
+		|                    return;
+		|                }
+		|                if (value < 1 || ColumnIndex + value - 1 >= DataGridView.ColumnCount)
+		|                {
+		|                    throw new System.ArgumentOutOfRangeException(""value"");
+		|                }
+		|                if (m_ColumnSpan != value)
+		|                {
+		|                    SetSpan(value, m_RowSpan);
+		|                }
+		|            }
+		|        }
+		|
+		|        public int RowSpan
+		|        {
+		|            get { return m_RowSpan; }
+		|            set
+		|            {
+		|                if (DataGridView == null || m_OwnerCell != null)
+		|                {
+		|                    return;
+		|                }
+		|                if (value < 1 || RowIndex + value - 1 >= DataGridView.RowCount)
+		|                {
+		|                    throw new System.ArgumentOutOfRangeException(""value"");
+		|                }
+		|                if (m_RowSpan != value)
+		|                {
+		|                    SetSpan(m_ColumnSpan, value);
+		|                }
+		|            }
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewCell OwnerCell
+		|        {
+		|            get { return m_OwnerCell; }
+		|            private set { m_OwnerCell = value as DataGridViewComboBoxCellEx; }
+		|        }
+		|
+		|        public override bool ReadOnly
+		|        {
+		|            get { return base.ReadOnly; }
+		|            set
+		|            {
+		|                base.ReadOnly = value;
+		|
+		|                if (m_OwnerCell == null && (m_ColumnSpan > 1 || m_RowSpan > 1) && DataGridView != null)
+		|                {
+		|                    foreach (var col in Enumerable.Range(ColumnIndex, m_ColumnSpan))
+		|                    {
+		|                        foreach (var row in Enumerable.Range(RowIndex, m_RowSpan))
+		|                        {
+		|                            if (col != ColumnIndex || row != RowIndex)
+		|                            {
+		|                                DataGridView[col, row].ReadOnly = value;
+		|                            }
+		|                        }
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        protected override void Paint(System.Drawing.Graphics graphics, System.Drawing.Rectangle clipBounds, System.Drawing.Rectangle cellBounds, int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue, string errorText, System.Windows.Forms.DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
+		|        {
+		|            if (m_OwnerCell != null && m_OwnerCell.DataGridView == null)
+		|            {
+		|                m_OwnerCell = null; // Ячейка-владелец была удалена.
+		|            }
+		|
+		|            if (DataGridView == null || (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1))
+		|            {
+		|                base.Paint(graphics, clipBounds, cellBounds, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
+		|                return;
+		|            }
+		|
+		|            var ownerCell = this;
+		|            var columnIndex = ColumnIndex;
+		|            var columnSpan = m_ColumnSpan;
+		|            var rowSpan = m_RowSpan;
+		|            if (m_OwnerCell != null)
+		|            {
+		|                ownerCell = m_OwnerCell;
+		|                columnIndex = m_OwnerCell.ColumnIndex;
+		|                rowIndex = m_OwnerCell.RowIndex;
+		|                columnSpan = m_OwnerCell.ColumnSpan;
+		|                rowSpan = m_OwnerCell.RowSpan;
+		|                value = m_OwnerCell.GetValue(rowIndex);
+		|                errorText = m_OwnerCell.GetErrorText(rowIndex);
+		|                cellState = m_OwnerCell.State;
+		|                cellStyle = m_OwnerCell.GetInheritedStyle(null, rowIndex, true);
+		|                formattedValue = m_OwnerCell.GetFormattedValue(value, rowIndex, ref cellStyle, null, null, DataGridViewDataErrorContexts.Display);
+		|            }
+		|
+		|            if (CellsRegionContainsSelectedCell(columnIndex, rowIndex, columnSpan, rowSpan))
+		|            {
+		|                cellState |= DataGridViewElementStates.Selected;
+		|            }
+		|
+		|            // Сохраним старые границы клипа.
+		|            System.Drawing.RectangleF oldBounds = graphics.ClipBounds;
+		|            var cellBounds2 = DataGridViewCellExHelper.GetSpannedCellBoundsFromChildCellBounds(this, cellBounds, DataGridView.SingleVerticalBorderAdded(), DataGridView.SingleHorizontalBorderAdded());
+		|            clipBounds = DataGridViewCellExHelper.GetSpannedCellClipBounds(ownerCell, cellBounds2, DataGridView.SingleVerticalBorderAdded(), DataGridView.SingleHorizontalBorderAdded());
+		|            advancedBorderStyle = DataGridViewCellExHelper.AdjustCellBorderStyle(ownerCell);
+		|            using (var g = this.DataGridView.CreateGraphics())
+		|            {
+		|                // Задайте для новых границ клипа границы, рассчитанные для объединенных строк.
+		|                g.SetClip(clipBounds);
+		|
+		|                // Нарисуйте содержимое.
+		|                ownerCell.NativePaint(g, clipBounds, cellBounds2, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts & ~DataGridViewPaintParts.Border);
+		|
+		|                // Нарисуйте границы.
+		|                if ((paintParts & DataGridViewPaintParts.Border) != DataGridViewPaintParts.None)
+		|                {
+		|                    var leftTopCell = ownerCell;
+		|                    var advancedBorderStyle2 = new DataGridViewAdvancedBorderStyle
+		|                    {
+		|                        Left = advancedBorderStyle.Left,
+		|                        Top = advancedBorderStyle.Top,
+		|                        Right = DataGridViewAdvancedCellBorderStyle.None,
+		|                        Bottom = DataGridViewAdvancedCellBorderStyle.None
+		|                    };
+		|                    leftTopCell.PaintBorder(g, clipBounds, cellBounds2, cellStyle, advancedBorderStyle2);
+		|
+		|                    var rightBottomCell = DataGridView[columnIndex + columnSpan - 1, rowIndex + rowSpan - 1] as DataGridViewComboBoxCellEx ?? this;
+		|                    var advancedBorderStyle3 = new DataGridViewAdvancedBorderStyle
+		|                    {
+		|                        Left = DataGridViewAdvancedCellBorderStyle.None,
+		|                        Top = DataGridViewAdvancedCellBorderStyle.None,
+		|                        Right = advancedBorderStyle.Right,
+		|                        Bottom = advancedBorderStyle.Bottom
+		|                    };
+		|                    rightBottomCell.PaintBorder(g, clipBounds, cellBounds2, cellStyle, advancedBorderStyle3);
+		|                }
+		|            }
+		|
+		|            // Задайте для новых границ клипа границы, рассчитанные для объединенных строк.
+		|            graphics.SetClip(clipBounds);
+		|
+		|            // Нарисуйте содержимое.
+		|            ownerCell.NativePaint(graphics, clipBounds, cellBounds2, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts & ~DataGridViewPaintParts.Border);
+		|
+		|            // Нарисуйте границы.
+		|            if ((paintParts & DataGridViewPaintParts.Border) != DataGridViewPaintParts.None)
+		|            {
+		|                var leftTopCell = ownerCell;
+		|                var advancedBorderStyle2 = new DataGridViewAdvancedBorderStyle
+		|                {
+		|                    Left = advancedBorderStyle.Left,
+		|                    Top = advancedBorderStyle.Top,
+		|                    Right = DataGridViewAdvancedCellBorderStyle.None,
+		|                    Bottom = DataGridViewAdvancedCellBorderStyle.None
+		|                };
+		|                leftTopCell.PaintBorder(graphics, clipBounds, cellBounds2, cellStyle, advancedBorderStyle2);
+		|
+		|                var rightBottomCell = DataGridView[columnIndex + columnSpan - 1, rowIndex + rowSpan - 1] as DataGridViewComboBoxCellEx ?? this;
+		|                var advancedBorderStyle3 = new DataGridViewAdvancedBorderStyle
+		|                {
+		|                    Left = DataGridViewAdvancedCellBorderStyle.None,
+		|                    Top = DataGridViewAdvancedCellBorderStyle.None,
+		|                    Right = advancedBorderStyle.Right,
+		|                    Bottom = advancedBorderStyle.Bottom
+		|                };
+		|                rightBottomCell.PaintBorder(graphics, clipBounds, cellBounds2, cellStyle, advancedBorderStyle3);
+		|            }
+		|
+		|            // Восстановите старые границы! В противном случае будет нарисована только объединенная строка, а всё что следует далее нарисовано не будет.
+		|            graphics.SetClip(oldBounds);
+		|        }
+		|
+		|        private void NativePaint(
+		|            System.Drawing.Graphics graphics,
+		|            System.Drawing.Rectangle clipBounds,
+		|            System.Drawing.Rectangle cellBounds,
+		|            int rowIndex,
+		|            System.Windows.Forms.DataGridViewElementStates cellState,
+		|            object value,
+		|            object formattedValue,
+		|            string errorText,
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+		|            System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle,
+		|            System.Windows.Forms.DataGridViewPaintParts paintParts)
+		|        {
+		|            base.Paint(graphics, clipBounds, cellBounds, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
+		|        }
+		|
+		|        private void SetSpan(int columnSpan, int rowSpan)
+		|        {
+		|            int prevColumnSpan = m_ColumnSpan;
+		|            int prevRowSpan = m_RowSpan;
+		|            m_ColumnSpan = columnSpan;
+		|            m_RowSpan = rowSpan;
+		|
+		|            if (DataGridView != null)
+		|            {
+		|                // Очистка.
+		|                foreach (int rowIndex in Enumerable.Range(RowIndex, prevRowSpan))
+		|                {
+		|                    foreach (int columnIndex in Enumerable.Range(ColumnIndex, prevColumnSpan))
+		|                    {
+		|                        var cell = DataGridView[columnIndex, rowIndex] as DataGridViewComboBoxCellEx;
+		|                        if (cell != null)
+		|                        {
+		|                            cell.OwnerCell = null;
+		|                        }
+		|                    }
+		|                }
+		|
+		|                // Установка.
+		|                foreach (int rowIndex in Enumerable.Range(RowIndex, m_RowSpan))
+		|                {
+		|                    foreach (int columnIndex in Enumerable.Range(ColumnIndex, m_ColumnSpan))
+		|                    {
+		|                        var cell = DataGridView[columnIndex, rowIndex] as DataGridViewComboBoxCellEx;
+		|                        if (cell != null && cell != this)
+		|                        {
+		|                            if (cell.ColumnSpan > 1)
+		|                            {
+		|                                cell.ColumnSpan = 1;
+		|                            }
+		|                            if (cell.RowSpan > 1)
+		|                            {
+		|                                cell.RowSpan = 1;
+		|                            }
+		|
+		|                            // Удалим данные из объединяемых ячеек, кроме левой верхней ячейки.
+		|                            cell.Value = null;
+		|
+		|                            cell.OwnerCell = this;
+		|                        }
+		|                    }
+		|                }
+		|                OwnerCell = null;
+		|                DataGridView.Invalidate();
+		|            }
+		|        }
+		|
+		|        public override System.Drawing.Rectangle PositionEditingPanel(
+		|            System.Drawing.Rectangle cellBounds,
+		|            System.Drawing.Rectangle cellClip,
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+		|            bool singleVerticalBorderAdded,
+		|            bool singleHorizontalBorderAdded,
+		|            bool isFirstDisplayedColumn,
+		|            bool isFirstDisplayedRow)
+		|        {
+		|            if (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1)
+		|            {
+		|                return base.PositionEditingPanel(cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, isFirstDisplayedColumn, isFirstDisplayedRow);
+		|            }
+		|
+		|            var ownerCell = this;
+		|            if (m_OwnerCell != null)
+		|            {
+		|                var rowIndex = m_OwnerCell.RowIndex;
+		|                cellStyle = m_OwnerCell.GetInheritedStyle(null, rowIndex, true);
+		|                m_OwnerCell.GetFormattedValue(m_OwnerCell.Value, rowIndex, ref cellStyle, null, null, DataGridViewDataErrorContexts.Formatting);
+		|                var editingControl = DataGridView.EditingControl as IDataGridViewEditingControl;
+		|                if (editingControl != null)
+		|                {
+		|                    editingControl.ApplyCellStyleToEditingControl(cellStyle);
+		|                    var editingPanel = DataGridView.EditingControl.Parent;
+		|                    if (editingPanel != null)
+		|                    {
+		|                        editingPanel.BackColor = cellStyle.BackColor;
+		|                    }
+		|                }
+		|                ownerCell = m_OwnerCell;
+		|            }
+		|            cellBounds = DataGridViewCellExHelper.GetSpannedCellBoundsFromChildCellBounds(
+		|                this,
+		|                cellBounds,
+		|                singleVerticalBorderAdded,
+		|                singleHorizontalBorderAdded);
+		|            cellClip = DataGridViewCellExHelper.GetSpannedCellClipBounds(
+		|                ownerCell,
+		|                cellBounds,
+		|                singleVerticalBorderAdded,
+		|                singleHorizontalBorderAdded);
+		|            return base.PositionEditingPanel(cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, ownerCell.InFirstDisplayedColumn(), ownerCell.InFirstDisplayedRow());
+		|        }
+		|
+		|        protected override object GetValue(int rowIndex)
+		|        {
+		|            if (m_OwnerCell != null)
+		|            {
+		|                return m_OwnerCell.GetValue(m_OwnerCell.RowIndex);
+		|            }
+		|            return base.GetValue(rowIndex);
+		|        }
+		|
+		|        protected override bool SetValue(int rowIndex, object value)
+		|        {
+		|            if (m_OwnerCell != null)
+		|            {
+		|                return m_OwnerCell.SetValue(m_OwnerCell.RowIndex, value);
+		|            }
+		|            return base.SetValue(rowIndex, value);
+		|        }
+		|
+		|        protected override void OnDataGridViewChanged()
+		|        {
+		|            base.OnDataGridViewChanged();
+		|
+		|            if (DataGridView == null)
+		|            {
+		|                m_ColumnSpan = 1;
+		|                m_RowSpan = 1;
+		|            }
+		|        }
+		|
+		|        protected override System.Drawing.Rectangle BorderWidths(System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle)
+		|        {
+		|            if (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1)
+		|            {
+		|                return base.BorderWidths(advancedBorderStyle);
+		|            }
+		|
+		|            if (m_OwnerCell != null)
+		|            {
+		|                return m_OwnerCell.BorderWidths(advancedBorderStyle);
+		|            }
+		|
+		|            var leftTop = base.BorderWidths(advancedBorderStyle);
+		|            var rightBottomCell = DataGridView[ColumnIndex + ColumnSpan - 1, RowIndex + RowSpan - 1] as DataGridViewComboBoxCellEx;
+		|            var rightBottom = rightBottomCell != null ? NativeBorderWidths(advancedBorderStyle) : leftTop;
+		|            return new System.Drawing.Rectangle(leftTop.X, leftTop.Y, rightBottom.Width, rightBottom.Height);
+		|        }
+		|
+		|        private System.Drawing.Rectangle NativeBorderWidths(System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle)
+		|        {
+		|            return base.BorderWidths(advancedBorderStyle);
+		|        }
+		|
+		|        protected override System.Drawing.Size GetPreferredSize(
+		|            System.Drawing.Graphics graphics,
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+		|            int rowIndex,
+		|            System.Drawing.Size constraintSize)
+		|        {
+		|            if (OwnerCell != null)
+		|            {
+		|                return new System.Drawing.Size(0, 0);
+		|            }
+		|            var size = base.GetPreferredSize(graphics, cellStyle, rowIndex, constraintSize);
+		|            var grid = DataGridView;
+		|            var width = size.Width - Enumerable.Range(ColumnIndex + 1, ColumnSpan - 1)
+		|                                           .Select(index => grid.Columns[index].Width)
+		|                                           .Sum();
+		|            var height = size.Height - Enumerable.Range(RowIndex + 1, RowSpan - 1)
+		|                                           .Select(index => grid.Rows[index].Height)
+		|                                           .Sum();
+		|            return new System.Drawing.Size(width, height);
+		|        }
+		|
+		|        private bool CellsRegionContainsSelectedCell(int columnIndex, int rowIndex, int columnSpan, int rowSpan)
+		|        {
+		|            if (DataGridView == null)
+		|            {
+		|                return false;
+		|            }
+		|
+		|            return (from col in Enumerable.Range(columnIndex, columnSpan)
+		|                    from row in Enumerable.Range(rowIndex, rowSpan)
+		|                    where DataGridView[col, row].Selected
+		|                    select col).Any();
+		|        }
+		|    }//endClass
+		|
 		|    public class DataGridViewComboBoxCell : DataGridViewCell
 		|    {
 		|        public new ClDataGridViewComboBoxCell dll_obj;
-		|        private System.Windows.Forms.DataGridViewComboBoxCell m_DataGridViewComboBoxCell;
-		|		
+		|        private DataGridViewComboBoxCellEx M_DataGridViewComboBoxCell;
+		|
 		|        public DataGridViewComboBoxCell()
 		|        {
-		|            M_DataGridViewComboBoxCell = new System.Windows.Forms.DataGridViewComboBoxCell();
+		|            M_DataGridViewComboBoxCell = new DataGridViewComboBoxCellEx();
+		|            M_DataGridViewComboBoxCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewComboBoxCell;
 		|            M_DataGridViewComboBoxCell.DisplayMember = ""Text"";
 		|            M_DataGridViewComboBoxCell.ValueMember = ""Value"";
 		|        }
 		|
-		|        public DataGridViewComboBoxCell(System.Windows.Forms.DataGridViewComboBoxCell p1)
+		|        public DataGridViewComboBoxCell(osf.DataGridViewComboBoxCell p1)
+		|        {
+		|            M_DataGridViewComboBoxCell = p1.M_DataGridViewComboBoxCell;
+		|            M_DataGridViewComboBoxCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewComboBoxCell;
+		|        }
+		|
+		|        public DataGridViewComboBoxCell(DataGridViewComboBoxCellEx p1)
 		|        {
 		|            M_DataGridViewComboBoxCell = p1;
+		|            M_DataGridViewComboBoxCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewComboBoxCell;
 		|        }
 		|
-		|        public int DisplayStyle
-		|        {
-		|            get { return (int)M_DataGridViewComboBoxCell.DisplayStyle; }
-		|            set { M_DataGridViewComboBoxCell.DisplayStyle = (System.Windows.Forms.DataGridViewComboBoxDisplayStyle)value; }
-		|        }
-		|
-		|        public System.Windows.Forms.DataGridViewComboBoxCell M_DataGridViewComboBoxCell
-		|        {
-		|            get { return m_DataGridViewComboBoxCell; }
-		|            set
-		|            {
-		|                m_DataGridViewComboBoxCell = value;
-		|                base.M_DataGridViewCell = m_DataGridViewComboBoxCell;
-		|            }
-		|        }
-		|		
-		|        public int MaxDropDownItems
-		|        {
-		|            get { return M_DataGridViewComboBoxCell.MaxDropDownItems; }
-		|            set { M_DataGridViewComboBoxCell.MaxDropDownItems = value; }
-		|        }
-		|		
-		|        public string DisplayMember
-		|        {
-		|            get { return M_DataGridViewComboBoxCell.DisplayMember; }
-		|            set { M_DataGridViewComboBoxCell.DisplayMember = value; }
-		|        }
-		|		
-		|        public bool Sorted
-		|        {
-		|            get { return M_DataGridViewComboBoxCell.Sorted; }
-		|            set { M_DataGridViewComboBoxCell.Sorted = value; }
-		|        }
-		|		
-		|        public string ValueMember
-		|        {
-		|            get { return M_DataGridViewComboBoxCell.ValueMember; }
-		|            set { M_DataGridViewComboBoxCell.ValueMember = value; }
-		|        }
-		|		
 		|        public object DataSource
 		|        {
 		|            get
@@ -33808,16 +36046,46 @@
 		|                }
 		|            }
 		|        }
-		|		
-		|        public osf.DataGridViewComboBoxCellObjectCollection Items
+		|
+		|        public string DisplayMember
 		|        {
-		|            get { return new DataGridViewComboBoxCellObjectCollection(M_DataGridViewComboBoxCell.Items); }
+		|            get { return M_DataGridViewComboBoxCell.DisplayMember; }
+		|            set { M_DataGridViewComboBoxCell.DisplayMember = value; }
 		|        }
-		|		
+		|
+		|        public int DisplayStyle
+		|        {
+		|            get { return (int)M_DataGridViewComboBoxCell.DisplayStyle; }
+		|            set { M_DataGridViewComboBoxCell.DisplayStyle = (System.Windows.Forms.DataGridViewComboBoxDisplayStyle)value; }
+		|        }
+		|
 		|        public int FlatStyle
 		|        {
 		|            get { return (int)M_DataGridViewComboBoxCell.FlatStyle; }
 		|            set { M_DataGridViewComboBoxCell.FlatStyle = (System.Windows.Forms.FlatStyle)value; }
+		|        }
+		|
+		|        public osf.DataGridViewComboBoxCellObjectCollection Items
+		|        {
+		|            get { return new DataGridViewComboBoxCellObjectCollection(M_DataGridViewComboBoxCell.Items); }
+		|        }
+		|
+		|        public int MaxDropDownItems
+		|        {
+		|            get { return M_DataGridViewComboBoxCell.MaxDropDownItems; }
+		|            set { M_DataGridViewComboBoxCell.MaxDropDownItems = value; }
+		|        }
+		|
+		|        public bool Sorted
+		|        {
+		|            get { return M_DataGridViewComboBoxCell.Sorted; }
+		|            set { M_DataGridViewComboBoxCell.Sorted = value; }
+		|        }
+		|
+		|        public string ValueMember
+		|        {
+		|            get { return M_DataGridViewComboBoxCell.ValueMember; }
+		|            set { M_DataGridViewComboBoxCell.ValueMember = value; }
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -33907,24 +36175,58 @@
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
 		|{
+		|    public class DataGridViewCheckBoxColumnEx : System.Windows.Forms.DataGridViewCheckBoxColumn
+		|    {
+		|        public osf.DataGridViewCheckBoxColumn M_Object;
+		|
+		|        public DataGridViewCheckBoxColumnEx() : base()
+		|        {
+		|            this.CellTemplate = new DataGridViewCheckBoxCellEx();
+		|        }
+		|    }//endClass
+		|
 		|    public class DataGridViewCheckBoxColumn : DataGridViewColumn
 		|    {
 		|        public new ClDataGridViewCheckBoxColumn dll_obj;
-		|        private System.Windows.Forms.DataGridViewCheckBoxColumn m_DataGridViewCheckBoxColumn;
-		|		
+		|        private DataGridViewCheckBoxColumnEx M_DataGridViewCheckBoxColumn;
+		|
 		|        public DataGridViewCheckBoxColumn()
 		|        {
-		|            M_DataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+		|            M_DataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumnEx();
+		|            M_DataGridViewCheckBoxColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewCheckBoxColumn;
 		|        }
 		|
 		|        public DataGridViewCheckBoxColumn(osf.DataGridViewCheckBoxColumn p1)
 		|        {
 		|            M_DataGridViewCheckBoxColumn = p1.M_DataGridViewCheckBoxColumn;
+		|            M_DataGridViewCheckBoxColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewCheckBoxColumn;
 		|        }
 		|
-		|        public DataGridViewCheckBoxColumn(System.Windows.Forms.DataGridViewCheckBoxColumn p1)
+		|        public DataGridViewCheckBoxColumn(DataGridViewCheckBoxColumnEx p1)
 		|        {
 		|            M_DataGridViewCheckBoxColumn = p1;
+		|            M_DataGridViewCheckBoxColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewCheckBoxColumn;
+		|        }
+		|
+		|        public object FalseValue
+		|        {
+		|            get { return M_DataGridViewCheckBoxColumn.FalseValue; }
+		|            set { M_DataGridViewCheckBoxColumn.FalseValue = value; }
+		|        }
+		|
+		|        public int FlatStyle
+		|        {
+		|            get { return (int)M_DataGridViewCheckBoxColumn.FlatStyle; }
+		|            set { M_DataGridViewCheckBoxColumn.FlatStyle = (System.Windows.Forms.FlatStyle)value; }
+		|        }
+		|
+		|        public object IndeterminateValue
+		|        {
+		|            get { return M_DataGridViewCheckBoxColumn.IndeterminateValue; }
+		|            set { M_DataGridViewCheckBoxColumn.IndeterminateValue = value; }
 		|        }
 		|
 		|        public bool ThreeState
@@ -33932,39 +36234,11 @@
 		|            get { return M_DataGridViewCheckBoxColumn.ThreeState; }
 		|            set { M_DataGridViewCheckBoxColumn.ThreeState = value; }
 		|        }
-		|		
-		|        public object IndeterminateValue
-		|        {
-		|            get { return M_DataGridViewCheckBoxColumn.IndeterminateValue; }
-		|            set { M_DataGridViewCheckBoxColumn.IndeterminateValue = value; }
-		|        }
-		|		
-		|        public object FalseValue
-		|        {
-		|            get { return M_DataGridViewCheckBoxColumn.FalseValue; }
-		|            set { M_DataGridViewCheckBoxColumn.FalseValue = value; }
-		|        }
 		|
 		|        public object TrueValue
 		|        {
 		|            get { return M_DataGridViewCheckBoxColumn.TrueValue; }
 		|            set { M_DataGridViewCheckBoxColumn.TrueValue = value; }
-		|        }
-		|		
-		|        public int FlatStyle
-		|        {
-		|            get { return (int)M_DataGridViewCheckBoxColumn.FlatStyle; }
-		|            set { M_DataGridViewCheckBoxColumn.FlatStyle = (System.Windows.Forms.FlatStyle)value; }
-		|        }
-		|
-		|        public System.Windows.Forms.DataGridViewCheckBoxColumn M_DataGridViewCheckBoxColumn
-		|        {
-		|            get { return m_DataGridViewCheckBoxColumn; }
-		|            set
-		|            {
-		|                m_DataGridViewCheckBoxColumn = value;
-		|                base.M_DataGridViewColumn = m_DataGridViewCheckBoxColumn;
-		|            }
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -33976,19 +36250,467 @@
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
 		|{
+		|    public class DataGridViewCheckBoxCellEx : System.Windows.Forms.DataGridViewCheckBoxCell, ISpannedCell
+		|    {
+		|        public osf.DataGridViewCheckBoxCell M_Object;
+		|
+		|        public DataGridViewCheckBoxCellEx() : base()
+		|        {
+		|        }
+		|		
+		|        protected override void OnClick(System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        {
+		|            DataGridViewCheckBoxCellEx cell1 = (DataGridViewCheckBoxCellEx)DataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+		|            if (cell1.ColumnSpan > 1 || cell1.RowSpan > 1 || cell1.OwnerCell != null) // Ячейка в составе объединенных ячеек.
+		|            {
+		|                return;
+		|            }
+		|            else
+		|            {
+		|                base.OnClick(e);
+		|            }
+		|        }
+		|
+		|        protected override void OnContentClick(System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        {
+		|            //Пусть флажок изменяет значение только по двойному клику.
+		|            return;
+		|        }
+		|
+		|        protected override void OnContentDoubleClick(System.Windows.Forms.DataGridViewCellEventArgs e)
+		|        {
+		|            DataGridViewCheckBoxCellEx cell1 = (DataGridViewCheckBoxCellEx)DataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+		|            if (cell1.ColumnSpan > 1 || cell1.RowSpan > 1 || cell1.OwnerCell != null) // Ячейка в составе объединенных ячеек.
+		|            {
+		|                return;
+		|            }
+		|            else
+		|            {
+		|                base.OnContentDoubleClick(e);
+		|            }
+		|        }
+		|
+		|        private int m_ColumnSpan = 1;
+		|        private int m_RowSpan = 1;
+		|        private DataGridViewCheckBoxCellEx m_OwnerCell;
+		|
+		|        public int ColumnSpan
+		|        {
+		|            get { return m_ColumnSpan; }
+		|            set
+		|            {
+		|                if (DataGridView == null || m_OwnerCell != null)
+		|                {
+		|                    return;
+		|                }
+		|                if (value < 1 || ColumnIndex + value - 1 >= DataGridView.ColumnCount)
+		|                {
+		|                    throw new System.ArgumentOutOfRangeException(""value"");
+		|                }
+		|                if (m_ColumnSpan != value)
+		|                {
+		|                    SetSpan(value, m_RowSpan);
+		|                }
+		|            }
+		|        }
+		|
+		|        public int RowSpan
+		|        {
+		|            get { return m_RowSpan; }
+		|            set
+		|            {
+		|                if (DataGridView == null || m_OwnerCell != null)
+		|                {
+		|                    return;
+		|                }
+		|                if (value < 1 || RowIndex + value - 1 >= DataGridView.RowCount)
+		|                {
+		|                    throw new System.ArgumentOutOfRangeException(""value"");
+		|                }
+		|                if (m_RowSpan != value)
+		|                {
+		|                    SetSpan(m_ColumnSpan, value);
+		|                }
+		|            }
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewCell OwnerCell
+		|        {
+		|            get { return m_OwnerCell; }
+		|            private set { m_OwnerCell = value as DataGridViewCheckBoxCellEx; }
+		|        }
+		|
+		|        public override bool ReadOnly
+		|        {
+		|            get { return base.ReadOnly; }
+		|            set
+		|            {
+		|                base.ReadOnly = value;
+		|
+		|                if (m_OwnerCell == null && (m_ColumnSpan > 1 || m_RowSpan > 1) && DataGridView != null)
+		|                {
+		|                    foreach (var col in Enumerable.Range(ColumnIndex, m_ColumnSpan))
+		|                    {
+		|                        foreach (var row in Enumerable.Range(RowIndex, m_RowSpan))
+		|                        {
+		|                            if (col != ColumnIndex || row != RowIndex)
+		|                            {
+		|                                DataGridView[col, row].ReadOnly = value;
+		|                            }
+		|                        }
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        protected override void Paint(System.Drawing.Graphics graphics, System.Drawing.Rectangle clipBounds, System.Drawing.Rectangle cellBounds, int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue, string errorText, System.Windows.Forms.DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
+		|        {
+		|            if (m_OwnerCell != null && m_OwnerCell.DataGridView == null)
+		|            {
+		|                m_OwnerCell = null; // Ячейка-владелец была удалена.
+		|            }
+		|
+		|            if (DataGridView == null || (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1))
+		|            {
+		|                base.Paint(graphics, clipBounds, cellBounds, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
+		|                return;
+		|            }
+		|
+		|            var ownerCell = this;
+		|            var columnIndex = ColumnIndex;
+		|            var columnSpan = m_ColumnSpan;
+		|            var rowSpan = m_RowSpan;
+		|            if (m_OwnerCell != null)
+		|            {
+		|                ownerCell = m_OwnerCell;
+		|                columnIndex = m_OwnerCell.ColumnIndex;
+		|                rowIndex = m_OwnerCell.RowIndex;
+		|                columnSpan = m_OwnerCell.ColumnSpan;
+		|                rowSpan = m_OwnerCell.RowSpan;
+		|                value = m_OwnerCell.GetValue(rowIndex);
+		|                errorText = m_OwnerCell.GetErrorText(rowIndex);
+		|                cellState = m_OwnerCell.State;
+		|                cellStyle = m_OwnerCell.GetInheritedStyle(null, rowIndex, true);
+		|                formattedValue = m_OwnerCell.GetFormattedValue(value, rowIndex, ref cellStyle, null, null, DataGridViewDataErrorContexts.Display);
+		|            }
+		|
+		|            if (CellsRegionContainsSelectedCell(columnIndex, rowIndex, columnSpan, rowSpan))
+		|            {
+		|                cellState |= DataGridViewElementStates.Selected;
+		|            }
+		|
+		|            // Сохраним старые границы клипа.
+		|            System.Drawing.RectangleF oldBounds = graphics.ClipBounds;
+		|            var cellBounds2 = DataGridViewCellExHelper.GetSpannedCellBoundsFromChildCellBounds(this, cellBounds, DataGridView.SingleVerticalBorderAdded(), DataGridView.SingleHorizontalBorderAdded());
+		|            clipBounds = DataGridViewCellExHelper.GetSpannedCellClipBounds(ownerCell, cellBounds2, DataGridView.SingleVerticalBorderAdded(), DataGridView.SingleHorizontalBorderAdded());
+		|            advancedBorderStyle = DataGridViewCellExHelper.AdjustCellBorderStyle(ownerCell);
+		|            using (var g = this.DataGridView.CreateGraphics())
+		|            {
+		|                // Задайте для новых границ клипа границы, рассчитанные для объединенных строк.
+		|                g.SetClip(clipBounds);
+		|
+		|                // Нарисуйте содержимое.
+		|                ownerCell.NativePaint(g, clipBounds, cellBounds2, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts & ~DataGridViewPaintParts.Border);
+		|
+		|                // Нарисуйте границы.
+		|                if ((paintParts & DataGridViewPaintParts.Border) != DataGridViewPaintParts.None)
+		|                {
+		|                    var leftTopCell = ownerCell;
+		|                    var advancedBorderStyle2 = new DataGridViewAdvancedBorderStyle
+		|                    {
+		|                        Left = advancedBorderStyle.Left,
+		|                        Top = advancedBorderStyle.Top,
+		|                        Right = DataGridViewAdvancedCellBorderStyle.None,
+		|                        Bottom = DataGridViewAdvancedCellBorderStyle.None
+		|                    };
+		|                    leftTopCell.PaintBorder(g, clipBounds, cellBounds2, cellStyle, advancedBorderStyle2);
+		|
+		|                    var rightBottomCell = DataGridView[columnIndex + columnSpan - 1, rowIndex + rowSpan - 1] as DataGridViewCheckBoxCellEx ?? this;
+		|                    var advancedBorderStyle3 = new DataGridViewAdvancedBorderStyle
+		|                    {
+		|                        Left = DataGridViewAdvancedCellBorderStyle.None,
+		|                        Top = DataGridViewAdvancedCellBorderStyle.None,
+		|                        Right = advancedBorderStyle.Right,
+		|                        Bottom = advancedBorderStyle.Bottom
+		|                    };
+		|                    rightBottomCell.PaintBorder(g, clipBounds, cellBounds2, cellStyle, advancedBorderStyle3);
+		|                }
+		|            }
+		|
+		|            // Задайте для новых границ клипа границы, рассчитанные для объединенных строк.
+		|            graphics.SetClip(clipBounds);
+		|
+		|            // Нарисуйте содержимое.
+		|            ownerCell.NativePaint(graphics, clipBounds, cellBounds2, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts & ~DataGridViewPaintParts.Border);
+		|
+		|            // Нарисуйте границы.
+		|            if ((paintParts & DataGridViewPaintParts.Border) != DataGridViewPaintParts.None)
+		|            {
+		|                var leftTopCell = ownerCell;
+		|                var advancedBorderStyle2 = new DataGridViewAdvancedBorderStyle
+		|                {
+		|                    Left = advancedBorderStyle.Left,
+		|                    Top = advancedBorderStyle.Top,
+		|                    Right = DataGridViewAdvancedCellBorderStyle.None,
+		|                    Bottom = DataGridViewAdvancedCellBorderStyle.None
+		|                };
+		|                leftTopCell.PaintBorder(graphics, clipBounds, cellBounds2, cellStyle, advancedBorderStyle2);
+		|
+		|                var rightBottomCell = DataGridView[columnIndex + columnSpan - 1, rowIndex + rowSpan - 1] as DataGridViewCheckBoxCellEx ?? this;
+		|                var advancedBorderStyle3 = new DataGridViewAdvancedBorderStyle
+		|                {
+		|                    Left = DataGridViewAdvancedCellBorderStyle.None,
+		|                    Top = DataGridViewAdvancedCellBorderStyle.None,
+		|                    Right = advancedBorderStyle.Right,
+		|                    Bottom = advancedBorderStyle.Bottom
+		|                };
+		|                rightBottomCell.PaintBorder(graphics, clipBounds, cellBounds2, cellStyle, advancedBorderStyle3);
+		|            }
+		|
+		|            // Восстановите старые границы! В противном случае будет нарисована только объединенная строка, а всё что следует далее нарисовано не будет.
+		|            graphics.SetClip(oldBounds);
+		|        }
+		|
+		|        private void NativePaint(
+		|            System.Drawing.Graphics graphics,
+		|            System.Drawing.Rectangle clipBounds,
+		|            System.Drawing.Rectangle cellBounds,
+		|            int rowIndex,
+		|            System.Windows.Forms.DataGridViewElementStates cellState,
+		|            object value,
+		|            object formattedValue,
+		|            string errorText,
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+		|            System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle,
+		|            System.Windows.Forms.DataGridViewPaintParts paintParts)
+		|        {
+		|            base.Paint(graphics, clipBounds, cellBounds, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
+		|        }
+		|
+		|        private void SetSpan(int columnSpan, int rowSpan)
+		|        {
+		|            int prevColumnSpan = m_ColumnSpan;
+		|            int prevRowSpan = m_RowSpan;
+		|            m_ColumnSpan = columnSpan;
+		|            m_RowSpan = rowSpan;
+		|
+		|            if (DataGridView != null)
+		|            {
+		|                // Очистка.
+		|                foreach (int rowIndex in Enumerable.Range(RowIndex, prevRowSpan))
+		|                {
+		|                    foreach (int columnIndex in Enumerable.Range(ColumnIndex, prevColumnSpan))
+		|                    {
+		|                        var cell = DataGridView[columnIndex, rowIndex] as DataGridViewCheckBoxCellEx;
+		|                        if (cell != null)
+		|                        {
+		|                            cell.OwnerCell = null;
+		|                        }
+		|                    }
+		|                }
+		|
+		|                // Установка.
+		|                foreach (int rowIndex in Enumerable.Range(RowIndex, m_RowSpan))
+		|                {
+		|                    foreach (int columnIndex in Enumerable.Range(ColumnIndex, m_ColumnSpan))
+		|                    {
+		|                        var cell = DataGridView[columnIndex, rowIndex] as DataGridViewCheckBoxCellEx;
+		|                        if (cell != null && cell != this)
+		|                        {
+		|                            if (cell.ColumnSpan > 1)
+		|                            {
+		|                                cell.ColumnSpan = 1;
+		|                            }
+		|                            if (cell.RowSpan > 1)
+		|                            {
+		|                                cell.RowSpan = 1;
+		|                            }
+		|
+		|                            // Удалим данные из объединяемых ячеек, кроме левой верхней ячейки.
+		|                            cell.Value = null;
+		|
+		|                            cell.OwnerCell = this;
+		|                        }
+		|                    }
+		|                }
+		|                OwnerCell = null;
+		|            }
+		|        }
+		|
+		|        public override System.Drawing.Rectangle PositionEditingPanel(
+		|            System.Drawing.Rectangle cellBounds,
+		|            System.Drawing.Rectangle cellClip,
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+		|            bool singleVerticalBorderAdded,
+		|            bool singleHorizontalBorderAdded,
+		|            bool isFirstDisplayedColumn,
+		|            bool isFirstDisplayedRow)
+		|        {
+		|            if (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1)
+		|            {
+		|                return base.PositionEditingPanel(cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, isFirstDisplayedColumn, isFirstDisplayedRow);
+		|            }
+		|
+		|            var ownerCell = this;
+		|            if (m_OwnerCell != null)
+		|            {
+		|                var rowIndex = m_OwnerCell.RowIndex;
+		|                cellStyle = m_OwnerCell.GetInheritedStyle(null, rowIndex, true);
+		|                m_OwnerCell.GetFormattedValue(m_OwnerCell.Value, rowIndex, ref cellStyle, null, null, DataGridViewDataErrorContexts.Formatting);
+		|                var editingControl = DataGridView.EditingControl as IDataGridViewEditingControl;
+		|                if (editingControl != null)
+		|                {
+		|                    editingControl.ApplyCellStyleToEditingControl(cellStyle);
+		|                    var editingPanel = DataGridView.EditingControl.Parent;
+		|                    if (editingPanel != null)
+		|                    {
+		|                        editingPanel.BackColor = cellStyle.BackColor;
+		|                    }
+		|                }
+		|                ownerCell = m_OwnerCell;
+		|            }
+		|            cellBounds = DataGridViewCellExHelper.GetSpannedCellBoundsFromChildCellBounds(
+		|                this,
+		|                cellBounds,
+		|                singleVerticalBorderAdded,
+		|                singleHorizontalBorderAdded);
+		|            cellClip = DataGridViewCellExHelper.GetSpannedCellClipBounds(
+		|                ownerCell,
+		|                cellBounds,
+		|                singleVerticalBorderAdded,
+		|                singleHorizontalBorderAdded);
+		|            return base.PositionEditingPanel(cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, ownerCell.InFirstDisplayedColumn(), ownerCell.InFirstDisplayedRow());
+		|        }
+		|
+		|        protected override object GetValue(int rowIndex)
+		|        {
+		|            if (m_OwnerCell != null)
+		|            {
+		|                return m_OwnerCell.GetValue(m_OwnerCell.RowIndex);
+		|            }
+		|            return base.GetValue(rowIndex);
+		|        }
+		|
+		|        protected override bool SetValue(int rowIndex, object value)
+		|        {
+		|            if (m_OwnerCell != null)
+		|            {
+		|                return m_OwnerCell.SetValue(m_OwnerCell.RowIndex, value);
+		|            }
+		|            return base.SetValue(rowIndex, value);
+		|        }
+		|
+		|        protected override void OnDataGridViewChanged()
+		|        {
+		|            base.OnDataGridViewChanged();
+		|
+		|            if (DataGridView == null)
+		|            {
+		|                m_ColumnSpan = 1;
+		|                m_RowSpan = 1;
+		|            }
+		|        }
+		|
+		|        protected override System.Drawing.Rectangle BorderWidths(System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle)
+		|        {
+		|            if (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1)
+		|            {
+		|                return base.BorderWidths(advancedBorderStyle);
+		|            }
+		|
+		|            if (m_OwnerCell != null)
+		|            {
+		|                return m_OwnerCell.BorderWidths(advancedBorderStyle);
+		|            }
+		|
+		|            var leftTop = base.BorderWidths(advancedBorderStyle);
+		|            var rightBottomCell = DataGridView[ColumnIndex + ColumnSpan - 1, RowIndex + RowSpan - 1] as DataGridViewCheckBoxCellEx;
+		|            var rightBottom = rightBottomCell != null ? NativeBorderWidths(advancedBorderStyle) : leftTop;
+		|            return new System.Drawing.Rectangle(leftTop.X, leftTop.Y, rightBottom.Width, rightBottom.Height);
+		|        }
+		|
+		|        private System.Drawing.Rectangle NativeBorderWidths(System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle)
+		|        {
+		|            return base.BorderWidths(advancedBorderStyle);
+		|        }
+		|
+		|        protected override System.Drawing.Size GetPreferredSize(
+		|            System.Drawing.Graphics graphics,
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+		|            int rowIndex,
+		|            System.Drawing.Size constraintSize)
+		|        {
+		|            if (OwnerCell != null)
+		|            {
+		|                return new System.Drawing.Size(0, 0);
+		|            }
+		|            var size = base.GetPreferredSize(graphics, cellStyle, rowIndex, constraintSize);
+		|            var grid = DataGridView;
+		|            var width = size.Width - Enumerable.Range(ColumnIndex + 1, ColumnSpan - 1)
+		|                                           .Select(index => grid.Columns[index].Width)
+		|                                           .Sum();
+		|            var height = size.Height - Enumerable.Range(RowIndex + 1, RowSpan - 1)
+		|                                           .Select(index => grid.Rows[index].Height)
+		|                                           .Sum();
+		|            return new System.Drawing.Size(width, height);
+		|        }
+		|
+		|        private bool CellsRegionContainsSelectedCell(int columnIndex, int rowIndex, int columnSpan, int rowSpan)
+		|        {
+		|            if (DataGridView == null)
+		|            {
+		|                return false;
+		|            }
+		|
+		|            return (from col in Enumerable.Range(columnIndex, columnSpan)
+		|                    from row in Enumerable.Range(rowIndex, rowSpan)
+		|                    where DataGridView[col, row].Selected
+		|                    select col).Any();
+		|        }
+		|    }//endClass
+		|
 		|    public class DataGridViewCheckBoxCell : DataGridViewCell
 		|    {
 		|        public new ClDataGridViewCheckBoxCell dll_obj;
-		|        private System.Windows.Forms.DataGridViewCheckBoxCell m_DataGridViewCheckBoxCell;
-		|		
+		|        private DataGridViewCheckBoxCellEx M_DataGridViewCheckBoxCell;
+		|
 		|        public DataGridViewCheckBoxCell()
 		|        {
-		|            M_DataGridViewCheckBoxCell = new System.Windows.Forms.DataGridViewCheckBoxCell();
+		|            M_DataGridViewCheckBoxCell = new DataGridViewCheckBoxCellEx();
+		|            M_DataGridViewCheckBoxCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewCheckBoxCell;
 		|        }
 		|
-		|        public DataGridViewCheckBoxCell(System.Windows.Forms.DataGridViewCheckBoxCell p1)
+		|        public DataGridViewCheckBoxCell(osf.DataGridViewCheckBoxCell p1)
+		|        {
+		|            M_DataGridViewCheckBoxCell = p1.M_DataGridViewCheckBoxCell;
+		|            M_DataGridViewCheckBoxCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewCheckBoxCell;
+		|        }
+		|
+		|        public DataGridViewCheckBoxCell(DataGridViewCheckBoxCellEx p1)
 		|        {
 		|            M_DataGridViewCheckBoxCell = p1;
+		|            M_DataGridViewCheckBoxCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewCheckBoxCell;
+		|        }
+		|
+		|        public object FalseValue
+		|        {
+		|            get { return M_DataGridViewCheckBoxCell.FalseValue; }
+		|            set { M_DataGridViewCheckBoxCell.FalseValue = value; }
+		|        }
+		|
+		|        public int FlatStyle
+		|        {
+		|            get { return (int)M_DataGridViewCheckBoxCell.FlatStyle; }
+		|            set { M_DataGridViewCheckBoxCell.FlatStyle = (System.Windows.Forms.FlatStyle)value; }
+		|        }
+		|
+		|        public object IndeterminateValue
+		|        {
+		|            get { return M_DataGridViewCheckBoxCell.IndeterminateValue; }
+		|            set { M_DataGridViewCheckBoxCell.IndeterminateValue = value; }
 		|        }
 		|
 		|        public bool ThreeState
@@ -33996,39 +36718,11 @@
 		|            get { return M_DataGridViewCheckBoxCell.ThreeState; }
 		|            set { M_DataGridViewCheckBoxCell.ThreeState = value; }
 		|        }
-		|		
-		|        public int FlatStyle
-		|        {
-		|            get { return (int)M_DataGridViewCheckBoxCell.FlatStyle; }
-		|            set { M_DataGridViewCheckBoxCell.FlatStyle = (System.Windows.Forms.FlatStyle)value; }
-		|        }
-		|		
-		|        public object IndeterminateValue
-		|        {
-		|            get { return M_DataGridViewCheckBoxCell.IndeterminateValue; }
-		|            set { M_DataGridViewCheckBoxCell.IndeterminateValue = value; }
-		|        }
-		|		
-		|        public object FalseValue
-		|        {
-		|            get { return M_DataGridViewCheckBoxCell.FalseValue; }
-		|            set { M_DataGridViewCheckBoxCell.FalseValue = value; }
-		|        }
-		|		
+		|
 		|        public object TrueValue
 		|        {
 		|            get { return M_DataGridViewCheckBoxCell.TrueValue; }
 		|            set { M_DataGridViewCheckBoxCell.TrueValue = value; }
-		|        }
-		|
-		|        public System.Windows.Forms.DataGridViewCheckBoxCell M_DataGridViewCheckBoxCell
-		|        {
-		|            get { return m_DataGridViewCheckBoxCell; }
-		|            set
-		|            {
-		|                m_DataGridViewCheckBoxCell = value;
-		|                base.M_DataGridViewCell = m_DataGridViewCheckBoxCell;
-		|            }
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -34079,36 +36773,46 @@
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
 		|{
+		|    public class DataGridViewButtonColumnEx : System.Windows.Forms.DataGridViewButtonColumn
+		|    {
+		|        public osf.DataGridViewButtonColumn M_Object;
+		|
+		|        public DataGridViewButtonColumnEx() : base()
+		|        {
+		|            this.CellTemplate = new DataGridViewButtonCellEx();
+		|        }
+		|    }//endClass
+		|
 		|    public class DataGridViewButtonColumn : DataGridViewColumn
 		|    {
 		|        public new ClDataGridViewButtonColumn dll_obj;
-		|        private System.Windows.Forms.DataGridViewButtonColumn m_DataGridViewButtonColumn;
-		|		
+		|        private DataGridViewButtonColumnEx M_DataGridViewButtonColumn;
+		|
 		|        public DataGridViewButtonColumn()
 		|        {
-		|            M_DataGridViewButtonColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+		|            M_DataGridViewButtonColumn = new DataGridViewButtonColumnEx();
+		|            M_DataGridViewButtonColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewButtonColumn;
 		|        }
 		|
 		|        public DataGridViewButtonColumn(osf.DataGridViewButtonColumn p1)
 		|        {
 		|            M_DataGridViewButtonColumn = p1.M_DataGridViewButtonColumn;
+		|            M_DataGridViewButtonColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewButtonColumn;
 		|        }
 		|
-		|        public DataGridViewButtonColumn(System.Windows.Forms.DataGridViewButtonColumn p1)
+		|        public DataGridViewButtonColumn(DataGridViewButtonColumnEx p1)
 		|        {
 		|            M_DataGridViewButtonColumn = p1;
+		|            M_DataGridViewButtonColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewButtonColumn;
 		|        }
 		|
 		|        public int FlatStyle
 		|        {
 		|            get { return (int)M_DataGridViewButtonColumn.FlatStyle; }
 		|            set { M_DataGridViewButtonColumn.FlatStyle = (System.Windows.Forms.FlatStyle)value; }
-		|        }
-		|		
-		|        public bool UseColumnTextForButtonValue
-		|        {
-		|            get { return M_DataGridViewButtonColumn.UseColumnTextForButtonValue; }
-		|            set { M_DataGridViewButtonColumn.UseColumnTextForButtonValue = value; }
 		|        }
 		|
 		|        public string Text
@@ -34117,14 +36821,10 @@
 		|            set { M_DataGridViewButtonColumn.Text = value; }
 		|        }
 		|
-		|        public System.Windows.Forms.DataGridViewButtonColumn M_DataGridViewButtonColumn
+		|        public bool UseColumnTextForButtonValue
 		|        {
-		|            get { return m_DataGridViewButtonColumn; }
-		|            set
-		|            {
-		|                m_DataGridViewButtonColumn = value;
-		|                base.M_DataGridViewColumn = m_DataGridViewButtonColumn;
-		|            }
+		|            get { return M_DataGridViewButtonColumn.UseColumnTextForButtonValue; }
+		|            set { M_DataGridViewButtonColumn.UseColumnTextForButtonValue = value; }
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -34136,29 +36836,420 @@
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
 		|{
+		|    public class DataGridViewButtonCellEx : System.Windows.Forms.DataGridViewButtonCell, ISpannedCell
+		|    {
+		|        public osf.DataGridViewButtonCell M_Object;
+		|
+		|        public DataGridViewButtonCellEx() : base()
+		|        {
+		|        }
+		|
+		|        private int m_ColumnSpan = 1;
+		|        private int m_RowSpan = 1;
+		|        private DataGridViewButtonCellEx m_OwnerCell;
+		|
+		|        public int ColumnSpan
+		|        {
+		|            get { return m_ColumnSpan; }
+		|            set
+		|            {
+		|                if (DataGridView == null || m_OwnerCell != null)
+		|                {
+		|                    return;
+		|                }
+		|                if (value < 1 || ColumnIndex + value - 1 >= DataGridView.ColumnCount)
+		|                {
+		|                    throw new System.ArgumentOutOfRangeException(""value"");
+		|                }
+		|                if (m_ColumnSpan != value)
+		|                {
+		|                    SetSpan(value, m_RowSpan);
+		|                }
+		|            }
+		|        }
+		|
+		|        public int RowSpan
+		|        {
+		|            get { return m_RowSpan; }
+		|            set
+		|            {
+		|                if (DataGridView == null || m_OwnerCell != null)
+		|                {
+		|                    return;
+		|                }
+		|                if (value < 1 || RowIndex + value - 1 >= DataGridView.RowCount)
+		|                {
+		|                    throw new System.ArgumentOutOfRangeException(""value"");
+		|                }
+		|                if (m_RowSpan != value)
+		|                {
+		|                    SetSpan(m_ColumnSpan, value);
+		|                }
+		|            }
+		|        }
+		|
+		|        public System.Windows.Forms.DataGridViewCell OwnerCell
+		|        {
+		|            get { return m_OwnerCell; }
+		|            private set { m_OwnerCell = value as DataGridViewButtonCellEx; }
+		|        }
+		|
+		|        public override bool ReadOnly
+		|        {
+		|            get { return base.ReadOnly; }
+		|            set
+		|            {
+		|                base.ReadOnly = value;
+		|
+		|                if (m_OwnerCell == null && (m_ColumnSpan > 1 || m_RowSpan > 1) && DataGridView != null)
+		|                {
+		|                    foreach (var col in Enumerable.Range(ColumnIndex, m_ColumnSpan))
+		|                    {
+		|                        foreach (var row in Enumerable.Range(RowIndex, m_RowSpan))
+		|                        {
+		|                            if (col != ColumnIndex || row != RowIndex)
+		|                            {
+		|                                DataGridView[col, row].ReadOnly = value;
+		|                            }
+		|                        }
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        protected override void Paint(System.Drawing.Graphics graphics, System.Drawing.Rectangle clipBounds, System.Drawing.Rectangle cellBounds, int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue, string errorText, System.Windows.Forms.DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
+		|        {
+		|            if (m_OwnerCell != null && m_OwnerCell.DataGridView == null)
+		|            {
+		|                m_OwnerCell = null; // Ячейка-владелец была удалена.
+		|            }
+		|
+		|            if (DataGridView == null || (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1))
+		|            {
+		|                base.Paint(graphics, clipBounds, cellBounds, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
+		|                return;
+		|            }
+		|
+		|            var ownerCell = this;
+		|            var columnIndex = ColumnIndex;
+		|            var columnSpan = m_ColumnSpan;
+		|            var rowSpan = m_RowSpan;
+		|            if (m_OwnerCell != null)
+		|            {
+		|                ownerCell = m_OwnerCell;
+		|                columnIndex = m_OwnerCell.ColumnIndex;
+		|                rowIndex = m_OwnerCell.RowIndex;
+		|                columnSpan = m_OwnerCell.ColumnSpan;
+		|                rowSpan = m_OwnerCell.RowSpan;
+		|                value = m_OwnerCell.GetValue(rowIndex);
+		|                errorText = m_OwnerCell.GetErrorText(rowIndex);
+		|                cellState = m_OwnerCell.State;
+		|                cellStyle = m_OwnerCell.GetInheritedStyle(null, rowIndex, true);
+		|                formattedValue = m_OwnerCell.GetFormattedValue(value, rowIndex, ref cellStyle, null, null, DataGridViewDataErrorContexts.Display);
+		|            }
+		|
+		|            if (CellsRegionContainsSelectedCell(columnIndex, rowIndex, columnSpan, rowSpan))
+		|            {
+		|                cellState |= DataGridViewElementStates.Selected;
+		|            }
+		|
+		|            // Сохраним старые границы клипа.
+		|            System.Drawing.RectangleF oldBounds = graphics.ClipBounds;
+		|            var cellBounds2 = DataGridViewCellExHelper.GetSpannedCellBoundsFromChildCellBounds(this, cellBounds, DataGridView.SingleVerticalBorderAdded(), DataGridView.SingleHorizontalBorderAdded());
+		|            clipBounds = DataGridViewCellExHelper.GetSpannedCellClipBounds(ownerCell, cellBounds2, DataGridView.SingleVerticalBorderAdded(), DataGridView.SingleHorizontalBorderAdded());
+		|
+		|            advancedBorderStyle = DataGridViewCellExHelper.AdjustCellBorderStyle(ownerCell);
+		|
+		|            using (var g = this.DataGridView.CreateGraphics())
+		|            {
+		|                // Задайте для новых границ клипа границы, рассчитанные для объединенных строк.
+		|                g.SetClip(clipBounds);
+		|
+		|                // Нарисуйте содержимое.
+		|                ownerCell.NativePaint(g, clipBounds, cellBounds2, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts & ~DataGridViewPaintParts.Border);
+		|
+		|                // Нарисуйте границы.
+		|                if ((paintParts & DataGridViewPaintParts.Border) != DataGridViewPaintParts.None)
+		|                {
+		|                    var leftTopCell = ownerCell;
+		|                    var advancedBorderStyle2 = new DataGridViewAdvancedBorderStyle
+		|                    {
+		|                        Left = advancedBorderStyle.Left,
+		|                        Top = advancedBorderStyle.Top,
+		|                        Right = DataGridViewAdvancedCellBorderStyle.None,
+		|                        Bottom = DataGridViewAdvancedCellBorderStyle.None
+		|                    };
+		|                    leftTopCell.PaintBorder(g, clipBounds, cellBounds2, cellStyle, advancedBorderStyle2);
+		|
+		|                    var rightBottomCell = DataGridView[columnIndex + columnSpan - 1, rowIndex + rowSpan - 1] as DataGridViewButtonCellEx ?? this;
+		|                    var advancedBorderStyle3 = new DataGridViewAdvancedBorderStyle
+		|                    {
+		|                        Left = DataGridViewAdvancedCellBorderStyle.None,
+		|                        Top = DataGridViewAdvancedCellBorderStyle.None,
+		|                        Right = advancedBorderStyle.Right,
+		|                        Bottom = advancedBorderStyle.Bottom
+		|                    };
+		|                    rightBottomCell.PaintBorder(g, clipBounds, cellBounds2, cellStyle, advancedBorderStyle3);
+		|                }
+		|            }
+		|
+		|            // Задайте для новых границ клипа границы, рассчитанные для объединенных строк.
+		|            graphics.SetClip(clipBounds);
+		|
+		|            // Нарисуйте содержимое.
+		|            ownerCell.NativePaint(graphics, clipBounds, cellBounds2, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts & ~DataGridViewPaintParts.Border);
+		|
+		|            // Нарисуйте границы.
+		|            if ((paintParts & DataGridViewPaintParts.Border) != DataGridViewPaintParts.None)
+		|            {
+		|                var leftTopCell = ownerCell;
+		|                var advancedBorderStyle2 = new DataGridViewAdvancedBorderStyle
+		|                {
+		|                    Left = advancedBorderStyle.Left,
+		|                    Top = advancedBorderStyle.Top,
+		|                    Right = DataGridViewAdvancedCellBorderStyle.None,
+		|                    Bottom = DataGridViewAdvancedCellBorderStyle.None
+		|                };
+		|                leftTopCell.PaintBorder(graphics, clipBounds, cellBounds2, cellStyle, advancedBorderStyle2);
+		|
+		|                var rightBottomCell = DataGridView[columnIndex + columnSpan - 1, rowIndex + rowSpan - 1] as DataGridViewButtonCellEx ?? this;
+		|                var advancedBorderStyle3 = new DataGridViewAdvancedBorderStyle
+		|                {
+		|                    Left = DataGridViewAdvancedCellBorderStyle.None,
+		|                    Top = DataGridViewAdvancedCellBorderStyle.None,
+		|                    Right = advancedBorderStyle.Right,
+		|                    Bottom = advancedBorderStyle.Bottom
+		|                };
+		|                rightBottomCell.PaintBorder(graphics, clipBounds, cellBounds2, cellStyle, advancedBorderStyle3);
+		|            }
+		|
+		|            // Восстановите старые границы! В противном случае будет нарисована только объединенная строка.
+		|            graphics.SetClip(oldBounds);
+		|        }
+		|
+		|        private void NativePaint(
+		|            System.Drawing.Graphics graphics,
+		|            System.Drawing.Rectangle clipBounds,
+		|            System.Drawing.Rectangle cellBounds,
+		|            int rowIndex,
+		|            System.Windows.Forms.DataGridViewElementStates cellState,
+		|            object value,
+		|            object formattedValue,
+		|            string errorText,
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+		|            System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle,
+		|            System.Windows.Forms.DataGridViewPaintParts paintParts)
+		|        {
+		|            base.Paint(graphics, clipBounds, cellBounds, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
+		|        }
+		|
+		|        private void SetSpan(int columnSpan, int rowSpan)
+		|        {
+		|            int prevColumnSpan = m_ColumnSpan;
+		|            int prevRowSpan = m_RowSpan;
+		|            m_ColumnSpan = columnSpan;
+		|            m_RowSpan = rowSpan;
+		|
+		|            if (DataGridView != null)
+		|            {
+		|                // Очистка.
+		|                foreach (int rowIndex in Enumerable.Range(RowIndex, prevRowSpan))
+		|                {
+		|                    foreach (int columnIndex in Enumerable.Range(ColumnIndex, prevColumnSpan))
+		|                    {
+		|                        var cell = DataGridView[columnIndex, rowIndex] as DataGridViewButtonCellEx;
+		|                        if (cell != null)
+		|                        {
+		|                            cell.OwnerCell = null;
+		|                        }
+		|                    }
+		|                }
+		|
+		|                // Установка.
+		|                foreach (int rowIndex in Enumerable.Range(RowIndex, m_RowSpan))
+		|                {
+		|                    foreach (int columnIndex in Enumerable.Range(ColumnIndex, m_ColumnSpan))
+		|                    {
+		|                        var cell = DataGridView[columnIndex, rowIndex] as DataGridViewButtonCellEx;
+		|                        if (cell != null && cell != this)
+		|                        {
+		|                            if (cell.ColumnSpan > 1)
+		|                            {
+		|                                cell.ColumnSpan = 1;
+		|                            }
+		|                            if (cell.RowSpan > 1)
+		|                            {
+		|                                cell.RowSpan = 1;
+		|                            }
+		|
+		|                            // Удалим данные из объединяемых ячеек, кроме левой верхней ячейки.
+		|                            cell.Value = null;
+		|
+		|                            cell.OwnerCell = this;
+		|                        }
+		|                    }
+		|                }
+		|                OwnerCell = null;
+		|                DataGridView.Invalidate();
+		|            }
+		|        }
+		|
+		|        public override System.Drawing.Rectangle PositionEditingPanel(
+		|            System.Drawing.Rectangle cellBounds,
+		|            System.Drawing.Rectangle cellClip,
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+		|            bool singleVerticalBorderAdded,
+		|            bool singleHorizontalBorderAdded,
+		|            bool isFirstDisplayedColumn,
+		|            bool isFirstDisplayedRow)
+		|        {
+		|            if (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1)
+		|            {
+		|                return base.PositionEditingPanel(cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, isFirstDisplayedColumn, isFirstDisplayedRow);
+		|            }
+		|
+		|            var ownerCell = this;
+		|            if (m_OwnerCell != null)
+		|            {
+		|                var rowIndex = m_OwnerCell.RowIndex;
+		|                cellStyle = m_OwnerCell.GetInheritedStyle(null, rowIndex, true);
+		|                m_OwnerCell.GetFormattedValue(m_OwnerCell.Value, rowIndex, ref cellStyle, null, null, DataGridViewDataErrorContexts.Formatting);
+		|                var editingControl = DataGridView.EditingControl as IDataGridViewEditingControl;
+		|                if (editingControl != null)
+		|                {
+		|                    editingControl.ApplyCellStyleToEditingControl(cellStyle);
+		|                    var editingPanel = DataGridView.EditingControl.Parent;
+		|                    if (editingPanel != null)
+		|                    {
+		|                        editingPanel.BackColor = cellStyle.BackColor;
+		|                    }
+		|                }
+		|                ownerCell = m_OwnerCell;
+		|            }
+		|            cellBounds = DataGridViewCellExHelper.GetSpannedCellBoundsFromChildCellBounds(
+		|                this,
+		|                cellBounds,
+		|                singleVerticalBorderAdded,
+		|                singleHorizontalBorderAdded);
+		|            cellClip = DataGridViewCellExHelper.GetSpannedCellClipBounds(
+		|                ownerCell,
+		|                cellBounds,
+		|                singleVerticalBorderAdded,
+		|                singleHorizontalBorderAdded);
+		|            return base.PositionEditingPanel(cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, ownerCell.InFirstDisplayedColumn(), ownerCell.InFirstDisplayedRow());
+		|        }
+		|
+		|        protected override object GetValue(int rowIndex)
+		|        {
+		|            if (m_OwnerCell != null)
+		|            {
+		|                return m_OwnerCell.GetValue(m_OwnerCell.RowIndex);
+		|            }
+		|            return base.GetValue(rowIndex);
+		|        }
+		|
+		|        protected override bool SetValue(int rowIndex, object value)
+		|        {
+		|            if (m_OwnerCell != null)
+		|            {
+		|                return m_OwnerCell.SetValue(m_OwnerCell.RowIndex, value);
+		|            }
+		|            return base.SetValue(rowIndex, value);
+		|        }
+		|
+		|        protected override void OnDataGridViewChanged()
+		|        {
+		|            base.OnDataGridViewChanged();
+		|
+		|            if (DataGridView == null)
+		|            {
+		|                m_ColumnSpan = 1;
+		|                m_RowSpan = 1;
+		|            }
+		|        }
+		|
+		|        protected override System.Drawing.Rectangle BorderWidths(System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle)
+		|        {
+		|            if (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1)
+		|            {
+		|                return base.BorderWidths(advancedBorderStyle);
+		|            }
+		|
+		|            if (m_OwnerCell != null)
+		|            {
+		|                return m_OwnerCell.BorderWidths(advancedBorderStyle);
+		|            }
+		|
+		|            var leftTop = base.BorderWidths(advancedBorderStyle);
+		|            var rightBottomCell = DataGridView[ColumnIndex + ColumnSpan - 1, RowIndex + RowSpan - 1] as DataGridViewButtonCellEx;
+		|            var rightBottom = rightBottomCell != null ? NativeBorderWidths(advancedBorderStyle) : leftTop;
+		|            return new System.Drawing.Rectangle(leftTop.X, leftTop.Y, rightBottom.Width, rightBottom.Height);
+		|        }
+		|
+		|        private System.Drawing.Rectangle NativeBorderWidths(System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle)
+		|        {
+		|            return base.BorderWidths(advancedBorderStyle);
+		|        }
+		|
+		|        protected override System.Drawing.Size GetPreferredSize(
+		|            System.Drawing.Graphics graphics,
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+		|            int rowIndex,
+		|            System.Drawing.Size constraintSize)
+		|        {
+		|            if (OwnerCell != null)
+		|            {
+		|                return new System.Drawing.Size(0, 0);
+		|            }
+		|            var size = base.GetPreferredSize(graphics, cellStyle, rowIndex, constraintSize);
+		|            var grid = DataGridView;
+		|            var width = size.Width - Enumerable.Range(ColumnIndex + 1, ColumnSpan - 1)
+		|                                           .Select(index => grid.Columns[index].Width)
+		|                                           .Sum();
+		|            var height = size.Height - Enumerable.Range(RowIndex + 1, RowSpan - 1)
+		|                                           .Select(index => grid.Rows[index].Height)
+		|                                           .Sum();
+		|            return new System.Drawing.Size(width, height);
+		|        }
+		|
+		|        private bool CellsRegionContainsSelectedCell(int columnIndex, int rowIndex, int columnSpan, int rowSpan)
+		|        {
+		|            if (DataGridView == null)
+		|            {
+		|                return false;
+		|            }
+		|
+		|            return (from col in Enumerable.Range(columnIndex, columnSpan)
+		|                    from row in Enumerable.Range(rowIndex, rowSpan)
+		|                    where DataGridView[col, row].Selected
+		|                    select col).Any();
+		|        }
+		|    }//endClass
+		|
 		|    public class DataGridViewButtonCell : DataGridViewCell
 		|    {
 		|        public new ClDataGridViewButtonCell dll_obj;
-		|        private System.Windows.Forms.DataGridViewButtonCell m_DataGridViewButtonCell;
-		|		
+		|        private DataGridViewButtonCellEx M_DataGridViewButtonCell;
+		|
 		|        public DataGridViewButtonCell()
 		|        {
-		|            M_DataGridViewButtonCell = new System.Windows.Forms.DataGridViewButtonCell();
+		|            M_DataGridViewButtonCell = new DataGridViewButtonCellEx();
+		|            M_DataGridViewButtonCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewButtonCell;
 		|        }
 		|
-		|        public DataGridViewButtonCell(System.Windows.Forms.DataGridViewButtonCell p1)
+		|        public DataGridViewButtonCell(osf.DataGridViewButtonCell p1)
+		|        {
+		|            M_DataGridViewButtonCell = p1.M_DataGridViewButtonCell;
+		|            M_DataGridViewButtonCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewButtonCell;
+		|        }
+		|
+		|        public DataGridViewButtonCell(DataGridViewButtonCellEx p1)
 		|        {
 		|            M_DataGridViewButtonCell = p1;
-		|        }
-		|
-		|        public System.Windows.Forms.DataGridViewButtonCell M_DataGridViewButtonCell
-		|        {
-		|            get { return m_DataGridViewButtonCell; }
-		|            set
-		|            {
-		|                m_DataGridViewButtonCell = value;
-		|                base.M_DataGridViewCell = m_DataGridViewButtonCell;
-		|            }
+		|            M_DataGridViewButtonCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewButtonCell;
 		|        }
 		|
 		|        public int FlatStyle
@@ -34166,7 +37257,7 @@
 		|            get { return (int)M_DataGridViewButtonCell.FlatStyle; }
 		|            set { M_DataGridViewButtonCell.FlatStyle = (System.Windows.Forms.FlatStyle)value; }
 		|        }
-		|		
+		|
 		|        public bool UseColumnTextForButtonValue
 		|        {
 		|            get { return M_DataGridViewButtonCell.UseColumnTextForButtonValue; }
@@ -34812,6 +37903,18 @@
 		|            get { return (int)M_DataGridView.SelectionMode; }
 		|            set { M_DataGridView.SelectionMode = (System.Windows.Forms.DataGridViewSelectionMode)value; }
 		|        }
+		|		
+		|        public bool ColumnHeadersVisible
+		|        {
+		|            get { return M_DataGridView.ColumnHeadersVisible; }
+		|            set { M_DataGridView.ColumnHeadersVisible = value; }
+		|        }
+		|
+		|        public bool RowHeadersVisible
+		|        {
+		|            get { return M_DataGridView.RowHeadersVisible; }
+		|            set { M_DataGridView.RowHeadersVisible = value; }
+		|        }
 		|
 		|        public bool AllowUserToResizeColumns
 		|        {
@@ -34870,11 +37973,30 @@
 		|            {
 		|                dynamic Obj1 = null;
 		|                string str1 = M_DataGridView.CurrentCell.GetType().ToString();
-		|                string str2 = str1.Replace(""System.Windows.Forms."", ""osf."");
-		|                System.Type Type1 = System.Type.GetType(str2, false, true);
-		|                object[] args1 = { M_DataGridView.CurrentCell };
-		|                Obj1 = Activator.CreateInstance(Type1, args1);
-		|
+		|                if (str1 == ""osf.DataGridViewButtonCellEx"")
+		|                {
+		|                    Obj1 = new DataGridViewButtonCell((DataGridViewButtonCellEx)M_DataGridView.CurrentCell);
+		|                }
+		|                else if (str1 == ""osf.DataGridViewCheckBoxCellEx"")
+		|                {
+		|                    Obj1 = new DataGridViewCheckBoxCell((DataGridViewCheckBoxCellEx)M_DataGridView.CurrentCell);
+		|                }
+		|                else if (str1 == ""osf.DataGridViewComboBoxCellEx"")
+		|                {
+		|                    Obj1 = new DataGridViewComboBoxCell((DataGridViewComboBoxCellEx)M_DataGridView.CurrentCell);
+		|                }
+		|                else if (str1 == ""osf.DataGridViewImageCellEx"")
+		|                {
+		|                    Obj1 = new DataGridViewImageCell((DataGridViewImageCellEx)M_DataGridView.CurrentCell);
+		|                }
+		|                else if (str1 == ""osf.DataGridViewLinkCellEx"")
+		|                {
+		|                    Obj1 = new DataGridViewLinkCell((DataGridViewLinkCellEx)M_DataGridView.CurrentCell);
+		|                }
+		|                else if (str1 == ""osf.DataGridViewTextBoxCellEx"")
+		|                {
+		|                    Obj1 = new DataGridViewTextBoxCell((DataGridViewTextBoxCellEx)M_DataGridView.CurrentCell);
+		|                }
 		|                return Obj1;
 		|            }
 		|            set { M_DataGridView.CurrentCell = value.M_DataGridViewCell; }
@@ -34979,6 +38101,17 @@
 		|
 		|        public void M_DataGridView_CellBeginEdit(object sender, System.Windows.Forms.DataGridViewCellCancelEventArgs e)
 		|        {
+		|            var cell = M_DataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+		|            if (cell.GetType() == typeof(osf.DataGridViewCheckBoxCellEx))
+		|            {
+		|                DataGridViewCheckBoxCellEx cell1 = (DataGridViewCheckBoxCellEx)cell;
+		|                if (cell1.ColumnSpan > 1 || cell1.RowSpan > 1 || cell1.OwnerCell != null)  // Ячейка в составе объединенных ячеек.
+		|                {
+		|                    e.Cancel = true;
+		|                    return;
+		|                }
+		|            }
+		|		
 		|            if (CellBeginEdit.Length > 0)
 		|            {
 		|                DataGridViewCellCancelEventArgs DataGridViewCellCancelEventArgs1 = new DataGridViewCellCancelEventArgs();
@@ -35013,6 +38146,17 @@
 		|
 		|        public void M_DataGridView_CellContentClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
 		|        {
+		|            var cell = M_DataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+		|            if (cell.GetType() == typeof(osf.DataGridViewLinkCellEx))
+		|            {
+		|                DataGridViewLinkCellEx cell1 = (DataGridViewLinkCellEx)cell;
+		|                if (cell1.OwnerCell != null) // Ячейка в составе объединенных ячеек.
+		|                {
+		|                    DataGridViewLinkCellEx cell2 = (DataGridViewLinkCellEx)cell1.OwnerCell;
+		|                    cell2.LinkVisited = true;
+		|                }
+		|            }
+		|		
 		|            if (CellContentClick.Length > 0)
 		|            {
 		|                DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
@@ -35029,6 +38173,45 @@
 		|
 		|        public void M_DataGridView_CellDoubleClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
 		|        {
+		|            var cell = M_DataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+		|            if (cell.GetType() == typeof(osf.DataGridViewCheckBoxCellEx))
+		|            {
+		|                DataGridViewCheckBoxCellEx cell1 = (DataGridViewCheckBoxCellEx)cell;
+		|                if (cell1.ColumnSpan > 1 || cell1.RowSpan > 1 || cell1.OwnerCell != null) // Ячейка в составе объединенных ячеек.
+		|                {
+		|                    if (cell1.ThreeState)
+		|                    {
+		|                        if (cell1.Value == null)
+		|                        {
+		|                            cell1.Value = false;
+		|                        }
+		|                        else if ((bool)cell1.Value)
+		|                        {
+		|                            cell1.Value = null;
+		|                        }
+		|                        else if (!(bool)cell1.Value)
+		|                        {
+		|                            cell1.Value = true;
+		|                        }
+		|                    }
+		|                    else if (!cell1.ThreeState)
+		|                    {
+		|                        if (cell1.Value == null)
+		|                        {
+		|                            cell1.Value = true;
+		|                        }
+		|                        else if ((bool)cell1.Value)
+		|                        {
+		|                            cell1.Value = false;
+		|                        }
+		|                        else if (!(bool)cell1.Value)
+		|                        {
+		|                            cell1.Value = true;
+		|                        }
+		|                    }
+		|                }
+		|            }
+		|		
 		|            if (CellDoubleClick.Length > 0)
 		|            {
 		|                DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
@@ -35193,6 +38376,11 @@
 		|
 		|        public void M_DataGridView_CellValueChanged(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
 		|        {
+		|            if (e.ColumnIndex == -1)
+		|            {
+		|                return;
+		|            }
+		|		
 		|            if (CellValueChanged.Length > 0)
 		|            {
 		|                DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
@@ -50926,6 +54114,10 @@
 			ВыбранныеФайлы[А].Имя = "NodeComboBoxObjectCollection.cs" или 
 			ВыбранныеФайлы[А].Имя = "SelectedTreeNodeAdvCollection.cs" или 
 			ВыбранныеФайлы[А].Имя = "RoundRect.cs" или 
+			ВыбранныеФайлы[А].Имя = "DataGridViewCellExHelper.cs" или 
+			ВыбранныеФайлы[А].Имя = "DataGridViewHelper.cs" или 
+			ВыбранныеФайлы[А].Имя = "ISpannedCell.cs" или 
+			// ВыбранныеФайлы[А].Имя = "DataGridViewImageColumn.cs" или 
 			
 			
 		
@@ -50987,6 +54179,30 @@
 				КонецЕсли;
 			КонецЦикла;
 		КонецЕсли;
+		//Классы1Уровня оставляем без изменения
+		М = СтрНайтиМежду(Стр, "public sealed class", "//endClass", Ложь, );
+		Если М.Количество() > 0 Тогда
+			Для А1 = 0 По М.ВГраница() Цикл
+				Если СтрНайти(М[А1], "Ex :") > 0 Тогда
+					СтрКлассы1Уровня = М[А1];
+					СтрКлассы1Уровня = СтрЗаменить(СтрКлассы1Уровня, "//endClass", "");
+					СтрКлассы1Уровня = СокрЛП(СтрКлассы1Уровня);
+					Классы1Уровня.Добавить("    " + СтрКлассы1Уровня);
+					Стр = СтрЗаменить(Стр, СтрКлассы1Уровня, "");
+				Иначе
+					СтрКлассы2Уровня = М[А1];
+					СтрКлассы2Уровня = СокрЛП(СтрКлассы2Уровня);
+					Классы2Уровня.Добавить(СортировкаКласса2Уровня(СтрКлассы2Уровня));
+					Стр = СтрЗаменить(Стр, СтрКлассы2Уровня, "");
+				КонецЕсли;
+			КонецЦикла;
+		КонецЕсли;
+		
+		
+		
+		
+		
+		
 		
 		Директивы.СортироватьПоЗначению();
 		Стр = "";
@@ -51171,6 +54387,15 @@
 			|        //Методы============================================================";
 			ПодстрокаЗамены = "//Методы============================================================";
 			Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			ТекстДок.УстановитьТекст(Стр);
 			ТекстДок.Записать(ВыбранныеФайлы[А].ПолноеИмя);

@@ -1,23 +1,424 @@
 ﻿using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace osf
 {
+    public class DataGridViewComboBoxCellEx : System.Windows.Forms.DataGridViewComboBoxCell, ISpannedCell
+    {
+        public osf.DataGridViewComboBoxCell M_Object;
+
+        public DataGridViewComboBoxCellEx() : base()
+        {
+        }
+
+        private int m_ColumnSpan = 1;
+        private int m_RowSpan = 1;
+        private DataGridViewComboBoxCellEx m_OwnerCell;
+
+        public int ColumnSpan
+        {
+            get { return m_ColumnSpan; }
+            set
+            {
+                if (DataGridView == null || m_OwnerCell != null)
+                {
+                    return;
+                }
+                if (value < 1 || ColumnIndex + value - 1 >= DataGridView.ColumnCount)
+                {
+                    throw new System.ArgumentOutOfRangeException("value");
+                }
+                if (m_ColumnSpan != value)
+                {
+                    SetSpan(value, m_RowSpan);
+                }
+            }
+        }
+
+        public int RowSpan
+        {
+            get { return m_RowSpan; }
+            set
+            {
+                if (DataGridView == null || m_OwnerCell != null)
+                {
+                    return;
+                }
+                if (value < 1 || RowIndex + value - 1 >= DataGridView.RowCount)
+                {
+                    throw new System.ArgumentOutOfRangeException("value");
+                }
+                if (m_RowSpan != value)
+                {
+                    SetSpan(m_ColumnSpan, value);
+                }
+            }
+        }
+
+        public System.Windows.Forms.DataGridViewCell OwnerCell
+        {
+            get { return m_OwnerCell; }
+            private set { m_OwnerCell = value as DataGridViewComboBoxCellEx; }
+        }
+
+        public override bool ReadOnly
+        {
+            get { return base.ReadOnly; }
+            set
+            {
+                base.ReadOnly = value;
+
+                if (m_OwnerCell == null && (m_ColumnSpan > 1 || m_RowSpan > 1) && DataGridView != null)
+                {
+                    foreach (var col in Enumerable.Range(ColumnIndex, m_ColumnSpan))
+                    {
+                        foreach (var row in Enumerable.Range(RowIndex, m_RowSpan))
+                        {
+                            if (col != ColumnIndex || row != RowIndex)
+                            {
+                                DataGridView[col, row].ReadOnly = value;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        protected override void Paint(System.Drawing.Graphics graphics, System.Drawing.Rectangle clipBounds, System.Drawing.Rectangle cellBounds, int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue, string errorText, System.Windows.Forms.DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
+        {
+            if (m_OwnerCell != null && m_OwnerCell.DataGridView == null)
+            {
+                m_OwnerCell = null; // Ячейка-владелец была удалена.
+            }
+
+            if (DataGridView == null || (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1))
+            {
+                base.Paint(graphics, clipBounds, cellBounds, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
+                return;
+            }
+
+            var ownerCell = this;
+            var columnIndex = ColumnIndex;
+            var columnSpan = m_ColumnSpan;
+            var rowSpan = m_RowSpan;
+            if (m_OwnerCell != null)
+            {
+                ownerCell = m_OwnerCell;
+                columnIndex = m_OwnerCell.ColumnIndex;
+                rowIndex = m_OwnerCell.RowIndex;
+                columnSpan = m_OwnerCell.ColumnSpan;
+                rowSpan = m_OwnerCell.RowSpan;
+                value = m_OwnerCell.GetValue(rowIndex);
+                errorText = m_OwnerCell.GetErrorText(rowIndex);
+                cellState = m_OwnerCell.State;
+                cellStyle = m_OwnerCell.GetInheritedStyle(null, rowIndex, true);
+                formattedValue = m_OwnerCell.GetFormattedValue(value, rowIndex, ref cellStyle, null, null, DataGridViewDataErrorContexts.Display);
+            }
+
+            if (CellsRegionContainsSelectedCell(columnIndex, rowIndex, columnSpan, rowSpan))
+            {
+                cellState |= DataGridViewElementStates.Selected;
+            }
+
+            // Сохраним старые границы клипа.
+            System.Drawing.RectangleF oldBounds = graphics.ClipBounds;
+            var cellBounds2 = DataGridViewCellExHelper.GetSpannedCellBoundsFromChildCellBounds(this, cellBounds, DataGridView.SingleVerticalBorderAdded(), DataGridView.SingleHorizontalBorderAdded());
+            clipBounds = DataGridViewCellExHelper.GetSpannedCellClipBounds(ownerCell, cellBounds2, DataGridView.SingleVerticalBorderAdded(), DataGridView.SingleHorizontalBorderAdded());
+            advancedBorderStyle = DataGridViewCellExHelper.AdjustCellBorderStyle(ownerCell);
+            using (var g = this.DataGridView.CreateGraphics())
+            {
+                // Задайте для новых границ клипа границы, рассчитанные для объединенных строк.
+                g.SetClip(clipBounds);
+
+                // Нарисуйте содержимое.
+                ownerCell.NativePaint(g, clipBounds, cellBounds2, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts & ~DataGridViewPaintParts.Border);
+
+                // Нарисуйте границы.
+                if ((paintParts & DataGridViewPaintParts.Border) != DataGridViewPaintParts.None)
+                {
+                    var leftTopCell = ownerCell;
+                    var advancedBorderStyle2 = new DataGridViewAdvancedBorderStyle
+                    {
+                        Left = advancedBorderStyle.Left,
+                        Top = advancedBorderStyle.Top,
+                        Right = DataGridViewAdvancedCellBorderStyle.None,
+                        Bottom = DataGridViewAdvancedCellBorderStyle.None
+                    };
+                    leftTopCell.PaintBorder(g, clipBounds, cellBounds2, cellStyle, advancedBorderStyle2);
+
+                    var rightBottomCell = DataGridView[columnIndex + columnSpan - 1, rowIndex + rowSpan - 1] as DataGridViewComboBoxCellEx ?? this;
+                    var advancedBorderStyle3 = new DataGridViewAdvancedBorderStyle
+                    {
+                        Left = DataGridViewAdvancedCellBorderStyle.None,
+                        Top = DataGridViewAdvancedCellBorderStyle.None,
+                        Right = advancedBorderStyle.Right,
+                        Bottom = advancedBorderStyle.Bottom
+                    };
+                    rightBottomCell.PaintBorder(g, clipBounds, cellBounds2, cellStyle, advancedBorderStyle3);
+                }
+            }
+
+            // Задайте для новых границ клипа границы, рассчитанные для объединенных строк.
+            graphics.SetClip(clipBounds);
+
+            // Нарисуйте содержимое.
+            ownerCell.NativePaint(graphics, clipBounds, cellBounds2, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts & ~DataGridViewPaintParts.Border);
+
+            // Нарисуйте границы.
+            if ((paintParts & DataGridViewPaintParts.Border) != DataGridViewPaintParts.None)
+            {
+                var leftTopCell = ownerCell;
+                var advancedBorderStyle2 = new DataGridViewAdvancedBorderStyle
+                {
+                    Left = advancedBorderStyle.Left,
+                    Top = advancedBorderStyle.Top,
+                    Right = DataGridViewAdvancedCellBorderStyle.None,
+                    Bottom = DataGridViewAdvancedCellBorderStyle.None
+                };
+                leftTopCell.PaintBorder(graphics, clipBounds, cellBounds2, cellStyle, advancedBorderStyle2);
+
+                var rightBottomCell = DataGridView[columnIndex + columnSpan - 1, rowIndex + rowSpan - 1] as DataGridViewComboBoxCellEx ?? this;
+                var advancedBorderStyle3 = new DataGridViewAdvancedBorderStyle
+                {
+                    Left = DataGridViewAdvancedCellBorderStyle.None,
+                    Top = DataGridViewAdvancedCellBorderStyle.None,
+                    Right = advancedBorderStyle.Right,
+                    Bottom = advancedBorderStyle.Bottom
+                };
+                rightBottomCell.PaintBorder(graphics, clipBounds, cellBounds2, cellStyle, advancedBorderStyle3);
+            }
+
+            // Восстановите старые границы! В противном случае будет нарисована только объединенная строка, а всё что следует далее нарисовано не будет.
+            graphics.SetClip(oldBounds);
+        }
+
+        private void NativePaint(
+            System.Drawing.Graphics graphics,
+            System.Drawing.Rectangle clipBounds,
+            System.Drawing.Rectangle cellBounds,
+            int rowIndex,
+            System.Windows.Forms.DataGridViewElementStates cellState,
+            object value,
+            object formattedValue,
+            string errorText,
+            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+            System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle,
+            System.Windows.Forms.DataGridViewPaintParts paintParts)
+        {
+            base.Paint(graphics, clipBounds, cellBounds, rowIndex, cellState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
+        }
+
+        private void SetSpan(int columnSpan, int rowSpan)
+        {
+            int prevColumnSpan = m_ColumnSpan;
+            int prevRowSpan = m_RowSpan;
+            m_ColumnSpan = columnSpan;
+            m_RowSpan = rowSpan;
+
+            if (DataGridView != null)
+            {
+                // Очистка.
+                foreach (int rowIndex in Enumerable.Range(RowIndex, prevRowSpan))
+                {
+                    foreach (int columnIndex in Enumerable.Range(ColumnIndex, prevColumnSpan))
+                    {
+                        var cell = DataGridView[columnIndex, rowIndex] as DataGridViewComboBoxCellEx;
+                        if (cell != null)
+                        {
+                            cell.OwnerCell = null;
+                        }
+                    }
+                }
+
+                // Установка.
+                foreach (int rowIndex in Enumerable.Range(RowIndex, m_RowSpan))
+                {
+                    foreach (int columnIndex in Enumerable.Range(ColumnIndex, m_ColumnSpan))
+                    {
+                        var cell = DataGridView[columnIndex, rowIndex] as DataGridViewComboBoxCellEx;
+                        if (cell != null && cell != this)
+                        {
+                            if (cell.ColumnSpan > 1)
+                            {
+                                cell.ColumnSpan = 1;
+                            }
+                            if (cell.RowSpan > 1)
+                            {
+                                cell.RowSpan = 1;
+                            }
+
+                            // Удалим данные из объединяемых ячеек, кроме левой верхней ячейки.
+                            cell.Value = null;
+
+                            cell.OwnerCell = this;
+                        }
+                    }
+                }
+                OwnerCell = null;
+                DataGridView.Invalidate();
+            }
+        }
+
+        public override System.Drawing.Rectangle PositionEditingPanel(
+            System.Drawing.Rectangle cellBounds,
+            System.Drawing.Rectangle cellClip,
+            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+            bool singleVerticalBorderAdded,
+            bool singleHorizontalBorderAdded,
+            bool isFirstDisplayedColumn,
+            bool isFirstDisplayedRow)
+        {
+            if (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1)
+            {
+                return base.PositionEditingPanel(cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, isFirstDisplayedColumn, isFirstDisplayedRow);
+            }
+
+            var ownerCell = this;
+            if (m_OwnerCell != null)
+            {
+                var rowIndex = m_OwnerCell.RowIndex;
+                cellStyle = m_OwnerCell.GetInheritedStyle(null, rowIndex, true);
+                m_OwnerCell.GetFormattedValue(m_OwnerCell.Value, rowIndex, ref cellStyle, null, null, DataGridViewDataErrorContexts.Formatting);
+                var editingControl = DataGridView.EditingControl as IDataGridViewEditingControl;
+                if (editingControl != null)
+                {
+                    editingControl.ApplyCellStyleToEditingControl(cellStyle);
+                    var editingPanel = DataGridView.EditingControl.Parent;
+                    if (editingPanel != null)
+                    {
+                        editingPanel.BackColor = cellStyle.BackColor;
+                    }
+                }
+                ownerCell = m_OwnerCell;
+            }
+            cellBounds = DataGridViewCellExHelper.GetSpannedCellBoundsFromChildCellBounds(
+                this,
+                cellBounds,
+                singleVerticalBorderAdded,
+                singleHorizontalBorderAdded);
+            cellClip = DataGridViewCellExHelper.GetSpannedCellClipBounds(
+                ownerCell,
+                cellBounds,
+                singleVerticalBorderAdded,
+                singleHorizontalBorderAdded);
+            return base.PositionEditingPanel(cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, ownerCell.InFirstDisplayedColumn(), ownerCell.InFirstDisplayedRow());
+        }
+
+        protected override object GetValue(int rowIndex)
+        {
+            if (m_OwnerCell != null)
+            {
+                return m_OwnerCell.GetValue(m_OwnerCell.RowIndex);
+            }
+            return base.GetValue(rowIndex);
+        }
+
+        protected override bool SetValue(int rowIndex, object value)
+        {
+            if (m_OwnerCell != null)
+            {
+                return m_OwnerCell.SetValue(m_OwnerCell.RowIndex, value);
+            }
+            return base.SetValue(rowIndex, value);
+        }
+
+        protected override void OnDataGridViewChanged()
+        {
+            base.OnDataGridViewChanged();
+
+            if (DataGridView == null)
+            {
+                m_ColumnSpan = 1;
+                m_RowSpan = 1;
+            }
+        }
+
+        protected override System.Drawing.Rectangle BorderWidths(System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle)
+        {
+            if (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1)
+            {
+                return base.BorderWidths(advancedBorderStyle);
+            }
+
+            if (m_OwnerCell != null)
+            {
+                return m_OwnerCell.BorderWidths(advancedBorderStyle);
+            }
+
+            var leftTop = base.BorderWidths(advancedBorderStyle);
+            var rightBottomCell = DataGridView[ColumnIndex + ColumnSpan - 1, RowIndex + RowSpan - 1] as DataGridViewComboBoxCellEx;
+            var rightBottom = rightBottomCell != null ? NativeBorderWidths(advancedBorderStyle) : leftTop;
+            return new System.Drawing.Rectangle(leftTop.X, leftTop.Y, rightBottom.Width, rightBottom.Height);
+        }
+
+        private System.Drawing.Rectangle NativeBorderWidths(System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle)
+        {
+            return base.BorderWidths(advancedBorderStyle);
+        }
+
+        protected override System.Drawing.Size GetPreferredSize(
+            System.Drawing.Graphics graphics,
+            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+            int rowIndex,
+            System.Drawing.Size constraintSize)
+        {
+            if (OwnerCell != null)
+            {
+                return new System.Drawing.Size(0, 0);
+            }
+            var size = base.GetPreferredSize(graphics, cellStyle, rowIndex, constraintSize);
+            var grid = DataGridView;
+            var width = size.Width - Enumerable.Range(ColumnIndex + 1, ColumnSpan - 1)
+                                           .Select(index => grid.Columns[index].Width)
+                                           .Sum();
+            var height = size.Height - Enumerable.Range(RowIndex + 1, RowSpan - 1)
+                                           .Select(index => grid.Rows[index].Height)
+                                           .Sum();
+            return new System.Drawing.Size(width, height);
+        }
+
+        private bool CellsRegionContainsSelectedCell(int columnIndex, int rowIndex, int columnSpan, int rowSpan)
+        {
+            if (DataGridView == null)
+            {
+                return false;
+            }
+
+            return (from col in Enumerable.Range(columnIndex, columnSpan)
+                    from row in Enumerable.Range(rowIndex, rowSpan)
+                    where DataGridView[col, row].Selected
+                    select col).Any();
+        }
+    }
+
     public class DataGridViewComboBoxCell : DataGridViewCell
     {
         public new ClDataGridViewComboBoxCell dll_obj;
-        private System.Windows.Forms.DataGridViewComboBoxCell m_DataGridViewComboBoxCell;
+        private DataGridViewComboBoxCellEx M_DataGridViewComboBoxCell;
 
         public DataGridViewComboBoxCell()
         {
-            M_DataGridViewComboBoxCell = new System.Windows.Forms.DataGridViewComboBoxCell();
+            M_DataGridViewComboBoxCell = new DataGridViewComboBoxCellEx();
+            M_DataGridViewComboBoxCell.M_Object = this;
+            base.M_DataGridViewCell = M_DataGridViewComboBoxCell;
             M_DataGridViewComboBoxCell.DisplayMember = "Text";
             M_DataGridViewComboBoxCell.ValueMember = "Value";
         }
 
-        public DataGridViewComboBoxCell(System.Windows.Forms.DataGridViewComboBoxCell p1)
+        public DataGridViewComboBoxCell(DataGridViewComboBoxCellEx p1)
         {
             M_DataGridViewComboBoxCell = p1;
+            M_DataGridViewComboBoxCell.M_Object = this;
+            base.M_DataGridViewCell = M_DataGridViewComboBoxCell;
+        }
+
+        public DataGridViewComboBoxCell(osf.DataGridViewComboBoxCell p1)
+        {
+            M_DataGridViewComboBoxCell = p1.M_DataGridViewComboBoxCell;
+            M_DataGridViewComboBoxCell.M_Object = this;
+            base.M_DataGridViewCell = M_DataGridViewComboBoxCell;
         }
 
         public object DataSource
@@ -73,16 +474,6 @@ namespace osf
         public osf.DataGridViewComboBoxCellObjectCollection Items
         {
             get { return new DataGridViewComboBoxCellObjectCollection(M_DataGridViewComboBoxCell.Items); }
-        }
-
-        public System.Windows.Forms.DataGridViewComboBoxCell M_DataGridViewComboBoxCell
-        {
-            get { return m_DataGridViewComboBoxCell; }
-            set
-            {
-                m_DataGridViewComboBoxCell = value;
-                base.M_DataGridViewCell = m_DataGridViewComboBoxCell;
-            }
         }
 
         public int MaxDropDownItems

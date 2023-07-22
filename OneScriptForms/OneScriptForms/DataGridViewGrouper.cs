@@ -2828,13 +2828,6 @@ namespace Subro.Controls
             }
         }
 
-        //////SortItem AddSortItem(SortOrder s)
-        //////{
-        //////    var si = new SortItem(s);
-        //////    SortMenuItem.DropDownItems.Add(si);
-        //////    return si;
-        //////}
-
         class booloption : ToolStripMenuItem
         {
             public readonly GroupingOption Option;

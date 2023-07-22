@@ -107,6 +107,7 @@ namespace osf
     [ContextClass ("КлСтрокаТаблицы", "ClDataGridViewRow")]
     public class ClDataGridViewRow : AutoContext<ClDataGridViewRow>
     {
+        private ClDataGridViewCellCollection cells;
         private ClCollection tag = new ClCollection();
 
         public ClDataGridViewRow()
@@ -114,6 +115,7 @@ namespace osf
             DataGridViewRow DataGridViewRow1 = new DataGridViewRow();
             DataGridViewRow1.dll_obj = this;
             Base_obj = DataGridViewRow1;
+            cells = new ClDataGridViewCellCollection(Base_obj.Cells);
         }
 		
         public ClDataGridViewRow(DataGridViewRow p1)
@@ -121,8 +123,9 @@ namespace osf
             DataGridViewRow DataGridViewRow1 = p1;
             DataGridViewRow1.dll_obj = this;
             Base_obj = DataGridViewRow1;
+            cells = new ClDataGridViewCellCollection(Base_obj.Cells);
         }
-        
+
         public DataGridViewRow Base_obj;
         
         [ContextProperty("Выбран", "Selected")]
@@ -228,19 +231,39 @@ namespace osf
         [ContextProperty("Ячейки", "Cells")]
         public ClDataGridViewCellCollection Cells
         {
-            get { return (ClDataGridViewCellCollection)OneScriptForms.RevertObj(Base_obj.Cells); }
+            get { return cells; }
         }
         
         [ContextMethod("Ячейки", "Cells")]
         public IValue Cells2(int p1)
         {
-            dynamic Obj1 = null;
+            IValue IValue1 = null;
             string str1 = Base_obj.Cells[p1].GetType().ToString();
-            string str2 = str1.Replace("System.Windows.Forms.", "osf.");
-            System.Type Type1 = System.Type.GetType(str2, false, true);
-            object[] args1 = { Base_obj.Cells[p1] };
-            Obj1 = Activator.CreateInstance(Type1, args1);
-            return OneScriptForms.RevertObj(Obj1);
+            if (str1 == "osf.DataGridViewButtonCellEx")
+            {
+                IValue1 = new ClDataGridViewButtonCell(new DataGridViewButtonCell((DataGridViewButtonCellEx)Base_obj.Cells[p1]));
+            }
+            else if (str1 == "osf.DataGridViewCheckBoxCellEx")
+            {
+                IValue1 = new ClDataGridViewCheckBoxCell(new DataGridViewCheckBoxCell((DataGridViewCheckBoxCellEx)Base_obj.Cells[p1]));
+            }
+            else if (str1 == "osf.DataGridViewComboBoxCellEx")
+            {
+                IValue1 = new ClDataGridViewComboBoxCell(new DataGridViewComboBoxCell((DataGridViewComboBoxCellEx)Base_obj.Cells[p1]));
+            }
+            else if (str1 == "osf.DataGridViewImageCellEx")
+            {
+                IValue1 = new ClDataGridViewImageCell(new DataGridViewImageCell((DataGridViewImageCellEx)Base_obj.Cells[p1]));
+            }
+            else if (str1 == "osf.DataGridViewLinkCellEx")
+            {
+                IValue1 = new ClDataGridViewLinkCell(new DataGridViewLinkCell((DataGridViewLinkCellEx)Base_obj.Cells[p1]));
+            }
+            else if (str1 == "osf.DataGridViewTextBoxCellEx")
+            {
+                IValue1 = new ClDataGridViewTextBoxCell(new DataGridViewTextBoxCell((DataGridViewTextBoxCellEx)Base_obj.Cells[p1]));
+            }
+            return IValue1;
         }
     }
 }

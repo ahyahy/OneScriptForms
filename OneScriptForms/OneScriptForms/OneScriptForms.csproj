@@ -175,6 +175,7 @@
     <Compile Include="DataGridViewCellCancelEventArgs.cs" />
     <Compile Include="DataGridViewCellCollection.cs" />
     <Compile Include="DataGridViewCellEventArgs.cs" />
+    <Compile Include="DataGridViewCellExHelper.cs" />
     <Compile Include="DataGridViewCellMouseEventArgs.cs" />
     <Compile Include="DataGridViewCellStyle.cs" />
     <Compile Include="DataGridViewCheckBoxCell.cs" />
@@ -195,6 +196,7 @@
     </Compile>
     <Compile Include="DataGridViewGrouperStyle.cs" />
     <Compile Include="DataGridViewHeaderCell.cs" />
+    <Compile Include="DataGridViewHelper.cs" />
     <Compile Include="DataGridViewImageCell.cs" />
     <Compile Include="DataGridViewImageCellLayout.cs" />
     <Compile Include="DataGridViewImageColumn.cs" />
@@ -289,6 +291,7 @@
     <Compile Include="InputBox.cs" />
     <Compile Include="IpAddress.cs" />
     <Compile Include="IpHostEntry.cs" />
+    <Compile Include="ISpannedCell.cs" />
     <Compile Include="ItemActivation.cs" />
     <Compile Include="ItemCheckEventArgs.cs" />
     <Compile Include="KeyEventArgs.cs" />
