@@ -297,6 +297,13 @@ namespace osf
                 {
                     Obj1 = new DataGridViewTextBoxCell((DataGridViewTextBoxCellEx)M_DataGridView.CurrentCell);
                 }
+                else
+                {
+                    string str2 = str1.Replace("System.Windows.Forms.", "osf.");
+                    System.Type Type1 = System.Type.GetType(str2, false, true);
+                    object[] args1 = { M_DataGridView.CurrentCell };
+                    Obj1 = Activator.CreateInstance(Type1, args1);
+                }
                 return Obj1;
             }
             set { M_DataGridView.CurrentCell = value.M_DataGridViewCell; }
@@ -2285,6 +2292,15 @@ namespace osf
             {
                 IValue1 = new ClDataGridViewTextBoxColumn(new DataGridViewTextBoxColumn((DataGridViewTextBoxColumnEx)Base_obj.Columns[p1]));
             }
+            else
+            {
+                dynamic Obj1 = null;
+                string str2 = str1.Replace("System.Windows.Forms.", "osf.");
+                System.Type Type1 = System.Type.GetType(str2, false, true);
+                object[] args1 = { Base_obj.Columns[p1] };
+                Obj1 = Activator.CreateInstance(Type1, args1);
+                return OneScriptForms.RevertObj(Obj1);
+            }
             return IValue1;
         }
         
@@ -2593,6 +2609,16 @@ namespace osf
                 DataGridViewLinkCell DataGridViewLinkCell1 = new DataGridViewLinkCell(DataGridViewLinkCellEx1);
                 ClDataGridViewLinkCell ClDataGridViewLinkCell1 = new ClDataGridViewLinkCell(DataGridViewLinkCell1);
                 IValue1 = ClDataGridViewLinkCell1;
+            }
+            else
+            {
+                dynamic Obj1 = null;
+                string str1 = Base_obj.M_DataGridView.Rows[p2].Cells[p1].GetType().ToString();
+                string str2 = str1.Replace("System.Windows.Forms.", "osf.");
+                System.Type Type1 = System.Type.GetType(str2, false, true);
+                object[] args1 = { Base_obj.M_DataGridView.Rows[p2].Cells[p1] };
+                Obj1 = Activator.CreateInstance(Type1, args1);
+                return OneScriptForms.RevertObj(Obj1);
             }
             return IValue1;
         }

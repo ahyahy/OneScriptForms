@@ -17,7 +17,7 @@ namespace osf
     public class DataGridViewTextBoxColumn : DataGridViewColumn
     {
         public new ClDataGridViewTextBoxColumn dll_obj;
-        public DataGridViewTextBoxColumnEx M_DataGridViewTextBoxColumn;
+        public dynamic M_DataGridViewTextBoxColumn;
         private int maxInputLength;
 
         public DataGridViewTextBoxColumn()
@@ -38,6 +38,12 @@ namespace osf
         {
             M_DataGridViewTextBoxColumn = p1.M_DataGridViewTextBoxColumn;
             M_DataGridViewTextBoxColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewTextBoxColumn;
+        }
+
+        public DataGridViewTextBoxColumn(System.Windows.Forms.DataGridViewTextBoxColumn p1)
+        {
+            M_DataGridViewTextBoxColumn = p1;
             base.M_DataGridViewColumn = M_DataGridViewTextBoxColumn;
         }
 

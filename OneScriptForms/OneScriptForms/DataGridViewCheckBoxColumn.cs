@@ -17,7 +17,7 @@ namespace osf
     public class DataGridViewCheckBoxColumn : DataGridViewColumn
     {
         public new ClDataGridViewCheckBoxColumn dll_obj;
-        private DataGridViewCheckBoxColumnEx M_DataGridViewCheckBoxColumn;
+        private dynamic M_DataGridViewCheckBoxColumn;
 
         public DataGridViewCheckBoxColumn()
         {
@@ -37,6 +37,12 @@ namespace osf
         {
             M_DataGridViewCheckBoxColumn = p1.M_DataGridViewCheckBoxColumn;
             M_DataGridViewCheckBoxColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewCheckBoxColumn;
+        }
+
+        public DataGridViewCheckBoxColumn(System.Windows.Forms.DataGridViewCheckBoxColumn p1)
+        {
+            M_DataGridViewCheckBoxColumn = p1;
             base.M_DataGridViewColumn = M_DataGridViewCheckBoxColumn;
         }
 

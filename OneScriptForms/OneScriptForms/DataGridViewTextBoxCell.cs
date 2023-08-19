@@ -398,7 +398,7 @@ namespace osf
     public class DataGridViewTextBoxCell : DataGridViewCell
     {
         public new ClDataGridViewTextBoxCell dll_obj;
-        private DataGridViewTextBoxCellEx M_DataGridViewTextBoxCell;
+        private dynamic M_DataGridViewTextBoxCell;
 
         public DataGridViewTextBoxCell()
         {
@@ -418,6 +418,12 @@ namespace osf
         {
             M_DataGridViewTextBoxCell = p1.M_DataGridViewTextBoxCell;
             M_DataGridViewTextBoxCell.M_Object = this;
+            base.M_DataGridViewCell = M_DataGridViewTextBoxCell;
+        }
+
+        public DataGridViewTextBoxCell(System.Windows.Forms.DataGridViewTextBoxCell p1)
+        {
+            M_DataGridViewTextBoxCell = p1;
             base.M_DataGridViewCell = M_DataGridViewTextBoxCell;
         }
 

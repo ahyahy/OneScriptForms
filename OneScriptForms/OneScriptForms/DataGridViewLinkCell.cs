@@ -402,7 +402,7 @@ namespace osf
     public class DataGridViewLinkCell : DataGridViewCell
     {
         public new ClDataGridViewLinkCell dll_obj;
-        private DataGridViewLinkCellEx M_DataGridViewLinkCell;
+        private dynamic M_DataGridViewLinkCell;
 
         public DataGridViewLinkCell()
         {
@@ -422,6 +422,12 @@ namespace osf
         {
             M_DataGridViewLinkCell = p1.M_DataGridViewLinkCell;
             M_DataGridViewLinkCell.M_Object = this;
+            base.M_DataGridViewCell = M_DataGridViewLinkCell;
+        }
+
+        public DataGridViewLinkCell(System.Windows.Forms.DataGridViewLinkCell p1)
+        {
+            M_DataGridViewLinkCell = p1;
             base.M_DataGridViewCell = M_DataGridViewLinkCell;
         }
 

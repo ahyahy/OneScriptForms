@@ -427,7 +427,7 @@ namespace osf
     public class DataGridViewCheckBoxCell : DataGridViewCell
     {
         public new ClDataGridViewCheckBoxCell dll_obj;
-        private DataGridViewCheckBoxCellEx M_DataGridViewCheckBoxCell;
+        private dynamic M_DataGridViewCheckBoxCell;
 
         public DataGridViewCheckBoxCell()
         {
@@ -447,6 +447,12 @@ namespace osf
         {
             M_DataGridViewCheckBoxCell = p1.M_DataGridViewCheckBoxCell;
             M_DataGridViewCheckBoxCell.M_Object = this;
+            base.M_DataGridViewCell = M_DataGridViewCheckBoxCell;
+        }
+
+        public DataGridViewCheckBoxCell(System.Windows.Forms.DataGridViewCheckBoxCell p1)
+        {
+            M_DataGridViewCheckBoxCell = p1;
             base.M_DataGridViewCell = M_DataGridViewCheckBoxCell;
         }
 

@@ -398,7 +398,7 @@ namespace osf
     public class DataGridViewButtonCell : DataGridViewCell
     {
         public new ClDataGridViewButtonCell dll_obj;
-        private DataGridViewButtonCellEx M_DataGridViewButtonCell;
+        private dynamic M_DataGridViewButtonCell;
 
         public DataGridViewButtonCell()
         {
@@ -418,6 +418,12 @@ namespace osf
         {
             M_DataGridViewButtonCell = p1.M_DataGridViewButtonCell;
             M_DataGridViewButtonCell.M_Object = this;
+            base.M_DataGridViewCell = M_DataGridViewButtonCell;
+        }
+
+        public DataGridViewButtonCell(System.Windows.Forms.DataGridViewButtonCell p1)
+        {
+            M_DataGridViewButtonCell = p1;
             base.M_DataGridViewCell = M_DataGridViewButtonCell;
         }
 

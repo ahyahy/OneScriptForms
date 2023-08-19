@@ -396,7 +396,7 @@ namespace osf
     public class DataGridViewComboBoxCell : DataGridViewCell
     {
         public new ClDataGridViewComboBoxCell dll_obj;
-        private DataGridViewComboBoxCellEx M_DataGridViewComboBoxCell;
+        private dynamic M_DataGridViewComboBoxCell;
 
         public DataGridViewComboBoxCell()
         {
@@ -418,6 +418,12 @@ namespace osf
         {
             M_DataGridViewComboBoxCell = p1.M_DataGridViewComboBoxCell;
             M_DataGridViewComboBoxCell.M_Object = this;
+            base.M_DataGridViewCell = M_DataGridViewComboBoxCell;
+        }
+
+        public DataGridViewComboBoxCell(System.Windows.Forms.DataGridViewComboBoxCell p1)
+        {
+            M_DataGridViewComboBoxCell = p1;
             base.M_DataGridViewCell = M_DataGridViewComboBoxCell;
         }
 

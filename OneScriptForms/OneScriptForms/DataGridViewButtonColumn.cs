@@ -17,7 +17,7 @@ namespace osf
     public class DataGridViewButtonColumn : DataGridViewColumn
     {
         public new ClDataGridViewButtonColumn dll_obj;
-        private DataGridViewButtonColumnEx M_DataGridViewButtonColumn;
+        private dynamic M_DataGridViewButtonColumn;
 
         public DataGridViewButtonColumn()
         {
@@ -37,6 +37,12 @@ namespace osf
         {
             M_DataGridViewButtonColumn = p1.M_DataGridViewButtonColumn;
             M_DataGridViewButtonColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewButtonColumn;
+        }
+
+        public DataGridViewButtonColumn(System.Windows.Forms.DataGridViewButtonColumn p1)
+        {
+            M_DataGridViewButtonColumn = p1;
             base.M_DataGridViewColumn = M_DataGridViewButtonColumn;
         }
 

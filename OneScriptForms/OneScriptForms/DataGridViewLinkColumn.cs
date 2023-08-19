@@ -17,7 +17,7 @@ namespace osf
     public class DataGridViewLinkColumn : DataGridViewColumn
     {
         public new ClDataGridViewLinkColumn dll_obj;
-        private DataGridViewLinkColumnEx M_DataGridViewLinkColumn;
+        private dynamic M_DataGridViewLinkColumn;
 
         public DataGridViewLinkColumn()
         {
@@ -37,6 +37,12 @@ namespace osf
         {
             M_DataGridViewLinkColumn = p1.M_DataGridViewLinkColumn;
             M_DataGridViewLinkColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewLinkColumn;
+        }
+
+        public DataGridViewLinkColumn(System.Windows.Forms.DataGridViewLinkColumn p1)
+        {
+            M_DataGridViewLinkColumn = p1;
             base.M_DataGridViewColumn = M_DataGridViewLinkColumn;
         }
 

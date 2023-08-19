@@ -17,7 +17,7 @@ namespace osf
     public class DataGridViewComboBoxColumn : DataGridViewColumn
     {
         public new ClDataGridViewComboBoxColumn dll_obj;
-        private DataGridViewComboBoxColumnEx M_DataGridViewComboBoxColumn;
+        private dynamic M_DataGridViewComboBoxColumn;
 
         public DataGridViewComboBoxColumn()
         {
@@ -39,6 +39,12 @@ namespace osf
         {
             M_DataGridViewComboBoxColumn = p1.M_DataGridViewComboBoxColumn;
             M_DataGridViewComboBoxColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewComboBoxColumn;
+        }
+
+        public DataGridViewComboBoxColumn(System.Windows.Forms.DataGridViewComboBoxColumn p1)
+        {
+            M_DataGridViewComboBoxColumn = p1;
             base.M_DataGridViewColumn = M_DataGridViewComboBoxColumn;
         }
 

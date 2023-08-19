@@ -127,6 +127,30 @@ namespace osf
             {
                 return OneScriptForms.RevertObj(new osf.DataGridViewCheckBoxColumn((DataGridViewCheckBoxColumnEx)Base_obj[p1]));
             }
+            else if (Type1 == typeof(System.Windows.Forms.DataGridViewTextBoxColumn))
+            {
+                return OneScriptForms.RevertObj(new osf.DataGridViewTextBoxColumn((System.Windows.Forms.DataGridViewTextBoxColumn)Base_obj[p1]));
+            }
+            else if (Type1 == typeof(System.Windows.Forms.DataGridViewImageColumn))
+            {
+                return OneScriptForms.RevertObj(new osf.DataGridViewImageColumn((System.Windows.Forms.DataGridViewImageColumn)Base_obj[p1]));
+            }
+            else if (Type1 == typeof(System.Windows.Forms.DataGridViewButtonColumn))
+            {
+                return OneScriptForms.RevertObj(new osf.DataGridViewButtonColumn((System.Windows.Forms.DataGridViewButtonColumn)Base_obj[p1]));
+            }
+            else if (Type1 == typeof(System.Windows.Forms.DataGridViewComboBoxColumn))
+            {
+                return OneScriptForms.RevertObj(new osf.DataGridViewComboBoxColumn((System.Windows.Forms.DataGridViewComboBoxColumn)Base_obj[p1]));
+            }
+            else if (Type1 == typeof(System.Windows.Forms.DataGridViewLinkColumn))
+            {
+                return OneScriptForms.RevertObj(new osf.DataGridViewLinkColumn((System.Windows.Forms.DataGridViewLinkColumn)Base_obj[p1]));
+            }
+            else if (Type1 == typeof(System.Windows.Forms.DataGridViewCheckBoxColumn))
+            {
+                return OneScriptForms.RevertObj(new osf.DataGridViewCheckBoxColumn((System.Windows.Forms.DataGridViewCheckBoxColumn)Base_obj[p1]));
+            }
             return null;
         }
     }

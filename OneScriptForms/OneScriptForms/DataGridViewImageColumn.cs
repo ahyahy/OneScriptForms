@@ -157,7 +157,7 @@ namespace osf
     public class DataGridViewImageColumn : DataGridViewColumn
     {
         public new ClDataGridViewImageColumn dll_obj;
-        public DataGridViewImageColumnEx M_DataGridViewImageColumn;
+        public dynamic M_DataGridViewImageColumn;
 
         public DataGridViewImageColumn()
         {
@@ -177,6 +177,12 @@ namespace osf
         {
             M_DataGridViewImageColumn = p1.M_DataGridViewImageColumn;
             M_DataGridViewImageColumn.M_Object = this;
+            base.M_DataGridViewColumn = M_DataGridViewImageColumn;
+        }
+
+        public DataGridViewImageColumn(System.Windows.Forms.DataGridViewImageColumn p1)
+        {
+            M_DataGridViewImageColumn = p1;
             base.M_DataGridViewColumn = M_DataGridViewImageColumn;
         }
 

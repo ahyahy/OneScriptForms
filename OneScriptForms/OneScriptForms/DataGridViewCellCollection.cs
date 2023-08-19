@@ -88,7 +88,13 @@ namespace osf
             {
                 return OneScriptForms.RevertObj(new osf.DataGridViewCheckBoxCell((DataGridViewCheckBoxCellEx)Base_obj[p1]));
             }
-            return null;
+            dynamic Obj1 = null;
+            string str1 = Base_obj[p1].GetType().ToString();
+            string str2 = str1.Replace("System.Windows.Forms.", "osf.");
+            System.Type Type2 = System.Type.GetType(str2, false, true);
+            object[] args1 = { Base_obj[p1] };
+            Obj1 = Activator.CreateInstance(Type2, args1);
+            return OneScriptForms.RevertObj(Obj1);
         }
     }
 }

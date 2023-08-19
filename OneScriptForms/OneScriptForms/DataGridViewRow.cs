@@ -263,6 +263,15 @@ namespace osf
             {
                 IValue1 = new ClDataGridViewTextBoxCell(new DataGridViewTextBoxCell((DataGridViewTextBoxCellEx)Base_obj.Cells[p1]));
             }
+            else
+            {
+                dynamic Obj1 = null;
+                string str2 = str1.Replace("System.Windows.Forms.", "osf.");
+                System.Type Type1 = System.Type.GetType(str2, false, true);
+                object[] args1 = { Base_obj.Cells[p1] };
+                Obj1 = Activator.CreateInstance(Type1, args1);
+                return OneScriptForms.RevertObj(Obj1);
+            }
             return IValue1;
         }
     }
