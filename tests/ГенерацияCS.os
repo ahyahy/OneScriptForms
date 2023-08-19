@@ -6426,6 +6426,16 @@
 				|                ClDataGridViewLinkCell ClDataGridViewLinkCell1 = new ClDataGridViewLinkCell(DataGridViewLinkCell1);
 				|                IValue1 = ClDataGridViewLinkCell1;
 				|            }
+				|            else
+				|            {
+				|                dynamic Obj1 = null;
+				|                string str1 = Base_obj.M_DataGridView.Rows[p2].Cells[p1].GetType().ToString();
+				|                string str2 = str1.Replace(""System.Windows.Forms."", ""osf."");
+				|                System.Type Type1 = System.Type.GetType(str2, false, true);
+				|                object[] args1 = { Base_obj.M_DataGridView.Rows[p2].Cells[p1] };
+				|                Obj1 = Activator.CreateInstance(Type1, args1);
+				|                return OneScriptForms.RevertObj(Obj1);
+				|            }
 				|            return IValue1;
 				|        }
 				|        
@@ -6460,6 +6470,15 @@
 				|            else if (str1 == ""osf.DataGridViewTextBoxColumnEx"")
 				|            {
 				|                IValue1 = new ClDataGridViewTextBoxColumn(new DataGridViewTextBoxColumn((DataGridViewTextBoxColumnEx)Base_obj.Columns[p1]));
+				|            }
+				|            else
+				|            {
+				|                dynamic Obj1 = null;
+				|                string str2 = str1.Replace(""System.Windows.Forms."", ""osf."");
+				|                System.Type Type1 = System.Type.GetType(str2, false, true);
+				|                object[] args1 = { Base_obj.Columns[p1] };
+				|                Obj1 = Activator.CreateInstance(Type1, args1);
+				|                return OneScriptForms.RevertObj(Obj1);
 				|            }
 				|            return IValue1;
 				|        }
@@ -6585,6 +6604,15 @@
 				|            else if (str1 == ""osf.DataGridViewTextBoxCellEx"")
 				|            {
 				|                IValue1 = new ClDataGridViewTextBoxCell(new DataGridViewTextBoxCell((DataGridViewTextBoxCellEx)Base_obj.Cells[p1]));
+				|            }
+				|            else
+				|            {
+				|                dynamic Obj1 = null;
+				|                string str2 = str1.Replace(""System.Windows.Forms."", ""osf."");
+				|                System.Type Type1 = System.Type.GetType(str2, false, true);
+				|                object[] args1 = { Base_obj.Cells[p1] };
+				|                Obj1 = Activator.CreateInstance(Type1, args1);
+				|                return OneScriptForms.RevertObj(Obj1);
 				|            }
 				|            return IValue1;
 				|        }
@@ -7988,7 +8016,13 @@
 				|            {
 				|                return OneScriptForms.RevertObj(new osf.DataGridViewCheckBoxCell((DataGridViewCheckBoxCellEx)Base_obj[p1]));
 				|            }
-				|            return null;
+				|            dynamic Obj1 = null;
+				|            string str1 = Base_obj[p1].GetType().ToString();
+				|            string str2 = str1.Replace(""System.Windows.Forms."", ""osf."");
+				|            System.Type Type2 = System.Type.GetType(str2, false, true);
+				|            object[] args1 = { Base_obj[p1] };
+				|            Obj1 = Activator.CreateInstance(Type2, args1);
+				|            return OneScriptForms.RevertObj(Obj1);
 				|        }
 				|        
 				|";
@@ -8063,6 +8097,30 @@
 				|            else if (Type1 == typeof(osf.DataGridViewCheckBoxColumnEx))
 				|            {
 				|                return OneScriptForms.RevertObj(new osf.DataGridViewCheckBoxColumn((DataGridViewCheckBoxColumnEx)Base_obj[p1]));
+				|            }
+				|            else if (Type1 == typeof(System.Windows.Forms.DataGridViewTextBoxColumn))
+				|            {
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewTextBoxColumn((System.Windows.Forms.DataGridViewTextBoxColumn)Base_obj[p1]));
+				|            }
+				|            else if (Type1 == typeof(System.Windows.Forms.DataGridViewImageColumn))
+				|            {
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewImageColumn((System.Windows.Forms.DataGridViewImageColumn)Base_obj[p1]));
+				|            }
+				|            else if (Type1 == typeof(System.Windows.Forms.DataGridViewButtonColumn))
+				|            {
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewButtonColumn((System.Windows.Forms.DataGridViewButtonColumn)Base_obj[p1]));
+				|            }
+				|            else if (Type1 == typeof(System.Windows.Forms.DataGridViewComboBoxColumn))
+				|            {
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewComboBoxColumn((System.Windows.Forms.DataGridViewComboBoxColumn)Base_obj[p1]));
+				|            }
+				|            else if (Type1 == typeof(System.Windows.Forms.DataGridViewLinkColumn))
+				|            {
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewLinkColumn((System.Windows.Forms.DataGridViewLinkColumn)Base_obj[p1]));
+				|            }
+				|            else if (Type1 == typeof(System.Windows.Forms.DataGridViewCheckBoxColumn))
+				|            {
+				|                return OneScriptForms.RevertObj(new osf.DataGridViewCheckBoxColumn((System.Windows.Forms.DataGridViewCheckBoxColumn)Base_obj[p1]));
 				|            }
 				|            return null;
 				|        }
@@ -33648,7 +33706,7 @@
 		|    public class DataGridViewTextBoxColumn : DataGridViewColumn
 		|    {
 		|        public new ClDataGridViewTextBoxColumn dll_obj;
-		|        public DataGridViewTextBoxColumnEx M_DataGridViewTextBoxColumn;
+		|        public dynamic M_DataGridViewTextBoxColumn;
 		|        private int maxInputLength;
 		|
 		|        public DataGridViewTextBoxColumn()
@@ -33669,6 +33727,12 @@
 		|        {
 		|            M_DataGridViewTextBoxColumn = p1;
 		|            M_DataGridViewTextBoxColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewTextBoxColumn;
+		|        }
+		|		
+		|        public DataGridViewTextBoxColumn(System.Windows.Forms.DataGridViewTextBoxColumn p1)
+		|        {
+		|            M_DataGridViewTextBoxColumn = p1;
 		|            base.M_DataGridViewColumn = M_DataGridViewTextBoxColumn;
 		|        }
 		|
@@ -34080,7 +34144,7 @@
 		|    public class DataGridViewTextBoxCell : DataGridViewCell
 		|    {
 		|        public new ClDataGridViewTextBoxCell dll_obj;
-		|        private DataGridViewTextBoxCellEx M_DataGridViewTextBoxCell;
+		|        private dynamic M_DataGridViewTextBoxCell;
 		|
 		|        public DataGridViewTextBoxCell()
 		|        {
@@ -34100,6 +34164,12 @@
 		|        {
 		|            M_DataGridViewTextBoxCell = p1;
 		|            M_DataGridViewTextBoxCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewTextBoxCell;
+		|        }
+		|		
+		|        public DataGridViewTextBoxCell(System.Windows.Forms.DataGridViewTextBoxCell p1)
+		|        {
+		|            M_DataGridViewTextBoxCell = p1;
 		|            base.M_DataGridViewCell = M_DataGridViewTextBoxCell;
 		|        }
 		|
@@ -34165,7 +34235,7 @@
 		|    public class DataGridViewLinkColumn : DataGridViewColumn
 		|    {
 		|        public new ClDataGridViewLinkColumn dll_obj;
-		|        private DataGridViewLinkColumnEx M_DataGridViewLinkColumn;
+		|        private dynamic M_DataGridViewLinkColumn;
 		|
 		|        public DataGridViewLinkColumn()
 		|        {
@@ -34185,6 +34255,12 @@
 		|        {
 		|            M_DataGridViewLinkColumn = p1;
 		|            M_DataGridViewLinkColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewLinkColumn;
+		|        }
+		|		
+		|        public DataGridViewLinkColumn(System.Windows.Forms.DataGridViewLinkColumn p1)
+		|        {
+		|            M_DataGridViewLinkColumn = p1;
 		|            base.M_DataGridViewColumn = M_DataGridViewLinkColumn;
 		|        }
 		|
@@ -34744,7 +34820,7 @@
 		|    public class DataGridViewLinkCell : DataGridViewCell
 		|    {
 		|        public new ClDataGridViewLinkCell dll_obj;
-		|        private DataGridViewLinkCellEx M_DataGridViewLinkCell;
+		|        private dynamic M_DataGridViewLinkCell;
 		|
 		|        public DataGridViewLinkCell()
 		|        {
@@ -34764,6 +34840,12 @@
 		|        {
 		|            M_DataGridViewLinkCell = p1;
 		|            M_DataGridViewLinkCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewLinkCell;
+		|        }
+		|		
+		|        public DataGridViewLinkCell(System.Windows.Forms.DataGridViewLinkCell p1)
+		|        {
+		|            M_DataGridViewLinkCell = p1;
 		|            base.M_DataGridViewCell = M_DataGridViewLinkCell;
 		|        }
 		|
@@ -34970,7 +35052,7 @@
 		|    public class DataGridViewImageColumn : DataGridViewColumn
 		|    {
 		|        public new ClDataGridViewImageColumn dll_obj;
-		|        public DataGridViewImageColumnEx M_DataGridViewImageColumn;
+		|        public dynamic M_DataGridViewImageColumn;
 		|
 		|        public DataGridViewImageColumn()
 		|        {
@@ -34990,6 +35072,12 @@
 		|        {
 		|            M_DataGridViewImageColumn = p1.M_DataGridViewImageColumn;
 		|            M_DataGridViewImageColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewImageColumn;
+		|        }
+		|		
+		|        public DataGridViewImageColumn(System.Windows.Forms.DataGridViewImageColumn p1)
+		|        {
+		|            M_DataGridViewImageColumn = p1;
 		|            base.M_DataGridViewColumn = M_DataGridViewImageColumn;
 		|        }
 		|
@@ -35492,7 +35580,7 @@
 		|    public class DataGridViewComboBoxColumn : DataGridViewColumn
 		|    {
 		|        public new ClDataGridViewComboBoxColumn dll_obj;
-		|        private DataGridViewComboBoxColumnEx M_DataGridViewComboBoxColumn;
+		|        private dynamic M_DataGridViewComboBoxColumn;
 		|
 		|        public DataGridViewComboBoxColumn()
 		|        {
@@ -35514,6 +35602,12 @@
 		|        {
 		|            M_DataGridViewComboBoxColumn = p1;
 		|            M_DataGridViewComboBoxColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewComboBoxColumn;
+		|        }
+		|		
+		|        public DataGridViewComboBoxColumn(System.Windows.Forms.DataGridViewComboBoxColumn p1)
+		|        {
+		|            M_DataGridViewComboBoxColumn = p1;
 		|            base.M_DataGridViewColumn = M_DataGridViewComboBoxColumn;
 		|        }
 		|
@@ -35990,7 +36084,7 @@
 		|    public class DataGridViewComboBoxCell : DataGridViewCell
 		|    {
 		|        public new ClDataGridViewComboBoxCell dll_obj;
-		|        private DataGridViewComboBoxCellEx M_DataGridViewComboBoxCell;
+		|        private dynamic M_DataGridViewComboBoxCell;
 		|
 		|        public DataGridViewComboBoxCell()
 		|        {
@@ -36012,6 +36106,12 @@
 		|        {
 		|            M_DataGridViewComboBoxCell = p1;
 		|            M_DataGridViewComboBoxCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewComboBoxCell;
+		|        }
+		|		
+		|        public DataGridViewComboBoxCell(System.Windows.Forms.DataGridViewComboBoxCell p1)
+		|        {
+		|            M_DataGridViewComboBoxCell = p1;
 		|            base.M_DataGridViewCell = M_DataGridViewComboBoxCell;
 		|        }
 		|
@@ -36188,7 +36288,7 @@
 		|    public class DataGridViewCheckBoxColumn : DataGridViewColumn
 		|    {
 		|        public new ClDataGridViewCheckBoxColumn dll_obj;
-		|        private DataGridViewCheckBoxColumnEx M_DataGridViewCheckBoxColumn;
+		|        private dynamic M_DataGridViewCheckBoxColumn;
 		|
 		|        public DataGridViewCheckBoxColumn()
 		|        {
@@ -36208,6 +36308,12 @@
 		|        {
 		|            M_DataGridViewCheckBoxColumn = p1;
 		|            M_DataGridViewCheckBoxColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewCheckBoxColumn;
+		|        }
+		|		
+		|        public DataGridViewCheckBoxColumn(System.Windows.Forms.DataGridViewCheckBoxColumn p1)
+		|        {
+		|            M_DataGridViewCheckBoxColumn = p1;
 		|            base.M_DataGridViewColumn = M_DataGridViewCheckBoxColumn;
 		|        }
 		|
@@ -36672,7 +36778,7 @@
 		|    public class DataGridViewCheckBoxCell : DataGridViewCell
 		|    {
 		|        public new ClDataGridViewCheckBoxCell dll_obj;
-		|        private DataGridViewCheckBoxCellEx M_DataGridViewCheckBoxCell;
+		|        private dynamic M_DataGridViewCheckBoxCell;
 		|
 		|        public DataGridViewCheckBoxCell()
 		|        {
@@ -36692,6 +36798,12 @@
 		|        {
 		|            M_DataGridViewCheckBoxCell = p1;
 		|            M_DataGridViewCheckBoxCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewCheckBoxCell;
+		|        }
+		|		
+		|        public DataGridViewCheckBoxCell(System.Windows.Forms.DataGridViewCheckBoxCell p1)
+		|        {
+		|            M_DataGridViewCheckBoxCell = p1;
 		|            base.M_DataGridViewCell = M_DataGridViewCheckBoxCell;
 		|        }
 		|
@@ -36786,7 +36898,7 @@
 		|    public class DataGridViewButtonColumn : DataGridViewColumn
 		|    {
 		|        public new ClDataGridViewButtonColumn dll_obj;
-		|        private DataGridViewButtonColumnEx M_DataGridViewButtonColumn;
+		|        private dynamic M_DataGridViewButtonColumn;
 		|
 		|        public DataGridViewButtonColumn()
 		|        {
@@ -36806,6 +36918,12 @@
 		|        {
 		|            M_DataGridViewButtonColumn = p1;
 		|            M_DataGridViewButtonColumn.M_Object = this;
+		|            base.M_DataGridViewColumn = M_DataGridViewButtonColumn;
+		|        }
+		|		
+		|        public DataGridViewButtonColumn(System.Windows.Forms.DataGridViewButtonColumn p1)
+		|        {
+		|            M_DataGridViewButtonColumn = p1;
 		|            base.M_DataGridViewColumn = M_DataGridViewButtonColumn;
 		|        }
 		|
@@ -37229,7 +37347,7 @@
 		|    public class DataGridViewButtonCell : DataGridViewCell
 		|    {
 		|        public new ClDataGridViewButtonCell dll_obj;
-		|        private DataGridViewButtonCellEx M_DataGridViewButtonCell;
+		|        private dynamic M_DataGridViewButtonCell;
 		|
 		|        public DataGridViewButtonCell()
 		|        {
@@ -37249,6 +37367,12 @@
 		|        {
 		|            M_DataGridViewButtonCell = p1;
 		|            M_DataGridViewButtonCell.M_Object = this;
+		|            base.M_DataGridViewCell = M_DataGridViewButtonCell;
+		|        }
+		|
+		|        public DataGridViewButtonCell(System.Windows.Forms.DataGridViewButtonCell p1)
+		|        {
+		|            M_DataGridViewButtonCell = p1;
 		|            base.M_DataGridViewCell = M_DataGridViewButtonCell;
 		|        }
 		|
@@ -37996,6 +38120,13 @@
 		|                else if (str1 == ""osf.DataGridViewTextBoxCellEx"")
 		|                {
 		|                    Obj1 = new DataGridViewTextBoxCell((DataGridViewTextBoxCellEx)M_DataGridView.CurrentCell);
+		|                }
+		|                else
+		|                {
+		|                    string str2 = str1.Replace(""System.Windows.Forms."", ""osf."");
+		|                    System.Type Type1 = System.Type.GetType(str2, false, true);
+		|                    object[] args1 = { M_DataGridView.CurrentCell };
+		|                    Obj1 = Activator.CreateInstance(Type1, args1);
 		|                }
 		|                return Obj1;
 		|            }
