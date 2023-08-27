@@ -16,6 +16,7 @@
 <H1 class=dtH1>Устаревшие свойства, методы</H1></DIV></DIV>
 <DIV id=nstext>
 <P>В целях совместимости устаревшие свойства и методы будут работать как и прежде. Рекомендуется использовать новый синтаксис.</P>
+<P>В других особых случаях будут даны разъяснения.</P>
 <P><BR></P>
 <DIV class=tablediv>
 <TABLE class=dtTABLE cellSpacing=0>
@@ -34,7 +35,23 @@
   <TR vAlign=top>
     <TD width="50%"><B>СписокЭлементов.ВыбиратьПодэлементы&nbsp;(ListView.FullRowSelect)</B>
 	<BR>Русский вариант имени не точно отражал назначение свойства. Вместо него используйте свойство СписокЭлементов.ПолныйВыборСтроки&nbsp;(ListView.FullRowSelect).</TD>
-    <TD width="50%"><A href="OneScriptForms.ListView.FullRowSelect.html">СписокЭлементов.ПолныйВыборСтроки&nbsp;(ListView.FullRowSelect)</A></TD></TR></TBODY></TABLE></DIV>
+    <TD width="50%"><A href="OneScriptForms.ListView.FullRowSelect.html">СписокЭлементов.ПолныйВыборСтроки&nbsp;(ListView.FullRowSelect)</A></TD></TR>
+  <TR vAlign=top>
+    <TD width="50%"><B>Установка обработчика события</B>
+	<BR>Начиная с версии <B>OneScript 1.8.3</B> обработчик события библиотеки <B>OneScriptForms</B> нельзя устанавливать используя класс <B>Действие&nbsp;(Action)</B> из 
+		библиотеки <B>OneScript</B>.
+		<br>Так не сработает:
+<P><PRE class=code>
+Форма1.Нажатие = Новый Действие(ЭтотОбъект, "Форма1_Нажатие");
+</PRE>
+	</TD>
+    <TD width="50%">Начиная с версии <B>OneScriptForms 2.5.0.0</B> обработчик события библиотеки <B>OneScriptForms</B> нужно устанавливать используя только 
+		класс <A href="OneScriptForms.Action.html">Действие&nbsp;(Action)</A> из библиотеки <B>OneScriptForms</B>. 
+		<br>Используйте:
+<P><PRE class=code>
+Форма1.Нажатие = Ф.Действие(ЭтотОбъект, "Форма1_Нажатие");
+</PRE>
+		В случае запуска библиотеки <B>OneScriptForms</B> на версии <B>OneScript</B> ниже версии <B>1.8.3</B> этой рекомендации можно не придерживаться.</TD></TR></TBODY></TABLE></DIV>
 <H4 class=dtH4>Смотрите также</H4>
 <P><A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P></DIV></BODY></HTML>
 
