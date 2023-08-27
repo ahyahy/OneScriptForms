@@ -124,6 +124,15 @@
 		|
 		|";
 		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "MaskedTextBox" Тогда
+		Стр = 
+		"using System;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using System.Reflection;
+		|
+		|";
+		Возврат Стр;
 	ИначеЕсли ИмяКонтекстКлассаАнгл = "DataGridViewColumnSortMode" или 
 		ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxDisplayStyle" Тогда
 		Стр = 
@@ -258,6 +267,10 @@
 		ИмяКонтекстКлассаАнгл = "ImageScaleMode" или 
 		ИмяКонтекстКлассаАнгл = "TreeSelectionMode" или 
 		ИмяКонтекстКлассаАнгл = "GridLineStyle" или 
+		ИмяКонтекстКлассаАнгл = "InsertKeyMode" или 
+		ИмяКонтекстКлассаАнгл = "MaskFormat" или 
+		ИмяКонтекстКлассаАнгл = "MaskedTextResultHint" или 
+		ИмяКонтекстКлассаАнгл = "MaskInputRejectedEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "Appearance" Тогда
 		Стр = 
 		"using ScriptEngine.Machine.Contexts;
@@ -927,6 +940,23 @@
 		|        {
 		|            return getInstance();
 		|        }
+		|";
+	ИначеЕсли ИмяКласса = "MaskedTextBox" Тогда
+		Стр = 
+		"        public ClMaskedTextBox(string p1 = null)
+		|        {
+		|            MaskedTextBox MaskedTextBox1 = new MaskedTextBox();
+		|            MaskedTextBox1.dll_obj = this;
+		|            Base_obj = MaskedTextBox1;
+		|            MaskedTextBox1.Mask = p1;
+		|        }//end_constr
+		|		
+		|        public ClMaskedTextBox(osf.MaskedTextBox p1)
+		|        {
+		|            MaskedTextBox MaskedTextBox1 = p1;
+		|            MaskedTextBox1.dll_obj = this;
+		|            Base_obj = MaskedTextBox1;
+		|        }//end_constr
 		|";
 	ИначеЕсли ИмяКласса = "TCPClient" Тогда
 		Стр = 
@@ -3497,6 +3527,8 @@
 				СвойствоРус = "Развернут" или 
 				
 				СвойствоРус = "СостояниеФлажкаИзменено" или 
+				
+				СвойствоРус = "ВводОтклонен" или 
 				
 				СвойствоРус = "ЭлементУдален" Тогда
 				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
@@ -7044,6 +7076,15 @@
 				|        public ClDataGridViewCell DataGridViewCell()
 				|        {
 				|            return new ClDataGridViewCell();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "МаскаПоляВвода") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""МаскаПоляВвода"", ""MaskedTextBox"")]
+				|        public ClMaskedTextBox MaskedTextBox(string p1 = null)
+				|        {
+				|            return new ClMaskedTextBox(p1);
 				|        }
 				|        
 				|";
@@ -12646,6 +12687,8 @@
 	СоздатьФайлCs("DataGridViewCellExHelper");
 	СоздатьФайлCs("DataGridViewHelper");
 	СоздатьФайлCs("ISpannedCell");
+	СоздатьФайлCs("MaskedTextBox");
+	СоздатьФайлCs("MaskInputRejectedEventArgs");
 	
 	
 	
@@ -13372,6 +13415,12 @@
 				ИмяКонтекстКлассаАнгл = "DataGridViewContentAlignment" или 
 				ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxDisplayStyle" или 
 				ИмяКонтекстКлассаАнгл = "DataGridViewImageCellLayout" или 
+				
+				
+				ИмяКонтекстКлассаАнгл = "MaskFormat" или 
+				ИмяКонтекстКлассаАнгл = "InsertKeyMode" или 
+				
+				
 				ИмяКонтекстКлассаАнгл = "TreeViewAction" Тогда
 				ИмяКонтекстКлассаАнгл1 = "System.Windows.Forms." + ИмяКонтекстКлассаАнгл;
 			ИначеЕсли ИмяКонтекстКлассаАнгл = "ContentAlignment" или 
@@ -13398,6 +13447,8 @@
 				ИмяКонтекстКлассаАнгл1 = "(System.Windows.Forms.FlatStyle)FlatStyle";
 			ИначеЕсли ИмяКонтекстКлассаАнгл = "DataRowState" Тогда
 				ИмяКонтекстКлассаАнгл1 = "System.Data.DataRowState";
+			ИначеЕсли ИмяКонтекстКлассаАнгл = "MaskedTextResultHint" Тогда
+				ИмяКонтекстКлассаАнгл1 = "System.ComponentModel.MaskedTextResultHint";
 			Иначе
 				ИмяКонтекстКлассаАнгл1 = ИмяКонтекстКлассаАнгл;
 			КонецЕсли;
@@ -13491,6 +13542,216 @@
 		
 		
 				
+	ИначеЕсли ИмяФайлаCs = "MaskInputRejectedEventArgs" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class MaskInputRejectedEventArgs : EventArgs
+		|    {
+		|        public new ClMaskInputRejectedEventArgs dll_obj;
+		|        public int Position;
+		|        public int RejectionHint;
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "MaskedTextBox" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class MaskedTextBoxEx : System.Windows.Forms.MaskedTextBox
+		|    {
+		|        public osf.MaskedTextBox M_Object;
+		|    }//endClass
+		|
+		|    public class MaskedTextBox : TextBoxBase
+		|    {
+		|        public ClMaskedTextBox dll_obj;
+		|        public MaskedTextBoxEx M_MaskedTextBox;
+		|        public string MaskInputRejected;
+		|        public new string TextChanged;
+		|
+		|        public MaskedTextBox()
+		|        {
+		|            M_MaskedTextBox = new MaskedTextBoxEx();
+		|            M_MaskedTextBox.M_Object = this;
+		|            base.M_TextBoxBase = M_MaskedTextBox;
+		|            M_MaskedTextBox.MaskInputRejected += M_MaskedTextBox_MaskInputRejected;
+		|            MaskInputRejected = """";
+		|            M_MaskedTextBox.TextChanged += M_MaskedTextBox_TextChanged;
+		|            TextChanged = """";
+		|        }
+		|
+		|        public MaskedTextBox(osf.MaskedTextBox p1)
+		|        {
+		|            M_MaskedTextBox = p1.M_MaskedTextBox;
+		|            M_MaskedTextBox.M_Object = this;
+		|            base.M_TextBoxBase = M_MaskedTextBox;
+		|            M_MaskedTextBox.MaskInputRejected += M_MaskedTextBox_MaskInputRejected;
+		|            MaskInputRejected = """";
+		|            M_MaskedTextBox.TextChanged += M_MaskedTextBox_TextChanged;
+		|            TextChanged = """";
+		|        }
+		|
+		|        public MaskedTextBox(System.Windows.Forms.MaskedTextBox p1)
+		|        {
+		|            M_MaskedTextBox = (MaskedTextBoxEx)p1;
+		|            M_MaskedTextBox.M_Object = this;
+		|            base.M_TextBoxBase = M_MaskedTextBox;
+		|            M_MaskedTextBox.MaskInputRejected += M_MaskedTextBox_MaskInputRejected;
+		|            MaskInputRejected = """";
+		|            M_MaskedTextBox.TextChanged += M_MaskedTextBox_TextChanged;
+		|            TextChanged = """";
+		|        }
+		|		
+		|        private void M_MaskedTextBox_TextChanged(object sender, System.EventArgs e)
+		|        {
+		|            if (TextChanged.Length > 0)
+		|            {
+		|                EventArgs EventArgs1 = new EventArgs();
+		|                EventArgs1.EventString = TextChanged;
+		|                EventArgs1.Sender = this;
+		|                EventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.TextChanged);
+		|                ClEventArgs ClEventArgs1 = new ClEventArgs(EventArgs1);
+		|                OneScriptForms.Event = ClEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.TextChanged);
+		|            }
+		|        }
+		|
+		|        private void M_MaskedTextBox_MaskInputRejected(object sender, System.Windows.Forms.MaskInputRejectedEventArgs e)
+		|        {
+		|            if (MaskInputRejected.Length > 0)
+		|            {
+		|                MaskInputRejectedEventArgs MaskInputRejectedEventArgs1 = new MaskInputRejectedEventArgs();
+		|                MaskInputRejectedEventArgs1.EventString = MaskInputRejected;
+		|                MaskInputRejectedEventArgs1.Sender = this;
+		|                MaskInputRejectedEventArgs1.Position = e.Position;
+		|                MaskInputRejectedEventArgs1.RejectionHint = (int)e.RejectionHint;
+		|                MaskInputRejectedEventArgs1.Parameter = OneScriptForms.GetEventParameter(((dynamic)sender).M_Object.dll_obj.MaskInputRejected);
+		|                ClMaskInputRejectedEventArgs ClMaskInputRejectedEventArgs1 = new ClMaskInputRejectedEventArgs(MaskInputRejectedEventArgs1);
+		|                OneScriptForms.Event = ClMaskInputRejectedEventArgs1;
+		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.MaskInputRejected);
+		|            }
+		|        }
+		|		
+		|        public new string SelectedText
+		|        {
+		|            get { return M_MaskedTextBox.SelectedText; }
+		|            set { M_MaskedTextBox.SelectedText = value; }
+		|        }
+		|		
+		|        public int TextAlign
+		|        {
+		|            get { return (int)M_MaskedTextBox.TextAlign; }
+		|            set { M_MaskedTextBox.TextAlign = (System.Windows.Forms.HorizontalAlignment)value; }
+		|        }
+		|		
+		|        public bool MaskCompleted
+		|        {
+		|            get { return M_MaskedTextBox.MaskCompleted; }
+		|        }
+		|
+		|        public bool MaskFull
+		|        {
+		|            get { return M_MaskedTextBox.MaskFull; }
+		|        }
+		|
+		|        public bool AllowPromptAsInput
+		|        {
+		|            get { return M_MaskedTextBox.AllowPromptAsInput; }
+		|            set { M_MaskedTextBox.AllowPromptAsInput = value; }
+		|        }
+		|
+		|        public bool UseSystemPasswordChar
+		|        {
+		|            get { return M_MaskedTextBox.UseSystemPasswordChar; }
+		|            set { M_MaskedTextBox.UseSystemPasswordChar = value; }
+		|        }
+		|
+		|        public int CutCopyMaskFormat
+		|        {
+		|            get { return (int)M_MaskedTextBox.CutCopyMaskFormat; }
+		|            set { M_MaskedTextBox.CutCopyMaskFormat = (System.Windows.Forms.MaskFormat)value; }
+		|        }
+		|
+		|        public string Mask
+		|        {
+		|            get { return M_MaskedTextBox.Mask; }
+		|            set { M_MaskedTextBox.Mask = value; }
+		|        }
+		|
+		|        public bool SkipLiterals
+		|        {
+		|            get { return M_MaskedTextBox.SkipLiterals; }
+		|            set { M_MaskedTextBox.SkipLiterals = value; }
+		|        }
+		|
+		|        public int InsertKeyMode
+		|        {
+		|            get { return (int)M_MaskedTextBox.InsertKeyMode; }
+		|            set { M_MaskedTextBox.InsertKeyMode = (System.Windows.Forms.InsertKeyMode)value; }
+		|        }
+		|
+		|        public bool IsOverwriteMode
+		|        {
+		|            get { return M_MaskedTextBox.IsOverwriteMode; }
+		|        }
+		|
+		|        public bool ResetOnSpace
+		|        {
+		|            get { return M_MaskedTextBox.ResetOnSpace; }
+		|            set { M_MaskedTextBox.ResetOnSpace = value; }
+		|        }
+		|
+		|        public bool ResetOnPrompt
+		|        {
+		|            get { return M_MaskedTextBox.ResetOnPrompt; }
+		|            set { M_MaskedTextBox.ResetOnPrompt = value; }
+		|        }
+		|
+		|        public bool BeepOnError
+		|        {
+		|            get { return M_MaskedTextBox.BeepOnError; }
+		|            set { M_MaskedTextBox.BeepOnError = value; }
+		|        }
+		|
+		|        public string PasswordChar
+		|        {
+		|            get { return Convert.ToString(M_MaskedTextBox.PasswordChar); }
+		|            set { M_MaskedTextBox.PasswordChar = Convert.ToChar(value); }
+		|        }
+		|
+		|        public string PromptChar
+		|        {
+		|            get { return Convert.ToString(M_MaskedTextBox.PromptChar); }
+		|            set { M_MaskedTextBox.PromptChar = Convert.ToChar(value); }
+		|        }
+		|
+		|        public bool HidePromptOnLeave
+		|        {
+		|            get { return M_MaskedTextBox.HidePromptOnLeave; }
+		|            set { M_MaskedTextBox.HidePromptOnLeave = value; }
+		|        }
+		|
+		|        public bool AsciiOnly
+		|        {
+		|            get { return M_MaskedTextBox.AsciiOnly; }
+		|            set { M_MaskedTextBox.AsciiOnly = value; }
+		|        }
+		|
+		|        public int TextMaskFormat
+		|        {
+		|            get { return (int)M_MaskedTextBox.TextMaskFormat; }
+		|            set { M_MaskedTextBox.TextMaskFormat = (System.Windows.Forms.MaskFormat)value; }
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "ISpannedCell" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
