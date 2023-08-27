@@ -11,6 +11,7 @@
     <AssemblyName>OneScriptForms</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -289,6 +290,7 @@
     <Compile Include="ImageList.cs" />
     <Compile Include="ImageScaleMode.cs" />
     <Compile Include="InputBox.cs" />
+    <Compile Include="InsertKeyMode.cs" />
     <Compile Include="IpAddress.cs" />
     <Compile Include="IpHostEntry.cs" />
     <Compile Include="ISpannedCell.cs" />
@@ -335,6 +337,12 @@
     <Compile Include="MainMenu.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MaskedTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MaskedTextResultHint.cs" />
+    <Compile Include="MaskFormat.cs" />
+    <Compile Include="MaskInputRejectedEventArgs.cs" />
     <Compile Include="Math.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MenuItem.cs">

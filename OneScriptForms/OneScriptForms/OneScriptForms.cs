@@ -55,11 +55,14 @@ namespace osf
         private static ClHorizontalAlignment cl_HorizontalAlignment = new ClHorizontalAlignment();
         private static ClImageLayout cl_ImageLayout = new ClImageLayout();
         private static ClImageScaleMode cl_ImageScaleMode = new ClImageScaleMode();
+        private static ClInsertKeyMode cl_InsertKeyMode = new ClInsertKeyMode();
         private static ClItemActivation cl_ItemActivation = new ClItemActivation();
         private static ClKeys cl_Keys = new ClKeys();
         private static ClLeftRightAlignment cl_LeftRightAlignment = new ClLeftRightAlignment();
         private static ClLinkLabelLinkBehavior cl_LinkLabelLinkBehavior = new ClLinkLabelLinkBehavior();
         private static ClListViewAlignment cl_ListViewAlignment = new ClListViewAlignment();
+        private static ClMaskedTextResultHint cl_MaskedTextResultHint = new ClMaskedTextResultHint();
+        private static ClMaskFormat cl_MaskFormat = new ClMaskFormat();
         private static ClMenuMerge cl_MenuMerge = new ClMenuMerge();
         private static ClMessageBoxButtons cl_MessageBoxButtons = new ClMessageBoxButtons();
         private static ClMessageBoxIcon cl_MessageBoxIcon = new ClMessageBoxIcon();
@@ -461,6 +464,12 @@ namespace osf
             get { return cl_DataGridViewAutoSizeRowMode; }
         }
 
+        [ContextProperty("РежимВставки", "InsertKeyMode")]
+        public ClInsertKeyMode InsertKeyMode
+        {
+            get { return cl_InsertKeyMode; }
+        }
+
         [ContextProperty("РежимВыбора", "SelectionMode")]
         public ClSelectionMode SelectionMode
         {
@@ -525,6 +534,12 @@ namespace osf
         public ClDialogResult DialogResult
         {
             get { return cl_DialogResult; }
+        }
+
+        [ContextProperty("РезультатМаски", "MaskedTextResultHint")]
+        public ClMaskedTextResultHint MaskedTextResultHint
+        {
+            get { return cl_MaskedTextResultHint; }
         }
 
         [ContextProperty("СлияниеМеню", "MenuMerge")]
@@ -711,6 +726,12 @@ namespace osf
         public ClRichTextBoxStreamType RichTextBoxStreamType
         {
             get { return cl_RichTextBoxStreamType; }
+        }
+
+        [ContextProperty("ФорматМаски", "MaskFormat")]
+        public ClMaskFormat MaskFormat
+        {
+            get { return cl_MaskFormat; }
         }
 
         [ContextProperty("ФорматПикселей", "PixelFormat")]
@@ -1365,6 +1386,12 @@ namespace osf
             return new ClCursors();
         }
 
+        [ContextMethod("МаскаПоляВвода", "MaskedTextBox")]
+        public ClMaskedTextBox MaskedTextBox(string p1 = null)
+        {
+            return new ClMaskedTextBox(p1);
+        }
+        
         [ContextMethod("МассивСписок", "ArrayList")]
         public ClArrayList ArrayList(IValue p1 = null)
         {
@@ -2452,6 +2479,12 @@ namespace osf
         public ClLinkLabelLinkClickedEventArgs LinkLabelLinkClickedEventArgs()
         {
         	return (ClLinkLabelLinkClickedEventArgs)Event;
+        }
+        
+        [ContextMethod("ВводОтклоненАрг", "MaskInputRejectedEventArgs")]
+        public ClMaskInputRejectedEventArgs MaskInputRejectedEventArgs()
+        {
+        	return (ClMaskInputRejectedEventArgs)Event;
         }
         
         [ContextMethod("МышьАрг", "MouseEventArgs")]
