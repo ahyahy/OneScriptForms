@@ -5,21 +5,19 @@ using System.ComponentModel;
 
 namespace osf
 {
-    public sealed class DataGridViewImageColumnEx : System.Windows.Forms.DataGridViewColumn
+    public sealed class DataGridViewImageColumnEx : System.Windows.Forms.DataGridViewImageColumn
     {
         public osf.DataGridViewImageColumn M_Object;
         static System.Drawing.Bitmap errorBmp;
         static System.Drawing.Icon errorIco;
-        private System.Drawing.Bitmap bitmap;
-        private System.Drawing.Icon icon;
-        private string description;
 
         public DataGridViewImageColumnEx() : this(false)
         {
         }
 
-        public DataGridViewImageColumnEx(bool valuesAreIcons) : base(new DataGridViewImageCellEx(valuesAreIcons))
+        public DataGridViewImageColumnEx(bool valuesAreIcons) : base(valuesAreIcons)
         {
+            this.CellTemplate = new DataGridViewImageCellEx(valuesAreIcons);
             var style = new System.Windows.Forms.DataGridViewCellStyle { Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter };
             if (valuesAreIcons)
             {
@@ -30,22 +28,6 @@ namespace osf
                 style.NullValue = ErrorBitmap;
             }
             this.DefaultCellStyle = style;
-        }
-
-        public System.Drawing.Bitmap Bitmap
-        {
-            get { return bitmap; }
-            set { bitmap = value; }
-        }
-        public string Description
-        {
-            get { return description; }
-            set { description = value; }
-        }
-        public System.Drawing.Icon Icon
-        {
-            get { return icon; }
-            set { icon = (System.Drawing.Icon)value; }
         }
 
         static System.Drawing.Bitmap ErrorBitmap
@@ -69,88 +51,6 @@ namespace osf
         private DataGridViewImageCellEx ImageCellTemplate
         {
             get { return (DataGridViewImageCellEx)this.CellTemplate; }
-        }
-
-        [DefaultValue(1)]
-        public System.Windows.Forms.DataGridViewImageCellLayout ImageLayout
-        {
-            get
-            {
-                if (this.CellTemplate == null)
-                {
-                    throw new InvalidOperationException();
-                }
-                System.Windows.Forms.DataGridViewImageCellLayout imageLayout = this.ImageCellTemplate.ImageLayout;
-                if (imageLayout == System.Windows.Forms.DataGridViewImageCellLayout.NotSet)
-                {
-                    imageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Normal;
-                }
-                return imageLayout;
-            }
-            set
-            {
-                if (this.ImageLayout == value)
-                {
-                    return;
-                }
-                this.ImageCellTemplate.ImageLayout = value;
-                if (DataGridView == null)
-                {
-                    return;
-                }
-                var rows = DataGridView.Rows;
-                var count = rows.Count;
-                for (var i = 0; i < count; i++)
-                {
-                    var cell = rows.SharedRow(i).Cells[Index] as System.Windows.Forms.DataGridViewImageCell;
-                    if (cell != null)
-                    {
-                        cell.ImageLayout = value;
-                    }
-                }
-            }
-        }
-
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public bool ValuesAreIcons
-        {
-            get
-            {
-                if (this.ImageCellTemplate == null)
-                {
-                    throw new InvalidOperationException();
-                }
-                return this.ImageCellTemplate.ValueIsIcon;
-            }
-            set
-            {
-                if (this.ValuesAreIcons == value)
-                {
-                    return;
-                }
-                this.ImageCellTemplate.ValueIsIcon = value;
-                if (DataGridView != null)
-                {
-                    var rows = DataGridView.Rows;
-                    var count = rows.Count;
-                    for (var i = 0; i < count; i++)
-                    {
-                        var cell = rows.SharedRow(i).Cells[Index] as System.Windows.Forms.DataGridViewImageCell;
-                        if (cell != null)
-                        {
-                            cell.ValueIsIcon = value;
-                        }
-                    }
-                }
-                if ((value && (this.DefaultCellStyle.NullValue is System.Drawing.Bitmap)) && (this.DefaultCellStyle.NullValue == ErrorBitmap))
-                {
-                    this.DefaultCellStyle.NullValue = ErrorIcon;
-                }
-                else if ((!value && (this.DefaultCellStyle.NullValue is Icon)) && (this.DefaultCellStyle.NullValue == ErrorIcon))
-                {
-                    this.DefaultCellStyle.NullValue = ErrorBitmap;
-                }
-            }
         }
     }
 
@@ -186,12 +86,6 @@ namespace osf
             base.M_DataGridViewColumn = M_DataGridViewImageColumn;
         }
 
-        public osf.Bitmap Bitmap
-        {
-            get { return new osf.Bitmap(M_DataGridViewImageColumn.Bitmap); }
-            set { M_DataGridViewImageColumn.Bitmap = value.M_Bitmap; }
-        }
-
         public string Description
         {
             get { return M_DataGridViewImageColumn.Description; }
@@ -202,6 +96,12 @@ namespace osf
         {
             get { return new osf.Icon(M_DataGridViewImageColumn.Icon); }
             set { M_DataGridViewImageColumn.Icon = (System.Drawing.Icon)value.M_Icon; }
+        }
+
+        public osf.Bitmap Image
+        {
+            get { return new osf.Bitmap(M_DataGridViewImageColumn.Image); }
+            set { M_DataGridViewImageColumn.Image = value.M_Image; }
         }
 
         public int ImageLayout
@@ -314,8 +214,8 @@ namespace osf
         [ContextProperty("Картинка", "Bitmap")]
         public ClBitmap Bitmap
         {
-            get { return (ClBitmap)OneScriptForms.RevertObj(Base_obj.Bitmap); }
-            set { Base_obj.Bitmap = value.Base_obj; }
+            get { return new ClBitmap(Base_obj.Image); }
+            set { Base_obj.Image = value.Base_obj; }
         }
 
         [ContextProperty("Метка", "Tag")]

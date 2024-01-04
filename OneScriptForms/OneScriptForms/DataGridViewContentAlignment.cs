@@ -1,9 +1,12 @@
 ﻿using ScriptEngine.Machine.Contexts;
+using ScriptEngine.Machine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace osf
 {
     [ContextClass ("КлВыравниваниеСодержимогоЯчейки", "ClDataGridViewContentAlignment")]
-    public class ClDataGridViewContentAlignment : AutoContext<ClDataGridViewContentAlignment>
+    public class ClDataGridViewContentAlignment : AutoContext<ClDataGridViewContentAlignment>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_notSet = (int)System.Windows.Forms.DataGridViewContentAlignment.NotSet; // 0 Выравнивание не установлено.
         private int m_topLeft = (int)System.Windows.Forms.DataGridViewContentAlignment.TopLeft; // 1 Содержимое выравнивается по верхнему краю в вертикальном направлении и по левому краю ячейки в горизонтальном направлении.
@@ -15,6 +18,46 @@ namespace osf
         private int m_bottomLeft = (int)System.Windows.Forms.DataGridViewContentAlignment.BottomLeft; // 256 Содержимое выравнивается по нижнему краю в вертикальном направлении и по левому краю ячейки в горизонтальном направлении.
         private int m_bottomCenter = (int)System.Windows.Forms.DataGridViewContentAlignment.BottomCenter; // 512 Содержимое выравнивается по нижнему краю в вертикальном направлении и по центру ячейки в горизонтальном направлении.
         private int m_bottomRight = (int)System.Windows.Forms.DataGridViewContentAlignment.BottomRight; // 1024 Содержимое выравнивается по нижнему краю в вертикальном направлении и по правому краю ячейки в горизонтальном направлении.
+
+        private List<IValue> _list;
+
+        public int Count()
+        {
+            return _list.Count;
+        }
+
+        public CollectionEnumerator GetManagedIterator()
+        {
+            return new CollectionEnumerator(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<IValue>)_list).GetEnumerator();
+        }
+
+        IEnumerator<IValue> IEnumerable<IValue>.GetEnumerator()
+        {
+            foreach (var item in _list)
+            {
+                yield return (item as IValue);
+            }
+        }
+
+        internal ClDataGridViewContentAlignment()
+        {
+            _list = new List<IValue>();
+            _list.Add(ValueFactory.Create(BottomCenter));
+            _list.Add(ValueFactory.Create(BottomLeft));
+            _list.Add(ValueFactory.Create(BottomRight));
+            _list.Add(ValueFactory.Create(MiddleCenter));
+            _list.Add(ValueFactory.Create(MiddleLeft));
+            _list.Add(ValueFactory.Create(MiddleRight));
+            _list.Add(ValueFactory.Create(NotSet));
+            _list.Add(ValueFactory.Create(TopCenter));
+            _list.Add(ValueFactory.Create(TopLeft));
+            _list.Add(ValueFactory.Create(TopRight));
+        }
 
         [ContextProperty("ВерхЛево", "TopLeft")]
         public int TopLeft
