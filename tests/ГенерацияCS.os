@@ -3,9 +3,11 @@
 
 Перем СтрДирективы, СтрШапка, СтрРазделОбъявленияПеременных, СтрКонструктор, СтрBase_obj, СтрСвойства, СтрМетоды, СтрПодвал, СтрВыгрузкиПеречислений;
 Перем СтрРазделОбъявленияПеременныхДляПеречисления, СтрСвойстваДляПеречисления, СтрМетодовСистема, СписокСтрМетодовСистема;
-Перем СписокЗамен, ИменаКалассовПеречислений;
+Перем СписокЗамен, ИменаКалассовПеречислений, ОтобранныеПеречисления;
 
 Перем КаталогСправки, КаталогВыгрузки;
+Перем Ф;
+
 
 Функция ОтобратьФайлы(Фильтр)
 	// Фильтр = Класс Конструктор Члены Свойства Свойство Методы Метод Перечисление
@@ -136,16 +138,7 @@
 	ИначеЕсли ИмяКонтекстКлассаАнгл = "DataGridViewColumnSortMode" или 
 		ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxDisplayStyle" Тогда
 		Стр = 
-		"using System;
-		|using ScriptEngine.HostedScript.Library;
-		|using ScriptEngine.Machine.Contexts;
-		|using ScriptEngine.Machine;
-		|using System.Collections.Generic;
-		|using System.Collections;
-		|using System.Linq;
-		|using System.Reflection;
-		|using System.Runtime.CompilerServices;
-		|using System.Runtime.InteropServices;
+		"using ScriptEngine.Machine.Contexts;
 		|using System.Windows.Forms;
 		|
 		|";
@@ -166,7 +159,6 @@
 		ИмяКонтекстКлассаАнгл = "DataRowState" или 
 		ИмяКонтекстКлассаАнгл = "DataGridCell" или 
 		ИмяКонтекстКлассаАнгл = "DataGridBoolColumn" или 
-		ИмяКонтекстКлассаАнгл = "Cursors" или 
 		ИмяКонтекстКлассаАнгл = "Cursor" или 
 		ИмяКонтекстКлассаАнгл = "ContentAlignment" или 
 		ИмяКонтекстКлассаАнгл = "ComboBoxStyle" или 
@@ -271,6 +263,7 @@
 		ИмяКонтекстКлассаАнгл = "MaskFormat" или 
 		ИмяКонтекстКлассаАнгл = "MaskedTextResultHint" или 
 		ИмяКонтекстКлассаАнгл = "MaskInputRejectedEventArgs" или 
+		ИмяКонтекстКлассаАнгл = "DataGridViewColumnHeadersHeightSizeMode" или 
 		ИмяКонтекстКлассаАнгл = "Appearance" Тогда
 		Стр = 
 		"using ScriptEngine.Machine.Contexts;
@@ -335,7 +328,8 @@
 		|
 		|";
 		Возврат Стр;
-	ИначеЕсли ИмяКонтекстКлассаАнгл = "Dictionary" Тогда
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "Dictionary" или 
+		ИмяКонтекстКлассаАнгл = "Cursors" Тогда
 		Стр = 
 		"using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
@@ -813,7 +807,8 @@
 		|    [ContextClass(""" + ИмяКонтекстКлассаРус + """, """ + ИмяКонтекстКлассаАнгл + """)]
 		|    public class " + ИмяКонтекстКлассаАнгл + " : AutoContext<" + ИмяКонтекстКлассаАнгл + ">
 		|    {";
-	ИначеЕсли ИмяКонтекстКлассаАнгл = "ControlCollection" Тогда
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "ControlCollection" или 
+		ИмяКонтекстКлассаАнгл = "Cursors" Тогда
 		Стр = Стр + 
 		"
 		|    [ContextClass(""Кл" + ИмяКонтекстКлассаРус + """, ""Cl" + ИмяКонтекстКлассаАнгл + """)]
@@ -875,6 +870,9 @@
 		Стр = 
 		"        public ArrayList heightItems;
 		|        public ClComboBox m_obj;";
+	ИначеЕсли ИмяКласса = "Cursors" Тогда
+		Стр = 
+		"        private List<IValue> _list;";
 		
 		
 		
@@ -939,6 +937,105 @@
 		|        public static IRuntimeContextInstance Constructor()
 		|        {
 		|            return getInstance();
+		|        }
+		|";
+	ИначеЕсли ИмяКласса = "Cursors" Тогда
+		Стр = 
+		"        public ClCursors()
+		|        {
+		|            Cursors Cursors1 = new Cursors();
+		|            Cursors1.dll_obj = this;
+		|            Base_obj = Cursors1;
+		|
+		|            _list = new List<IValue>();
+		|            _list.Add(NoMove2D);
+		|            _list.Add(NoMoveVert);
+		|            _list.Add(NoMoveHoriz);
+		|            _list.Add(VSplit);
+		|            _list.Add(HSplit);
+		|            _list.Add(PanEast);
+		|            _list.Add(PanWest);
+		|            _list.Add(WaitCursor);
+		|            _list.Add(PanNorth);
+		|            _list.Add(PanNE);
+		|            _list.Add(PanNW);
+		|            _list.Add(PanSouth);
+		|            _list.Add(PanSE);
+		|            _list.Add(PanSW);
+		|            _list.Add(Hand);
+		|            _list.Add(IBeam);
+		|            _list.Add(No);
+		|            _list.Add(Cross);
+		|            _list.Add(Default);
+		|            _list.Add(AppStarting);
+		|            _list.Add(SizeWE);
+		|            _list.Add(SizeNESW);
+		|            _list.Add(SizeNWSE);
+		|            _list.Add(SizeNS);
+		|            _list.Add(SizeAll);
+		|            _list.Add(Help);
+		|            _list.Add(Arrow);
+		|            _list.Add(UpArrow);
+		|        }//end_constr
+		|
+		|        public ClCursors(Cursors p1)
+		|        {
+		|            Cursors Cursors1 = p1;
+		|            Cursors1.dll_obj = this;
+		|            Base_obj = Cursors1;
+		|
+		|            _list = new List<IValue>();
+		|            _list.Add(NoMove2D);
+		|            _list.Add(NoMoveVert);
+		|            _list.Add(NoMoveHoriz);
+		|            _list.Add(VSplit);
+		|            _list.Add(HSplit);
+		|            _list.Add(PanEast);
+		|            _list.Add(PanWest);
+		|            _list.Add(WaitCursor);
+		|            _list.Add(PanNorth);
+		|            _list.Add(PanNE);
+		|            _list.Add(PanNW);
+		|            _list.Add(PanSouth);
+		|            _list.Add(PanSE);
+		|            _list.Add(PanSW);
+		|            _list.Add(Hand);
+		|            _list.Add(IBeam);
+		|            _list.Add(No);
+		|            _list.Add(Cross);
+		|            _list.Add(Default);
+		|            _list.Add(AppStarting);
+		|            _list.Add(SizeWE);
+		|            _list.Add(SizeNESW);
+		|            _list.Add(SizeNWSE);
+		|            _list.Add(SizeNS);
+		|            _list.Add(SizeAll);
+		|            _list.Add(Help);
+		|            _list.Add(Arrow);
+		|            _list.Add(UpArrow);
+		|        }//end_constr
+		|
+		|        public int Count()
+		|        {
+		|            return _list.Count;
+		|        }
+		|
+		|        public CollectionEnumerator GetManagedIterator()
+		|        {
+		|            return new CollectionEnumerator(this);
+		|        }
+		|
+		|        IEnumerator IEnumerable.GetEnumerator()
+		|        {
+		|            return ((IEnumerable<IValue>)_list).GetEnumerator();
+		|        }
+		|
+		|        IEnumerator<IValue> IEnumerable<IValue>.GetEnumerator()
+		|        {
+		|            foreach (var item in _list)
+		|            {
+		|                yield return (item as IValue);
+		|            }
 		|        }
 		|";
 	ИначеЕсли ИмяКласса = "MaskedTextBox" Тогда
@@ -5484,10 +5581,16 @@
 				|        }
 				|
 				|";
-				
-				
-				
-				
+			ИначеЕсли (СвойствоРус = "Картинка") и (ИмяКонтекстКлассаАнгл = "DataGridViewImageColumn") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""Картинка"", ""Bitmap"")]
+				|        public ClBitmap Bitmap
+				|        {
+				|            get { return new ClBitmap(Base_obj.Image); }
+				|            set { Base_obj.Image = value.Base_obj; }
+				|        }
+				|
+				|";
 				
 				
 				
@@ -9296,6 +9399,7 @@
 				|                    // находим совпадение GetName или GetAlias в методах osf.OneScriptForms, так мы получим объекты, имеющие конструктор
 				|                    System.Type Type1 = System.Type.GetType(""osf.OneScriptForms"", false, true);
 				|                    System.Reflection.MethodInfo[] myMethodInfo = Type1.GetMethods();
+				|                    bool objectFound = false;
 				|                    for (int i = 0; i < myMethodInfo.Length; i++)
 				|                    {
 				|                        if (myMethodInfo[i].CustomAttributes.Count() == 1)
@@ -9304,8 +9408,27 @@
 				|                            {
 				|                                string NameRu = myMethodInfo[i].GetCustomAttribute<ContextMethodAttribute>().GetName();
 				|                                string NameEn = myMethodInfo[i].GetCustomAttribute<ContextMethodAttribute>().GetAlias();
-				|                                if (NameRu == p1.AsString() || NameEn == p1.AsString())
+				|                                if (NameRu == p1.AsString())
 				|                                {
+				|                                    objectFound = true;
+				|
+				|                                    System.Type Type2 = System.Type.GetType(""osf.Cl"" + NameEn, false, true);
+				|                                    System.Reflection.PropertyInfo[] myPropertyInfo2 = Type2.GetProperties();
+				|                                    for (int i2 = 0; i2 < myPropertyInfo2.Length; i2++)
+				|                                    {
+				|                                        if (myPropertyInfo2[i2].CustomAttributes.Count() == 1)
+				|                                        {
+				|                                            string NameRu2 = myPropertyInfo2[i2].GetCustomAttribute<ContextPropertyAttribute>().GetName();
+				|                                            string NameEn2 = myPropertyInfo2[i2].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
+				|                                            ClSortedList1.Add(NameEn2, ValueFactory.Create(NameRu2));
+				|                                        }
+				|                                    }
+				|                                    break;
+				|                                }
+				|                                else if (NameEn == p1.AsString())
+				|                                {
+				|                                    objectFound = true;
+				|
 				|                                    System.Type Type2 = System.Type.GetType(""osf.Cl"" + NameEn, false, true);
 				|                                    System.Reflection.PropertyInfo[] myPropertyInfo2 = Type2.GetProperties();
 				|                                    for (int i2 = 0; i2 < myPropertyInfo2.Length; i2++)
@@ -9320,6 +9443,22 @@
 				|                                    break;
 				|                                }
 				|                            }
+				|                        }
+				|                    }
+				|                    if (objectFound)
+				|                    {
+				|                        return ClSortedList1;
+				|                    }
+				|                    // Для экземпляров классов, получаемых не через метод класса osf.OneScriptForms параметр p1 должен передавать только английское имя класса
+				|                    System.Type Type3 = System.Type.GetType(""osf.Cl"" + p1.AsString(), false, true);
+				|                    System.Reflection.PropertyInfo[] myPropertyInfo3 = Type3.GetProperties();
+				|                    for (int i2 = 0; i2 < myPropertyInfo3.Length; i2++)
+				|                    {
+				|                        if (myPropertyInfo3[i2].CustomAttributes.Count() == 1)
+				|                        {
+				|                            string NameRu2 = myPropertyInfo3[i2].GetCustomAttribute<ContextPropertyAttribute>().GetName();
+				|                            string NameEn2 = myPropertyInfo3[i2].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
+				|                            ClSortedList1.Add(NameEn2, ValueFactory.Create(NameEn2));
 				|                        }
 				|                    }
 				|                }
@@ -13415,12 +13554,9 @@
 				ИмяКонтекстКлассаАнгл = "DataGridViewContentAlignment" или 
 				ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxDisplayStyle" или 
 				ИмяКонтекстКлассаАнгл = "DataGridViewImageCellLayout" или 
-				
-				
 				ИмяКонтекстКлассаАнгл = "MaskFormat" или 
 				ИмяКонтекстКлассаАнгл = "InsertKeyMode" или 
-				
-				
+				ИмяКонтекстКлассаАнгл = "DataGridViewColumnHeadersHeightSizeMode" или 
 				ИмяКонтекстКлассаАнгл = "TreeViewAction" Тогда
 				ИмяКонтекстКлассаАнгл1 = "System.Windows.Forms." + ИмяКонтекстКлассаАнгл;
 			ИначеЕсли ИмяКонтекстКлассаАнгл = "ContentAlignment" или 
@@ -13489,20 +13625,91 @@
 		СтрРазделОбъявленияПеременныхДляПеречисления = СтрЗаменить(СтрРазделОбъявленияПеременныхДляПеречисления, ПодстрокаПоиска, ПодстрокаЗамены);
 		
 		СтрВыгрузкиПеречисленийШапка = Директивы(ИмяКонтекстКлассаАнгл);
+		ПодстрокаПоиска = "using ScriptEngine.Machine.Contexts;";
+		ПодстрокаЗамены = "using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using System.Collections;
+		|using System.Collections.Generic;";		
+		СтрВыгрузкиПеречисленийШапка = СтрЗаменить(СтрВыгрузкиПеречисленийШапка, ПодстрокаПоиска, ПодстрокаЗамены);
+		
 		СтрВыгрузкиПеречислений = СтрВыгрузкиПеречисленийШапка + Символы.ПС + 
 		"
 		|namespace osf
 		|{
 		|    [ContextClass(""Кл" + ИмяКонтекстКлассаРус + """, ""Cl" + ИмяКонтекстКлассаАнгл + """)]
-		|    public class Cl" + ИмяКонтекстКлассаАнгл + " : AutoContext<Cl" + ИмяКонтекстКлассаАнгл + ">
+		|    public class Cl" + ИмяКонтекстКлассаАнгл + " : AutoContext<Cl" + ИмяКонтекстКлассаАнгл + ">, ICollectionContext, IEnumerable<IValue>
 		|    {";
 		СортироватьСтрРазделОбъявленияПеременныхДляПеречисления();
+				
+		СтрРазделОбъявленияПеременныхДляПеречисления = СтрРазделОбъявленияПеременныхДляПеречисления + "
+		|
+		|        private List<IValue> _list;
+		|
+		|        public int Count()
+		|        {
+		|            return _list.Count;
+		|        }
+		|
+		|        public CollectionEnumerator GetManagedIterator()
+		|        {
+		|            return new CollectionEnumerator(this);
+		|        }
+		|
+		|        IEnumerator IEnumerable.GetEnumerator()
+		|        {
+		|            return ((IEnumerable<IValue>)_list).GetEnumerator();
+		|        }
+		|
+		|        IEnumerator<IValue> IEnumerable<IValue>.GetEnumerator()
+		|        {
+		|            foreach (var item in _list)
+		|            {
+		|                yield return (item as IValue);
+		|            }
+		|        }";
+
+		Для А03 = 0 По ОтобранныеПеречисления.ВГраница() Цикл
+			СтрКлассПеречисления = "" + ОтобранныеПеречисления[А03];
+			СтрКлассПеречисления = СтрЗаменить(СтрКлассПеречисления, КаталогСправки + "\OneScriptForms.", "");
+			СтрКлассПеречисления = СтрЗаменить(СтрКлассПеречисления, ".html", "");
+			
+			// Сообщить("ИмяКонтекстКлассаАнгл = " + ИмяКонтекстКлассаАнгл);
+			// Сообщить("СтрКлассПеречисления = " + СтрКлассПеречисления);
+			// Сообщить("======================");
+			
+			
+			Если ИмяКонтекстКлассаАнгл = СтрКлассПеречисления Тогда
+				СтрРазделОбъявленияПеременныхДляПеречисления = СтрРазделОбъявленияПеременныхДляПеречисления + "
+				|
+				|        internal Cl" + СтрКлассПеречисления + "()
+				|        {
+				|            _list = new List<IValue>();";
+				СвойстваКласса1 = Ф.СвойстваКласса(СтрКлассПеречисления);
+				Для А05 = 0 По СвойстваКласса1.Количество - 1 Цикл
+					Свойство = СвойстваКласса1.ПолучитьПоИндексу(А05);
+					// Сообщить("" + Свойство);
+					М126 = СтрРазделить(Свойство, Символы.ПС);
+					Если М126.Количество() > 0 Тогда
+						Для А04 = 0 По М126.ВГраница() Цикл
+							СтрРазделОбъявленияПеременныхДляПеречисления = СтрРазделОбъявленияПеременныхДляПеречисления + "
+							|            _list.Add(ValueFactory.Create(" + М126[А04] + "));";
+						КонецЦикла;
+					КонецЕсли;
+				КонецЦикла;
+			КонецЕсли;
+			
+		КонецЦикла;
+
+		СтрРазделОбъявленияПеременныхДляПеречисления = СтрРазделОбъявленияПеременныхДляПеречисления + "
+		|        }
+		|";		
+		
 		СтрВыгрузкиПеречислений = СтрВыгрузкиПеречислений + СтрРазделОбъявленияПеременныхДляПеречисления + Символы.ПС;
 		СтрВыгрузкиПеречислений = СтрВыгрузкиПеречислений + СтрСвойстваДляПеречисления + Символы.ПС;
 		СтрВыгрузкиПеречислений = СтрВыгрузкиПеречислений + Символы.ПС + 
 		"    }//endClass" + Символы.ПС + 
 		"}//endnamespace";
-	
+		
 		ТекстДокПеречислений = Новый ТекстовыйДокумент;
 		ТекстДокПеречислений.УстановитьТекст(СтрВыгрузкиПеречислений);
 		ТекстДокПеречислений.Записать(ИмяФайлаВыгрузки);
@@ -13514,8 +13721,6 @@
 	// Для А = 0 По СписокЗамен.Количество() - 1 Цикл
 		// Сообщить("" + СписокЗамен.Получить(А).Значение);
 	// КонецЦикла;
-	
-
 	
 	Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах()-Таймер)/1000)/60 + " мин." + " " + ТекущаяДата());
 КонецПроцедуры//ВыгрузкаДляCS
@@ -35161,21 +35366,19 @@
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
 		|{
-		|    public sealed class DataGridViewImageColumnEx : System.Windows.Forms.DataGridViewColumn
+		|    public sealed class DataGridViewImageColumnEx : System.Windows.Forms.DataGridViewImageColumn
 		|    {
 		|        public osf.DataGridViewImageColumn M_Object;
 		|        static System.Drawing.Bitmap errorBmp;
 		|        static System.Drawing.Icon errorIco;
-		|        private System.Drawing.Bitmap bitmap;
-		|        private System.Drawing.Icon icon;
-		|        private string description;
 		|
 		|        public DataGridViewImageColumnEx() : this(false)
 		|        {
 		|        }
 		|
-		|        public DataGridViewImageColumnEx(bool valuesAreIcons) : base(new DataGridViewImageCellEx(valuesAreIcons))
+		|        public DataGridViewImageColumnEx(bool valuesAreIcons) : base(valuesAreIcons)
 		|        {
+		|            this.CellTemplate = new DataGridViewImageCellEx(valuesAreIcons);
 		|            var style = new System.Windows.Forms.DataGridViewCellStyle { Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter };
 		|            if (valuesAreIcons)
 		|            {
@@ -35186,22 +35389,6 @@
 		|                style.NullValue = ErrorBitmap;
 		|            }
 		|            this.DefaultCellStyle = style;
-		|        }
-		|
-		|        public System.Drawing.Bitmap Bitmap
-		|        {
-		|            get { return bitmap; }
-		|            set { bitmap = value; }
-		|        }
-		|        public string Description
-		|        {
-		|            get { return description; }
-		|            set { description = value; }
-		|        }
-		|        public System.Drawing.Icon Icon
-		|        {
-		|            get { return icon; }
-		|            set { icon = (System.Drawing.Icon)value; }
 		|        }
 		|
 		|        static System.Drawing.Bitmap ErrorBitmap
@@ -35226,90 +35413,8 @@
 		|        {
 		|            get { return (DataGridViewImageCellEx)this.CellTemplate; }
 		|        }
-		|
-		|        [DefaultValue(1)]
-		|        public System.Windows.Forms.DataGridViewImageCellLayout ImageLayout
-		|        {
-		|            get
-		|            {
-		|                if (this.CellTemplate == null)
-		|                {
-		|                    throw new InvalidOperationException();
-		|                }
-		|                System.Windows.Forms.DataGridViewImageCellLayout imageLayout = this.ImageCellTemplate.ImageLayout;
-		|                if (imageLayout == System.Windows.Forms.DataGridViewImageCellLayout.NotSet)
-		|                {
-		|                    imageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Normal;
-		|                }
-		|                return imageLayout;
-		|            }
-		|            set
-		|            {
-		|                if (this.ImageLayout == value)
-		|                {
-		|                    return;
-		|                }
-		|                this.ImageCellTemplate.ImageLayout = value;
-		|                if (DataGridView == null)
-		|                {
-		|                    return;
-		|                }
-		|                var rows = DataGridView.Rows;
-		|                var count = rows.Count;
-		|                for (var i = 0; i < count; i++)
-		|                {
-		|                    var cell = rows.SharedRow(i).Cells[Index] as System.Windows.Forms.DataGridViewImageCell;
-		|                    if (cell != null)
-		|                    {
-		|                        cell.ImageLayout = value;
-		|                    }
-		|                }
-		|            }
-		|        }
-		|
-		|        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		|        public bool ValuesAreIcons
-		|        {
-		|            get
-		|            {
-		|                if (this.ImageCellTemplate == null)
-		|                {
-		|                    throw new InvalidOperationException();
-		|                }
-		|                return this.ImageCellTemplate.ValueIsIcon;
-		|            }
-		|            set
-		|            {
-		|                if (this.ValuesAreIcons == value)
-		|                {
-		|                    return;
-		|                }
-		|                this.ImageCellTemplate.ValueIsIcon = value;
-		|                if (DataGridView != null)
-		|                {
-		|                    var rows = DataGridView.Rows;
-		|                    var count = rows.Count;
-		|                    for (var i = 0; i < count; i++)
-		|                    {
-		|                        var cell = rows.SharedRow(i).Cells[Index] as System.Windows.Forms.DataGridViewImageCell;
-		|                        if (cell != null)
-		|                        {
-		|                            cell.ValueIsIcon = value;
-		|                        }
-		|                    }
-		|                }
-		|                if ((value && (this.DefaultCellStyle.NullValue is System.Drawing.Bitmap)) && (this.DefaultCellStyle.NullValue == ErrorBitmap))
-		|                {
-		|                    this.DefaultCellStyle.NullValue = ErrorIcon;
-		|                }
-		|                else if ((!value && (this.DefaultCellStyle.NullValue is Icon)) && (this.DefaultCellStyle.NullValue == ErrorIcon))
-		|                {
-		|                    this.DefaultCellStyle.NullValue = ErrorBitmap;
-		|                }
-		|            }
-		|        }
 		|    }//endClass
-		|		
+		|
 		|    public class DataGridViewImageColumn : DataGridViewColumn
 		|    {
 		|        public new ClDataGridViewImageColumn dll_obj;
@@ -35335,17 +35440,17 @@
 		|            M_DataGridViewImageColumn.M_Object = this;
 		|            base.M_DataGridViewColumn = M_DataGridViewImageColumn;
 		|        }
-		|		
+		|
 		|        public DataGridViewImageColumn(System.Windows.Forms.DataGridViewImageColumn p1)
 		|        {
 		|            M_DataGridViewImageColumn = p1;
 		|            base.M_DataGridViewColumn = M_DataGridViewImageColumn;
 		|        }
 		|
-		|        public osf.Bitmap Bitmap
+		|        public osf.Bitmap Image
 		|        {
-		|            get { return new osf.Bitmap(M_DataGridViewImageColumn.Bitmap); }
-		|            set { M_DataGridViewImageColumn.Bitmap = value.M_Bitmap; }
+		|            get { return new osf.Bitmap(M_DataGridViewImageColumn.Image); }
+		|            set { M_DataGridViewImageColumn.Image = value.M_Image; }
 		|        }
 		|
 		|        public string Description
@@ -38287,6 +38392,12 @@
 		|        {
 		|            get { return (int)M_DataGridView.SelectionMode; }
 		|            set { M_DataGridView.SelectionMode = (System.Windows.Forms.DataGridViewSelectionMode)value; }
+		|        }
+		|		
+		|        public int ColumnHeadersHeightSizeMode
+		|        {
+		|            get { return (int)M_DataGridView.ColumnHeadersHeightSizeMode; }
+		|            set { M_DataGridView.ColumnHeadersHeightSizeMode = (System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode)value; }
 		|        }
 		|		
 		|        public bool ColumnHeadersVisible
@@ -45793,6 +45904,11 @@
 		|        {
 		|            M_Process.Start();
 		|            return this;
+		|        }
+		|		
+		|        public void Close()
+		|        {
+		|            M_Process.Close();
 		|        }
 		|
 		|        public osf.ProcessStartInfo StartInfo
@@ -54915,6 +55031,9 @@
 	
 	Возврат Стр;
 КонецФункции//СортировкаКласса2Уровня(СтрКласса)
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
 
 КаталогСправки = "C:\444\OneScriptFormsru";// без слэша в конце
 КаталогВыгрузки = "C:\444\ВыгруженныеОбъекты";// без слэша в конце
