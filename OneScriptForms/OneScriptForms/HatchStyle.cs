@@ -1,9 +1,12 @@
 ﻿using ScriptEngine.Machine.Contexts;
+using ScriptEngine.Machine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace osf
 {
     [ContextClass ("КлСтильШтриховки", "ClHatchStyle")]
-    public class ClHatchStyle : AutoContext<ClHatchStyle>
+    public class ClHatchStyle : AutoContext<ClHatchStyle>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_min = (int)System.Drawing.Drawing2D.HatchStyle.Min; // 0 Стиль штриховки <B>Горизонтальная&nbsp;(Horizontal)</B>.
         private int m_horizontal = (int)System.Drawing.Drawing2D.HatchStyle.Horizontal; // 0 Горизонтальные линии.
@@ -61,6 +64,92 @@ namespace osf
         private int m_largeCheckerBoard = (int)System.Drawing.Drawing2D.HatchStyle.LargeCheckerBoard; // 50 Шахматная доска, с квадратами, вдвое большими чем при штриховке <B>МаленькаяРешетка&nbsp;(SmallGrid)</B>.
         private int m_outlinedDiamond = (int)System.Drawing.Drawing2D.HatchStyle.OutlinedDiamond; // 51 Прямые и обратные диагональные линии, как перекрестие, но не сглаженые.
         private int m_solidDiamond = (int)System.Drawing.Drawing2D.HatchStyle.SolidDiamond; // 52 Штриховка, в виде шахматной доски по диагонали.
+
+        private List<IValue> _list;
+
+        public int Count()
+        {
+            return _list.Count;
+        }
+
+        public CollectionEnumerator GetManagedIterator()
+        {
+            return new CollectionEnumerator(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<IValue>)_list).GetEnumerator();
+        }
+
+        IEnumerator<IValue> IEnumerable<IValue>.GetEnumerator()
+        {
+            foreach (var item in _list)
+            {
+                yield return (item as IValue);
+            }
+        }
+
+        internal ClHatchStyle()
+        {
+            _list = new List<IValue>();
+            _list.Add(ValueFactory.Create(BackwardDiagonal));
+            _list.Add(ValueFactory.Create(Cross));
+            _list.Add(ValueFactory.Create(DarkDownwardDiagonal));
+            _list.Add(ValueFactory.Create(DarkHorizontal));
+            _list.Add(ValueFactory.Create(DarkUpwardDiagonal));
+            _list.Add(ValueFactory.Create(DarkVertical));
+            _list.Add(ValueFactory.Create(DashedDownwardDiagonal));
+            _list.Add(ValueFactory.Create(DashedHorizontal));
+            _list.Add(ValueFactory.Create(DashedUpwardDiagonal));
+            _list.Add(ValueFactory.Create(DashedVertical));
+            _list.Add(ValueFactory.Create(DiagonalBrick));
+            _list.Add(ValueFactory.Create(DiagonalCross));
+            _list.Add(ValueFactory.Create(Divot));
+            _list.Add(ValueFactory.Create(DottedDiamond));
+            _list.Add(ValueFactory.Create(DottedGrid));
+            _list.Add(ValueFactory.Create(ForwardDiagonal));
+            _list.Add(ValueFactory.Create(Horizontal));
+            _list.Add(ValueFactory.Create(HorizontalBrick));
+            _list.Add(ValueFactory.Create(LargeCheckerBoard));
+            _list.Add(ValueFactory.Create(LargeConfetti));
+            _list.Add(ValueFactory.Create(LargeGrid));
+            _list.Add(ValueFactory.Create(LightDownwardDiagonal));
+            _list.Add(ValueFactory.Create(LightHorizontal));
+            _list.Add(ValueFactory.Create(LightUpwardDiagonal));
+            _list.Add(ValueFactory.Create(LightVertical));
+            _list.Add(ValueFactory.Create(Max));
+            _list.Add(ValueFactory.Create(Min));
+            _list.Add(ValueFactory.Create(NarrowHorizontal));
+            _list.Add(ValueFactory.Create(NarrowVertical));
+            _list.Add(ValueFactory.Create(OutlinedDiamond));
+            _list.Add(ValueFactory.Create(Percent05));
+            _list.Add(ValueFactory.Create(Percent10));
+            _list.Add(ValueFactory.Create(Percent20));
+            _list.Add(ValueFactory.Create(Percent25));
+            _list.Add(ValueFactory.Create(Percent30));
+            _list.Add(ValueFactory.Create(Percent40));
+            _list.Add(ValueFactory.Create(Percent50));
+            _list.Add(ValueFactory.Create(Percent60));
+            _list.Add(ValueFactory.Create(Percent70));
+            _list.Add(ValueFactory.Create(Percent75));
+            _list.Add(ValueFactory.Create(Percent80));
+            _list.Add(ValueFactory.Create(Percent90));
+            _list.Add(ValueFactory.Create(Plaid));
+            _list.Add(ValueFactory.Create(Shingle));
+            _list.Add(ValueFactory.Create(SmallCheckerBoard));
+            _list.Add(ValueFactory.Create(SmallConfetti));
+            _list.Add(ValueFactory.Create(SmallGrid));
+            _list.Add(ValueFactory.Create(SolidDiamond));
+            _list.Add(ValueFactory.Create(Sphere));
+            _list.Add(ValueFactory.Create(Trellis));
+            _list.Add(ValueFactory.Create(Vertical));
+            _list.Add(ValueFactory.Create(Wave));
+            _list.Add(ValueFactory.Create(Weave));
+            _list.Add(ValueFactory.Create(WideDownwardDiagonal));
+            _list.Add(ValueFactory.Create(WideUpwardDiagonal));
+            _list.Add(ValueFactory.Create(ZigZag));
+        }
 
         [ContextProperty("БольшаяРешетка", "LargeGrid")]
         public int LargeGrid
