@@ -1,9 +1,12 @@
 ﻿using ScriptEngine.Machine.Contexts;
+using ScriptEngine.Machine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace osf
 {
     [ContextClass ("КлФорматПикселей", "ClPixelFormat")]
-    public class ClPixelFormat : AutoContext<ClPixelFormat>
+    public class ClPixelFormat : AutoContext<ClPixelFormat>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_dontCare = (int)System.Drawing.Imaging.PixelFormat.DontCare; // 0 Формат пикселей не указан.
         private int m_undefined = (int)System.Drawing.Imaging.PixelFormat.Undefined; // 0 Формат пикселей не определен.
@@ -28,6 +31,59 @@ namespace osf
         private int m_canonical = (int)System.Drawing.Imaging.PixelFormat.Canonical; // 2097152 В формате пикселей по умолчанию на точку приходится 32 бита. Этот формат задает 24-битовую глубину цвета и 8-битовый альфа-канал.
         private int m_format32bppArgb = (int)System.Drawing.Imaging.PixelFormat.Format32bppArgb; // 2498570 Указывает, что форматом отводится 32 бита на пиксель: по 8 бит на красный, зеленый и синий каналы, а также альфа-канал.
         private int m_format64bppArgb = (int)System.Drawing.Imaging.PixelFormat.Format64bppArgb; // 3424269 Указывает, что форматом отводится 64 бита на пиксель: по 16 бит на красный, зеленый и синий каналы, а также альфа-канал.
+
+        private List<IValue> _list;
+
+        public int Count()
+        {
+            return _list.Count;
+        }
+
+        public CollectionEnumerator GetManagedIterator()
+        {
+            return new CollectionEnumerator(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<IValue>)_list).GetEnumerator();
+        }
+
+        IEnumerator<IValue> IEnumerable<IValue>.GetEnumerator()
+        {
+            foreach (var item in _list)
+            {
+                yield return (item as IValue);
+            }
+        }
+
+        internal ClPixelFormat()
+        {
+            _list = new List<IValue>();
+            _list.Add(ValueFactory.Create(Alpha));
+            _list.Add(ValueFactory.Create(Canonical));
+            _list.Add(ValueFactory.Create(DontCare));
+            _list.Add(ValueFactory.Create(Extended));
+            _list.Add(ValueFactory.Create(Format16bppArgb1555));
+            _list.Add(ValueFactory.Create(Format16bppGrayScale));
+            _list.Add(ValueFactory.Create(Format16bppRgb555));
+            _list.Add(ValueFactory.Create(Format16bppRgb565));
+            _list.Add(ValueFactory.Create(Format1bppIndexed));
+            _list.Add(ValueFactory.Create(Format24bppRgb));
+            _list.Add(ValueFactory.Create(Format32bppArgb));
+            _list.Add(ValueFactory.Create(Format32bppPArgb));
+            _list.Add(ValueFactory.Create(Format32bppRgb));
+            _list.Add(ValueFactory.Create(Format48bppRgb));
+            _list.Add(ValueFactory.Create(Format4bppIndexed));
+            _list.Add(ValueFactory.Create(Format64bppArgb));
+            _list.Add(ValueFactory.Create(Format64bppPArgb));
+            _list.Add(ValueFactory.Create(Format8bppIndexed));
+            _list.Add(ValueFactory.Create(Gdi));
+            _list.Add(ValueFactory.Create(Indexed));
+            _list.Add(ValueFactory.Create(Max));
+            _list.Add(ValueFactory.Create(PAlpha));
+            _list.Add(ValueFactory.Create(Undefined));
+        }
 
         [ContextProperty("Альфа", "Alpha")]
         public int Alpha

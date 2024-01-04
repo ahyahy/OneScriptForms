@@ -184,6 +184,7 @@
     <Compile Include="DataGridViewColumn.cs" />
     <Compile Include="DataGridViewColumnCollection.cs" />
     <Compile Include="DataGridViewColumnHeaderCell.cs" />
+    <Compile Include="DataGridViewColumnHeadersHeightSizeMode.cs" />
     <Compile Include="DataGridViewColumnSortMode.cs" />
     <Compile Include="DataGridViewComboBoxCell.cs" />
     <Compile Include="DataGridViewComboBoxCellObjectCollection.cs" />

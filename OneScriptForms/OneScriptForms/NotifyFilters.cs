@@ -1,9 +1,12 @@
 ﻿using ScriptEngine.Machine.Contexts;
+using ScriptEngine.Machine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace osf
 {
     [ContextClass ("КлФильтрыУведомления", "ClNotifyFilters")]
-    public class ClNotifyFilters : AutoContext<ClNotifyFilters>
+    public class ClNotifyFilters : AutoContext<ClNotifyFilters>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_fileName = (int)System.IO.NotifyFilters.FileName; // 1 Имя файла.
         private int m_directoryName = (int)System.IO.NotifyFilters.DirectoryName; // 2 Имя каталога.
@@ -13,6 +16,44 @@ namespace osf
         private int m_lastAccess = (int)System.IO.NotifyFilters.LastAccess; // 32 Дата последнего открытия файла или каталога.
         private int m_creationTime = (int)System.IO.NotifyFilters.CreationTime; // 64 Время создания файла или каталога.
         private int m_security = (int)System.IO.NotifyFilters.Security; // 256 Параметры безопасности файла или каталога.
+
+        private List<IValue> _list;
+
+        public int Count()
+        {
+            return _list.Count;
+        }
+
+        public CollectionEnumerator GetManagedIterator()
+        {
+            return new CollectionEnumerator(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<IValue>)_list).GetEnumerator();
+        }
+
+        IEnumerator<IValue> IEnumerable<IValue>.GetEnumerator()
+        {
+            foreach (var item in _list)
+            {
+                yield return (item as IValue);
+            }
+        }
+
+        internal ClNotifyFilters()
+        {
+            _list = new List<IValue>();
+            _list.Add(ValueFactory.Create(Attributes));
+            _list.Add(ValueFactory.Create(CreationTime));
+            _list.Add(ValueFactory.Create(DirectoryName));
+            _list.Add(ValueFactory.Create(FileName));
+            _list.Add(ValueFactory.Create(LastAccess));
+            _list.Add(ValueFactory.Create(LastWrite));
+            _list.Add(ValueFactory.Create(Security));
+            _list.Add(ValueFactory.Create(Size));
+        }
 
         [ContextProperty("Атрибуты", "Attributes")]
         public int Attributes

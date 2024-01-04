@@ -46,6 +46,11 @@ namespace osf
             set { M_Process.StartInfo = (System.Diagnostics.ProcessStartInfo)value.M_ProcessStartInfo; }
         }
 
+        public void Close()
+        {
+            M_Process.Close();
+        }
+
         public osf.Process Start()
         {
             M_Process.Start();
@@ -97,6 +102,12 @@ namespace osf
             get { return (ClStreamReader)OneScriptForms.RevertObj(Base_obj.StandardOutput); }
         }
         
+        [ContextMethod("Закрыть", "Close")]
+        public void Close()
+        {
+            Base_obj.Close();
+        }
+					
         [ContextMethod("Начать", "Start")]
         public ClProcess Start()
         {

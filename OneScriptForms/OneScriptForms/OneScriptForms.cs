@@ -29,6 +29,7 @@ namespace osf
         private static ClDataGridViewAutoSizeColumnsMode cl_DataGridViewAutoSizeColumnsMode = new ClDataGridViewAutoSizeColumnsMode();
         private static ClDataGridViewAutoSizeRowMode cl_DataGridViewAutoSizeRowMode = new ClDataGridViewAutoSizeRowMode();
         private static ClDataGridViewAutoSizeRowsMode cl_DataGridViewAutoSizeRowsMode = new ClDataGridViewAutoSizeRowsMode();
+        private static ClDataGridViewColumnHeadersHeightSizeMode cl_DataGridViewColumnHeadersHeightSizeMode = new ClDataGridViewColumnHeadersHeightSizeMode();
         private static ClDataGridViewColumnSortMode cl_DataGridViewColumnSortMode = new ClDataGridViewColumnSortMode();
         private static ClDataGridViewComboBoxDisplayStyle cl_DataGridViewComboBoxDisplayStyle = new ClDataGridViewComboBoxDisplayStyle();
         private static ClDataGridViewContentAlignment cl_DataGridViewContentAlignment = new ClDataGridViewContentAlignment();
@@ -486,6 +487,12 @@ namespace osf
         public ClDataGridViewSelectionMode DataGridViewSelectionMode
         {
             get { return cl_DataGridViewSelectionMode; }
+        }
+
+        [ContextProperty("РежимВысотыЗаголовковКолонок", "DataGridViewColumnHeadersHeightSizeMode")]
+        public ClDataGridViewColumnHeadersHeightSizeMode DataGridViewColumnHeadersHeightSizeMode
+        {
+            get { return cl_DataGridViewColumnHeadersHeightSizeMode; }
         }
 
         [ContextProperty("РежимМасштабированияКартинки", "ImageScaleMode")]
@@ -1905,6 +1912,7 @@ namespace osf
                     // находим совпадение GetName или GetAlias в методах osf.OneScriptForms, так мы получим объекты, имеющие конструктор
                     System.Type Type1 = System.Type.GetType("osf.OneScriptForms", false, true);
                     System.Reflection.MethodInfo[] myMethodInfo = Type1.GetMethods();
+                    bool objectFound = false;
                     for (int i = 0; i < myMethodInfo.Length; i++)
                     {
                         if (myMethodInfo[i].CustomAttributes.Count() == 1)
@@ -1913,8 +1921,27 @@ namespace osf
                             {
                                 string NameRu = myMethodInfo[i].GetCustomAttribute<ContextMethodAttribute>().GetName();
                                 string NameEn = myMethodInfo[i].GetCustomAttribute<ContextMethodAttribute>().GetAlias();
-                                if (NameRu == p1.AsString() || NameEn == p1.AsString())
+                                if (NameRu == p1.AsString())
                                 {
+                                    objectFound = true;
+
+                                    System.Type Type2 = System.Type.GetType("osf.Cl" + NameEn, false, true);
+                                    System.Reflection.PropertyInfo[] myPropertyInfo2 = Type2.GetProperties();
+                                    for (int i2 = 0; i2 < myPropertyInfo2.Length; i2++)
+                                    {
+                                        if (myPropertyInfo2[i2].CustomAttributes.Count() == 1)
+                                        {
+                                            string NameRu2 = myPropertyInfo2[i2].GetCustomAttribute<ContextPropertyAttribute>().GetName();
+                                            string NameEn2 = myPropertyInfo2[i2].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
+                                            ClSortedList1.Add(NameEn2, ValueFactory.Create(NameRu2));
+                                        }
+                                    }
+                                    break;
+                                }
+                                else if (NameEn == p1.AsString())
+                                {
+                                    objectFound = true;
+
                                     System.Type Type2 = System.Type.GetType("osf.Cl" + NameEn, false, true);
                                     System.Reflection.PropertyInfo[] myPropertyInfo2 = Type2.GetProperties();
                                     for (int i2 = 0; i2 < myPropertyInfo2.Length; i2++)
@@ -1929,6 +1956,22 @@ namespace osf
                                     break;
                                 }
                             }
+                        }
+                    }
+                    if (objectFound)
+                    {
+                        return ClSortedList1;
+                    }
+                    // Для экземпляров классов, получаемых не через метод класса osf.OneScriptForms параметр p1 должен передавать только английское имя класса
+                    System.Type Type3 = System.Type.GetType("osf.Cl" + p1.AsString(), false, true);
+                    System.Reflection.PropertyInfo[] myPropertyInfo3 = Type3.GetProperties();
+                    for (int i2 = 0; i2 < myPropertyInfo3.Length; i2++)
+                    {
+                        if (myPropertyInfo3[i2].CustomAttributes.Count() == 1)
+                        {
+                            string NameRu2 = myPropertyInfo3[i2].GetCustomAttribute<ContextPropertyAttribute>().GetName();
+                            string NameEn2 = myPropertyInfo3[i2].GetCustomAttribute<ContextPropertyAttribute>().GetAlias();
+                            ClSortedList1.Add(NameEn2, ValueFactory.Create(NameEn2));
                         }
                     }
                 }
