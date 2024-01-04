@@ -1,9 +1,12 @@
 ﻿using ScriptEngine.Machine.Contexts;
+using ScriptEngine.Machine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace osf
 {
     [ContextClass ("КлСочетаниеКлавиш", "ClShortcut")]
-    public class ClShortcut : AutoContext<ClShortcut>
+    public class ClShortcut : AutoContext<ClShortcut>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_none = (int)System.Windows.Forms.Shortcut.None; // 0 Никакая комбинация клавиш не связана с пунктом меню.
         private int m_ins = (int)System.Windows.Forms.Shortcut.Ins; // 45 Сочетание клавиш INSERT.
@@ -155,6 +158,186 @@ namespace osf
         private int m_altF10 = (int)System.Windows.Forms.Shortcut.AltF10; // 262265 Сочетание клавиш ALT + F10.
         private int m_altF11 = (int)System.Windows.Forms.Shortcut.AltF11; // 262266 Сочетание клавиш ALT + F11.
         private int m_altF12 = (int)System.Windows.Forms.Shortcut.AltF12; // 262267 Сочетание клавиш ALT + F12.
+
+        private List<IValue> _list;
+
+        public int Count()
+        {
+            return _list.Count;
+        }
+
+        public CollectionEnumerator GetManagedIterator()
+        {
+            return new CollectionEnumerator(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<IValue>)_list).GetEnumerator();
+        }
+
+        IEnumerator<IValue> IEnumerable<IValue>.GetEnumerator()
+        {
+            foreach (var item in _list)
+            {
+                yield return (item as IValue);
+            }
+        }
+
+        internal ClShortcut()
+        {
+            _list = new List<IValue>();
+            _list.Add(ValueFactory.Create(Alt0));
+            _list.Add(ValueFactory.Create(Alt1));
+            _list.Add(ValueFactory.Create(Alt2));
+            _list.Add(ValueFactory.Create(Alt3));
+            _list.Add(ValueFactory.Create(Alt4));
+            _list.Add(ValueFactory.Create(Alt5));
+            _list.Add(ValueFactory.Create(Alt6));
+            _list.Add(ValueFactory.Create(Alt7));
+            _list.Add(ValueFactory.Create(Alt8));
+            _list.Add(ValueFactory.Create(Alt9));
+            _list.Add(ValueFactory.Create(AltBksp));
+            _list.Add(ValueFactory.Create(AltF1));
+            _list.Add(ValueFactory.Create(AltF10));
+            _list.Add(ValueFactory.Create(AltF11));
+            _list.Add(ValueFactory.Create(AltF12));
+            _list.Add(ValueFactory.Create(AltF2));
+            _list.Add(ValueFactory.Create(AltF3));
+            _list.Add(ValueFactory.Create(AltF4));
+            _list.Add(ValueFactory.Create(AltF5));
+            _list.Add(ValueFactory.Create(AltF6));
+            _list.Add(ValueFactory.Create(AltF7));
+            _list.Add(ValueFactory.Create(AltF8));
+            _list.Add(ValueFactory.Create(AltF9));
+            _list.Add(ValueFactory.Create(Ctrl0));
+            _list.Add(ValueFactory.Create(Ctrl1));
+            _list.Add(ValueFactory.Create(Ctrl2));
+            _list.Add(ValueFactory.Create(Ctrl3));
+            _list.Add(ValueFactory.Create(Ctrl4));
+            _list.Add(ValueFactory.Create(Ctrl5));
+            _list.Add(ValueFactory.Create(Ctrl6));
+            _list.Add(ValueFactory.Create(Ctrl7));
+            _list.Add(ValueFactory.Create(Ctrl8));
+            _list.Add(ValueFactory.Create(Ctrl9));
+            _list.Add(ValueFactory.Create(CtrlA));
+            _list.Add(ValueFactory.Create(CtrlB));
+            _list.Add(ValueFactory.Create(CtrlC));
+            _list.Add(ValueFactory.Create(CtrlD));
+            _list.Add(ValueFactory.Create(CtrlDel));
+            _list.Add(ValueFactory.Create(CtrlE));
+            _list.Add(ValueFactory.Create(CtrlF));
+            _list.Add(ValueFactory.Create(CtrlF1));
+            _list.Add(ValueFactory.Create(CtrlF10));
+            _list.Add(ValueFactory.Create(CtrlF11));
+            _list.Add(ValueFactory.Create(CtrlF12));
+            _list.Add(ValueFactory.Create(CtrlF2));
+            _list.Add(ValueFactory.Create(CtrlF3));
+            _list.Add(ValueFactory.Create(CtrlF4));
+            _list.Add(ValueFactory.Create(CtrlF5));
+            _list.Add(ValueFactory.Create(CtrlF6));
+            _list.Add(ValueFactory.Create(CtrlF7));
+            _list.Add(ValueFactory.Create(CtrlF8));
+            _list.Add(ValueFactory.Create(CtrlF9));
+            _list.Add(ValueFactory.Create(CtrlG));
+            _list.Add(ValueFactory.Create(CtrlH));
+            _list.Add(ValueFactory.Create(CtrlI));
+            _list.Add(ValueFactory.Create(CtrlIns));
+            _list.Add(ValueFactory.Create(CtrlJ));
+            _list.Add(ValueFactory.Create(CtrlK));
+            _list.Add(ValueFactory.Create(CtrlL));
+            _list.Add(ValueFactory.Create(CtrlM));
+            _list.Add(ValueFactory.Create(CtrlN));
+            _list.Add(ValueFactory.Create(CtrlO));
+            _list.Add(ValueFactory.Create(CtrlP));
+            _list.Add(ValueFactory.Create(CtrlQ));
+            _list.Add(ValueFactory.Create(CtrlR));
+            _list.Add(ValueFactory.Create(CtrlS));
+            _list.Add(ValueFactory.Create(CtrlShift0));
+            _list.Add(ValueFactory.Create(CtrlShift1));
+            _list.Add(ValueFactory.Create(CtrlShift2));
+            _list.Add(ValueFactory.Create(CtrlShift3));
+            _list.Add(ValueFactory.Create(CtrlShift4));
+            _list.Add(ValueFactory.Create(CtrlShift5));
+            _list.Add(ValueFactory.Create(CtrlShift6));
+            _list.Add(ValueFactory.Create(CtrlShift7));
+            _list.Add(ValueFactory.Create(CtrlShift8));
+            _list.Add(ValueFactory.Create(CtrlShift9));
+            _list.Add(ValueFactory.Create(CtrlShiftA));
+            _list.Add(ValueFactory.Create(CtrlShiftB));
+            _list.Add(ValueFactory.Create(CtrlShiftC));
+            _list.Add(ValueFactory.Create(CtrlShiftD));
+            _list.Add(ValueFactory.Create(CtrlShiftE));
+            _list.Add(ValueFactory.Create(CtrlShiftF));
+            _list.Add(ValueFactory.Create(CtrlShiftF1));
+            _list.Add(ValueFactory.Create(CtrlShiftF10));
+            _list.Add(ValueFactory.Create(CtrlShiftF11));
+            _list.Add(ValueFactory.Create(CtrlShiftF12));
+            _list.Add(ValueFactory.Create(CtrlShiftF2));
+            _list.Add(ValueFactory.Create(CtrlShiftF3));
+            _list.Add(ValueFactory.Create(CtrlShiftF4));
+            _list.Add(ValueFactory.Create(CtrlShiftF5));
+            _list.Add(ValueFactory.Create(CtrlShiftF6));
+            _list.Add(ValueFactory.Create(CtrlShiftF7));
+            _list.Add(ValueFactory.Create(CtrlShiftF8));
+            _list.Add(ValueFactory.Create(CtrlShiftF9));
+            _list.Add(ValueFactory.Create(CtrlShiftG));
+            _list.Add(ValueFactory.Create(CtrlShiftH));
+            _list.Add(ValueFactory.Create(CtrlShiftI));
+            _list.Add(ValueFactory.Create(CtrlShiftJ));
+            _list.Add(ValueFactory.Create(CtrlShiftK));
+            _list.Add(ValueFactory.Create(CtrlShiftL));
+            _list.Add(ValueFactory.Create(CtrlShiftM));
+            _list.Add(ValueFactory.Create(CtrlShiftN));
+            _list.Add(ValueFactory.Create(CtrlShiftO));
+            _list.Add(ValueFactory.Create(CtrlShiftP));
+            _list.Add(ValueFactory.Create(CtrlShiftQ));
+            _list.Add(ValueFactory.Create(CtrlShiftR));
+            _list.Add(ValueFactory.Create(CtrlShiftS));
+            _list.Add(ValueFactory.Create(CtrlShiftT));
+            _list.Add(ValueFactory.Create(CtrlShiftU));
+            _list.Add(ValueFactory.Create(CtrlShiftV));
+            _list.Add(ValueFactory.Create(CtrlShiftW));
+            _list.Add(ValueFactory.Create(CtrlShiftX));
+            _list.Add(ValueFactory.Create(CtrlShiftY));
+            _list.Add(ValueFactory.Create(CtrlShiftZ));
+            _list.Add(ValueFactory.Create(CtrlT));
+            _list.Add(ValueFactory.Create(CtrlU));
+            _list.Add(ValueFactory.Create(CtrlV));
+            _list.Add(ValueFactory.Create(CtrlW));
+            _list.Add(ValueFactory.Create(CtrlX));
+            _list.Add(ValueFactory.Create(CtrlY));
+            _list.Add(ValueFactory.Create(CtrlZ));
+            _list.Add(ValueFactory.Create(Del));
+            _list.Add(ValueFactory.Create(F1));
+            _list.Add(ValueFactory.Create(F10));
+            _list.Add(ValueFactory.Create(F11));
+            _list.Add(ValueFactory.Create(F12));
+            _list.Add(ValueFactory.Create(F2));
+            _list.Add(ValueFactory.Create(F3));
+            _list.Add(ValueFactory.Create(F4));
+            _list.Add(ValueFactory.Create(F5));
+            _list.Add(ValueFactory.Create(F6));
+            _list.Add(ValueFactory.Create(F7));
+            _list.Add(ValueFactory.Create(F8));
+            _list.Add(ValueFactory.Create(F9));
+            _list.Add(ValueFactory.Create(Ins));
+            _list.Add(ValueFactory.Create(None));
+            _list.Add(ValueFactory.Create(ShiftDel));
+            _list.Add(ValueFactory.Create(ShiftF1));
+            _list.Add(ValueFactory.Create(ShiftF10));
+            _list.Add(ValueFactory.Create(ShiftF11));
+            _list.Add(ValueFactory.Create(ShiftF12));
+            _list.Add(ValueFactory.Create(ShiftF2));
+            _list.Add(ValueFactory.Create(ShiftF3));
+            _list.Add(ValueFactory.Create(ShiftF4));
+            _list.Add(ValueFactory.Create(ShiftF5));
+            _list.Add(ValueFactory.Create(ShiftF6));
+            _list.Add(ValueFactory.Create(ShiftF7));
+            _list.Add(ValueFactory.Create(ShiftF8));
+            _list.Add(ValueFactory.Create(ShiftF9));
+            _list.Add(ValueFactory.Create(ShiftIns));
+        }
 
         [ContextProperty("Alt0", "Alt0")]
         public int Alt0

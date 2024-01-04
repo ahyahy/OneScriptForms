@@ -1,9 +1,12 @@
 ﻿using ScriptEngine.Machine.Contexts;
+using ScriptEngine.Machine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace osf
 {
     [ContextClass ("КлОсобаяПапка", "ClSpecialFolder")]
-    public class ClSpecialFolder : AutoContext<ClSpecialFolder>
+    public class ClSpecialFolder : AutoContext<ClSpecialFolder>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_desktop = (int)System.Environment.SpecialFolder.Desktop; // 0 Логический рабочий стол, а не физическое местоположение файлов системы.
         private int m_programs = (int)System.Environment.SpecialFolder.Programs; // 2 Каталог, содержащий группы программ пользователя.
@@ -27,6 +30,58 @@ namespace osf
         private int m_programFiles = (int)System.Environment.SpecialFolder.ProgramFiles; // 38 Каталог файлов программ.
         private int m_myPictures = (int)System.Environment.SpecialFolder.MyPictures; // 39 Каталог Мои рисунки.
         private int m_commonProgramFiles = (int)System.Environment.SpecialFolder.CommonProgramFiles; // 43 Каталог общих для приложений компонентов.
+
+        private List<IValue> _list;
+
+        public int Count()
+        {
+            return _list.Count;
+        }
+
+        public CollectionEnumerator GetManagedIterator()
+        {
+            return new CollectionEnumerator(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<IValue>)_list).GetEnumerator();
+        }
+
+        IEnumerator<IValue> IEnumerable<IValue>.GetEnumerator()
+        {
+            foreach (var item in _list)
+            {
+                yield return (item as IValue);
+            }
+        }
+
+        internal ClSpecialFolder()
+        {
+            _list = new List<IValue>();
+            _list.Add(ValueFactory.Create(ApplicationData));
+            _list.Add(ValueFactory.Create(CommonApplicationData));
+            _list.Add(ValueFactory.Create(CommonProgramFiles));
+            _list.Add(ValueFactory.Create(Cookies));
+            _list.Add(ValueFactory.Create(Desktop));
+            _list.Add(ValueFactory.Create(DesktopDirectory));
+            _list.Add(ValueFactory.Create(Favorites));
+            _list.Add(ValueFactory.Create(History));
+            _list.Add(ValueFactory.Create(InternetCache));
+            _list.Add(ValueFactory.Create(LocalApplicationData));
+            _list.Add(ValueFactory.Create(MyComputer));
+            _list.Add(ValueFactory.Create(MyMusic));
+            _list.Add(ValueFactory.Create(MyPictures));
+            _list.Add(ValueFactory.Create(Personal));
+            _list.Add(ValueFactory.Create(ProgramFiles));
+            _list.Add(ValueFactory.Create(Programs));
+            _list.Add(ValueFactory.Create(Recent));
+            _list.Add(ValueFactory.Create(SendTo));
+            _list.Add(ValueFactory.Create(StartMenu));
+            _list.Add(ValueFactory.Create(Startup));
+            _list.Add(ValueFactory.Create(SystemDirectory));
+            _list.Add(ValueFactory.Create(Templates));
+        }
 
         [ContextProperty("ВременныеФайлыИнтернета", "InternetCache")]
         public int InternetCache
