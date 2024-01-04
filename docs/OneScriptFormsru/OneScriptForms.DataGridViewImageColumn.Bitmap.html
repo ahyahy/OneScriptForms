@@ -11,19 +11,23 @@
     <TD class=runninghead></TD>
     <TD class=product></TD></TR></TBODY></TABLE></DIV>
 <DIV id=TitleRow>
-<H1 class=dtH1>КолонкаКартинка.Картинка&nbsp;(DataGridViewImageColumn.Image)&nbsp;Свойство</H1></DIV></DIV>
+<H1 class=dtH1>КолонкаКартинка.Картинка&nbsp;(DataGridViewImageColumn.Bitmap)&nbsp;Свойство</H1></DIV></DIV>
 <DIV id=nstext>
 <H4 class=dtH4>Использование</H4>
 <P>Чтение и запись.</P>
 <H4 class=dtH4>Значение</H4>
 <P>Тип: <A href="OneScriptForms.Bitmap.html">Картинка&nbsp;(Bitmap)</A>.</P>
 <P>Возвращает или задает объект <B>Картинка&nbsp;(Bitmap)</B>.</P>
-<P>Изображение, отображаемое в ячейках данного столбца, когда свойство 
+<P>Изображение, отображаемое в ячейках данной колонки, когда свойство 
 <A href="OneScriptForms.DataGridViewCell.Value.html">ЯчейкаТаблицы.Значение&nbsp;(DataGridViewCell.Value)</A> не задано, а 
 свойство <A href="OneScriptForms.DataGridViewImageCell.ValueIsIcon.html">КартинкаЯчейки.ЭтоИконка&nbsp;(DataGridViewImageCell.ValueIsIcon)</A> имеет значение <B>Ложь</B>.</P>
 <P>Значение по умолчанию - <B>Неопределено</B>.</P>
 <H4 class=dtH4>Примечание</H4>
-<P></P>
+<P>Если в таблице не больше одной строки, назначенная картинка может не отобразиться. В этом случае установите картинку для ячейки через 
+свойство <A href="OneScriptForms.DataGridViewCell.Value.html">ЯчейкаТаблицы.Значение&nbsp;(DataGridViewCell.Value)</A>.</P>
+<P><PRE class=code>
+Таблица1.Ячейка(0, 0).Значение = Ф.Картинка("C:\444\Pic\Персонаж0.jpg");
+</PRE>
 <H4 class=dtH4>Пример</H4>
 <P><PRE class=code>
 КолонкаКартинка1.Картинка = Картинка1;
