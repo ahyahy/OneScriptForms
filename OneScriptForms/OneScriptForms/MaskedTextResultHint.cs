@@ -1,9 +1,12 @@
 ﻿using ScriptEngine.Machine.Contexts;
+using ScriptEngine.Machine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace osf
 {
     [ContextClass ("КлРезультатМаски", "ClMaskedTextResultHint")]
-    public class ClMaskedTextResultHint : AutoContext<ClMaskedTextResultHint>
+    public class ClMaskedTextResultHint : AutoContext<ClMaskedTextResultHint>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_positionOutOfRange = (int)System.ComponentModel.MaskedTextResultHint.PositionOutOfRange; // -55 Не удалось выполнить операцию. Заданная позиция находится вне диапазона конечной строки. Обычно это происходит, если это значение меньше нуля или больше длины конечной строки.
         private int m_nonEditPosition = (int)System.ComponentModel.MaskedTextResultHint.NonEditPosition; // -54 Не удалось выполнить операцию. Текущая позиция в форматируемой строке является литералом.
@@ -19,6 +22,50 @@ namespace osf
         private int m_noEffect = (int)System.ComponentModel.MaskedTextResultHint.NoEffect; // 2 Выполнено. Основная операция не была выполнена, так как она не понадобилась, поэтому побочные эффекты отсутствуют.
         private int m_sideEffect = (int)System.ComponentModel.MaskedTextResultHint.SideEffect; // 3 Выполнено. Основная операция не была выполнена, так как она не понадобилась, но метод вызвал побочные эффекты.
         private int m_success = (int)System.ComponentModel.MaskedTextResultHint.Success; // 4 Успех. Основная операция успешно завершена.
+
+        private List<IValue> _list;
+
+        public int Count()
+        {
+            return _list.Count;
+        }
+
+        public CollectionEnumerator GetManagedIterator()
+        {
+            return new CollectionEnumerator(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<IValue>)_list).GetEnumerator();
+        }
+
+        IEnumerator<IValue> IEnumerable<IValue>.GetEnumerator()
+        {
+            foreach (var item in _list)
+            {
+                yield return (item as IValue);
+            }
+        }
+
+        internal ClMaskedTextResultHint()
+        {
+            _list = new List<IValue>();
+            _list.Add(ValueFactory.Create(AsciiCharacterExpected));
+            _list.Add(ValueFactory.Create(CharacterEscaped));
+            _list.Add(ValueFactory.Create(DigitExpected));
+            _list.Add(ValueFactory.Create(InvalidInput));
+            _list.Add(ValueFactory.Create(LetterExpected));
+            _list.Add(ValueFactory.Create(NoEffect));
+            _list.Add(ValueFactory.Create(NonEditPosition));
+            _list.Add(ValueFactory.Create(PositionOutOfRange));
+            _list.Add(ValueFactory.Create(PromptCharNotAllowed));
+            _list.Add(ValueFactory.Create(SideEffect));
+            _list.Add(ValueFactory.Create(SignedDigitExpected));
+            _list.Add(ValueFactory.Create(Success));
+            _list.Add(ValueFactory.Create(UnavailableEditPosition));
+            _list.Add(ValueFactory.Create(Unknown));
+        }
 
         [ContextProperty("БезЭффекта", "NoEffect")]
         public int NoEffect

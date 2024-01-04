@@ -1,9 +1,12 @@
 ﻿using ScriptEngine.Machine.Contexts;
+using ScriptEngine.Machine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace osf
 {
     [ContextClass ("КлКлавиши", "ClKeys")]
-    public class ClKeys : AutoContext<ClKeys>
+    public class ClKeys : AutoContext<ClKeys>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_modifiers = (int)System.Windows.Forms.Keys.Modifiers; // -65536 Бит-маска для извлечения модификаторов из значения ключа.
         private int m_none = (int)System.Windows.Forms.Keys.None; // 0 Нет нажатой клавиши.
@@ -188,6 +191,219 @@ namespace osf
         private int m_shift = (int)System.Windows.Forms.Keys.Shift; // 65536 Модификатор SHIFT.
         private int m_control = (int)System.Windows.Forms.Keys.Control; // 131072 Клавиша CTRL
         private int m_alt = (int)System.Windows.Forms.Keys.Alt; // 262144 Клавиша модификатора ALT.
+
+        private List<IValue> _list;
+
+        public int Count()
+        {
+            return _list.Count;
+        }
+
+        public CollectionEnumerator GetManagedIterator()
+        {
+            return new CollectionEnumerator(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<IValue>)_list).GetEnumerator();
+        }
+
+        IEnumerator<IValue> IEnumerable<IValue>.GetEnumerator()
+        {
+            foreach (var item in _list)
+            {
+                yield return (item as IValue);
+            }
+        }
+
+        internal ClKeys()
+        {
+            _list = new List<IValue>();
+            _list.Add(ValueFactory.Create(A));
+            _list.Add(ValueFactory.Create(Add));
+            _list.Add(ValueFactory.Create(Alt));
+            _list.Add(ValueFactory.Create(Apps));
+            _list.Add(ValueFactory.Create(Attn));
+            _list.Add(ValueFactory.Create(B));
+            _list.Add(ValueFactory.Create(Back));
+            _list.Add(ValueFactory.Create(BrowserBack));
+            _list.Add(ValueFactory.Create(BrowserFavorites));
+            _list.Add(ValueFactory.Create(BrowserForward));
+            _list.Add(ValueFactory.Create(BrowserHome));
+            _list.Add(ValueFactory.Create(BrowserRefresh));
+            _list.Add(ValueFactory.Create(BrowserSearch));
+            _list.Add(ValueFactory.Create(BrowserStop));
+            _list.Add(ValueFactory.Create(C));
+            _list.Add(ValueFactory.Create(Cancel));
+            _list.Add(ValueFactory.Create(Capital));
+            _list.Add(ValueFactory.Create(CapsLock));
+            _list.Add(ValueFactory.Create(Clear));
+            _list.Add(ValueFactory.Create(Control));
+            _list.Add(ValueFactory.Create(ControlKey));
+            _list.Add(ValueFactory.Create(Crsel));
+            _list.Add(ValueFactory.Create(D));
+            _list.Add(ValueFactory.Create(D0));
+            _list.Add(ValueFactory.Create(D1));
+            _list.Add(ValueFactory.Create(D2));
+            _list.Add(ValueFactory.Create(D3));
+            _list.Add(ValueFactory.Create(D4));
+            _list.Add(ValueFactory.Create(D5));
+            _list.Add(ValueFactory.Create(D6));
+            _list.Add(ValueFactory.Create(D7));
+            _list.Add(ValueFactory.Create(D8));
+            _list.Add(ValueFactory.Create(D9));
+            _list.Add(ValueFactory.Create(Decimal));
+            _list.Add(ValueFactory.Create(Delete));
+            _list.Add(ValueFactory.Create(Divide));
+            _list.Add(ValueFactory.Create(Down));
+            _list.Add(ValueFactory.Create(E));
+            _list.Add(ValueFactory.Create(End));
+            _list.Add(ValueFactory.Create(Enter));
+            _list.Add(ValueFactory.Create(EraseEof));
+            _list.Add(ValueFactory.Create(Escape));
+            _list.Add(ValueFactory.Create(Execute));
+            _list.Add(ValueFactory.Create(Exsel));
+            _list.Add(ValueFactory.Create(F));
+            _list.Add(ValueFactory.Create(F1));
+            _list.Add(ValueFactory.Create(F10));
+            _list.Add(ValueFactory.Create(F11));
+            _list.Add(ValueFactory.Create(F12));
+            _list.Add(ValueFactory.Create(F13));
+            _list.Add(ValueFactory.Create(F14));
+            _list.Add(ValueFactory.Create(F15));
+            _list.Add(ValueFactory.Create(F16));
+            _list.Add(ValueFactory.Create(F17));
+            _list.Add(ValueFactory.Create(F18));
+            _list.Add(ValueFactory.Create(F19));
+            _list.Add(ValueFactory.Create(F2));
+            _list.Add(ValueFactory.Create(F20));
+            _list.Add(ValueFactory.Create(F21));
+            _list.Add(ValueFactory.Create(F22));
+            _list.Add(ValueFactory.Create(F23));
+            _list.Add(ValueFactory.Create(F24));
+            _list.Add(ValueFactory.Create(F3));
+            _list.Add(ValueFactory.Create(F4));
+            _list.Add(ValueFactory.Create(F5));
+            _list.Add(ValueFactory.Create(F6));
+            _list.Add(ValueFactory.Create(F7));
+            _list.Add(ValueFactory.Create(F8));
+            _list.Add(ValueFactory.Create(F9));
+            _list.Add(ValueFactory.Create(FinalMode));
+            _list.Add(ValueFactory.Create(G));
+            _list.Add(ValueFactory.Create(H));
+            _list.Add(ValueFactory.Create(HanguelMode));
+            _list.Add(ValueFactory.Create(HangulMode));
+            _list.Add(ValueFactory.Create(HanjaMode));
+            _list.Add(ValueFactory.Create(Help));
+            _list.Add(ValueFactory.Create(Home));
+            _list.Add(ValueFactory.Create(I));
+            _list.Add(ValueFactory.Create(IMEAceept));
+            _list.Add(ValueFactory.Create(IMEConvert));
+            _list.Add(ValueFactory.Create(IMEModeChange));
+            _list.Add(ValueFactory.Create(IMENonconvert));
+            _list.Add(ValueFactory.Create(Insert));
+            _list.Add(ValueFactory.Create(J));
+            _list.Add(ValueFactory.Create(JunjaMode));
+            _list.Add(ValueFactory.Create(K));
+            _list.Add(ValueFactory.Create(KanaMode));
+            _list.Add(ValueFactory.Create(KanjiMode));
+            _list.Add(ValueFactory.Create(KeyCode));
+            _list.Add(ValueFactory.Create(L));
+            _list.Add(ValueFactory.Create(LaunchApplication1));
+            _list.Add(ValueFactory.Create(LaunchApplication2));
+            _list.Add(ValueFactory.Create(LaunchMail));
+            _list.Add(ValueFactory.Create(LButton));
+            _list.Add(ValueFactory.Create(LControlKey));
+            _list.Add(ValueFactory.Create(Left));
+            _list.Add(ValueFactory.Create(LineFeed));
+            _list.Add(ValueFactory.Create(LMenu));
+            _list.Add(ValueFactory.Create(LShiftKey));
+            _list.Add(ValueFactory.Create(LWin));
+            _list.Add(ValueFactory.Create(M));
+            _list.Add(ValueFactory.Create(MButton));
+            _list.Add(ValueFactory.Create(MediaNextTrack));
+            _list.Add(ValueFactory.Create(MediaPlayPause));
+            _list.Add(ValueFactory.Create(MediaPreviousTrack));
+            _list.Add(ValueFactory.Create(MediaStop));
+            _list.Add(ValueFactory.Create(Menu));
+            _list.Add(ValueFactory.Create(Modifiers));
+            _list.Add(ValueFactory.Create(Multiply));
+            _list.Add(ValueFactory.Create(N));
+            _list.Add(ValueFactory.Create(Next));
+            _list.Add(ValueFactory.Create(NoName));
+            _list.Add(ValueFactory.Create(None));
+            _list.Add(ValueFactory.Create(NumLock));
+            _list.Add(ValueFactory.Create(NumPad0));
+            _list.Add(ValueFactory.Create(NumPad1));
+            _list.Add(ValueFactory.Create(NumPad2));
+            _list.Add(ValueFactory.Create(NumPad3));
+            _list.Add(ValueFactory.Create(NumPad4));
+            _list.Add(ValueFactory.Create(NumPad5));
+            _list.Add(ValueFactory.Create(NumPad6));
+            _list.Add(ValueFactory.Create(NumPad7));
+            _list.Add(ValueFactory.Create(NumPad8));
+            _list.Add(ValueFactory.Create(NumPad9));
+            _list.Add(ValueFactory.Create(O));
+            _list.Add(ValueFactory.Create(Oem8));
+            _list.Add(ValueFactory.Create(OemBackslash));
+            _list.Add(ValueFactory.Create(OemClear));
+            _list.Add(ValueFactory.Create(OemCloseBrackets));
+            _list.Add(ValueFactory.Create(Oemcomma));
+            _list.Add(ValueFactory.Create(OemMinus));
+            _list.Add(ValueFactory.Create(OemOpenBrackets));
+            _list.Add(ValueFactory.Create(OemPeriod));
+            _list.Add(ValueFactory.Create(OemPipe));
+            _list.Add(ValueFactory.Create(Oemplus));
+            _list.Add(ValueFactory.Create(OemQuestion));
+            _list.Add(ValueFactory.Create(OemQuotes));
+            _list.Add(ValueFactory.Create(OemSemicolon));
+            _list.Add(ValueFactory.Create(Oemtilde));
+            _list.Add(ValueFactory.Create(P));
+            _list.Add(ValueFactory.Create(Pa1));
+            _list.Add(ValueFactory.Create(PageDown));
+            _list.Add(ValueFactory.Create(PageUp));
+            _list.Add(ValueFactory.Create(Pause));
+            _list.Add(ValueFactory.Create(Play));
+            _list.Add(ValueFactory.Create(Print));
+            _list.Add(ValueFactory.Create(PrintScreen));
+            _list.Add(ValueFactory.Create(Prior));
+            _list.Add(ValueFactory.Create(ProcessKey));
+            _list.Add(ValueFactory.Create(Q));
+            _list.Add(ValueFactory.Create(R));
+            _list.Add(ValueFactory.Create(RButton));
+            _list.Add(ValueFactory.Create(RControlKey));
+            _list.Add(ValueFactory.Create(Return));
+            _list.Add(ValueFactory.Create(Right));
+            _list.Add(ValueFactory.Create(RMenu));
+            _list.Add(ValueFactory.Create(RShiftKey));
+            _list.Add(ValueFactory.Create(RWin));
+            _list.Add(ValueFactory.Create(S));
+            _list.Add(ValueFactory.Create(Scroll));
+            _list.Add(ValueFactory.Create(Select));
+            _list.Add(ValueFactory.Create(SelectMedia));
+            _list.Add(ValueFactory.Create(Separator));
+            _list.Add(ValueFactory.Create(Shift));
+            _list.Add(ValueFactory.Create(ShiftKey));
+            _list.Add(ValueFactory.Create(Snapshot));
+            _list.Add(ValueFactory.Create(Space));
+            _list.Add(ValueFactory.Create(Subtract));
+            _list.Add(ValueFactory.Create(T));
+            _list.Add(ValueFactory.Create(Tab));
+            _list.Add(ValueFactory.Create(U));
+            _list.Add(ValueFactory.Create(Up));
+            _list.Add(ValueFactory.Create(V));
+            _list.Add(ValueFactory.Create(VolumeDown));
+            _list.Add(ValueFactory.Create(VolumeMute));
+            _list.Add(ValueFactory.Create(VolumeUp));
+            _list.Add(ValueFactory.Create(W));
+            _list.Add(ValueFactory.Create(X));
+            _list.Add(ValueFactory.Create(XButton1));
+            _list.Add(ValueFactory.Create(XButton2));
+            _list.Add(ValueFactory.Create(Y));
+            _list.Add(ValueFactory.Create(Z));
+            _list.Add(ValueFactory.Create(Zoom));
+        }
 
         [ContextProperty("A", "A")]
         public int A
