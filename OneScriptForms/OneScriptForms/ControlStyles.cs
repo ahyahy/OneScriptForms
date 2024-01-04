@@ -1,9 +1,12 @@
 ﻿using ScriptEngine.Machine.Contexts;
+using ScriptEngine.Machine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace osf
 {
     [ContextClass ("КлСтильЭлементаУправления", "ClControlStyles")]
-    public class ClControlStyles : AutoContext<ClControlStyles>
+    public class ClControlStyles : AutoContext<ClControlStyles>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_containerControl = (int)System.Windows.Forms.ControlStyles.ContainerControl; // 1 Если присвоено значение <B>Истина</B>, элемент управления является контейнером.
         private int m_userPaint = (int)System.Windows.Forms.ControlStyles.UserPaint; // 2 Если присвоено значение <B>Истина</B>, отображение элемента управления выполняет сам элемент, а не операционная система. Если присвоено значение <B>Ложь</B>, событие Paint не возникает. Этот стиль применяется только к классам, производным от Control.
@@ -21,6 +24,52 @@ namespace osf
         private int m_enableNotifyMessage = (int)System.Windows.Forms.ControlStyles.EnableNotifyMessage; // 32768 Если присвоено значение <B>Истина</B>, обрабатывается каждое сообщение этого элемента управления. По умолчанию этот стиль имеет значение <B>Ложь</B>.
         private int m_doubleBuffer = (int)System.Windows.Forms.ControlStyles.DoubleBuffer; // 65536 Если присвоено значение <B>Истина</B>, рисование выполняется в буфере, а после завершения результат выводится на экран. Двойная буферизация предотвращает мерцание, вызываемое обновлением элемента управления. Если для этого стиля задано значение <B>Истина</B>, следует также установить <B>Истина</B> для стилей <B>ПользовательскаяОтрисовка&nbsp;(UserPaint)</B> и <B>НеСтиратьФон&nbsp;(AllPaintingInWmPaint)</B>.
         private int m_optimizedDoubleBuffer = (int)System.Windows.Forms.ControlStyles.OptimizedDoubleBuffer; // 131072 Если присвоено значение <B>Истина</B>, элемент управления сначала прорисовывается в буфер, а не сразу на экран, что позволяет снизить мерцание. Если для этого стиля задано значение <B>Истина</B>, следует также установить <B>Истина</B> для стиля <B>НеСтиратьФон&nbsp;(AllPaintingInWmPaint)</B>.
+
+        private List<IValue> _list;
+
+        public int Count()
+        {
+            return _list.Count;
+        }
+
+        public CollectionEnumerator GetManagedIterator()
+        {
+            return new CollectionEnumerator(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<IValue>)_list).GetEnumerator();
+        }
+
+        IEnumerator<IValue> IEnumerable<IValue>.GetEnumerator()
+        {
+            foreach (var item in _list)
+            {
+                yield return (item as IValue);
+            }
+        }
+
+        internal ClControlStyles()
+        {
+            _list = new List<IValue>();
+            _list.Add(ValueFactory.Create(AllPaintingInWmPaint));
+            _list.Add(ValueFactory.Create(CacheText));
+            _list.Add(ValueFactory.Create(ContainerControl));
+            _list.Add(ValueFactory.Create(DoubleBuffer));
+            _list.Add(ValueFactory.Create(EnableNotifyMessage));
+            _list.Add(ValueFactory.Create(FixedHeight));
+            _list.Add(ValueFactory.Create(FixedWidth));
+            _list.Add(ValueFactory.Create(Opaque));
+            _list.Add(ValueFactory.Create(OptimizedDoubleBuffer));
+            _list.Add(ValueFactory.Create(ResizeRedraw));
+            _list.Add(ValueFactory.Create(Selectable));
+            _list.Add(ValueFactory.Create(StandardClick));
+            _list.Add(ValueFactory.Create(StandardDoubleClick));
+            _list.Add(ValueFactory.Create(SupportsTransparentBackColor));
+            _list.Add(ValueFactory.Create(UserMouse));
+            _list.Add(ValueFactory.Create(UserPaint));
+        }
 
         [ContextProperty("Выбираемый", "Selectable")]
         public int Selectable

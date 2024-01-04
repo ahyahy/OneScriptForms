@@ -256,6 +256,12 @@ namespace osf
             set { M_DataGridView.ColumnHeadersHeight = value; }
         }
 
+        public int ColumnHeadersHeightSizeMode
+        {
+            get { return (int)M_DataGridView.ColumnHeadersHeightSizeMode; }
+            set { M_DataGridView.ColumnHeadersHeightSizeMode = (System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode)value; }
+        }
+
         public bool ColumnHeadersVisible
         {
             get { return M_DataGridView.ColumnHeadersVisible; }
@@ -1950,6 +1956,13 @@ namespace osf
         {
             get { return (int)Base_obj.SelectionMode; }
             set { Base_obj.SelectionMode = value; }
+        }
+
+        [ContextProperty("РежимВысотыЗаголовковКолонок", "ColumnHeadersHeightSizeMode")]
+        public int ColumnHeadersHeightSizeMode
+        {
+            get { return (int)Base_obj.ColumnHeadersHeightSizeMode; }
+            set { Base_obj.ColumnHeadersHeightSizeMode = value; }
         }
 
         [ContextProperty("Родитель", "Parent")]

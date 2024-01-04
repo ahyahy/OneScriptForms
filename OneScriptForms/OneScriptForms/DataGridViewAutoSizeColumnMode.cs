@@ -1,9 +1,12 @@
 ﻿using ScriptEngine.Machine.Contexts;
+using ScriptEngine.Machine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace osf
 {
     [ContextClass ("КлРежимАвтоРазмераКолонки", "ClDataGridViewAutoSizeColumnMode")]
-    public class ClDataGridViewAutoSizeColumnMode : AutoContext<ClDataGridViewAutoSizeColumnMode>
+    public class ClDataGridViewAutoSizeColumnMode : AutoContext<ClDataGridViewAutoSizeColumnMode>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_notSet = (int)System.Windows.Forms.DataGridViewAutoSizeColumnMode.NotSet; // 0 Режим изменения размеров колонки наследуется из свойства AutoSizeColumnsMode.
         private int m_none = (int)System.Windows.Forms.DataGridViewAutoSizeColumnMode.None; // 1 Значения ширины колонок не изменяются автоматически.
@@ -13,6 +16,44 @@ namespace osf
         private int m_displayedCellsExceptHeader = (int)System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader; // 8 Ширина колонки изменяется так, чтобы вместить содержимое всех ячеек колонки, которые находятся в строках, отображающихся на экране в настоящий момент, за исключением строки заголовка.
         private int m_displayedCells = (int)System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells; // 10 Ширина колонки изменяется так, чтобы вместить содержимое всех ячеек колонки, которые находятся в строках, отображающихся на экране в настоящий момент, включая строку заголовка.
         private int m_fill = (int)System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill; // 16 Ширина колонки подбирается таким образом, чтобы суммарная ширина всех колонок в точности заполняла отображаемую область элемента управления, а прокрутка по горизонтали требовалась только для колонок, ширина которых превышает значение свойства <A href="OneScriptForms.DataGridViewColumn.MinimumWidth.html">КолонкаТаблицы.МинимальнаяШирина&nbsp;(DataGridViewColumn.MinimumWidth)</A>.
+
+        private List<IValue> _list;
+
+        public int Count()
+        {
+            return _list.Count;
+        }
+
+        public CollectionEnumerator GetManagedIterator()
+        {
+            return new CollectionEnumerator(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<IValue>)_list).GetEnumerator();
+        }
+
+        IEnumerator<IValue> IEnumerable<IValue>.GetEnumerator()
+        {
+            foreach (var item in _list)
+            {
+                yield return (item as IValue);
+            }
+        }
+
+        internal ClDataGridViewAutoSizeColumnMode()
+        {
+            _list = new List<IValue>();
+            _list.Add(ValueFactory.Create(AllCells));
+            _list.Add(ValueFactory.Create(AllCellsExceptHeader));
+            _list.Add(ValueFactory.Create(ColumnHeader));
+            _list.Add(ValueFactory.Create(DisplayedCells));
+            _list.Add(ValueFactory.Create(DisplayedCellsExceptHeader));
+            _list.Add(ValueFactory.Create(Fill));
+            _list.Add(ValueFactory.Create(None));
+            _list.Add(ValueFactory.Create(NotSet));
+        }
 
         [ContextProperty("ВсеЯчейки", "AllCells")]
         public int AllCells

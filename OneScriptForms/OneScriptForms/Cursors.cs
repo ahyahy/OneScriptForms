@@ -1,4 +1,7 @@
 ﻿using ScriptEngine.Machine.Contexts;
+using ScriptEngine.Machine;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace osf
 {
@@ -148,22 +151,107 @@ namespace osf
     }
 
     [ContextClass ("КлКурсоры", "ClCursors")]
-    public class ClCursors : AutoContext<ClCursors>
+    public class ClCursors : AutoContext<ClCursors>, ICollectionContext, IEnumerable<IValue>
     {
+        private List<IValue> _list;
+
         public ClCursors()
         {
             Cursors Cursors1 = new Cursors();
             Cursors1.dll_obj = this;
             Base_obj = Cursors1;
+
+            _list = new List<IValue>();
+            _list.Add(NoMove2D);
+            _list.Add(NoMoveVert);
+            _list.Add(NoMoveHoriz);
+            _list.Add(VSplit);
+            _list.Add(HSplit);
+            _list.Add(PanEast);
+            _list.Add(PanWest);
+            _list.Add(WaitCursor);
+            _list.Add(PanNorth);
+            _list.Add(PanNE);
+            _list.Add(PanNW);
+            _list.Add(PanSouth);
+            _list.Add(PanSE);
+            _list.Add(PanSW);
+            _list.Add(Hand);
+            _list.Add(IBeam);
+            _list.Add(No);
+            _list.Add(Cross);
+            _list.Add(Default);
+            _list.Add(AppStarting);
+            _list.Add(SizeWE);
+            _list.Add(SizeNESW);
+            _list.Add(SizeNWSE);
+            _list.Add(SizeNS);
+            _list.Add(SizeAll);
+            _list.Add(Help);
+            _list.Add(Arrow);
+            _list.Add(UpArrow);
         }
-		
+
         public ClCursors(Cursors p1)
         {
             Cursors Cursors1 = p1;
             Cursors1.dll_obj = this;
             Base_obj = Cursors1;
+
+            _list = new List<IValue>();
+            _list.Add(NoMove2D);
+            _list.Add(NoMoveVert);
+            _list.Add(NoMoveHoriz);
+            _list.Add(VSplit);
+            _list.Add(HSplit);
+            _list.Add(PanEast);
+            _list.Add(PanWest);
+            _list.Add(WaitCursor);
+            _list.Add(PanNorth);
+            _list.Add(PanNE);
+            _list.Add(PanNW);
+            _list.Add(PanSouth);
+            _list.Add(PanSE);
+            _list.Add(PanSW);
+            _list.Add(Hand);
+            _list.Add(IBeam);
+            _list.Add(No);
+            _list.Add(Cross);
+            _list.Add(Default);
+            _list.Add(AppStarting);
+            _list.Add(SizeWE);
+            _list.Add(SizeNESW);
+            _list.Add(SizeNWSE);
+            _list.Add(SizeNS);
+            _list.Add(SizeAll);
+            _list.Add(Help);
+            _list.Add(Arrow);
+            _list.Add(UpArrow);
         }
-        
+
+        public int Count()
+        {
+            return _list.Count;
+        }
+
+        public CollectionEnumerator GetManagedIterator()
+        {
+            return new CollectionEnumerator(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<IValue>)_list).GetEnumerator();
+        }
+
+        IEnumerator<IValue> IEnumerable<IValue>.GetEnumerator()
+        {
+            foreach (var item in _list)
+            {
+                yield return (item as IValue);
+            }
+        }
+
         public Cursors Base_obj;
         
         [ContextProperty("БезДвижения2D", "NoMove2D")]
