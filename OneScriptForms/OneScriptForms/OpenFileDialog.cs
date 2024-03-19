@@ -179,13 +179,26 @@ namespace osf
         [ContextMethod("ПоказатьДиалог", "ShowDialog")]
         public IValue ShowDialog()
         {
+            ClForm activeForm = null;
+            try
+            {
+                activeForm = OneScriptForms.FirstForm.ActiveForm;
+            }
+            catch { }
+
             int Res1 = 0;
             var thread = new Thread(() => Res1 = (int)Base_obj.ShowDialog());
             thread.IsBackground = true;
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
             thread.Join();
-            return ValueFactory.Create(Res1);
+
+            IValue val1 = ValueFactory.Create(Res1);
+            if (activeForm != null)
+            {
+                activeForm.Activate();
+            }
+            return val1;
         }
         
         [ContextMethod("Сбросить", "Reset")]

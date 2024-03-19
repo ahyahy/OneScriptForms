@@ -73,6 +73,7 @@ namespace osf
         private static ClPictureBoxSizeMode cl_PictureBoxSizeMode = new ClPictureBoxSizeMode();
         private static ClPixelFormat cl_PixelFormat = new ClPixelFormat();
         private static ClProcessWindowStyle cl_ProcessWindowStyle = new ClProcessWindowStyle();
+        private static ClProgressShape cl_ProgressShape = new ClProgressShape();
         private static ClPropertySort cl_PropertySort = new ClPropertySort();
         private static ClRichTextBoxFinds cl_RichTextBoxFinds = new ClRichTextBoxFinds();
         private static ClRichTextBoxStreamType cl_RichTextBoxStreamType = new ClRichTextBoxStreamType();
@@ -92,6 +93,7 @@ namespace osf
         private static ClTabAlignment cl_TabAlignment = new ClTabAlignment();
         private static ClTabAppearance cl_TabAppearance = new ClTabAppearance();
         private static ClTabSizeMode cl_TabSizeMode = new ClTabSizeMode();
+        private static ClTextMode cl_TextMode = new ClTextMode();
         private static ClToolBarAppearance cl_ToolBarAppearance = new ClToolBarAppearance();
         private static ClToolBarButtonStyle cl_ToolBarButtonStyle = new ClToolBarButtonStyle();
         private static ClToolBarTextAlign cl_ToolBarTextAlign = new ClToolBarTextAlign();
@@ -531,6 +533,12 @@ namespace osf
             get { return cl_DataGridViewColumnSortMode; }
         }
 
+        [ContextProperty("РежимТекста", "TextMode")]
+        public ClTextMode TextMode
+        {
+            get { return cl_TextMode; }
+        }
+
         [ContextProperty("РежимШириныЗаголовковСтрок", "DataGridViewRowHeadersWidthSizeMode")]
         public ClDataGridViewRowHeadersWidthSizeMode DataGridViewRowHeadersWidthSizeMode
         {
@@ -721,6 +729,12 @@ namespace osf
         public ClMouseFlags MouseFlags
         {
             get { return cl_MouseFlags; }
+        }
+
+        [ContextProperty("ФормаИндикатора", "ProgressShape")]
+        public ClProgressShape ProgressShape
+        {
+            get { return cl_ProgressShape; }
         }
 
         [ContextProperty("ФорматированноеПолеВводаПоиск", "RichTextBoxFinds")]
@@ -1374,6 +1388,12 @@ namespace osf
         {
             return new ClDataGridViewCheckBoxColumn();
         }
+        
+        [ContextMethod("КольцевойИндикатор", "CircularProgressBar")]
+        public ClCircularProgressBar CircularProgressBar()
+        {
+            return new ClCircularProgressBar();
+        }				
         
         [ContextMethod("КонтекстноеМеню", "ContextMenu")]
         public ClContextMenu ContextMenu()
