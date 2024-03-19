@@ -264,6 +264,8 @@
 		ИмяКонтекстКлассаАнгл = "MaskedTextResultHint" или 
 		ИмяКонтекстКлассаАнгл = "MaskInputRejectedEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "DataGridViewColumnHeadersHeightSizeMode" или 
+		ИмяКонтекстКлассаАнгл = "ProgressShape" или 
+		ИмяКонтекстКлассаАнгл = "TextMode" или 
 		ИмяКонтекстКлассаАнгл = "Appearance" Тогда
 		Стр = 
 		"using ScriptEngine.Machine.Contexts;
@@ -474,6 +476,17 @@
 		|using System.Collections.Generic;
 		|using Aga.Controls.Tree.NodeControls;
 		|using Aga.Controls.Threading;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "CircularProgressBar" Тогда
+		Стр = 
+		"using System;
+		|using System.Drawing.Drawing2D;
+		|using System.Windows.Forms;
+		|using System.Reflection;
 		|using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
 		|
@@ -1161,6 +1174,16 @@
 		Стр = 
 		"        public ClDns()
 		|        {
+		|        }//end_constr
+		|";
+	ИначеЕсли ИмяКласса = "CircularProgressBar" Тогда
+		Стр = 
+		"        public ClCircularProgressBar()
+		|        {
+		|            CircularProgressBar CircularProgressBar1 = new CircularProgressBar();
+		|            CircularProgressBar1.dll_obj = this;
+		|            Base_obj = CircularProgressBar1;
+		|            Clockwise = true;
 		|        }//end_constr
 		|";
 	ИначеЕсли ИмяКласса = "IpHostEntry" Тогда
@@ -6512,6 +6535,15 @@
 				|        }
 				|        
 				|";
+			ИначеЕсли (МетодРус = "КольцевойИндикатор") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""КольцевойИндикатор"", ""CircularProgressBar"")]
+				|        public ClCircularProgressBar CircularProgressBar()
+				|        {
+				|            return new ClCircularProgressBar();
+				|        }				
+				|        
+				|";
 			ИначеЕсли (МетодРус = "Ячейка") и (ИмяКонтекстКлассаАнгл = "DataGridView") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""Ячейка"", ""Cell"")]
@@ -9328,13 +9360,26 @@
 				"        [ContextMethod(""ПоказатьДиалог"", ""ShowDialog"")]
 				|        public IValue ShowDialog()
 				|        {
+				|            ClForm activeForm = null;
+				|            try
+				|            {
+				|                activeForm = OneScriptForms.FirstForm.ActiveForm;
+				|            }
+				|            catch { }
+				|
 				|            int Res1 = 0;
 				|            var thread = new Thread(() => Res1 = (int)Base_obj.ShowDialog());
 				|            thread.IsBackground = true;
 				|            thread.SetApartmentState(ApartmentState.STA);
 				|            thread.Start();
 				|            thread.Join();
-				|            return ValueFactory.Create(Res1);
+				|
+				|            IValue val1 = ValueFactory.Create(Res1);
+				|            if (activeForm != null)
+				|            {
+				|                activeForm.Activate();
+				|            }
+				|            return val1;
 				|        }
 				|        
 				|";
@@ -12828,6 +12873,7 @@
 	СоздатьФайлCs("ISpannedCell");
 	СоздатьФайлCs("MaskedTextBox");
 	СоздатьФайлCs("MaskInputRejectedEventArgs");
+	СоздатьФайлCs("CircularProgressBar");
 	
 	
 	
@@ -13366,6 +13412,9 @@
 		
 		
 		
+		// ПодстрокаПоиска = "public class ClTreeNodeAdvCollection : AutoContext<ClTreeNodeAdvCollection>";
+		// ПодстрокаЗамены = "public class ClNodeCollection : AutoContext<ClNodeCollection>";
+		// СтрВыгрузки = СтрЗаменить(СтрВыгрузки, ПодстрокаПоиска, ПодстрокаЗамены);
 		
 		
 		
@@ -13624,6 +13673,26 @@
 		ПодстрокаЗамены = "(int)System.Environment.SpecialFolder.System;";
 		СтрРазделОбъявленияПеременныхДляПеречисления = СтрЗаменить(СтрРазделОбъявленияПеременныхДляПеречисления, ПодстрокаПоиска, ПодстрокаЗамены);
 		
+		ПодстрокаПоиска = "private int m_round = (int)ProgressShape.Round;";
+		ПодстрокаЗамены = "private int m_round = 0;";
+		СтрРазделОбъявленияПеременныхДляПеречисления = СтрЗаменить(СтрРазделОбъявленияПеременныхДляПеречисления, ПодстрокаПоиска, ПодстрокаЗамены);
+		ПодстрокаПоиска = "private int m_flat = (int)ProgressShape.Flat;";
+		ПодстрокаЗамены = "private int m_flat = 1;";
+		СтрРазделОбъявленияПеременныхДляПеречисления = СтрЗаменить(СтрРазделОбъявленияПеременныхДляПеречисления, ПодстрокаПоиска, ПодстрокаЗамены);
+		
+		ПодстрокаПоиска = "private int m_none = (int)TextMode.None;";
+		ПодстрокаЗамены = "private int m_none = 0;";
+		СтрРазделОбъявленияПеременныхДляПеречисления = СтрЗаменить(СтрРазделОбъявленияПеременныхДляПеречисления, ПодстрокаПоиска, ПодстрокаЗамены);
+		ПодстрокаПоиска = "private int m_value = (int)TextMode.Value;";
+		ПодстрокаЗамены = "private int m_value = 1;";
+		СтрРазделОбъявленияПеременныхДляПеречисления = СтрЗаменить(СтрРазделОбъявленияПеременныхДляПеречисления, ПодстрокаПоиска, ПодстрокаЗамены);
+		ПодстрокаПоиска = "private int m_percentage = (int)TextMode.Percentage;";
+		ПодстрокаЗамены = "private int m_percentage = 2;";
+		СтрРазделОбъявленияПеременныхДляПеречисления = СтрЗаменить(СтрРазделОбъявленияПеременныхДляПеречисления, ПодстрокаПоиска, ПодстрокаЗамены);
+		ПодстрокаПоиска = "private int m_custom = (int)TextMode.Custom;";
+		ПодстрокаЗамены = "private int m_custom = 3;";
+		СтрРазделОбъявленияПеременныхДляПеречисления = СтрЗаменить(СтрРазделОбъявленияПеременныхДляПеречисления, ПодстрокаПоиска, ПодстрокаЗамены);
+
 		СтрВыгрузкиПеречисленийШапка = Директивы(ИмяКонтекстКлассаАнгл);
 		ПодстрокаПоиска = "using ScriptEngine.Machine.Contexts;";
 		ПодстрокаЗамены = "using ScriptEngine.Machine.Contexts;
@@ -13747,6 +13816,455 @@
 		
 		
 				
+	ИначеЕсли ИмяФайлаCs = "CircularProgressBar" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"namespace osf
+		|{
+		|    public class CircularProgressBarEx : System.Windows.Forms.Control
+		|    {
+		|        // Код создан на основе разработки автора Jhollman (Analyst Senior at Cutcsa) https://stackoverflow.com/users/2000656/jhollman?tab=profile
+		|        // Подсказка здесь https://stackoverflow.com/questions/4871263/how-to-create-a-circular-style-progressbar/44419033#44419033
+		|
+		|        public osf.CircularProgressBar M_Object;
+		|
+		|        private long _Value;
+		|        private long _Maximum = 100;
+		|        private System.Drawing.Color _InitialColor = System.Drawing.Color.FromArgb(92, 92, 92);
+		|        private System.Drawing.Color _FinalColor = System.Drawing.Color.FromArgb(92, 92, 92);
+		|        private System.Drawing.Color _CircleColor = System.Drawing.Color.FromArgb(92, 92, 92);
+		|        private int ProgressShapeVal;
+		|        private bool clockwise;
+		|
+		|        private int _LineWitdh = 1;
+		|        private float _BarWidth = 14f;
+		|        private System.Drawing.Color _LineColor = System.Drawing.Color.Silver;
+		|        private int _GradientMode = (int)LinearGradientMode.ForwardDiagonal;
+		|        private int ProgressTextMode;
+		|
+		|        public long Value
+		|        {
+		|            get { return _Value; }
+		|            set
+		|            {
+		|                if (value > _Maximum)
+		|                {
+		|                    value = _Maximum;
+		|                }
+		|                _Value = value;
+		|                Invalidate();
+		|            }
+		|        }
+		|
+		|        public long Maximum
+		|        {
+		|            get { return _Maximum; }
+		|            set
+		|            {
+		|                if (value < 1)
+		|                {
+		|                    value = 1;
+		|                }
+		|                _Maximum = value;
+		|                Invalidate();
+		|            }
+		|        }
+		|
+		|        public System.Drawing.Color InitialColor
+		|        {
+		|            get { return _InitialColor; }
+		|            set
+		|            {
+		|                _InitialColor = value;
+		|                Invalidate();
+		|            }
+		|        }
+		|
+		|        public System.Drawing.Color FinalColor
+		|        {
+		|            get { return _FinalColor; }
+		|            set
+		|            {
+		|                _FinalColor = value;
+		|                Invalidate();
+		|            }
+		|        }
+		|
+		|        public int ProgressShape
+		|        {
+		|            get { return ProgressShapeVal; }
+		|            set
+		|            {
+		|                ProgressShapeVal = value;
+		|                Invalidate();
+		|            }
+		|        }
+		|
+		|        public void Increment(int Val)
+		|        {
+		|            this._Value += Convert.ToInt64(Val);
+		|            Invalidate();
+		|            System.Windows.Forms.Application.DoEvents();
+		|        }
+		|
+		|        public void Decrement(int Val)
+		|        {
+		|            this._Value -= Convert.ToInt64(Val);
+		|            Invalidate();
+		|            System.Windows.Forms.Application.DoEvents();
+		|        }
+		|
+		|        public bool Clockwise
+		|        {
+		|            get { return clockwise; }
+		|            set { clockwise = value; }
+		|        }
+		|
+		|        public float BarWidth
+		|        {
+		|            get { return _BarWidth; }
+		|            set
+		|            {
+		|                _BarWidth = value;
+		|                Invalidate();
+		|            }
+		|        }
+		|
+		|        public int GradientMode
+		|        {
+		|            get { return _GradientMode; }
+		|            set
+		|            {
+		|                _GradientMode = value;
+		|                Invalidate();
+		|            }
+		|        }
+		|
+		|        public System.Drawing.Color LineColor
+		|        {
+		|            get { return _LineColor; }
+		|            set
+		|            {
+		|                _LineColor = value;
+		|                Invalidate();
+		|            }
+		|        }
+		|		
+		|        public System.Drawing.Color CircleColor
+		|        {
+		|            get { return _CircleColor; }
+		|            set
+		|            {
+		|                _CircleColor = value;
+		|                Invalidate();
+		|            }
+		|        }
+		|
+		|        public int LineWidth
+		|        {
+		|            get { return _LineWitdh; }
+		|            set
+		|            {
+		|                _LineWitdh = value;
+		|                Invalidate();
+		|            }
+		|        }
+		|
+		|        public int TextMode
+		|        {
+		|            get { return ProgressTextMode; }
+		|            set
+		|            {
+		|                ProgressTextMode = value;
+		|                Invalidate();
+		|            }
+		|        }
+		|
+		|        public new string Text { get; set; }
+		|
+		|        private static void PaintTransparentBackground(System.Windows.Forms.Control c, System.Windows.Forms.PaintEventArgs e)
+		|        {
+		|            if (c.Parent == null || !System.Windows.Forms.Application.RenderWithVisualStyles)
+		|            {
+		|                return;
+		|            }
+		|
+		|            ButtonRenderer.DrawParentBackground(e.Graphics, c.ClientRectangle, c);
+		|        }
+		|
+		|        protected override void OnResize(System.EventArgs e)
+		|        {
+		|            base.OnResize(e);
+		|            SetStandardSize();
+		|        }
+		|
+		|        protected override void OnSizeChanged(System.EventArgs e)
+		|        {
+		|            base.OnSizeChanged(e);
+		|            SetStandardSize();
+		|        }
+		|
+		|        protected override void OnPaintBackground(System.Windows.Forms.PaintEventArgs p)
+		|        {
+		|            base.OnPaintBackground(p);
+		|        }
+		|
+		|        private void SetStandardSize()
+		|        {
+		|            int _Size = Math.Max(Width, Height);
+		|            Size = new System.Drawing.Size(_Size, _Size);
+		|        }
+		|
+		|        protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
+		|        {
+		|            base.OnPaint(e);
+		|            using (System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(this.Width, this.Height))
+		|            {
+		|                using (System.Drawing.Graphics graphics = System.Drawing.Graphics.FromImage(bitmap))
+		|                {
+		|                    graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
+		|                    graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+		|                    graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+		|                    graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+		|
+		|                    //graphics.Clear(Color.Transparent); //<-- this.BackColor, SystemColors.Control, Color.Transparent
+		|
+		|                    PaintTransparentBackground(this, e);
+		|
+		|                    // Нарисуйте внутренний белый круг:
+		|                    using (System.Drawing.Brush mBackColor = new System.Drawing.SolidBrush(_CircleColor))
+		|                    {
+		|                        graphics.FillEllipse(mBackColor,
+		|                                BarWidth / 2,
+		|                                BarWidth / 2,
+		|                                this.Width - BarWidth,
+		|                                this.Height - BarWidth
+		|                                );
+		|                    }
+		|                    // Проведите тонкую серую линию посередине:
+		|                    using (System.Drawing.Pen pen2 = new System.Drawing.Pen(LineColor, this.LineWidth))
+		|                    {
+		|                        graphics.DrawEllipse(pen2,
+		|                                BarWidth / 2,
+		|                                BarWidth / 2,
+		|                                this.Width - BarWidth,
+		|                                this.Height - BarWidth
+		|                                );
+		|                    }
+		|
+		|                    // Нарисуйте индикатор.
+		|                    using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle,
+		|                        this._FinalColor, this._InitialColor, this.GradientMode))
+		|                    {
+		|                        using (System.Drawing.Pen pen = new System.Drawing.Pen(brush, this.BarWidth))
+		|                        {
+		|                            switch (this.ProgressShapeVal)
+		|                            {
+		|                                case 0: // _ProgressShape.Round
+		|                                    pen.StartCap = LineCap.Round;
+		|                                    pen.EndCap = LineCap.Round;
+		|                                    break;
+		|
+		|                                case 1: // _ProgressShape.Flat
+		|                                    pen.StartCap = LineCap.Flat;
+		|                                    pen.EndCap = LineCap.Flat;
+		|                                    break;
+		|                            }
+		|
+		|                            // Покажем индикатор.
+		|                            if (!Clockwise)
+		|                            {
+		|                                graphics.DrawArc(pen,
+		|                                    BarWidth / 2,
+		|                                    BarWidth / 2,
+		|                                    this.Width - BarWidth,
+		|                                    this.Width - BarWidth, 
+		|                                    -90,
+		|                                    -(int)Math.Round((double)((360.0 / ((double)this._Maximum)) * this._Value)));
+		|                            }
+		|                            else
+		|                            {
+		|                                graphics.DrawArc(pen,
+		|                                    BarWidth / 2,
+		|                                    BarWidth / 2,
+		|                                    this.Width - BarWidth,
+		|                                    this.Width - BarWidth,
+		|                                    -90,
+		|                                    (int)Math.Round((double)((360.0 / ((double)this._Maximum)) * this._Value)));
+		|                            }
+		|                        }
+		|                    }
+		|
+		|                    switch (this.TextMode)
+		|                    {
+		|                        case 0: // _TextMode.None:
+		|                            this.Text = string.Empty;
+		|                            break;
+		|
+		|                        case 1: // _TextMode.Value:
+		|                            this.Text = _Value.ToString();
+		|                            break;
+		|
+		|                        case 2: // _TextMode.Percentage:
+		|                            this.Text = Convert.ToString(Convert.ToInt32((100 / _Maximum) * _Value)) + ""%"";
+		|                            break;
+		|
+		|                        default:
+		|                            break;
+		|                    }
+		|
+		|                    if (this.Text != string.Empty)
+		|                    {
+		|                        using (System.Drawing.Brush FontColor = new System.Drawing.SolidBrush(this.ForeColor))
+		|                        {
+		|                            int ShadowOffset = 2;
+		|                            System.Drawing.SizeF MS = graphics.MeasureString(this.Text, this.Font);
+		|                            System.Drawing.SolidBrush shadowBrush = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(100, this.ForeColor));
+		|
+		|                            // Тень от текста:
+		|                            graphics.DrawString(this.Text, this.Font, shadowBrush,
+		|                                Convert.ToInt32(Width / 2 - MS.Width / 2) + ShadowOffset,
+		|                                Convert.ToInt32(Height / 2 - MS.Height / 2) + ShadowOffset
+		|                            );
+		|
+		|                            // Текст элемента управления:
+		|                            graphics.DrawString(this.Text, this.Font, FontColor,
+		|                                Convert.ToInt32(Width / 2 - MS.Width / 2),
+		|                                Convert.ToInt32(Height / 2 - MS.Height / 2));
+		|                        }
+		|                    }
+		|                    // Рисуем элемент управления:
+		|                    e.Graphics.DrawImage(bitmap, 0, 0);
+		|                    graphics.Dispose();
+		|                    bitmap.Dispose();
+		|                }
+		|            }
+		|        }
+		|
+		|        // <summary>Нарисуйте круг с цветной заливкой и идеальными краями.
+		|        // <param name=""g"">Холст объекта, который нужно нарисовать
+		|        // <param name=""brush"">Цвет и стиль заливки
+		|        // <param name=""centerX"">Центр окружности на оси X
+		|        // <param name=""centerY"">Центр окружности на оси Y
+		|        // <param name=""radius"">Радиус окружности
+		|        private void FillCircle(System.Drawing.Graphics g, System.Drawing.Brush brush, float centerX, float centerY, float radius)
+		|        {
+		|            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
+		|            g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+		|            g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+		|            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+		|
+		|            using (System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath())
+		|            {
+		|                g.FillEllipse(brush, centerX - radius, centerY - radius,
+		|                          radius + radius, radius + radius);
+		|            }
+		|        }
+		|    }//endClass
+		|
+		|    public class CircularProgressBar : Control
+		|    {
+		|        public ClCircularProgressBar dll_obj;
+		|        public CircularProgressBarEx M_CircularProgressBar;
+		|
+		|        public CircularProgressBar()
+		|        {
+		|            M_CircularProgressBar = new CircularProgressBarEx();
+		|            M_CircularProgressBar.M_Object = this;
+		|            base.M_Control = M_CircularProgressBar;
+		|            M_CircularProgressBar.MinimumSize = new System.Drawing.Size(33, 33);
+		|            M_CircularProgressBar.CircleColor = M_CircularProgressBar.BackColor;
+		|            DoubleBuffered = true;
+		|            M_CircularProgressBar.Width = 33;
+		|            M_CircularProgressBar.Height = 33;
+		|        }
+		|		
+		|        public osf.Color CircleColor
+		|        {
+		|            get { return new Color(M_CircularProgressBar.CircleColor); }
+		|            set { M_CircularProgressBar.CircleColor = value.M_Color; }
+		|        }
+		|
+		|        public int BarWidth
+		|        {
+		|            get { return Convert.ToInt32(M_CircularProgressBar.BarWidth); }
+		|            set { M_CircularProgressBar.BarWidth = Convert.ToInt64(value); }
+		|        }
+		|
+		|        public bool Clockwise
+		|        {
+		|            get { return M_CircularProgressBar.Clockwise; }
+		|            set { M_CircularProgressBar.Clockwise = value; }
+		|        }
+		|
+		|        public osf.Color LineColor
+		|        {
+		|            get { return new Color(M_CircularProgressBar.LineColor); }
+		|            set { M_CircularProgressBar.LineColor = value.M_Color; }
+		|        }
+		|
+		|        public int LineWidth
+		|        {
+		|            get { return M_CircularProgressBar.LineWidth; }
+		|            set { M_CircularProgressBar.LineWidth = value; }
+		|        }
+		|
+		|        public int Maximum
+		|        {
+		|            get { return Convert.ToInt32(M_CircularProgressBar.Maximum); }
+		|            set { M_CircularProgressBar.Maximum = Convert.ToInt64(value); }
+		|        }
+		|
+		|        public osf.Color InitialColor
+		|        {
+		|            get { return new Color(M_CircularProgressBar.InitialColor); }
+		|            set { M_CircularProgressBar.InitialColor = value.M_Color; }
+		|        }
+		|
+		|        public osf.Color FinalColor
+		|        {
+		|            get { return new Color(M_CircularProgressBar.FinalColor); }
+		|            set { M_CircularProgressBar.FinalColor = value.M_Color; }
+		|        }
+		|
+		|        public int ProgressShape
+		|        {
+		|            get { return (int)M_CircularProgressBar.ProgressShape; }
+		|            set { M_CircularProgressBar.ProgressShape = value; }
+		|        }
+		|
+		|        public new string Text
+		|        {
+		|            get { return M_CircularProgressBar.Text; }
+		|            set { M_CircularProgressBar.Text = value; }
+		|        }
+		|
+		|        public int TextMode
+		|        {
+		|            get { return (int)M_CircularProgressBar.TextMode; }
+		|            set { M_CircularProgressBar.TextMode = value; }
+		|        }
+		|
+		|        public int Value
+		|        {
+		|            get { return Convert.ToInt32(M_CircularProgressBar.Value); }
+		|            set { M_CircularProgressBar.Value = Convert.ToInt64(value); }
+		|        }
+		|
+		|        public void Decrement(int val)
+		|        {
+		|            M_CircularProgressBar.Decrement(val);
+		|        }
+		|
+		|        public void Increment(int val)
+		|        {
+		|            M_CircularProgressBar.Increment(val);
+		|        }
+		|    }//endClass
+		|}//endnamespace
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "MaskInputRejectedEventArgs" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
