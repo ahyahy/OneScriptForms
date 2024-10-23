@@ -41,7 +41,7 @@ namespace osf
             }
         }
 
-        internal ClCloseReason()
+        public ClCloseReason()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(ApplicationExitCall));

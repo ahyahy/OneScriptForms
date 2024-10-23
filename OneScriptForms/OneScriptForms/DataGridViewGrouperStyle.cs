@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClDataGridViewGrouperStyle()
+        public ClDataGridViewGrouperStyle()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(FirstLetter));

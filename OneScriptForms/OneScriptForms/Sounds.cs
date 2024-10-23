@@ -39,7 +39,7 @@ namespace osf
             }
         }
 
-        internal ClSounds()
+        public ClSounds()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Asterisk));

@@ -97,6 +97,7 @@ namespace osf
         private static ClToolBarAppearance cl_ToolBarAppearance = new ClToolBarAppearance();
         private static ClToolBarButtonStyle cl_ToolBarButtonStyle = new ClToolBarButtonStyle();
         private static ClToolBarTextAlign cl_ToolBarTextAlign = new ClToolBarTextAlign();
+        private static ClToolTipIcon cl_ToolTipIcon = new ClToolTipIcon();
         private static ClTreeSelectionMode cl_TreeSelectionMode = new ClTreeSelectionMode();
         private static ClTreeViewAction cl_TreeViewAction = new ClTreeViewAction();
         private static ClVerticalAlign cl_VerticalAlign = new ClVerticalAlign();
@@ -315,6 +316,12 @@ namespace osf
         public ClSounds Sounds
         {
             get { return cl_Sounds; }
+        }
+
+        [ContextProperty("ЗначокВсплывающейПодсказки", "ToolTipIcon")]
+        public ClToolTipIcon ToolTipIcon
+        {
+            get { return cl_ToolTipIcon; }
         }
 
         [ContextProperty("ЗначокОкнаСообщений", "MessageBoxIcon")]

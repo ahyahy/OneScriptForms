@@ -1,4 +1,5 @@
-﻿using ScriptEngine.Machine.Contexts;
+﻿using System;
+using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
 
 namespace osf
@@ -44,6 +45,24 @@ namespace osf
             MouseMove = "";
             MouseUp = "";
             OneScriptForms.AddToHashtable(M_NotifyIcon, this);
+        }
+
+        public int BalloonTipIcon
+        {
+            get { return (int)M_NotifyIcon.BalloonTipIcon; }
+            set { M_NotifyIcon.BalloonTipIcon = (System.Windows.Forms.ToolTipIcon)value; }
+        }
+
+        public string BalloonTipText
+        {
+            get { return M_NotifyIcon.BalloonTipText; }
+            set { M_NotifyIcon.BalloonTipText = value; }
+        }
+
+        public string BalloonTipTitle
+        {
+            get { return M_NotifyIcon.BalloonTipTitle; }
+            set { M_NotifyIcon.BalloonTipTitle = value; }
         }
 
         public osf.ContextMenu ContextMenu
@@ -178,6 +197,16 @@ namespace osf
                 OneScriptForms.ExecuteEvent(dll_obj.MouseUp);
             }
         }
+
+        public void ShowBalloonTip(int p1, string p2, string p3, int p4)
+        {
+            M_NotifyIcon.ShowBalloonTip(p1, p2, p3, (System.Windows.Forms.ToolTipIcon)p4);
+        }
+
+        public void ShowBalloonTip(int p1)
+        {
+            M_NotifyIcon.ShowBalloonTip(p1);
+        }
     }
 
     [ContextClass ("КлЗначокУведомления", "ClNotifyIcon")]
@@ -217,6 +246,13 @@ namespace osf
             }
         }
         
+        [ContextProperty("ЗаголовокВсплывающейПодсказки", "BalloonTipTitle")]
+        public string BalloonTipTitle
+        {
+            get { return Base_obj.BalloonTipTitle; }
+            set { Base_obj.BalloonTipTitle = value; }
+        }
+
         [ContextProperty("Значок", "Icon")]
         public ClIcon Icon
         {
@@ -226,6 +262,13 @@ namespace osf
                 Base_obj.Icon = value.Base_obj; 
                 Base_obj.Icon.dll_obj = value;
             }
+        }
+
+        [ContextProperty("ЗначокВсплывающейПодсказки", "BalloonTipIcon")]
+        public int BalloonTipIcon
+        {
+            get { return (int)Base_obj.BalloonTipIcon; }
+            set { Base_obj.BalloonTipIcon = value; }
         }
 
         [ContextProperty("КонтекстноеМеню", "ContextMenu")]
@@ -325,6 +368,13 @@ namespace osf
             set { Base_obj.Text = value; }
         }
 
+        [ContextProperty("ТекстВсплывающейПодсказки", "BalloonTipText")]
+        public string BalloonTipText
+        {
+            get { return Base_obj.BalloonTipText; }
+            set { Base_obj.BalloonTipText = value; }
+        }
+
         [ContextProperty("Тип", "Type")]
         public ClType Type
         {
@@ -335,6 +385,19 @@ namespace osf
         public void Dispose()
         {
             Base_obj.Dispose();
+        }
+					
+        [ContextMethod("ПоказатьВсплывающуюПодсказку", "ShowBalloonTip")]
+        public void ShowBalloonTip(int p1, IValue p2 = null, IValue p3 = null, IValue p4 = null)
+        {
+            if (p2 != null && p3 != null && p4 != null)
+            {
+                Base_obj.ShowBalloonTip(p1, p2.AsString(), p3.AsString(), Convert.ToInt32(p4.AsNumber()));
+            }
+            else
+            {
+                Base_obj.ShowBalloonTip(p1);
+            }
         }
     }
 }

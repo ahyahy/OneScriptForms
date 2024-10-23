@@ -39,7 +39,7 @@ namespace osf
             }
         }
 
-        internal ClTreeViewAction()
+        public ClTreeViewAction()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(ByKeyboard));

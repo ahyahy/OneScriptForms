@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClComboBoxStyle()
+        public ClComboBoxStyle()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(DropDown));

@@ -39,7 +39,7 @@ namespace osf
             }
         }
 
-        internal ClPictureBoxSizeMode()
+        public ClPictureBoxSizeMode()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(AutoSize));

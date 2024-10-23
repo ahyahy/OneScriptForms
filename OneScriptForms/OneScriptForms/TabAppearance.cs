@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClTabAppearance()
+        public ClTabAppearance()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Buttons));

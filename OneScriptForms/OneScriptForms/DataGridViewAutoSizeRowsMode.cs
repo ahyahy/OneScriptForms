@@ -41,7 +41,7 @@ namespace osf
             }
         }
 
-        internal ClDataGridViewAutoSizeRowsMode()
+        public ClDataGridViewAutoSizeRowsMode()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(AllCells));

@@ -8,7 +8,7 @@ namespace osf
     {
         private List<ClForm> _list;
 
-        internal FormsCollection()
+        public FormsCollection()
         {
             _list = new List<ClForm>();
         }

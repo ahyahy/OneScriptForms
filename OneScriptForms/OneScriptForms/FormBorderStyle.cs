@@ -41,7 +41,7 @@ namespace osf
             }
         }
 
-        internal ClFormBorderStyle()
+        public ClFormBorderStyle()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Fixed3D));

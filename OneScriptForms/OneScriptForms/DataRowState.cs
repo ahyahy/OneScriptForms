@@ -39,7 +39,7 @@ namespace osf
             }
         }
 
-        internal ClDataRowState()
+        public ClDataRowState()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Added));

@@ -42,7 +42,7 @@ namespace osf
             }
         }
 
-        internal ClNotifyFilters()
+        public ClNotifyFilters()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Attributes));

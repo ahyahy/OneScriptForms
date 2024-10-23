@@ -38,7 +38,7 @@ namespace osf
             }
         }
 
-        internal ClSelectionMode()
+        public ClSelectionMode()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(MultiExtended));

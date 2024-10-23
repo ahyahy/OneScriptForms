@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClFormWindowState()
+        public ClFormWindowState()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Maximized));

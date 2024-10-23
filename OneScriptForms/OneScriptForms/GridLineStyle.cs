@@ -38,7 +38,7 @@ namespace osf
             }
         }
 
-        internal ClGridLineStyle()
+        public ClGridLineStyle()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Horizontal));

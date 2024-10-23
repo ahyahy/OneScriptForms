@@ -38,7 +38,7 @@ namespace osf
             }
         }
 
-        internal ClListViewAlignment()
+        public ClListViewAlignment()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Default));

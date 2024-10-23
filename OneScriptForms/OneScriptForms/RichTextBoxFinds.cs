@@ -39,7 +39,7 @@ namespace osf
             }
         }
 
-        internal ClRichTextBoxFinds()
+        public ClRichTextBoxFinds()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(MatchCase));

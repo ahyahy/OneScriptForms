@@ -38,7 +38,7 @@ namespace osf
             }
         }
 
-        internal ClLinkLabelLinkBehavior()
+        public ClLinkLabelLinkBehavior()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(AlwaysUnderline));

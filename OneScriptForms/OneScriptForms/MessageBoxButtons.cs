@@ -40,7 +40,7 @@ namespace osf
             }
         }
 
-        internal ClMessageBoxButtons()
+        public ClMessageBoxButtons()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(AbortRetryIgnore));

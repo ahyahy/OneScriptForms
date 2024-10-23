@@ -38,7 +38,7 @@ namespace osf
             }
         }
 
-        internal ClScrollBars()
+        public ClScrollBars()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Both));

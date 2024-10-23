@@ -36,7 +36,7 @@ namespace osf
             }
         }
 
-        internal ClScrollOrientation()
+        public ClScrollOrientation()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(HorizontalScroll));

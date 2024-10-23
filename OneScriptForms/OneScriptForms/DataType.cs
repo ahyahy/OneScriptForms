@@ -39,7 +39,7 @@ namespace osf
             }
         }
 
-        internal ClDataType()
+        public ClDataType()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Boolean));

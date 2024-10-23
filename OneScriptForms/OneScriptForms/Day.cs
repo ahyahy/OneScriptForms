@@ -42,7 +42,7 @@ namespace osf
             }
         }
 
-        internal ClDay()
+        public ClDay()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Default));

@@ -40,7 +40,7 @@ namespace osf
             }
         }
 
-        internal ClDockStyle()
+        public ClDockStyle()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Bottom));

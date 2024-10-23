@@ -38,7 +38,7 @@ namespace osf
             }
         }
 
-        internal ClToolBarButtonStyle()
+        public ClToolBarButtonStyle()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(DropDownButton));

@@ -39,7 +39,7 @@ namespace osf
             }
         }
 
-        internal ClFlatStyle()
+        public ClFlatStyle()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Flat));

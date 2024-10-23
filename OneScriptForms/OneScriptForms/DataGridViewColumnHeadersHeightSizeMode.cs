@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClDataGridViewColumnHeadersHeightSizeMode()
+        public ClDataGridViewColumnHeadersHeightSizeMode()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(AutoSize));

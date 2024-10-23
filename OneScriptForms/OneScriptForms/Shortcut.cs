@@ -184,7 +184,7 @@ namespace osf
             }
         }
 
-        internal ClShortcut()
+        public ClShortcut()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Alt0));

@@ -36,7 +36,7 @@ namespace osf
             }
         }
 
-        internal ClAppearance()
+        public ClAppearance()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Button));

@@ -50,7 +50,7 @@ namespace osf
             }
         }
 
-        internal ClControlStyles()
+        public ClControlStyles()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(AllPaintingInWmPaint));

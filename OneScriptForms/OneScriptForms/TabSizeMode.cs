@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClTabSizeMode()
+        public ClTabSizeMode()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(FillToRight));

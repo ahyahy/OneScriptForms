@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClImageScaleMode()
+        public ClImageScaleMode()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(AlwaysScale));

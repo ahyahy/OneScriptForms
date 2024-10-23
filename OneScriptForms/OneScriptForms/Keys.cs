@@ -217,7 +217,7 @@ namespace osf
             }
         }
 
-        internal ClKeys()
+        public ClKeys()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(A));

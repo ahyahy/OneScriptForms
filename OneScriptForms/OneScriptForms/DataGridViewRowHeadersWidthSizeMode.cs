@@ -39,7 +39,7 @@ namespace osf
             }
         }
 
-        internal ClDataGridViewRowHeadersWidthSizeMode()
+        public ClDataGridViewRowHeadersWidthSizeMode()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(AutoSizeToAllHeaders));

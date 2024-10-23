@@ -38,7 +38,7 @@ namespace osf
             }
         }
 
-        internal ClPropertySort()
+        public ClPropertySort()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Alphabetical));

@@ -39,7 +39,7 @@ namespace osf
             }
         }
 
-        internal ClColorDepth()
+        public ClColorDepth()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Depth16Bit));

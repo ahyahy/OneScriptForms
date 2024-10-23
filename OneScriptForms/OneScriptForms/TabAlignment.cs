@@ -38,7 +38,7 @@ namespace osf
             }
         }
 
-        internal ClTabAlignment()
+        public ClTabAlignment()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Bottom));

@@ -90,7 +90,7 @@ namespace osf
             }
         }
 
-        internal ClHatchStyle()
+        public ClHatchStyle()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(BackwardDiagonal));

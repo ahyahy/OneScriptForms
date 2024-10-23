@@ -39,7 +39,7 @@ namespace osf
             }
         }
 
-        internal ClFormStartPosition()
+        public ClFormStartPosition()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(CenterParent));

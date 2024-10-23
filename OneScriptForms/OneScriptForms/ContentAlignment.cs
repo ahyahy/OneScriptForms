@@ -43,7 +43,7 @@ namespace osf
             }
         }
 
-        internal ClContentAlignment()
+        public ClContentAlignment()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(BottomCenter));

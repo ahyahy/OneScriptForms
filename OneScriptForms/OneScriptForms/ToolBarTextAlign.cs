@@ -36,7 +36,7 @@ namespace osf
             }
         }
 
-        internal ClToolBarTextAlign()
+        public ClToolBarTextAlign()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Right));

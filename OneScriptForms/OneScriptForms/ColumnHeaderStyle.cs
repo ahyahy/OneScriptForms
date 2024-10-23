@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClColumnHeaderStyle()
+        public ClColumnHeaderStyle()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Clickable));

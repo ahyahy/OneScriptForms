@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClVerticalAlign()
+        public ClVerticalAlign()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Bottom));

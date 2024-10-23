@@ -516,6 +516,7 @@
     <Compile Include="ToolTip.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ToolTipIcon.cs" />
     <Compile Include="TreeColumn.cs">
       <SubType>Component</SubType>
     </Compile>

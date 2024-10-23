@@ -38,7 +38,7 @@ namespace osf
             }
         }
 
-        internal ClDataGridViewColumnSortMode()
+        public ClDataGridViewColumnSortMode()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Automatic));

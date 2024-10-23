@@ -39,7 +39,7 @@ namespace osf
             }
         }
 
-        internal ClFontStyle()
+        public ClFontStyle()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Bold));

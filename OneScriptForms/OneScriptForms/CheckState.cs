@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClCheckState()
+        public ClCheckState()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Checked));

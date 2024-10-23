@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClSortOrder()
+        public ClSortOrder()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Ascending));

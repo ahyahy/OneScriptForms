@@ -42,7 +42,7 @@ namespace osf
             }
         }
 
-        internal ClDialogResult()
+        public ClDialogResult()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Abort));

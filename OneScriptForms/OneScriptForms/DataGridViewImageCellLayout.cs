@@ -38,7 +38,7 @@ namespace osf
             }
         }
 
-        internal ClDataGridViewImageCellLayout()
+        public ClDataGridViewImageCellLayout()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Normal));

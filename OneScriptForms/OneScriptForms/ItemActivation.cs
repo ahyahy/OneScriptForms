@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClItemActivation()
+        public ClItemActivation()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(OneClick));

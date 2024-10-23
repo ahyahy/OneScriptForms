@@ -57,7 +57,7 @@ namespace osf
             }
         }
 
-        internal ClPixelFormat()
+        public ClPixelFormat()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Alpha));

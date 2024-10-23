@@ -42,7 +42,7 @@ namespace osf
             }
         }
 
-        internal ClMouseFlags()
+        public ClMouseFlags()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Absolute));

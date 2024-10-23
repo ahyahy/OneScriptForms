@@ -39,7 +39,7 @@ namespace osf
             }
         }
 
-        internal ClRichTextBoxStreamType()
+        public ClRichTextBoxStreamType()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(PlainText));

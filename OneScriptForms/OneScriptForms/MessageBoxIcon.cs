@@ -43,7 +43,7 @@ namespace osf
             }
         }
 
-        internal ClMessageBoxIcon()
+        public ClMessageBoxIcon()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Asterisk));

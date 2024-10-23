@@ -39,7 +39,7 @@ namespace osf
             }
         }
 
-        internal ClImageLayout()
+        public ClImageLayout()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Center));

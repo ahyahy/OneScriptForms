@@ -38,7 +38,7 @@ namespace osf
             }
         }
 
-        internal ClDataGridViewComboBoxDisplayStyle()
+        public ClDataGridViewComboBoxDisplayStyle()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(ComboBox));

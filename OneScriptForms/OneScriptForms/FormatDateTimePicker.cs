@@ -38,7 +38,7 @@ namespace osf
             }
         }
 
-        internal ClFormatDateTimePicker()
+        public ClFormatDateTimePicker()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Custom));

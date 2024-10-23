@@ -38,7 +38,7 @@ namespace osf
             }
         }
 
-        internal ClMaskFormat()
+        public ClMaskFormat()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(ExcludePromptAndLiterals));

@@ -38,7 +38,7 @@ namespace osf
             }
         }
 
-        internal ClMenuMerge()
+        public ClMenuMerge()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Add));

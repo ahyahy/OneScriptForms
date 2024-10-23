@@ -4333,25 +4333,25 @@ namespace Aga.Controls.Tree
         public TreeNodeAdv Node
         {
             get { return _node; }
-            internal set { _node = value; }
+            set { _node = value; }
         }
 
         public NodeControl Control
         {
             get { return _control; }
-            internal set { _control = value; }
+            set { _control = value; }
         }
 
         public Point ViewLocation
         {
             get { return _viewLocation; }
-            internal set { _viewLocation = value; }
+            set { _viewLocation = value; }
         }
 
         public Keys ModifierKeys
         {
             get { return _modifierKeys; }
-            internal set { _modifierKeys = value; }
+            set { _modifierKeys = value; }
         }
 
         public bool Handled
@@ -4363,7 +4363,7 @@ namespace Aga.Controls.Tree
         public Rectangle ControlBounds
         {
             get { return _controlBounds; }
-            internal set { _controlBounds = value; }
+            set { _controlBounds = value; }
         }
 
         public TreeNodeAdvMouseEventArgs(MouseEventArgs args) : base(args.Button, args.Clicks, args.X, args.Y, args.Delta)

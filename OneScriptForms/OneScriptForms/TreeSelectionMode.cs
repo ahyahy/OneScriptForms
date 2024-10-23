@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClTreeSelectionMode()
+        public ClTreeSelectionMode()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Multi));

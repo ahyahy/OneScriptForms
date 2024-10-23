@@ -36,7 +36,7 @@ namespace osf
             }
         }
 
-        internal ClProgressShape()
+        public ClProgressShape()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Flat));

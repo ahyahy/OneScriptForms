@@ -39,7 +39,7 @@ namespace osf
             }
         }
 
-        internal ClDataGridViewSelectionMode()
+        public ClDataGridViewSelectionMode()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(CellSelect));

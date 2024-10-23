@@ -39,7 +39,7 @@ namespace osf
             }
         }
 
-        internal ClView()
+        public ClView()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Details));

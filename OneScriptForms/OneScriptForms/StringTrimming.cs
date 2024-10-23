@@ -40,7 +40,7 @@ namespace osf
             }
         }
 
-        internal ClStringTrimming()
+        public ClStringTrimming()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Character));

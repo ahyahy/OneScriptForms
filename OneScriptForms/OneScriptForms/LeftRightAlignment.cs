@@ -36,7 +36,7 @@ namespace osf
             }
         }
 
-        internal ClLeftRightAlignment()
+        public ClLeftRightAlignment()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Left));

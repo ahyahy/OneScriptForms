@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClStatusBarPanelBorderStyle()
+        public ClStatusBarPanelBorderStyle()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(None));

@@ -38,7 +38,7 @@ namespace osf
             }
         }
 
-        internal ClLinearGradientMode()
+        public ClLinearGradientMode()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(BackwardDiagonal));

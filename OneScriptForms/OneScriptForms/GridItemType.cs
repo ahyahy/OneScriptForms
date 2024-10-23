@@ -38,7 +38,7 @@ namespace osf
             }
         }
 
-        internal ClGridItemType()
+        public ClGridItemType()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(ArrayValue));

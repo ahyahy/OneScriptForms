@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClSeekOrigin()
+        public ClSeekOrigin()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Begin));

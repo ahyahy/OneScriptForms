@@ -39,7 +39,7 @@ namespace osf
             }
         }
 
-        internal ClAnchorStyles()
+        public ClAnchorStyles()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Bottom));

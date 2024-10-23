@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClDrawMode()
+        public ClDrawMode()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Normal));

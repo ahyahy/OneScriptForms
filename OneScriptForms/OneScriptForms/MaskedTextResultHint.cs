@@ -48,7 +48,7 @@ namespace osf
             }
         }
 
-        internal ClMaskedTextResultHint()
+        public ClMaskedTextResultHint()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(AsciiCharacterExpected));

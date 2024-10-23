@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClDataGridViewTriState()
+        public ClDataGridViewTriState()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(False));

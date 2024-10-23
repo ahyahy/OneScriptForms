@@ -56,7 +56,7 @@ namespace osf
             }
         }
 
-        internal ClSpecialFolder()
+        public ClSpecialFolder()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(ApplicationData));

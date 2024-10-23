@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClCharacterCasing()
+        public ClCharacterCasing()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Lower));

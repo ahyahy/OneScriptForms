@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClInsertKeyMode()
+        public ClInsertKeyMode()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Default));

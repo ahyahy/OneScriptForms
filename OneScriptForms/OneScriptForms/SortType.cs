@@ -38,7 +38,7 @@ namespace osf
             }
         }
 
-        internal ClSortType()
+        public ClSortType()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Boolean));

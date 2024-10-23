@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClMouseButtons()
+        public ClMouseButtons()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Left));

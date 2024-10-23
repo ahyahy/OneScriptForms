@@ -44,7 +44,7 @@ namespace osf
             }
         }
 
-        internal ClDataGridViewContentAlignment()
+        public ClDataGridViewContentAlignment()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(BottomCenter));

@@ -37,7 +37,7 @@ namespace osf
             }
         }
 
-        internal ClStatusBarPanelAutoSize()
+        public ClStatusBarPanelAutoSize()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Contents));

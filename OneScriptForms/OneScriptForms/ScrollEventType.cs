@@ -43,7 +43,7 @@ namespace osf
             }
         }
 
-        internal ClScrollEventType()
+        public ClScrollEventType()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(EndScroll));
