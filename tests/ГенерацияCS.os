@@ -266,7 +266,9 @@
 		ИмяКонтекстКлассаАнгл = "DataGridViewColumnHeadersHeightSizeMode" или 
 		ИмяКонтекстКлассаАнгл = "ProgressShape" или 
 		ИмяКонтекстКлассаАнгл = "TextMode" или 
-		ИмяКонтекстКлассаАнгл = "Appearance" Тогда
+		ИмяКонтекстКлассаАнгл = "Appearance"  или 
+		ИмяКонтекстКлассаАнгл = "ToolTipIcon" 
+		Тогда
 		Стр = 
 		"using ScriptEngine.Machine.Contexts;
 		|
@@ -305,7 +307,10 @@
 		ИмяКонтекстКлассаАнгл = "TreeNodeCollection" или
 		ИмяКонтекстКлассаАнгл = "Bitmap" или 
 		ИмяКонтекстКлассаАнгл = "KeyPressEventArgs" или 
-		ИмяКонтекстКлассаАнгл = "FileSystemWatcher" Тогда
+		ИмяКонтекстКлассаАнгл = "FileSystemWatcher" или 
+		ИмяКонтекстКлассаАнгл = "NotifyIcon" 
+		
+		Тогда
 		Стр = 
 		"using System;
 		|using ScriptEngine.Machine.Contexts;
@@ -555,7 +560,6 @@
 		ИмяКонтекстКлассаАнгл = "ManagedProperty" или 
 		ИмяКонтекстКлассаАнгл = "Math" или 
 		ИмяКонтекстКлассаАнгл = "MenuItem" или 
-		ИмяКонтекстКлассаАнгл = "NotifyIcon" или 
 		ИмяКонтекстКлассаАнгл = "PropertyValueChangedEventArgs" или 
 		ИмяКонтекстКлассаАнгл = "SelectedGridItemChangedEventArgs" или
 		ИмяКонтекстКлассаАнгл = "Timer" или 
@@ -10423,6 +10427,22 @@
 				|        }
 				|
 				|";
+			ИначеЕсли (МетодРус = "ПоказатьВсплывающуюПодсказку") и (ИмяКонтекстКлассаАнгл = "NotifyIcon") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПоказатьВсплывающуюПодсказку"", ""ShowBalloonTip"")]
+				|        public void ShowBalloonTip(int p1, IValue p2 = null, IValue p3 = null, IValue p4 = null)
+				|        {
+				|            if (p2 != null && p3 != null && p4 != null)
+				|            {
+				|                Base_obj.ShowBalloonTip(p1, p2.AsString(), p3.AsString(), Convert.ToInt32(p4.AsNumber()));
+				|            }
+				|            else
+				|            {
+				|                Base_obj.ShowBalloonTip(p1);
+				|            }
+				|        }
+				|
+				|";
 			ИначеЕсли МетодРус = "АКосинус" Тогда
 				Стр = Стр + 
 				"        [ContextMethod(""АКосинус"", ""Acos"")]
@@ -13606,7 +13626,10 @@
 				ИмяКонтекстКлассаАнгл = "MaskFormat" или 
 				ИмяКонтекстКлассаАнгл = "InsertKeyMode" или 
 				ИмяКонтекстКлассаАнгл = "DataGridViewColumnHeadersHeightSizeMode" или 
-				ИмяКонтекстКлассаАнгл = "TreeViewAction" Тогда
+				ИмяКонтекстКлассаАнгл = "TreeViewAction"  или 
+				ИмяКонтекстКлассаАнгл = "ToolTipIcon"
+				
+				Тогда
 				ИмяКонтекстКлассаАнгл1 = "System.Windows.Forms." + ИмяКонтекстКлассаАнгл;
 			ИначеЕсли ИмяКонтекстКлассаАнгл = "ContentAlignment" или 
 				ИмяКонтекстКлассаАнгл = "StringTrimming" или 
@@ -13746,11 +13769,10 @@
 			// Сообщить("СтрКлассПеречисления = " + СтрКлассПеречисления);
 			// Сообщить("======================");
 			
-			
 			Если ИмяКонтекстКлассаАнгл = СтрКлассПеречисления Тогда
 				СтрРазделОбъявленияПеременныхДляПеречисления = СтрРазделОбъявленияПеременныхДляПеречисления + "
 				|
-				|        internal Cl" + СтрКлассПеречисления + "()
+				|        public Cl" + СтрКлассПеречисления + "()
 				|        {
 				|            _list = new List<IValue>();";
 				СвойстваКласса1 = Ф.СвойстваКласса(СтрКлассПеречисления);
@@ -20473,25 +20495,25 @@
 		|        public TreeNodeAdv Node
 		|        {
 		|            get { return _node; }
-		|            internal set { _node = value; }
+		|            set { _node = value; }
 		|        }
 		|
 		|        public NodeControl Control
 		|        {
 		|            get { return _control; }
-		|            internal set { _control = value; }
+		|            set { _control = value; }
 		|        }
 		|
 		|        public Point ViewLocation
 		|        {
 		|            get { return _viewLocation; }
-		|            internal set { _viewLocation = value; }
+		|            set { _viewLocation = value; }
 		|        }
 		|
 		|        public Keys ModifierKeys
 		|        {
 		|            get { return _modifierKeys; }
-		|            internal set { _modifierKeys = value; }
+		|            set { _modifierKeys = value; }
 		|        }
 		|
 		|        public bool Handled
@@ -20503,7 +20525,7 @@
 		|        public Rectangle ControlBounds
 		|        {
 		|            get { return _controlBounds; }
-		|            internal set { _controlBounds = value; }
+		|            set { _controlBounds = value; }
 		|        }
 		|
 		|        public TreeNodeAdvMouseEventArgs(MouseEventArgs args) : base(args.Button, args.Clicks, args.X, args.Y, args.Delta)
@@ -39553,7 +39575,7 @@
 		|    {
 		|        private List<ClForm> _list;
 		|
-		|        internal FormsCollection()
+		|        public FormsCollection()
 		|        {
 		|            _list = new List<ClForm>();
 		|        }
@@ -45065,6 +45087,34 @@
 		|                OneScriptForms.Event = ClEventArgs1;
 		|                OneScriptForms.ExecuteEvent(dll_obj.DoubleClick);
 		|            }
+		|        }
+		|		
+		|        public void ShowBalloonTip(int p1, string p2, string p3, int p4)
+		|        {
+		|            M_NotifyIcon.ShowBalloonTip(p1, p2, p3, (System.Windows.Forms.ToolTipIcon)p4);
+		|        }
+		|
+		|        public void ShowBalloonTip(int p1)
+		|        {
+		|            M_NotifyIcon.ShowBalloonTip(p1);
+		|        }
+		|
+		|        public string BalloonTipText
+		|        {
+		|            get { return M_NotifyIcon.BalloonTipText; }
+		|            set { M_NotifyIcon.BalloonTipText = value; }
+		|        }
+		|
+		|        public string BalloonTipTitle
+		|        {
+		|            get { return M_NotifyIcon.BalloonTipTitle; }
+		|            set { M_NotifyIcon.BalloonTipTitle = value; }
+		|        }
+		|
+		|        public int BalloonTipIcon
+		|        {
+		|            get { return (int)M_NotifyIcon.BalloonTipIcon; }
+		|            set { M_NotifyIcon.BalloonTipIcon = (System.Windows.Forms.ToolTipIcon)value; }
 		|        }
 		|    }//endClass
 		|}//endnamespace
