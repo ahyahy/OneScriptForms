@@ -237,6 +237,38 @@ namespace osf
         {
             get { return Assembly.GetExecutingAssembly().GetName().Version.Build; }
         }				
+        
+        [ContextProperty("ТекущаяРаскладка", "CurrentLayout")]
+        public string CurrentLayout
+        {
+            get { return System.Windows.Forms.InputLanguage.CurrentInputLanguage.LayoutName; }
+        }
+        
+        [ContextProperty("ТекущийЯзыкВвода", "CurrentInputLanguage")]
+        public string CurrentInputLanguage
+        {
+            get { return System.Windows.Forms.InputLanguage.CurrentInputLanguage.Culture.Name; }
+        }
+        
+        [ContextProperty("УстановленныеЯзыкиВвода", "InstalledInputLanguages")]
+        public string InstalledInputLanguages
+        {
+            get
+            {
+                string str = "";
+                foreach (System.Windows.Forms.InputLanguage lang in System.Windows.Forms.InputLanguage.InstalledInputLanguages)
+                {
+                    str += lang.Culture.Name + System.Environment.NewLine;
+                }
+                return str;
+            }
+        }
+        
+        [ContextProperty("ЯзыкВводаПоУмолчанию", "DefaultInputLanguage")]
+        public string DefaultInputLanguage
+        {
+            get { return System.Windows.Forms.InputLanguage.DefaultInputLanguage.Culture.Name; }
+        }
 
         //ПеречисленияКакСвойства============================================================
 

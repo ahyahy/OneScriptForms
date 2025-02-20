@@ -3745,39 +3745,50 @@
 				|        }
 				|        
 				|";
-				
-				
-			// // // ИначеЕсли (СвойствоРус = "Замыкание") и (ИмяКонтекстКлассаАнгл = "IpAddress") Тогда
-				// // // Стр = Стр +
-				// // // "        [ContextProperty(""Замыкание"", ""LoopBack"")]
-				// // // |        public ClIpAddress LoopBack
-				// // // |        {
-				// // // |            //get { return (ClIpAddress)OneScriptForms.RevertObj(Base_obj.LoopBack); }
-				// // // |            get { return Base_obj.dll_obj.LoopBack; }
-				// // // |        }
-				// // // |        
-				// // // |";
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+			ИначеЕсли СвойствоРус = "УстановленныеЯзыкиВвода" Тогда
+				Стр = Стр +
+				"        [ContextProperty(""УстановленныеЯзыкиВвода"", ""InstalledInputLanguages"")]
+				|        public string InstalledInputLanguages
+				|        {
+				|            get
+				|            {
+				|                string str = """";
+				|                foreach (System.Windows.Forms.InputLanguage lang in System.Windows.Forms.InputLanguage.InstalledInputLanguages)
+				|                {
+				|                    str += lang.Culture.Name + System.Environment.NewLine;
+				|                }
+				|                return str;
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли СвойствоРус = "ЯзыкВводаПоУмолчанию" Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ЯзыкВводаПоУмолчанию"", ""DefaultInputLanguage"")]
+				|        public string DefaultInputLanguage
+				|        {
+				|            get { return System.Windows.Forms.InputLanguage.DefaultInputLanguage.Culture.Name; }
+				|        }
+				|        
+				|";
+			ИначеЕсли СвойствоРус = "ТекущийЯзыкВвода" Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ТекущийЯзыкВвода"", ""CurrentInputLanguage"")]
+				|        public string CurrentInputLanguage
+				|        {
+				|            get { return System.Windows.Forms.InputLanguage.CurrentInputLanguage.Culture.Name; }
+				|        }
+				|        
+				|";
+			ИначеЕсли СвойствоРус = "ТекущаяРаскладка" Тогда
+				Стр = Стр +
+				"        [ContextProperty(""ТекущаяРаскладка"", ""CurrentLayout"")]
+				|        public string CurrentLayout
+				|        {
+				|            get { return System.Windows.Forms.InputLanguage.CurrentInputLanguage.LayoutName; }
+				|        }
+				|        
+				|";
 			ИначеЕсли (СвойствоРус = "Значок") и (ИмяКонтекстКлассаАнгл = "StatusBarPanel") Тогда
 				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
 				"        public ClIcon icon;";
