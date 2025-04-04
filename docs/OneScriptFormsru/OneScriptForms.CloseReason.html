@@ -1,0 +1,82 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+    <TITLE>CloseReason Enumeration</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
+</HEAD>
+<BODY id=bodyID class=dtBODY>
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>ПричинаЗакрытия (CloseReason) Перечисление</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <H4 class=dtH4>Описание</H4>
+        <P>Указывает причину, по которой форма была закрыта.</P>
+        <H4 class=dtH4>Члены</H4>
+        <DIV class=tablediv>
+            <TABLE class=dtTABLE cellSpacing=0>
+                <TBODY>
+                    <TR vAlign=top>
+                        <TH width="38%">Имя члена</TH>
+                        <TH width="50%">Описание</TH>
+                        <TH width="12%">Значение</TH>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>Владелец&nbsp;(FormOwnerClosing)</B></TD>
+                        <TD>Форма-владелец закрывается.</TD>
+                        <TD>5</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>Выход&nbsp;(ApplicationExitCall)</B></TD>
+                        <TD>Был вызван метод Exit() класса Application.</TD>
+                        <TD>6</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>Диспетчер&nbsp;(TaskManagerClosing)</B></TD>
+                        <TD>Диспетчер задач Microsoft Windows закрывает приложение.</TD>
+                        <TD>4</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>Отсутствие&nbsp;(None)</B></TD>
+                        <TD>Причина закрытия не была определена или не может быть определена.</TD>
+                        <TD>0</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>Пользователь&nbsp;(UserClosing)</B></TD>
+                        <TD>
+                            Форма закрывается программными способами или с помощью действия пользователя в пользовательском интерфейсе (например нажатием
+                            кнопки Закрыть в окне формы, выбором параметра Закрыть в системном меню окна или нажатием сочетания клавиш ALT+F4).
+                        </TD>
+                        <TD>3</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>Система&nbsp;(WindowsShutDown)</B></TD>
+                        <TD>Операционная система закрывает все приложения перед завершением работы.</TD>
+                        <TD>1</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>ФормаMDI&nbsp;(MdiFormClosing)</B></TD>
+                        <TD>Родительская форма этой формы многодокументного интерфейса (MDI) закрывается.</TD>
+                        <TD>2</TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <H4 class=dtH4>Смотрите также</H4>
+        <P><A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P>
+    </DIV>
+</BODY>
+</HTML>
