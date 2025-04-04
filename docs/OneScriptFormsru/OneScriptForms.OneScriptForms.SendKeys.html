@@ -1,0 +1,384 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+    <TITLE>OneScriptForms.SendKeys Method</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
+</HEAD>
+<BODY id=bodyID class=dtBODY>
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>ФормыДляОдноСкрипта.ОтправитьКлавиши (OneScriptForms.SendKeys)&nbsp;Метод</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <H4 class=dtH4>Синтаксис</H4>
+        <P>ОтправитьКлавиши(&lt;Текст&gt;)</P>
+        <H4 class=dtH4>Параметры</H4>
+        <DL>
+            <DT><I>Текст</I> (обязательный)</DT>
+            <DD>Тип: Строка.</DD>
+            <DD>Строка, содержащая отправляемые данные о нажатиях клавиш.</DD>
+        </DL>
+        <H4 class=dtH4>Возвращаемое значение</H4>
+        <P></P>
+        <H4 class=dtH4>Описание</H4>
+        <P>Отправляет данные об указанных клавишах активному приложению и ожидает окончания обработки сообщений.</P>
+        <H4 class=dtH4>Примечание</H4>
+        <P><span style="color: #ff0000;"><B>Важно:</B> В системе отличной от семейства Windows данный метод неприменим.</span></P>
+        <P>Метод можно использовать для отправки в приложение нажатий клавиш и ожидания завершения всех процессов, запущенных нажатиями клавиш.</P>
+        <P>
+            Знак плюс <B>(+)</B>, символ <B>(^)</B>, знак процента <B>(%)</B>, тильда <B>(~)</B> и круглые скобки <B>()</B> имеют специальное значение. Чтобы указать один из этих символов,
+            заключите его в фигурные скобки <B>( {} )</B>. Например, чтобы указать знак плюс, используйте <B>"{+}"</B>. Чтобы указать символы фигурных скобок,
+            используйте <B>"{ { } "</B> и <B>" { } }"</B>.
+        </P>
+        <P>
+            Чтобы указать символы, которые не отображаются при нажатии клавиши, например <B>ENTER</B> или <B>TAB</B>, а также ключи, представляющие действия,
+            а не символы, используйте коды, приведенные в следующей таблице:
+        </P>
+        <DIV class=tablediv>
+            <TABLE class=dtTABLE cellSpacing=0>
+                <TBODY>
+                    <TR vAlign=top>
+                        <TH width="50%">Ключ</TH>
+                        <TH width="50%">Код</TH>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">BACKSPACE</TD>
+                        <TD width="50%">{BACKSPACE}, {BS}, or {BKSP}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">BREAK</TD>
+                        <TD width="50%">{BREAK}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">CAPS LOCK</TD>
+                        <TD width="50%">{CAPSLOCK}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">DEL or DELETE</TD>
+                        <TD width="50%">{DELETE} or {DEL}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">DOWN ARROW</TD>
+                        <TD width="50%">{DOWN}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">END</TD>
+                        <TD width="50%">{END}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">ENTER</TD>
+                        <TD width="50%">{ENTER} or ~</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">ESC</TD>
+                        <TD width="50%">{ESC}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">HELP</TD>
+                        <TD width="50%">{HELP}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">HOME</TD>
+                        <TD width="50%">{HOME}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">INS or INSERT</TD>
+                        <TD width="50%">{INSERT} or {INS}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">LEFT ARROW</TD>
+                        <TD width="50%">{LEFT}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">NUM LOCK</TD>
+                        <TD width="50%">{NUMLOCK}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">PAGE DOWN</TD>
+                        <TD width="50%">{PGDN}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">PAGE UP</TD>
+                        <TD width="50%">{PGUP}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">PRINT SCREEN</TD>
+                        <TD width="50%">{PRTSC} (зарезервировано для будущего использования)</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">RIGHT ARROW</TD>
+                        <TD width="50%">{RIGHT}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">SCROLL LOCK</TD>
+                        <TD width="50%">{SCROLLLOCK}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">TAB</TD>
+                        <TD width="50%">{TAB}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">UP ARROW</TD>
+                        <TD width="50%">{UP}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">F1</TD>
+                        <TD width="50%">{F1}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">F2</TD>
+                        <TD width="50%">{F2}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">F3</TD>
+                        <TD width="50%">{F3}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">F4</TD>
+                        <TD width="50%">{F4}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">F5</TD>
+                        <TD width="50%">{F5}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">F6</TD>
+                        <TD width="50%">{F6}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">F7</TD>
+                        <TD width="50%">{F7}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">F8</TD>
+                        <TD width="50%">{F8}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">F9</TD>
+                        <TD width="50%">{F9}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">F10</TD>
+                        <TD width="50%">{F10}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">F11</TD>
+                        <TD width="50%">{F11}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">F12</TD>
+                        <TD width="50%">{F12}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">F13</TD>
+                        <TD width="50%">{F13}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">F14</TD>
+                        <TD width="50%">{F14}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">F15</TD>
+                        <TD width="50%">{F15}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">F16</TD>
+                        <TD width="50%">{F16}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">Клавиша СЛОЖИТЬ</TD>
+                        <TD width="50%">{ADD}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">Клавиша ВЫЧЕСТЬ</TD>
+                        <TD width="50%">{SUBTRACT}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">Клавиша УМНОЖИТЬ</TD>
+                        <TD width="50%">{MULTIPLY}</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">Клавиша РАЗДЕЛИТЬ</TD>
+                        <TD width="50%">{DIVIDE}</TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <P>Чтобы указать ключи в сочетании с клавишами <B>SHIFT</B>, <B>CTRL</B> и <B>ALT</B>, перед кодом клавиши укажите один или несколько из следующих кодов:</P>
+        <DIV class=tablediv>
+            <TABLE class=dtTABLE cellSpacing=0>
+                <TBODY>
+                    <TR vAlign=top>
+                        <TH width="50%">Ключ</TH>
+                        <TH width="50%">Код</TH>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">SHIFT</TD>
+                        <TD width="50%">+</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">CTRL</TD>
+                        <TD width="50%">^</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%">ALT</TD>
+                        <TD width="50%">%</TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <P>
+            Чтобы указать, что сочетание клавиш <B>SHIFT</B>, <B>CTRL</B> и <B>ALT</B> должно удерживаться при нажатии нескольких других клавиш,
+            заключите код этих клавиш в круглые скобки. Например, чтобы указать, что при нажатии клавиш <B>E</B> и <B>C</B> будет нажата и клавиша <B>SHIFT</B>,
+            используйте <B>"+(EC)"</B>. Чтобы указать, что нужно удерживать <B>SHIFT</B> при нажатии кнопки <B>E</B>, а затем <B>C</B> без <B>SHIFT</B>, используйте <B>"+EC"</B>.
+        </P>
+        <P>
+            Чтобы указать повторяющиеся ключи, используйте форму {номер ключа}. Вы должны поставить пробел между ключом и номером. Например, <B>{LEFT 12}</B>
+            означает, что нужно нажать клавишу со стрелкой влево 12 раз.
+        </P>
+        <H4 class=dtH4>Пример</H4>
+        <P>
+            <PRE class=code>
+Ф.ОтправитьКлавиши("{DEL}");
+</PRE>
+            <details>
+                <summary>Полный пример кода</summary>
+                <P>
+                    <PRE class=code>
+<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Отображать = Истина;
+Форма1.Показать();
+
+Ф.РазрешитьСобытия = Истина;
+
+Дерево1 = Форма1.ЭлементыУправления.Добавить(Ф.Дерево());
+Дерево1.РедактированиеНадписи = Истина;
+Узел1 = Дерево1.Узлы.Добавить("Узел1");
+Узел2 = Дерево1.Узлы.Добавить("Узел2");
+
+Дерево1.Фокус();
+Узел2.НачатьРедактирование();
+Ф.ОтправитьКлавиши("{DEL}");
+Приостановить(2000);
+Ф.ОтправитьКлавиши("Узел0");
+Приостановить(2000);
+Ф.ОтправитьКлавиши("{ENTER}");
+Приостановить(2000);
+
+Форма1.Активизировать();
+
+Ф.ЗапуститьОбработкуСобытий();
+</DIV>
+</PRE>
+            </details>
+        <P></P>
+        <details>
+            <summary>Тестовый код</summary>
+            <P>
+                <PRE class=code>
+<a id="copy2" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select2" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont2">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Отображать = Истина;
+Форма1.Показать();
+
+Ф.РазрешитьСобытия = Истина;
+
+Дерево1 = Форма1.ЭлементыУправления.Добавить(Ф.Дерево());
+Дерево1.РедактированиеНадписи = Истина;
+Узел1 = Дерево1.Узлы.Добавить("Узел1");
+Узел2 = Дерево1.Узлы.Добавить("Узел2");
+
+Дерево1.Фокус();
+Узел2.НачатьРедактирование();
+Ф.ОтправитьКлавиши("{DEL}");
+Приостановить(2000);
+Ф.ОтправитьКлавиши("Узел0");
+Приостановить(2000);
+Ф.ОтправитьКлавиши("{ENTER}");
+Приостановить(2000);
+
+Форма1.Активизировать();
+
+Сообщить(?(Узел2.Текст = "Узел0", "", "!!! ") + "ФормыДляОдноСкрипта.ОтправитьКлавиши (OneScriptForms.SendKeys) Метод" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+        </details>
+        <P></P>
+        <H4 class=dtH4>Смотрите также</H4>
+        <P>
+            <A href="OneScriptForms.OneScriptForms.html">ФормыДляОдноСкрипта&nbsp;(OneScriptForms)&nbsp;Класс</A> | <A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A>
+        </P>
+    </DIV>
+    <script>
+        window.onload = function () {
+            var a = document.getElementById('select1');
+            a.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta1 = document.getElementById('cont1');
+                var range1 = document.createRange();
+                range1.selectNode(ta1);
+                window.getSelection().addRange(range1);
+                return false;
+            }
+
+            var b = document.getElementById('copy1');
+            b.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta2 = document.getElementById('cont1');
+                var range2 = document.createRange();
+                range2.selectNode(ta2);
+                window.getSelection().addRange(range2);
+                try {
+                    document.execCommand('copy');
+                } catch (err) { }
+                window.getSelection().removeRange(range2);
+                return false;
+            }
+
+            var c = document.getElementById('select2');
+            c.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta3 = document.getElementById('cont2');
+                var range3 = document.createRange();
+                range3.selectNode(ta3);
+                window.getSelection().addRange(range3);
+                return false;
+            }
+
+            var d = document.getElementById('copy2');
+            d.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta4 = document.getElementById('cont2');
+                var range4 = document.createRange();
+                range4.selectNode(ta4);
+                window.getSelection().addRange(range4);
+                try {
+                    document.execCommand('copy');
+                } catch (err) { }
+                window.getSelection().removeRange(range4);
+                return false;
+            }
+        }
+    </script>
+</BODY>
+</HTML>
