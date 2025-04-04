@@ -1,0 +1,78 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+    <TITLE>ProcessWindowStyle Enumeration</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
+</HEAD>
+<BODY id=bodyID class=dtBODY>
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>СтильОкнаПроцесса (ProcessWindowStyle) Перечисление</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <H4 class=dtH4>Описание</H4>
+        <P>Указывает, как должно выглядеть новое окно при запуске процесса.</P>
+        <H4 class=dtH4>Члены</H4>
+        <DIV class=tablediv>
+            <TABLE class=dtTABLE cellSpacing=0>
+                <TBODY>
+                    <TR vAlign=top>
+                        <TH width="38%">Имя члена</TH>
+                        <TH width="50%">Описание</TH>
+                        <TH width="12%">Значение</TH>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>Развернутое&nbsp;(Maximized)</B></TD>
+                        <TD>
+                            Полноэкранный стиль окна. По умолчанию система расширяет полноэкранное окно так, чтобы оно заполняло экран
+                            или в случае дочернего окна клиентскую область родительского окна. Если окно имеет строку заголовка, система
+                            автоматически перемещает её в верхнюю часть экрана или верх клиентской области родительского окна. Кроме того
+                            система отключает возможность изменения размера окна и положения с помощью границ и строки заголовка.
+                        </TD>
+                        <TD>3</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>Свернутое&nbsp;(Minimized)</B></TD>
+                        <TD>Стиль свернутого окна. Система уменьшает свернутое окно до размера кнопки панели задач и помещает его на панели задач.</TD>
+                        <TD>2</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>Скрытое&nbsp;(Hidden)</B></TD>
+                        <TD>
+                            Скрытый стиль окна. Окно может быть видимым или скрытым. Система отображает скрытое окно, но не рисует его. Если
+                            окно скрыто, оно эффективно отключено. Скрытое окно может обрабатывать сообщения от системы или от других окон, но
+                            не может обрабатывать ввод от пользователя или отображать выходные данные. Часто приложение может сохранять новое окно
+                            скрытым, пока определяет внешний вид окна и только затем делает стиль окна равным <B>Стандартное&nbsp;(Normal)</B>.
+                        </TD>
+                        <TD>1</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>Стандартное&nbsp;(Normal)</B></TD>
+                        <TD>
+                            Стиль окна нормальный, видимый. Система отображает окно на экране в расположении по умолчанию. Если окно отображается,
+                            пользователь может вводить входные данные в окно и видеть выходные данные окна. Часто приложение может инициализировать
+                            новое окно со стилем Скрытое, пока не определит внешний вид окна, а затем меняет стиль окна на <B>Стандартное&nbsp;(Normal)</B>.
+                        </TD>
+                        <TD>0</TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <H4 class=dtH4>Смотрите также</H4>
+        <P><A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P>
+    </DIV>
+</BODY>
+</HTML>
