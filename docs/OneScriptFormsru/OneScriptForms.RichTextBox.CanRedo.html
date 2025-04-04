@@ -1,0 +1,168 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+    <TITLE>CanRedo Property</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
+</HEAD>
+<BODY id=bodyID class=dtBODY>
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>ФорматированноеПолеВвода.МожноВернуть&nbsp;(RichTextBox.CanRedo)&nbsp;Свойство</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <H4 class=dtH4>Использование</H4>
+        <P>Только чтение.</P>
+        <H4 class=dtH4>Значение</H4>
+        <P>Тип: Булево.</P>
+        <P>Возвращает значение, указывающее, есть ли действия, которые произошли в <B>ФорматированноеПолеВвода&nbsp;(RichTextBox)</B> и которые могут быть применены.</P>
+        <P><B>Истина</B> - есть операции, которые были отменены, и которые могут быть повторно применены, <B>Ложь</B> - в противном случае.</P>
+        <H4 class=dtH4>Примечание</H4>
+        <P></P>
+        <H4 class=dtH4>Пример</H4>
+        <P>
+            <PRE class=code>
+Сообщить("МожноВернуть = " + ФорматированноеПолеВвода1.МожноВернуть);
+</PRE>
+            <details>
+                <summary>Полный пример кода</summary>
+                <P>
+                    <PRE class=code>
+<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Ширина = 900;
+Форма1.Высота = 400;
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+Стр = "e1xydGYxXGFuc2lcZGVmZjNcYWRlZmxhbmcxMDI1CntcZm9udHRibHtcZjBcZnJvbWFuXGZwcnEyXGZjaGFyc2V0MCBUaW1lcyBOZXcgUm9tYW47fXtcZjFcZnJvbWFuXGZwcnEyXGZjaGFyc2V0MiBTeW1ib2w7fXtcZjJcZnN3aXNzXGZwcnEyXGZjaGFyc2V0MCBBcmlhbDt9e1xmM1xmcm9tYW5cZnBycTJcZmNoYXJzZXQwIExpYmVyYXRpb24gU2VyaWZ7XCpcZmFsdCBUaW1lcyBOZXcgUm9tYW59O317XGY0XGZyb21hblxmcHJxMlxmY2hhcnNldDAgTGliZXJhdGlvbiBTYW5ze1wqXGZhbHQgQXJpYWx9O317XGY1XGZyb21hblxmcHJxMlxmY2hhcnNldDAgQ291cmllciBOZXcgQ1lSO317XGY2XGZuaWxcZnBycTJcZmNoYXJzZXQwIExpYmVyYXRpb24gU2VyaWZ7XCpcZmFsdCBUaW1lcyBOZXcgUm9tYW59O317XGY3XGZuaWxcZnBycTJcZmNoYXJzZXQwIENvdXJpZXIgTmV3IENZUjt9fQp7XGNvbG9ydGJsO1xyZWQwXGdyZWVuMFxibHVlMDtccmVkMFxncmVlbjBcYmx1ZTI1NTtccmVkMFxncmVlbjI1NVxibHVlMjU1O1xyZWQwXGdyZWVuMjU1XGJsdWUwO1xyZWQyNTVcZ3JlZW4wXGJsdWUyNTU7XHJlZDI1NVxncmVlbjBcYmx1ZTA7XHJlZDI1NVxncmVlbjI1NVxibHVlMDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDBcZ3JlZW4wXGJsdWUxMjg7XHJlZDBcZ3JlZW4xMjhcYmx1ZTEyODtccmVkMFxncmVlbjEyOFxibHVlMDtccmVkMTI4XGdyZWV
+|uMFxibHVlMTI4O1xyZWQxMjhcZ3JlZW4wXGJsdWUwO1xyZWQxMjhcZ3JlZW4xMjhcYmx1ZTA7XHJlZDEyOFxncmVlbjEyOFxibHVlMTI4O1xyZWQxOTJcZ3JlZW4xOTJcYmx1ZTE5MjtccmVkMFxncmVlbjE3NlxibHVlMjQwO30Ke1xzdHlsZXNoZWV0e1xzMFxzbmV4dDBcZGJjaFxhZjZcbGFuZ2ZlMTA4MVxkYmNoXGFmNlxhZnMyNFxhbGFuZzEwODFccWxcd2lkY3RscGFyXGh5cGhwYXIwXGx0cnBhclxjZjBcbG9jaFxmM1xmczI0XGxhbmcxMDQ5XGtlcm5pbmcxIE5vcm1hbDt9CntcczE1XHNiYXNlZG9uMFxzbmV4dDE2XGRiY2hcYWY2XGxhbmdmZTEwODFcZGJjaFxhZjZcYWZzMjhccWxcd2lkY3RscGFyXGh5cGhwYXIwXHNiMjQwXHNhMTIwXGtlZXBuXGx0cnBhclxjZjBcbG9jaFxmNFxmczI4XGxhbmcxMDQ5XGtlcm5pbmcxIFx1MTA0N1wnM2ZcdTEwNzJcJzNmXHUxMDc1XCczZlx1MTA4NlwnM2ZcdTEwODNcJzNmXHUxMDg2XCczZlx1MTA3NFwnM2ZcdTEwODZcJzNmXHUxMDgyXCczZjt9CntcczE2XHNiYXNlZG9uMFxzbmV4dDE2XGRiY2hcYWY2XGxhbmdmZTEwODFcZGJjaFxhZjZcYWZzMjRcc2wyNzZcc2xtdWx0MVxxbFx3aWRjdGxwYXJcaHlwaHBhcjBcc2IwXHNhMTQwXGx0cnBhclxjZjBcbG9jaFxmM1xmczI0XGxhbmcxMDQ5XGtlcm5pbmcxIFx1MTA1NFwnM2ZcdTEwODlcJzNmXHUxMDg1XCczZlx1MTA4NlwnM2ZcdTEwNzRcJzNmXHUxMDg1XCczZlx1
+|MTA4NlwnM2ZcdTEwODFcJzNmIFx1MTA5MFwnM2ZcdTEwNzdcJzNmXHUxMDgyXCczZlx1MTA4OVwnM2ZcdTEwOTBcJzNmO30Ke1xzMTdcc2Jhc2Vkb24xNlxzbmV4dDE3XGRiY2hcYWY2XGxhbmdmZTEwODFcZGJjaFxhZjZcYWZzMjRcc2wyNzZcc2xtdWx0MVxxbFx3aWRjdGxwYXJcaHlwaHBhcjBcc2IwXHNhMTQwXGx0cnBhclxjZjBcbG9jaFxmM1xmczI0XGxhbmcxMDQ5XGtlcm5pbmcxIFx1MTA1N1wnM2ZcdTEwODdcJzNmXHUxMDgwXCczZlx1MTA4OVwnM2ZcdTEwODZcJzNmXHUxMDgyXCczZjt9CntcczE4XHNiYXNlZG9uMFxzbmV4dDE4XGRiY2hcYWY2XGxhbmdmZTEwODFcZGJjaFxhZjZcYWZzMjRcYWlccWxcd2lkY3RscGFyXGh5cGhwYXIwXHNiMTIwXHNhMTIwXGx0cnBhclxjZjBcbG9jaFxmM1xmczI0XGxhbmcxMDQ5XGtlcm5pbmcxIFx1MTA1M1wnM2ZcdTEwNzJcJzNmXHUxMDc5XCczZlx1MTA3NFwnM2ZcdTEwNzJcJzNmXHUxMDg1XCczZlx1MTA4MFwnM2ZcdTEwNzdcJzNmO30Ke1xzMTlcc2Jhc2Vkb24wXHNuZXh0MTlcZGJjaFxhZjZcbGFuZ2ZlMTA4MVxkYmNoXGFmNlxhZnMyNFxxbFx3aWRjdGxwYXJcaHlwaHBhcjBcbHRycGFyXGNmMFxsb2NoXGYzXGZzMjRcbGFuZzEwNDlca2VybmluZzEgXHUxMDU5XCczZlx1MTA4MlwnM2ZcdTEwNzJcJzNmXHUxMDc5XCczZlx1MTA3MlwnM2ZcdTEwOTBcJzNmXHUxMDc3XCczZlx1MTA4M1wnM2ZcdTExMDBcJ
+|zNmO30KfXtcKlxnZW5lcmF0b3IgTGlicmVPZmZpY2UvNi40LjcuMiRMaW51eF9YODZfNjQgTGlicmVPZmZpY2VfcHJvamVjdC80MCRCdWlsZC0yfXtcaW5mb3tcY3JlYXRpbVx5cjIwMjJcbW8xMFxkeTIxXGhyMFxtaW40fXtccmV2dGltXHlyMjAyMlxtbzEwXGR5MjFcaHIxOVxtaW4xOX17XHByaW50aW1ceXIwXG1vMFxkeTBcaHIwXG1pbjB9fXtcKlx1c2VycHJvcHN9XGRlZnRhYjcwOQpcaHlwaGF1dG8xXHZpZXdzY2FsZTEwMAp7XCpccGdkc2N0YmwKe1xwZ2RzYzBccGdkc2N1c2U0NTFccGd3c3huMTE5MDZccGdoc3huMTY4MzhcbWFyZ2xzeG4xMTM0XG1hcmdyc3huMTEzNFxtYXJndHN4bjExMzRcbWFyZ2JzeG4xMTM0XHBnZHNjbnh0MCBcdTEwNDFcJzNmXHUxMDcyXCczZlx1MTA3OVwnM2ZcdTEwODZcJzNmXHUxMDc0XCczZlx1MTA5OVwnM2ZcdTEwODFcJzNmO319Clxmb3Jtc2hhZGV7XCpccGdkc2NubzB9XHBhcGVyaDE2ODM4XHBhcGVydzExOTA2XG1hcmdsMTEzNFxtYXJncjExMzRcbWFyZ3QxMTM0XG1hcmdiMTEzNFxzZWN0ZFxzYmtub25lXHNlY3R1bmxvY2tlZDFccGduZGVjXHBnd3N4bjExOTA2XHBnaHN4bjE2ODM4XG1hcmdsc3huMTEzNFxtYXJncnN4bjExMzRcbWFyZ3RzeG4xMTM0XG1hcmdic3huMTEzNFxmdG5ialxmdG5zdGFydDFcZnRucnN0Y29udFxmdG5uYXJcYWVuZGRvY1xhZnRucnN0Y29udFxhZnRuc3RhcnQxXGFmdG5ucmxjCntcKl
+|xmdG5zZXBcY2hmdG5zZXB9XHBnbmRlY1xwYXJkXHBsYWluIFxzMTZcZGJjaFxhZjZcbGFuZ2ZlMTA4MVxkYmNoXGFmNlxhZnMyNFxzbDI3NlxzbG11bHQxXHFsXHdpZGN0bHBhclxoeXBocGFyMFxzYjBcc2ExNDBcbHRycGFyXGNmMFxsb2NoXGYzXGZzMjRcbGFuZzEwNDlca2VybmluZzFcc2wyNzZcc2xtdWx0MVxzYjBcc2ExNDB7XHJ0bGNoXGRiY2hcYWY3XGRiY2hcYWY3XGhpY2hcYWY1IFxsdHJjaFxjZjZcZnMyMVxiXGxvY2hcZjVcbG9jaApcdTEwNThcJzNmXHUxMDc3XCczZlx1MTA4MlwnM2ZcdTEwODlcJzNmXHUxMDkwXCczZn17XGxvY2gKIH17XHJ0bGNoXGRiY2hcYWY3XGRiY2hcYWY3XGhpY2hcYWY1IFxsdHJjaFxjZjE3XGZzMjFcaVxiXGxvY2hcZjVcbG9jaApcdTEwNzZcJzNmXHUxMDgzXCczZlx1MTEwM1wnM2Z9e1xsb2NoCiB9e1xydGxjaFxkYmNoXGFmN1xkYmNoXGFmN1xoaWNoXGFmNSBcbHRyY2hcZnMyOFx1bFx1bGMwXGxvY2hcZjVcbG9jaApcdTEwODlcJzNmXHUxMDg2XCczZlx1MTA5M1wnM2ZcdTEwODhcJzNmXHUxMDcyXCczZlx1MTA4NVwnM2ZcdTEwNzdcJzNmXHUxMDg1XCczZlx1MTA4MFwnM2ZcdTExMDNcJzNmfQpccGFyIH0=";
+ИмяВременногоФайла = СтрЗаменить(ПолучитьИмяВременногоФайла(), ".", "") + ".Rtf";
+ДД = Base64Значение(Стр);
+ДД.Записать(ИмяВременногоФайла);
+
+ФорматированноеПолеВвода1 = Ф.ФорматированноеПолеВвода();
+ФорматированноеПолеВвода1.Родитель = Форма1;
+ФорматированноеПолеВвода1.Границы = Ф.Прямоугольник(10, 10, Форма1.Ширина - 200, Форма1.Высота - 50);
+ФорматированноеПолеВвода1.ЗагрузитьФайл(ИмяВременногоФайла, Ф.ФорматированноеПолеВводаТипыПотоков.Форматированный);
+
+Сообщить("МожноВернуть = " + ФорматированноеПолеВвода1.МожноВернуть);
+
+Ф.ЗапуститьОбработкуСобытий();
+</DIV>
+</PRE>
+            </details>
+        <P></P>
+        <details>
+            <summary>Тестовый код</summary>
+            <P>
+                <PRE class=code>
+<a id="copy2" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select2" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont2">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Ширина = 900;
+Форма1.Высота = 400;
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+Стр = "e1xydGYxXGFuc2lcZGVmZjNcYWRlZmxhbmcxMDI1CntcZm9udHRibHtcZjBcZnJvbWFuXGZwcnEyXGZjaGFyc2V0MCBUaW1lcyBOZXcgUm9tYW47fXtcZjFcZnJvbWFuXGZwcnEyXGZjaGFyc2V0MiBTeW1ib2w7fXtcZjJcZnN3aXNzXGZwcnEyXGZjaGFyc2V0MCBBcmlhbDt9e1xmM1xmcm9tYW5cZnBycTJcZmNoYXJzZXQwIExpYmVyYXRpb24gU2VyaWZ7XCpcZmFsdCBUaW1lcyBOZXcgUm9tYW59O317XGY0XGZyb21hblxmcHJxMlxmY2hhcnNldDAgTGliZXJhdGlvbiBTYW5ze1wqXGZhbHQgQXJpYWx9O317XGY1XGZyb21hblxmcHJxMlxmY2hhcnNldDAgQ291cmllciBOZXcgQ1lSO317XGY2XGZuaWxcZnBycTJcZmNoYXJzZXQwIExpYmVyYXRpb24gU2VyaWZ7XCpcZmFsdCBUaW1lcyBOZXcgUm9tYW59O317XGY3XGZuaWxcZnBycTJcZmNoYXJzZXQwIENvdXJpZXIgTmV3IENZUjt9fQp7XGNvbG9ydGJsO1xyZWQwXGdyZWVuMFxibHVlMDtccmVkMFxncmVlbjBcYmx1ZTI1NTtccmVkMFxncmVlbjI1NVxibHVlMjU1O1xyZWQwXGdyZWVuMjU1XGJsdWUwO1xyZWQyNTVcZ3JlZW4wXGJsdWUyNTU7XHJlZDI1NVxncmVlbjBcYmx1ZTA7XHJlZDI1NVxncmVlbjI1NVxibHVlMDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDBcZ3JlZW4wXGJsdWUxMjg7XHJlZDBcZ3JlZW4xMjhcYmx1ZTEyODtccmVkMFxncmVlbjEyOFxibHVlMDtccmVkMTI4XGdyZWV
+|uMFxibHVlMTI4O1xyZWQxMjhcZ3JlZW4wXGJsdWUwO1xyZWQxMjhcZ3JlZW4xMjhcYmx1ZTA7XHJlZDEyOFxncmVlbjEyOFxibHVlMTI4O1xyZWQxOTJcZ3JlZW4xOTJcYmx1ZTE5MjtccmVkMFxncmVlbjE3NlxibHVlMjQwO30Ke1xzdHlsZXNoZWV0e1xzMFxzbmV4dDBcZGJjaFxhZjZcbGFuZ2ZlMTA4MVxkYmNoXGFmNlxhZnMyNFxhbGFuZzEwODFccWxcd2lkY3RscGFyXGh5cGhwYXIwXGx0cnBhclxjZjBcbG9jaFxmM1xmczI0XGxhbmcxMDQ5XGtlcm5pbmcxIE5vcm1hbDt9CntcczE1XHNiYXNlZG9uMFxzbmV4dDE2XGRiY2hcYWY2XGxhbmdmZTEwODFcZGJjaFxhZjZcYWZzMjhccWxcd2lkY3RscGFyXGh5cGhwYXIwXHNiMjQwXHNhMTIwXGtlZXBuXGx0cnBhclxjZjBcbG9jaFxmNFxmczI4XGxhbmcxMDQ5XGtlcm5pbmcxIFx1MTA0N1wnM2ZcdTEwNzJcJzNmXHUxMDc1XCczZlx1MTA4NlwnM2ZcdTEwODNcJzNmXHUxMDg2XCczZlx1MTA3NFwnM2ZcdTEwODZcJzNmXHUxMDgyXCczZjt9CntcczE2XHNiYXNlZG9uMFxzbmV4dDE2XGRiY2hcYWY2XGxhbmdmZTEwODFcZGJjaFxhZjZcYWZzMjRcc2wyNzZcc2xtdWx0MVxxbFx3aWRjdGxwYXJcaHlwaHBhcjBcc2IwXHNhMTQwXGx0cnBhclxjZjBcbG9jaFxmM1xmczI0XGxhbmcxMDQ5XGtlcm5pbmcxIFx1MTA1NFwnM2ZcdTEwODlcJzNmXHUxMDg1XCczZlx1MTA4NlwnM2ZcdTEwNzRcJzNmXHUxMDg1XCczZlx1
+|MTA4NlwnM2ZcdTEwODFcJzNmIFx1MTA5MFwnM2ZcdTEwNzdcJzNmXHUxMDgyXCczZlx1MTA4OVwnM2ZcdTEwOTBcJzNmO30Ke1xzMTdcc2Jhc2Vkb24xNlxzbmV4dDE3XGRiY2hcYWY2XGxhbmdmZTEwODFcZGJjaFxhZjZcYWZzMjRcc2wyNzZcc2xtdWx0MVxxbFx3aWRjdGxwYXJcaHlwaHBhcjBcc2IwXHNhMTQwXGx0cnBhclxjZjBcbG9jaFxmM1xmczI0XGxhbmcxMDQ5XGtlcm5pbmcxIFx1MTA1N1wnM2ZcdTEwODdcJzNmXHUxMDgwXCczZlx1MTA4OVwnM2ZcdTEwODZcJzNmXHUxMDgyXCczZjt9CntcczE4XHNiYXNlZG9uMFxzbmV4dDE4XGRiY2hcYWY2XGxhbmdmZTEwODFcZGJjaFxhZjZcYWZzMjRcYWlccWxcd2lkY3RscGFyXGh5cGhwYXIwXHNiMTIwXHNhMTIwXGx0cnBhclxjZjBcbG9jaFxmM1xmczI0XGxhbmcxMDQ5XGtlcm5pbmcxIFx1MTA1M1wnM2ZcdTEwNzJcJzNmXHUxMDc5XCczZlx1MTA3NFwnM2ZcdTEwNzJcJzNmXHUxMDg1XCczZlx1MTA4MFwnM2ZcdTEwNzdcJzNmO30Ke1xzMTlcc2Jhc2Vkb24wXHNuZXh0MTlcZGJjaFxhZjZcbGFuZ2ZlMTA4MVxkYmNoXGFmNlxhZnMyNFxxbFx3aWRjdGxwYXJcaHlwaHBhcjBcbHRycGFyXGNmMFxsb2NoXGYzXGZzMjRcbGFuZzEwNDlca2VybmluZzEgXHUxMDU5XCczZlx1MTA4MlwnM2ZcdTEwNzJcJzNmXHUxMDc5XCczZlx1MTA3MlwnM2ZcdTEwOTBcJzNmXHUxMDc3XCczZlx1MTA4M1wnM2ZcdTExMDBcJ
+|zNmO30KfXtcKlxnZW5lcmF0b3IgTGlicmVPZmZpY2UvNi40LjcuMiRMaW51eF9YODZfNjQgTGlicmVPZmZpY2VfcHJvamVjdC80MCRCdWlsZC0yfXtcaW5mb3tcY3JlYXRpbVx5cjIwMjJcbW8xMFxkeTIxXGhyMFxtaW40fXtccmV2dGltXHlyMjAyMlxtbzEwXGR5MjFcaHIxOVxtaW4xOX17XHByaW50aW1ceXIwXG1vMFxkeTBcaHIwXG1pbjB9fXtcKlx1c2VycHJvcHN9XGRlZnRhYjcwOQpcaHlwaGF1dG8xXHZpZXdzY2FsZTEwMAp7XCpccGdkc2N0YmwKe1xwZ2RzYzBccGdkc2N1c2U0NTFccGd3c3huMTE5MDZccGdoc3huMTY4MzhcbWFyZ2xzeG4xMTM0XG1hcmdyc3huMTEzNFxtYXJndHN4bjExMzRcbWFyZ2JzeG4xMTM0XHBnZHNjbnh0MCBcdTEwNDFcJzNmXHUxMDcyXCczZlx1MTA3OVwnM2ZcdTEwODZcJzNmXHUxMDc0XCczZlx1MTA5OVwnM2ZcdTEwODFcJzNmO319Clxmb3Jtc2hhZGV7XCpccGdkc2NubzB9XHBhcGVyaDE2ODM4XHBhcGVydzExOTA2XG1hcmdsMTEzNFxtYXJncjExMzRcbWFyZ3QxMTM0XG1hcmdiMTEzNFxzZWN0ZFxzYmtub25lXHNlY3R1bmxvY2tlZDFccGduZGVjXHBnd3N4bjExOTA2XHBnaHN4bjE2ODM4XG1hcmdsc3huMTEzNFxtYXJncnN4bjExMzRcbWFyZ3RzeG4xMTM0XG1hcmdic3huMTEzNFxmdG5ialxmdG5zdGFydDFcZnRucnN0Y29udFxmdG5uYXJcYWVuZGRvY1xhZnRucnN0Y29udFxhZnRuc3RhcnQxXGFmdG5ucmxjCntcKl
+|xmdG5zZXBcY2hmdG5zZXB9XHBnbmRlY1xwYXJkXHBsYWluIFxzMTZcZGJjaFxhZjZcbGFuZ2ZlMTA4MVxkYmNoXGFmNlxhZnMyNFxzbDI3NlxzbG11bHQxXHFsXHdpZGN0bHBhclxoeXBocGFyMFxzYjBcc2ExNDBcbHRycGFyXGNmMFxsb2NoXGYzXGZzMjRcbGFuZzEwNDlca2VybmluZzFcc2wyNzZcc2xtdWx0MVxzYjBcc2ExNDB7XHJ0bGNoXGRiY2hcYWY3XGRiY2hcYWY3XGhpY2hcYWY1IFxsdHJjaFxjZjZcZnMyMVxiXGxvY2hcZjVcbG9jaApcdTEwNThcJzNmXHUxMDc3XCczZlx1MTA4MlwnM2ZcdTEwODlcJzNmXHUxMDkwXCczZn17XGxvY2gKIH17XHJ0bGNoXGRiY2hcYWY3XGRiY2hcYWY3XGhpY2hcYWY1IFxsdHJjaFxjZjE3XGZzMjFcaVxiXGxvY2hcZjVcbG9jaApcdTEwNzZcJzNmXHUxMDgzXCczZlx1MTEwM1wnM2Z9e1xsb2NoCiB9e1xydGxjaFxkYmNoXGFmN1xkYmNoXGFmN1xoaWNoXGFmNSBcbHRyY2hcZnMyOFx1bFx1bGMwXGxvY2hcZjVcbG9jaApcdTEwODlcJzNmXHUxMDg2XCczZlx1MTA5M1wnM2ZcdTEwODhcJzNmXHUxMDcyXCczZlx1MTA4NVwnM2ZcdTEwNzdcJzNmXHUxMDg1XCczZlx1MTA4MFwnM2ZcdTExMDNcJzNmfQpccGFyIH0=";
+ИмяВременногоФайла = СтрЗаменить(ПолучитьИмяВременногоФайла(), ".", "") + ".Rtf";
+ДД = Base64Значение(Стр);
+ДД.Записать(ИмяВременногоФайла);
+
+ФорматированноеПолеВвода1 = Ф.ФорматированноеПолеВвода();
+ФорматированноеПолеВвода1.Родитель = Форма1;
+ФорматированноеПолеВвода1.Границы = Ф.Прямоугольник(10, 10, Форма1.Ширина - 200, Форма1.Высота - 50);
+ФорматированноеПолеВвода1.ЗагрузитьФайл(ИмяВременногоФайла, Ф.ФорматированноеПолеВводаТипыПотоков.Форматированный);
+
+Сообщить(?(
+Не ФорматированноеПолеВвода1.МожноВернуть
+, "", "!!! ") + "ФорматированноеПолеВвода.МожноВернуть (RichTextBox.CanRedo) Свойство" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+        </details>
+        <P></P>
+        <H4 class=dtH4>Смотрите также</H4>
+        <P>
+            <A href="OneScriptForms.RichTextBox.html">ФорматированноеПолеВвода&nbsp;(RichTextBox)&nbsp;Класс</A> | <A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A>
+        </P>
+    </DIV>
+    <script>
+        window.onload = function () {
+            var a = document.getElementById('select1');
+            a.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta1 = document.getElementById('cont1');
+                var range1 = document.createRange();
+                range1.selectNode(ta1);
+                window.getSelection().addRange(range1);
+                return false;
+            }
+
+            var b = document.getElementById('copy1');
+            b.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta2 = document.getElementById('cont1');
+                var range2 = document.createRange();
+                range2.selectNode(ta2);
+                window.getSelection().addRange(range2);
+                try {
+                    document.execCommand('copy');
+                } catch (err) { }
+                window.getSelection().removeRange(range2);
+                return false;
+            }
+
+            var c = document.getElementById('select2');
+            c.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta3 = document.getElementById('cont2');
+                var range3 = document.createRange();
+                range3.selectNode(ta3);
+                window.getSelection().addRange(range3);
+                return false;
+            }
+
+            var d = document.getElementById('copy2');
+            d.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta4 = document.getElementById('cont2');
+                var range4 = document.createRange();
+                range4.selectNode(ta4);
+                window.getSelection().addRange(range4);
+                try {
+                    document.execCommand('copy');
+                } catch (err) { }
+                window.getSelection().removeRange(range4);
+                return false;
+            }
+        }
+    </script>
+</BODY>
+</HTML>
