@@ -1,0 +1,234 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+    <TITLE>Mask Property</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
+</HEAD>
+<BODY id=bodyID class=dtBODY>
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>МаскаПоляВвода.Маска&nbsp;(MaskedTextBox.Mask)&nbsp;Свойство</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <H4 class=dtH4>Использование</H4>
+        <P>Чтение и запись.</P>
+        <H4 class=dtH4>Значение</H4>
+        <P>Тип: Строка.</P>
+        <P>Получает или задает маску ввода для использования во время выполнения.</P>
+        <H4 class=dtH4>Примечание</H4>
+        <P>По умолчанию используется пустая строка, которая разрешает ввод любых символов.</P>
+        <P>Маска состоит из одного или нескольких элементов маскирования, как показано в следующей таблице.</P>
+        <DIV class=tablediv>
+            <TABLE class=dtTABLE cellSpacing=0>
+                <TBODY>
+                    <TR vAlign=top>
+                        <TH width="20%">Элемент маски</TH>
+                        <TH width="80%">Описание</TH>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>#</B></TD>
+                        <TD width="80%">Цифры или пробелы, необязательные. Если эта позиция пуста в маске, она будет отображаться в виде пробела в свойстве <B>Текст&nbsp;(Text)</B>. Допускаются знаки "плюс" <B>(+)</B> и "минус" <B>(-)</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>$</B></TD>
+                        <TD width="80%">Символ валюты. Фактически отображаемый символ будет символом валюты, соответствующим поставщику формата, в соответствии со свойством элемента управления FormatProvider.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>&amp;</B></TD>
+                        <TD width="80%">Символ, обязательный. Если свойству <B>ТолькоASCII&nbsp;(AsciiOnly)</B> присвоено значение <B>Истина</B>, этот элемент ведет себя так, как элемент <B>"L"</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>&gt;</B></TD>
+                        <TD width="80%">Смещение вверх. Преобразует все символы, которые следуют за верхним регистром.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>&lt;</B></TD>
+                        <TD width="80%">Смещение вниз. Преобразует все символы, которые следуют в нижний регистр.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>,</B></TD>
+                        <TD width="80%">Заполнитель тысяч. Фактический символ отображения будет заполнителем тысяч, подходящим для поставщика формата, как определено свойством элемента управления FormatProvider.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>.</B></TD>
+                        <TD width="80%">Заполнитель десятичных чисел. Фактический символ отображения будет десятичным символом, соответствующим поставщику формата, как определено свойством элемента управления FormatProvider.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>/</B></TD>
+                        <TD width="80%">Разделитель даты. Фактический символ отображения будет символом даты, соответствующим поставщику формата, как определено свойством элемента управления FormatProvider.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>:</B></TD>
+                        <TD width="80%">Разделитель времени. Фактический символ отображения будет символом времени, соответствующим поставщику формата, как определено свойством элемента управления FormatProvider.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>?</B></TD>
+                        <TD width="80%">Буква, необязательная. Ограничивает входные данные буквами ASCII <B>a-z</B> и <B>A-Z</B>. Этот элемент mask эквивалентен <B>[a-zA-Z]?</B> в регулярных выражениях.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>\</B></TD>
+                        <TD width="80%">Обратный слеш. Экранирует символ маски, превращая его в литерал. <B>"\\"</B> — escape-последовательность для обратной косой черты.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>|</B></TD>
+                        <TD width="80%">Отключите предыдущую смену вверх или вниз.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>0</B></TD>
+                        <TD width="80%">Ожидает любую цифру от <B>0</B> до <B>9</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>9</B></TD>
+                        <TD width="80%">Цифры или пробелы, необязательные.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>A</B></TD>
+                        <TD width="80%">Требуется буквенно-цифровой код <B>A-Za-z0-9</B>. Если свойству <B>ТолькоASCII&nbsp;(AsciiOnly)</B> присвоено значение <B>Истина</B>, то работает как элемент <B>"L"</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>C</B></TD>
+                        <TD width="80%">Символ, необязательный. Любой неконтрольный символ. Если свойству <B>ТолькоASCII&nbsp;(AsciiOnly)</B> присвоено значение <B>Истина</B>, этот элемент ведет себя так, как элемент <B>"?"</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>L</B></TD>
+                        <TD width="80%">Буква, обязательный. Ограничивает входные данные буквами ASCII <B>a-z</B> и <B>A-Z</B>. Этот элемент mask эквивалентен <B>[a-zA-Z]</B> в регулярных выражениях.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>а</B></TD>
+                        <TD width="80%">Буквенно-цифровой, необязательный. Если свойству <B>ТолькоASCII&nbsp;(AsciiOnly)</B> присвоено значение <B>Истина</B>, единственными символами, которые он принимает, являются буквы ASCII <B>a-z</B> и <B>A-Z</B>. Этот элемент ведет себя как элемент <B>"A"</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>Все остальные символы</B></TD>
+                        <TD width="80%">Литералы. Отображаться будут все элементы, не относящиеся к маске. Литералы всегда занимают статическую позицию в маске во время выполнения и не могут быть перемещены или удалены пользователем.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="20%"><B>Объект</B></TD>
+                        <TD width="80%">Буквенно-цифровой, обязательный. Если свойству <B>ТолькоASCII&nbsp;(AsciiOnly)</B> присвоено значение <B>Истина</B>, единственными символами, которые он принимает, являются буквы ASCII <B>a-z</B> и <B>A-Z</B>. Этот элемент ведет себя как элемент <B>"a"</B>.</TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <P></P>
+        <H4 class=dtH4>Пример</H4>
+        <P>
+            <PRE class=code>
+МаскаПоляВвода1.Маска = "(000) 000-0000";
+</PRE>
+            <details>
+                <summary>Полный пример кода</summary>
+                <P>
+                    <PRE class=code>
+<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+МаскаПоляВвода1 = Форма1.ЭлементыУправления.Добавить(Ф.МаскаПоляВвода());
+
+МаскаПоляВвода1.Маска = "(000) 000-0000";
+Сообщить("Маска = " + МаскаПоляВвода1.Маска );
+
+Ф.ЗапуститьОбработкуСобытий();
+</DIV>
+</PRE>
+            </details>
+        <P></P>
+        <details>
+            <summary>Тестовый код</summary>
+            <P>
+                <PRE class=code>
+<a id="copy2" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select2" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont2">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+МаскаПоляВвода1 = Форма1.ЭлементыУправления.Добавить(Ф.МаскаПоляВвода());
+
+МаскаПоляВвода1.Маска = "(000) 000-0000";
+
+Сообщить(?(
+МаскаПоляВвода1.Маска = "(000) 000-0000"
+, "", "!!! ") + "МаскаПоляВвода.Маска (MaskedTextBox.Mask) Свойство" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+        </details>
+        <P></P>
+        <H4 class=dtH4>Смотрите также</H4>
+        <P>
+            <A href="OneScriptForms.MaskedTextBox.html">МаскаПоляВвода&nbsp;(MaskedTextBox)&nbsp;Класс</A> | <A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A>
+        </P>
+    </DIV>
+    <script>
+        window.onload = function () {
+            var a = document.getElementById('select1');
+            a.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta1 = document.getElementById('cont1');
+                var range1 = document.createRange();
+                range1.selectNode(ta1);
+                window.getSelection().addRange(range1);
+                return false;
+            }
+
+            var b = document.getElementById('copy1');
+            b.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta2 = document.getElementById('cont1');
+                var range2 = document.createRange();
+                range2.selectNode(ta2);
+                window.getSelection().addRange(range2);
+                try {
+                    document.execCommand('copy');
+                } catch (err) { }
+                window.getSelection().removeRange(range2);
+                return false;
+            }
+
+            var c = document.getElementById('select2');
+            c.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta3 = document.getElementById('cont2');
+                var range3 = document.createRange();
+                range3.selectNode(ta3);
+                window.getSelection().addRange(range3);
+                return false;
+            }
+
+            var d = document.getElementById('copy2');
+            d.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta4 = document.getElementById('cont2');
+                var range4 = document.createRange();
+                range4.selectNode(ta4);
+                window.getSelection().addRange(range4);
+                try {
+                    document.execCommand('copy');
+                } catch (err) { }
+                window.getSelection().removeRange(range4);
+                return false;
+            }
+        }
+    </script>
+</BODY>
+</HTML>
