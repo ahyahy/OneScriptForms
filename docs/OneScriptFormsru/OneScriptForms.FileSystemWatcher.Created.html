@@ -1,0 +1,187 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+    <TITLE>Created Property</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
+</HEAD>
+<BODY id=bodyID class=dtBODY>
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>НаблюдательФайловойСистемы.ПриСоздании&nbsp;(FileSystemWatcher.Created)&nbsp;Свойство</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <H4 class=dtH4>Использование</H4>
+        <P>Чтение и запись.</P>
+        <H4 class=dtH4>Значение</H4>
+        <P>Тип: Произвольный.</P>
+        <P>Возвращает или задает код для выполнения при создании файла или каталога по заданному пути.</P>
+        <H4 class=dtH4>Примечание</H4>
+        <P>
+            Некоторые распространенные процессы, такие как копирование или перемещение файла или каталога,
+            не соответствуют непосредственно к событию, но они приводят к возникновению событий.
+            При копировании файла или каталога, система вызывает  событие <B>ПриСоздании&nbsp;(Created)</B> каталоге,
+            в который был скопирован файл, если каталог отслеживается. Если каталог, из которого производится
+            копирование, отслеживает другой экземпляр <B>НаблюдательФайловойСистемы&nbsp;(FileSystemWatcher)</B>, событие не возникнет.
+            Например, создайте два экземпляра <B>НаблюдательФайловойСистемы&nbsp;(FileSystemWatcher)</B>. НаблюдательФайловойСистемы1
+            отслеживает "C:\My Documents", а НаблюдательФайловойСистемы2 отслеживает "C:\Your Documents".
+            При копировании файла из "My Documents" в "Your Documents", событие <B>ПриСоздании&nbsp;(Created)</B> будет
+            вызываться для НаблюдательФайловойСистемы2, но не для НаблюдательФайловойСистемы1.
+            В отличие от копирования, перемещение файла или каталога приведет к возникновению двух событий.
+            Из предыдущего примера, если файл перенесен из "My Documents" в "Your Documents" событие <B>ПриСоздании&nbsp;(Created)</B>
+            будет генерироваться для НаблюдательФайловойСистемы2 и событие <B>ПриУдалении&nbsp;(Deleted)</B> для НаблюдательФайловойСистемы1.
+        </P>
+        <P>
+            Общие операции файловой системы могут вызвать более одного события. Например, при перемещении файла из одного каталога в другой, несколько
+            <A href="OneScriptForms.FileSystemWatcher.Changed.html">ПриИзменении&nbsp;(Changed)</A> и несколько
+            <B>ПриСоздании&nbsp;(Created)</B> и <B>ПриУдалении&nbsp;(Deleted)</B> событий может быть вызвано. Перемещение файла
+            сложная операция, состоящая из нескольких простых операций, поэтому возникает несколько событий.
+        </P>
+        <P>
+            Кроме того, некоторые приложения (например, антивирусное программное обеспечение) могут вызвать
+            дополнительные события файловой системы для объекта <B>НаблюдательФайловойСистемы&nbsp;(FileSystemWatcher)</B>.
+            Событие <B>ПриСоздании&nbsp;(Created)</B> возникает сразу после создания файла. Если
+            файл копируется или переносится в отслеживаемый каталог, событие <B>ПриСоздании&nbsp;(Created)</B> будет
+            вызвано немедленно, а затем одно или несколько событий <B>ПриИзменении&nbsp;(Changed)</B>.
+        </P>
+        <H4 class=dtH4>Пример</H4>
+        <P>
+            <PRE class=code>
+НаблюдательФайловойСистемы1.ПриСоздании = Ф.Действие(ЭтотОбъект, "НаблюдательФайловойСистемы1_ПриСоздании");
+</PRE>
+            <details>
+                <summary>Полный пример кода</summary>
+                <P>
+                    <PRE class=code>
+<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+Перем Ф;
+
+Процедура НаблюдательФайловойСистемы1_ПриСоздании() Экспорт
+	Аргументы = Ф.СобытиеФайловойСистемыАрг();
+	Сообщить("Аргументы.Имя = " + Аргументы.Имя);
+	Сообщить("Аргументы.ПолныйПуть = " + Аргументы.ПолныйПуть);
+	Сообщить("Аргументы.ТипИзменения = " + Аргументы.ТипИзменения);
+	Сообщить("==========================");
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+НаблюдательФайловойСистемы1 = Ф.НаблюдательФайловойСистемы();
+НаблюдательФайловойСистемы1.Путь = Ф.Окружение().ПолучитьПутьКаталога(Ф.ОсобаяПапка.Личное);
+НаблюдательФайловойСистемы1.КомпонентДоступен = Истина;
+НаблюдательФайловойСистемы1.ПриСоздании = Ф.Действие(ЭтотОбъект, "НаблюдательФайловойСистемы1_ПриСоздании");
+	
+Ф.ЗапуститьОбработкуСобытий();
+</DIV>
+</PRE>
+            </details>
+        <P></P>
+        <details>
+            <summary>Тестовый код</summary>
+            <P>
+                <PRE class=code>
+<a id="copy2" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select2" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<hr style="border-color: lightgray;"><DIV id="cont2">
+Перем Ф;
+
+Процедура НаблюдательФайловойСистемы1_ПриСоздании() Экспорт
+	Аргументы = Ф.СобытиеФайловойСистемыАрг();
+	// Сообщить("Аргументы.Имя = " + Аргументы.Имя);
+	// Сообщить("Аргументы.ПолныйПуть = " + Аргументы.ПолныйПуть);
+	// Сообщить("Аргументы.ТипИзменения = " + Аргументы.ТипИзменения);
+	// Сообщить("==========================");
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+НаблюдательФайловойСистемы1 = Ф.НаблюдательФайловойСистемы();
+НаблюдательФайловойСистемы1.Путь = Ф.Окружение().ПолучитьПутьКаталога(Ф.ОсобаяПапка.Личное);
+НаблюдательФайловойСистемы1.КомпонентДоступен = Истина;
+НаблюдательФайловойСистемы1.ПриСоздании = Ф.Действие(ЭтотОбъект, "НаблюдательФайловойСистемы1_ПриСоздании");
+
+Сообщить(?(НаблюдательФайловойСистемы1.ПриСоздании.ИмяМетода = "НаблюдательФайловойСистемы1_ПриСоздании", "", "!!! ") + "НаблюдательФайловойСистемы.ПриСоздании (FileSystemWatcher.Created) Свойство" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+        </details>
+        <P></P>
+        <H4 class=dtH4>Смотрите также</H4>
+        <P>
+            <A href="OneScriptForms.FileSystemWatcher.html">НаблюдательФайловойСистемы&nbsp;(FileSystemWatcher)&nbsp;Класс</A> | <A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A>
+        </P>
+    </DIV>
+    <script>
+        window.onload = function () {
+            var a = document.getElementById('select1');
+            a.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta1 = document.getElementById('cont1');
+                var range1 = document.createRange();
+                range1.selectNode(ta1);
+                window.getSelection().addRange(range1);
+                return false;
+            }
+
+            var b = document.getElementById('copy1');
+            b.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta2 = document.getElementById('cont1');
+                var range2 = document.createRange();
+                range2.selectNode(ta2);
+                window.getSelection().addRange(range2);
+                try {
+                    document.execCommand('copy');
+                } catch (err) { }
+                window.getSelection().removeRange(range2);
+                return false;
+            }
+
+            var c = document.getElementById('select2');
+            c.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta3 = document.getElementById('cont2');
+                var range3 = document.createRange();
+                range3.selectNode(ta3);
+                window.getSelection().addRange(range3);
+                return false;
+            }
+
+            var d = document.getElementById('copy2');
+            d.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta4 = document.getElementById('cont2');
+                var range4 = document.createRange();
+                range4.selectNode(ta4);
+                window.getSelection().addRange(range4);
+                try {
+                    document.execCommand('copy');
+                } catch (err) { }
+                window.getSelection().removeRange(range4);
+                return false;
+            }
+        }
+    </script>
+</BODY>
+</HTML>
