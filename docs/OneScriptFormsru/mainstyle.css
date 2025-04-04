@@ -1,449 +1,655 @@
-body /* This body tag requires the use of one of the sets of banner and/or text div ids */
-	{
-	margin: 0px 0px 0px 0px;
-	padding: 0px 0px 0px 0px;
-	background: #ffffff; 
-	color: #000000;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 70%;
-	width: 100%;
-	/*overflow: expression('hidden');*/
-	}
-div#scrollyes /* Allows topic to scroll with correct margins. Cannot be used with running head banner */
-	{     /* Must immediately follow <body>. */
-	padding: 2px 15px 2px 22px;
-	width: 100%;
-	}
-div#nsbanner /* Creates Nonscrolling banner region */
-	{
-	position: relative;
-	left: 0px;
-	padding: 0px 0px 0px 0px;
-	border-bottom: 1px solid #999999;
-	/*width: expression(document.body.clientWidth);*/
-	background-color: #99ccff;
-	}
-div#nstext /* Creates the scrolling text area for Nonscrolling region topic */
-	{
-	top: 0px;
-	padding: 5px 20px 0px 22px;
-	/*overflow: expression('auto');
-	width: expression(document.body.clientWidth);
-	height: expression(document.body.clientHeight - nsbanner.offsetHeight);*/
-	}
-div#scrbanner /* Creates the running head bar in a full-scroll topic */
-	{     /* Allows topic to scroll. */
-	margin: 0px 0px 0px 0px;
-	padding: 0px 0px 0px 0px;
-	border-bottom: 1px solid #999999;
-	}
-div#scrtext /* Creates the text area in a full-scroll topic */
-	{   /* Allows topic to scroll. */
-	padding: 0px 10px 0px 22px; 
-	}
-div#bannerrow1 /* provides full-width color to top row in running head (requires script) */
-	{
-	}
-div#titlerow /* provides non-scroll topic title area (requires script) */
-	{
-	padding: 0px 10px 0px 22px; 
-	}
+body {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    color: #000000;
+    font-family: Georgia, Verdana, Arial, Helvetica, sans-serif;
+    font-size: 16px !important;
+    width: 100%;
+    background-color: #f5f5f5;
+    word-break: break-all;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
 
-h1, h2, h3, h4
-	{
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	margin-bottom: .4em; 
-	margin-top: 1em;
-	font-weight: bold;
-	}
-h1
-	{
-	font-size: 120%;
-	margin-top: 0em;
-	}
-div#scrollyes h1 /* Changes font size for full-scrolling topic */
-	{
-	font-size: 150%;
-	}
-h2
-	{
-	font-size: 130%;
-	}
-h3
-	{
-	font-size: 115%;
-	}
-h4
-	{
-	font-size: 100%;
-	}
-.dtH1, .dtH2, .dtH3, .dtH4
-	{
-	margin-left: -18px;
-	}
-div#titlerow h1
-	{
-	margin-bottom: .2em
-	}
+    body a {
+        text-decoration: none;
+    }
 
-table.bannerparthead, table.bannertitle /* General values for the Running Head tables */
-	{
-	position: relative;
-	left: 0px;
-	top: 0px;
-	padding: 0px 0px 0px 0px;
-	margin: 0px 0px 0px 0px;
-	width: 100%;
-	height: 21px; 
-	border-collapse: collapse;
-	border-style: solid;
-	border-width: 0px;
-	background-color: #99ccff; 
-	font-size: 100%;
-	}
-table.bannerparthead td /* General Values for cells in the top row of running head */
-	{
-	margin: 0px 0px 0px 0px;
-	padding: 2px 0px 0px 4px;
-	vertical-align: middle;
-	border-width: 0px;
-	border-style: solid;
-	border-color: #999999;
-	background: transparent; 
-	font-style: italic;
-	font-weight: normal;
-	}
-table.bannerparthead td.product /* Values for top right cell in running head */
-	{                       /* Allows for a second text block in the running head */
-	text-align: right;
-	padding: 2px 5px 0px 5px;
-	}
-table.bannertitle td /* General Values for cells in the bottom row of running head */
-	{
-	margin: 0px 0px 0px 0px;
-	padding: 0px 0px 0px 3px;
-	vertical-align: middle;
-	border-width: 0px 0px 1px 0px;
-	border-style: solid;
-	border-color: #999999;
-	background: transparent;
-	font-weight: bold;
-	}
-td.button1 /* Values for button cells */
-	{
-	width: 14px;
-	cursor: hand;
-	}
+        body a:hover {
+            color: red;
+        }
 
-p
-	{
-	margin: .5em 0em .5em 0em;
-	}
-blockquote.dtBlock
-	{
-	margin: .5em 1.5em .5em 1.5em;
-	}
-div#dtHoverText
-	{
-	color: #000066;
-	}
-.normal
-	{
-	margin: .5em 0em .5em 0em;
-	}
-.fineprint
-	{
-	font-size: 90%; /* 90% of 70% */
-	}
-.indent
-	{
-	margin: .5em 1.5em .5em 1.5em;
-	}
-.topicstatus /* Topic Status Boilerplate class */
-	{
-	display: block;
-	color: red;
-	}
-p.label
-	{
-	margin-top: 1em;
-	}
-p.labelproc
-	{
-	margin-top: 1em;
-	color: #000066;
-	}
+div.square {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #000000;
+}
 
-div.tablediv
-	{
-	width: 100%; /* Forces tables to have correct right margins and top spacing */
-	margin-top: -.4em;
-	}
-ol div.tablediv, ul div.tablediv, ol div.HxLinkTable, ul div.HxLinkTable
-	{
-	margin-top: 0em; /* Forces tables to have correct right margins and top spacing */
-	}
-table.dtTABLE
-	{
-	width: 100%; /* Forces tables to have correct right margin */
-	margin-top: .6em;
-	margin-bottom: .3em;
-	border-width: 1px 1px 0px 0px;
-	border-style: solid;
-	border-color: #999999;
-	background-color: #999999; 
-	font-size: 100%; /* Text in Table is same size as text outside table */
-	}
-table.dtTABLE th, table.dtTABLE td
-	{ 
-	border-style: solid; /* Creates the cell border and color */
-	border-width: 0px 0px 1px 1px;
-	border-style: solid;
-	border-color: #999999;
-	padding: 4px 6px;
-	text-align: left;
-	}
-table.dtTABLE th	
-	{ 
-	background: #cccccc; /* Creates the shaded table header row */
-	vertical-align: bottom;
-	}
-table.dtTABLE td	
-	{
-	background: #ffffff;
-	vertical-align: top;
-	}
+div#scrollyes {
+    padding: 2px 15px 2px 22px;
+    width: 100%;
+}
 
-MSHelp\:ktable
-	{
-	disambiguator: span;
-	separator: &nbsp|&#32;
-	prefix: |&#32;
-	postfix: &nbsp;
-	filterString: ;
-	}
-div.HxLinkTable
-	{
-	width: auto; /* Forces tables to have correct right margins and top spacing */
-	margin-top: -.4em;
-	visibility: visible;
-	}
-ol div.HxLinkTable, ul div.HxLinkTable
-	{
-	margin-top: 0em; /* Forces tables to have correct right margins and top spacing */
-	}
-table.HxLinkTable /* Keep in sync with general table settings below */
-	{
-	width: auto;
-	margin-top: 1.5em;
-	margin-bottom: .3em;
-	margin-left: -1em;
-	border-width: 1px 1px 0px 0px;
-	border-style: solid;
-	border-color: #999999;
-	background-color: #999999; 
-	font-size: 100%; /* Text in Table is same size as text outside table */
-	behavior:url(hxlinktable.htc); /* Attach the behavior to link elements. */
-	}
-table.HxLinkTable th, table.HxLinkTable td /* Keep in sync with general table settings below */
-	{ 
-	border-style: solid; /* Creates the cell border and color */
-	border-width: 0px 0px 1px 1px;
-	border-style: solid;
-	border-color: #999999;
-	padding: 4px 6px;
-	text-align: left;
-	}
-table.HxLinkTable th /* Keep in sync with general table settings below */
-	{ 
-	background: #cccccc; /* Creates the shaded table header row */
-	vertical-align: bottom;
-	}
-table.HxLinkTable td /* Keep in sync with general table settings below */
-	{
-	background: #ffffff;
-	vertical-align: top;
-	}
-pre.code
-	{
-	background-color: #eeeeee;
-	padding: 4px 6px 4px 6px;
-	}
-pre, div.syntax
-	{
-	margin-top: .5em;
-	margin-bottom: .5em; 
-	}
-pre, code, .code, div.syntax
-	{
-	font: 100% Monospace, Courier New, Courier; /* This is 100% of 70% */
-	color: #000066;
-	}
-pre b, code b
-	{
-	letter-spacing: .1em; /* opens kerning on bold in Syntax/Code */
-	}
-pre.syntax, div.syntax
-	{
-	background: #cccccc;
-	padding: 4px 8px;
-	cursor: text;
-	margin-top: 1em;
-	margin-bottom: 1em; 
-	color: #000000;
-	border-width: 1px;
-	border-style: solid;
-	border-color: #999999;
-/* ------------------------------------- */
-/* BEGIN changes to dtue.css conventions */
-	font-weight: bolder;
-	letter-spacing: .1em;
-	}
-.syntax span.lang
-	{
-	margin: 0;
-	font-weight: normal;
-	}
-.syntax span.meta
-	{
-	margin: 0;
-	font-weight: normal;
-	font-style: italic;
-	}
-.syntax a
-	{
-	margin: 0;
-	font-weight: normal;
-	}
-/* END changes to dtue.css conventions */
-/* ----------------------------------- */
+div#nsbanner {
+    height: 40px;
+    position: relative;
+    left: 0px;
+    padding: 0px 0px 0px 0px;
+    border-bottom: 1px solid #999999;
+    background-color: #99ccff;
+}
 
-.syntax div
-	{
-	padding-left: 24px;
-	text-indent: -24px;
-	}
+div#nstext {
+    top: 0px;
+    padding: 5px 20px 0px 22px;
+}
 
-.syntax .attribute
-	{
-		font-weight: normal;
-	}
-div.footer
-	{
-	font-style: italic;
-	}
-div.footer hr
-	{
-	color: #999999;
-	height: 1px;
-	}
+div#scrbanner {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    border-bottom: 1px solid #999999;
+}
 
-ol, ul
-	{
-	margin: .5em 0em 0em 4em; 
-	}
-li
-	{
-	margin-bottom: .5em;
-	}
-ul p, ol p, dl p
-	{
-	margin-left: 0em;
-	}
-ul p.label, ol p.label
-	{
-	margin-top: .5em;
-	}
+div#scrtext {
+    padding: 0px 10px 0px 22px;
+}
 
-dl
-	{
-	margin-top: 0em; 
-	padding-left: 1px; /* Prevents italic-letter descenders from being cut off */
-	}
-dd
-	{
-	margin-bottom: 0em;  
-	margin-left: 1.5em; 
-	}
-dt
-	{
-	margin-top: .5em; 
-	}
+div#bannerrow1 {
+}
 
-a:link
-	{
-	color: #0000ff;
-	}
-a:visited
-	{
-	color: #0000ff;
-	}
-a:hover
-	{
-	color: #3366ff;
-	}
+div#titlerow {
+    padding: 0px 10px 0px 22px;
+}
 
-img
-	{
-	border: none;
-	}
-table.dtTABLE td img
-	{
-	border: none;
-	vertical-align: top;
-	margin-right: 2px;
-	}
-/* Not in dtue.css. Used by NDoc's "ShowMissing..." options. */
-.missing
-	{
-	color: Red;
-	font-weight: bold;
-	}
-div.Hierarchy
-{
-	margin: 0.5em,0.0em,0.5em,1.0em;
+h1, h2, h3, h4 {
+    font-family: Georgia, Verdana, Arial, Helvetica, sans-serif;
+    margin-bottom: .4em;
+    margin-top: 1em;
+    font-weight: bold;
+}
+
+h1 {
+    margin-top: 0em;
+    /* font-size: 120%; */
+    font-size: 130%;
+}
+
+div#scrollyes h1 {
+    /* font-size: 150%; */
+}
+
+h2 {
+    /* font-size: 130%; */
+}
+
+h3 {
+    /* font-size: 120%; */
+}
+
+h4 {
+    /* font-size: 100%; */
+}
+
+.dtH1, .dtH2, .dtH3, .dtH4 {
+    margin-left: -18px;
+    font-weight: normal;
+}
+
+.dtH1 {
+    font-weight: bold;
+}
+
+.dtH2 {
+    font-style: italic;
+    color: #0041b4;
+    font-weight: bold;
+}
+
+.dtH3 {
+    font-style: italic;
+    color: #0041b4;
+    font-weight: bold;
+}
+
+.dtH4 {
+    font-style: italic;
+    color: #0041b4;
+    font-weight: bold;
+}
+
+div#titlerow h1 {
+    margin: 5px 0px 0px 60px;
+    white-space: nowrap;
+}
+
+table.bannerparthead, table.bannertitle {
+    position: relative;
+    left: 0px;
+    top: 0px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    width: 100%;
+    border-collapse: collapse;
+    border-style: solid;
+    border-width: 0px;
+    background-color: #99ccff;
+}
+
+    table.bannerparthead td {
+        margin: 0px 0px 0px 0px;
+        padding: 2px 0px 0px 4px;
+        vertical-align: middle;
+        border-width: 0px;
+        border-style: solid;
+        border-color: #999999;
+        background: transparent;
+        font-style: italic;
+        font-weight: normal;
+    }
+
+        table.bannerparthead td.product {
+            text-align: right;
+            padding: 2px 5px 0px 5px;
+        }
+
+    table.bannertitle td {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 3px;
+        vertical-align: middle;
+        border-width: 0px 0px 1px 0px;
+        border-style: solid;
+        border-color: #999999;
+        background: transparent;
+        font-weight: bold;
+    }
+
+td.button1 {
+    width: 14px;
+    cursor: pointer;
+}
+
+p {
+    margin: .5em 0em .5em 0em;
+}
+
+blockquote.dtBlock {
+    margin: .5em 1.5em .5em 1.5em;
+}
+
+div#dtHoverText {
+    color: #000066;
+}
+
+.normal {
+    margin: .5em 0em .5em 0em;
+}
+
+.fineprint {
+    /* font-size: 90%; */
+}
+
+.indent {
+    margin: .5em 1.5em .5em 1.5em;
+}
+
+.topicstatus {
+    display: block;
+    color: red;
+}
+
+p.label {
+    margin-top: 1em;
+}
+
+p.labelproc {
+    margin-top: 1em;
+    color: #000066;
+}
+
+div.tablediv {
+    width: 100%;
+    margin-top: -.4em;
+}
+
+ol div.tablediv, ul div.tablediv, ol div.HxLinkTable, ul div.HxLinkTable {
+    margin-top: 0em;
+}
+
+table.dtTABLE {
+    width: 100%;
+    margin-top: .6em;
+    margin-bottom: .3em;
+    border-width: 1px 1px 0px 0px;
+    border-style: solid;
+    border-color: #999999;
+    background-color: #999999;
+    font-size: 100%;
+}
+
+    table.dtTABLE th, table.dtTABLE td {
+        border-style: solid;
+        border-width: 0px 0px 1px 1px;
+        border-style: solid;
+        border-color: #999999;
+        padding: 4px 6px;
+        text-align: left;
+        background-color: #f5f5f5;
+    }
+
+    table.dtTABLE th {
+        background: #cccccc;
+        vertical-align: bottom;
+    }
+
+    table.dtTABLE td {
+        vertical-align: top;
+    }
+
+    table.dtTABLE a {
+        text-decoration: none;
+    }
+
+div.HxLinkTable {
+    width: auto;
+    margin-top: -.4em;
+    visibility: visible;
+}
+
+ol div.HxLinkTable, ul div.HxLinkTable {
+    margin-top: 0em;
+}
+
+table.HxLinkTable {
+    width: auto;
+    margin-top: 1.5em;
+    margin-bottom: .3em;
+    margin-left: -1em;
+    border-width: 1px 1px 0px 0px;
+    border-style: solid;
+    border-color: #999999;
+    behavior: url(hxlinktable.htc);
+}
+
+    table.HxLinkTable th, table.HxLinkTable td {
+        border-style: solid;
+        border-width: 0px 0px 1px 1px;
+        border-style: solid;
+        border-color: #999999;
+        padding: 4px 6px;
+        text-align: left;
+    }
+
+    table.HxLinkTable th {
+        background: #cccccc;
+        vertical-align: bottom;
+    }
+
+    table.HxLinkTable td {
+        background: #ffffff;
+        vertical-align: top;
+    }
+
+pre.code {
+    background-color: lightgray;
+    padding: 4px 6px 4px 6px;
+    border-left: 5px solid #999999;
+}
+
+pre, div.syntax {
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
+pre, code, .code, div.syntax {
+    font: 100% Monospace, Courier New, Courier;
+    color: #000066;
+}
+
+    pre b, code b {
+        letter-spacing: .1em;
+    }
+
+    pre.syntax, div.syntax {
+        background: #cccccc;
+        padding: 4px 8px;
+        cursor: text;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        color: #000000;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #999999;
+        font-weight: bolder;
+        letter-spacing: .1em;
+    }
+
+.syntax span.lang {
+    margin: 0px;
+    font-weight: normal;
+}
+
+.syntax span.meta {
+    margin: 0px;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.syntax a {
+    margin: 0px;
+    font-weight: normal;
+}
+
+.syntax div {
+    padding-left: 24px;
+    text-indent: -24px;
+}
+
+.syntax .attribute {
+    font-weight: normal;
+}
+
+div.footer {
+    font-style: italic;
+}
+
+    div.footer hr {
+        color: #999999;
+        height: 1px;
+    }
+
+ol, ul {
+    margin: .5em 0em 0em 4em;
+}
+
+li {
+    margin-bottom: .5em;
+}
+
+ul p, ol p, dl p {
+    margin-left: 0em;
+}
+
+    ul p.label, ol p.label {
+        margin-top: .5em;
+    }
+
+dl {
+    margin-top: 0em;
+    padding-left: 1px;
+}
+
+dd {
+    margin-bottom: 0em;
+    margin-left: 1.5em;
+}
+
+dt {
+    margin-top: .5em;
+}
+
+a:link {
+    color: #0000ff;
+}
+
+a:visited {
+    color: #0000ff;
+}
+
+a:hover {
+    color: #3366ff;
+}
+
+img {
+    border: none;
+}
+
+    img.shot {
+        border: 1px solid #000000 !important;
+        box-shadow: 0 0 4px 4px rgba(0,0,0,0.2);
+        margin: 20px !important;
+    }
+
+table.dtTABLE td img {
+    border: none;
+    vertical-align: top;
+    margin-right: 2px;
+}
+
+.missing {
+    color: Red;
+    font-weight: bold;
+}
+
+div.Hierarchy {
+    margin: 0.5em,0.0em,0.5em,1.0em;
 }
 
 summary {
-  /* жирный шрифт метки */
-  /* font-weight: 700;   */
-  cursor: pointer;  /* курсор на метке имеет вид руки */
+    cursor: pointer;
+    color: #ff0000;
 }
+
+    summary:hover {
+        color: #ff3200;
+    }
+
+div#expandcollapse {
+    display: flex;
+    padding: 10px 0px 10px 20px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #f5f5f5;
+}
+
+div#expand {
+    display: inline-block;
+    cursor: pointer;
+}
+
+div#collapse {
+    display: inline-block;
+    cursor: pointer;
+}
+
+div#expand:hover {
+    color: #ff3200;
+}
+
+div#collapse:hover {
+    color: #ff3200;
+}
+
+div#separator {
+    display: inline-block;
+}
+
+summary.menu {
+    color: #000000;
+    margin: 5px 0px 5px 20px;
+}
+
+    summary.menu a {
+        color: #000000;
+    }
+
 summary:hover {
-  color:#ff3200;  /* изменение цвета метки при наведении */
-}	
+    color: #ff3200;
+}
+
+p.konstr {
+    margin: 5px 0px 5px 60px;
+}
+
+    p.konstr a {
+        color: #000000;
+    }
+
+p.enum a {
+    color: #000000;
+}
+
+p.enum {
+    margin: 5px 0px 5px 20px;
+}
+
+p.pitch0 {
+    margin: 5px 0px 5px 0px;
+}
+
+    p.pitch0 a {
+        color: #000000;
+    }
+	
+p.pitch20 {
+    margin: 5px 0px 5px 20px;
+}
+
+    p.pitch20 a {
+        color: #000000;
+    }
+	
+p.pitch40 {
+    margin: 5px 0px 5px 40px;
+}
+
+    p.pitch40 a {
+        color: #000000;
+    }
+p.pitch60 {
+    margin: 5px 0px 5px 60px;
+}
+
+    p.pitch60 a {
+        color: #000000;
+    }
+p.pitch80 {
+    margin: 5px 0px 5px 80px;
+}
+
+    p.pitch80 a {
+        color: #000000;
+    }
+p.pitch100 {
+    margin: 5px 0px 5px 100px;
+}
+
+    p.pitch100 a {
+        color: #000000;
+    }
+p.pitch120 {
+    margin: 5px 0px 5px 120px;
+}
+
+    p.pitch120 a {
+        color: #000000;
+    }
+
+summary.level20 {
+    color: #000000;
+    margin: 5px 0px 5px 20px;
+}
+
+    summary.level20 a {
+        color: #000000;
+    }
+summary.level40 {
+    color: #000000;
+    margin: 5px 0px 5px 40px;
+}
+
+    summary.level40 a {
+        color: #000000;
+    }
+summary.level60 {
+    color: #000000;
+    margin: 5px 0px 5px 60px;
+}
+
+    summary.level60 a {
+        color: #000000;
+    }
+summary.level80 {
+    color: #000000;
+    margin: 5px 0px 5px 80px;
+}
+
+    summary.level80 a {
+        color: #000000;
+    }
+summary.level100 {
+    color: #000000;
+    margin: 5px 0px 5px 100px;
+}
+
+    summary.level100 a {
+        color: #000000;
+    }
 
 
 .treeline, .treeline ul, .treeline li {
-   margin: 0; padding: 0; line-height: 1.2; list-style: none;
-}
-.treeline ul {margin: 0 0 0 15px; отступ вертикальной линии}
-.treeline > li:not(:only-child), .treeline li li {
-   position: relative;
-   padding: 3px 0 0 20px; /* отступ текста */
-}
-/* Стиль вертикальной линии */
-.treeline li:not(:last-child) { border-left: 1px solid #ccc;}
-/* Стили горизонтальной линии*/  
-.treeline li li:before, .treeline > li:not(:only-child):before {
-   content: ""; position: absolute; top: 0; left: 0;
-   width: 1.1em; height: .7em; border-bottom:1px solid #ccc;
-}
-/* Вертикальная линия последнего пункта в списка */  
-.treeline li:last-child:before {
-   width: calc(1.1em - 1px); border-left: 1px solid #ccc;
+    margin: 0px;
+    padding: 0px;
+    line-height: 1.2em;
+    list-style: none;
 }
 
+    .treeline ul {
+        margin: 0px 0px 0px 15px;
+    }
 
-.treeline .drop {
-   position: absolute; left: -6px; top: 3px; width: 10px;
-   height: 10px; line-height: 1em; text-align: center; text-transform: uppercase;
-   background: #FFFFFF; color: #000000; /* Фон и цвет кнопки, раскрывающей список  */
-   font-size: 78%; /* Размер +/- */
-   font-weight: bold;
-   cursor: pointer; -webkit-user-select: none; -moz-user-select: none;
-   border: 1px solid #000000;
-}
-.treeline li:last-child > .drop {margin-left: 1px;}
-.treeline .drop + ul {display: none;}
-.treeline .dropM + ul {display: block;}
+    .treeline > li:not(:only-child), .treeline li li {
+        position: relative;
+        padding: 3px 0px 0px 20px;
+    }
+
+    .treeline li:not(:last-child) {
+        border-left: 1px solid #ccc;
+    }
+
+    .treeline li li:before, .treeline > li:not(:only-child):before {
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 1.1em;
+        height: .7em;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .treeline li:last-child:before {
+        width: calc(1.1em - 1px);
+        border-left: 1px solid #ccc;
+    }
+
+    .treeline .drop {
+        position: absolute;
+        left: -6px;
+        top: 3px;
+        width: 10px;
+        height: 10px;
+        line-height: 1em;
+        text-align: center;
+        text-transform: uppercase;
+        background: #FFFFFF;
+        color: #000000;
+        font-weight: bold;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        border: 1px solid #000000;
+    }
+
+    .treeline li:last-child > .drop {
+        margin-left: 1px;
+    }
+
+    .treeline .drop + ul {
+        display: none;
+    }
+
+    .treeline .dropM + ul {
+        display: block;
+    }

@@ -1,23 +1,35 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>OneScriptFormsPropertyTag</TITLE>
-<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
-<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<HTML>
+<HEAD>
+    <TITLE>OneScriptFormsPropertyTag</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
+</HEAD>
 <BODY id=bodyID class=dtBODY>
-<DIV id=nsbanner>
-<DIV id=bannerrow1>
-<TABLE class=bannerparthead cellSpacing=0>
-  <TBODY>
-  <TR id=hdr>
-    <TD class=runninghead></TD>
-    <TD class=product></TD></TR></TBODY></TABLE></DIV>
-<DIV id=TitleRow>
-<H1 class=dtH1>Игры, написанные с помощью этой библиотеки:</H1></DIV></DIV>
-<DIV id=nstext>
-<H4 class=dtH4>Игра Понг</H4>
-<P>Игра Понг написана с использованием метода <A href="OneScriptForms.Panel.SetRoundedShape.html">Панель.УстановитьЗакругленныеУглы&nbsp;(Panel.SetRoundedShape)</A>.</P>
-<P></P>
-<details><summary>Код игры Понг:</summary>
-<P><PRE class=code>
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>Игры, написанные с помощью этой библиотеки:</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <H4 class=dtH4>Игра Понг</H4>
+        <P>Игра Понг написана с использованием метода <A href="OneScriptForms.Panel.SetRoundedShape.html">Панель.УстановитьЗакругленныеУглы&nbsp;(Panel.SetRoundedShape)</A>.</P>
+        <P></P>
+        <details>
+            <summary>Код игры Понг:</summary>
+            <P>
+                <PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
 Перем Ф, Форма1, ИгровоеПоле, Таймер1, Кнопка2, cx, cy, РегуляторВверхВниз1;
@@ -199,16 +211,18 @@ cy = 3;
 
 </DIV>
 </PRE>
-</details>
-<P></P>
-<IMG src="Panel1.jpg"></IMG>
-<P></P>
-<hr style="border-color: lightgray;">
-<H4 class=dtH4>Игра Тетрис</H4>
-<P>Игра Тетрис написана с использованием класса <A href="OneScriptForms.Label.html">Надпись&nbsp;(Label)</A>.</P>
-<P></P>
-<details><summary>Код игры Тетрис:</summary>
-<P><PRE class=code>
+        </details>
+        <P></P>
+        <IMG class=shot src="Panel1.jpg"></IMG>
+        <P></P>
+        <hr style="border-color: lightgray;">
+        <H4 class=dtH4>Игра Тетрис</H4>
+        <P>Игра Тетрис написана с использованием класса <A href="OneScriptForms.Label.html">Надпись&nbsp;(Label)</A>.</P>
+        <P></P>
+        <details>
+            <summary>Код игры Тетрис:</summary>
+            <P>
+                <PRE class=code>
 <a id="copy2" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select2" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont2">
 Перем Ф, Форма1, Панель2, Панель4, Таймер1, ПолеВыбора1, Цвет, ПаузаВключена, Интервал;
@@ -1347,61 +1361,63 @@ cy = 3;
 Ф.ЗапуститьОбработкуСобытий();
 </DIV>
 </PRE>
-</details>
-<P></P>
-<IMG src="Tetris.jpg"></IMG>
-<P></P>
-<H4 class=dtH4>Смотрите также</H4>
-<P><A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P></DIV>
-<script>
-window.onload = function () {
-    var a = document.getElementById('select1');
-    a.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta1 = document.getElementById('cont1'); 
-		var range1 = document.createRange();
-		range1.selectNode(ta1); 
-		window.getSelection().addRange(range1); 
-        return false;
-    }
-	
-    var b = document.getElementById('copy1');
-    b.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta2 = document.getElementById('cont1'); 
-		var range2 = document.createRange();
-		range2.selectNode(ta2); 
-		window.getSelection().addRange(range2);
-		try { 
-		  document.execCommand('copy'); 
-		} catch(err) {} 
-		window.getSelection().removeRange(range2);
-        return false;
-    }
+        </details>
+        <P></P>
+        <IMG class=shot src="Tetris.jpg"></IMG>
+        <P></P>
+        <H4 class=dtH4>Смотрите также</H4>
+        <P><A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P>
+    </DIV>
+    <script>
+        window.onload = function () {
+            var a = document.getElementById('select1');
+            a.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta1 = document.getElementById('cont1');
+                var range1 = document.createRange();
+                range1.selectNode(ta1);
+                window.getSelection().addRange(range1);
+                return false;
+            }
 
-    var c = document.getElementById('select2');
-    c.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta3 = document.getElementById('cont2'); 
-		var range3 = document.createRange();
-		range3.selectNode(ta3); 
-		window.getSelection().addRange(range3); 
-        return false;
-    }
-	
-    var d = document.getElementById('copy2');
-    d.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta4 = document.getElementById('cont2'); 
-		var range4 = document.createRange();
-		range4.selectNode(ta4); 
-		window.getSelection().addRange(range4);
-		try { 
-		  document.execCommand('copy'); 
-		} catch(err) {} 
-		window.getSelection().removeRange(range4);
-        return false;
-    }
-}
-</script>
-</BODY></HTML>
+            var b = document.getElementById('copy1');
+            b.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta2 = document.getElementById('cont1');
+                var range2 = document.createRange();
+                range2.selectNode(ta2);
+                window.getSelection().addRange(range2);
+                try {
+                    document.execCommand('copy');
+                } catch (err) { }
+                window.getSelection().removeRange(range2);
+                return false;
+            }
+
+            var c = document.getElementById('select2');
+            c.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta3 = document.getElementById('cont2');
+                var range3 = document.createRange();
+                range3.selectNode(ta3);
+                window.getSelection().addRange(range3);
+                return false;
+            }
+
+            var d = document.getElementById('copy2');
+            d.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta4 = document.getElementById('cont2');
+                var range4 = document.createRange();
+                range4.selectNode(ta4);
+                window.getSelection().addRange(range4);
+                try {
+                    document.execCommand('copy');
+                } catch (err) { }
+                window.getSelection().removeRange(range4);
+                return false;
+            }
+        }
+    </script>
+</BODY>
+</HTML>

@@ -1,85 +1,105 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
-	<head>
-		<meta content="text/html; charset=Windows-1251" http-equiv="content-type">
-		<title>Главная</title>
-	</head>
+<HTML>
+<HEAD>
+    <TITLE>Главная</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="styleos.css">
+	<script defer src="mobil.js"></script>
+</HEAD>
 <body>
-
-<table style="text-align: left; width: 1000px; height: 816px; margin-left: auto; margin-right: auto; background-color: white;" border="0" cellpadding="2" cellspacing="2">
-	<tbody>
-    <tr>
-		<td style="vertical-align: top; font-weight: bold; text-align: center; font-style: italic; color: rgb(51, 51, 153);"><big><big><big>Графический интерфейс<br><small><small>для сценарного языка</small></small> OneScript </big></big></big></td>
-		<td style="width: 70px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="index.html"><button type="button">Главная</button></a><small><br></small></td>
-		<td style="width: 90px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="screenshot.html"><button type="button">Скриншоты</button></a><br></td>
-		<td style="width: 130px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="howworks.html"><button type="button">Как это работает</button></a><small><br></small></td>
-		<td style="width: 110px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="doc.html"><button type="button">Документация</button></a><small><br></small></td>
-		<td style="width: 75px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="down.html"><button type="button">Скачать</button></a><small><br></small></td>
-		<th style="width: 75px; text-align: center; color: rgb(51, 51, 51); vertical-align: top; font-weight: normal;"><a href="kont.html"><button type="button">Контакты</button></a><small><br></small></th>
-    </tr>
-    <tr>
-		<td colspan="7" rowspan="1" style="vertical-align: top; height: 747px; background-color: white;">
-		<hr style="border-color: lightgray;">
-		<p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; На этом сайте представлена бесплатная библиотека для скриптового языка OneScript, содержащая набор форм и элементов
-			управления для построения графических приложений.
-			<br>
-			<br>&nbsp;&nbsp;&nbsp;Причин появления такой библиотеки было несколько и они довольно сильно растянуты во времени.			
-			<br>&nbsp;&nbsp;&nbsp;Первая - системное администрирование. Сисадмином я проработал примерно 15 лет на заводе, фабрике, в госучреждениях. Всегда не хватало
-			хорошего, универсального инструмента в работе. Например написать программу сохранения нужных данных в нужное место и время, и чтобы справилась она с длиннющими 
-			именами в 500 символов. Можно конечно найти готовое решение, но в нём чего нибудь нужного тебе как раз и не хватает. Организовать простенький (или даже сложненький) 
-			диалог с пользователем, затратив минимум времени на его написание, не вспоминая в очередной раз англоязычный синтаксис, было бы замечательно.
-			<br>&nbsp;&nbsp;&nbsp; Вторая причина - так и не научился думать на английском. WSH, AutoIt, Delphi и т.п. использовал в своей работе, но всегда проблема перевода 
-			меня сильно доставала. 
-			<br>&nbsp;&nbsp;&nbsp; Третья - знакомство со скриптовым языком Андрея Овсянкина OneScript (в статье на infostart.ru). В сознании крупными буквами 
-			нарисовалось - НАКОНЕЦ ТО НАШЕЛ! 
-			<br>&nbsp;&nbsp;&nbsp; Четвертая - знакомство с бесплатной библиотекой KiXforms, объектно-ориентированным расширением к скриптовому языку KiXtart. KiXforms была 
-			разработана Шоном Тэсси (Shawn Tassie) из компании CGI (Conseillers en gestion et informatique) в Канаде. Скриптовый язык KiXtart разработан Руудом ван Велсеном (Ruud
-			van Velsen) из Нидерландского отделения Microsoft. Библиотека интересна тем, что позволяет получать события форм и элементов управления в текстовом виде, 
-			упрощая их обработку. 
-			<br>&nbsp;&nbsp;&nbsp; Что в итоге? Есть русскоязычный OneScript без графического интерфейса и есть графический интерфейс KiXforms для скриптового языка, но 
-			не русского. Задача сформулирована, нужно их подружить. Дело закончилось изучением C# и появлением библиотеки guiKixFormsNet.dll (обертки KiXforms для работы в 
-			OneScript). В имени файла сохранил имя исходной библиотеки KixForms. Затем, уже освоив немного C#, решился написать свою версию форм. Получилась 
-			библиотека <span style="font-weight: bold;">OneScriptForms.dll</span>. С её помощью можно создавать формы и элементы управления для различных видов графических 
-			приложений, вести программирование как в русcкоязычном, так и в англоязычном вариантах.
-			<br>
-			<br>&nbsp;&nbsp;&nbsp;Первая версия (май 2021 года) была ориентирована на выполнение всего кода в одном файле сценария односкрипта. События элементов управления 
-			помещались в очередь событий и обрабатывались с некоторой задержкой или блокировались интерфейсом. Был ряд и других недостатков, сдерживающих применение форм. 
-			Исправить положение помогло взаимодействие с программистами, применяющими библиотеку на практике. Особенно с автором языка программирования 
-			<a href="http://perfolenta.net/" target="_blank">Перфолента.Net</a> Сергеем Рогаткиным. После изменений, начиная с 
-			версии 2.0.0.0 можно создавать приложения с использованием форм следуя 
-			<a href="https://oscript.io/library" target="_blank">соглашению об устройстве библиотеки односкрипта.</a>
-			<br>
-			<br>&nbsp;&nbsp;&nbsp;Во время работы над библиотекой изучал C#, что называется "на ходу". Иногда, чтобы заставить правильно работать тот или иной метод или
-			свойство объекта, приходилось долго бродить по интернету. Мне очень помогли статьи разных авторов, найденные в сети. Выражаю им свою благодарность и ниже перечислю 
-			ссылки на их статьи и на другие интересные ресурсы.</p>
-		<ul style="margin-left: 40px;">
-			<li>&nbsp;&nbsp;&nbsp; Статья о способах взаимодействия языков программирования Перфолента.Net и OneScript. <a href="http://perfolenta.net/Article.asp?code=20211210023810008537" target="_blank">Интеграция&nbsp;языков&nbsp;программирования&nbsp;Перфолента.Net&nbsp;и&nbsp;OneScript.</a></li>
-			<li>&nbsp;&nbsp;&nbsp; <a href="https://github.com/perfolenta/PerfolentaForOneScript" target="_blank">Библиотека&nbsp;для&nbsp;запуска&nbsp;кода&nbsp;Перфоленты&nbsp;из&nbsp;скриптов&nbsp;OneScript.</a></li>
-		</ul>
-		<ul style="margin-left: 40px;">
-			<li>&nbsp;&nbsp;&nbsp; Peter A. Bromberg. <a href="http://www.nullskull.com/articles/20060202.asp" target="_blank">Winforms&nbsp;DataGrid&nbsp;ComboBox&nbsp;Columns&nbsp;And&nbsp;Custom&nbsp;Row&nbsp;Coloring.</a></li>
-			<li>&nbsp;&nbsp;&nbsp; Алексей Лукин. <a href="http://alexeyworld.com/blog/extract_icon_class.42.aspx" target="_blank">Иконка&nbsp;из&nbsp;библиотеки&nbsp;или&nbsp;исполняемого&nbsp;файла.</a></li>
-			<li>&nbsp;&nbsp;&nbsp; Tim Dawson. <a href="https://www.developerfusion.com/article/4351/hosting-windows-forms-designers/" target="_blank">Hosting&nbsp;Windows&nbsp;Forms&nbsp;Designers.</a></li>
-			<li>&nbsp;&nbsp;&nbsp; @Ronit-H <a href="https://www.codeproject.com/Articles/9517/PropertyGrid-and-Drop-Down-properties" target="_blank">PropertyGrid&nbsp;and&nbsp;Drop&nbsp;Down&nbsp;properties.</a></li>
-			<li>&nbsp;&nbsp;&nbsp; Далее привожу несколько цитат и ссылок из общедоступных источников о библиотеке KiXforms.NET.</li>
-			<div style="margin-left: 80px; text-align: left;">KiXforms was developed by <span style="font-weight: bold;">Shawn Tassie</span> of
-				CGI Canada.
-				<br>Site <a target="_blank" href="http://www.kixforms.org">KiXforms Web Site</a> is developed and maintained by <span style="font-weight: bold;">Rodney Clarke</span> 
-				of BEA Systems UK.
-				<br>KiXforms.NET this is a .NET control that uses the .NET Framework to provide script-level access to Windows Form objects.
-				<br>After over a year of development, the KiXforms.NET library is finally ready for mainstream release. It contains a wealth of resources 
-				designed to help you build powerful scripts based on Microsoft's .NET Framework technology. Please see 
-				the <a href="http://www.kixforms.org/forum/viewforum.php" target="_blank">KiXforms.NET Forum</a> for further information.
-			</div>
-			<li>&nbsp;&nbsp;&nbsp; Создание идеальной оболочки на C #. <a href="https://stackoverflow.com/questions/12964931/making-the-perfect-wrapper-in-c-sharp/12964963#12964963" target="_blank">Making&nbsp;the&nbsp;perfect&nbsp;wrapper&nbsp;in&nbsp;C#.</a></li>
-			<li>&nbsp;&nbsp;&nbsp; Andrey Gliznetsov. <a href="https://www.codeproject.com/Articles/14741/Advanced-TreeView-for-NET" target="_blank">Advanced&nbsp;TreeView&nbsp;for&nbsp;.NET</a></li>
-			<li>&nbsp;&nbsp;&nbsp; Robert.Verpalen. <a href="https://www.codeproject.com/Tips/995958/DataGridViewGrouper" target="_blank">DataGridViewGrouper</a></li>
-		</ul>
-		<p style="margin-left: 40px;"></p>
-		</td>
-    </tr>
-	</tbody>
-</table>
-<br>
-<br>
-</body></html>
+    <header>
+        <section>
+            <div>
+                <div id="logo"><big><big><big>Графический интерфейс<br><small><small>для сценарного языка</small></small> OneScript </big></big></big></div>
+            </div>
+            <div style="direction: rtl; overflow:hidden; padding: 8px 0px 0px 0px; margin-top:-7px;">
+				<DIV id=div22>
+					<input type="checkbox" id="toggle">
+					<label id="label1" class="hamburger-icon" onclick="label1click()"><div></div><div></div><div></div></label>
+				</DIV>
+                <nav>
+                    <a onclick="navclick(event)" href="index.html">Главная</a>
+                    <a onclick="navclick(event)" href="screenshot.html">Скриншоты</a>
+                    <a onclick="navclick(event)" href="howworks.html">Как это работает</a>
+                    <a onclick="navclick(event)" href="doc.html">Документация</a>
+                    <a onclick="navclick(event)" href="down.html">Скачать</a>
+                    <a onclick="navclick(event)" href="kont.html">Контакты</a>
+					<input type="checkbox" id="toggle2">
+                    <a id="mobil" onclick="mobilClick()">`</a>
+                </nav>
+            </div>
+        </section>
+    </header>
+    <section>
+        <p>
+            На этом сайте представлена бесплатная библиотека для скриптового языка OneScript, содержащая набор форм и элементов
+            управления для построения графических приложений.
+        </p>
+        <p>Причин появления такой библиотеки было несколько и они довольно сильно растянуты во времени.</p>
+        <p>
+            Первая - системное администрирование. Сисадмином я проработал примерно 15 лет на заводе, фабрике, в госучреждениях. Всегда не хватало
+            хорошего, универсального инструмента в работе. Например написать программу сохранения нужных данных в нужное место и время, и чтобы справилась она с длиннющими
+            именами в 500 символов. Можно конечно найти готовое решение, но в нём чего нибудь нужного тебе как раз и не хватает. Организовать простенький (или даже сложненький)
+            диалог с пользователем, затратив минимум времени на его написание, не вспоминая в очередной раз англоязычный синтаксис, было бы замечательно.
+        </p>
+        <p>
+            Вторая причина - так и не научился думать на английском. WSH, AutoIt, Delphi и т.п. использовал в своей работе, но всегда проблема перевода
+            меня сильно доставала.
+        </p>
+        <p>
+            Третья - знакомство со скриптовым языком Андрея Овсянкина OneScript (в статье на infostart.ru). В сознании крупными буквами
+            нарисовалось - НАКОНЕЦ ТО НАШЕЛ!
+        </p>
+        <p>
+            Четвертая - знакомство с бесплатной библиотекой KiXforms, объектно-ориентированным расширением к скриптовому языку KiXtart. KiXforms была
+            разработана Шоном Тэсси (Shawn Tassie) из компании CGI (Conseillers en gestion et informatique) в Канаде. Скриптовый язык KiXtart разработан Руудом ван Велсеном (Ruud
+            van Velsen) из Нидерландского отделения Microsoft. Библиотека интересна тем, что позволяет получать события форм и элементов управления в текстовом виде,
+            упрощая их обработку.
+        </p>
+        <p>
+            Что в итоге? Есть русскоязычный OneScript без графического интерфейса и есть графический интерфейс KiXforms для скриптового языка, но
+            не русского. Задача сформулирована, нужно их подружить. Дело закончилось изучением C# и появлением библиотеки guiKixFormsNet.dll (обертки KiXforms для работы в
+            OneScript). В имени файла сохранил имя исходной библиотеки KixForms. Затем, уже освоив немного C#, решился написать свою версию форм. Получилась
+            библиотека <span style="font-weight: bold;">OneScriptForms.dll</span>. С её помощью можно создавать формы и элементы управления для различных видов графических
+            приложений, вести программирование как в русcкоязычном, так и в англоязычном вариантах.
+        </p>
+        <p>
+            Первая версия (май 2021 года) была ориентирована на выполнение всего кода в одном файле сценария односкрипта. События элементов управления
+            помещались в очередь событий и обрабатывались с некоторой задержкой или блокировались интерфейсом. Был ряд и других недостатков, сдерживающих применение форм.
+            Исправить положение помогло взаимодействие с программистами, применяющими библиотеку на практике. Особенно с автором языка программирования
+            <a href="http://perfolenta.net/" target="_blank">Перфолента.Net</a> Сергеем Рогаткиным. После изменений, начиная с
+            версии 2.0.0.0 можно создавать приложения с использованием форм следуя
+            <a href="https://oscript.io/library" target="_blank">соглашению об устройстве библиотеки односкрипта.</a>
+        </p>
+        <p>
+            Во время работы над библиотекой изучал C#, что называется "на ходу". Иногда, чтобы заставить правильно работать тот или иной метод или
+            свойство объекта, приходилось долго бродить по интернету. Мне очень помогли статьи разных авторов, найденные в сети. Выражаю им свою благодарность и ниже перечислю
+            ссылки на их статьи и на другие интересные ресурсы.
+        </p>
+        <ul>
+            <li>Статья о способах взаимодействия языков программирования Перфолента.Net и OneScript. <a href="http://perfolenta.net/Article.asp?code=20211210023810008537" target="_blank">Интеграция&nbsp;языков&nbsp;программирования&nbsp;Перфолента.Net&nbsp;и&nbsp;OneScript.</a></li>
+            <li><a href="https://github.com/perfolenta/PerfolentaForOneScript" target="_blank">Библиотека&nbsp;для&nbsp;запуска&nbsp;кода&nbsp;Перфоленты&nbsp;из&nbsp;скриптов&nbsp;OneScript.</a></li>
+        </ul>
+        <ul>
+            <li>Peter A. Bromberg. <a href="http://www.nullskull.com/articles/20060202.asp" target="_blank">Winforms&nbsp;DataGrid&nbsp;ComboBox&nbsp;Columns&nbsp;And&nbsp;Custom&nbsp;Row&nbsp;Coloring.</a></li>
+            <li>Алексей Лукин. <a href="http://alexeyworld.com/blog/extract_icon_class.42.aspx" target="_blank">Иконка&nbsp;из&nbsp;библиотеки&nbsp;или&nbsp;исполняемого&nbsp;файла.</a></li>
+            <li>Tim Dawson. <a href="https://www.developerfusion.com/article/4351/hosting-windows-forms-designers/" target="_blank">Hosting&nbsp;Windows&nbsp;Forms&nbsp;Designers.</a></li>
+            <li>@Ronit-H <a href="https://www.codeproject.com/Articles/9517/PropertyGrid-and-Drop-Down-properties" target="_blank">PropertyGrid&nbsp;and&nbsp;Drop&nbsp;Down&nbsp;properties.</a></li>
+            <li>Далее привожу несколько цитат и ссылок из общедоступных источников о библиотеке KiXforms.NET.</li>
+            <div style="margin-left: 80px; text-align: left;">
+                KiXforms was developed by <span style="font-weight: bold;">Shawn Tassie</span> of
+                CGI Canada.
+                <br>Site <a target="_blank" href="http://www.kixforms.org">KiXforms Web Site</a> is developed and maintained by <span style="font-weight: bold;">Rodney Clarke</span>
+                of BEA Systems UK.
+                <br>KiXforms.NET this is a .NET control that uses the .NET Framework to provide script-level access to Windows Form objects.
+                <br>After over a year of development, the KiXforms.NET library is finally ready for mainstream release. It contains a wealth of resources
+                designed to help you build powerful scripts based on Microsoft's .NET Framework technology. Please see
+                the <a href="http://www.kixforms.org/forum/viewforum.php" target="_blank">KiXforms.NET Forum</a> for further information.
+            </div>
+            <li>Создание идеальной оболочки на C #. <a href="https://stackoverflow.com/questions/12964931/making-the-perfect-wrapper-in-c-sharp/12964963#12964963" target="_blank">Making&nbsp;the&nbsp;perfect&nbsp;wrapper&nbsp;in&nbsp;C#.</a></li>
+            <li>Andrey Gliznetsov. <a href="https://www.codeproject.com/Articles/14741/Advanced-TreeView-for-NET" target="_blank">Advanced&nbsp;TreeView&nbsp;for&nbsp;.NET</a></li>
+            <li>Robert.Verpalen. <a href="https://www.codeproject.com/Tips/995958/DataGridViewGrouper" target="_blank">DataGridViewGrouper</a></li>
+        </ul>
+    </section>
+</body>
+</HTML>

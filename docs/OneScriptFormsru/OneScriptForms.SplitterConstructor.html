@@ -1,34 +1,45 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>Splitter Constructor</TITLE>
-<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
-<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<HTML>
+<HEAD>
+    <TITLE>Splitter Constructor</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
+</HEAD>
 <BODY id=bodyID class=dtBODY>
-<DIV id=nsbanner>
-<DIV id=bannerrow1>
-<TABLE class=bannerparthead cellSpacing=0>
-  <TBODY>
-  <TR id=hdr>
-    <TD class=runninghead></TD>
-    <TD class=product></TD></TR></TBODY></TABLE></DIV>
-<DIV id=TitleRow>
-<H1 class=dtH1>Разделитель (Splitter)&nbsp;Конструктор</H1></DIV></DIV>
-<DIV id=nstext>
-<H4 class=dtH4>Синтаксис</H4>
-<P>Разделитель()</P>
-<H4 class=dtH4>Параметры</H4>
-<DL></DL>
-<H4 class=dtH4>Описание</H4>
-<P>Создаёт новый экземпляр класса <B>Разделитель&nbsp;(Splitter)</B>.</P>
-<H4 class=dtH4>Примечание</H4>
-<P>При добавлении разделителя на форму необходимо соблюдать определенную последовательность добавления объектов и правильно указывать их свойство <B>СтильГраницы&nbsp;(BorderStyle)</B>.</P>
-<P>Если у нас есть панель на форме и мы хотим разбить её на три области с помощью вертикально расположенных разделителей, тогда последовательность действий должна быть такой:</P>
-<P>&nbsp;&nbsp;<B>1</B>. Добавить разделитель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>.</P>
-<P>&nbsp;&nbsp;<B>2</B>. Добавить панель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>.</P>
-<P>&nbsp;&nbsp;<B>3</B>. Добавить разделитель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>.</P>
-<P>&nbsp;&nbsp;<B>4</B>. Добавить панель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>.</P>
-<P>&nbsp;&nbsp;<B>5</B>. Добавить панель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Заполнение</B>.</P>
-<P>Разберем подробнее. Подготовим форму с панелью, которую будем делить разделителями на три части.</P>
-<P><PRE class=code>
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>Разделитель (Splitter)&nbsp;Конструктор</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <H4 class=dtH4>Синтаксис</H4>
+        <P>Разделитель()</P>
+        <H4 class=dtH4>Параметры</H4>
+        <DL></DL>
+        <H4 class=dtH4>Описание</H4>
+        <P>Создаёт новый экземпляр класса <B>Разделитель&nbsp;(Splitter)</B>.</P>
+        <H4 class=dtH4>Примечание</H4>
+        <P>При добавлении разделителя на форму необходимо соблюдать определенную последовательность добавления объектов и правильно указывать их свойство <B>СтильГраницы&nbsp;(BorderStyle)</B>.</P>
+        <P>Если у нас есть панель на форме и мы хотим разбить её на три области с помощью вертикально расположенных разделителей, тогда последовательность действий должна быть такой:</P>
+        <P>&nbsp;&nbsp;<B>1</B>. Добавить разделитель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>.</P>
+        <P>&nbsp;&nbsp;<B>2</B>. Добавить панель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>.</P>
+        <P>&nbsp;&nbsp;<B>3</B>. Добавить разделитель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>.</P>
+        <P>&nbsp;&nbsp;<B>4</B>. Добавить панель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>.</P>
+        <P>&nbsp;&nbsp;<B>5</B>. Добавить панель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Заполнение</B>.</P>
+        <P>Разберем подробнее. Подготовим форму с панелью, которую будем делить разделителями на три части.</P>
+        <P>
+            <PRE class=code>
 Ф = Новый ФормыДляОдноСкрипта();
 Форма1 = Ф.Форма();
 Форма1.Размер = Ф.Размер(300, 150);
@@ -38,64 +49,77 @@
 Панель0.Размер = Ф.Размер(Форма1.КлиентШирина, Форма1.КлиентВысота);
 Панель0.СтильГраницы = Ф.СтильГраницы.Трехмерная;
 </PRE>
-<IMG src="split1.jpg"></IMG>
-<hr style="border-color: lightgray;">
-<P>Добавим разделитель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>.</P>
-<P><PRE class=code>
+            <IMG class=shot src="split1.jpg"></IMG>
+            <hr style="border-color: lightgray;">
+        <P>Добавим разделитель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>.</P>
+        <P>
+            <PRE class=code>
 Разделитель1 = Панель0.ЭлементыУправления.Добавить(Ф.Разделитель());
 Разделитель1.Стыковка = Ф.СтильСтыковки.Лево;
 </PRE>
-<IMG src="split2.jpg"></IMG>
-<P>Разделитель добавлен. Об этом свидетельствует изменение вида курсора при приближении к левому краю панели.</P>
-<hr style="border-color: lightgray;">
-<P>Добавим панель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>. Для наглядности окрасим её в синий цвет.</P>
-<P><PRE class=code>
+            <IMG class=shot src="split2.jpg"></IMG>
+        <P>Разделитель добавлен. Об этом свидетельствует изменение вида курсора при приближении к левому краю панели.</P>
+        <hr style="border-color: lightgray;">
+        <P>Добавим панель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>. Для наглядности окрасим её в синий цвет.</P>
+        <P>
+            <PRE class=code>
 Панель1 = Панель0.ЭлементыУправления.Добавить(Ф.Панель());
 Панель1.СтильГраницы = Ф.СтильГраницы.Трехмерная;
 Панель1.ЦветФона = Ф.Цвет().Синий;
 Панель1.Стыковка = Ф.СтильСтыковки.Лево;
 </PRE>
-<IMG src="split3.jpg"></IMG>
-<P>У нас есть синяя панель и справа к ней прикреплен разделитель. Об этом нам опять же говорит изменение вида курсора на правой границе синей панели. И ещё правее остается незаполненная пока область.</P>
-<hr style="border-color: lightgray;">
-<P>Добавим ещё один разделитель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>.</P>
-<P><PRE class=code>
+            <IMG class=shot src="split3.jpg"></IMG>
+        <P>У нас есть синяя панель и справа к ней прикреплен разделитель. Об этом нам опять же говорит изменение вида курсора на правой границе синей панели. И ещё правее остается незаполненная пока область.</P>
+        <hr style="border-color: lightgray;">
+        <P>Добавим ещё один разделитель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>.</P>
+        <P>
+            <PRE class=code>
 Разделитель2 = Панель0.ЭлементыУправления.Добавить(Ф.Разделитель());
 Разделитель2.Стыковка = Ф.СтильСтыковки.Лево;
 </PRE>
-<IMG src="split4.jpg"></IMG>
-<hr style="border-color: lightgray;">
-<P>Добавим ещё одну панель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>. Окрасим её в красный цвет.</P>
-<P><PRE class=code>
+            <IMG class=shot src="split4.jpg"></IMG>
+            <hr style="border-color: lightgray;">
+        <P>Добавим ещё одну панель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>. Окрасим её в красный цвет.</P>
+        <P>
+            <PRE class=code>
 Панель2 = Панель0.ЭлементыУправления.Добавить(Ф.Панель());
 Панель2.Ширина = 50;
 Панель2.СтильГраницы = Ф.СтильГраницы.Трехмерная;
 Панель2.ЦветФона = Ф.Цвет().Красный;
 Панель2.Стыковка = Ф.СтильСтыковки.Лево;
 </PRE>
-<IMG src="split5.jpg"></IMG>
-<hr style="border-color: lightgray;">
-<P>Мы всё время добавляли объекты пристыковывая их слева. Они прикреплялись к левому краю вытесняя уже присутствующие объекты вправо. 
-При этом справа оставалось незаполненное пространство. Заполнить его должна панель, добавленная последней и свойство <B>Стыковка</B> у 
-неё должно быть установлено в значение <B>Ф.СтильСтыковки.Заполнение</B>. Добавим последнюю панель с зеленым цветом.</P>
-<P><PRE class=code>
+            <IMG class=shot src="split5.jpg"></IMG>
+            <hr style="border-color: lightgray;">
+        <P>
+            Мы всё время добавляли объекты пристыковывая их слева. Они прикреплялись к левому краю вытесняя уже присутствующие объекты вправо.
+            При этом справа оставалось незаполненное пространство. Заполнить его должна панель, добавленная последней и свойство <B>Стыковка</B> у
+            неё должно быть установлено в значение <B>Ф.СтильСтыковки.Заполнение</B>. Добавим последнюю панель с зеленым цветом.
+        </P>
+        <P>
+            <PRE class=code>
 Панель3 = Панель0.ЭлементыУправления.Добавить(Ф.Панель());
 Панель3.СтильГраницы = Ф.СтильГраницы.Трехмерная;
 Панель3.ЦветФона = Ф.Цвет().Зеленый;
 Панель3.Стыковка = Ф.СтильСтыковки.Заполнение;
 </PRE>
-<IMG src="split6.jpg"></IMG>
-<hr style="border-color: lightgray;">
-<P>В итоге на нашей форме мы получили панель-контейнер (Панель0), на которой находятся три панели (Панель1, Панель2, Панель3) "сшитые" разделителями.</P>
-<P>Для областей расположенных сверху вниз, необходимо последовательно пристыковывать объекты к верхнему краю объекта-контейнера.</P>
-<P>Комбинируя панели-контейнеры и помещая на них горизонтальные или вертикальные разделители и элементы управления (Форма, Дерево, СписокЭлементов, Панель и др.), 
-можно получить большое количество вариантов оформления формы.</P>
-<hr style="border-color: lightgray;">
-<li style="font-size: 120%;">Есть ещё один способ добавления объектов, в том числе и разделителей, интуитивно более понятный, более удобный.</li>
-<P>Можно добавлять объекты без эффекта "вытеснения", с пристыковкой к краю не родительского контейнера, а к краю уже добавленного на форму другого объекта. 
-Для этого применяйте к объекту метод <B>ЭлементУправления.НаПереднийПлан&nbsp;(Control.BringToFront)</B> сразу после установки свойства <B>Стыковка&nbsp;(Control.Dock)</B>.</P>
-<details><summary>Код примера деления формы разделителями с применением метода <B>ЭлементУправления.НаПереднийПлан&nbsp;(Control.BringToFront)</B>:</summary>
-<P><PRE class=code>
+            <IMG class=shot src="split6.jpg"></IMG>
+            <hr style="border-color: lightgray;">
+        <P>В итоге на нашей форме мы получили панель-контейнер (Панель0), на которой находятся три панели (Панель1, Панель2, Панель3) "сшитые" разделителями.</P>
+        <P>Для областей расположенных сверху вниз, необходимо последовательно пристыковывать объекты к верхнему краю объекта-контейнера.</P>
+        <P>
+            Комбинируя панели-контейнеры и помещая на них горизонтальные или вертикальные разделители и элементы управления (Форма, Дерево, СписокЭлементов, Панель и др.),
+            можно получить большое количество вариантов оформления формы.
+        </P>
+        <hr style="border-color: lightgray;">
+        <li style="font-size: 120%;">Есть ещё один способ добавления объектов, в том числе и разделителей, интуитивно более понятный, более удобный.</li>
+        <P>
+            Можно добавлять объекты без эффекта "вытеснения", с пристыковкой к краю не родительского контейнера, а к краю уже добавленного на форму другого объекта.
+            Для этого применяйте к объекту метод <B>ЭлементУправления.НаПереднийПлан&nbsp;(Control.BringToFront)</B> сразу после установки свойства <B>Стыковка&nbsp;(Control.Dock)</B>.
+        </P>
+        <details>
+            <summary>Код примера деления формы разделителями с применением метода <B>ЭлементУправления.НаПереднийПлан&nbsp;(Control.BringToFront)</B>:</summary>
+            <P>
+                <PRE class=code>
 <a id="copy4" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select4" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont4">
 ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
@@ -134,14 +158,17 @@
 Ф.ЗапуститьОбработкуСобытий();
 </DIV>
 </PRE>
-</details>
-<P></P>
-<H4 class=dtH4>Пример</H4>
-<P><PRE class=code>
+        </details>
+        <P></P>
+        <H4 class=dtH4>Пример</H4>
+        <P>
+            <PRE class=code>
 Разделитель1 = Ф.Разделитель();
 </PRE>
-<details><summary>Полный пример кода</summary>
-<P><PRE class=code>
+            <details>
+                <summary>Полный пример кода</summary>
+                <P>
+                    <PRE class=code>
 <a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont1">
 ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
@@ -181,10 +208,12 @@
 Ф.ЗапуститьОбработкуСобытий();
 </DIV>
 </PRE>
-</details>
-<P></P>
-<details><summary>Тестовый код</summary>
-<P><PRE class=code>
+            </details>
+        <P></P>
+        <details>
+            <summary>Тестовый код</summary>
+            <P>
+                <PRE class=code>
 <a id="copy2" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select2" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont2">
 ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
@@ -226,11 +255,13 @@
 , "", "!!! ") + "Разделитель (Splitter) Конструктор" + " " + ТекущаяДата());
 </DIV>
 </PRE>
-</details>
-<P></P>
-<hr style="border-color: lightgray;">
-<details><summary>Код примера различных вариантов деления формы с помощью разделителей:</summary>
-<P><PRE class=code>
+        </details>
+        <P></P>
+        <hr style="border-color: lightgray;">
+        <details>
+            <summary>Код примера различных вариантов деления формы с помощью разделителей:</summary>
+            <P>
+                <PRE class=code>
 <a id="copy3" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select3" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
 <hr style="border-color: lightgray;"><DIV id="cont3">
 Перем Ф, Панель13, Форма1;
@@ -691,115 +722,118 @@
 Ф.ЗапуститьОбработкуСобытий();
 </DIV>
 </PRE>
-</details>
-<P></P>
-<IMG src="Splitter4.jpg"></IMG>
-<P></P>
-<P></P>
-<H4 class=dtH4>Смотрите также</H4>
-<P><A href="OneScriptForms.Splitter.html">Разделитель&nbsp;(Splitter)&nbsp;Класс</A> | <A 
-href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P></DIV>
-<script>
-window.onload = function () {
-    var a = document.getElementById('select1');
-    a.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta1 = document.getElementById('cont1'); 
-		var range1 = document.createRange();
-		range1.selectNode(ta1); 
-		window.getSelection().addRange(range1); 
-        return false;
-    }
-	
-    var b = document.getElementById('copy1');
-    b.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta2 = document.getElementById('cont1'); 
-		var range2 = document.createRange();
-		range2.selectNode(ta2); 
-		window.getSelection().addRange(range2);
-		try { 
-		  document.execCommand('copy'); 
-		} catch(err) {} 
-		window.getSelection().removeRange(range2);
-        return false;
-    }
-	
-    var c = document.getElementById('select2');
-    c.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta3 = document.getElementById('cont2'); 
-		var range3 = document.createRange();
-		range3.selectNode(ta3); 
-		window.getSelection().addRange(range3); 
-        return false;
-    }
-	
-    var d = document.getElementById('copy2');
-    d.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta4 = document.getElementById('cont2'); 
-		var range4 = document.createRange();
-		range4.selectNode(ta4); 
-		window.getSelection().addRange(range4);
-		try { 
-		  document.execCommand('copy'); 
-		} catch(err) {} 
-		window.getSelection().removeRange(range4);
-        return false;
-    }
-	
-    var c = document.getElementById('select3');
-    c.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta3 = document.getElementById('cont3'); 
-		var range3 = document.createRange();
-		range3.selectNode(ta3); 
-		window.getSelection().addRange(range3); 
-        return false;
-    }
-	
-    var d = document.getElementById('copy3');
-    d.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta4 = document.getElementById('cont3'); 
-		var range4 = document.createRange();
-		range4.selectNode(ta4); 
-		window.getSelection().addRange(range4);
-		try { 
-		  document.execCommand('copy'); 
-		} catch(err) {} 
-		window.getSelection().removeRange(range4);
-        return false;
-    }
-	
-	
-	
-	
-	
-    var c = document.getElementById('select4');
-    c.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta3 = document.getElementById('cont4'); 
-		var range3 = document.createRange();
-		range3.selectNode(ta3); 
-		window.getSelection().addRange(range3); 
-        return false;
-    }
-	
-    var d = document.getElementById('copy4');
-    d.onclick = function() {
-		window.getSelection().removeAllRanges();
-		var ta4 = document.getElementById('cont4'); 
-		var range4 = document.createRange();
-		range4.selectNode(ta4); 
-		window.getSelection().addRange(range4);
-		try { 
-		  document.execCommand('copy'); 
-		} catch(err) {} 
-		window.getSelection().removeRange(range4);
-        return false;
-    }
-}
-</script>
-</BODY></HTML>
+        </details>
+        <P></P>
+        <IMG class=shot src="Splitter4.jpg"></IMG>
+        <P></P>
+        <P></P>
+        <H4 class=dtH4>Смотрите также</H4>
+        <P>
+            <A href="OneScriptForms.Splitter.html">Разделитель&nbsp;(Splitter)&nbsp;Класс</A> | <A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A>
+        </P>
+    </DIV>
+    <script>
+        window.onload = function () {
+            var a = document.getElementById('select1');
+            a.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta1 = document.getElementById('cont1');
+                var range1 = document.createRange();
+                range1.selectNode(ta1);
+                window.getSelection().addRange(range1);
+                return false;
+            }
+
+            var b = document.getElementById('copy1');
+            b.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta2 = document.getElementById('cont1');
+                var range2 = document.createRange();
+                range2.selectNode(ta2);
+                window.getSelection().addRange(range2);
+                try {
+                    document.execCommand('copy');
+                } catch (err) { }
+                window.getSelection().removeRange(range2);
+                return false;
+            }
+
+            var c = document.getElementById('select2');
+            c.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta3 = document.getElementById('cont2');
+                var range3 = document.createRange();
+                range3.selectNode(ta3);
+                window.getSelection().addRange(range3);
+                return false;
+            }
+
+            var d = document.getElementById('copy2');
+            d.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta4 = document.getElementById('cont2');
+                var range4 = document.createRange();
+                range4.selectNode(ta4);
+                window.getSelection().addRange(range4);
+                try {
+                    document.execCommand('copy');
+                } catch (err) { }
+                window.getSelection().removeRange(range4);
+                return false;
+            }
+
+            var c = document.getElementById('select3');
+            c.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta3 = document.getElementById('cont3');
+                var range3 = document.createRange();
+                range3.selectNode(ta3);
+                window.getSelection().addRange(range3);
+                return false;
+            }
+
+            var d = document.getElementById('copy3');
+            d.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta4 = document.getElementById('cont3');
+                var range4 = document.createRange();
+                range4.selectNode(ta4);
+                window.getSelection().addRange(range4);
+                try {
+                    document.execCommand('copy');
+                } catch (err) { }
+                window.getSelection().removeRange(range4);
+                return false;
+            }
+
+
+
+
+
+            var c = document.getElementById('select4');
+            c.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta3 = document.getElementById('cont4');
+                var range3 = document.createRange();
+                range3.selectNode(ta3);
+                window.getSelection().addRange(range3);
+                return false;
+            }
+
+            var d = document.getElementById('copy4');
+            d.onclick = function () {
+                window.getSelection().removeAllRanges();
+                var ta4 = document.getElementById('cont4');
+                var range4 = document.createRange();
+                range4.selectNode(ta4);
+                window.getSelection().addRange(range4);
+                try {
+                    document.execCommand('copy');
+                } catch (err) { }
+                window.getSelection().removeRange(range4);
+                return false;
+            }
+        }
+    </script>
+</BODY>
+</HTML>

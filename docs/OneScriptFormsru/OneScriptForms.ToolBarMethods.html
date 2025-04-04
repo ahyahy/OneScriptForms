@@ -1,120 +1,171 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>ToolBar Methods</TITLE>
-<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
-<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<HTML>
+<HEAD>
+    <TITLE>ToolBar Methods</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
+</HEAD>
 <BODY id=bodyID class=dtBODY>
-<DIV id=nsbanner>
-<DIV id=bannerrow1>
-<TABLE class=bannerparthead cellSpacing=0>
-  <TBODY>
-  <TR id=hdr>
-    <TD class=runninghead></TD>
-    <TD class=product></TD></TR></TBODY></TABLE></DIV>
-<DIV id=TitleRow>
-<H1 class=dtH1>ПанельИнструментов (ToolBar)&nbsp;Методы</H1></DIV></DIV>
-<DIV id=nstext>
-<P>Методы класса <B>ПанельИнструментов&nbsp;(ToolBar)</B> перечислены ниже. Полный список членов класса <B>ПанельИнструментов&nbsp;(ToolBar)</B> смотрите в 
-разделе <A href="OneScriptForms.ToolBarMembers.html">ПанельИнструментов&nbsp;(ToolBar)&nbsp;Члены</A>.</P>
-<H4 class=dtH4>Методы</H4>
-<DIV class=tablediv>
-<TABLE class=dtTABLE cellSpacing=0>
-  <TBODY>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Refresh.html">Актуализировать&nbsp;(Refresh)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Заставляет элемент управления аннулировать клиентскую область и немедленно перерисовать себя и любые дочерние элементы управления.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Invalidate.html">Аннулировать&nbsp;(Invalidate)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Делает недействительной всю поверхность элемента управления и вызывает его перерисовку.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.ResumeLayout.html">ВозобновитьРазмещение&nbsp;(ResumeLayout)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Возобновляет обычную логику макета.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.ResetBackgroundImage.html">ВосстановитьФоновоеИзображение&nbsp;(ResetBackgroundImage)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Сбрасывает свойство <B>ФоновоеИзображение&nbsp;(BackgroundImage)</B> на значение по умолчанию.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Select.html">Выбрать&nbsp;(Select)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Активирует элемент управления.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.PerformLayout.html">ВыполнитьРазмещение&nbsp;(PerformLayout)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Вызывает в элементе управления принудительное применение логики макета ко всем его дочерним элементам управления.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.GetChildAtPoint.html">ДочернийПоКоординатам&nbsp;(GetChildAtPoint)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Возвращает дочерний элемент управления, имеющий указанные координаты.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.EndUpdate.html">ЗавершитьОбновление&nbsp;(EndUpdate)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Возобновление прорисовки элемента управления после того как прорисовка была остановлена методом <B>НачатьОбновление&nbsp;(BeginUpdate)</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.ToolBar.Buttons2.html">Кнопки&nbsp;(Buttons)</A></TD>
-    <TD width="50%">Возвращает значение по указанному индексу.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.SendToBack.html">НаЗаднийПлан&nbsp;(SendToBack)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Отправляет элемент управления в конец z-порядка.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.FindForm.html">НайтиФорму&nbsp;(FindForm)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Возвращает форму, в которой находится элемент управления.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.FindControl.html">НайтиЭлемент&nbsp;(FindControl)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Выполняет поиск по имени элемента управления в коллекции элементов управления текущего контейнера.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.BringToFront.html">НаПереднийПлан&nbsp;(BringToFront)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Помещает элемент управления в начало z-порядка.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.BeginUpdate.html">НачатьОбновление&nbsp;(BeginUpdate)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Предотвращает прорисовку элемента управления до тех пор, пока не будет вызван метод <B>ЗавершитьОбновление&nbsp;(EndUpdate)</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Update.html">Обновить&nbsp;(Update)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Вызывает перерисовку элементом управления недопустимых областей клиентской области.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.UpdateStyles.html">ОбновитьСтили&nbsp;(UpdateStyles)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Вызывает принудительное повторное применение назначенных стилей к элементу управления.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Component.Dispose.html">Освободить&nbsp;(Dispose)</A> (унаследовано от <B>Компонент&nbsp;(Component)</B>)</TD>
-    <TD width="50%">Освобождает ресурсы, используемые <B>Компонент&nbsp;(Component)</B>.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Show.html">Показать&nbsp;(Show)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Отображает элемент управления пользователю.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.GetStyle.html">ПолучитьСтиль&nbsp;(GetStyle)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Возвращает значение указанного бита стиля для данного элемента управления.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.SuspendLayout.html">ПриостановитьРазмещение&nbsp;(SuspendLayout)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Временно приостанавливает логику компоновки для элемента управления.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Hide.html">Скрыть&nbsp;(Hide)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Скрывает элемент управления от пользователя.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.GetNextControl.html">СледующийЭлемент&nbsp;(GetNextControl)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Возвращает следующий или предыдущий элемент среди дочерних элементов управления в последовательности клавиши TAB.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.CreateGraphics.html">СоздатьГрафику&nbsp;(CreateGraphics)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Создает объект <B>Графика&nbsp;(Graphics)</B> для элемента управления.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.CreateControl.html">СоздатьЭлемент&nbsp;(CreateControl)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Вызывает принудительное создание видимого элемента управления, включая создание дескриптора и всех видимых дочерних элементов.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.PointToClient.html">ТочкаНаКлиенте&nbsp;(PointToClient)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Вычисляет местоположение указанной экранной точки в клиентские координаты.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.PointToScreen.html">ТочкаНаЭкране&nbsp;(PointToScreen)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Вычисляет местоположение указанной точки клиента в экранные координаты.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.SetBounds.html">УстановитьГраницы&nbsp;(SetBounds)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Задает указанные границы элемента управления для указанного местоположения и размера.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.SetStyle.html">УстановитьСтиль&nbsp;(SetStyle)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Включает или выключает указанный стиль.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Focus.html">Фокус&nbsp;(Focus)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Устанавливает фокус ввода на элемент управления.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Center.html">Центр&nbsp;(Center)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Центрирует элемент управления внутри своего контейнера.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Control.html">ЭлементУправления&nbsp;(Control)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Возвращает элемент управления <A href="OneScriptForms.Control.html">ЭлементУправления&nbsp;(Control)</A> по указанному индексу.</TD></TR>
-  <TR vAlign=top>
-    <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Controls2.html">ЭлементыУправления&nbsp;(Controls)</A> (унаследовано от <B>ЭлементУправления&nbsp;(Control)</B>)</TD>
-    <TD width="50%">Возвращает элемент управления с указанным индексом в коллекции.</TD></TR></TBODY></TABLE></DIV>
-<H4 class=dtH4>Смотрите также</H4>
-<P><A href="OneScriptForms.ToolBar.html">ПанельИнструментов&nbsp;(ToolBar)&nbsp;Класс</A> | <A 
-href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P></DIV></BODY></HTML>
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>ПанельИнструментов (ToolBar)&nbsp;Методы</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <P>
+            Методы класса <B>ПанельИнструментов&nbsp;(ToolBar)</B> перечислены ниже. Полный список членов класса <B>ПанельИнструментов&nbsp;(ToolBar)</B> смотрите в
+            разделе <A href="OneScriptForms.ToolBarMembers.html">ПанельИнструментов&nbsp;(ToolBar)&nbsp;Члены</A>.
+        </P>
+        <H4 class=dtH4>Методы</H4>
+        <DIV class=tablediv>
+            <TABLE class=dtTABLE cellSpacing=0>
+                <TBODY>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Refresh.html">Актуализировать&nbsp;(Refresh)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Заставляет элемент управления аннулировать клиентскую область и немедленно перерисовать себя и любые дочерние элементы управления.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Invalidate.html">Аннулировать&nbsp;(Invalidate)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Делает недействительной всю поверхность элемента управления и вызывает его перерисовку.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.ResumeLayout.html">ВозобновитьРазмещение&nbsp;(ResumeLayout)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Возобновляет обычную логику макета.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.ResetBackgroundImage.html">ВосстановитьФоновоеИзображение&nbsp;(ResetBackgroundImage)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Сбрасывает свойство <B>ФоновоеИзображение&nbsp;(BackgroundImage)</B> на значение по умолчанию.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Select.html">Выбрать&nbsp;(Select)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Активирует элемент управления.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.PerformLayout.html">ВыполнитьРазмещение&nbsp;(PerformLayout)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Вызывает в элементе управления принудительное применение логики макета ко всем его дочерним элементам управления.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.GetChildAtPoint.html">ДочернийПоКоординатам&nbsp;(GetChildAtPoint)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Возвращает дочерний элемент управления, имеющий указанные координаты.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.EndUpdate.html">ЗавершитьОбновление&nbsp;(EndUpdate)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Возобновление прорисовки элемента управления после того как прорисовка была остановлена методом <B>НачатьОбновление&nbsp;(BeginUpdate)</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.ToolBar.Buttons2.html">Кнопки&nbsp;(Buttons)</A></TD>
+                        <TD width="50%">Возвращает значение по указанному индексу.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.SendToBack.html">НаЗаднийПлан&nbsp;(SendToBack)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Отправляет элемент управления в конец z-порядка.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.FindForm.html">НайтиФорму&nbsp;(FindForm)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Возвращает форму, в которой находится элемент управления.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.FindControl.html">НайтиЭлемент&nbsp;(FindControl)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Выполняет поиск по имени элемента управления в коллекции элементов управления текущего контейнера.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.BringToFront.html">НаПереднийПлан&nbsp;(BringToFront)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Помещает элемент управления в начало z-порядка.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.BeginUpdate.html">НачатьОбновление&nbsp;(BeginUpdate)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Предотвращает прорисовку элемента управления до тех пор, пока не будет вызван метод <B>ЗавершитьОбновление&nbsp;(EndUpdate)</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Update.html">Обновить&nbsp;(Update)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Вызывает перерисовку элементом управления недопустимых областей клиентской области.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.UpdateStyles.html">ОбновитьСтили&nbsp;(UpdateStyles)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Вызывает принудительное повторное применение назначенных стилей к элементу управления.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Component.Dispose.html">Освободить&nbsp;(Dispose)</A> (унаследовано от Компонент (Component))</TD>
+                        <TD width="50%">Освобождает ресурсы, используемые <B>Компонент&nbsp;(Component)</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Show.html">Показать&nbsp;(Show)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Отображает элемент управления пользователю.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.GetStyle.html">ПолучитьСтиль&nbsp;(GetStyle)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Возвращает значение указанного бита стиля для данного элемента управления.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.SuspendLayout.html">ПриостановитьРазмещение&nbsp;(SuspendLayout)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Временно приостанавливает логику компоновки для элемента управления.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Hide.html">Скрыть&nbsp;(Hide)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Скрывает элемент управления от пользователя.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.GetNextControl.html">СледующийЭлемент&nbsp;(GetNextControl)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Возвращает следующий или предыдущий элемент среди дочерних элементов управления в последовательности клавиши TAB.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.CreateGraphics.html">СоздатьГрафику&nbsp;(CreateGraphics)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Создает объект <B>Графика&nbsp;(Graphics)</B> для элемента управления.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.CreateControl.html">СоздатьЭлемент&nbsp;(CreateControl)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Вызывает принудительное создание видимого элемента управления, включая создание дескриптора и всех видимых дочерних элементов.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.PointToClient.html">ТочкаНаКлиенте&nbsp;(PointToClient)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Вычисляет местоположение указанной экранной точки в клиентские координаты.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.PointToScreen.html">ТочкаНаЭкране&nbsp;(PointToScreen)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Вычисляет местоположение указанной точки клиента в экранные координаты.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.SetBounds.html">УстановитьГраницы&nbsp;(SetBounds)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Задает указанные границы элемента управления для указанного местоположения и размера.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.SetStyle.html">УстановитьСтиль&nbsp;(SetStyle)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Включает или выключает указанный стиль.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Focus.html">Фокус&nbsp;(Focus)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Устанавливает фокус ввода на элемент управления.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Center.html">Центр&nbsp;(Center)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Центрирует элемент управления внутри своего контейнера.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Control.html">ЭлементУправления&nbsp;(Control)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Возвращает элемент управления <A href="OneScriptForms.Control.html">ЭлементУправления&nbsp;(Control)</A> по указанному индексу.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.Control.Controls2.html">ЭлементыУправления&nbsp;(Controls)</A> (унаследовано от ЭлементУправления (Control))</TD>
+                        <TD width="50%">Возвращает элемент управления с указанным индексом в коллекции.</TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <H4 class=dtH4>Смотрите также</H4>
+        <P>
+            <A href="OneScriptForms.ToolBar.html">ПанельИнструментов&nbsp;(ToolBar)&nbsp;Класс</A> | <A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A>
+        </P>
+    </DIV>
+</BODY>
+</HTML>

@@ -1,115 +1,154 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>SpecialFolder Enumeration</TITLE>
-<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
-<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<HTML>
+<HEAD>
+    <TITLE>SpecialFolder Enumeration</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
+</HEAD>
 <BODY id=bodyID class=dtBODY>
-<DIV id=nsbanner>
-<DIV id=bannerrow1>
-<TABLE class=bannerparthead cellSpacing=0>
-  <TBODY>
-  <TR id=hdr>
-    <TD class=runninghead></TD>
-    <TD class=product></TD></TR></TBODY></TABLE></DIV>
-<DIV id=TitleRow>
-<H1 class=dtH1>ОсобаяПапка (SpecialFolder) Перечисление</H1></DIV></DIV>
-<DIV id=nstext>
-<H4 class=dtH4>Описание</H4>
-<P>Указывает перечислимые константы, используемые для получения путей к системным особым папкам.</P>
-<H4 class=dtH4>Члены</H4>
-<DIV class=tablediv>
-<TABLE class=dtTABLE cellSpacing=0>
-  <TBODY>
-  <TR vAlign=top>
-    <TH width="38%">Имя члена</TH>
-    <TH width="50%">Описание</TH>
-    <TH width="12%">Значение</TH></TR>
-  <TR vAlign=top>
-    <TD><B>ВременныеФайлыИнтернета&nbsp;(InternetCache)</B></TD>
-    <TD>Каталог временных файлов Интернета.</TD>
-    <TD>32</TD></TR>
-  <TR vAlign=top>
-    <TD><B>ДанныеПриложений&nbsp;(ApplicationData)</B></TD>
-    <TD>Каталог, выполняющий функции общего репозитория для данных приложения текущего перемещающегося пользователя.</TD>
-    <TD>26</TD></TR>
-  <TR vAlign=top>
-    <TD><B>ДанныеПриложенийПользователя&nbsp;(LocalApplicationData)</B></TD>
-    <TD>Каталог данных приложений, используемых текущим пользователем, который не перемещается.</TD>
-    <TD>28</TD></TR>
-  <TR vAlign=top>
-    <TD><B>Избранное&nbsp;(Favorites)</B></TD>
-    <TD>Каталог избранных элементов пользователя.</TD>
-    <TD>6</TD></TR>
-  <TR vAlign=top>
-    <TD><B>История&nbsp;(History)</B></TD>
-    <TD>Каталог элементов журнала Интернета.</TD>
-    <TD>34</TD></TR>
-  <TR vAlign=top>
-    <TD><B>КаталогЗапуска&nbsp;(Startup)</B></TD>
-    <TD>Каталог, соответствующий группе программ пользователя «Автозагрузка».</TD>
-    <TD>7</TD></TR>
-  <TR vAlign=top>
-    <TD><B>КаталогОтправить&nbsp;(SendTo)</B></TD>
-    <TD>Каталог, содержащий пункты меню «Отправить».</TD>
-    <TD>9</TD></TR>
-  <TR vAlign=top>
-    <TD><B>КаталогПуск&nbsp;(StartMenu)</B></TD>
-    <TD>Каталог, содержащий пункты меню «Пуск».</TD>
-    <TD>11</TD></TR>
-  <TR vAlign=top>
-    <TD><B>КаталогСистема&nbsp;(SystemDirectory)</B></TD>
-    <TD>Каталог System.</TD>
-    <TD>37</TD></TR>
-  <TR vAlign=top>
-    <TD><B>Куки&nbsp;(Cookies)</B></TD>
-    <TD>Каталог файлов cookie Интернета.</TD>
-    <TD>33</TD></TR>
-  <TR vAlign=top>
-    <TD><B>Личное&nbsp;(Personal)</B></TD>
-    <TD>Каталог для документов.</TD>
-    <TD>5</TD></TR>
-  <TR vAlign=top>
-    <TD><B>МоиРисунки&nbsp;(MyPictures)</B></TD>
-    <TD>Каталог Мои рисунки.</TD>
-    <TD>39</TD></TR>
-  <TR vAlign=top>
-    <TD><B>МойКомпьютер&nbsp;(MyComputer)</B></TD>
-    <TD>Каталог Мой компьютер.</TD>
-    <TD>17</TD></TR>
-  <TR vAlign=top>
-    <TD><B>МояМузыка&nbsp;(MyMusic)</B></TD>
-    <TD>Каталог Моя музыка.</TD>
-    <TD>13</TD></TR>
-  <TR vAlign=top>
-    <TD><B>НедавниеДокументы&nbsp;(Recent)</B></TD>
-    <TD>Каталог, содержащий недавно использовавшиеся документы.</TD>
-    <TD>8</TD></TR>
-  <TR vAlign=top>
-    <TD><B>ОбщиеДанныеПриложений&nbsp;(CommonApplicationData)</B></TD>
-    <TD>Каталог, выполняющий функции общего репозитория для данных приложения, используемого всеми пользователями.</TD>
-    <TD>35</TD></TR>
-  <TR vAlign=top>
-    <TD><B>ОбщиеПрограммныеФайлы&nbsp;(CommonProgramFiles)</B></TD>
-    <TD>Каталог общих для приложений компонентов.</TD>
-    <TD>43</TD></TR>
-  <TR vAlign=top>
-    <TD><B>ПрограммныеФайлы&nbsp;(ProgramFiles)</B></TD>
-    <TD>Каталог файлов программ.</TD>
-    <TD>38</TD></TR>
-  <TR vAlign=top>
-    <TD><B>Программы&nbsp;(Programs)</B></TD>
-    <TD>Каталог, содержащий группы программ пользователя.</TD>
-    <TD>2</TD></TR>
-  <TR vAlign=top>
-    <TD><B>РабочийСтол&nbsp;(Desktop)</B></TD>
-    <TD>Логический рабочий стол, а не физическое местоположение файлов системы.</TD>
-    <TD>0</TD></TR>
-  <TR vAlign=top>
-    <TD><B>ФайлыРабочегоСтола&nbsp;(DesktopDirectory)</B></TD>
-    <TD>Каталог, используемый для физического хранения файловых объектов рабочего стола.</TD>
-    <TD>16</TD></TR>
-  <TR vAlign=top>
-    <TD><B>Шаблоны&nbsp;(Templates)</B></TD>
-    <TD>Каталог шаблонов документов.</TD>
-    <TD>21</TD></TR></TBODY></TABLE></DIV>
-<H4 class=dtH4>Смотрите также</H4>
-<P><A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P></DIV></BODY></HTML>
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>ОсобаяПапка (SpecialFolder) Перечисление</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <H4 class=dtH4>Описание</H4>
+        <P>Указывает перечислимые константы, используемые для получения путей к системным особым папкам.</P>
+        <H4 class=dtH4>Члены</H4>
+        <DIV class=tablediv>
+            <TABLE class=dtTABLE cellSpacing=0>
+                <TBODY>
+                    <TR vAlign=top>
+                        <TH width="38%">Имя члена</TH>
+                        <TH width="50%">Описание</TH>
+                        <TH width="12%">Значение</TH>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>ВременныеФайлыИнтернета&nbsp;(InternetCache)</B></TD>
+                        <TD>Каталог временных файлов Интернета.</TD>
+                        <TD>32</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>ДанныеПриложений&nbsp;(ApplicationData)</B></TD>
+                        <TD>Каталог, выполняющий функции общего репозитория для данных приложения текущего перемещающегося пользователя.</TD>
+                        <TD>26</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>ДанныеПриложенийПользователя&nbsp;(LocalApplicationData)</B></TD>
+                        <TD>Каталог данных приложений, используемых текущим пользователем, который не перемещается.</TD>
+                        <TD>28</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>Избранное&nbsp;(Favorites)</B></TD>
+                        <TD>Каталог избранных элементов пользователя.</TD>
+                        <TD>6</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>История&nbsp;(History)</B></TD>
+                        <TD>Каталог элементов журнала Интернета.</TD>
+                        <TD>34</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>КаталогЗапуска&nbsp;(Startup)</B></TD>
+                        <TD>Каталог, соответствующий группе программ пользователя «Автозагрузка».</TD>
+                        <TD>7</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>КаталогОтправить&nbsp;(SendTo)</B></TD>
+                        <TD>Каталог, содержащий пункты меню «Отправить».</TD>
+                        <TD>9</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>КаталогПуск&nbsp;(StartMenu)</B></TD>
+                        <TD>Каталог, содержащий пункты меню «Пуск».</TD>
+                        <TD>11</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>КаталогСистема&nbsp;(SystemDirectory)</B></TD>
+                        <TD>Каталог System.</TD>
+                        <TD>37</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>Куки&nbsp;(Cookies)</B></TD>
+                        <TD>Каталог файлов cookie Интернета.</TD>
+                        <TD>33</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>Личное&nbsp;(Personal)</B></TD>
+                        <TD>Каталог для документов.</TD>
+                        <TD>5</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>МоиРисунки&nbsp;(MyPictures)</B></TD>
+                        <TD>Каталог Мои рисунки.</TD>
+                        <TD>39</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>МойКомпьютер&nbsp;(MyComputer)</B></TD>
+                        <TD>Каталог Мой компьютер.</TD>
+                        <TD>17</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>МояМузыка&nbsp;(MyMusic)</B></TD>
+                        <TD>Каталог Моя музыка.</TD>
+                        <TD>13</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>НедавниеДокументы&nbsp;(Recent)</B></TD>
+                        <TD>Каталог, содержащий недавно использовавшиеся документы.</TD>
+                        <TD>8</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>ОбщиеДанныеПриложений&nbsp;(CommonApplicationData)</B></TD>
+                        <TD>Каталог, выполняющий функции общего репозитория для данных приложения, используемого всеми пользователями.</TD>
+                        <TD>35</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>ОбщиеПрограммныеФайлы&nbsp;(CommonProgramFiles)</B></TD>
+                        <TD>Каталог общих для приложений компонентов.</TD>
+                        <TD>43</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>ПрограммныеФайлы&nbsp;(ProgramFiles)</B></TD>
+                        <TD>Каталог файлов программ.</TD>
+                        <TD>38</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>Программы&nbsp;(Programs)</B></TD>
+                        <TD>Каталог, содержащий группы программ пользователя.</TD>
+                        <TD>2</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>РабочийСтол&nbsp;(Desktop)</B></TD>
+                        <TD>Логический рабочий стол, а не физическое местоположение файлов системы.</TD>
+                        <TD>0</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>ФайлыРабочегоСтола&nbsp;(DesktopDirectory)</B></TD>
+                        <TD>Каталог, используемый для физического хранения файловых объектов рабочего стола.</TD>
+                        <TD>16</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD><B>Шаблоны&nbsp;(Templates)</B></TD>
+                        <TD>Каталог шаблонов документов.</TD>
+                        <TD>21</TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <H4 class=dtH4>Смотрите также</H4>
+        <P><A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P>
+    </DIV>
+</BODY>
+</HTML>

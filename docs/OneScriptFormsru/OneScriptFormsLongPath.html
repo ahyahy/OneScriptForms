@@ -1,26 +1,41 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>OneScriptFormsPropertyTag</TITLE>
-<META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
-<LINK rel="stylesheet" type="text/css" href="mainstyle.css"></HEAD>
+<HTML>
+<HEAD>
+    <TITLE>OneScriptFormsPropertyTag</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
+</HEAD>
 <BODY id=bodyID class=dtBODY>
-<DIV id=nsbanner>
-<DIV id=bannerrow1>
-<TABLE class=bannerparthead cellSpacing=0>
-  <TBODY>
-  <TR id=hdr>
-    <TD class=runninghead></TD>
-    <TD class=product></TD></TR></TBODY></TABLE></DIV>
-<DIV id=TitleRow>
-<H1 class=dtH1>Длинные полные пути в именах файлов</H1></DIV></DIV>
-<DIV id=nstext>
-<P>Если возникнет проблема при работе с файлами, длина полного имени которых превышает 250 символов (примерная величина по различным источникам), 
-Вы можете использовать приведенный ниже прием. Он заключается в прибавлении перед полным путем символов <B>"\\?\"</B>.</P>
-<P>Для OneScript начиная с версии 1.8.0 был сделан переход на .NET Framework 4.8 в котором длинные имена обрабатываются правильно. Но 
-всё таки иногда необходимо подкорректировать длинный путь вот таким способом.</P>
-<P>Привожу пример работы с длинными именами.</P>
-<P></P>
-<H4 class=dtH4>Пример</H4>
-<P><PRE class=code>
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>Длинные полные пути в именах файлов</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <P>
+            Если возникнет проблема при работе с файлами, длина полного имени которых превышает 250 символов (примерная величина по различным источникам),
+            Вы можете использовать приведенный ниже прием. Он заключается в прибавлении перед полным путем символов <B>"\\?\"</B>.
+        </P>
+        <P>
+            Для OneScript начиная с версии 1.8.0 был сделан переход на .NET Framework 4.8 в котором длинные имена обрабатываются правильно. Но
+            всё таки иногда необходимо подкорректировать длинный путь вот таким способом.
+        </P>
+        <P>Привожу пример работы с длинными именами.</P>
+        <P></P>
+        <H4 class=dtH4>Пример</H4>
+        <P>
+            <PRE class=code>
 // Разместите в подкаталогах текстовые файлы и Вы сможете прочитать их сожержимое. 
 // Подкаталогами с длинными именами можно управлять без проблем (создавать/удалять) например
 // файловым менеджером Unreal Commander. В примере подразумевается дерево каталогов согласно
@@ -61,7 +76,9 @@
   КонецЕсли
 КонецЦикла;
 </PRE>
-<P></P>
-<H4 class=dtH4>Смотрите также</H4>
-<P><A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P></DIV>
-</BODY></HTML>
+        <P></P>
+        <H4 class=dtH4>Смотрите также</H4>
+        <P><A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A></P>
+    </DIV>
+</BODY>
+</HTML>

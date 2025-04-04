@@ -1,32 +1,41 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
-	<head>
-		<meta content="text/html; charset=Windows-1251" http-equiv="content-type">
-		<link rel="stylesheet" type="text/css" href="theme.css">
-		<title>КакЭтоРаботает</title>
-	</head>
+<HTML>
+<HEAD>
+    <TITLE>Какэтоработает</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="styleos.css">
+	<script defer src="mobil.js"></script>
+</HEAD>
 <body>
-  
-<table style="text-align: left; width: 1000px; height: 816px; margin-left: auto; margin-right: auto; background-color: white;" border="0" cellpadding="2" cellspacing="2">
-	<tbody>
-    <tr>
-		<td style="vertical-align: top; font-weight: bold; text-align: center; font-style: italic; color: rgb(51, 51, 153);"><big><big><big>Графический интерфейс<br><small><small>для сценарного языка</small></small> OneScript </big></big></big></td>
-		<td style="width: 70px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="index.html"><button type="button">Главная</button></a><small><br></small></td>
-		<td style="width: 90px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="screenshot.html"><button type="button">Скриншоты</button></a><br></td>
-		<td style="width: 130px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="howworks.html"><button type="button">Как это работает</button></a><small><br></small></td>
-		<td style="width: 110px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="doc.html"><button type="button">Документация</button></a><small><br></small></td>
-		<td style="width: 75px; text-align: center; color: rgb(51, 51, 51); vertical-align: top;"><a href="down.html"><button type="button">Скачать</button></a><small><br></small></td>
-		<th style="width: 75px; text-align: center; color: rgb(51, 51, 51); vertical-align: top; font-weight: normal;"><a href="kont.html"><button type="button">Контакты</button></a><small><br></small></th>
-    </tr>
-    <tr>
-		<td colspan="7" rowspan="1" style="vertical-align: top; height: 747px; background-color: white;">
-			<hr style="border-color: lightgray;">
-			<p style="margin-left: 40px;">Ознакомьтесь со статьей на ресурсе infostart.ru - <b>Как решать повседневные задачи с помощью OneScript</b> <a href="https://infostart.ru/public/327581/index.php?ID=327581%3Flogout%3Dyes" target="_blank">здесь</a></p>
-			<p style="margin-left: 40px;">Скачайте и установите <b>1Script - язык сценариев для специалистов по 1С</b> (сайт) <a href="http://oscript.io/" target="_blank">здесь</a></p>
-			<div style="margin-left: 40px;">
-				<li>Скрипт, использующий эту библиотеку, условно можно разбить на блоки и в общем случае он будет выглядеть так:</li>
-				<div>
-					<pre class="code">
+    <header>
+        <section>
+            <div>
+                <div id="logo"><big><big><big>Графический интерфейс<br><small><small>для сценарного языка</small></small> OneScript </big></big></big></div>
+            </div>
+            <div style="direction: rtl; overflow:hidden; padding: 8px 0px 0px 0px; margin-top:-7px;">
+				<DIV id=div22>
+					<input type="checkbox" id="toggle">
+					<label id="label1" class="hamburger-icon" onclick="label1click()"><div></div><div></div><div></div></label>
+				</DIV>
+                <nav>
+                    <a onclick="navclick(event)" href="index.html">Главная</a>
+                    <a onclick="navclick(event)" href="screenshot.html">Скриншоты</a>
+                    <a onclick="navclick(event)" href="howworks.html">Как это работает</a>
+                    <a onclick="navclick(event)" href="doc.html">Документация</a>
+                    <a onclick="navclick(event)" href="down.html">Скачать</a>
+                    <a onclick="navclick(event)" href="kont.html">Контакты</a>
+					<input type="checkbox" id="toggle2">
+                    <a id="mobil" onclick="mobilClick()">`</a>
+                </nav>
+            </div>
+        </section>
+    </header>
+    <section>
+		<p>Ознакомьтесь со статьей на ресурсе infostart.ru - <b>Как решать повседневные задачи с помощью OneScript</b> <a href="https://infostart.ru/public/327581/index.php?ID=327581%3Flogout%3Dyes" target="_blank">здесь</a></p>
+		<p>Скачайте и установите <b>1Script - язык сценариев для специалистов по 1С</b> (сайт) <a href="http://oscript.io/" target="_blank">здесь</a></p>
+		<div>
+			<li>Скрипт, использующий эту библиотеку, условно можно разбить на блоки и в общем случае он будет выглядеть так:
+<PRE class=code>
 // === Шапка ===
 // Если необходимо, объявляем переменные.
 Перем Ф, Форма1;
@@ -64,57 +73,62 @@
 
 // === Подвал ===
 // Организуем цикл ожидания событий формы.
-Ф.ЗапуститьОбработкуСобытий();</pre>
-				</div>
-			</div>
-			<p style="margin-left: 40px;"></p>
-			<div style="margin-left: 40px;">
-				<li>Код для сохранения в файл с расширением ".os".</li>
-				<div>
-					<pre class="code">ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");<br>Ф = Новый ФормыДляОдноСкрипта();<br>Форма1 = Ф.Форма();<br>Форма1.Текст = "Форма примеров";<br>Форма1.Ширина = 400;<br>Форма1.Высота = 300;<br>Форма1.Отображать = Истина;<br>Форма1.Показать();<br>Форма1.Активизировать();<br><br>Ф.ЗапуститьОбработкуСобытий();<br></pre>
-				</div>
+Ф.ЗапуститьОбработкуСобытий();
+</PRE>
+			</li>
+		</div>
+		<p></p>
+		<div>
+			<li>Код для сохранения в файл с расширением ".os".
+<pre class=code>
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Текст = "Форма примеров";
+Форма1.Ширина = 400;
+Форма1.Высота = 300;
+Форма1.Отображать = Истина;
+Форма1.Показать();
+Форма1.Активизировать();
+
+Ф.ЗапуститьОбработкуСобытий();
+</pre>
+			</li>
+		</div>
+		
+		<div>
+			<p>Начиная с версии OneScriptForms.dll 2.2.0.0 библиотека работает и под Linux. При установке пакета <b>OneScript</b> в систему будут 
+			установлены библиотеки из набора фреймворка <b>MONO</b> достаточные для работы односкрипта, но для работы с формами этого будет недостаточно. 
+			Потребуется более расширенный набор библиотек из <b>MONO</b>.</p>
+			
+			<li>При тестировании в Linux Mint 20.3 Una.</li><b></b>
+			<div class=marginleft40>
+				<p>Установите пакет <b>mono-complete</b> (тестировалось на версии 6.12.0.182-0xamarin1+ubuntu1804b1)</p>
 			</div>
 			
-			<div style="margin-left: 40px; font-size: 120%;">
-				<p>Запуск в Linux</p>
-			</div>
-			<div style="margin-left: 40px; font-size: 100%;">
-				<p>Начиная с версии OneScriptForms.dll 2.2.0.0 библиотека работает и под Linux. При установке пакета <b>OneScript</b> в систему будут 
-				установлены библиотеки из набора фреймворка <b>MONO</b> достаточные для работы односкрипта, но для работы с формами этого будет недостаточно. 
-				Потребуется более расширенный набор библиотек из <b>MONO</b>.</p>
-				
-				<li>При тестировании в Linux Mint 20.3 Una.</li><b></b>
-				<div style="margin-left: 20px;">
-					<p>Установите пакет <b>mono-complete</b> (тестировалось на версии 6.12.0.182-0xamarin1+ubuntu1804b1)</p>
-				</div>
-				
-				<li>При тестировании в Astra Linux (Orel) 2.12.45</li>
-				<div style="margin-left: 20px;">
-					<p>При сообщении системы: 
-						<br>Gtk-WARNING **: Загружаемый модуль тем не найден в module_path: «adwaita»
-						<br>установите пакет <b>gnome-themes-standard</b>
-						<br><b>sudo apt-get install gnome-themes-standard</b>
-					</p>
-					<p>При сообщении системы: 
-						<br>Gtk-Message: Failed to load module "gail" .......
-						<br>установите пакеты <b>libatk-adaptor</b> и <b>libgail-common</b>
-						<br><b>sudo apt-get install libatk-adaptor libgail-common</b>
-					</p>
-				</div>
-				
-				<li>При тестировании в Альт Рабочая станция 10.0</li>
-				<div style="margin-left: 20px;">
-					<br>Установите пакет <b>mono-full</b> Версия 6.12.0.147-alt1:p10+282075.100.7.1@1629802335 (ALT Linux p10)
-				</div>
+			<li>При тестировании в Astra Linux (Orel) 2.12.45</li>
+			<div class=marginleft40>
+				<p>При сообщении системы: 
+					<br>Gtk-WARNING **: Загружаемый модуль тем не найден в module_path: «adwaita»
+					<br>установите пакет <b>gnome-themes-standard</b>
+					<br><b>sudo apt-get install gnome-themes-standard</b>
+				</p>
+				<p>При сообщении системы: 
+					<br>Gtk-Message: Failed to load module "gail" .......
+					<br>установите пакеты <b>libatk-adaptor</b> и <b>libgail-common</b>
+					<br><b>sudo apt-get install libatk-adaptor libgail-common</b>
+				</p>
 			</div>
 			
-			<div style="margin-left: 40px; font-size: 100%;">
-				<p>Сообщение "Could not set X locale modifiers" не влияет на работу библиотеки форм ни в одной из сборок Linux.</p>
+			<li>При тестировании в Альт Рабочая станция 10.0</li>
+			<div class=marginleft40>
+				<br>Установите пакет <b>mono-full</b> Версия 6.12.0.147-alt1:p10+282075.100.7.1@1629802335 (ALT Linux p10)
 			</div>
-		</td>
-    </tr>
-	</tbody>
-</table>
-<br>
-<br>
-</body></html>
+		</div>
+		
+		<div>
+			<p>Сообщение "Could not set X locale modifiers" не влияет на работу библиотеки форм ни в одной из сборок Linux.</p>
+		</div>
+    </section>
+</body>
+</HTML>
