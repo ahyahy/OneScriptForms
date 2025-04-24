@@ -88,9 +88,9 @@ namespace osf
         }
         
         [ContextMethod("Показать", "Show")]
-        public void Show(string text = null, string title = null, int buttons = 0, int icon = 0)
+        public int Show(string text = null, string title = null, int buttons = 0, int icon = 0)
         {
-            Base_obj.Show(text, title, buttons, icon);
+            return Base_obj.Show(text, title, buttons, icon);
         }
     }
 }
