@@ -151,3 +151,8 @@
 
 ![Пример с кнопкой](https://github.com/ahyahy/OneScriptForms/blob/main/docs/Button1.jpg)
 
+### Статья на Инфостарт
+
+<img src="https://infostart.ru/bitrix/templates/sandbox_empty/assets/tpl/abo/img/logo.svg" align="right" width="128">
+
++ По данной работе на сайте Инфостарт размешена публикация [Графический интерфейс для сценарного языка OneScript и дизайнер форм в придачу](https://infostart.ru/1c/articles/1617468/)
