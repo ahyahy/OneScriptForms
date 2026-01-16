@@ -99,6 +99,7 @@ h4 {
 
 .dtH1 {
     font-weight: bold;
+    margin: 5px 0px 0px 82px;
 }
 
 .dtH2 {
@@ -172,6 +173,7 @@ td.button1 {
 
 p {
     margin: .5em 0em .5em 0em;
+	
 }
 
 blockquote.dtBlock {
@@ -500,7 +502,11 @@ p.pitch0 {
 }
 
     p.pitch0 a {
-        color: #000000;
+        color: #0000ff;
+    }
+	
+	p.pitch0 a:hover {
+		color: red;
     }
 	
 p.pitch20 {
@@ -508,7 +514,11 @@ p.pitch20 {
 }
 
     p.pitch20 a {
-        color: #000000;
+        color: #0000ff;
+    }
+	
+	p.pitch20 a:hover {
+		color: red;
     }
 	
 p.pitch40 {
@@ -516,78 +526,126 @@ p.pitch40 {
 }
 
     p.pitch40 a {
-        color: #000000;
+        color: #0000ff;
     }
+	
+	p.pitch40 a:hover {
+		color: red;
+    }
+	
 p.pitch60 {
     margin: 5px 0px 5px 60px;
 }
 
     p.pitch60 a {
-        color: #000000;
+        color: #0000ff;
     }
+	
+	p.pitch60 a:hover {
+		color: red;
+    }
+	
 p.pitch80 {
     margin: 5px 0px 5px 80px;
 }
 
     p.pitch80 a {
-        color: #000000;
+        color: #0000ff;
     }
+	
+	p.pitch80 a:hover {
+		color: red;
+    }
+	
 p.pitch100 {
     margin: 5px 0px 5px 100px;
 }
 
     p.pitch100 a {
-        color: #000000;
+        color: #0000ff;
     }
+	
+	p.pitch100 a:hover {
+		color: red;
+    }
+	
 p.pitch120 {
     margin: 5px 0px 5px 120px;
 }
 
     p.pitch120 a {
-        color: #000000;
+        color: #0000ff;
     }
-
+	
+	p.pitch120 a:hover {
+		color: red;
+    }
+	
 summary.level20 {
     color: #000000;
     margin: 5px 0px 5px 20px;
 }
 
     summary.level20 a {
-        color: #000000;
+        color: #994d25;
     }
+	
+    summary.level20 a:hover {
+		color: red;
+    }
+	
 summary.level40 {
     color: #000000;
     margin: 5px 0px 5px 40px;
 }
 
     summary.level40 a {
-        color: #000000;
+        color: #994d25;
     }
+	
+    summary.level40 a:hover {
+		color: red;
+    }
+	
 summary.level60 {
     color: #000000;
     margin: 5px 0px 5px 60px;
 }
 
     summary.level60 a {
-        color: #000000;
+        color: #994d25;
     }
+	
+    summary.level60 a:hover {
+		color: red;
+    }
+	
 summary.level80 {
     color: #000000;
     margin: 5px 0px 5px 80px;
 }
 
     summary.level80 a {
-        color: #000000;
+        color: #994d25;
     }
+	
+    summary.level80 a:hover {
+		color: red;
+    }
+	
 summary.level100 {
     color: #000000;
     margin: 5px 0px 5px 100px;
 }
 
     summary.level100 a {
-        color: #000000;
+        color: #994d25;
     }
-
+	
+    summary.level100 a:hover {
+		color: red;
+    }
+	
 
 .treeline, .treeline ul, .treeline li {
     margin: 0px;

@@ -27,7 +27,7 @@ function label1click() {
 			'font-size: 35px;' +
 			'padding: 0px 5px 0px 5px;' +
 			'border: 2px solid rgba(200,200,200);' +
-			'background-color: #ebebeb;' +
+			'background-color: #f5f5f5;' +
 			'z-index: 1200;' +
 			''
 		);
@@ -51,8 +51,8 @@ function label1click() {
 		for (elem of elems32) {
 			elem.setAttribute('style',
 				'float: none;' +
-				'background-color: #ebebeb;' +
-				'color: #ebebeb;' +
+				'background-color: #f5f5f5;' +
+				'color: #f5f5f5;' +
 				'background-image: url("icons8min.png");' +
 				''
 			);
@@ -95,7 +95,7 @@ function label2click() {
 				'display: block;' +
 				'position: absolute;' +
 				'top: 118px;' +
-				'background-color: #ebebeb;' +
+				'background-color: #f5f5f5;' +
 				'padding: 0px;' +
 				'margin-right: 15px;' +
 				'z-index: 1100;' +
@@ -124,6 +124,9 @@ function label2click() {
 			);
 		}
 	}
+
+	let dest = localStorage["destination"];
+	setFocus("destination", dest);
 }
 
 function mobilClick() {
@@ -335,6 +338,22 @@ function navclick(e) {
 }
 
 function divleftClick(e) {
+	//============================
+	if (e.target.nodeName == 'A') {
+		var all = document.getElementsByTagName("A");
+		for (var i=0, max=all.length; i < max; i++) {
+			if (e.target != all[i])
+			{
+				all[i].style.backgroundColor = "#f5f5f5";
+			}
+		}
+	}
+	if (e.target.nodeName == 'A') {
+		e.target.style.backgroundColor = "#c8c8c8";
+		localStorage["destination"] = '' + e.target;
+	}
+	//============================
+
 	let el = document.getElementById('toggle1');
 	if (el.checked) {
 		if (e.target.nodeName == 'A') {
@@ -396,3 +415,65 @@ function clickimg(e) {
 		modal01.style.display = "none";
 	}
 }
+
+// ========================
+function setFocus(eventkey, eventnewValue){
+	if (eventkey == "destination")
+	{
+		let myItem;
+		let all = document.getElementsByTagName("A");
+		for (let i=0, max=all.length; i < max; i++) {
+			let item = all[i];
+			if (item.href == eventnewValue)
+			{
+				myItem = item;
+			}
+		}
+		
+		if (myItem !== undefined)
+		{
+			let all = document.getElementsByTagName("A");
+			for (let i=0, max=all.length; i < max; i++) {
+				let item = all[i];
+				if (item.href == eventnewValue)
+				{
+					item.style.backgroundColor = "#c8c8c8";
+					myItem = item;
+				}
+				else
+				{
+					item.style.backgroundColor = "#f5f5f5";
+				}
+			}
+			
+			let NewDetail;
+			document.querySelectorAll('details').forEach(detail => {
+				let t = detail.querySelectorAll("*");
+				let doOpen = false;
+				for(i=0; i<t.length; i++)
+				{
+					if (t[i].href == myItem.href)
+					{
+						doOpen = true;
+						NewDetail = detail;
+					}
+				}
+				if (doOpen)
+				{
+					detail.open = true;
+				}
+				else
+				{
+					detail.open = false;
+				}
+			});		
+			document.getElementById('divleftid').scrollTop = NewDetail.offsetTop - 150;
+		}
+	}
+}
+
+window.addEventListener("storage", function (event) {
+	setFocus(event.key, event.newValue);
+});
+//============================
+
