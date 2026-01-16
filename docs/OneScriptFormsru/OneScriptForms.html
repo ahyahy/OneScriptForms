@@ -7,7 +7,7 @@
     <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
     <script defer src="mobilstyle.js"></script>
 </HEAD>
-<BODY id=bodyID class=dtBODY>
+<BODY id=bodyID class=dtBODY onclick="divrightClick(event)">
     <DIV id=nsbanner>
         <DIV id=bannerrow1>
             <TABLE class=bannerparthead cellSpacing=0>
@@ -46,8 +46,16 @@
                         <TD width="50%">Предоставляет класс контейнеров для сведений об адресе веб-узла.</TD>
                     </TR>
                     <TR vAlign=top>
+                        <TD width="50%"><A href="OneScriptForms.SslStreamWrapper.html">SSLПоток&nbsp;(SslStreamWrapper)</A></TD>
+                        <TD width="50%">Предоставляет поток, используемый для обмена данными с клиентским сервером, использующим протокол безопасности SSL для проверки подлинности сервера и при необходимости клиента.</TD>
+                    </TR>
+                    <TR vAlign=top>
                         <TD width="50%"><A href="OneScriptForms.TCPClient.html">TCPКлиент&nbsp;(TCPClient)</A></TD>
                         <TD width="50%">Предоставляет клиентские подключения для сетевых служб протокола TCP.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OneScriptForms.TCPClientSSL.html">TCPКлиентSSL&nbsp;(TCPClientSSL)</A></TD>
+                        <TD width="50%">Предоставляет клиентские подключения, которые используют протокол SSL для защиты данных. SSL обеспечивает шифрование соединения, аутентификацию сторон и проверку целостности данных.</TD>
                     </TR>
                     <TR vAlign=top>
                         <TD width="50%"><A href="OneScriptForms.TCPListener.html">TCPСлушатель&nbsp;(TCPListener)</A></TD>
@@ -477,6 +485,14 @@
                         <TD width="50%">Представляет базовую функциональность для всех меню.</TD>
                     </TR>
                     <TR vAlign=top>
+                        <TD width="50%"><A href="OneScriptForms.MultithreadedTCPServer.html">МногопоточныйTCPСервер&nbsp;(MultithreadedTCPServer)</A></TD>
+                        <TD width="50%">Представляет многопоточный TCP сервер, который используется для приема клиентских подключений и взаимодействия с ними.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OneScriptForms.MultithreadedTCPServerSSL.html">МногопоточныйTCPСерверSSL&nbsp;(MultithreadedTCPServerSSL)</A></TD>
+                        <TD width="50%">Представляет многопоточный TCP-сервер, который поддерживает SSL (Secure Sockets Layer) для безопасной коммуникации.</TD>
+                    </TR>
+                    <TR vAlign=top>
                         <TD width="50%"><A href="OneScriptForms.MouseEventArgs.html">МышьАрг&nbsp;(MouseEventArgs)</A></TD>
                         <TD width="50%">Предоставляет данные для событий <B>ПриОтпусканииМыши&nbsp;(MouseUp)</B>, <B>ПриНажатииКнопкиМыши&nbsp;(MouseDown)</B> и <B>ПриПеремещенииМыши&nbsp;(MouseMove)</B>.</TD>
                     </TR>
@@ -756,14 +772,20 @@
                         <TD width="50%">Представляет коллекцию ключей и значений.</TD>
                     </TR>
                     <TR vAlign=top>
+                        <TD width="50%"><A href="OneScriptForms.ServerEventArgs.html">СобытиеСервераАрг&nbsp;(ServerEventArgs)</A></TD>
+                        <TD width="50%">Предоставляет данные для событий: 
+							<B>МногопоточныйTCPСервер.ПриОтключенииКлиента (MultithreadedTCPServer.ClientDisconnected)</B>, 
+							<B>МногопоточныйTCPСервер.ПриОшибкеСервера (MultithreadedTCPServer.ServerError)</B>, 
+							<B>МногопоточныйTCPСервер.ПриПодключенииКлиента (MultithreadedTCPServer.ClientConnected)</B>, 
+							<B>МногопоточныйTCPСервер.СерверПолучилДанные (MultithreadedTCPServer.MessageReceived)</B>.
+						</TD>
+					</TR>
+                    <TR vAlign=top>
                         <TD width="50%"><A href="OneScriptForms.FileSystemEventArgs.html">СобытиеФайловойСистемыАрг&nbsp;(FileSystemEventArgs)</A></TD>
-                        <TD width="50%">
-                            Предоставляет данные для событий каталога:
-                            <A href="OneScriptForms.FileSystemWatcher.Changed.html">ПриИзменении&nbsp;(Changed)</A>
-                            ,
-                            <A href="OneScriptForms.FileSystemWatcher.Created.html">ПриСоздании&nbsp;(Created)</A>
-                            ,
-                            <A href="OneScriptForms.FileSystemWatcher.Deleted.html">ПриУдалении&nbsp;(Deleted)</A>.
+                        <TD width="50%">Предоставляет данные для событий каталога:
+							<B>НаблюдательФайловойСистемы.ПриИзменении&nbsp;(FileSystemWatcher.Changed)</B>, 
+							<B>НаблюдательФайловойСистемы.ПриСоздании&nbsp;(FileSystemWatcher.Created)</B>, 
+							<B>НаблюдательФайловойСистемы.ПриУдалении&nbsp;(FileSystemWatcher.Deleted)</B>.
                         </TD>
                     </TR>
                     <TR vAlign=top>
@@ -1339,6 +1361,10 @@
                     <TR vAlign=top>
                         <TD width="50%"><A href="OneScriptForms.PropertySort.html">СортировкаСвойств&nbsp;(PropertySort)</A></TD>
                         <TD width="50%">Указывает, как свойства сортируются в <A href="OneScriptForms.PropertyGrid.html">СеткаСвойств&nbsp;(PropertyGrid)</A>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><A href="OneScriptForms.MultithreadedTCPServerState.html">СостояниеМногопоточногоTCPСервера&nbsp;(MultithreadedTCPServerState)</A></TD>
+                        <TD width="50%">Указывает состояние TCP сервера.</TD>
                     </TR>
                     <TR vAlign=top>
                         <TD width="50%"><A href="OneScriptForms.FormWindowState.html">СостояниеОкнаФормы&nbsp;(FormWindowState)</A></TD>
