@@ -1,13 +1,11 @@
-﻿// Скрипт читает файлы справки в C:\444\OneScriptFormsru\ и создает *.cs файлы в каталоге C:\444\ВыгруженныеОбъекты\
+﻿// Скрипт читает файлы справки в C:\444\OneScriptForms\docs\OneScriptFormsru\ и создает *.cs файлы в каталоге C:\444\ВыгруженныеОбъекты\
 // Из каталога C:\444\ВыгруженныеОбъекты\ файлы *.cs можно скопировать в каталог проекта.
 
 Перем СтрДирективы, СтрШапка, СтрРазделОбъявленияПеременных, СтрКонструктор, СтрBase_obj, СтрСвойства, СтрМетоды, СтрПодвал, СтрВыгрузкиПеречислений;
 Перем СтрРазделОбъявленияПеременныхДляПеречисления, СтрСвойстваДляПеречисления, СтрМетодовСистема, СписокСтрМетодовСистема;
 Перем СписокЗамен, ИменаКалассовПеречислений, ОтобранныеПеречисления;
-
 Перем КаталогСправки, КаталогВыгрузки;
-Перем Ф;
-
+Перем Ф, СписокПроцессов, ПутьДо_oscript;
 
 Функция ОтобратьФайлы(Фильтр)
 	// Фильтр = Класс Конструктор Члены Свойства Свойство Методы Метод Перечисление
@@ -100,8 +98,24 @@
 		|using System.Reflection;
 		|using System.Runtime.InteropServices;
 		|using ScriptEngine.HostedScript.Library;
+		|using ScriptEngine.HostedScript.Library.Binary;
 		|
 		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "SupportTCPServer" Тогда
+		Стр = "";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "TCPClientSSL" Тогда
+		Стр = "";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "MultithreadedTCPServerSSL" Тогда
+		Стр = "";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "ServerEventArgs" Тогда
+		Стр = "";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "SslStreamWrapper" Тогда
+		Стр = "";
 		Возврат Стр;
 	ИначеЕсли ИмяКонтекстКлассаАнгл = "DataGridViewCellExHelper" Тогда
 		Стр = 
@@ -135,11 +149,25 @@
 		|
 		|";
 		Возврат Стр;
-	ИначеЕсли ИмяКонтекстКлассаАнгл = "DataGridViewColumnSortMode" или 
-		ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxDisplayStyle" Тогда
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "MultithreadedTCPServer" Тогда
+		Стр = "";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "MultithreadedTCPServerState" Тогда
+		Стр = 
+		"using ScriptEngine.Machine.Contexts;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "DataGridViewColumnSortMode" Тогда
 		Стр = 
 		"using ScriptEngine.Machine.Contexts;
 		|using System.Windows.Forms;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "DataGridViewComboBoxDisplayStyle" Тогда
+		Стр = 
+		"using ScriptEngine.Machine.Contexts;
 		|
 		|";
 		Возврат Стр;
@@ -323,7 +351,6 @@
 		"using System;
 		|using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
-		|using System.ComponentModel;
 		|
 		|";
 		Возврат Стр;
@@ -383,7 +410,6 @@
 	ИначеЕсли ИмяКонтекстКлассаАнгл = "Button" или 
 		ИмяКонтекстКлассаАнгл = "DateTimePicker" или 
 		ИмяКонтекстКлассаАнгл = "DataGrid" или 
-		ИмяКонтекстКлассаАнгл = "EventArgs" или 
 		ИмяКонтекстКлассаАнгл = "ComboBoxObjectCollection" или 
 		ИмяКонтекстКлассаАнгл = "Color" или 
 		ИмяКонтекстКлассаАнгл = "GroupBox" или 
@@ -415,20 +441,25 @@
 		|
 		|";
 		Возврат Стр;
-	ИначеЕсли ИмяКонтекстКлассаАнгл = "IpHostEntry" или 
-		ИмяКонтекстКлассаАнгл = "TCPClient" Тогда
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "EventArgs" Тогда
 		Стр = 
 		"using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
 		|
 		|";
 		Возврат Стр;
-	ИначеЕсли ИмяКонтекстКлассаАнгл = "TCPListener" Тогда
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "IpHostEntry" Тогда
 		Стр = 
 		"using ScriptEngine.Machine.Contexts;
-		|using System.Reflection;
+		|using ScriptEngine.Machine;
 		|
 		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "TCPClient" Тогда
+		Стр = "";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "TCPListener" Тогда
+		Стр = "";
 		Возврат Стр;
 	ИначеЕсли ИмяКонтекстКлассаАнгл = "Dns" или 
 		ИмяКонтекстКлассаАнгл = "IpAddress" Тогда
@@ -438,49 +469,171 @@
 		|";
 		Возврат Стр;
 	ИначеЕсли ИмяКонтекстКлассаАнгл = "NetworkStream" Тогда
-		Стр = 
-		"using System;
-		|using ScriptEngine.Machine.Contexts;
-		|
-		|";
+		Стр = "";
 		Возврат Стр;
-	ИначеЕсли ИмяКонтекстКлассаАнгл = "TreeViewAdv" или 
-		ИмяКонтекстКлассаАнгл = "TreeColumnCollection" или 
-		ИмяКонтекстКлассаАнгл = "TreeColumn" или 
-		ИмяКонтекстКлассаАнгл = "TreeNodeAdv" или 
-		ИмяКонтекстКлассаАнгл = "NodeCheckBox" или 
-		ИмяКонтекстКлассаАнгл = "NodeControlsCollection" или 
-		ИмяКонтекстКлассаАнгл = "TreeViewAdvSupport" или 
-		ИмяКонтекстКлассаАнгл = "NodeStateIcon" или 
-		ИмяКонтекстКлассаАнгл = "NodeComboBox" или 
-		ИмяКонтекстКлассаАнгл = "NodeDecimalTextBox" или 
-		ИмяКонтекстКлассаАнгл = "NodeNumericUpDown" или 
-		ИмяКонтекстКлассаАнгл = "NodeTextBox" или 
-		ИмяКонтекстКлассаАнгл = "NodeComboBoxObjectCollection" или 
-		ИмяКонтекстКлассаАнгл = "SelectedTreeNodeAdvCollection" или 
-		ИмяКонтекстКлассаАнгл = "TreeNodeAdvCollection" Тогда
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "TreeViewAdvSupport" Тогда
 		Стр = 
 		"using System;
 		|using System.Windows.Forms;
 		|using System.Windows.Forms.VisualStyles;
 		|using System.Threading;
-		|using System.Text;
-		|using System.Security.Permissions;
-		|using System.Runtime.Serialization;
 		|using System.Runtime.InteropServices;
 		|using System.Reflection;
 		|using System.IO;
 		|using System.Globalization;
 		|using System.Drawing;
 		|using System.Drawing.Imaging;
+		|using System.ComponentModel;
+		|using System.Collections;
+		|using System.Collections.Generic;
+		|using Aga.Controls.Tree.NodeControls;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "TreeViewAdv" Тогда
+		Стр = 
+		"using System;
+		|using System.Windows.Forms;
+		|using System.Threading;
+		|using System.Security.Permissions;
+		|using System.Reflection;
+		|using System.IO;
+		|using System.Drawing;
+		|using System.Drawing.Imaging;
 		|using System.Drawing.Drawing2D;
-		|using System.Drawing.Design;
 		|using System.ComponentModel;
 		|using System.Collections;
 		|using System.Collections.ObjectModel;
 		|using System.Collections.Generic;
 		|using Aga.Controls.Tree.NodeControls;
 		|using Aga.Controls.Threading;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "TreeNodeAdvCollection" Тогда
+		Стр = 
+		"using ScriptEngine.Machine.Contexts;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "TreeNodeAdv" Тогда
+		Стр = 
+		"using System;
+		|using System.Windows.Forms;
+		|using System.Drawing;
+		|using System.Collections.ObjectModel;
+		|using System.Collections.Generic;
+		|using Aga.Controls.Tree.NodeControls;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "TreeColumnCollection" Тогда
+		Стр = 
+		"using System;
+		|using System.Windows.Forms;
+		|using System.Collections.ObjectModel;
+		|using ScriptEngine.Machine.Contexts;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "TreeColumn" Тогда
+		Стр = 
+		"using System;
+		|using System.Windows.Forms;
+		|using System.Windows.Forms.VisualStyles;
+		|using System.Drawing;
+		|using System.Drawing.Imaging;
+		|using System.Collections.Generic;
+		|using ScriptEngine.Machine.Contexts;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "SelectedTreeNodeAdvCollection" Тогда
+		Стр = 
+		"using ScriptEngine.Machine.Contexts;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "NodeTextBox" Тогда
+		Стр = 
+		"using System;
+		|using System.Windows.Forms;
+		|using System.Drawing;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "NodeStateIcon" Тогда
+		Стр = 
+		"using System;
+		|using System.Drawing;
+		|using System.Collections.Generic;
+		|using ScriptEngine.Machine.Contexts;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "NodeNumericUpDown" Тогда
+		Стр = 
+		"using System;
+		|using System.Windows.Forms;
+		|using System.Drawing;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "NodeDecimalTextBox" Тогда
+		Стр = 
+		"using System;
+		|using System.Windows.Forms;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "NodeControlsCollection" Тогда
+		Стр = 
+		"using System;
+		|using System.Collections.ObjectModel;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "NodeComboBoxObjectCollection" Тогда
+		Стр = 
+		"using System.Collections.Generic;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "NodeComboBox" Тогда
+		Стр = 
+		"using System;
+		|using System.Windows.Forms;
+		|using System.Text;
+		|using System.Drawing;
+		|using System.ComponentModel;
+		|using System.Collections;
+		|using System.Collections.Generic;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "NodeCheckBox" Тогда
+		Стр = 
+		"using System;
+		|using System.Windows.Forms;
+		|using System.Windows.Forms.VisualStyles;
+		|using System.IO;
+		|using System.Drawing;
 		|using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
 		|
@@ -506,8 +659,12 @@
 		|
 		|";
 		Возврат Стр;
-	ИначеЕсли ИмяКонтекстКлассаАнгл = "CollectionBase" или 
-		ИмяКонтекстКлассаАнгл = "ScrollBar" Тогда
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "ScrollBar" Тогда
+		Стр = 
+		"
+		|";
+		Возврат Стр;
+	ИначеЕсли ИмяКонтекстКлассаАнгл = "CollectionBase" Тогда
 		Стр = 
 		"using System;
 		|
@@ -541,7 +698,6 @@
 		"using System;
 		|using System.Linq;
 		|using System.Reflection;
-		|using System.Runtime.InteropServices;
 		|
 		|";
 		Возврат Стр;
@@ -699,7 +855,6 @@
 		|using System.Windows.Forms;
 		|using System.Reflection;
 		|using System.Runtime.InteropServices;
-		|using System.Threading;
 		|
 		|";
 		Возврат Стр;
@@ -755,7 +910,6 @@
 		|using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
 		|using System.Reflection;
-		|using System.Runtime.InteropServices;
 		|
 		|";
 		Возврат Стр;
@@ -851,13 +1005,13 @@
 		|        public static System.Collections.Hashtable hashtable = new Hashtable();
 		|        public static System.Random Random = new Random();
 		|        public static DateTime gridMouseDownTime = System.DateTime.Now;// для срабатывания двойного клика в ячейке DataGridTextBoxColumn сетки данных
-		|		
+		|
 		|        public static bool useMainForm = true;
 		|        public static bool handleEvents = false;
 		|        public static FormsCollection formsCollection;
 		|        private static OneScriptForms instance;
 		|        private static object syncRoot = new Object();
-		|		
+		|
 		|        public static bool systemVersionIsMicrosoft = false;
 		|        public static bool goOn = true;";
 	ИначеЕсли ИмяКласса = "ManagedProperty" Тогда
@@ -901,8 +1055,21 @@
 
 Функция Конструктор(ИмяФайлаЧленов, ИмяКласса)
 	Если ИмяКласса = "OneScriptForms" Тогда
-		Стр = 
-		"        public static OneScriptForms getInstance()
+		Стр = "
+		|        public static OneScriptMultithreadedTCPServer osmtcpServer = null;
+		|        public static OneScriptMultithreadedTCPServer OSMTCPServer
+		|        {
+		|            get { return osmtcpServer; }
+		|            set
+		|            {
+		|                if (osmtcpServer == null)
+		|                {
+		|                    osmtcpServer = value;
+		|                }
+		|            }
+		|        }
+		|
+		|        public static OneScriptForms getInstance()
 		|        {
 		|            if (instance == null)
 		|            {
@@ -920,9 +1087,167 @@
 		|            {
 		|                systemVersionIsMicrosoft = true;
 		|            }
+		|
+		|            instance.ClientConnected += Instance_ClientConnected;
+		|            instance.ClientDisconnected += Instance_ClientDisconnected;
+		|            instance.ServerReceived += Instance_ServerReceived;
+		|            instance.ErrorServer += Instance_ErrorServer;
+		|            instance.ClientReceived += Instance_ClientReceived;
+		|
 		|            return instance;
 		|        }
-		|		
+		|
+		|        private static void Instance_ClientDisconnected(object sender, ServerEventArgs e)
+		|        {
+		|            if (instance.ClientDisconnectedProp != null)
+		|            {
+		|                ServerEventArgs ServerEventArgs1 = new ServerEventArgs();
+		|                ServerEventArgs1.EventString = clientDisconnected;
+		|                ServerEventArgs1.Sender = instance;
+		|                ServerEventArgs1.Parameter = OneScriptForms.GetEventParameter(instance.ClientDisconnectedProp);
+		|                ServerEventArgs1.clientId = e.clientId;
+		|                ClServerEventArgs ClServerEventArgs1 = new ClServerEventArgs(ServerEventArgs1);
+		|                OneScriptForms.Event = ClServerEventArgs1;
+		|                OneScriptForms.ExecuteEvent(instance.ClientDisconnectedProp);
+		|            }
+		|        }
+		|
+		|        private static void Instance_ClientConnected(object sender, ServerEventArgs e)
+		|        {
+		|            if (instance.ClientConnectedProp != null)
+		|            {
+		|                ServerEventArgs ServerEventArgs1 = new ServerEventArgs();
+		|                ServerEventArgs1.EventString = clientConnected;
+		|                ServerEventArgs1.Sender = instance;
+		|                ServerEventArgs1.Parameter = OneScriptForms.GetEventParameter(instance.ClientConnectedProp);
+		|                ServerEventArgs1.clientId = e.clientId;
+		|                ClServerEventArgs ClServerEventArgs1 = new ClServerEventArgs(ServerEventArgs1);
+		|                OneScriptForms.Event = ClServerEventArgs1;
+		|                OneScriptForms.ExecuteEvent(instance.ClientConnectedProp);
+		|            }
+		|        }
+		|
+		|        private static void Instance_ServerReceived(object sender, ServerEventArgs e)
+		|        {
+		|            if (instance.ServerReceivedProp != null)
+		|            {
+		|                ServerEventArgs ServerEventArgs1 = new ServerEventArgs();
+		|                ServerEventArgs1.EventString = serverReceived;
+		|                ServerEventArgs1.Sender = instance;
+		|                ServerEventArgs1.Parameter = OneScriptForms.GetEventParameter(instance.ServerReceivedProp);
+		|                ServerEventArgs1.clientId = e.clientId;
+		|                ServerEventArgs1.data = e.data;
+		|                ClServerEventArgs ClServerEventArgs1 = new ClServerEventArgs(ServerEventArgs1);
+		|                OneScriptForms.Event = ClServerEventArgs1;
+		|                OneScriptForms.ExecuteEvent(instance.ServerReceivedProp);
+		|            }
+		|        }
+		|
+		|        private static void Instance_ErrorServer(object sender, ServerEventArgs e)
+		|        {
+		|            if (instance.ErrorServerProp != null)
+		|            {
+		|                ServerEventArgs ServerEventArgs1 = new ServerEventArgs();
+		|                ServerEventArgs1.EventString = errorServer;
+		|                ServerEventArgs1.Sender = instance;
+		|                ServerEventArgs1.Parameter = OneScriptForms.GetEventParameter(instance.ErrorServerProp);
+		|                ServerEventArgs1.serverError = e.serverError;
+		|                ClServerEventArgs ClServerEventArgs1 = new ClServerEventArgs(ServerEventArgs1);
+		|                OneScriptForms.Event = ClServerEventArgs1;
+		|                OneScriptForms.ExecuteEvent(instance.ErrorServerProp);
+		|            }
+		|        }
+		|
+		|        private static void Instance_ClientReceived(object sender, ServerEventArgs e)
+		|        {
+		|            if (instance.ClientReceivedProp != null)
+		|            {
+		|                ServerEventArgs ServerEventArgs1 = new ServerEventArgs();
+		|                ServerEventArgs1.EventString = clientReceived;
+		|                ServerEventArgs1.Sender = instance;
+		|                ServerEventArgs1.Parameter = OneScriptForms.GetEventParameter(instance.ClientReceivedProp);
+		|                ServerEventArgs1.data = e.data;
+		|                ClServerEventArgs ClServerEventArgs1 = new ClServerEventArgs(ServerEventArgs1);
+		|                OneScriptForms.Event = ClServerEventArgs1;
+		|                OneScriptForms.ExecuteEvent(instance.ClientReceivedProp);
+		|            }
+		|        }
+		|
+		|        public event EventHandler<ServerEventArgs> ClientReceived;
+		|        public void OnClientReceived(BinaryDataBuffer p1)
+		|        {
+		|            var handler = ClientReceived;
+		|            if (handler != null)
+		|            {
+		|                handler(this, new ServerEventArgs(p1));
+		|            }
+		|        }
+		|
+		|        public event EventHandler<ServerEventArgs> ClientConnected;
+		|        public void OnClientConnected(TsEventArgs args)
+		|        {
+		|            var handler = ClientConnected;
+		|            if (handler != null)
+		|            {
+		|                handler(this, new ServerEventArgs(args));
+		|            }
+		|        }
+		|
+		|        public event EventHandler<ServerEventArgs> ClientDisconnected;
+		|        public void OnClientDisconnected(TsEventArgs args)
+		|        {
+		|            var handler = ClientDisconnected;
+		|            if (handler != null)
+		|            {
+		|                handler(this, new ServerEventArgs(args));
+		|            }
+		|        }
+		|
+		|        public event EventHandler<ServerEventArgs> ServerReceived;
+		|        public void OnServerReceived(TsEventArgs args)
+		|        {
+		|            var handler = ServerReceived;
+		|            if (handler != null)
+		|            {
+		|                handler(this, new ServerEventArgs(args));
+		|            }
+		|        }
+		|
+		|        public event EventHandler<ServerEventArgs> ErrorServer;
+		|        public void OnErrorServer(TsEventArgs args)
+		|        {
+		|            var handler = ErrorServer;
+		|            if (handler != null)
+		|            {
+		|                handler(this, new ServerEventArgs(args));
+		|            }
+		|        }
+		|
+		|        public static void ProcessingClientReceived(BinaryDataBuffer p1)
+		|        {
+		|            instance.OnClientReceived(p1);
+		|        }
+		|
+		|        public static void ProcessingClientDisconnected(TsEventArgs args)
+		|        {
+		|            instance.OnClientDisconnected(args);
+		|        }
+		|
+		|        public static void ProcessingErrorServer(TsEventArgs args)
+		|        {
+		|            instance.OnErrorServer(args);
+		|        }
+		|
+		|        public static void ProcessingClientConnected(TsEventArgs args)
+		|        {
+		|            instance.OnClientConnected(args);
+		|        }
+		|
+		|        public static void ProcessingServerReceived(TsEventArgs args)
+		|        {
+		|            instance.OnServerReceived(args);
+		|        }
+		|
 		|        private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
 		|        {
 		|            if (e.Exception.TargetSite.ToString() != ""Void SetDataObject(System.Object, Boolean, Int32, Int32)"")
@@ -1064,28 +1389,12 @@
 		|            Base_obj = MaskedTextBox1;
 		|            MaskedTextBox1.Mask = p1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClMaskedTextBox(osf.MaskedTextBox p1)
 		|        {
 		|            MaskedTextBox MaskedTextBox1 = p1;
 		|            MaskedTextBox1.dll_obj = this;
 		|            Base_obj = MaskedTextBox1;
-		|        }//end_constr
-		|";
-	ИначеЕсли ИмяКласса = "TCPClient" Тогда
-		Стр = 
-		"        public ClTCPClient(string HostName = null, int port = 0)
-		|        {
-		|            TCPClient TCPClient1 = new TCPClient(HostName, port);
-		|            TCPClient1.dll_obj = this;
-		|            Base_obj = TCPClient1;
-		|        }//end_constr
-		|		
-		|        public ClTCPClient(TCPClient p1)
-		|        {
-		|            TCPClient TCPClient1 = p1;
-		|            TCPClient1.dll_obj = this;
-		|            Base_obj = TCPClient1;
 		|        }//end_constr
 		|";
 	ИначеЕсли ИмяКласса = "DataGridView" Тогда
@@ -1098,7 +1407,7 @@
 		|            columns = new ClDataGridViewColumnCollection(Base_obj.Columns);
 		|            rows = new ClDataGridViewRowCollection(Base_obj.Rows);
 		|        }//end_constr
-		|		
+		|
 		|        public ClDataGridView(DataGridView p1)
 		|        {
 		|            DataGridView DataGridView1 = p1;
@@ -1117,7 +1426,7 @@
 		|            Base_obj = DataGridViewRow1;
 		|            cells = new ClDataGridViewCellCollection(Base_obj.Cells);
 		|        }//end_constr
-		|		
+		|
 		|        public ClDataGridViewRow(DataGridViewRow p1)
 		|        {
 		|            DataGridViewRow DataGridViewRow1 = p1;
@@ -1134,7 +1443,7 @@
 		|            DataGridViewCellStyle1.dll_obj = this;
 		|            Base_obj = DataGridViewCellStyle1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClDataGridViewCellStyle(DataGridViewCellStyle p1)
 		|        {
 		|            DataGridViewCellStyle DataGridViewCellStyle1 = p1;
@@ -1150,7 +1459,7 @@
 		|            DataGridTableStyle1.dll_obj = this;
 		|            Base_obj = DataGridTableStyle1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClDataGridTableStyle(DataGridTableStyle p1)
 		|        {
 		|            DataGridTableStyle DataGridTableStyle1 = p1;
@@ -1166,7 +1475,7 @@
 		|            IpAddress1.dll_obj = this;
 		|            Base_obj = IpAddress1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClIpAddress(osf.IpAddress p1)
 		|        {
 		|            IpAddress IpAddress1 = p1;
@@ -1197,33 +1506,10 @@
 		|            IpHostEntry IpHostEntry1 = new IpHostEntry(p1);
 		|            Base_obj = IpHostEntry1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClIpHostEntry(osf.IpHostEntry p1)
 		|        {
 		|            Base_obj = p1;
-		|        }//end_constr
-		|";
-	ИначеЕсли ИмяКласса = "NetworkStream" Тогда
-		Стр = 
-		"        public ClNetworkStream(System.Net.Sockets.NetworkStream p1)
-		|        {
-		|            Base_obj = p1;
-		|        }//end_constr
-		|";
-	ИначеЕсли ИмяКласса = "TCPListener" Тогда
-		Стр = 
-		"        public ClTCPListener(ClIpAddress p1, int p2)
-		|        {
-		|            TCPListener TCPListener1 = new TCPListener(p1.Base_obj, p2);
-		|            TCPListener1.dll_obj = this;
-		|            Base_obj = TCPListener1;
-		|        }//end_constr
-		|		
-		|        public ClTCPListener(osf.TCPListener p1)
-		|        {
-		|            TCPListener TCPListener1 = p1;
-		|            TCPListener1.dll_obj = this;
-		|            Base_obj = TCPListener1;
 		|        }//end_constr
 		|";
 	ИначеЕсли ИмяКласса = "TreeColumnEventArgs" Тогда
@@ -1290,7 +1576,7 @@
 		|            Base_obj = new Aga.Controls.Tree.NodeControls.NodeCheckBox();
 		|            Base_obj.dll_obj = this;
 		|        }//end_constr
-		|		
+		|
 		|        public ClNodeCheckBox(Aga.Controls.Tree.NodeControls.NodeCheckBox p1)
 		|        {
 		|            Base_obj = p1;
@@ -1304,7 +1590,7 @@
 		|            Base_obj = new Aga.Controls.Tree.NodeControls.NodeStateIcon();
 		|            Image = new ClBitmap(""iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAK0lEQVR42u3NMQEAAAiEQL5/aF2s8JMQgAswFMsBKf1HQEBAQEBA4BlQawFcRy4BIkls/QAAAABJRU5ErkJggg=="");
 		|        }//end_constr
-		|		
+		|
 		|        public ClNodeStateIcon(Aga.Controls.Tree.NodeControls.NodeStateIcon p1)
 		|        {
 		|            Base_obj = p1;
@@ -1317,7 +1603,7 @@
 		|            Base_obj = new Aga.Controls.Tree.NodeControls.NodeComboBox();
 		|            Base_obj.dll_obj = this;
 		|        }//end_constr
-		|		
+		|
 		|        public ClNodeComboBox(Aga.Controls.Tree.NodeControls.NodeComboBox p1)
 		|        {
 		|            Base_obj = p1;
@@ -1331,7 +1617,7 @@
 		|            Base_obj = new Aga.Controls.Tree.NodeControls.NodeDecimalTextBox();
 		|            Base_obj.dll_obj = this;
 		|        }//end_constr
-		|		
+		|
 		|        public ClNodeDecimalTextBox(Aga.Controls.Tree.NodeControls.NodeDecimalTextBox p1)
 		|        {
 		|            Base_obj = p1;
@@ -1345,7 +1631,7 @@
 		|            Base_obj = new Aga.Controls.Tree.NodeControls.NodeNumericUpDown();
 		|            Base_obj.dll_obj = this;
 		|        }//end_constr
-		|		
+		|
 		|        public ClNodeNumericUpDown(Aga.Controls.Tree.NodeControls.NodeNumericUpDown p1)
 		|        {
 		|            Base_obj = p1;
@@ -1359,7 +1645,7 @@
 		|            Base_obj = new Aga.Controls.Tree.NodeControls.NodeTextBox();
 		|            Base_obj.dll_obj = this;
 		|        }//end_constr
-		|		
+		|
 		|        public ClNodeTextBox(Aga.Controls.Tree.NodeControls.NodeTextBox p1)
 		|        {
 		|            Base_obj = p1;
@@ -1374,7 +1660,7 @@
 		|            DataGridViewGrouperControl1.dll_obj = this;
 		|            Base_obj = DataGridViewGrouperControl1;
 		|        }
-		|		
+		|
 		|        public ClDataGridViewGrouperControl(Subro.Controls.DataGridViewGrouper p1)
 		|        {
 		|            DataGridViewGrouperControl DataGridViewGrouperControl1 = new DataGridViewGrouperControl();
@@ -1391,7 +1677,7 @@
 		|                DataGridViewGrouperControl1.Chk.CheckState = CheckState.Unchecked;
 		|            }
 		|        }
-		|		
+		|
 		|        public ClDataGridViewGrouperControl(DataGridViewGrouperControl p1)
 		|        {
 		|            DataGridViewGrouperControl DataGridViewGrouperControl1 = p1;
@@ -1407,7 +1693,7 @@
 		|            DataGridViewGrouper1.dll_obj = this;
 		|            Base_obj = DataGridViewGrouper1;
 		|        }
-		|		
+		|
 		|        public ClDataGridViewGrouper(osf.ClDataGridView p1)
 		|        {
 		|            DataGridViewGrouper DataGridViewGrouper1 = new DataGridViewGrouper(p1.Base_obj.M_DataGridView);
@@ -1437,7 +1723,7 @@
 		|            TreeColumn1.dll_obj = this;
 		|            Base_obj = TreeColumn1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClTreeColumn(TreeColumn p1)
 		|        {
 		|            TreeColumn TreeColumn1 = p1;
@@ -1491,7 +1777,7 @@
 		|            DataRowView1.dll_obj = this;
 		|            Base_obj = DataRowView1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClDataRowView(DataRowView p1)
 		|        {
 		|            DataRowView DataRowView1 = p1;
@@ -1514,7 +1800,7 @@
 		|            DataView1.dll_obj = this;
 		|            Base_obj = DataView1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClDataView(DataView p1)
 		|        {
 		|            DataView DataView1 = p1;
@@ -1553,7 +1839,7 @@
 		|            DictionaryEntry1.dll_obj = this;
 		|            Base_obj = DictionaryEntry1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClDictionaryEntry(DictionaryEntry p1)
 		|        {
 		|            DictionaryEntry DictionaryEntry1 = p1;
@@ -1569,7 +1855,7 @@
 		|            HatchBrush1.dll_obj = this;
 		|            Base_obj = HatchBrush1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClHatchBrush(HatchBrush p1)
 		|        {
 		|            HatchBrush HatchBrush1 = p1;
@@ -1585,7 +1871,7 @@
 		|            ImageList1.dll_obj = this;
 		|            Base_obj = ImageList1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClImageList(ImageList p1)
 		|        {
 		|            ImageList ImageList1 = p1;
@@ -1601,7 +1887,7 @@
 		|            DataGridCell1.dll_obj = this;
 		|            Base_obj = DataGridCell1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClDataGridCell(DataGridCell p1)
 		|        {
 		|            DataGridCell DataGridCell1 = p1;
@@ -1624,7 +1910,7 @@
 		|            DataColumn1.dll_obj = this;
 		|            Base_obj = DataColumn1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClDataColumn(string p1, System.Type p2)
 		|        {
 		|            DataColumn DataColumn1 = new DataColumn(p1, p2);
@@ -1647,7 +1933,7 @@
 		|            DataTable1.dll_obj = this;
 		|            Base_obj = DataTable1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClDataTable(string p1)
 		|        {
 		|            DataTable DataTable1 = new DataTable(p1);
@@ -1670,14 +1956,14 @@
 		|            LinkArea1.dll_obj = this;
 		|            Base_obj = LinkArea1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClLinkArea(LinkArea p1)
 		|        {
 		|            LinkArea LinkArea1 = p1;
 		|            LinkArea1.dll_obj = this;
 		|            Base_obj = LinkArea1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClLinkArea(System.Windows.Forms.LinkArea p1)
 		|        {
 		|            LinkArea LinkArea1 = new LinkArea(p1);
@@ -1693,7 +1979,7 @@
 		|            Link1.dll_obj = this;
 		|            Base_obj = Link1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClLink(Link p1)
 		|        {
 		|            Link Link1 = p1;
@@ -1712,13 +1998,13 @@
 		Стр = 
 		"        public System.Windows.Forms.ContainerControl M_ContainerControl;
 		|        private IRuntimeContextInstance script = null;
-		|		
+		|
 		|        public ClForm()
 		|        {
 		|            Form Form1 = new Form();
 		|            Form1.dll_obj = this;
 		|            Base_obj = Form1;
-		|		
+		|
 		|            OneScriptForms.formsCollection.Add(this);
 		|            if (OneScriptForms.useMainForm)
 		|            {
@@ -1744,7 +2030,7 @@
 		|            FormClosingEventArgs1.dll_obj = this;
 		|            Base_obj = FormClosingEventArgs1;
 		|        }//end_constr
-		|";		
+		|";
 	ИначеЕсли ИмяКласса = "Pen" Тогда
 		Стр = 
 		"        public ClPen(ClColor p1, float p2 = 1.0f)
@@ -1753,7 +2039,7 @@
 		|            Pen1.dll_obj = this;
 		|            Base_obj = Pen1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClPen(Pen p1)
 		|        {
 		|            Pen Pen1 = p1;
@@ -1776,7 +2062,7 @@
 		|            Size1.dll_obj = this;
 		|            Base_obj = Size1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClSize(System.Drawing.Size p1)
 		|        {
 		|            Size Size1 = new Size(p1);
@@ -1799,7 +2085,7 @@
 		|            Point1.dll_obj = this;
 		|            Base_obj = Point1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClPoint(System.Drawing.Point p1)
 		|        {
 		|            Point Point1 = new Point(p1);
@@ -1819,7 +2105,7 @@
 		|            Width = width;
 		|            Height = height;
 		|        }//end_constr
-		|		
+		|
 		|        public ClRectangle(Rectangle p1)
 		|        {
 		|            Rectangle Rectangle1 = p1;
@@ -1838,7 +2124,7 @@
 		|            get { return M_MonthCalendar.BoldedDates; }
 		|            set { M_MonthCalendar.BoldedDates = value; }
 		|        }//end_constr
-		|		";
+		|";
 	ИначеЕсли ИмяКласса = "AnnuallyBoldedDates" Тогда
 		Стр = 
 		"        public System.DateTime[] M_Object
@@ -1846,7 +2132,7 @@
 		|            get { return M_MonthCalendar.AnnuallyBoldedDates; }
 		|            set { M_MonthCalendar.AnnuallyBoldedDates = value; }
 		|        }//end_constr
-		|		";
+		|";
 	ИначеЕсли ИмяКласса = "MonthlyBoldedDates" Тогда
 		Стр = 
 		"        public System.DateTime[] M_Object
@@ -1854,7 +2140,7 @@
 		|            get { return M_MonthCalendar.MonthlyBoldedDates; }
 		|            set { M_MonthCalendar.MonthlyBoldedDates = value; }
 		|        }//end_constr
-		|		";
+		|";
 	ИначеЕсли ИмяКласса = "SolidBrush" Тогда
 		Стр = 
 		"        public ClSolidBrush(Color p1)
@@ -1872,7 +2158,7 @@
 		|            TextureBrush1.dll_obj = this;
 		|            Base_obj = TextureBrush1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClTextureBrush(TextureBrush p1)
 		|        {
 		|            TextureBrush TextureBrush1 = p1;
@@ -1921,7 +2207,7 @@
 		|                                str2 = type1.GetCustomAttribute<ContextClassAttribute>().GetAlias();
 		|                            }
 		|                            catch { }
-		|                            if ( type1.ToString() == p2)
+		|                            if (type1.ToString() == p2)
 		|                            {
 		|                                Type1 = new Type(type1);
 		|                                break;
@@ -2021,7 +2307,7 @@
 		|            MenuItem1.dll_obj = this;
 		|            Base_obj = MenuItem1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClMenuItem(MenuItem p1)
 		|        {
 		|            MenuItem MenuItem1 = p1;
@@ -2039,7 +2325,7 @@
 		|            MenuItem MenuItem1 = new MenuItem(p1, """", (System.Windows.Forms.Shortcut)p3);
 		|            MenuItem1.dll_obj = this;
 		|            Base_obj = MenuItem1;
-		|		
+		|
 		|            if (p2 != null)
 		|            {
 		|                Click = p2;
@@ -2054,7 +2340,7 @@
 		|            Font1.dll_obj = this;
 		|            Base_obj = Font1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClFont(Font p1)
 		|        {
 		|            Font Font1 = p1;
@@ -2079,7 +2365,7 @@
 		|            TabPage1.dll_obj = this;
 		|            Base_obj = TabPage1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClTabPage(TabPage p1)
 		|        {
 		|            TabPage TabPage1 = p1;
@@ -2103,7 +2389,7 @@
 		|            ListItem1.dll_obj = this;
 		|            Base_obj = ListItem1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClListItem(ListItem p1)
 		|        {
 		|            ListItem ListItem1 = p1;
@@ -2113,7 +2399,7 @@
 		|";
 	ИначеЕсли ИмяКласса = "Icon" Тогда
 		Стр = 
-		"    public ClIcon(string p1)
+		"        public ClIcon(string p1)
 		|        {
 		|            Icon Icon1 = new Icon(p1);
 		|            Icon1.dll_obj = this;
@@ -2165,7 +2451,7 @@
 		|            ListViewItem1.dll_obj = this;
 		|            Base_obj = ListViewItem1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClListViewItem(ListViewItem p1)
 		|        {
 		|            ListViewItem ListViewItem1 = p1;
@@ -2230,14 +2516,14 @@
 		|            SelectionRange1.dll_obj = this;
 		|            Base_obj = SelectionRange1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClSelectionRange(IValue p1, IValue p2)
 		|        {
 		|            SelectionRange SelectionRange1 = new SelectionRange(p1.AsDate(), p2.AsDate());
 		|            SelectionRange1.dll_obj = this;
 		|            Base_obj = SelectionRange1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClSelectionRange(SelectionRange p1)
 		|        {
 		|            SelectionRange SelectionRange1 = p1;
@@ -2281,21 +2567,21 @@
 		|            TreeNode1.dll_obj = this;
 		|            Base_obj = TreeNode1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClTreeNode(string p1)
 		|        {
 		|            TreeNode TreeNode1 = new TreeNode(p1);
 		|            TreeNode1.dll_obj = this;
 		|            Base_obj = TreeNode1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClTreeNode(TreeNode p1)
 		|        {
 		|            TreeNode TreeNode1 = p1;
 		|            TreeNode1.dll_obj = this;
 		|            Base_obj = TreeNode1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClTreeNode(System.Windows.Forms.TreeNode p1)
 		|        {
 		|            TreeNode TreeNode1 = new TreeNode(p1);
@@ -2311,7 +2597,7 @@
 		|            ToolBarButton1.dll_obj = this;
 		|            Base_obj = ToolBarButton1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClToolBarButton(ToolBarButton p1)
 		|        {
 		|            ToolBarButton ToolBarButton1 = p1;
@@ -2331,7 +2617,7 @@
 		"        public ClSelectedTreeNodeAdvCollection(System.Collections.ObjectModel.ReadOnlyCollection<Aga.Controls.Tree.TreeNodeAdv> p1)
 		|        {
 		|            Base_obj = p1;
-		|        }//end_constr
+		|        }
 		|";
 	ИначеЕсли ИмяКласса = "NodeComboBoxObjectCollection" Тогда
 		Стр = 
@@ -2399,7 +2685,7 @@
 		|            StreamReader1.dll_obj = this;
 		|            Base_obj = StreamReader1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClStreamReader(StreamReader p1)
 		|        {
 		|            StreamReader StreamReader1 = p1;
@@ -2415,7 +2701,7 @@
 		|            Padding1.dll_obj = this;
 		|            Base_obj = Padding1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClPadding(int p1)
 		|        {
 		|            Padding Padding1 = new Padding(p1);
@@ -2454,7 +2740,7 @@
 		|            ControlCollection1.dll_obj = this;
 		|            Base_obj = ControlCollection1;
 		|        }//end_constr
-		|		
+		|
 		|        public ClControlCollection(ControlCollection p1)
 		|        {
 		|            ControlCollection ControlCollection1 = p1;
@@ -2502,7 +2788,7 @@
 		|            Base_obj = RichTextBox1;
 		|            ContextMenu = EnableContextMenu(this);
 		|        }//end_constr
-		|		
+		|
 		|        public ClContextMenu EnableContextMenu(ClRichTextBox rtb)
 		|        {
 		|            ClContextMenu cm = new ClContextMenu();
@@ -2560,7 +2846,7 @@
 		|            Base_obj = ComboBox1;
 		|            items = new ClComboBoxObjectCollection(Base_obj.Items);
 		|        }//end_constr
-		|		
+		|
 		|        public ClComboBox(osf.NoKeyUpComboBoxEx p1)
 		|        {
 		|            ComboBox ComboBox1 = new ComboBox(p1);
@@ -2568,7 +2854,7 @@
 		|            Base_obj = ComboBox1;
 		|            items = new ClComboBoxObjectCollection(Base_obj.Items);
 		|        }//end_constr
-		|		
+		|
 		|        public ClComboBox(ComboBox p1)
 		|        {
 		|            ComboBox ComboBox1 = p1;
@@ -2576,7 +2862,7 @@
 		|            Base_obj = ComboBox1;
 		|            items = new ClComboBoxObjectCollection(Base_obj.Items);
 		|        }//end_constr
-		|		
+		|
 		|        public ClArrayList _HeightItems
 		|        {
 		|            get { return heights; }
@@ -2618,7 +2904,7 @@
 		|            " + ИмяКласса + "1.dll_obj = this;
 		|            Base_obj = " + ИмяКласса + "1;
 		|        }//end_constr
-		|		
+		|
 		|        public Cl" + ИмяКласса + "(" + ИмяКласса + " p1)
 		|        {
 		|            " + ИмяКласса + " " + ИмяКласса + "1 = p1;
@@ -2656,11 +2942,6 @@
 		
 		
 		
-	ИначеЕсли ИмяКласса = "NetworkStream" Тогда
-		Стр = 
-		"        public System.Net.Sockets.NetworkStream Base_obj;
-		|";
-		Возврат Стр;
 	ИначеЕсли ИмяКласса = "TreeNodeAdvCollection" Тогда
 		Стр = 
 		"        public Aga.Controls.Tree.Node.NodeCollection Base_obj;
@@ -2748,7 +3029,8 @@
 	ТекстДок.Прочитать(КаталогСправки + "\OneScriptForms.html");
 	Стр = ТекстДок.ПолучитьТекст();
 	//находим текст таблицы
-	СтрТаблица = СтрНайтиМежду(Стр, "<H3 class=dtH3>Перечисления</H3>", "</TBODY></TABLE>", Ложь, );
+	СтрТаблица = СтрНайтиМежду(Стр, "<H3 class=dtH3>Перечисления</H3>", "</TBODY>
+	|            </TABLE>", Ложь, );
 	// Сообщить("==================" + СтрТаблица[0]);
 	Массив1 = СтрНайтиМежду(СтрТаблица[0], "<TD width=""50%""><A href", "</A></TD>", , );
 	// Сообщить("Массив1.Количество = " + Массив1.Количество());
@@ -2784,13 +3066,16 @@
 	КонецЕсли;
 	ТекстДокЧленов.Прочитать(ИмяФайлаЧленов);
 	СтрТекстДокЧленов = ТекстДокЧленов.ПолучитьТекст();
-	Если Не (СтрНайтиМежду(СтрТекстДокЧленов, "<H4 class=dtH4>Свойства</H4>", "</TBODY></TABLE>", Ложь, ).Количество() > 0) Тогда
+	Если Не (СтрНайтиМежду(СтрТекстДокЧленов, "<H4 class=dtH4>Свойства</H4>", "</TBODY>
+		|            </TABLE>", Ложь, ).Количество() > 0) Тогда
 		Стр = 
 		"        //Свойства============================================================" + Символы.ПС;
 		Возврат Стр;
 	КонецЕсли;
-	СтрТаблицаЧленов = СтрНайтиМежду(СтрТекстДокЧленов, "<H4 class=dtH4>Свойства</H4>", "</TBODY></TABLE>", Ложь, )[0];
-	Массив1 = СтрНайтиМежду(СтрТаблицаЧленов, "<TR vAlign=top>", "</TD></TR>", Ложь, );
+	СтрТаблицаЧленов = СтрНайтиМежду(СтрТекстДокЧленов, "<H4 class=dtH4>Свойства</H4>", "</TBODY>
+	|            </TABLE>", Ложь, )[0];
+	Массив1 = СтрНайтиМежду(СтрТаблицаЧленов, "<TR vAlign=top>", "</TD>
+	|                    </TR>", Ложь, );
 	// Сообщить("Массив1.Количество()=" + Массив1.Количество());
 	Если Массив1.Количество() > 0 Тогда
 		Стр = "        //Свойства============================================================" + Символы.ПС;
@@ -2815,8 +3100,147 @@
 				|        public int Build
 				|        {
 				|            get { return Assembly.GetExecutingAssembly().GetName().Version.Build; }
-				|        }				
-				|        
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "СтрокаДанных") и (ИмяКонтекстКлассаАнгл = "DataItem") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""СтрокаДанных"", ""DataRow"")]
+				|        public ClDataRow DataRow
+				|        {
+				|            get { return (ClDataRow)OneScriptForms.RevertObj(Base_obj.DataRow); }
+				|            set { Base_obj.DataRow = value.Base_obj; }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "КлиентПолучилДанные") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        private IValue _ClientReceived;
+				|        public static string clientReceived = """";
+				|        [ContextProperty(""КлиентПолучилДанные"", ""ClientReceived"")]
+				|        public IValue ClientReceivedProp
+				|        {
+				|            get { return _ClientReceived; }
+				|            set
+				|            {
+				|                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+				|                {
+				|                    _ClientReceived = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+				|                    clientReceived = ""DelegateActionClientReceivedProp"";
+				|                }
+				|                else
+				|                {
+				|                    _ClientReceived = value;
+				|                    clientReceived = ""osfActionClientReceivedProp"";
+				|                }
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "ПриОтключенииКлиента") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        private IValue _ClientDisconnected;
+				|        public static string clientDisconnected = """";
+				|        [ContextProperty(""ПриОтключенииКлиента"", ""ClientDisconnected"")]
+				|        public IValue ClientDisconnectedProp
+				|        {
+				|            get { return _ClientDisconnected; }
+				|            set
+				|            {
+				|                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+				|                {
+				|                    _ClientDisconnected = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+				|                    clientDisconnected = ""DelegateActionClientDisconnectedProp"";
+				|                }
+				|                else
+				|                {
+				|                    _ClientDisconnected = value;
+				|                    clientDisconnected = ""osfActionClientDisconnectedProp"";
+				|                }
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "ПриОшибкеСервера") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        private IValue _ErrorServer;
+				|        public static string errorServer = """";
+				|        [ContextProperty(""ПриОшибкеСервера"", ""ErrorServer"")]
+				|        public IValue ErrorServerProp
+				|        {
+				|            get { return _ErrorServer; }
+				|            set
+				|            {
+				|                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+				|                {
+				|                    _ErrorServer = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+				|                    errorServer = ""DelegateActionErrorServerProp"";
+				|                }
+				|                else
+				|                {
+				|                    _ErrorServer = value;
+				|                    errorServer = ""osfActionErrorServerProp"";
+				|                }
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "ПриПодключенииКлиента") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        private IValue _ClientConnected;
+				|        public static string clientConnected = """";
+				|        [ContextProperty(""ПриПодключенииКлиента"", ""ClientConnected"")]
+				|        public IValue ClientConnectedProp
+				|        {
+				|            get { return _ClientConnected; }
+				|            set
+				|            {
+				|                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+				|                {
+				|                    _ClientConnected = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+				|                    clientConnected = ""DelegateActionClientConnectedProp"";
+				|                }
+				|                else
+				|                {
+				|                    _ClientConnected = value;
+				|                    clientConnected = ""osfActionClientConnectedProp"";
+				|                }
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "СерверПолучилДанные") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        private IValue _ServerReceived;
+				|        public static string serverReceived = """";
+				|        [ContextProperty(""СерверПолучилДанные"", ""ServerReceived"")]
+				|        public IValue ServerReceivedProp
+				|        {
+				|            get { return _ServerReceived; }
+				|            set
+				|            {
+				|                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+				|                {
+				|                    _ServerReceived = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+				|                    serverReceived = ""DelegateActionServerReceivedProp"";
+				|                }
+				|                else
+				|                {
+				|                    _ServerReceived = value;
+				|                    serverReceived = ""osfActionServerReceivedProp"";
+				|                }
+				|            }
+				|        }
+				|
+				|";
+			ИначеЕсли (СвойствоРус = "СлучайноеИмя") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""СлучайноеИмя"", ""TempName"")]
+				|        public string TempName
+				|        {
+				|            get { return Utils.TempName; }
+				|        }
+				|
 				|";
 			ИначеЕсли (СвойствоРус = "Значения") и (ИмяКонтекстКлассаАнгл = "Dictionary") Тогда
 				Стр = Стр +
@@ -2856,13 +3280,13 @@
 				|        }
 				|
 				|";
-			ИначеЕсли (СвойствоРус = "Позиция") и (ИмяКонтекстКлассаАнгл = "NetworkStream") Тогда
-				Стр = Стр +
-				"        [ContextProperty(""Позиция"", ""Position"")]
-				|            get { return checked((int)Base_obj.Position); }
-				|            set { Base_obj.Position = (long)value; }
-				|        
-				|";
+			// // // ИначеЕсли (СвойствоРус = "Позиция") и (ИмяКонтекстКлассаАнгл = "NetworkStream") Тогда
+				// // // Стр = Стр +
+				// // // "        [ContextProperty(""Позиция"", ""Position"")]
+				// // // |            get { return checked((int)Base_obj.Position); }
+				// // // |            set { Base_obj.Position = (long)value; }
+				// // // |        
+				// // // |";
 			ИначеЕсли (СвойствоРус = "Псевдонимы") и (ИмяКонтекстКлассаАнгл = "IpHostEntry") Тогда
 				Стр = Стр +
 				"        [ContextProperty(""Псевдонимы"", ""Aliases"")]
@@ -3018,7 +3442,7 @@
 				|        public ClFont NodeFont
 				|        {
 				|            get { return nodeFont; }
-				|            set 
+				|            set
 				|            {
 				|                nodeFont = value;
 				|                Base_obj.NodeFont = value.Base_obj;
@@ -3034,7 +3458,7 @@
 				|        public ClFont HeaderFont
 				|        {
 				|            get { return headerFont; }
-				|            set 
+				|            set
 				|            {
 				|                Base_obj.HeaderFont = value.Base_obj;
 				|                headerFont = value;
@@ -3169,7 +3593,7 @@
 				|                }
 				|            }
 				|        }
-				|        
+				|
 				|";
 			ИначеЕсли (СвойствоРус = "ЭлементУзла") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdvMouseEventArgs") Тогда
 				Стр = Стр +
@@ -3187,7 +3611,7 @@
 				|                return OneScriptForms.RevertObj(Obj1);
 				|            }
 				|        }
-				|        
+				|
 				|";
 			ИначеЕсли (СвойствоРус = "Узел") и (ИмяКонтекстКлассаАнгл = "TreeNodeAdvMouseEventArgs") Тогда
 				Стр = Стр +
@@ -3196,7 +3620,7 @@
 				|        {
 				|            get { return new ClNode((Aga.Controls.Tree.Node)Base_obj.Node.Tag); }
 				|        }
-				|        
+				|
 				|";
 			ИначеЕсли (СвойствоРус = "Узел") и (ИмяКонтекстКлассаАнгл = "TreeViewAdvEventArgs") Тогда
 				Стр = Стр +
@@ -3205,7 +3629,7 @@
 				|        {
 				|            get { return new ClNode((Aga.Controls.Tree.Node)Base_obj.Node.Tag); }
 				|        }
-				|        
+				|
 				|";
 			ИначеЕсли (СвойствоРус = "РазрешитьСобытия") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
@@ -3215,7 +3639,7 @@
 				|            get { return handleEvents; }
 				|            set { handleEvents = value; }
 				|        }
-				|        
+				|
 				|";
 			ИначеЕсли (СвойствоРус = "КоллекцияФорм") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
@@ -3224,8 +3648,7 @@
 				|        {
 				|            get { return formsCollection; }
 				|        }
-		
-				|        
+				|
 				|";
 			ИначеЕсли (СвойствоРус = "ИспользоватьГлавнуюФорму") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
@@ -3235,7 +3658,7 @@
 				|            get { return useMainForm; }
 				|            set { useMainForm = value; }
 				|        }
-				|        
+				|
 				|";
 			ИначеЕсли СвойствоРус = "РазмерШрифта" Тогда
 				Стр = Стр +
@@ -3296,7 +3719,7 @@
 			ИначеЕсли (СвойствоРус = "Изображение") и (ИмяКонтекстКлассаАнгл = "NodeStateIcon") Тогда
 				Стр = Стр +
 				"        [ContextProperty(""Изображение"", ""Image"")]
- 				|       public ClBitmap Image
+				|        public ClBitmap Image
 				|        {
 				|            get { return (ClBitmap)OneScriptForms.RevertEqualsObj(Base_obj.Image); }
 				|            set
@@ -3797,7 +4220,7 @@
 				|        public ClIcon Icon
 				|        {
 				|            get { return icon; }
-				|            set 
+				|            set
 				|            {
 				|                icon = value;
 				|                Base_obj.Icon = value.Base_obj;
@@ -4118,7 +4541,7 @@
 				|        {
 				|            get { return ((osf.DataGridViewEx)Base_obj.DataGridView).M_Object.dll_obj; }
 				|        }
-				|        
+				|
 				|";
 			ИначеЕсли (СвойствоРус = "ВсегдаГруппироватьКакТекст") и (ИмяКонтекстКлассаАнгл = "DataGridViewGrouper") Тогда
 				Стр = Стр +
@@ -4721,7 +5144,7 @@
 				|        public ClIcon Icon
 				|        {
 				|            get { return icon; }
-				|            set 
+				|            set
 				|            {
 				|                icon = value;
 				|                Base_obj.Icon = value.Base_obj;
@@ -5298,7 +5721,7 @@
 			ИмяКонтекстКлассаАнгл = "NodeNumericUpDown") Тогда
 				Стр = Стр +
 				"        [ContextProperty(""Минимум"", ""Minimum"")]
- 				|       public IValue Minimum
+				|        public IValue Minimum
 				|        {
 				|            get { return OneScriptForms.RevertObj(Base_obj.Minimum); }
 				|            set { Base_obj.Minimum = value.AsNumber(); }
@@ -5793,7 +6216,7 @@
 						|        }//end_constr"
 						);
 						ВозвратГет = "    " + Комментарий + "get { return " + ПриватСвойство + "; }";
-						ВозвратСет = "    " + Комментарий + "set 
+						ВозвратСет = "    " + Комментарий + "set
 						|            {
 						|                " + ПриватСвойство + " = value;
 						|                Base_obj." + СвойствоАнгл + " = value.Base_obj;
@@ -5809,9 +6232,9 @@
 							// Base_obj.Icon.dll_obj = value;
 						// }
 						ВозвратГет = "    " + Комментарий + "get { return (" + ТипВозвращаемогоЗначения + ")OneScriptForms.RevertObj(Base_obj." + СвойствоАнгл + "); }";
-						ВозвратСет = "    " + Комментарий + "set 
+						ВозвратСет = "    " + Комментарий + "set
 						|            {
-						|                Base_obj." + СвойствоАнгл + " = value.Base_obj; 
+						|                Base_obj." + СвойствоАнгл + " = value.Base_obj;
 						|                Base_obj." + СвойствоАнгл + ".dll_obj = value;
 						|            }";
 					ИначеЕсли ШаблонДляГетСет = "ШаблонДляПеречисления" Тогда
@@ -5863,8 +6286,11 @@
 	ТекстДок.Прочитать(КаталогСправки + "\OneScriptForms.html");
 	Стр = ТекстДок.ПолучитьТекст();
 	//находим строку таблицы
-	СтрТаблПереч = СтрНайтиМежду(Стр, "<H3 class=dtH3>Перечисления</H3>", "</TBODY></TABLE>", Ложь, )[0];
-	М48 = СтрНайтиМежду(СтрТаблПереч, "<TR vAlign=top>" + Символы.ПС + "    <TD", "</TD></TR>", Ложь, );
+	СтрТаблПереч = СтрНайтиМежду(Стр, "<H3 class=dtH3>Перечисления</H3>", "</TBODY>
+	|            </TABLE>", Ложь, )[0];
+	М48 = СтрНайтиМежду(СтрТаблПереч, "<TR vAlign=top>
+	|                        <TD", "</TD>
+	|                    </TR>", Ложь, );
 	Для А61 = 0 По М48.ВГраница() Цикл
 		СтрТабл = М48[А61];
 		СтрТабл = СтрЗаменить(СтрТабл, "&nbsp;", " ");
@@ -5907,13 +6333,16 @@
 	КонецЕсли;
 	ТекстДокЧленов.Прочитать(ИмяФайлаЧленов);
 	СтрТекстДокЧленов = ТекстДокЧленов.ПолучитьТекст();
-	Если Не (СтрНайтиМежду(СтрТекстДокЧленов, "<H4 class=dtH4>Методы</H4>", "</TBODY></TABLE>", Ложь, ).Количество() > 0) Тогда
+	Если Не (СтрНайтиМежду(СтрТекстДокЧленов, "<H4 class=dtH4>Методы</H4>", "</TBODY>
+		|            </TABLE>", Ложь, ).Количество() > 0) Тогда
 		Стр = 
 		"        //Методы============================================================" + Символы.ПС;
 		Возврат Стр;
 	КонецЕсли;
-	СтрТаблицаЧленов = СтрНайтиМежду(СтрТекстДокЧленов, "<H4 class=dtH4>Методы</H4>", "</TBODY></TABLE>", Ложь, )[0];
-	Массив1 = СтрНайтиМежду(СтрТаблицаЧленов, "<TR vAlign=top>", "</TD></TR>", Ложь, );
+	СтрТаблицаЧленов = СтрНайтиМежду(СтрТекстДокЧленов, "<H4 class=dtH4>Методы</H4>", "</TBODY>
+	|            </TABLE>", Ложь, )[0];
+	Массив1 = СтрНайтиМежду(СтрТаблицаЧленов, "<TR vAlign=top>", "</TD>
+	|                    </TR>", Ложь, );
 	//переберем строки таблицы
 	Если Массив1.Количество() > 0 Тогда
 		Стр = "        //Методы============================================================" + Символы.ПС;
@@ -5928,7 +6357,11 @@
 			// // // Сообщить("-МетодАнгл---------------------------");
 			// // // Сообщить("" + МетодАнгл);
 			МетодРус = СтрНайтиМежду(СтрХ, ".html"">", " (", , )[0];
-			Если (МетодРус = "ДоступностьВизуальныхСтилей") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+			Если (МетодРус = "[Перечисление].Name") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Продолжить;
+			ИначеЕсли (МетодРус = "[Перечисление].Имя") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Продолжить;
+			ИначеЕсли (МетодРус = "ДоступностьВизуальныхСтилей") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""ДоступностьВизуальныхСтилей"", ""EnableVisualStyles"")]
 				|        public void EnableVisualStyles()
@@ -5938,22 +6371,284 @@
 				|        }
 				|        
 				|";
-			ИначеЕсли (МетодРус = "Подключить") и (ИмяКонтекстКлассаАнгл = "TCPClient") Тогда
+			ИначеЕсли (МетодРус = "РазобратьСтроку") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
-				"        [ContextMethod(""Подключить"", ""Connect"")]
-				|        public void Connect(IValue p1, int p2)
+				"        [ContextMethod(""РазобратьСтроку"", ""SplitString"")]
+				|        public ArrayImpl SplitString(string p1, string p2)
 				|        {
-				|            if (p1.SystemType.Name == ""Строка"")
+				|            ArrayImpl array = new ArrayImpl();
+				|            string[] result = p1.Split(new string[] { p2 }, StringSplitOptions.None);
+				|            for (int i = 0; i < result.Length; i++)
 				|            {
-				|                Base_obj.Connect(p1.AsString(), p2);
+				|                array.Add(ValueFactory.Create(result[i]));
+				|            }
+				|            return array;
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ЗапуститьTCPКлиент") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ЗапуститьTCPКлиент"", ""LaunchTCPClient"")]
+				|        public ClTCPClient LaunchTCPConnection(string HostName = null, int port = 0)
+				|        {
+				|            return LoadTCPClient(HostName, port);
+				|        }
+				|
+				|        public static ClTCPClient LoadTCPClient(string HostName = null, int port = 0)
+				|        {
+				|            string backgroundTasksTCPConnection = @""
+				|Процедура ЗапускКлиента(параметр1, параметр2) Экспорт
+				|    Контекст = Новый Структура();
+				|    Контекст.Вставить(""""Ф"""", параметр1);
+				|    Контекст.Вставить(""""Клиент"""", параметр2);
+				|	Стр = """"
+				|	|Перем ПотокСети1;
+				|	|
+				|	|Процедура ПроверитьСообщение()
+				|	|    Ф.ОбработатьКлиентПолучилДанные(ПотокСети1.ПрочитатьВБуферДвоичныхДанных());
+				|	|КонецПроцедуры
+				|	|
+				|	|ПотокСети1 = Клиент.ПолучитьПоток();
+				|	|
+				|	|Пока Клиент.Подключен Цикл
+				|	|    Если Не ПотокСети1.ДанныеДоступны Тогда
+				|	|        Приостановить(100);
+				|	|    Иначе
+				|	|        ПроверитьСообщение();
+				|	|    КонецЕсли;
+				|	|КонецЦикла;
+				|	|"""";
+				|	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+				|КонецПроцедуры
+				|
+				|МассивПараметров = Новый Массив(2);
+				|МассивПараметров[0] = Ф;
+				|МассивПараметров[1] = Клиент;
+				|Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, """"ЗапускКлиента"""", МассивПараметров);
+				|"";
+				|            ClTCPClient clientTCP = new ClTCPClient(HostName, port);
+				|            StructureImpl extContext = new StructureImpl();
+				|            extContext.Insert(""Ф"", instance);
+				|            extContext.Insert(""Клиент"", clientTCP);
+				|            Utils.GlobalContext().LoadScriptFromString(backgroundTasksTCPConnection, extContext);
+				|
+				|            if (clientTCP.Connected)
+				|            {
+				|                return clientTCP;
 				|            }
 				|            else
 				|            {
-				|                Base_obj.Connect(((ClIpAddress)p1).Base_obj, p2);
+				|                return null;
 				|            }
 				|        }
 				|        
 				|";
+			ИначеЕсли (МетодРус = "ФоновыйМногопоточныйСервер") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        public static bool multiServerUploaded = false;
+				|        public static bool multiServerError = false;
+				|        [ContextMethod(""ФоновыйМногопоточныйСервер"", ""BackgroundMultithreadedServer"")]
+				|        public TsMultithreadedTCPServer BackgroundMultithreadedServer(int p1)
+				|        {
+				|            string backgroundTasksMultiTCPServer = @""
+				|Процедура ЗапускМногопоточногоСервера(параметр1, параметр2, параметр3) Экспорт
+				|    Контекст = Новый Структура();
+				|    Контекст.Вставить(""""Ф"""", параметр1);
+				|    Контекст.Вставить(""""Сервер"""", параметр2);
+				|    Контекст.Вставить(""""МС"""", параметр3);
+				|    Стр = """"
+				|    |
+				|    |Процедура Сервер_ПриПодключенииКлиента() Экспорт
+				|    |    МС.ОбработатьПриПодключенииКлиента(МС.АргументыСобытия);
+				|    |КонецПроцедуры
+				|    |
+				|    |Процедура Сервер_ПриОтключенииКлиента() Экспорт
+				|    |    МС.ОбработатьПриОтключенииКлиента(МС.АргументыСобытия);
+				|    |КонецПроцедуры
+				|    |
+				|    |Процедура Сервер_СерверПолучилДанные() Экспорт
+				|    |    МС.ОбработатьСерверПолучилДанные(МС.АргументыСобытия);
+				|    |КонецПроцедуры
+				|    |
+				|    |Процедура Сервер_ПриОшибкеСервера() Экспорт
+				|    |    МС.ОбработатьПриОшибкеСервера(МС.АргументыСобытия);
+				|    |КонецПроцедуры
+				|    |
+				|    |Ф.РазрешитьСобытия = Истина;
+				|    |Сервер.ПриПодключенииКлиента = МС.Действие(ЭтотОбъект, """"""""Сервер_ПриПодключенииКлиента"""""""");
+				|    |Сервер.ПриОтключенииКлиента = МС.Действие(ЭтотОбъект, """"""""Сервер_ПриОтключенииКлиента"""""""");
+				|    |Сервер.СерверПолучилДанные = МС.Действие(ЭтотОбъект, """"""""Сервер_СерверПолучилДанные"""""""");
+				|    |Сервер.ПриОшибкеСервера = МС.Действие(ЭтотОбъект, """"""""Сервер_ПриОшибкеСервера"""""""");
+				|    |Сервер.Начать();
+				|    |
+				|    |Пока МС.Продолжать Цикл
+				|    |   МС.ПолучитьСобытие().Выполнить();
+				|    |КонецЦикла;
+				|    |"""";
+				|    ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+				|КонецПроцедуры
+				|
+				|МассивПараметров = Новый Массив(3);
+				|МассивПараметров[0] = Ф;
+				|МассивПараметров[1] = Сервер;
+				|МассивПараметров[2] = МС;
+				|Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, """"ЗапускМногопоточногоСервера"""", МассивПараметров);
+				|"";
+				|            if (OSMTCPServer == null)
+				|            {
+				|                OSMTCPServer = new OneScriptMultithreadedTCPServer();
+				|            }
+				|            TsMultithreadedTCPServer MultiTCPServer = new TsMultithreadedTCPServer(p1);
+				|            MultiTCPServer.ServerBase = OSMTCPServer;
+				|            StructureImpl extContext = new StructureImpl();
+				|            extContext.Insert(""Ф"", instance);
+				|            extContext.Insert(""Сервер"", MultiTCPServer);
+				|            extContext.Insert(""МС"", OSMTCPServer);
+				|            Utils.GlobalContext().LoadScriptFromString(backgroundTasksMultiTCPServer, extContext);
+				|            while (!multiServerUploaded)
+				|            {
+				|                System.Threading.Thread.Sleep(300);
+				|                if (multiServerError)
+				|                {
+				|                    break;
+				|                }
+				|            }
+				|            if (multiServerError)
+				|            {
+				|                return null;
+				|            }
+				|            return MultiTCPServer;
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ОбработатьПриПодключенииКлиента") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ОбработатьПриПодключенииКлиента"", ""ProcessingClientConnected"")]
+				|        public void ProcessingClientConnected(osfMultiTcp.ClServerEventArgs args)
+				|        {
+				|            instance.OnClientConnected(args);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ОбработатьСерверПолучилДанные") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ОбработатьСерверПолучилДанные"", ""ProcessingServerReceived"")]
+				|        public void ProcessingServerReceived(osfMultiTcp.ClServerEventArgs args)
+				|        {
+				|            instance.OnServerReceived(args);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ОбработатьПриОшибкеСервера") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ОбработатьПриОшибкеСервера"", ""ProcessingErrorServer"")]
+				|        public void ProcessingErrorServer(osfMultiTcp.ClServerEventArgs args)
+				|        {
+				|            instance.OnErrorServer(args);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ОбработатьПриОтключенииКлиента") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ОбработатьПриОтключенииКлиента"", ""ProcessingClientDisconnected"")]
+				|        public void ProcessingClientDisconnected(osfMultiTcp.ClServerEventArgs args)
+				|        {
+				|            instance.OnClientDisconnected(args);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ОбработатьКлиентПолучилДанные") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ОбработатьКлиентПолучилДанные"", ""ProcessingClientReceived"")]
+				|        public void ProcessingClientReceived(BinaryDataBuffer p1)
+				|        {
+				|            instance.OnClientReceived(p1);
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "МногопоточныйTCPСервер") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""МногопоточныйTCPСервер"", ""MultithreadedTCPServer"")]
+				|        public TsMultithreadedTCPServer MultithreadedTCPServer(int port = 8080)
+				|        {
+				|            if (OSMTCPServer == null)
+				|            {
+				|                OSMTCPServer = new OneScriptMultithreadedTCPServer();
+				|            }
+				|            TsMultithreadedTCPServer server = OSMTCPServer.MultithreadedTCPServer(port);
+				|            server.ServerBase = OSMTCPServer;
+				|            return server;
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ДобавитьВесьТекст") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ДобавитьВесьТекст"", ""AppendAllText"")]
+				|        public void AppendAllText(string p1, string p2)
+				|        {
+				|            if (!System.IO.File.Exists(p1))
+				|            {
+				|                System.IO.File.Create(p1).Close();
+				|            }
+				|            System.IO.File.AppendAllText(p1, p2, System.Text.Encoding.UTF8);
+				|        }
+				|        
+				|";
+			// // // ИначеЕсли (МетодРус = "Записать") и (ИмяКонтекстКлассаАнгл = "NetworkStream") Тогда
+				// // // Стр = Стр +
+				// // // "        [ContextMethod(""Записать"", ""Write"")]
+				// // // |        public void Write(IValue p1, int p2, int p3)
+				// // // |        {
+				// // // |            if (Utils.IsType<BinaryDataBuffer>(p1))
+				// // // |            {
+				// // // |                Base_obj.Write(((BinaryDataBuffer)p1).Bytes, 0, p3);
+				// // // |            }
+				// // // |            else
+				// // // |            {
+				// // // |                System.Collections.ArrayList ArrayList1 = ((ClArrayList)p1).Base_obj.M_ArrayList;
+				// // // |                byte[] buffer = new byte[ArrayList1.Count];
+				// // // |                int num = p3 - 1;
+				// // // |                for (int i = 0; i < num; i++)
+				// // // |                {
+				// // // |                    buffer[i] = Convert.ToByte(ArrayList1[i + p2]);
+				// // // |                }
+				// // // |                Base_obj.Write(buffer, 0, p3);
+				// // // |            }
+				// // // |        }
+				// // // |        
+				// // // |";
+			// // // ИначеЕсли (МетодРус = "ПрочитатьВБуферДвоичныхДанных") и (ИмяКонтекстКлассаАнгл = "NetworkStream") Тогда
+				// // // Стр = Стр +
+				// // // "        [ContextMethod(""ПрочитатьВБуферДвоичныхДанных"", ""ReadToBinaryDataBuffer"")]
+				// // // |        public BinaryDataBuffer ReadToBinaryDataBuffer()
+				// // // |        {
+				// // // |            BinaryDataBuffer bdb = ReadToBDB().Result;
+				// // // |            return bdb;
+				// // // |        }
+				// // // |
+				// // // |        public Task<BinaryDataBuffer> ReadToBDB()
+				// // // |        {
+				// // // |            return ReadToBuffer();
+				// // // |        }
+				// // // |
+				// // // |        public async Task<BinaryDataBuffer> ReadToBuffer()
+				// // // |        {
+				// // // |            // Читать ответы (в отдельном потоке)
+				// // // |            BinaryDataBuffer bdb = new BinaryDataBuffer(new byte[0]);
+				// // // |            byte[] Buffer = new byte[1024];
+				// // // |            while (true)
+				// // // |            {
+				// // // |                int bytes = await this.Base_obj.ReadAsync(Buffer, 0, Buffer.Length);
+				// // // |                if (bytes > 0)
+				// // // |                {
+				// // // |                    bdb = bdb.Concat((new BinaryDataBuffer(Buffer)).Read(0, bytes));
+				// // // |                    return bdb;
+				// // // |                }
+				// // // |                return bdb;
+				// // // |            }
+				// // // |        }
+				// // // |        
+				// // // |";
 			ИначеЕсли (МетодРус = "Dns") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""Dns"", ""Dns"")]
@@ -6036,7 +6731,7 @@
 				|        {
 				|            return new ClIpAddress(p1);
 				|        }
-				|        
+				|
 				|";
 			ИначеЕсли (МетодРус = "IpУзел") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
@@ -6050,9 +6745,25 @@
 			ИначеЕсли (МетодРус = "TCPКлиент") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""TCPКлиент"", ""TCPClient"")]
-				|        public ClTCPClient TCPClient(string HostName = null, int port = 0)
+				|        public TsTCPClient TCPClient(IValue HostName = null, IValue port = null)
 				|        {
-				|            return new ClTCPClient(HostName, port);
+				|            if (OSMTCPServer == null)
+				|            {
+				|                OSMTCPServer = new OneScriptMultithreadedTCPServer();
+				|            }
+				|
+				|            if (Utils.AllNotNull(HostName, port))
+				|            {
+				|                TsTCPClient clientTCP = new TsTCPClient(Utils.ToString(HostName), Utils.ToInt32(port));
+				|                clientTCP.ServerBase = OSMTCPServer;
+				|                return clientTCP;
+				|            }
+				|            else
+				|            {
+				|                TsTCPClient clientTCP = new TsTCPClient();
+				|                clientTCP.ServerBase = OSMTCPServer;
+				|                return clientTCP;
+				|            }
 				|        }
 				|        
 				|";
@@ -6065,12 +6776,217 @@
 				|        }
 				|        
 				|";
-			ИначеЕсли (МетодРус = "ПринимающийКлиент") и (ИмяКонтекстКлассаАнгл = "TCPListener") Тогда
+			ИначеЕсли (МетодРус = "МногопоточныйTCPСерверSSL") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
-				"        [ContextMethod(""ПринимающийКлиент"", ""AcceptTCPclient"")]
-				|        public ClTCPClient AcceptTCPclient()
+				"        [ContextMethod(""МногопоточныйTCPСерверSSL"", ""MultithreadedTCPServerSSL"")]
+				|        public TsMultithreadedTCPServerSSL MultithreadedTCPServerSSL(int port, string path_cert = ""certificate.pfx"", string pas = ""swordfish20231223"")
 				|        {
-				|            return new ClTCPClient(Base_obj.AcceptTCPclient());
+				|            if (OSMTCPServer == null)
+				|            {
+				|                OSMTCPServer = new OneScriptMultithreadedTCPServer();
+				|            }
+				|            TsMultithreadedTCPServerSSL MultiTCPServerSSL = new TsMultithreadedTCPServerSSL(port, path_cert, pas);
+				|            MultiTCPServerSSL.ServerBase = OSMTCPServer;
+				|            return MultiTCPServerSSL;
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "TCPКлиентSSL") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""TCPКлиентSSL"", ""TCPClientSSL"")]
+				|        public TsTCPClientSSL TCPClientSSL(IValue HostName = null, IValue port = null, string path_certificate_crt = ""certificate.crt"")
+				|        {
+				|            if (Utils.AllNotNull(HostName, port))
+				|            {
+				|                return new TsTCPClientSSL(Utils.ToString(HostName), Utils.ToInt32(port), path_certificate_crt);
+				|            }
+				|            return new TsTCPClientSSL();
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ФоновыйМногопоточныйСерверSSL") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        public static bool multiServerUploadedSSL = false;
+				|        public static bool multiServerErrorSSL = false;
+				|        [ContextMethod(""ФоновыйМногопоточныйСерверSSL"", ""BackgroundMultithreadedServerSSL"")]
+				|        public TsMultithreadedTCPServerSSL BackgroundMultithreadedServerSSL(int port, string path_cert = ""certificate.pfx"", string pas = ""swordfish20231223"")
+				|        {
+				|            string backgroundTasksMultiTCPServerSSL = @""
+				|Процедура ЗапускМногопоточногоСервераSSL(параметр1, параметр2, параметр3) Экспорт
+				|    Контекст = Новый Структура();
+				|    Контекст.Вставить(""""Ф"""", параметр1);
+				|    Контекст.Вставить(""""Сервер"""", параметр2);
+				|    Контекст.Вставить(""""МС"""", параметр3);
+				|    Стр = """"
+				|    |
+				|    |Процедура Сервер_ПриПодключенииКлиента() Экспорт
+				|    |    МС.ОбработатьПриПодключенииКлиента(МС.АргументыСобытия);
+				|    |КонецПроцедуры
+				|    |
+				|    |Процедура Сервер_ПриОтключенииКлиента() Экспорт
+				|    |    МС.ОбработатьПриОтключенииКлиента(МС.АргументыСобытия);
+				|    |КонецПроцедуры
+				|    |
+				|    |Процедура Сервер_СерверПолучилДанные() Экспорт
+				|    |    МС.ОбработатьСерверПолучилДанные(МС.АргументыСобытия);
+				|    |КонецПроцедуры
+				|    |
+				|    |Процедура Сервер_ПриОшибкеСервера() Экспорт
+				|    |    МС.ОбработатьПриОшибкеСервера(МС.АргументыСобытия);
+				|    |КонецПроцедуры
+				|    |
+				|    |Ф.РазрешитьСобытия = Истина;
+				|    |Сервер.ПриПодключенииКлиента = МС.Действие(ЭтотОбъект, """"""""Сервер_ПриПодключенииКлиента"""""""");
+				|    |Сервер.ПриОтключенииКлиента = МС.Действие(ЭтотОбъект, """"""""Сервер_ПриОтключенииКлиента"""""""");
+				|    |Сервер.СерверПолучилДанные = МС.Действие(ЭтотОбъект, """"""""Сервер_СерверПолучилДанные"""""""");
+				|    |Сервер.ПриОшибкеСервера = МС.Действие(ЭтотОбъект, """"""""Сервер_ПриОшибкеСервера"""""""");
+				|    |Сервер.Начать();
+				|    |
+				|    |Пока МС.Продолжать Цикл
+				|    |   МС.ПолучитьСобытие().Выполнить();
+				|    |КонецЦикла;
+				|    |"""";
+				|    ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+				|КонецПроцедуры
+				|
+				|МассивПараметров = Новый Массив(3);
+				|МассивПараметров[0] = Ф;
+				|МассивПараметров[1] = Сервер;
+				|МассивПараметров[2] = МС;
+				|Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, """"ЗапускМногопоточногоСервераSSL"""", МассивПараметров);
+				|"";
+				|            if (OSMTCPServer == null)
+				|            {
+				|                OSMTCPServer = new OneScriptMultithreadedTCPServer();
+				|            }
+				|            TsMultithreadedTCPServerSSL MultiTCPServerSSL = new TsMultithreadedTCPServerSSL(port, path_cert, pas);
+				|            MultiTCPServerSSL.ServerBase = OSMTCPServer;
+				|            StructureImpl extContext = new StructureImpl();
+				|            extContext.Insert(""Ф"", instance);
+				|            extContext.Insert(""Сервер"", MultiTCPServerSSL);
+				|            extContext.Insert(""МС"", OSMTCPServer);
+				|            Utils.GlobalContext().LoadScriptFromString(backgroundTasksMultiTCPServerSSL, extContext);
+				|            while (!multiServerUploadedSSL)
+				|            {
+				|                System.Threading.Thread.Sleep(300);
+				|                if (multiServerErrorSSL)
+				|                {
+				|                    break;
+				|                }
+				|            }
+				|            if (multiServerErrorSSL)
+				|            {
+				|                return null;
+				|            }
+				|            return MultiTCPServerSSL;
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ФоновыйTCPКлиент") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ФоновыйTCPКлиент"", ""BackgroundTCPClient"")]
+				|        public TsTCPClient BackgroundTCPClient(string HostName, int port)
+				|        {
+				|            string backgroundTasksTCPConnection = @""
+				|Процедура ЗапускКлиента(параметр1, параметр2) Экспорт
+				|    Контекст = Новый Структура();
+				|    Контекст.Вставить(""""Клиент"""", параметр1);
+				|    Контекст.Вставить(""""Ф"""", параметр2);
+				|	Стр = """"
+				|	|Перем ПотокСети1;
+				|	|
+				|	|Процедура ПроверитьСообщение()
+				|	|    Клиент.ОбработатьКлиентПолучилДанные(ПотокСети1.ПрочитатьВБуферДвоичныхДанных());
+				|	|КонецПроцедуры
+				|	|
+				|    |Ф.РазрешитьСобытия = Истина;
+				|	|ПотокСети1 = Клиент.ПолучитьПоток();
+				|	|
+				|	|Пока Клиент.Подключен Цикл
+				|	|    Если Не ПотокСети1.ДанныеДоступны Тогда
+				|	|        Приостановить(100);
+				|	|    Иначе
+				|	|        ПроверитьСообщение();
+				|	|    КонецЕсли;
+				|	|КонецЦикла;
+				|	|"""";
+				|	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+				|КонецПроцедуры
+				|
+				|МассивПараметров = Новый Массив(2);
+				|МассивПараметров[0] = Клиент;
+				|МассивПараметров[1] = Ф;
+				|Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, """"ЗапускКлиента"""", МассивПараметров);
+				|"";
+				|            if (OSMTCPServer == null)
+				|            {
+				|                OSMTCPServer = new OneScriptMultithreadedTCPServer();
+				|            }
+				|            TsTCPClient clientTCP = new TsTCPClient(HostName, port);
+				|            clientTCP.ServerBase = OSMTCPServer;
+				|            StructureImpl extContext = new StructureImpl();
+				|            extContext.Insert(""Клиент"", clientTCP);
+				|            extContext.Insert(""Ф"", instance);
+				|            Utils.GlobalContext().LoadScriptFromString(backgroundTasksTCPConnection, extContext);
+				|
+				|            if (clientTCP.Connected)
+				|            {
+				|                return clientTCP;
+				|            }
+				|            else
+				|            {
+				|                return null;
+				|            }
+				|        }
+				|        
+				|";
+			ИначеЕсли (МетодРус = "ФоновыйTCPКлиентSSL") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ФоновыйTCPКлиентSSL"", ""BackgroundTCPClientSSL"")]
+				|        public TsTCPClientSSL BackgroundTCPClientSSL(string HostName, int port, string path_certificate_crt = ""certificate.crt"")
+				|        {
+				|            string backgroundTasksTCPConnectionSSL = @""
+				|Процедура ЗапускКлиентаSSL(параметр1, параметр2) Экспорт
+				|    Контекст = Новый Структура();
+				|    Контекст.Вставить(""""Клиент"""", параметр1);
+				|    Контекст.Вставить(""""Ф"""", параметр2);
+				|    Стр = """"
+				|    |Перем ПотокСети1;
+				|    |
+				|    |Процедура ПроверитьСообщение()
+				|    |    Клиент.ОбработатьКлиентПолучилДанные(ПотокСети1.ПрочитатьВБуферДвоичныхДанных());
+				|    |КонецПроцедуры
+				|    |
+				|    |Ф.РазрешитьСобытия = Истина;
+				|    |ПотокСети1 = Клиент.ПолучитьПотокSSL();
+				|    |
+				|    |Пока Клиент.Подключен Цикл
+				|    |    Приостановить(100);
+				|    |    ПроверитьСообщение();
+				|    |КонецЦикла;
+				|    |"""";
+				|    ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+				|КонецПроцедуры
+				|
+				|МассивПараметров = Новый Массив(2);
+				|МассивПараметров[0] = Клиент;
+				|МассивПараметров[1] = Ф;
+				|Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, """"ЗапускКлиентаSSL"""", МассивПараметров);
+				|"";
+				|            TsTCPClientSSL clientTCPSSL = new TsTCPClientSSL(HostName, port, path_certificate_crt);
+				|            StructureImpl extContext = new StructureImpl();
+				|            extContext.Insert(""Клиент"", clientTCPSSL);
+				|            extContext.Insert(""Ф"", instance);
+				|            Utils.GlobalContext().LoadScriptFromString(backgroundTasksTCPConnectionSSL, extContext);
+				|
+				|            if (clientTCPSSL.Connected)
+				|            {
+				|                return clientTCPSSL;
+				|            }
+				|            else
+				|            {
+				|                return null;
+				|            }
 				|        }
 				|        
 				|";
@@ -6119,58 +7035,39 @@
 				|        }
 				|        
 				|";
-			ИначеЕсли (МетодРус = "Записать") и (ИмяКонтекстКлассаАнгл = "NetworkStream") Тогда
-				Стр = Стр +
-				"        [ContextMethod(""Записать"", ""Write"")]
-				|        public void Write(ClArrayList p1, int p2, int p3)
-				|        {
-				|            System.Collections.ArrayList ArrayList1 = p1.Base_obj.M_ArrayList;
-				|            byte[] buffer = new byte[ArrayList1.Count];
-				|            int num = p3 - 1;
-				|            for (int i = 0; i < num; i++)
-				|            {
-				|                buffer[i] = Convert.ToByte(ArrayList1[i + p2]);
-				|            }
-				|            Base_obj.Write(buffer, 0, p3);
-				|        }
-				|        
-				|";
-			ИначеЕсли (МетодРус = "Прочитать") и (ИмяКонтекстКлассаАнгл = "NetworkStream") Тогда
-				Стр = Стр +
-				"        [ContextMethod(""Прочитать"", ""Read"")]
-				|        public ClArrayList Read(int p1, int p2)
-				|        {
-				|            byte[] buffer = new byte[p2];
-				|            int num1 = Base_obj.Read(buffer, p1, p2);
-				|            ClArrayList ClArrayList1 = new ClArrayList();
-				|            System.Collections.ArrayList ArrayList1 = ClArrayList1.Base_obj.M_ArrayList;
-				|            int num2 = num1 + p1 - 1;
-				|            for (int i = p1; i < num2; i++)
-				|            {
-				|                ArrayList1.Add(buffer[i]);
-				|            }
-				|            return ClArrayList1;
-				|        }
-				|        
-				|";
-			ИначеЕсли (МетодРус = "ПолучитьПоток") и (ИмяКонтекстКлассаАнгл = "TCPClient") Тогда
-				Стр = Стр +
-				"        [ContextMethod(""ПолучитьПоток"", ""GetStream"")]
-				|        public ClNetworkStream GetStream()
-				|        {
-				|            return new ClNetworkStream(Base_obj.GetStream());
-				|        }
-				|        
-				|";
-			ИначеЕсли (МетодРус = "ПолучитьПоток") и (ИмяКонтекстКлассаАнгл = "TCPClient") Тогда
-				Стр = Стр +
-				"        [ContextMethod(""ПолучитьПоток"", ""GetStream"")]
-				|        public ClNetworkStream GetStream()
-				|        {
-				|            return new ClNetworkStream(Base_obj.GetStream());
-				|        }
-				|        
-				|";
+			// // // ИначеЕсли (МетодРус = "Записать") и (ИмяКонтекстКлассаАнгл = "NetworkStream") Тогда
+				// // // Стр = Стр +
+				// // // "        [ContextMethod(""Записать"", ""Write"")]
+				// // // |        public void Write(ClArrayList p1, int p2, int p3)
+				// // // |        {
+				// // // |            System.Collections.ArrayList ArrayList1 = p1.Base_obj.M_ArrayList;
+				// // // |            byte[] buffer = new byte[ArrayList1.Count];
+				// // // |            int num = p3 - 1;
+				// // // |            for (int i = 0; i < num; i++)
+				// // // |            {
+				// // // |                buffer[i] = Convert.ToByte(ArrayList1[i + p2]);
+				// // // |            }
+				// // // |            Base_obj.Write(buffer, 0, p3);
+				// // // |        }
+				// // // |        
+				// // // |";
+			// // // ИначеЕсли (МетодРус = "Прочитать") и (ИмяКонтекстКлассаАнгл = "NetworkStream") Тогда
+				// // // Стр = Стр +
+				// // // "        [ContextMethod(""Прочитать"", ""Read"")]
+				// // // |        public ClArrayList Read(int p1, int p2)
+				// // // |        {
+				// // // |            byte[] buffer = new byte[p2];
+				// // // |            Base_obj.Read(buffer, p1, p2);
+				// // // |            ClArrayList ClArrayList1 = new ClArrayList();
+				// // // |            System.Collections.ArrayList ArrayList1 = ClArrayList1.Base_obj.M_ArrayList;
+				// // // |            for (int i = 0; i < buffer.Length; i++)
+				// // // |            {
+				// // // |                ArrayList1.Add(buffer[i]);
+				// // // |            }
+				// // // |            return ClArrayList1;
+				// // // |        }
+				// // // |        
+				// // // |";
 			ИначеЕсли (МетодРус = "ВызватьСобытие") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""ВызватьСобытие"", ""CallEvent"")]
@@ -6328,7 +7225,7 @@
 				|            {
 				|                obj.m_Control_DoubleClick(obj.M_Control, new System.EventArgs());
 				|            }
-				|				
+				|
 				|            if (p1.GetType() == typeof(osf.ClLinkLabel) && p2 == ""СсылкаНажата"")
 				|            {
 				|                obj.M_LinkLabel_LinkClicked(obj.M_LinkLabel, new System.Windows.Forms.LinkLabelLinkClickedEventArgs(
@@ -6380,9 +7277,9 @@
 				|
 				|                obj.M_TreeViewAdv_NodeMouseClick(obj.M_TreeViewAdv, args);
 				|            }
-				|				
-				|				
-				|				
+				|
+				|
+				|
 				|
 				|
 				|
@@ -6556,7 +7453,7 @@
 				|        public ClCircularProgressBar CircularProgressBar()
 				|        {
 				|            return new ClCircularProgressBar();
-				|        }				
+				|        }
 				|        
 				|";
 			ИначеЕсли (МетодРус = "Ячейка") и (ИмяКонтекстКлассаАнгл = "DataGridView") Тогда
@@ -7082,7 +7979,7 @@
 				|        public ClDataGridViewRowHeaderCell DataGridViewRowHeaderCell()
 				|        {
 				|            return new ClDataGridViewRowHeaderCell();
-				|        }				
+				|        }
 				|        
 				|";
 			ИначеЕсли (МетодРус = "ЗаголовокКолонкиЯчейки") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
@@ -7091,7 +7988,7 @@
 				|        public ClDataGridViewColumnHeaderCell DataGridViewColumnHeaderCell()
 				|        {
 				|            return new ClDataGridViewColumnHeaderCell();
-				|        }				
+				|        }
 				|        
 				|";
 			ИначеЕсли (МетодРус = "ЗаголовокЯчейки") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
@@ -7100,7 +7997,7 @@
 				|        public ClDataGridViewHeaderCell DataGridViewHeaderCell()
 				|        {
 				|            return new ClDataGridViewHeaderCell();
-				|        }				
+				|        }
 				|        
 				|";
 			ИначеЕсли (МетодРус = "КартинкаЯчейки") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
@@ -7109,7 +8006,7 @@
 				|        public ClDataGridViewImageCell DataGridViewImageCell()
 				|        {
 				|            return new ClDataGridViewImageCell();
-				|        }				
+				|        }
 				|        
 				|";
 			ИначеЕсли (МетодРус = "КнопкаЯчейки") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
@@ -7118,7 +8015,7 @@
 				|        public ClDataGridViewButtonCell DataGridViewButtonCell()
 				|        {
 				|            return new ClDataGridViewButtonCell();
-				|        }				
+				|        }
 				|        
 				|";
 			ИначеЕсли (МетодРус = "ПолеВыбораЯчейки") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
@@ -7272,16 +8169,16 @@
 				|            else if (p1 == 2)
 				|            {
 				|                System.Media.SystemSounds.Beep.Play();
-				|             }
-				|             else if (p1 == 3)
-				|             {
-				|                 System.Media.SystemSounds.Asterisk.Play();
-				|             }
-				|             else if (p1 == 4)
-				|             {
-				|                 System.Media.SystemSounds.Hand.Play();
-				|             }
-				|         }
+				|            }
+				|            else if (p1 == 3)
+				|            {
+				|                System.Media.SystemSounds.Asterisk.Play();
+				|            }
+				|            else if (p1 == 4)
+				|            {
+				|                System.Media.SystemSounds.Hand.Play();
+				|            }
+				|        }
 				|        
 				|";
 			ИначеЕсли МетодРус = "Выше" Тогда
@@ -7749,9 +8646,9 @@
 			ИначеЕсли (МетодРус = "Показать") и (ИмяКонтекстКлассаАнгл = "MessageBox") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""Показать"", ""Show"")]
-				|        public void Show(string text = null, string title = null, int buttons = 0, int icon = 0)
+				|        public int Show(string text = null, string title = null, int buttons = 0, int icon = 0)
 				|        {
-				|            Base_obj.Show(text, title, buttons, icon);
+				|            return Base_obj.Show(text, title, buttons, icon);
 				|        }
 				|        
 				|";
@@ -7783,8 +8680,8 @@
 				|            form.Size = new System.Drawing.Size(457, 182);
 				|            form.Controls.Add(label);
 				|            form.Controls.Add(textBox);
-				|            form.Controls.Add(buttonOk); 
-				|            form.Controls.Add(buttonCancel); 
+				|            form.Controls.Add(buttonOk);
+				|            form.Controls.Add(buttonCancel);
 				|
 				|            form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 				|            form.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -7924,7 +8821,7 @@
 				|        public string GetText()
 				|        {
 				|            string str1 = null;
-				|            var thread = new Thread(() => 
+				|            var thread = new Thread(() =>
 				|                {
 				|                    IDataObject dataObject = Clipboard.GetDataObject();
 				|                    if (dataObject.GetDataPresent(DataFormats.UnicodeText))
@@ -9152,8 +10049,8 @@
 			ИначеЕсли (МетодРус = "КлонироватьМеню") и (ИмяКонтекстКлассаАнгл = "MainMenu") Тогда
 				Стр = Стр +
 				"        [ContextMethod(""КлонироватьМеню"", ""CloneMenu"")]
- 				|        public ClMainMenu CloneMenu()
- 				|       {
+				|        public ClMainMenu CloneMenu()
+				|        {
 				|            MainMenu MainMenu1 = new MainMenu();
 				|
 				|            for (int i = 0; i < Base_obj.MenuItems.Count; i++)
@@ -9323,7 +10220,7 @@
 			ИначеЕсли (МетодРус = "НайтиОкноПоЗаголовку") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
 				Стр = Стр +
 				"        [DllImport(""user32.dll"", EntryPoint = ""FindWindow"", CharSet = CharSet.Auto, SetLastError = true)] private static extern IntPtr FindWindowByCaption(IntPtr ZeroOnly, string WindowName);
-				|        
+				|
 				|        [ContextMethod(""НайтиОкноПоЗаголовку"", ""FindWindowByCaption"")]
 				|        public IValue FindWindowByCaption(string WindowName)
 				|        {
@@ -9356,7 +10253,7 @@
 				|        public IValue ShowDialog()
 				|        {
 				|            int Res1 = 0;
-				|            var thread = new Thread(() => 
+				|            var thread = new Thread(() =>
 				|                {
 				|                    Base_obj.ShowColor = true;
 				|                    Res1 = (int)Base_obj.ShowDialog();
@@ -9997,7 +10894,7 @@
 				|        public ClTreeViewAdv TreeViewAdv()
 				|        {
 				|            return new ClTreeViewAdv();
-				|        }		
+				|        }
 				|
 				|";
 			ИначеЕсли (МетодРус = "ТаблицаДанных") и (ИмяКонтекстКлассаАнгл = "OneScriptForms") Тогда
@@ -10486,8 +11383,8 @@
 				"        [ContextMethod(""АТангенс2"", ""Atan2"")]
 				|        public double Atan2(double p1, double p2)
 				|        {
- 				|           return System.Math.Atan2(p1, p2);
- 				|        }
+				|            return System.Math.Atan2(p1, p2);
+				|        }
 				|        
 				|";
 			ИначеЕсли МетодРус = "ГКосинус" Тогда
@@ -10628,7 +11525,7 @@
 			ИначеЕсли МетодРус = "ПолучитьГлавноеМеню" Тогда
 				Стр = Стр + 
 				"        [ContextMethod(""ПолучитьГлавноеМеню"", ""GetMainMenu"")]
- 				|        public ClMainMenu GetMainMenu()
+				|        public ClMainMenu GetMainMenu()
 				|        {
 				|            return (ClMainMenu)OneScriptForms.RevertObj(Base_obj.GetMainMenu());
 				|        }
@@ -12320,11 +13217,11 @@
 							ИначеЕсли М10[0] = "Тип: Булево." Тогда
 								ТипПараметраВСкобках = "bool";
 							ИначеЕсли М10[0] = "Тип: Дата." Тогда
-								ТипПараметраВСкобках = "DateTime";	
+								ТипПараметраВСкобках = "DateTime";
 							ИначеЕсли М10[0] = "Тип: Произвольный." Тогда
 								ТипПараметраВСкобках = "IValue";
 							ИначеЕсли М10[0] = "Тип: Массив." Тогда
-								ТипПараметраВСкобках = "dynamic";	
+								ТипПараметраВСкобках = "dynamic";
 							ИначеЕсли СтрНайти(М10[0], ";") > 0 Тогда
 								ТипПараметраВСкобках = "dynamic";
 							Иначе
@@ -12475,6 +13372,8 @@
 				ИначеЕсли СокрЛП(ВозвращаемоеМетодомЗначение) = "" Тогда
 					ВозвращаемоеМетодомЗначение = "void";
 					Комментарий = "";
+				ИначеЕсли ВозвращаемоеМетодомЗначение = "Тип: Массив." Тогда
+					ВозвращаемоеМетодомЗначение = "IValue";
 				Иначе
 					Сообщить("Не хватает ВозвращаемоеМетодомЗначение " + М10[0]);
 					ЗавершитьРаботу(4);
@@ -12493,7 +13392,7 @@
 						|        " + Комментарий + "{
 						|        " + Комментарий + "    Base_obj." + МетодАнгл + "();
 						|        " + Комментарий + "}
-						|					
+						|
 						|";
 						// Сообщить("СтрХвост = " + СтрХвост);
 						Стр = Стр + СтрХвост;
@@ -12501,7 +13400,7 @@
 						// [ContextMethod("ЗагрузитьФайл", "LoadFile")]
 						// public void LoadFile(string p1, ClRichTextBoxStreamType p2)
 						// {
-						// 	Base_obj.LoadFile(p1, p2.Base_obj);
+						//     Base_obj.LoadFile(p1, p2.Base_obj);
 						// }
 						СтрХвост = 
 						"        " + Комментарий + "[ContextMethod(""" + МетодРус + """, """ + МетодАнгл + """)]
@@ -12520,8 +13419,8 @@
 						// [ContextMethod("ПрочитатьДоКонца", "ReadToEnd")]
 						// public string ReadToEnd()
 						// {
-						// 		return Base_obj.ReadToEnd();
-						// }					
+						//     return Base_obj.ReadToEnd();
+						// }
 						СтрХвост = 
 						"        " + Комментарий + "[ContextMethod(""" + МетодРус + """, """ + МетодАнгл + """)]
 						|        " + Комментарий + "public " + ВозвращаемоеМетодомЗначение + " " + МетодАнгл + "()
@@ -12534,7 +13433,7 @@
 						// [ContextMethod("Найти", "Seek")]
 						// public int Seek(int p1, int p2)
 						// {
-						// 	return Base_obj.Seek(p1, p2);
+						//     return Base_obj.Seek(p1, p2);
 						// }
 						СтрХвост = 
 						"        " + Комментарий + "[ContextMethod(""" + МетодРус + """, """ + МетодАнгл + """)]
@@ -12550,7 +13449,7 @@
 						// [ContextMethod("Форма", "Form")]
 						// public ClForm Form()
 						// {
-						// 	return new ClForm();
+						//     return new ClForm();
 						// }
 						СтрХвост = 
 						"        " + Комментарий + "[ContextMethod(""" + МетодРус + """, """ + МетодАнгл + """)]
@@ -12565,7 +13464,7 @@
 						//public ClListViewItem Insert(int p1, ClListViewItem p2)
 						//{
 						//    return new ClListViewItem(p1, p2.Base_obj);
-						//}						
+						//}
 						СтрХвост = 
 						"        " + Комментарий + "[ContextMethod(""" + МетодРус + """, """ + МетодАнгл + """)]
 						|        " + Комментарий + "public " + ВозвращаемоеМетодомЗначение + " " + МетодАнгл + СтрПараметровВСкобках + "
@@ -12675,6 +13574,7 @@
 	// КонецЦикла;
 	
 	УдалитьФайлы(КаталогВыгрузки, "*.cs");
+	УдалитьФайлы(КаталогВыгрузки, "*.os");
 	
 	СоздатьФайлCs("ButtonBase");
 	СоздатьФайлCs("Button");
@@ -12896,15 +13796,29 @@
 	СоздатьФайлCs("Dns");
 	СоздатьФайлCs("IpAddress");
 	СоздатьФайлCs("IpHostEntry");
-	СоздатьФайлCs("NetworkStream");
-	СоздатьФайлCs("TCPClient");
-	СоздатьФайлCs("TCPListener");
 	СоздатьФайлCs("DataGridViewCellExHelper");
 	СоздатьФайлCs("DataGridViewHelper");
 	СоздатьФайлCs("ISpannedCell");
 	СоздатьФайлCs("MaskedTextBox");
 	СоздатьФайлCs("MaskInputRejectedEventArgs");
 	СоздатьФайлCs("CircularProgressBar");
+	
+	СоздатьФайлCs("NetworkStream");
+	СоздатьФайлCs("SupportTCPServer");
+	СоздатьФайлCs("MultithreadedTCPServer");
+	СоздатьФайлCs("MultithreadedTCPServerSSL");
+	СоздатьФайлCs("TCPClient");
+	СоздатьФайлCs("TCPListener");
+	СоздатьФайлCs("TCPClientSSL");
+	СоздатьФайлCs("ServerEventArgs");
+	СоздатьФайлCs("SslStreamWrapper");
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -12913,7 +13827,8 @@
 	ТекстДок = Новый ТекстовыйДокумент;
 	ТекстДок.Прочитать(КаталогСправки + "\OneScriptForms.OneScriptFormsMethods.html");
 	Стр = ТекстДок.ПолучитьТекст();
-	Массив1 = СтрНайтиМежду(Стр, "<TR vAlign=top>", "</TD></TR>", Ложь, );
+	Массив1 = СтрНайтиМежду(Стр, "<TR vAlign=top>", "</TD>
+	|                    </TR>", Ложь, );
 	Если Массив1.Количество() > 0 Тогда
 		СтрМетодовСистема = "";
 		Для А = 0 По Массив1.ВГраница() Цикл
@@ -12930,6 +13845,7 @@
 		КонецЦикла;
 	КонецЕсли;
 	
+	// Этот фрагмент вроде ничего не делает. Что он тут делает, ума не приложу.
 	СписокСтрМетодовСистема = Новый СписокЗначений;
 	М15 = РазобратьСтроку(СтрМетодовСистема, ",");
 	Для А = 0 По М15.ВГраница() Цикл
@@ -12941,7 +13857,13 @@
 	ВыбранныеФайлы = ОтобратьФайлы("Класс");
 	Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
 		
-		Если ВыбранныеФайлы[А] = "C:\444\OneScriptFormsru\OneScriptForms.FormsCollection.html" Тогда
+		Если СтрНайти(ВыбранныеФайлы[А], "OneScriptForms.FormsCollection.html") > 0 
+			или СтрНайти(ВыбранныеФайлы[А], "OneScriptForms.ServerEventArgs.html") > 0 
+			или СтрНайти(ВыбранныеФайлы[А], "OneScriptForms.ServerAction.html") > 0
+
+
+
+			Тогда
 			Продолжить;
 		КонецЕсли;
 		
@@ -12954,9 +13876,6 @@
 		Стр33 = СтрЗаменить(Стр33, "&nbsp;", " ");
 		Стр33 = СтрЗаменить(Стр33, ">", "");
 		М08 = РазобратьСтроку(Стр33, " ");
-		
-		// КаталогВыгрузки + "\"
-		// КаталогВыгрузки + \"
 		
 		ИмяФайлаВыгрузки = КаталогВыгрузки + "\" + М01[0] + ".cs";
 		
@@ -13006,14 +13925,16 @@
 				
 				// для классов - аргументов свои правила
 				Если Прав(ИмяКонтекстКлассаАнгл, 4) = "Args" Тогда
-					Если Не (ИмяКонтекстКлассаАнгл = "EventArgs") Тогда
+					Если Не ((ИмяКонтекстКлассаАнгл = "EventArgs") 
+						или (ИмяКонтекстКлассаАнгл = "ServerEventArgs"))
+						Тогда
 						ПодстрокаПоиска = 
 						"        //endMethods";
 						ПодстрокаЗамены = 
 						"        [ContextMethod(""" + ИмяКонтекстКлассаРус + """, """ + ИмяКонтекстКлассаАнгл + """)]
 						|        public Cl" + ИмяКонтекстКлассаАнгл + " " + ИмяКонтекстКлассаАнгл + "()
 						|        {
-						|        	return (Cl" + ИмяКонтекстКлассаАнгл + ")Event;
+						|            return (Cl" + ИмяКонтекстКлассаАнгл + ")Event;
 						|        }
 						|        
 						|        //endMethods";
@@ -13031,7 +13952,8 @@
 			|        {
 			|            System.Type Type1 = GetTypeFromName(p1);
 			|            string str1 = """";
-			|            string DisplayName = """";//ОтображаемоеИмяСвойства
+			|            string DisplayName = """";
+			|            //ОтображаемоеИмяСвойства
 			|            //try
 			|            //{
 			|            //    System.ComponentModel.PropertyDescriptor PropertyDescriptorCollection1 = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2];
@@ -13041,7 +13963,8 @@
 			|            //}
 			|            //catch { }
 			|            str1 = str1 + ""DisplayName="" + DisplayName + ""~"";
-			|            string Description = """";//ОписаниеСвойства
+			|            string Description = """";
+			|            //ОписаниеСвойства
 			|            //try
 			|            //{
 			|            //    System.ComponentModel.PropertyDescriptor PropertyDescriptorCollection1 = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2];
@@ -13071,7 +13994,8 @@
 			|            }
 			|            catch { }
 			|            str1 = str1 + ""Browsable="" + Browsable + ""~"";
-			|            string ConverterTypeName = """";//КонвертерТипаСвойства
+			|            string ConverterTypeName = """";
+			|            //КонвертерТипаСвойства
 			|            //try
 			|            //{
 			|            //    System.ComponentModel.PropertyDescriptor PropertyDescriptorCollection1 = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2];
@@ -13137,7 +14061,7 @@
 			|
 			|            return null;
 			|        }
-			|			
+			|
 			|        public static void AddToHashtable(dynamic p1, dynamic p2)
 			|        {
 			|            if (!OneScriptForms.hashtable.ContainsKey(p1))
@@ -13152,7 +14076,7 @@
 			|                }
 			|            }
 			|        }
-			|			
+			|
 			|        public static dynamic RevertEqualsObj(dynamic initialObject)
 			|        {
 			|            try
@@ -13165,7 +14089,7 @@
 			|            }
 			|        }
 			|
-			|        public static IValue RevertObj(dynamic initialObject) 
+			|        public static IValue RevertObj(dynamic initialObject)
 			|        {
 			|            //ScriptEngine.Machine.Values.NullValue NullValue1;
 			|            //ScriptEngine.Machine.Values.BooleanValue BooleanValue1;
@@ -13216,7 +14140,7 @@
 			|            {
 			|                return (IValue)Obj1;
 			|            }
-			|			
+			|
 			|            try
 			|            {
 			|                if (str1.Contains(""osf.""))
@@ -13295,7 +14219,7 @@
 			|                    return (IValue)ValueFactory.Create(vOut);
 			|                }
 			|            }
-			|			
+			|
 			|            if (str4 == ""Неопределено"")
 			|            {
 			|                return (IValue)null;
@@ -13318,7 +14242,7 @@
 			|            }
 			|            return (IValue)initialObject;
 			|        }
-			|			
+			|
 			|        public static dynamic DefineTypeIValue(dynamic p1)
 			|        {
 			|            if (p1.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
@@ -13342,7 +14266,7 @@
 			|                return p1;
 			|            }
 			|        }
-			|			
+			|
 			|        public static dynamic GetEventParameter(dynamic dll_objEvent)
 			|        {
 			|            if (dll_objEvent != null)
@@ -13416,7 +14340,7 @@
 			|                                       // MB_APPLMODAL используется по умолчанию, если не указаны ни MB_SYSTEMMODAL, ни MB_TASKMODAL.
 			|            MB_TASKMODAL = 0x00002000 // То же, что и MB_APPLMODAL, за исключением того, что все окна верхнего уровня, принадлежащие текущему потоку, отключены, если параметр HWND равен нулю. Используйте этот флаг, когда вызывающее приложение или библиотека не имеют доступного дескриптора окна, но все равно должны запретить ввод в другие окна в вызывающем потоке без приостановки других потоков.
 			|        }
-			|			
+			|
 			|        //endMethods";
 			СтрВыгрузки = СтрЗаменить(СтрВыгрузки, ПодстрокаПоиска, ПодстрокаЗамены);
 		КонецЕсли;
@@ -13468,8 +14392,10 @@
 				|using ScriptEngine.Machine.Contexts;
 				|using ScriptEngine.Machine;
 				|using System.Reflection;
-	 			|using System.Runtime.InteropServices;
-	 			|using ScriptEngine.HostedScript.Library;
+				|using System.Runtime.InteropServices;
+				|using ScriptEngine.HostedScript.Library;
+				|using ScriptEngine.HostedScript.Library.Binary;
+				|using osfMultiTcp;
 				|
 				|";
 			Иначе
@@ -13540,10 +14466,22 @@
 
 		
 		//находим текст таблицы
-		СтрТаблица = СтрНайтиМежду(Стр, "</TH></TR>" + Символы.ПС + "  <TR vAlign=top>", "</TBODY></TABLE>", Ложь, );
-		СтрТаблицыПеречисления = СтрНайтиМежду(СтрТаблица[0], "<TR vAlign=top>", "</TD></TR>", Ложь, );
+		СтрТаблица = СтрНайтиМежду(Стр, "</TH>
+		|                    </TR>" + Символы.ПС + "                    <TR vAlign=top>", "</TBODY>
+		|            </TABLE>", Ложь, );
+		СтрТаблицыПеречисления = СтрНайтиМежду(СтрТаблица[0], "<TR vAlign=top>", "</TD>
+		|                    </TR>", Ложь, );
 		СтрРазделОбъявленияПеременныхДляПеречисления = "";
 		СтрСвойстваДляПеречисления = "";
+		
+		СтрСловарьРус = "
+		|        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+		|        {
+		|";
+		СтрСловарьАнгл = "
+		|        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+		|        {
+		|";
 		Для А02 = 0 По СтрТаблицыПеречисления.ВГраница() Цикл
 			М12 = СтрНайтиМежду(СтрТаблицыПеречисления[А02], "<TD>", "</TD>", , );
 			М14 = СтрНайтиМежду(М12[0], "<B>", "</B>", , );
@@ -13555,7 +14493,7 @@
 			// если здесь ошибка, тогда возможно есть лишний пробел в одном из значений перечисления
 			ИмяЧленаАнгл = СтрНайтиМежду(ИмяЧленаАнгл, "(", ")", , )[0];
 			ИмяЧленаРус = М13[0];
-			ОписаниеЧлена = М12[1];
+			ОписаниеЧлена = СокрЛП(М12[1]);
 			Пока СтрЧислоВхождений(ОписаниеЧлена, Символы.ПС) > 0 Цикл
 				ОписаниеЧлена = СтрЗаменить(ОписаниеЧлена, Символы.ПС, " ");
 			КонецЦикла;
@@ -13679,6 +14617,8 @@
 				ИмяКонтекстКлассаАнгл = "ImageScaleMode" или 
 				ИмяКонтекстКлассаАнгл = "TreeSelectionMode" или 
 				ИмяКонтекстКлассаАнгл = "GridLineStyle" или 
+				ИмяКонтекстКлассаАнгл = "MultithreadedTCPServerState" или 
+				
 				ИмяКонтекстКлассаАнгл = "DataType" Тогда
 				СтрРазделОбъявленияПеременныхДляПеречисления = СтрРазделОбъявленияПеременныхДляПеречисления + Символы.ПС + 
 				"        private int m_" + СоставнаяСтр + " = " + ЗначениеЧлена + "; // " + ЗначениеЧлена + " " + ОписаниеЧлена;
@@ -13687,7 +14627,7 @@
 				"        [ContextProperty(""" + ИмяЧленаРус + """, """ + ИмяЧленаАнгл + """)]
 				|        public int " + ИмяЧленаАнгл + "
 				|        {
-				|        	get { return m_" + СоставнаяСтр + "; }
+				|            get { return m_" + СоставнаяСтр + "; }
 				|        }" + ?(А02 = СтрТаблицыПеречисления.ВГраница(), "", Символы.ПС);
 			Иначе
 				СтрРазделОбъявленияПеременныхДляПеречисления = СтрРазделОбъявленияПеременныхДляПеречисления + Символы.ПС + 
@@ -13697,10 +14637,26 @@
 				"        [ContextProperty(""" + ИмяЧленаРус + """, """ + ИмяЧленаАнгл + """)]
 				|        public int " + ИмяЧленаАнгл + "
 				|        {
-				|        	get { return m_" + СоставнаяСтр + "; }
+				|            get { return m_" + СоставнаяСтр + "; }
 				|        }" + ?(А02 = СтрТаблицыПеречисления.ВГраница(), "", Символы.ПС);
 			КонецЕсли;
+			
+			СтрСловарьРус = СтрСловарьРус + 
+			"            {" + ЗначениеЧлена + ", """ + ИмяЧленаРус + """},
+			|";
+			СтрСловарьАнгл = СтрСловарьАнгл + 
+			"            {" + ЗначениеЧлена + ", """ + ИмяЧленаАнгл + """},
+			|";
+				
 		КонецЦикла;
+			
+		СтрСловарьРус = СтрСловарьРус + 
+		"        };
+		|";
+		СтрСловарьАнгл = СтрСловарьАнгл + 
+		"        };
+		|";
+
 		
 		//последние исправления СтрСвойстваДляПеречисления
 		ПодстрокаПоиска = "(int)System.Environment.SpecialFolder.SystemDirectory;";
@@ -13732,7 +14688,7 @@
 		ПодстрокаЗамены = "using ScriptEngine.Machine.Contexts;
 		|using ScriptEngine.Machine;
 		|using System.Collections;
-		|using System.Collections.Generic;";		
+		|using System.Collections.Generic;";
 		СтрВыгрузкиПеречисленийШапка = СтрЗаменить(СтрВыгрузкиПеречисленийШапка, ПодстрокаПоиска, ПодстрокаЗамены);
 		
 		СтрВыгрузкиПеречислений = СтрВыгрузкиПеречисленийШапка + Символы.ПС + 
@@ -13769,7 +14725,35 @@
 		|            {
 		|                yield return (item as IValue);
 		|            }
-		|        }";
+		|        }
+		|
+		|        [ContextProperty(""Количество"", ""Count"")]
+		|        public int CountProp
+		|        {
+		|            get { return _list.Count; }
+		|        }
+		|
+		|        [ContextMethod(""Получить"", ""Get"")]
+		|        public IValue Get(int index)
+		|        {
+		|            return _list[index];
+		|        }
+		|
+		|        [ContextMethod(""Имя"")]
+		|        public string NameRu(decimal p1)
+		|        {
+		|            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+		|        }
+		|
+		|        [ContextMethod(""Name"")]
+		|        public string NameEn(decimal p1)
+		|        {
+		|            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+		|        }
+		|";
+
+		СтрРазделОбъявленияПеременныхДляПеречисления = СтрРазделОбъявленияПеременныхДляПеречисления + СтрСловарьРус + Символы.ПС;
+		СтрРазделОбъявленияПеременныхДляПеречисления = СтрРазделОбъявленияПеременныхДляПеречисления + СтрСловарьАнгл + Символы.ПС;
 
 		Для А03 = 0 По ОтобранныеПеречисления.ВГраница() Цикл
 			СтрКлассПеречисления = "" + ОтобранныеПеречисления[А03];
@@ -13793,8 +14777,29 @@
 					М126 = СтрРазделить(Свойство, Символы.ПС);
 					Если М126.Количество() > 0 Тогда
 						Для А04 = 0 По М126.ВГраница() Цикл
-							СтрРазделОбъявленияПеременныхДляПеречисления = СтрРазделОбъявленияПеременныхДляПеречисления + "
-							|            _list.Add(ValueFactory.Create(" + М126[А04] + "));";
+							Если М126[А04] = "Count"
+								или (М126[А04] = "DontCare" и СтрКлассПеречисления = "PixelFormat") 
+								или (М126[А04] = "Asterisk" и СтрКлассПеречисления = "MessageBoxIcon") 
+								или (М126[А04] = "Exclamation" и СтрКлассПеречисления = "MessageBoxIcon") 
+								или (М126[А04] = "Hand" и СтрКлассПеречисления = "MessageBoxIcon") 
+								или (М126[А04] = "Stop" и СтрКлассПеречисления = "MessageBoxIcon") 
+								или (М126[А04] = "Cross" и СтрКлассПеречисления = "HatchStyle") 
+								или (М126[А04] = "Max" и СтрКлассПеречисления = "HatchStyle") 
+								или (М126[А04] = "Min" и СтрКлассПеречисления = "HatchStyle") 
+								или (М126[А04] = "Capital" и СтрКлассПеречисления = "Keys") 
+								или (М126[А04] = "HanguelMode" и СтрКлассПеречисления = "Keys") 
+								или (М126[А04] = "KanaMode" и СтрКлассПеречисления = "Keys") 
+								или (М126[А04] = "KanjiMode" и СтрКлассПеречисления = "Keys") 
+								или (М126[А04] = "Next" и СтрКлассПеречисления = "Keys") 
+								или (М126[А04] = "Prior" и СтрКлассПеречисления = "Keys") 
+								или (М126[А04] = "Return" и СтрКлассПеречисления = "Keys") 
+								или (М126[А04] = "Snapshot" и СтрКлассПеречисления = "Keys") 
+								
+							Тогда
+							Иначе
+								СтрРазделОбъявленияПеременныхДляПеречисления = СтрРазделОбъявленияПеременныхДляПеречисления + "
+								|            _list.Add(ValueFactory.Create(" + М126[А04] + "));";
+							КонецЕсли;
 						КонецЦикла;
 					КонецЕсли;
 				КонецЦикла;
@@ -13804,9 +14809,10 @@
 
 		СтрРазделОбъявленияПеременныхДляПеречисления = СтрРазделОбъявленияПеременныхДляПеречисления + "
 		|        }
-		|";		
+		|";
 		
 		СтрВыгрузкиПеречислений = СтрВыгрузкиПеречислений + СтрРазделОбъявленияПеременныхДляПеречисления + Символы.ПС;
+		
 		СтрВыгрузкиПеречислений = СтрВыгрузкиПеречислений + СтрСвойстваДляПеречисления + Символы.ПС;
 		СтрВыгрузкиПеречислений = СтрВыгрузкиПеречислений + Символы.ПС + 
 		"    }//endClass" + Символы.ПС + 
@@ -13843,12 +14849,2862 @@
 		// ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 		
 		
+// СоздатьФайлCs("SupportTCPServer");
+// СоздатьФайлCs("TCPClientSSL");
+// СоздатьФайлCs("MultithreadedTCPServerSSL");
+// СоздатьФайлCs("ServerEventArgs");
+// СоздатьФайлCs("SslStreamWrapper");
 		
 		
 		
 		
 		
-				
+	ИначеЕсли ИмяФайлаCs = "SslStreamWrapper" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.HostedScript.Library.Binary;
+		|using System.Threading.Tasks;
+		|using System.Net.Security;
+		|
+		|namespace osfMultiTcp
+		|{
+		|    [ContextClass(""ТсSSLПоток"", ""TsSslStreamWrapper"")]
+		|    public class TsSslStreamWrapper : AutoContext<TsSslStreamWrapper>
+		|    {
+		|        private SslStream _sslStream;
+		|
+		|        public TsSslStreamWrapper(SslStream sslStream)
+		|        {
+		|            _sslStream = sslStream;
+		|        }
+		|
+		|        [ContextProperty(""ВозможностьЧтения"", ""CanRead"")]
+		|        public bool CanRead => _sslStream?.CanRead ?? false;
+		|
+		|        [ContextProperty(""ВозможностьЗаписи"", ""CanWrite"")]
+		|        public bool CanWrite => _sslStream?.CanWrite ?? false;
+		|
+		|        [ContextMethod(""ПрочитатьВБуферДвоичныхДанных"", ""ReadToBinaryDataBuffer"")]
+		|        public BinaryDataBuffer ReadToBinaryDataBuffer()
+		|        {
+		|            BinaryDataBuffer bdb = ReadToBDB().Result;
+		|            return bdb;
+		|        }
+		|
+		|        public Task<BinaryDataBuffer> ReadToBDB()
+		|        {
+		|            return ReadToBuffer();
+		|        }
+		|
+		|        public async Task<BinaryDataBuffer> ReadToBuffer()
+		|        {
+		|            BinaryDataBuffer bdb = new BinaryDataBuffer(new byte[0]);
+		|            byte[] Buffer = new byte[1024];
+		|            while (true)
+		|            {
+		|                int bytes = await this._sslStream.ReadAsync(Buffer, 0, Buffer.Length);
+		|                if (bytes > 0)
+		|                {
+		|                    bdb = bdb.Concat((new BinaryDataBuffer(Buffer)).Read(0, bytes));
+		|                    return bdb;
+		|                }
+		|                return bdb;
+		|            }
+		|        }
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "ServerEventArgs" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using ScriptEngine.HostedScript.Library.Binary;
+		|using osfMultiTcp;
+		|
+		|namespace osf
+		|{
+		|    public class ServerEventArgs : EventArgs
+		|    {
+		|        public new ClServerEventArgs dll_obj;
+		|        public string serverError = null;
+		|        public string clientId = null;
+		|        public BinaryDataBuffer data = null;
+		|
+		|        public ServerEventArgs()
+		|        {
+		|        }
+		|
+		|        public ServerEventArgs(TsEventArgs args)
+		|        {
+		|            serverError = args.ServerError;
+		|            clientId = args.ClientId;
+		|            data = args.Data;
+		|        }
+		|
+		|        public ServerEventArgs(BinaryDataBuffer p1)
+		|        {
+		|            data = p1;
+		|        }
+		|    }
+		|
+		|    [ContextClass(""КлСобытиеСервераАрг"", ""ClServerEventArgs"")]
+		|    public class ClServerEventArgs : AutoContext<ClServerEventArgs>
+		|    {
+		|        public ClServerEventArgs()
+		|        {
+		|            ServerEventArgs ServerEventArgs1 = new ServerEventArgs();
+		|            ServerEventArgs1.dll_obj = this;
+		|            Base_obj = ServerEventArgs1;
+		|        }
+		|
+		|        public ClServerEventArgs(ServerEventArgs p1)
+		|        {
+		|            ServerEventArgs ServerEventArgs1 = p1;
+		|            ServerEventArgs1.dll_obj = this;
+		|            Base_obj = ServerEventArgs1;
+		|        }
+		|
+		|        public ServerEventArgs Base_obj;
+		|
+		|        [ContextProperty(""Отправитель"", ""Sender"")]
+		|        public IValue Sender
+		|        {
+		|            get { return OneScriptForms.RevertObj(Base_obj.Sender); }
+		|        }
+		|
+		|        [ContextProperty(""Параметр"", ""Parameter"")]
+		|        public IValue Parameter
+		|        {
+		|            get { return (IValue)Base_obj.Parameter; }
+		|        }
+		|
+		|        [ContextProperty(""ОшибкаСервера"", ""ServerError"")]
+		|        public string ServerError
+		|        {
+		|            get { return Base_obj.serverError; }
+		|        }
+		|
+		|        [ContextProperty(""ИдентификаторКлиента"", ""ClientId"")]
+		|        public string ClientId
+		|        {
+		|            get { return Base_obj.clientId; }
+		|        }
+		|
+		|        [ContextProperty(""Данные"", ""Data"")]
+		|        public BinaryDataBuffer Data
+		|        {
+		|            get { return Base_obj.data; }
+		|        }
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "MultithreadedTCPServerSSL" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"using ScriptEngine.HostedScript.Library;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using System.Collections.Concurrent;
+		|using System;
+		|using ScriptEngine.HostedScript.Library.Binary;
+		|using System.Collections.Generic;
+		|using System.IO;
+		|using System.Net.Sockets;
+		|using System.Net;
+		|using System.Text;
+		|using System.Threading.Tasks;
+		|using System.Threading;
+		|using System.Security.Cryptography.X509Certificates;
+		|using System.Net.Security;
+		|using osf;
+		|
+		|namespace osfMultiTcp
+		|{
+		|    public class MultithreadedTCPServerSSL : IDisposable
+		|    {
+		|        public TsMultithreadedTCPServerSSL dll_obj;
+		|        private static long _lastClientId;
+		|        private volatile ServerState _state = ServerState.Stopped;
+		|        private readonly object _stateLock = new object();
+		|        public ServerState State => _state;
+		|        private int maxMessageSize = 1024 * 1024 * 128; // 128 MB Ограничение на размер принимаемого сообщения.
+		|        private readonly ByteBufferPool _bufferPool = new ByteBufferPool(1024);
+		|        private int maxClients = 1500; // Ограничение на количество подключаемых клиентов.
+		|        public int ActiveClients => _clients.Count; // Количество активных клиентов.
+		|        private TcpListener _listener;
+		|        private X509Certificate2 certificate = null;
+		|        private ConcurrentDictionary<string, ClientInfo> _clients = new ConcurrentDictionary<string, ClientInfo>();
+		|        private CancellationTokenSource _cts;
+		|        private bool _isRunning;
+		|        public int Port { get; set; } = 8080;
+		|        public System.Text.Encoding Encoding { get; set; } = System.Text.Encoding.UTF8;
+		|        public TimeSpan HeartbeatInterval { get; set; } = TimeSpan.FromSeconds(10); // Интервал проверки активности клиента.
+		|
+		|        public event Action<string> OnClientConnected;
+		|        public event Action<string> OnClientDisconnected;
+		|        public event Action<string, BinaryDataBuffer> OnMessageReceived;
+		|        public event Action<string> OnServerError;
+		|
+		|        private static string pathCert;
+		|        private static string password;
+		|
+		|        private class ClientInfo
+		|        {
+		|            public TcpClient Client { get; set; }
+		|            public SslStream SslStream { get; set; }
+		|            public CancellationTokenSource Cts { get; set; }
+		|            public string Id { get; set; }
+		|            public DateTime LastActivity { get; set; }
+		|            public SemaphoreSlim WriteLock { get; } = new SemaphoreSlim(1, 1); // Семафор для синхронизации записи
+		|        }
+		|
+		|        public MultithreadedTCPServerSSL(int port, string path_cert, string pas)
+		|        {
+		|            Port = port;
+		|            pathCert = path_cert;
+		|            password = pas;
+		|
+		|            OnClientConnected += MultithreadedTCPServer_OnClientConnected;
+		|            OnClientDisconnected += MultithreadedTCPServer_OnClientDisconnected;
+		|            OnMessageReceived += MultithreadedTCPServer_OnMessageReceived;
+		|            OnServerError += MultithreadedTCPServer_OnServerError;
+		|        }
+		|
+		|        private void MultithreadedTCPServer_OnServerError(string obj)
+		|        {
+		|            if (dll_obj?.ServerError != null)
+		|            {
+		|                var args = new TsEventArgs
+		|                {
+		|                    eventAction = dll_obj.ServerError,
+		|                    parameter = Helper.GetEventParameter(dll_obj.ServerError),
+		|                    serverError = obj
+		|                };
+		|                OneScriptMultithreadedTCPServer.EventQueue.Enqueue(args);
+		|            }
+		|        }
+		|
+		|        private void MultithreadedTCPServer_OnMessageReceived(string arg1, BinaryDataBuffer arg2)
+		|        {
+		|            if (dll_obj?.MessageReceived != null)
+		|            {
+		|                var args = new TsEventArgs
+		|                {
+		|                    eventAction = dll_obj.MessageReceived,
+		|                    parameter = Helper.GetEventParameter(dll_obj.MessageReceived),
+		|                    clientId = arg1,
+		|                    data = arg2
+		|                };
+		|                OneScriptMultithreadedTCPServer.EventQueue.Enqueue(args);
+		|            }
+		|        }
+		|
+		|        private void MultithreadedTCPServer_OnClientDisconnected(string obj)
+		|        {
+		|            if (dll_obj?.ClientDisconnected != null)
+		|            {
+		|                var args = new TsEventArgs
+		|                {
+		|                    eventAction = dll_obj.ClientDisconnected,
+		|                    parameter = Helper.GetEventParameter(dll_obj.ClientDisconnected),
+		|                    clientId = obj
+		|                };
+		|                OneScriptMultithreadedTCPServer.EventQueue.Enqueue(args);
+		|            }
+		|        }
+		|
+		|        private void MultithreadedTCPServer_OnClientConnected(string obj)
+		|        {
+		|            if (dll_obj?.ClientConnected != null)
+		|            {
+		|                var args = new TsEventArgs
+		|                {
+		|                    eventAction = dll_obj.ClientConnected,
+		|                    parameter = Helper.GetEventParameter(dll_obj.ClientConnected),
+		|                    clientId = obj
+		|                };
+		|                OneScriptMultithreadedTCPServer.EventQueue.Enqueue(args);
+		|            }
+		|        }
+		|
+		|        public async Task StartAsync(CancellationToken externalToken = default)
+		|        {
+		|            lock (_stateLock)
+		|            {
+		|                if (_state != ServerState.Stopped && _state != ServerState.StoppedWithError)
+		|                {
+		|                    throw new InvalidOperationException($""Сервер уже работает. Текущее состояние: {_state}"");
+		|                }
+		|                _state = ServerState.Starting;
+		|            }
+		|
+		|            _isRunning = true;
+		|            _cts = CancellationTokenSource.CreateLinkedTokenSource(externalToken);
+		|
+		|            try
+		|            {
+		|                // Загрузка сертификата с приватным ключом (если объединены).
+		|                certificate = new X509Certificate2(pathCert, password);
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                OnServerError?.Invoke(""Ошибка сервера: "" + ex.Message);
+		|                return;
+		|            }
+		|
+		|            _listener = new TcpListener(IPAddress.Any, Port);
+		|            _listener.Start(100); // backlog для ожидающих подключений.
+		|
+		|            _state = ServerState.Running;
+		|            Utils.GlobalContext().Echo(""SSL сервер запущен на порт "" + Port);
+		|            OneScriptForms.multiServerUploadedSSL = true;
+		|
+		|            try
+		|            {
+		|                var acceptTasks = new List<Task>();
+		|                // Запускаем несколько задач для приема подключений.
+		|                int acceptLoops = Math.Max(1, System.Environment.ProcessorCount / 2); // Оптимальное количество.
+		|                for (int i = 0; i < acceptLoops; i++)
+		|                {
+		|                    acceptTasks.Add(AcceptClientsLoopAsync(_cts.Token));
+		|                }
+		|
+		|                // Ожидаем завершения всех задач или отмены.
+		|                await Task.WhenAll(acceptTasks).ConfigureAwait(false);
+		|            }
+		|            catch (OperationCanceledException)
+		|            {
+		|                OnServerError?.Invoke(""Сервер остановлен по запросу"");
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                _state = ServerState.StoppedWithError;
+		|                OnServerError?.Invoke(""Ошибка сервера: "" + ex.Message);
+		|            }
+		|            finally
+		|            {
+		|                _state = ServerState.Stopped;
+		|                CleanupResources();
+		|            }
+		|        }
+		|
+		|        private async Task AcceptClientsLoopAsync(CancellationToken token)
+		|        {
+		|            while (!token.IsCancellationRequested && _isRunning)
+		|            {
+		|                try
+		|                {
+		|                    var client = await _listener.AcceptTcpClientAsync().ConfigureAwait(false);
+		|
+		|                    if (token.IsCancellationRequested)
+		|                    {
+		|                        client.Close();
+		|                        break;
+		|                    }
+		|
+		|                    // Ограничение количества одновременных подключений.
+		|                    if (_clients.Count >= MaxClients)
+		|                    {
+		|                        await SendRejectionAndClose(client, ""Сервер перегружен"");
+		|                        continue;
+		|                    }
+		|
+		|                    // Настраиваем таймауты клиента.
+		|                    client.ReceiveTimeout = 30000;
+		|                    client.SendTimeout = 10000;
+		|
+		|                    // Запустим задачу взаимодействия с клиентом так, чтобы она не блокировала подключение новых клиентов.
+		|                    _ = HandleClientAsync(client, token).ContinueWith(t =>
+		|                    {
+		|                        if (t.IsFaulted)
+		|                        {
+		|                            OnServerError?.Invoke(""Ошибка обработки клиента: "" + t.Exception?.InnerException?.Message);
+		|                        }
+		|                    }, TaskContinuationOptions.OnlyOnFaulted);
+		|                }
+		|                catch (ObjectDisposedException)
+		|                {
+		|                    // Сервер прослушивания был остановлен.
+		|                    break;
+		|                }
+		|                catch (SocketException ex) when (ex.SocketErrorCode == SocketError.Interrupted)
+		|                {
+		|                    // Прервано вызовом Stop().
+		|                    break;
+		|                }
+		|                catch (Exception ex)
+		|                {
+		|                    if (!token.IsCancellationRequested)
+		|                    {
+		|                        OnServerError?.Invoke(""Ошибка приёма клиента: "" + ex.Message);
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        private async Task SendRejectionAndClose(TcpClient client, string message)
+		|        {
+		|            try
+		|            {
+		|                var data = Encoding.GetBytes($""ERROR: {message}\n"");
+		|                await client.GetStream().WriteAsync(data, 0, data.Length);
+		|                await Task.Delay(100); // Даем время на отправку.
+		|            }
+		|            catch { }
+		|            finally
+		|            {
+		|                client.Close();
+		|            }
+		|        }
+		|
+		|        private async Task HandleClientAsync(TcpClient client, CancellationToken token)
+		|        {
+		|            var clientId = Convert.ToString(Interlocked.Increment(ref _lastClientId));
+		|            SslStream sslStream = null;
+		|
+		|            try
+		|            {
+		|                // Создаем отдельный SslStream для этого клиента
+		|                sslStream = new SslStream(client.GetStream(), false);
+		|                await sslStream.AuthenticateAsServerAsync(certificate,
+		|                    clientCertificateRequired: false,
+		|                    enabledSslProtocols: System.Security.Authentication.SslProtocols.Tls12,
+		|                    checkCertificateRevocation: false);
+		|
+		|                var clientInfo = new ClientInfo
+		|                {
+		|                    Client = client,
+		|                    SslStream = sslStream,
+		|                    Cts = CancellationTokenSource.CreateLinkedTokenSource(token),
+		|                    Id = clientId,
+		|                    LastActivity = DateTime.UtcNow
+		|                };
+		|
+		|                if (!_clients.TryAdd(clientId, clientInfo))
+		|                {
+		|                    client.Close();
+		|                    sslStream?.Close();
+		|                    return;
+		|                }
+		|
+		|                OnClientConnected?.Invoke(clientId);
+		|
+		|                if (CheckClientActivity)
+		|                {
+		|                    // Запускаем пингование клиента (heartbeat) в фоне.
+		|                    var heartbeatTask = HeartbeatLoopAsync(clientInfo, clientInfo.Cts.Token);
+		|                    // Основной цикл чтения.
+		|                    await ReadLoopAsync(clientInfo, clientInfo.Cts.Token).ConfigureAwait(false);
+		|                    // Отменяем пингование клиента (heartbeat).
+		|                    clientInfo.Cts.Cancel();
+		|                    // Ожидаем завершения пингования клиента (heartbeat) с обработкой исключений.
+		|                    await heartbeatTask.ContinueWith(t =>
+		|                    {
+		|                        if (t.IsFaulted)
+		|                        {
+		|                            OnServerError?.Invoke(""Ошибка heartbeat для клиента "" + clientId + "": "" + t.Exception?.Message);
+		|                        }
+		|                    }, TaskContinuationOptions.OnlyOnFaulted);
+		|                }
+		|                else
+		|                {
+		|                    // Основной цикл чтения.
+		|                    await ReadLoopAsync(clientInfo, clientInfo.Cts.Token).ConfigureAwait(false);
+		|                }
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                OnServerError?.Invoke(""Ошибка в обработке клиента "" + clientId + "": "" + ex.Message);
+		|            }
+		|            finally
+		|            {
+		|                // Удаляем клиента из словаря
+		|                if (_clients.TryRemove(clientId, out var removedClient))
+		|                {
+		|                    removedClient.Cts?.Dispose();
+		|                    removedClient.SslStream?.Close();
+		|                    removedClient.Client?.Close();
+		|                }
+		|
+		|                OnClientDisconnected?.Invoke(clientId);
+		|            }
+		|        }
+		|
+		|        private async Task ReadLoopAsync(ClientInfo clientInfo, CancellationToken token)
+		|        {
+		|            var buffer = _bufferPool.Rent();
+		|
+		|            try
+		|            {
+		|                while (!token.IsCancellationRequested && clientInfo.Client.Connected)
+		|                {
+		|                    try
+		|                    {
+		|                        // Читаем входящие данные.
+		|                        BinaryDataBuffer bdb = new BinaryDataBuffer(new byte[0]);
+		|                        int bytesRead = 0;
+		|
+		|                        do
+		|                        {
+		|                            bytesRead = await clientInfo.SslStream.ReadAsync(buffer, 0, buffer.Length, token).ConfigureAwait(false);
+		|                            bdb = bdb.Concat((new BinaryDataBuffer(buffer)).Read(0, bytesRead));
+		|                            // Ограничение на размер сообщения.
+		|                            if (bdb.Size > maxMessageSize)
+		|                            {
+		|                                await SendRejectionAndClose(clientInfo.Client, ""Превышен размер сообщения"");
+		|                                bdb = new BinaryDataBuffer(new byte[0]);
+		|                                OnServerError?.Invoke(""Превышен размер сообщения для клиента "" + clientInfo.Id + "". Клиент отключен."");
+		|                                break;
+		|                            }
+		|                        } while (bytesRead == buffer.Length);
+		|
+		|                        if (bdb?.Count() > 0)
+		|                        {
+		|                            clientInfo.LastActivity = DateTime.UtcNow;
+		|                            // Вызываем обработчик данных.
+		|                            OnMessageReceived?.Invoke(clientInfo.Id, bdb);
+		|                        }
+		|                    }
+		|                    catch (IOException ex) when (ex.InnerException is SocketException)
+		|                    {
+		|                        break; // Соединение разорвано.
+		|                    }
+		|                    catch (OperationCanceledException)
+		|                    {
+		|                        break;
+		|                    }
+		|                    catch (Exception ex)
+		|                    {
+		|                        OnServerError?.Invoke(""Ошибка чтения от клиента "" + clientInfo.Id + "": "" + ex.Message);
+		|                        break;
+		|                    }
+		|                }
+		|            }
+		|            finally
+		|            {
+		|                _bufferPool.Return(buffer);
+		|            }
+		|        }
+		|
+		|        private async Task HeartbeatLoopAsync(ClientInfo clientInfo, CancellationToken token)
+		|        {
+		|            try
+		|            {
+		|                while (!token.IsCancellationRequested && clientInfo.Client.Connected)
+		|                {
+		|                    await Task.Delay(HeartbeatInterval, token).ConfigureAwait(false);
+		|
+		|                    if (token.IsCancellationRequested)
+		|                    {
+		|                        break;
+		|                    }
+		|
+		|                    // Проверяем активность клиента.
+		|                    if ((DateTime.UtcNow - clientInfo.LastActivity) > TimeSpan.FromSeconds(Convert.ToInt32(HeartbeatInterval.TotalSeconds * 3)))
+		|                    {
+		|                        // Клиент неактивен слишком долго.
+		|                        OnServerError?.Invoke(""Клиент "" + clientInfo.Id + "" неактивен"");
+		|                        break;
+		|                    }
+		|
+		|                    // Отправляем PING с использованием lock.
+		|                    await clientInfo.WriteLock.WaitAsync();
+		|                    try
+		|                    {
+		|                        if (clientInfo.Client.Connected && clientInfo.SslStream != null && clientInfo.SslStream.CanWrite)
+		|                        {
+		|                            var pingData = Encoding.GetBytes($""PING|{DateTime.Now:o}\n"");
+		|                            await clientInfo.SslStream.WriteAsync(pingData, 0, pingData.Length).ConfigureAwait(false);
+		|                            clientInfo.LastActivity = DateTime.UtcNow;
+		|                        }
+		|                    }
+		|                    catch (Exception ex)
+		|                    {
+		|                        OnServerError?.Invoke(""Клиент "" + clientInfo.Id + "" не ответил на отправленный PING: "" + ex.Message);
+		|                        break;
+		|                    }
+		|                    finally
+		|                    {
+		|                        clientInfo.WriteLock.Release();
+		|                    }
+		|                }
+		|            }
+		|            catch (OperationCanceledException)
+		|            {
+		|                // Нормальное завершение по токену.
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                OnServerError?.Invoke(""Ошибка на отправленный PING для клиента "" + clientInfo.Id + "": "" + ex.Message);
+		|            }
+		|        }
+		|
+		|        // Отправить строку в сообщении конкретному клиенту.
+		|        public async Task<bool> SendAsync(string clientId, string message)
+		|        {
+		|            if (!_clients.TryGetValue(clientId, out var clientInfo) || !clientInfo.Client.Connected)
+		|            {
+		|                return false;
+		|            }
+		|
+		|            await clientInfo.WriteLock.WaitAsync();
+		|            try
+		|            {
+		|                var data = Encoding.GetBytes(message.EndsWith(""\n"") ? message : message + ""\n"");
+		|                await clientInfo.SslStream.WriteAsync(data, 0, data.Length).ConfigureAwait(false);
+		|                clientInfo.LastActivity = DateTime.UtcNow;
+		|                return true;
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                OnServerError?.Invoke(""Ошибка отправки клиенту "" + clientId + "": "" + ex.Message);
+		|                // При ошибке отправки удаляем клиента.
+		|                _clients.TryRemove(clientId, out _);
+		|                return false;
+		|            }
+		|            finally
+		|            {
+		|                clientInfo.WriteLock.Release();
+		|            }
+		|        }
+		|
+		|        // Отправить байты в сообщении конкретному клиенту.
+		|        public async Task<bool> SendAsync(string clientId, BinaryDataBuffer message)
+		|        {
+		|            if (!_clients.TryGetValue(clientId, out var clientInfo) || !clientInfo.Client.Connected)
+		|            {
+		|                return false;
+		|            }
+		|
+		|            await clientInfo.WriteLock.WaitAsync();
+		|            try
+		|            {
+		|                var data = message.Bytes;
+		|                await clientInfo.SslStream.WriteAsync(data, 0, data.Length).ConfigureAwait(false);
+		|                clientInfo.LastActivity = DateTime.UtcNow;
+		|                return true;
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                OnServerError?.Invoke(""Ошибка отправки клиенту "" + clientId + "": "" + ex.Message);
+		|                // При ошибке отправки удаляем клиента.
+		|                _clients.TryRemove(clientId, out _);
+		|                return false;
+		|            }
+		|            finally
+		|            {
+		|                clientInfo.WriteLock.Release();
+		|            }
+		|        }
+		|
+		|        // Отправить строку всем клиентам.
+		|        public async Task BroadcastAsync(string message)
+		|        {
+		|            var data = Encoding.GetBytes(message.EndsWith(""\n"") ? message : message + ""\n"");
+		|            var failedClients = new List<string>();
+		|            var tasks = new List<Task>();
+		|
+		|            // Создаем копию для безопасной итерации
+		|            var clientsSnapshot = _clients.ToArray();
+		|
+		|            //Utils.GlobalContext().Echo($""Начинаю рассылку для {clientsSnapshot.Length} клиентов"");
+		|
+		|            foreach (var kvp in clientsSnapshot)
+		|            {
+		|                // Для каждого клиента создаем задачу
+		|                tasks.Add(SendToClientWithLock(kvp.Value, data));
+		|            }
+		|
+		|            // Ждем завершения всех задач
+		|            if (tasks.Count > 0)
+		|            {
+		|                await Task.WhenAll(tasks).ConfigureAwait(false);
+		|            }
+		|
+		|            // Удаляем отвалившихся клиентов
+		|            foreach (var clientId in failedClients)
+		|            {
+		|                _clients.TryRemove(clientId, out _);
+		|            }
+		|
+		|            //Utils.GlobalContext().Echo($""Рассылка завершена"");
+		|        }
+		|
+		|        private async Task SendToClientWithLock(ClientInfo clientInfo, byte[] data)
+		|        {
+		|            await clientInfo.WriteLock.WaitAsync();
+		|            try
+		|            {
+		|                if (clientInfo.Client.Connected && clientInfo.SslStream != null && clientInfo.SslStream.CanWrite)
+		|                {
+		|                    await clientInfo.SslStream.WriteAsync(data, 0, data.Length).ConfigureAwait(false);
+		|                    clientInfo.LastActivity = DateTime.UtcNow;
+		|                }
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                OnServerError?.Invoke($""Ошибка отправки клиенту {clientInfo.Id}: {ex.Message}"");
+		|                // Не удаляем клиента здесь, это сделает основной поток
+		|            }
+		|            finally
+		|            {
+		|                clientInfo.WriteLock.Release();
+		|            }
+		|        }
+		|
+		|        // Отправить байты всем клиентам.
+		|        public async Task BroadcastAsync(BinaryDataBuffer message)
+		|        {
+		|            var data = message.Bytes;
+		|            var failedClients = new List<string>();
+		|            var tasks = new List<Task>();
+		|
+		|            var clientsSnapshot = _clients.ToArray();
+		|
+		|            foreach (var kvp in clientsSnapshot)
+		|            {
+		|                tasks.Add(SendToClientWithLock(kvp.Value, data));
+		|            }
+		|
+		|            if (tasks.Count > 0)
+		|            {
+		|                await Task.WhenAll(tasks).ConfigureAwait(false);
+		|            }
+		|
+		|            foreach (var clientId in failedClients)
+		|            {
+		|                _clients.TryRemove(clientId, out _);
+		|            }
+		|        }
+		|
+		|        public async Task StopAsync(TimeSpan? gracefulTimeout = null)
+		|        {
+		|            var timeout = gracefulTimeout ?? TimeSpan.FromSeconds(30);
+		|
+		|            lock (_stateLock)
+		|            {
+		|                if (_state != ServerState.Running && _state != ServerState.Starting)
+		|                {
+		|                    return;
+		|                }
+		|
+		|                _state = ServerState.Stopping;
+		|            }
+		|
+		|            Utils.GlobalContext().Echo(""Начало выключения сервера..."");
+		|            // 1. Останавливаем прием новых подключений.
+		|            _isRunning = false;
+		|            // 2. Останавливаем сервер прослушивания.
+		|            try
+		|            {
+		|                _listener?.Stop();
+		|            }
+		|            catch { }
+		|            // 3. Уведомляем все задачи о необходимости завершения.
+		|            _cts?.Cancel();
+		|            // 4. Мягкое (Graceful) закрытие существующих подключений.
+		|            await GracefulDisconnectClientsAsync(timeout).ConfigureAwait(false);
+		|            // 5. Принудительное завершение оставшихся подключений.
+		|            ForceDisconnectAllClients();
+		|            // 6. Очистка ресурсов.
+		|            CleanupResources();
+		|
+		|            _state = ServerState.Stopped;
+		|            Utils.GlobalContext().Echo(""Сервер полностью остановлен"");
+		|        }
+		|
+		|        private async Task GracefulDisconnectClientsAsync(TimeSpan timeout)
+		|        {
+		|            if (_clients.IsEmpty)
+		|            {
+		|                return;
+		|            }
+		|
+		|            var gracefulTasks = new List<Task>();
+		|            var disconnectMessage = Encoding.GetBytes(""SERVER_SHUTDOWN\n"");
+		|            // Отправляем уведомление о завершении всем клиентам.
+		|            foreach (var kvp in _clients)
+		|            {
+		|                var task = Task.Run(async () =>
+		|                {
+		|                    try
+		|                    {
+		|                        await kvp.Value.SslStream.WriteAsync(disconnectMessage, 0, disconnectMessage.Length);
+		|                        // Даем время клиенту обработать сообщение.
+		|                        await Task.Delay(1000);
+		|                    }
+		|                    catch { }
+		|                });
+		|
+		|                gracefulTasks.Add(task);
+		|            }
+		|            // Ожидаем завершения отправки уведомлений или таймаута.
+		|            try
+		|            {
+		|                var timeoutTask = Task.Delay(timeout);
+		|                var completedTask = await Task.WhenAny(Task.WhenAll(gracefulTasks), timeoutTask);
+		|
+		|                if (completedTask == timeoutTask)
+		|                {
+		|                    Utils.GlobalContext().Echo(""Время задержки выключения закончилось ("" + timeout.TotalSeconds + "" сек). Отключаем принудительно."");
+		|                }
+		|            }
+		|            catch { }
+		|        }
+		|
+		|        private void ForceDisconnectAllClients()
+		|        {
+		|            foreach (var clientInfo in _clients.Values)
+		|            {
+		|                try
+		|                {
+		|                    clientInfo.SslStream?.Close();
+		|                    // Отправляем TCP RST вместо мягкого (graceful) закрытия.
+		|                    clientInfo.Client.Client.LingerState = new LingerOption(true, 0);
+		|                    clientInfo.Client.Close();
+		|                    clientInfo.Cts?.Dispose();
+		|                }
+		|                catch { }
+		|            }
+		|
+		|            _clients.Clear();
+		|        }
+		|
+		|        private void CleanupResources()
+		|        {
+		|            try
+		|            {
+		|                _listener?.Stop();
+		|                // Очищаем токены отмены.
+		|                _cts?.Dispose();
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                OnServerError?.Invoke(""Ошибка при очистке ресурсов: "" + ex.Message);
+		|            }
+		|        }
+		|
+		|        private bool _disposed = false;
+		|
+		|        public void Dispose()
+		|        {
+		|            Dispose(true);
+		|            GC.SuppressFinalize(this);
+		|        }
+		|
+		|        protected virtual void Dispose(bool disposing)
+		|        {
+		|            if (_disposed)
+		|            {
+		|                return;
+		|            }
+		|
+		|            if (disposing)
+		|            {
+		|                try
+		|                {
+		|                    // Если сервер работает, останавливаем его.
+		|                    if (_state == ServerState.Running || _state == ServerState.Starting)
+		|                    {
+		|                        var stopTask = StopAsync(TimeSpan.FromSeconds(5));
+		|                        if (!stopTask.Wait(TimeSpan.FromSeconds(10)))
+		|                        {
+		|                            OnServerError?.Invoke(""Таймаут при остановке сервера"");
+		|                        }
+		|                    }
+		|
+		|                    _cts?.Dispose();
+		|                    _listener?.Stop();
+		|                    // Очищаем клиентов.
+		|                    foreach (var clientInfo in _clients.Values)
+		|                    {
+		|                        try
+		|                        {
+		|                            clientInfo.SslStream?.Close();
+		|                            clientInfo.Client?.Close();
+		|                            clientInfo.Cts?.Dispose();
+		|                        }
+		|                        catch { }
+		|                    }
+		|                    _clients.Clear();
+		|                }
+		|                catch (Exception ex)
+		|                {
+		|                    OnServerError?.Invoke(""Ошибка при освобождении ресурсов: "" + ex.Message);
+		|                }
+		|            }
+		|
+		|            _disposed = true;
+		|        }
+		|
+		|        ~MultithreadedTCPServerSSL()
+		|        {
+		|            Dispose(false);
+		|        }
+		|
+		|        public int MaxMessageSize
+		|        {
+		|            get { return maxMessageSize; }
+		|            set { maxMessageSize = value; }
+		|        }
+		|
+		|        public int MaxClients
+		|        {
+		|            get { return maxClients; }
+		|            set { maxClients = value; }
+		|        }
+		|
+		|        private bool checkClientActivity = false;
+		|        public bool CheckClientActivity
+		|        {
+		|            get { return checkClientActivity; }
+		|            set { checkClientActivity = value; }
+		|        }
+		|    }
+		|
+		|    [ContextClass(""ТсМногопоточныйTCPСерверSSL"", ""TsMultithreadedTCPServerSSL"")]
+		|    public class TsMultithreadedTCPServerSSL : AutoContext<TsMultithreadedTCPServerSSL>
+		|    {
+		|        public TsMultithreadedTCPServerSSL(int port, string path_cert, string pas)
+		|        {
+		|            MultithreadedTCPServerSSL MultithreadedTCPServerSSL1 = new MultithreadedTCPServerSSL(port, path_cert, pas);
+		|            MultithreadedTCPServerSSL1.dll_obj = this;
+		|            Base_obj = MultithreadedTCPServerSSL1;
+		|        }
+		|
+		|        public MultithreadedTCPServerSSL Base_obj;
+		|
+		|        [ContextMethod(""ОтправитьКлиенту"", ""SendToClient"")]
+		|        public void SendToClient(string p1, IValue p2)
+		|        {
+		|            if (Utils.IsType<BinaryDataBuffer>(p2))
+		|            {
+		|                _ = Task.Run(() =>
+		|                {
+		|                    Base_obj.SendAsync(p1, (BinaryDataBuffer)p2).ConfigureAwait(false);
+		|                });
+		|            }
+		|            else
+		|            {
+		|                _ = Task.Run(() =>
+		|                {
+		|                    Base_obj.SendAsync(p1, p2.AsString()).ConfigureAwait(false);
+		|                });
+		|            }
+		|        }
+		|
+		|        [ContextMethod(""ОтправитьВсем"", ""SendToAll"")]
+		|        public void SendToAll(IValue p1)
+		|        {
+		|            if (Utils.IsType<BinaryDataBuffer>(p1))
+		|            {
+		|                _ = Task.Run(() =>
+		|                {
+		|                    Base_obj.BroadcastAsync((BinaryDataBuffer)p1).ConfigureAwait(false);
+		|                });
+		|            }
+		|            else
+		|            {
+		|                _ = Task.Run(() =>
+		|                {
+		|                    Base_obj.BroadcastAsync(p1.AsString()).ConfigureAwait(false);
+		|                });
+		|            }
+		|        }
+		|
+		|        [ContextProperty(""ПроверятьАктивностьКлиента"", ""CheckClientActivity"")]
+		|        public bool CheckClientActivity
+		|        {
+		|            get { return Base_obj.CheckClientActivity; }
+		|            set { Base_obj.CheckClientActivity = value; }
+		|        }
+		|
+		|        [ContextMethod(""Начать"", ""Start"")]
+		|        public async void Start()
+		|        {
+		|            try
+		|            {
+		|                var cts = new CancellationTokenSource();
+		|
+		|                try
+		|                {
+		|                    // Запуск сервера.
+		|                    var serverTask = Base_obj.StartAsync(cts.Token);
+		|
+		|                    // Мониторинг состояния.
+		|                    _ = Task.Run(async () =>
+		|                    {
+		|                        while (!cts.Token.IsCancellationRequested)
+		|                        {
+		|                            await Task.Delay(5000);
+		|                        }
+		|                    });
+		|
+		|                    // Ожидаем завершения сервера.
+		|                    await serverTask;
+		|                }
+		|                catch (TaskCanceledException)
+		|                {
+		|                    Utils.GlobalContext().Echo(""Сервер остановлен по запросу пользователя"");
+		|                }
+		|                catch (Exception ex)
+		|                {
+		|                    Utils.GlobalContext().Echo(""Критическая ошибка: "" + ex.Message);
+		|                }
+		|            }
+		|            catch (Exception e)
+		|            {
+		|                Utils.GlobalContext().Echo(""Ошибка. На порт "" + Base_obj.Port + "" сервер уже запущен. "" +
+		|                    System.Environment.NewLine + e.Message);
+		|                OneScriptForms.multiServerErrorSSL = true;
+		|            }
+		|        }
+		|
+		|        [ContextMethod(""Остановить"", ""Stop"")]
+		|        public async void Stop()
+		|        {
+		|            await Base_obj.StopAsync();
+		|        }
+		|
+		|        [ContextProperty(""ПриПодключенииКлиента"", ""ClientConnected"")]
+		|        public TsAction ClientConnected { get; set; }
+		|
+		|        [ContextProperty(""ПриОтключенииКлиента"", ""ClientDisconnected"")]
+		|        public TsAction ClientDisconnected { get; set; }
+		|
+		|        [ContextProperty(""СерверПолучилДанные"", ""MessageReceived"")]
+		|        public TsAction MessageReceived { get; set; }
+		|
+		|        [ContextProperty(""ПриОшибкеСервера"", ""ServerError"")]
+		|        public TsAction ServerError { get; set; }
+		|
+		|        [ContextProperty(""КоличествоАктивныхКлиентов"", ""ActiveClientsNumber"")]
+		|        public int ActiveClientsNumber
+		|        {
+		|            get { return Base_obj.ActiveClients; }
+		|        }
+		|
+		|        [ContextProperty(""СостояниеСервера"", ""ServerState"")]
+		|        public int ServerState
+		|        {
+		|            get { return (int)Base_obj.State; }
+		|        }
+		|
+		|        [ContextProperty(""МаксимальныйРазмерСообщения"", ""MaxMessageSize"")]
+		|        public int MaxMessageSize
+		|        {
+		|            get { return Base_obj.MaxMessageSize; }
+		|            set { Base_obj.MaxMessageSize = value; }
+		|        }
+		|
+		|        [ContextProperty(""МаксимальноеКоличествоПодключений"", ""MaxClients"")]
+		|        public int MaxClients
+		|        {
+		|            get { return Base_obj.MaxClients; }
+		|            set { Base_obj.MaxClients = value; }
+		|        }
+		|
+		|        [ContextProperty(""Кодировка"", ""Encoding"")]
+		|        public ClEncoding Encoding
+		|        {
+		|            get
+		|            {
+		|                osf.Encoding Encoding1 = new osf.Encoding();
+		|                Encoding1.M_Encoding = Base_obj.Encoding;
+		|                return new ClEncoding(Encoding1);
+		|            }
+		|            set { Base_obj.Encoding = value.Base_obj.M_Encoding; }
+		|        }
+		|
+		|        private int heartbeatInterval = 10;
+		|        [ContextProperty(""ИнтервалПроверки"", ""HeartbeatInterval"")]
+		|        public int HeartbeatInterval
+		|        {
+		|            get { return heartbeatInterval; }
+		|            set
+		|            {
+		|                heartbeatInterval = value;
+		|                Base_obj.HeartbeatInterval = TimeSpan.FromSeconds(heartbeatInterval);
+		|            }
+		|        }
+		|
+		|        [ContextMethod(""Действие"", ""Action"")]
+		|        public TsAction Action(IRuntimeContextInstance script, string methodName, IValue param = null)
+		|        {
+		|            return new TsAction(script, methodName, param);
+		|        }
+		|
+		|        public static IValue Event = null;
+		|        [ContextProperty(""АргументыСобытия"", ""EventArgs"")]
+		|        public IValue EventArgs
+		|        {
+		|            get { return OneScriptMultithreadedTCPServer.Event; }
+		|        }
+		|
+		|        public bool goOn = true;
+		|        [ContextProperty(""Продолжать"", ""GoOn"")]
+		|        public bool GoOn
+		|        {
+		|            get { return ServerBase.goOn; }
+		|            set { ServerBase.goOn = value; }
+		|        }
+		|
+		|        public static IValue EventAction = null;
+		|        public static ConcurrentQueue<dynamic> EventQueue = new ConcurrentQueue<dynamic>();
+		|        [ContextMethod(""ПолучитьСобытие"", ""DoEvents"")]
+		|        public DelegateAction DoEvents()
+		|        {
+		|            while (OneScriptMultithreadedTCPServer.EventQueue.Count == 0)
+		|            {
+		|                System.Threading.Thread.Sleep(7);
+		|            }
+		|
+		|            IValue Action1 = ServerBase.EventHandling();
+		|            if (Action1.GetType() == typeof(TsAction))
+		|            {
+		|                return DelegateAction.Create(((TsAction)Action1).Script, ((TsAction)Action1).MethodName);
+		|            }
+		|            return (DelegateAction)Action1;
+		|        }
+		|
+		|        public static OneScriptMultithreadedTCPServer serverBase = null;
+		|        public OneScriptMultithreadedTCPServer ServerBase
+		|        {
+		|            get { return serverBase; }
+		|            set
+		|            {
+		|                if (serverBase == null)
+		|                {
+		|                    serverBase = value;
+		|                }
+		|            }
+		|        }
+		|
+		|        [ContextMethod(""ОбработатьПриПодключенииКлиента"", ""ProcessingClientConnected"")]
+		|        public void ProcessingClientConnected(TsEventArgs args)
+		|        {
+		|            ServerBase.ProcessingClientConnected(args);
+		|        }
+		|
+		|        [ContextMethod(""ОбработатьСерверПолучилДанные"", ""ProcessingServerReceived"")]
+		|        public void ProcessingServerReceived(TsEventArgs args)
+		|        {
+		|            ServerBase.ProcessingServerReceived(args);
+		|        }
+		|
+		|        [ContextMethod(""ОбработатьПриОтключенииКлиента"", ""ProcessingClientDisconnected"")]
+		|        public void ProcessingClientDisconnected(TsEventArgs args)
+		|        {
+		|            ServerBase.ProcessingClientDisconnected(args);
+		|        }
+		|
+		|        [ContextMethod(""ОбработатьПриОшибкеСервера"", ""ProcessingErrorServer"")]
+		|        public void ProcessingErrorServer(TsEventArgs args)
+		|        {
+		|            ServerBase.ProcessingErrorServer(args);
+		|        }
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "TCPClientSSL" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using System;
+		|using ScriptEngine.HostedScript.Library.Binary;
+		|using System.Text;
+		|using System.Threading.Tasks;
+		|using System.Threading;
+		|using System.Security.Cryptography.X509Certificates;
+		|using System.Net.Security;
+		|using osf;
+		|
+		|namespace osfMultiTcp
+		|{
+		|    public class TCPClientSSL
+		|    {
+		|        public TsTCPClientSSL dll_obj;
+		|        public System.Text.Encoding Encoding { get; set; } = System.Text.Encoding.UTF8;
+		|        public System.Net.Sockets.TcpClient M_TcpClient;
+		|        public string MessageReceived;
+		|        public string pathCertificateCrt;
+		|        public string hostname;
+		|        public SslStream sslStream;
+		|        public SemaphoreSlim WriteLock { get; } = new SemaphoreSlim(1, 1); // Семафор для синхронизации записи
+		|
+		|        public TCPClientSSL()
+		|        {
+		|            M_TcpClient = new System.Net.Sockets.TcpClient();
+		|            this.ClientReceived += TCPClient_ClientReceived;
+		|        }
+		|
+		|        public TCPClientSSL(string HostName, int port, string path_certificate_crt)
+		|        {
+		|            M_TcpClient = new System.Net.Sockets.TcpClient(HostName, port);
+		|            this.ClientReceived += TCPClient_ClientReceived;
+		|
+		|            pathCertificateCrt = path_certificate_crt;
+		|
+		|            sslStream = new SslStream(
+		|                M_TcpClient.GetStream(),
+		|                false,
+		|                new RemoteCertificateValidationCallback(ValidateCertificate),
+		|                null);
+		|
+		|            try
+		|            {
+		|                sslStream.AuthenticateAsClient(HostName);
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                Utils.GlobalContext().Echo(""Ошибка аутентификации клиента: "" + ex.StackTrace);
+		|            }
+		|        }
+		|
+		|        public bool ValidateCertificate(
+		|            object sender,
+		|            X509Certificate certificate,
+		|            X509Chain chain,
+		|            SslPolicyErrors sslPolicyErrors)
+		|        {
+		|            if (pathCertificateCrt != null)
+		|            {
+		|                // Cравниваем с ожидаемым сертификатом.
+		|                var expectedCert = new X509Certificate2(pathCertificateCrt);
+		|                return certificate.GetCertHashString() == expectedCert.GetCertHashString();
+		|            }
+		|            else
+		|            {
+		|                // Для самоподписанных сертификатов просто проверяем, что он есть.
+		|                if (sslPolicyErrors == SslPolicyErrors.None)
+		|                {
+		|                    return true;
+		|                }
+		|            }
+		|            return false;
+		|        }
+		|
+		|        private void TCPClient_ClientReceived(object sender, TsEventArgs e)
+		|        {
+		|            if (dll_obj?.ClientReceived != null)
+		|            {
+		|                var args = new TsEventArgs
+		|                {
+		|                    eventAction = dll_obj.ClientReceived,
+		|                    parameter = Helper.GetEventParameter(dll_obj.ClientReceived),
+		|                    data = e.Data
+		|                };
+		|                OneScriptMultithreadedTCPServer.Event = args;
+		|                OneScriptMultithreadedTCPServer.ExecuteEvent(dll_obj.ClientReceived);
+		|            }
+		|        }
+		|
+		|        public event EventHandler<TsEventArgs> ClientReceived;
+		|        public void OnClientReceived(BinaryDataBuffer p1)
+		|        {
+		|            var handler = ClientReceived;
+		|            if (handler != null)
+		|            {
+		|                handler(this, new TsEventArgs(p1));
+		|            }
+		|        }
+		|
+		|        public bool Connected
+		|        {
+		|            get { return M_TcpClient.Connected; }
+		|        }
+		|
+		|        public void Close()
+		|        {
+		|            M_TcpClient.Close();
+		|        }
+		|
+		|        public void Connect(string _hostname, int portNo, string path_certificate_crt)
+		|        {
+		|            hostname = _hostname;
+		|            pathCertificateCrt = path_certificate_crt;
+		|            M_TcpClient.Connect(hostname, portNo);
+		|
+		|            sslStream = new SslStream(
+		|                M_TcpClient.GetStream(),
+		|                false,
+		|                new RemoteCertificateValidationCallback(ValidateCertificate),
+		|                null);
+		|
+		|            try
+		|            {
+		|                sslStream.AuthenticateAsClient(hostname);
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                Utils.GlobalContext().Echo(""Ошибка аутентификации клиента: "" + ex.StackTrace);
+		|            }
+		|        }
+		|
+		|        public SslStream GetSslStream()
+		|        {
+		|            return sslStream;
+		|        }
+		|
+		|        public async void Send(BinaryDataBuffer message)
+		|        {
+		|            if (!M_TcpClient.Connected)
+		|            {
+		|                Utils.GlobalContext().Echo(""Ошибка отправки текста: Клиентотключен."");
+		|                return;
+		|            }
+		|
+		|            await WriteLock.WaitAsync();
+		|            try
+		|            {
+		|                var data = message.Bytes;
+		|                await sslStream.WriteAsync(data, 0, data.Length).ConfigureAwait(false);
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                Utils.GlobalContext().Echo(""Ошибка отправки буфера двоичных данных: "" + ex.Message);
+		|            }
+		|            finally
+		|            {
+		|                WriteLock.Release();
+		|            }
+		|        }
+		|
+		|        public async void Send(string message)
+		|        {
+		|            if (!M_TcpClient.Connected)
+		|            {
+		|                Utils.GlobalContext().Echo(""Ошибка отправки текста: Клиентотключен."");
+		|                return;
+		|            }
+		|
+		|            await WriteLock.WaitAsync();
+		|            try
+		|            {
+		|                var data = Encoding.GetBytes(message.EndsWith(""\n"") ? message : message + ""\n"");
+		|                await sslStream.WriteAsync(data, 0, data.Length).ConfigureAwait(false);
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                Utils.GlobalContext().Echo(""Ошибка отправки текста: "" + ex.Message);
+		|            }
+		|            finally
+		|            {
+		|                WriteLock.Release();
+		|            }
+		|        }
+		|    }
+		|
+		|    [ContextClass(""ТсTCPКлиентSSL"", ""TsTCPClientSSL"")]
+		|    public class TsTCPClientSSL : AutoContext<TsTCPClientSSL>
+		|    {
+		|        public TsTCPClientSSL()
+		|        {
+		|            TCPClientSSL TCPClientSSL1 = new TCPClientSSL();
+		|            TCPClientSSL1.dll_obj = this;
+		|            Base_obj = TCPClientSSL1;
+		|        }
+		|
+		|        public TsTCPClientSSL(string HostName, int port, string path_certificate_crt = null)
+		|        {
+		|            TCPClientSSL TCPClientSSL1 = new TCPClientSSL(HostName, port, path_certificate_crt);
+		|            TCPClientSSL1.dll_obj = this;
+		|            Base_obj = TCPClientSSL1;
+		|        }
+		|
+		|        public TCPClientSSL Base_obj;
+		|
+		|        [ContextProperty(""КлиентПолучилДанные"", ""ClientReceived"")]
+		|        public TsAction ClientReceived { get; set; }
+		|
+		|        [ContextMethod(""ОбработатьКлиентПолучилДанные"", ""ProcessingClientReceived"")]
+		|        public void ProcessingClientReceived(BinaryDataBuffer p1)
+		|        {
+		|            OneScriptForms.ProcessingClientReceived(p1);
+		|        }
+		|
+		|        [ContextProperty(""Кодировка"", ""Encoding"")]
+		|        public ClEncoding Encoding
+		|        {
+		|            get
+		|            {
+		|                osf.Encoding Encoding1 = new osf.Encoding();
+		|                Encoding1.M_Encoding = Base_obj.Encoding;
+		|                return new ClEncoding(Encoding1);
+		|            }
+		|            set { Base_obj.Encoding = value.Base_obj.M_Encoding; }
+		|        }
+		|
+		|        [ContextProperty(""Подключен"", ""Connected"")]
+		|        public bool Connected
+		|        {
+		|            get { return Base_obj.Connected; }
+		|        }
+		|
+		|        [ContextMethod(""Закрыть"", ""Close"")]
+		|        public void Close()
+		|        {
+		|            Base_obj.Close();
+		|        }
+		|
+		|        [ContextMethod(""Отправить"", ""Send"")]
+		|        public void Send(IValue p1)
+		|        {
+		|            if (Utils.IsType<BinaryDataBuffer>(p1))
+		|            {
+		|                _ = Task.Run(() =>
+		|                {
+		|                    Base_obj.Send((BinaryDataBuffer)p1);
+		|                });
+		|            }
+		|            else
+		|            {
+		|                _ = Task.Run(() =>
+		|                {
+		|                    Base_obj.Send(p1.AsString());
+		|                });
+		|            }
+		|        }
+		|
+		|        [ContextMethod(""Подключить"", ""Connect"")]
+		|        public void Connect(string p1, int p2, string path_certificate_crt = ""certificate.crt"")
+		|        {
+		|            Base_obj.Connect(p1, p2, path_certificate_crt);
+		|        }
+		|
+		|        [ContextMethod(""ПолучитьПотокSSL"", ""GetStreamSSL"")]
+		|        public TsSslStreamWrapper GetStreamSSL()
+		|        {
+		|            try
+		|            {
+		|                var sslStream = Base_obj.GetSslStream();
+		|                if (sslStream != null)
+		|                {
+		|                    TsSslStreamWrapper wrapper = new TsSslStreamWrapper(sslStream);
+		|                    return wrapper;
+		|                }
+		|                return null;
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                Utils.GlobalContext().Echo(""Ошибка получения потока: "" + ex.Message);
+		|                return null;
+		|            }
+		|        }
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "SupportTCPServer" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"using ScriptEngine.HostedScript.Library;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using System.Collections.Concurrent;
+		|using System;
+		|using ScriptEngine.HostedScript.Library.Binary;
+		|using System.Collections.Generic;
+		|using System.Threading;
+		|using System.Collections;
+		|using osf;
+		|
+		|namespace osfMultiTcp
+		|{
+		|    [ContextClass(""МногопоточныйTCPСерверДляОдноСкрипта"", ""OneScriptMultithreadedTCPServer"")]
+		|    public class OneScriptMultithreadedTCPServer : AutoContext<OneScriptMultithreadedTCPServer>
+		|    {
+		|        public static IValue EventAction = null;
+		|        public static ConcurrentQueue<dynamic> EventQueue = new ConcurrentQueue<dynamic>();
+		|
+		|        [ScriptConstructor]
+		|        public static IRuntimeContextInstance Constructor()
+		|        {
+		|            return new OneScriptMultithreadedTCPServer();
+		|        }
+		|
+		|        [ContextMethod(""ОбработатьПриОтключенииКлиента"", ""ProcessingClientDisconnected"")]
+		|        public void ProcessingClientDisconnected(TsEventArgs args)
+		|        {
+		|            OneScriptForms.ProcessingClientDisconnected(args);
+		|        }
+		|
+		|        [ContextMethod(""ОбработатьПриОшибкеСервера"", ""ProcessingErrorServer"")]
+		|        public void ProcessingErrorServer(TsEventArgs args)
+		|        {
+		|            OneScriptForms.ProcessingErrorServer(args);
+		|        }
+		|
+		|        [ContextMethod(""ОбработатьПриПодключенииКлиента"", ""ProcessingClientConnected"")]
+		|        public void ProcessingClientConnected(TsEventArgs args)
+		|        {
+		|            OneScriptForms.ProcessingClientConnected(args);
+		|        }
+		|
+		|        [ContextMethod(""ОбработатьСерверПолучилДанные"", ""ProcessingServerReceived"")]
+		|        public void ProcessingServerReceived(TsEventArgs args)
+		|        {
+		|            OneScriptForms.ProcessingServerReceived(args);
+		|        }
+		|
+		|        [ContextMethod(""Кодировка"", ""Encoding"")]
+		|        public ClEncoding Encoding()
+		|        {
+		|            return new ClEncoding();
+		|        }
+		|
+		|        [ContextMethod(""Действие"", ""Action"")]
+		|        public TsAction Action(IRuntimeContextInstance script, string methodName, IValue param = null)
+		|        {
+		|            return new TsAction(script, methodName, param);
+		|        }
+		|
+		|        public static IValue Event = null;
+		|        [ContextProperty(""АргументыСобытия"", ""EventArgs"")]
+		|        public IValue EventArgs
+		|        {
+		|            get { return Event; }
+		|        }
+		|
+		|        public bool goOn = true;
+		|        [ContextProperty(""Продолжать"", ""GoOn"")]
+		|        public bool GoOn
+		|        {
+		|            get { return goOn; }
+		|            set { goOn = value; }
+		|        }
+		|
+		|        [ContextMethod(""ПолучитьСобытие"", ""DoEvents"")]
+		|        public DelegateAction DoEvents()
+		|        {
+		|            while (EventQueue.Count == 0)
+		|            {
+		|                System.Threading.Thread.Sleep(7);
+		|            }
+		|
+		|            IValue Action1 = EventHandling();
+		|            if (Action1.GetType() == typeof(TsAction))
+		|            {
+		|                return DelegateAction.Create(((TsAction)Action1).Script, ((TsAction)Action1).MethodName);
+		|            }
+		|            return (DelegateAction)Action1;
+		|        }
+		|
+		|        public IValue EventHandling()
+		|        {
+		|            dynamic EventArgs1;
+		|            EventQueue.TryDequeue(out EventArgs1);
+		|            Event = EventArgs1;
+		|            EventAction = EventArgs1.EventAction;
+		|            return EventAction;
+		|        }
+		|
+		|        [ContextProperty(""НоваяСтрока"", ""NewLine"")]
+		|        public string NewLine
+		|        {
+		|            get { return Utils.NewLine; }
+		|        }
+		|
+		|        [ContextMethod(""МногопоточныйСервер"", ""MultithreadedServer"")]
+		|        public TsMultithreadedTCPServer MultithreadedTCPServer(int port)
+		|        {
+		|            return new TsMultithreadedTCPServer(port);
+		|        }
+		|
+		|        public static void ExecuteEvent(dynamic dll_objEvent)
+		|        {
+		|            if (dll_objEvent == null)
+		|            {
+		|                return;
+		|            }
+		|            if (dll_objEvent.GetType() == typeof(DelegateAction))
+		|            {
+		|                try
+		|                {
+		|                    ((DelegateAction)dll_objEvent).CallAsProcedure(0, null);
+		|                }
+		|                catch { }
+		|            }
+		|            else if (dll_objEvent.GetType() == typeof(TsAction))
+		|            {
+		|                TsAction Action1 = ((TsAction)dll_objEvent);
+		|                IRuntimeContextInstance script = Action1.Script;
+		|                string method = Action1.MethodName;
+		|                ReflectorContext reflector = new ReflectorContext();
+		|                try
+		|                {
+		|                    reflector.CallMethod(script, method, null);
+		|                }
+		|                catch { }
+		|            }
+		|            else
+		|            {
+		|                //System.Windows.Forms.MessageBox.Show(""Обработчик события "" + dll_objEvent.ToString() + "" задан неверным типом."", ""Обработчик события контрола"", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning, System.Windows.Forms.MessageBoxDefaultButton.Button1);
+		|            }
+		|            Event = null;
+		|        }
+		|    }
+		|
+		|    public enum ServerState
+		|    {
+		|        Stopped,
+		|        Starting,
+		|        Running,
+		|        Stopping,
+		|        StoppedWithError
+		|    }
+		|
+		|    public class ByteBufferPool
+		|    {
+		|        private readonly ConcurrentQueue<byte[]> _pool = new ConcurrentQueue<byte[]>();
+		|        private readonly int _bufferSize;
+		|        private long _totalAllocations; // Для мониторинга.
+		|
+		|        public ByteBufferPool(int bufferSize)
+		|        {
+		|            _bufferSize = bufferSize;
+		|        }
+		|
+		|        // Взять буфер из пула (если есть) или создать новый.
+		|        public byte[] Rent()
+		|        {
+		|            if (_pool.TryDequeue(out var buffer))
+		|            {
+		|                Interlocked.Increment(ref _totalAllocations);
+		|                return buffer;
+		|            }
+		|
+		|            // Пул пуст — создаём новый буфер.
+		|            var newBuffer = new byte[_bufferSize];
+		|            Interlocked.Increment(ref _totalAllocations);
+		|            return newBuffer;
+		|        }
+		|
+		|        // Вернуть буфер в пул.
+		|        public void Return(byte[] buffer)
+		|        {
+		|            if (buffer.Length != _bufferSize)
+		|            {
+		|                throw new ArgumentException(""Буфер имеет неверный размер"");
+		|            }
+		|
+		|            _pool.Enqueue(buffer);
+		|        }
+		|
+		|        // Метод для очистки пула (опционально)
+		|        public void Clear()
+		|        {
+		|            while (_pool.TryDequeue(out _)) { }
+		|        }
+		|
+		|        // Текущий размер пула (для мониторинга).
+		|        public int Count => _pool.Count;
+		|
+		|        // Общее число аллокаций (для анализа эффективности).
+		|        public long TotalAllocations => _totalAllocations;
+		|    }
+		|
+		|    public static class Helper
+		|    {
+		|        public static dynamic GetEventParameter(dynamic dll_objEvent)
+		|        {
+		|            if (dll_objEvent != null)
+		|            {
+		|                dynamic eventType = dll_objEvent.GetType();
+		|                if (eventType == typeof(DelegateAction))
+		|                {
+		|                    return null;
+		|                }
+		|                else if (eventType == typeof(TsAction))
+		|                {
+		|                    return ((TsAction)dll_objEvent).Parameter;
+		|                }
+		|                else
+		|                {
+		|                    return null;
+		|                }
+		|            }
+		|            else
+		|            {
+		|                return null;
+		|            }
+		|        }
+		|    }
+		|
+		|    [ContextClass(""ТсСостояниеСервера"", ""TsServerState"")]
+		|    public class TsMultithreadedTCPServerState : AutoContext<TsMultithreadedTCPServerState>, ICollectionContext, IEnumerable<IValue>
+		|    {
+		|        private int m_stopped = 0; // 0 Сервер остановлен пользователем.
+		|        private int m_starting = 1; // 1 Сервер запускается.
+		|        private int m_running = 2; // 2 Сервер запущен.
+		|        private int m_stopping = 3; // 3 Сервер останавливается.
+		|        private int m_stoppedWithError = 4; // 4 Сервер остановлен из за ошибки.
+		|
+		|        private List<IValue> _list;
+		|
+		|        public int Count()
+		|        {
+		|            return _list.Count;
+		|        }
+		|
+		|        public CollectionEnumerator GetManagedIterator()
+		|        {
+		|            return new CollectionEnumerator(this);
+		|        }
+		|
+		|        IEnumerator IEnumerable.GetEnumerator()
+		|        {
+		|            return ((IEnumerable<IValue>)_list).GetEnumerator();
+		|        }
+		|
+		|        IEnumerator<IValue> IEnumerable<IValue>.GetEnumerator()
+		|        {
+		|            foreach (var item in _list)
+		|            {
+		|                yield return (item as IValue);
+		|            }
+		|        }
+		|
+		|        [ContextProperty(""Количество"", ""Count"")]
+		|        public int CountProp
+		|        {
+		|            get { return _list.Count; }
+		|        }
+		|
+		|        [ContextMethod(""Получить"", ""Get"")]
+		|        public IValue Get(int index)
+		|        {
+		|            return _list[index];
+		|        }
+		|
+		|        [ContextMethod(""Имя"")]
+		|        public string NameRu(decimal p1)
+		|        {
+		|            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+		|        }
+		|
+		|        [ContextMethod(""Name"")]
+		|        public string NameEn(decimal p1)
+		|        {
+		|            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+		|        }
+		|
+		|        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+		|        {
+		|            {1, ""Запускается""},
+		|            {2, ""Запущен""},
+		|            {3, ""Останавливается""},
+		|            {0, ""Остановлен""},
+		|            {4, ""ОстановленСОшибкой""},
+		|        };
+		|
+		|        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+		|        {
+		|            {1, ""Starting""},
+		|            {2, ""Running""},
+		|            {3, ""Stopping""},
+		|            {0, ""Stopped""},
+		|            {4, ""StoppedWithError""},
+		|        };
+		|
+		|        public TsMultithreadedTCPServerState()
+		|        {
+		|            _list = new List<IValue>();
+		|            _list.Add(ValueFactory.Create(Running));
+		|            _list.Add(ValueFactory.Create(Starting));
+		|            _list.Add(ValueFactory.Create(Stopped));
+		|            _list.Add(ValueFactory.Create(StoppedWithError));
+		|            _list.Add(ValueFactory.Create(Stopping));
+		|        }
+		|
+		|        [ContextProperty(""Запускается"", ""Starting"")]
+		|        public int Starting
+		|        {
+		|            get { return m_starting; }
+		|        }
+		|
+		|        [ContextProperty(""Запущен"", ""Running"")]
+		|        public int Running
+		|        {
+		|            get { return m_running; }
+		|        }
+		|
+		|        [ContextProperty(""Останавливается"", ""Stopping"")]
+		|        public int Stopping
+		|        {
+		|            get { return m_stopping; }
+		|        }
+		|
+		|        [ContextProperty(""Остановлен"", ""Stopped"")]
+		|        public int Stopped
+		|        {
+		|            get { return m_stopped; }
+		|        }
+		|
+		|        [ContextProperty(""ОстановленСОшибкой"", ""StoppedWithError"")]
+		|        public int StoppedWithError
+		|        {
+		|            get { return m_stoppedWithError; }
+		|        }
+		|    }
+		|
+		|    [ContextClass(""ТсДействие"", ""TsAction"")]
+		|    public class TsAction : AutoContext<TsAction>
+		|    {
+		|        public TsAction(IRuntimeContextInstance script, string methodName, IValue param = null)
+		|        {
+		|            Script = script;
+		|            MethodName = methodName;
+		|            Parameter = param;
+		|        }
+		|
+		|        [ContextProperty(""ИмяМетода"", ""MethodName"")]
+		|        public string MethodName { get; set; }
+		|
+		|        [ContextProperty(""Параметр"", ""Parameter"")]
+		|        public IValue Parameter { get; set; }
+		|
+		|        [ContextProperty(""Сценарий"", ""Script"")]
+		|        public IRuntimeContextInstance Script { get; set; }
+		|    }
+		|
+		|    [ContextClass(""ТсАргументыСобытия"", ""TsEventArgs"")]
+		|    public class TsEventArgs : AutoContext<TsEventArgs>
+		|    {
+		|        public TsEventArgs()
+		|        {
+		|        }
+		|
+		|        public TsEventArgs(BinaryDataBuffer p1)
+		|        {
+		|            data = p1;
+		|        }
+		|        public TsEventArgs(TsEventArgs p1)
+		|        {
+		|            data = p1.Data;
+		|            clientId = p1.ClientId;
+		|            serverError = p1.ServerError;
+		|            parameter = p1.Parameter;
+		|        }
+		|
+		|        public IValue parameter;
+		|        [ContextProperty(""Параметр"", ""Parameter"")]
+		|        public IValue Parameter
+		|        {
+		|            get { return parameter; }
+		|        }
+		|
+		|        public string serverError = null;
+		|        [ContextProperty(""ОшибкаСервера"", ""ServerError"")]
+		|        public string ServerError
+		|        {
+		|            get { return serverError; }
+		|        }
+		|
+		|        public BinaryDataBuffer data = null;
+		|        [ContextProperty(""Данные"", ""Data"")]
+		|        public BinaryDataBuffer Data
+		|        {
+		|            get { return data; }
+		|        }
+		|
+		|        public string clientId = null;
+		|        [ContextProperty(""ИдентификаторКлиента"", ""ClientId"")]
+		|        public string ClientId
+		|        {
+		|            get { return clientId; }
+		|        }
+		|
+		|        public TsAction eventAction;
+		|        public TsAction EventAction
+		|        {
+		|            get { return eventAction; }
+		|        }
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
+	ИначеЕсли ИмяФайлаCs = "MultithreadedTCPServer" Тогда
+		СтрВыгрузки = СтрВыгрузки + 
+		"using ScriptEngine.HostedScript.Library;
+		|using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using System.Collections.Concurrent;
+		|using System;
+		|using ScriptEngine.HostedScript.Library.Binary;
+		|using System.Collections.Generic;
+		|using System.IO;
+		|using System.Net.Sockets;
+		|using System.Net;
+		|using System.Text;
+		|using System.Threading.Tasks;
+		|using System.Threading;
+		|using osf;
+		|
+		|namespace osfMultiTcp
+		|{
+		|    public class MultithreadedTCPServer : IDisposable
+		|    {
+		|        public TsMultithreadedTCPServer dll_obj;
+		|        private static long _lastClientId;
+		|        private volatile ServerState _state = ServerState.Stopped;
+		|        private readonly object _stateLock = new object();
+		|        public ServerState State => _state;
+		|        private int maxMessageSize = 1024 * 1024 * 128; // 128 MB Ограничение на размер принимаемого сообщения.
+		|        private readonly ByteBufferPool _bufferPool = new ByteBufferPool(1024);
+		|        private int maxClients = 1500; // Ограничение на количество подключаемых клиентов.
+		|        public int ActiveClients => _clients.Count; // Количество активных клиентов.
+		|        private TcpListener _listener;
+		|        private ConcurrentDictionary<string, TcpClient> _clients = new ConcurrentDictionary<string, TcpClient>();
+		|        private CancellationTokenSource _cts;
+		|        private bool _isRunning;
+		|        public int Port { get; set; } = 8080;
+		|        public System.Text.Encoding Encoding { get; set; } = System.Text.Encoding.UTF8;
+		|        public TimeSpan HeartbeatInterval { get; set; } = TimeSpan.FromSeconds(10); // Интервал проверки активности клиента.
+		|        public event Action<string> OnClientConnected;
+		|        public event Action<string> OnClientDisconnected;
+		|        public event Action<string, BinaryDataBuffer> OnMessageReceived;
+		|        public event Action<string> OnServerError;
+		|
+		|        public MultithreadedTCPServer(int port)
+		|        {
+		|            Port = port;
+		|            OnClientConnected += MultithreadedTCPServer_OnClientConnected;
+		|            OnClientDisconnected += MultithreadedTCPServer_OnClientDisconnected;
+		|            OnMessageReceived += MultithreadedTCPServer_OnMessageReceived;
+		|            OnServerError += MultithreadedTCPServer_OnServerError;
+		|        }
+		|
+		|        private void MultithreadedTCPServer_OnServerError(string obj)
+		|        {
+		|            if (dll_obj?.ServerError != null)
+		|            {
+		|                var args = new TsEventArgs
+		|                {
+		|                    eventAction = dll_obj.ServerError,
+		|                    parameter = Helper.GetEventParameter(dll_obj.ServerError),
+		|                    serverError = obj
+		|                };
+		|                OneScriptMultithreadedTCPServer.EventQueue.Enqueue(args);
+		|            }
+		|        }
+		|
+		|        private void MultithreadedTCPServer_OnMessageReceived(string arg1, BinaryDataBuffer arg2)
+		|        {
+		|            if (dll_obj?.MessageReceived != null)
+		|            {
+		|                var args = new TsEventArgs
+		|                {
+		|                    eventAction = dll_obj.MessageReceived,
+		|                    parameter = Helper.GetEventParameter(dll_obj.MessageReceived),
+		|                    clientId = arg1,
+		|                    data = arg2
+		|                };
+		|                OneScriptMultithreadedTCPServer.EventQueue.Enqueue(args);
+		|            }
+		|        }
+		|
+		|        private void MultithreadedTCPServer_OnClientDisconnected(string obj)
+		|        {
+		|            if (dll_obj?.ClientDisconnected != null)
+		|            {
+		|                var args = new TsEventArgs
+		|                {
+		|                    eventAction = dll_obj.ClientDisconnected,
+		|                    parameter = Helper.GetEventParameter(dll_obj.ClientDisconnected),
+		|                    clientId = obj
+		|                };
+		|                OneScriptMultithreadedTCPServer.EventQueue.Enqueue(args);
+		|            }
+		|        }
+		|
+		|        private void MultithreadedTCPServer_OnClientConnected(string obj)
+		|        {
+		|            if (dll_obj?.ClientConnected != null)
+		|            {
+		|                var args = new TsEventArgs
+		|                {
+		|                    eventAction = dll_obj.ClientConnected,
+		|                    parameter = Helper.GetEventParameter(dll_obj.ClientConnected),
+		|                    clientId = obj
+		|                };
+		|                OneScriptMultithreadedTCPServer.EventQueue.Enqueue(args);
+		|            }
+		|        }
+		|
+		|        public async Task StartAsync(CancellationToken externalToken = default)
+		|        {
+		|            lock (_stateLock)
+		|            {
+		|                if (_state != ServerState.Stopped && _state != ServerState.StoppedWithError)
+		|                {
+		|                    throw new InvalidOperationException($""Сервер уже работает. Текущее состояние: {_state}"");
+		|                }
+		|                _state = ServerState.Starting;
+		|            }
+		|
+		|            _isRunning = true;
+		|
+		|            // Объединяем внешний и внутренний токены отмены.
+		|            _cts = CancellationTokenSource.CreateLinkedTokenSource(externalToken);
+		|
+		|            _listener = new TcpListener(IPAddress.Any, Port);
+		|            _listener.Start(100); // backlog для ожидающих подключений.
+		|
+		|            _state = ServerState.Running;
+		|            Utils.GlobalContext().Echo(""Многопоточный TCP сервер запущен на порт "" + Port);
+		|            OneScriptForms.multiServerUploaded = true;
+		|
+		|            try
+		|            {
+		|                var acceptTasks = new List<Task>();
+		|
+		|                // Запускаем несколько задач для приема подключений.
+		|                int acceptLoops = Math.Max(1, System.Environment.ProcessorCount / 2); // Оптимальное количество.
+		|                for (int i = 0; i < acceptLoops; i++)
+		|                {
+		|                    acceptTasks.Add(AcceptClientsLoopAsync(_cts.Token));
+		|                }
+		|
+		|                // Ожидаем завершения всех задач или отмены.
+		|                await Task.WhenAll(acceptTasks).ConfigureAwait(false);
+		|            }
+		|            catch (OperationCanceledException)
+		|            {
+		|                OnServerError?.Invoke(""Сервер остановлен по запросу"");
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                _state = ServerState.StoppedWithError;
+		|                OnServerError?.Invoke(""Ошибка сервера: "" + ex.Message);
+		|                throw;
+		|            }
+		|            finally
+		|            {
+		|                _state = ServerState.Stopped;
+		|                CleanupResources();
+		|            }
+		|        }
+		|
+		|        private async Task AcceptClientsLoopAsync(CancellationToken token)
+		|        {
+		|            while (!token.IsCancellationRequested && _isRunning)
+		|            {
+		|                try
+		|                {
+		|                    var client = await _listener.AcceptTcpClientAsync().ConfigureAwait(false);
+		|
+		|                    if (token.IsCancellationRequested)
+		|                    {
+		|                        client.Close();
+		|                        break;
+		|                    }
+		|
+		|                    // Ограничение количества одновременных подключений.
+		|                    if (_clients.Count >= MaxClients)
+		|                    {
+		|                        await SendRejectionAndClose(client, ""Сервер перегружен"");
+		|                        continue;
+		|                    }
+		|
+		|                    // Настраиваем таймауты клиента.
+		|                    client.ReceiveTimeout = 30000;
+		|                    client.SendTimeout = 10000;
+		|
+		|                    // Запустим задачу взаимодействия с клиентом так, чтобы она не блокировала подключение новых клиентов.
+		|                    _ = HandleClientAsync(client, token).ContinueWith(t =>
+		|                    {
+		|                        if (t.IsFaulted)
+		|                        {
+		|                            OnServerError?.Invoke(""Ошибка обработки клиента: "" + t.Exception?.InnerException?.Message);
+		|                        }
+		|                    }, TaskContinuationOptions.OnlyOnFaulted);
+		|                }
+		|                catch (ObjectDisposedException)
+		|                {
+		|                    // Сервер прослушивания был остановлен.
+		|                    break;
+		|                }
+		|                catch (SocketException ex) when (ex.SocketErrorCode == SocketError.Interrupted)
+		|                {
+		|                    // Прервано вызовом Stop().
+		|                    break;
+		|                }
+		|                catch (Exception ex)
+		|                {
+		|                    if (!token.IsCancellationRequested)
+		|                    {
+		|                        OnServerError?.Invoke(""Ошибка приёма клиента: "" + ex.Message);
+		|                    }
+		|                }
+		|            }
+		|        }
+		|
+		|        private async Task SendRejectionAndClose(TcpClient client, string message)
+		|        {
+		|            try
+		|            {
+		|                var data = Encoding.GetBytes($""ERROR: {message}\n"");
+		|                await client.GetStream().WriteAsync(data, 0, data.Length);
+		|                await Task.Delay(100); // Даем время на отправку.
+		|            }
+		|            catch { }
+		|            finally
+		|            {
+		|                client.Close();
+		|            }
+		|        }
+		|
+		|        private async Task HandleClientAsync(TcpClient client, CancellationToken token)
+		|        {
+		|            var clientId = Convert.ToString(Interlocked.Increment(ref _lastClientId));
+		|
+		|            if (!_clients.TryAdd(clientId, client))
+		|            {
+		|                client.Close();
+		|                return;
+		|            }
+		|
+		|            var clientCts = CancellationTokenSource.CreateLinkedTokenSource(token);
+		|
+		|            try
+		|            {
+		|                OnClientConnected?.Invoke(clientId);
+		|
+		|                if (CheckClientActivity)
+		|                {
+		|                    // Запускаем пингование клиента (heartbeat) в фоне.
+		|                    var heartbeatTask = HeartbeatLoopAsync(client, clientId, clientCts.Token);
+		|
+		|                    // Основной цикл чтения.
+		|                    await ReadLoopAsync(client, clientId, clientCts.Token).ConfigureAwait(false);
+		|
+		|                    // Отменяем пингование клиента (heartbeat).
+		|                    clientCts.Cancel();
+		|
+		|                    // Ожидаем завершения пингования клиента (heartbeat) с обработкой исключений.
+		|                    await heartbeatTask.ContinueWith(t =>
+		|                    {
+		|                        if (t.IsFaulted)
+		|                        {
+		|                            OnServerError?.Invoke(""Ошибка heartbeat для клиента "" + clientId + "": "" + t.Exception?.Message);
+		|                        }
+		|                    }, TaskContinuationOptions.OnlyOnFaulted);
+		|                }
+		|                else
+		|                {
+		|                    // Основной цикл чтения.
+		|                    await ReadLoopAsync(client, clientId, clientCts.Token).ConfigureAwait(false);
+		|                }
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                OnServerError?.Invoke(""Ошибка в обработке клиента "" + clientId + "": "" + ex.Message);
+		|            }
+		|            finally
+		|            {
+		|                // Важно: всегда освобождаем ресурсы.
+		|                clientCts.Dispose();
+		|
+		|                _clients.TryRemove(clientId, out _);
+		|                OnClientDisconnected?.Invoke(clientId);
+		|
+		|                try
+		|                {
+		|                    client.Close();
+		|                }
+		|                catch { }
+		|            }
+		|        }
+		|
+		|        private async Task ReadLoopAsync(TcpClient client, string clientId, CancellationToken token)
+		|        {
+		|            var stream = client.GetStream();
+		|            var buffer = _bufferPool.Rent();
+		|            var sb = new StringBuilder();
+		|
+		|            try
+		|            {
+		|                while (!token.IsCancellationRequested && client.Connected)
+		|                {
+		|                    try
+		|                    {
+		|                        // Читаем входящие данные
+		|                        BinaryDataBuffer bdb = new BinaryDataBuffer(new byte[0]);
+		|                        int bytesRead = 0;
+		|                        do
+		|                        {
+		|                            bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, token).ConfigureAwait(false);
+		|                            bdb = bdb.Concat((new BinaryDataBuffer(buffer)).Read(0, bytesRead));
+		|
+		|                            // Ограничение на размер сообщения.
+		|                            if (bdb.Size > maxMessageSize)
+		|                            {
+		|                                await SendRejectionAndClose(client, ""Превышен размер сообщения"");
+		|                                bdb = new BinaryDataBuffer(new byte[0]);
+		|                                OnServerError?.Invoke(""Превышен размер сообщения для клиента "" + clientId + "". Клиент отключен."");
+		|                                break;
+		|                            }
+		|                        } while (bytesRead == buffer.Length);
+		|
+		|                        if (bdb?.Count() > 0)
+		|                        {
+		|                            // Вызываем обработчик данных
+		|                            try
+		|                            {
+		|                                OnMessageReceived?.Invoke(clientId, bdb);
+		|                            }
+		|                            catch (Exception ex)
+		|                            {
+		|                                OnServerError?.Invoke(""Ошибка обработки сообщения: "" + ex.Message);
+		|                            }
+		|                        }
+		|                    }
+		|                    catch (IOException ex) when (ex.InnerException is SocketException)
+		|                    {
+		|                        break; // Соединение разорвано.
+		|                    }
+		|                    catch (OperationCanceledException)
+		|                    {
+		|                        break;
+		|                    }
+		|                    catch (Exception ex)
+		|                    {
+		|                        OnServerError?.Invoke(""Ошибка чтения от клиента "" + clientId + "": "" + ex.Message);
+		|                        break;
+		|                    }
+		|                }
+		|            }
+		|            finally
+		|            {
+		|                _bufferPool.Return(buffer);
+		|            }
+		|        }
+		|
+		|        private async Task HeartbeatLoopAsync(TcpClient client, string clientId, CancellationToken token)
+		|        {
+		|            try
+		|            {
+		|                while (!token.IsCancellationRequested && client.Connected)
+		|                {
+		|                    await Task.Delay(HeartbeatInterval, token).ConfigureAwait(false);
+		|
+		|                    if (token.IsCancellationRequested)
+		|                    {
+		|                        break;
+		|                    }
+		|
+		|                    // Пытаемся отправить PING, не проверяя заранее соединение.
+		|                    var success = await SendAsync(clientId, $""PING|{DateTime.Now:o}\n"").ConfigureAwait(false);
+		|
+		|                    if (!success)
+		|                    {
+		|                        OnServerError?.Invoke(""Клиент "" + clientId + "" не ответил на отправленный PING"");
+		|                        break;
+		|                    }
+		|                }
+		|            }
+		|            catch (OperationCanceledException)
+		|            {
+		|                // Нормальное завершение по токену.
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                OnServerError?.Invoke(""Ошибка на отправленный PING для клиента "" + clientId + "": "" + ex.Message);
+		|            }
+		|        }
+		|
+		|        // Отправить строку в сообщении конкретному клиенту.
+		|        public async Task<bool> SendAsync(string clientId, string message)
+		|        {
+		|            if (!_clients.TryGetValue(clientId, out var client) || !client.Connected)
+		|            {
+		|                return false;
+		|            }
+		|
+		|            try
+		|            {
+		|                var stream = client.GetStream();
+		|                var data = Encoding.GetBytes(message.EndsWith(""\n"") ? message : message + ""\n"");
+		|                await stream.WriteAsync(data, 0, data.Length).ConfigureAwait(false);
+		|                return true;
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                OnServerError?.Invoke(""Ошибка отправки клиенту "" + clientId + "": "" + ex.Message);
+		|                // При ошибке отправки удаляем клиента.
+		|                _clients.TryRemove(clientId, out _);
+		|                return false;
+		|            }
+		|        }
+		|
+		|        // Отправить байты в сообщении конкретному клиенту.
+		|        public async Task<bool> SendAsync(string clientId, BinaryDataBuffer message)
+		|        {
+		|            if (!_clients.TryGetValue(clientId, out var client) || !client.Connected)
+		|            {
+		|                return false;
+		|            }
+		|
+		|            try
+		|            {
+		|                var stream = client.GetStream();
+		|                var data = message.Bytes;
+		|                await stream.WriteAsync(data, 0, data.Length).ConfigureAwait(false);
+		|                return true;
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                OnServerError?.Invoke(""Ошибка отправки клиенту "" + clientId + "": "" + ex.Message);
+		|                // При ошибке отправки удаляем клиента.
+		|                _clients.TryRemove(clientId, out _);
+		|                return false;
+		|            }
+		|        }
+		|
+		|        // Отправить строку всем клиентам.
+		|        public async Task BroadcastAsync(string message)
+		|        {
+		|            var data = Encoding.GetBytes(message.EndsWith(""\n"") ? message : message + ""\n"");
+		|            var failedClients = new List<string>();
+		|
+		|            foreach (var kvp in _clients)
+		|            {
+		|                try
+		|                {
+		|                    if (kvp.Value.Connected)
+		|                    {
+		|                        await kvp.Value.GetStream().WriteAsync(data, 0, data.Length).ConfigureAwait(false);
+		|                    }
+		|                    else
+		|                    {
+		|                        failedClients.Add(kvp.Key);
+		|                    }
+		|                }
+		|                catch
+		|                {
+		|                    failedClients.Add(kvp.Key);
+		|                }
+		|            }
+		|
+		|            // Удаляем отвалившихся клиентов.
+		|            foreach (var clientId in failedClients)
+		|            {
+		|                _clients.TryRemove(clientId, out _);
+		|            }
+		|        }
+		|
+		|        // Отправить байты всем клиентам.
+		|        public async Task BroadcastAsync(BinaryDataBuffer message)
+		|        {
+		|            var data = message.Bytes;
+		|            var failedClients = new List<string>();
+		|
+		|            foreach (var kvp in _clients)
+		|            {
+		|                try
+		|                {
+		|                    if (kvp.Value.Connected)
+		|                    {
+		|                        await kvp.Value.GetStream().WriteAsync(data, 0, data.Length).ConfigureAwait(false);
+		|                    }
+		|                    else
+		|                    {
+		|                        failedClients.Add(kvp.Key);
+		|                    }
+		|                }
+		|                catch
+		|                {
+		|                    failedClients.Add(kvp.Key);
+		|                }
+		|            }
+		|
+		|            // Удаляем отвалившихся клиентов.
+		|            foreach (var clientId in failedClients)
+		|            {
+		|                _clients.TryRemove(clientId, out _);
+		|            }
+		|        }
+		|
+		|        public async Task StopAsync(TimeSpan? gracefulTimeout = null)
+		|        {
+		|            var timeout = gracefulTimeout ?? TimeSpan.FromSeconds(30);
+		|
+		|            lock (_stateLock)
+		|            {
+		|                if (_state != ServerState.Running && _state != ServerState.Starting)
+		|                {
+		|                    return;
+		|                }
+		|
+		|                _state = ServerState.Stopping;
+		|            }
+		|
+		|            Utils.GlobalContext().Echo(""Начало выключения сервера..."");
+		|
+		|            // 1. Останавливаем прием новых подключений.
+		|            _isRunning = false;
+		|
+		|            // 2. Останавливаем сервер прослушивания.
+		|            try
+		|            {
+		|                _listener?.Stop();
+		|            }
+		|            catch { }
+		|
+		|            // 3. Уведомляем все задачи о необходимости завершения.
+		|            _cts?.Cancel();
+		|
+		|            // 4. Мягкое (Graceful) закрытие существующих подключений.
+		|            await GracefulDisconnectClientsAsync(timeout).ConfigureAwait(false);
+		|
+		|            // 5. Принудительное завершение оставшихся подключений.
+		|            ForceDisconnectAllClients();
+		|
+		|            // 6. Очистка ресурсов.
+		|            CleanupResources();
+		|
+		|            _state = ServerState.Stopped;
+		|            Utils.GlobalContext().Echo(""Сервер полностью остановлен"");
+		|        }
+		|
+		|        private async Task GracefulDisconnectClientsAsync(TimeSpan timeout)
+		|        {
+		|            if (_clients.IsEmpty)
+		|            {
+		|                return;
+		|            }
+		|
+		|            var gracefulTasks = new List<Task>();
+		|            var disconnectMessage = Encoding.GetBytes(""SERVER_SHUTDOWN\n"");
+		|
+		|            // Отправляем уведомление о завершении всем клиентам.
+		|            foreach (var kvp in _clients)
+		|            {
+		|                var task = Task.Run(async () =>
+		|                {
+		|                    try
+		|                    {
+		|                        await SendRawAsync(kvp.Value, disconnectMessage);
+		|                        // Даем время клиенту обработать сообщение.
+		|                        await Task.Delay(1000);
+		|                    }
+		|                    catch { }
+		|                });
+		|
+		|                gracefulTasks.Add(task);
+		|            }
+		|
+		|            // Ожидаем завершения отправки уведомлений или таймаута.
+		|            try
+		|            {
+		|                var timeoutTask = Task.Delay(timeout);
+		|                var completedTask = await Task.WhenAny(Task.WhenAll(gracefulTasks), timeoutTask);
+		|
+		|                if (completedTask == timeoutTask)
+		|                {
+		|                    Utils.GlobalContext().Echo(""Время задержки выключения закончилось ("" + timeout.TotalSeconds + "" сек). Отключаем принудительно."");
+		|                }
+		|            }
+		|            catch { }
+		|        }
+		|
+		|        private void ForceDisconnectAllClients()
+		|        {
+		|            foreach (var client in _clients.Values)
+		|            {
+		|                try
+		|                {
+		|                    // Отправляем TCP RST вместо мягкого (graceful) закрытия.
+		|                    client.Client.LingerState = new LingerOption(true, 0);
+		|                    client.Close();
+		|                }
+		|                catch { }
+		|            }
+		|
+		|            _clients.Clear();
+		|        }
+		|
+		|        private async Task SendRawAsync(TcpClient client, byte[] data)
+		|        {
+		|            using (var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5)))
+		|            {
+		|                try
+		|                {
+		|                    if (client.Connected)
+		|                    {
+		|                        await client.GetStream().WriteAsync(data, 0, data.Length, cts.Token)
+		|                            .ConfigureAwait(false);
+		|                    }
+		|                }
+		|                catch (OperationCanceledException)
+		|                {
+		|                    // Таймаут отправки.
+		|                    OnServerError?.Invoke(""Таймаут отправки сообщения"");
+		|                    throw;
+		|                }
+		|                catch (Exception ex)
+		|                {
+		|                    OnServerError?.Invoke(""Ошибка отправки: "" + ex.Message);
+		|                    throw;
+		|                }
+		|            }
+		|        }
+		|
+		|        // Добавляем метод CleanupResources.
+		|        private void CleanupResources()
+		|        {
+		|            try
+		|            {
+		|                _listener?.Stop();
+		|
+		|                // Очищаем пул буферов (если нужно).
+		|                // _bufferPool.Clear();
+		|
+		|                // Очищаем токены отмены.
+		|                _cts?.Dispose();
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                OnServerError?.Invoke(""Ошибка при очистке ресурсов: "" + ex.Message);
+		|            }
+		|        }
+		|
+		|        private bool _disposed = false;
+		|
+		|        public void Dispose()
+		|        {
+		|            Dispose(true);
+		|            GC.SuppressFinalize(this);
+		|        }
+		|
+		|        protected virtual void Dispose(bool disposing)
+		|        {
+		|            if (_disposed)
+		|            {
+		|                return;
+		|            }
+		|
+		|            if (disposing)
+		|            {
+		|                try
+		|                {
+		|                    // Если сервер работает, останавливаем его.
+		|                    if (_state == ServerState.Running || _state == ServerState.Starting)
+		|                    {
+		|                        var stopTask = StopAsync(TimeSpan.FromSeconds(5));
+		|                        if (!stopTask.Wait(TimeSpan.FromSeconds(10)))
+		|                        {
+		|                            OnServerError?.Invoke(""Таймаут при остановке сервера"");
+		|                        }
+		|                    }
+		|
+		|                    _cts?.Dispose();
+		|                    _listener?.Stop();
+		|
+		|                    // Очищаем клиентов.
+		|                    foreach (var client in _clients.Values)
+		|                    {
+		|                        try
+		|                        {
+		|                            client?.Close();
+		|                        }
+		|                        catch { }
+		|                    }
+		|                    _clients.Clear();
+		|                }
+		|                catch (Exception ex)
+		|                {
+		|                    OnServerError?.Invoke(""Ошибка при освобождении ресурсов: "" + ex.Message);
+		|                }
+		|            }
+		|
+		|            _disposed = true;
+		|        }
+		|
+		|        ~MultithreadedTCPServer()
+		|        {
+		|            Dispose(false);
+		|        }
+		|
+		|        public int MaxMessageSize
+		|        {
+		|            get { return maxMessageSize; }
+		|            set { maxMessageSize = value; }
+		|        }
+		|
+		|        public int MaxClients
+		|        {
+		|            get { return maxClients; }
+		|            set { maxClients = value; }
+		|        }
+		|
+		|        private bool checkClientActivity = false;
+		|        public bool CheckClientActivity
+		|        {
+		|            get { return checkClientActivity; }
+		|            set { checkClientActivity = value; }
+		|        }
+		|    }
+		|
+		|    [ContextClass(""ТсМногопоточныйTCPСервер"", ""TsMultithreadedTCPServer"")]
+		|    public class TsMultithreadedTCPServer : AutoContext<TsMultithreadedTCPServer>
+		|    {
+		|        public TsMultithreadedTCPServer(int port)
+		|        {
+		|            MultithreadedTCPServer MultithreadedTCPServer1 = new MultithreadedTCPServer(port);
+		|            MultithreadedTCPServer1.dll_obj = this;
+		|            Base_obj = MultithreadedTCPServer1;
+		|        }
+		|
+		|        public MultithreadedTCPServer Base_obj;
+		|
+		|        [ContextMethod(""ОтправитьКлиенту"", ""SendToClient"")]
+		|        public void SendToClient(string p1, IValue p2)
+		|        {
+		|            if (Utils.IsType<BinaryDataBuffer>(p2))
+		|            {
+		|                _ = Task.Run(() =>
+		|                {
+		|                    Base_obj.SendAsync(p1, (BinaryDataBuffer)p2).ConfigureAwait(false);
+		|                });
+		|            }
+		|            else
+		|            {
+		|                _ = Task.Run(() =>
+		|                {
+		|                    Base_obj.SendAsync(p1, p2.AsString()).ConfigureAwait(false);
+		|                });
+		|            }
+		|        }
+		|
+		|        [ContextMethod(""ОтправитьВсем"", ""SendToAll"")]
+		|        public void SendToAll(IValue p1)
+		|        {
+		|            if (Utils.IsType<BinaryDataBuffer>(p1))
+		|            {
+		|                _ = Task.Run(() =>
+		|                {
+		|                    Base_obj.BroadcastAsync((BinaryDataBuffer)p1).ConfigureAwait(false);
+		|                });
+		|            }
+		|            else
+		|            {
+		|                _ = Task.Run(() =>
+		|                {
+		|                    Base_obj.BroadcastAsync(p1.AsString()).ConfigureAwait(false);
+		|                });
+		|            }
+		|        }
+		|
+		|        [ContextProperty(""ПроверятьАктивностьКлиента"", ""CheckClientActivity"")]
+		|        public bool CheckClientActivity
+		|        {
+		|            get { return Base_obj.CheckClientActivity; }
+		|            set { Base_obj.CheckClientActivity = value; }
+		|        }
+		|
+		|        [ContextMethod(""Начать"", ""Start"")]
+		|        public async void Start()
+		|        {
+		|            try
+		|            {
+		|                var cts = new CancellationTokenSource();
+		|
+		|                try
+		|                {
+		|                    // Запуск сервера.
+		|                    var serverTask = Base_obj.StartAsync(cts.Token);
+		|
+		|                    // Мониторинг состояния.
+		|                    _ = Task.Run(async () =>
+		|                    {
+		|                        while (!cts.Token.IsCancellationRequested)
+		|                        {
+		|                            await Task.Delay(5000);
+		|                        }
+		|                    });
+		|
+		|                    // Ожидаем завершения сервера.
+		|                    await serverTask;
+		|                }
+		|                catch (TaskCanceledException)
+		|                {
+		|                    Utils.GlobalContext().Echo(""Сервер остановлен по запросу пользователя"");
+		|                }
+		|                catch (Exception ex)
+		|                {
+		|                    Utils.GlobalContext().Echo(""Критическая ошибка: "" + ex.Message);
+		|                }
+		|            }
+		|            catch (Exception e)
+		|            {
+		|                Utils.GlobalContext().Echo(""Ошибка. На порт "" + Base_obj.Port + "" сервер уже запущен. "" +
+		|                    System.Environment.NewLine + e.Message);
+		|                OneScriptForms.multiServerError = true;
+		|            }
+		|        }
+		|
+		|        [ContextMethod(""Остановить"", ""Stop"")]
+		|        public async void Stop()
+		|        {
+		|            await Base_obj.StopAsync();
+		|        }
+		|
+		|        [ContextProperty(""ПриПодключенииКлиента"", ""ClientConnected"")]
+		|        public TsAction ClientConnected { get; set; }
+		|
+		|        [ContextProperty(""ПриОтключенииКлиента"", ""ClientDisconnected"")]
+		|        public TsAction ClientDisconnected { get; set; }
+		|
+		|        [ContextProperty(""СерверПолучилДанные"", ""MessageReceived"")]
+		|        public TsAction MessageReceived { get; set; }
+		|
+		|        [ContextProperty(""ПриОшибкеСервера"", ""ServerError"")]
+		|        public TsAction ServerError { get; set; }
+		|
+		|        [ContextProperty(""КоличествоАктивныхКлиентов"", ""ActiveClientsNumber"")]
+		|        public int ActiveClientsNumber
+		|        {
+		|            get { return Base_obj.ActiveClients; }
+		|        }
+		|
+		|        [ContextProperty(""СостояниеСервера"", ""ServerState"")]
+		|        public int ServerState
+		|        {
+		|            get { return (int)Base_obj.State; }
+		|        }
+		|
+		|        [ContextProperty(""МаксимальныйРазмерСообщения"", ""MaxMessageSize"")]
+		|        public int MaxMessageSize
+		|        {
+		|            get { return Base_obj.MaxMessageSize; }
+		|            set { Base_obj.MaxMessageSize = value; }
+		|        }
+		|
+		|        [ContextProperty(""МаксимальноеКоличествоПодключений"", ""MaxClients"")]
+		|        public int MaxClients
+		|        {
+		|            get { return Base_obj.MaxClients; }
+		|            set { Base_obj.MaxClients = value; }
+		|        }
+		|
+		|        [ContextProperty(""Кодировка"", ""Encoding"")]
+		|        public ClEncoding Encoding
+		|        {
+		|            get
+		|            {
+		|                osf.Encoding Encoding1 = new osf.Encoding();
+		|                Encoding1.M_Encoding = Base_obj.Encoding;
+		|                return new ClEncoding(Encoding1);
+		|            }
+		|            set { Base_obj.Encoding = value.Base_obj.M_Encoding; }
+		|        }
+		|
+		|        private int heartbeatInterval = 10;
+		|        [ContextProperty(""ИнтервалПроверки"", ""HeartbeatInterval"")]
+		|        public int HeartbeatInterval
+		|        {
+		|            get { return heartbeatInterval; }
+		|            set
+		|            {
+		|                heartbeatInterval = value;
+		|                Base_obj.HeartbeatInterval = TimeSpan.FromSeconds(heartbeatInterval);
+		|            }
+		|        }
+		|
+		|        [ContextMethod(""Действие"", ""Action"")]
+		|        public TsAction Action(IRuntimeContextInstance script, string methodName, IValue param = null)
+		|        {
+		|            return new TsAction(script, methodName, param);
+		|        }
+		|
+		|        public static IValue Event = null;
+		|        [ContextProperty(""АргументыСобытия"", ""EventArgs"")]
+		|        public IValue EventArgs
+		|        {
+		|            get { return OneScriptMultithreadedTCPServer.Event; }
+		|        }
+		|
+		|        public bool goOn = true;
+		|        [ContextProperty(""Продолжать"", ""GoOn"")]
+		|        public bool GoOn
+		|        {
+		|            get { return ServerBase.goOn; }
+		|            set { ServerBase.goOn = value; }
+		|        }
+		|
+		|        public static IValue EventAction = null;
+		|        public static ConcurrentQueue<dynamic> EventQueue = new ConcurrentQueue<dynamic>();
+		|        [ContextMethod(""ПолучитьСобытие"", ""DoEvents"")]
+		|        public DelegateAction DoEvents()
+		|        {
+		|            while (OneScriptMultithreadedTCPServer.EventQueue.Count == 0)
+		|            {
+		|                System.Threading.Thread.Sleep(7);
+		|            }
+		|
+		|            IValue Action1 = ServerBase.EventHandling();
+		|            if (Action1.GetType() == typeof(TsAction))
+		|            {
+		|                return DelegateAction.Create(((TsAction)Action1).Script, ((TsAction)Action1).MethodName);
+		|            }
+		|            return (DelegateAction)Action1;
+		|        }
+		|
+		|        public static OneScriptMultithreadedTCPServer serverBase = null;
+		|        public OneScriptMultithreadedTCPServer ServerBase
+		|        {
+		|            get { return serverBase; }
+		|            set
+		|            {
+		|                if (serverBase == null)
+		|                {
+		|                    serverBase = value;
+		|                }
+		|            }
+		|        }
+		|
+		|        [ContextMethod(""ОбработатьПриПодключенииКлиента"", ""ProcessingClientConnected"")]
+		|        public void ProcessingClientConnected(TsEventArgs args)
+		|        {
+		|            ServerBase.ProcessingClientConnected(args);
+		|        }
+		|
+		|        [ContextMethod(""ОбработатьСерверПолучилДанные"", ""ProcessingServerReceived"")]
+		|        public void ProcessingServerReceived(TsEventArgs args)
+		|        {
+		|            ServerBase.ProcessingServerReceived(args);
+		|        }
+		|
+		|        [ContextMethod(""ОбработатьПриОтключенииКлиента"", ""ProcessingClientDisconnected"")]
+		|        public void ProcessingClientDisconnected(TsEventArgs args)
+		|        {
+		|            ServerBase.ProcessingClientDisconnected(args);
+		|        }
+		|
+		|        [ContextMethod(""ОбработатьПриОшибкеСервера"", ""ProcessingErrorServer"")]
+		|        public void ProcessingErrorServer(TsEventArgs args)
+		|        {
+		|            ServerBase.ProcessingErrorServer(args);
+		|        }
+		|    }
+		|}
+		|";
+		ТекстДокХХХ = Новый ТекстовыйДокумент;
+		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
+		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "CircularProgressBar" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
 		"namespace osf
@@ -13981,7 +17837,7 @@
 		|                Invalidate();
 		|            }
 		|        }
-		|		
+		|
 		|        public System.Drawing.Color CircleColor
 		|        {
 		|            get { return _CircleColor; }
@@ -14110,7 +17966,7 @@
 		|                                    BarWidth / 2,
 		|                                    BarWidth / 2,
 		|                                    this.Width - BarWidth,
-		|                                    this.Width - BarWidth, 
+		|                                    this.Width - BarWidth,
 		|                                    -90,
 		|                                    -(int)Math.Round((double)((360.0 / ((double)this._Maximum)) * this._Value)));
 		|                            }
@@ -14210,7 +18066,7 @@
 		|            M_CircularProgressBar.Width = 33;
 		|            M_CircularProgressBar.Height = 33;
 		|        }
-		|		
+		|
 		|        public osf.Color CircleColor
 		|        {
 		|            get { return new Color(M_CircularProgressBar.CircleColor); }
@@ -14361,7 +18217,7 @@
 		|            M_MaskedTextBox.TextChanged += M_MaskedTextBox_TextChanged;
 		|            TextChanged = """";
 		|        }
-		|		
+		|
 		|        private void M_MaskedTextBox_TextChanged(object sender, System.EventArgs e)
 		|        {
 		|            if (TextChanged.Length > 0)
@@ -14391,19 +18247,19 @@
 		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.MaskInputRejected);
 		|            }
 		|        }
-		|		
+		|
 		|        public new string SelectedText
 		|        {
 		|            get { return M_MaskedTextBox.SelectedText; }
 		|            set { M_MaskedTextBox.SelectedText = value; }
 		|        }
-		|		
+		|
 		|        public int TextAlign
 		|        {
 		|            get { return (int)M_MaskedTextBox.TextAlign; }
 		|            set { M_MaskedTextBox.TextAlign = (System.Windows.Forms.HorizontalAlignment)value; }
 		|        }
-		|		
+		|
 		|        public bool MaskCompleted
 		|        {
 		|            get { return M_MaskedTextBox.MaskCompleted; }
@@ -14631,7 +18487,7 @@
 		|            var dataGridView = childCell.DataGridView;
 		|            var ownerCell = childCell.OwnerCell as TCell ?? childCell;
 		|            var spannedCellBounds = childCellBounds;
-		|            
+		|
 		|            var firstVisibleColumnIndex = Enumerable.Range(ownerCell.ColumnIndex, ownerCell.ColumnSpan)
 		|                .First(i => dataGridView.Columns[i].Visible);
 		|            if (dataGridView.Columns[firstVisibleColumnIndex].Frozen)
@@ -14648,7 +18504,7 @@
 		|                                          ? spannedCellBounds.X + dx
 		|                                          : spannedCellBounds.X - dx;
 		|            }
-		|            
+		|
 		|            var firstVisibleRowIndex = Enumerable.Range(ownerCell.RowIndex, ownerCell.RowSpan)
 		|                .First(i => dataGridView.Rows[i].Visible);
 		|            if (dataGridView.Rows[firstVisibleRowIndex].Frozen)
@@ -14662,7 +18518,7 @@
 		|                    .Where(rowItem => rowItem.Visible)
 		|                    .Sum(rowItem => rowItem.Height);
 		|            }
-		|            
+		|
 		|            var spannedCellWidth = Enumerable.Range(ownerCell.ColumnIndex, ownerCell.ColumnSpan)
 		|                .Select(columnIndex => dataGridView.Columns[columnIndex])
 		|                .Where(column => column.Visible)
@@ -14672,7 +18528,7 @@
 		|                spannedCellBounds.X = spannedCellBounds.Right - spannedCellWidth;
 		|            }
 		|            spannedCellBounds.Width = spannedCellWidth;
-		|            
+		|
 		|            spannedCellBounds.Height = Enumerable.Range(ownerCell.RowIndex, ownerCell.RowSpan)
 		|                .Select(rowIndex => dataGridView.Rows[rowIndex])
 		|                .Where(row => row.Visible)
@@ -14712,12 +18568,12 @@
 		|            var dataGridViewAdvancedBorderStylePlaceholder = new System.Windows.Forms.DataGridViewAdvancedBorderStyle();
 		|            var dataGridView = cell.DataGridView;
 		|            return cell.AdjustCellBorderStyle(
-		|                dataGridView.AdvancedCellBorderStyle, 
+		|                dataGridView.AdvancedCellBorderStyle,
 		|                dataGridViewAdvancedBorderStylePlaceholder,
 		|                dataGridView.SingleVerticalBorderAdded(),
 		|                dataGridView.SingleHorizontalBorderAdded(),
 		|                InFirstDisplayedColumn(cell),
-		|                InFirstDisplayedRow(cell)); 
+		|                InFirstDisplayedRow(cell));
 		|        }
 		|
 		|        public static bool InFirstDisplayedColumn<TCell>(this TCell cell) where TCell : System.Windows.Forms.DataGridViewCell, ISpannedCell
@@ -14821,7 +18677,7 @@
 		|    public class IpHostEntry
 		|    {
 		|        public System.Net.IPHostEntry M_IPHostEntry;
-		|		
+		|
 		|        public IpHostEntry(osf.IpHostEntry p1)
 		|        {
 		|            M_IPHostEntry = p1.M_IPHostEntry;
@@ -14862,56 +18718,192 @@
 		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "NetworkStream" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
-		"namespace osf
+		"using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using System;
+		|using ScriptEngine.HostedScript.Library.Binary;
+		|using System.Threading.Tasks;
+		|using osf;
+		|
+		|namespace osfMultiTcp
 		|{
-		|}//endnamespace
+		|    [ContextClass(""ТсПотокСети"", ""TsNetworkStream"")]
+		|    public class TsNetworkStream : AutoContext<TsNetworkStream>
+		|    {
+		|        public TsNetworkStream(System.Net.Sockets.NetworkStream p1)
+		|        {
+		|            Base_obj = p1;
+		|        }
+		|
+		|        public System.Net.Sockets.NetworkStream Base_obj;
+		|
+		|        [ContextProperty(""ВозможностьЗаписи"", ""CanWrite"")]
+		|        public bool CanWrite
+		|        {
+		|            get { return Base_obj.CanWrite; }
+		|        }
+		|
+		|        [ContextProperty(""ВозможностьЧтения"", ""CanRead"")]
+		|        public bool CanRead
+		|        {
+		|            get { return Base_obj.CanRead; }
+		|        }
+		|
+		|        [ContextProperty(""ДанныеДоступны"", ""DataAvailable"")]
+		|        public bool DataAvailable
+		|        {
+		|            get { return Base_obj.DataAvailable; }
+		|        }
+		|
+		|        [ContextMethod(""Закрыть"", ""Close"")]
+		|        public void Close()
+		|        {
+		|            Base_obj.Close();
+		|        }
+		|
+		|        [ContextMethod(""Записать"", ""Write"")]
+		|        public void Write(IValue p1, int p2, int p3)
+		|        {
+		|            if (Utils.IsType<BinaryDataBuffer>(p1))
+		|            {
+		|                Base_obj.Write(((BinaryDataBuffer)p1).Bytes, 0, p3);
+		|            }
+		|            else
+		|            {
+		|                System.Collections.ArrayList ArrayList1 = ((ClArrayList)p1).Base_obj.M_ArrayList;
+		|                byte[] buffer = new byte[ArrayList1.Count];
+		|                int num = p3 - 1;
+		|                for (int i = 0; i < num; i++)
+		|                {
+		|                    buffer[i] = Convert.ToByte(ArrayList1[i + p2]);
+		|                }
+		|                Base_obj.Write(buffer, 0, p3);
+		|            }
+		|        }
+		|
+		|        [ContextMethod(""Прочитать"", ""Read"")]
+		|        public ClArrayList Read(int p1, int p2)
+		|        {
+		|            byte[] buffer = new byte[p2];
+		|            Base_obj.Read(buffer, p1, p2);
+		|            ClArrayList ClArrayList1 = new ClArrayList();
+		|            System.Collections.ArrayList ArrayList1 = ClArrayList1.Base_obj.M_ArrayList;
+		|            for (int i = 0; i < buffer.Length; i++)
+		|            {
+		|                ArrayList1.Add(buffer[i]);
+		|            }
+		|            return ClArrayList1;
+		|        }
+		|
+		|        [ContextMethod(""ПрочитатьВБуферДвоичныхДанных"", ""ReadToBinaryDataBuffer"")]
+		|        public BinaryDataBuffer ReadToBinaryDataBuffer()
+		|        {
+		|            BinaryDataBuffer bdb = ReadToBDB().Result;
+		|            return bdb;
+		|        }
+		|
+		|        public Task<BinaryDataBuffer> ReadToBDB()
+		|        {
+		|            return ReadToBuffer();
+		|        }
+		|
+		|        public async Task<BinaryDataBuffer> ReadToBuffer()
+		|        {
+		|            BinaryDataBuffer bdb = new BinaryDataBuffer(new byte[0]);
+		|            byte[] Buffer = new byte[1024];
+		|            while (true)
+		|            {
+		|                int bytes = await this.Base_obj.ReadAsync(Buffer, 0, Buffer.Length);
+		|                if (bytes > 0)
+		|                {
+		|                    bdb = bdb.Concat((new BinaryDataBuffer(Buffer)).Read(0, bytes));
+		|                    return bdb;
+		|                }
+		|                return bdb;
+		|            }
+		|        }
+		|
+		|        [ContextMethod(""ЧитатьБайт"", ""ReadByte"")]
+		|        public int ReadByte()
+		|        {
+		|            return Base_obj.ReadByte();
+		|        }
+		|    }
+		|}
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
 		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "TCPClient" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
-		"namespace osf
+		"using ScriptEngine.Machine.Contexts;
+		|using ScriptEngine.Machine;
+		|using System;
+		|using ScriptEngine.HostedScript.Library.Binary;
+		|using System.Text;
+		|using System.Threading.Tasks;
+		|using osf;
+		|
+		|namespace osfMultiTcp
 		|{
 		|    public class TCPClient
 		|    {
-		|        private System.Net.Sockets.TcpClient M_TcpClient;
-		|        public ClTCPClient dll_obj;
+		|        public TsTCPClient dll_obj;
+		|        public System.Text.Encoding Encoding { get; set; } = System.Text.Encoding.UTF8;
+		|        public System.Net.Sockets.TcpClient M_TcpClient;
+		|        public string MessageReceived;
 		|
-		|        public TCPClient(string HostName = null, int port = 0)
+		|        public TCPClient()
 		|        {
-		|            if (HostName != null && port != 0)
-		|            {
-		|                M_TcpClient = new System.Net.Sockets.TcpClient(HostName, port);
-		|            }
-		|            else if (HostName == null && port == 0)
-		|            {
-		|                M_TcpClient = new System.Net.Sockets.TcpClient();
-		|            }
-		|            else
-		|            {
-		|                return;
-		|            }
+		|            M_TcpClient = new System.Net.Sockets.TcpClient();
+		|            this.ClientReceived += TCPClient_ClientReceived;
+		|        }
+		|
+		|        public TCPClient(string HostName, int port)
+		|        {
+		|            M_TcpClient = new System.Net.Sockets.TcpClient(HostName, port);
+		|            this.ClientReceived += TCPClient_ClientReceived;
 		|        }
 		|
 		|        public TCPClient(System.Net.Sockets.TcpClient p1)
 		|        {
 		|            M_TcpClient = p1;
+		|            this.ClientReceived += TCPClient_ClientReceived;
 		|        }
 		|
-		|        public TCPClient(TCPClient p1)
+		|        private void TCPClient_ClientReceived(object sender, TsEventArgs e)
 		|        {
-		|            M_TcpClient = p1.M_TcpClient;
+		|            if (dll_obj?.ClientReceived != null)
+		|            {
+		|                var args = new TsEventArgs
+		|                {
+		|                    eventAction = dll_obj.ClientReceived,
+		|                    parameter = Helper.GetEventParameter(dll_obj.ClientReceived),
+		|                    data = e.Data
+		|                };
+		|                OneScriptForms.Event = args;
+		|                OneScriptForms.ExecuteEvent(dll_obj.ClientReceived);
+		|            }
+		|        }
+		|
+		|        public event EventHandler<TsEventArgs> ClientReceived;
+		|        public void OnClientReceived(BinaryDataBuffer p1)
+		|        {
+		|            var handler = ClientReceived;
+		|            if (handler != null)
+		|            {
+		|                handler(this, new TsEventArgs(p1));
+		|            }
+		|        }
+		|
+		|        public bool Connected
+		|        {
+		|            get { return M_TcpClient.Connected; }
 		|        }
 		|
 		|        public void Close()
 		|        {
 		|            M_TcpClient.Close();
-		|        }
-		|
-		|        public void Connect(IpAddress ipaddress, int portNo)
-		|        {
-		|            M_TcpClient.Connect(ipaddress.IPaddress, portNo);
 		|        }
 		|
 		|        public void Connect(string hostname, int portNo)
@@ -14923,25 +18915,180 @@
 		|        {
 		|            return M_TcpClient.GetStream();
 		|        }
-		|		
+		|
+		|        public async void Send(BinaryDataBuffer message)
+		|        {
+		|            if (!M_TcpClient.Connected)
+		|            {
+		|                Utils.GlobalContext().Echo(""Ошибка отправки текста: Клиентотключен."");
+		|                return;
+		|            }
+		|
+		|            try
+		|            {
+		|                var stream = M_TcpClient.GetStream();
+		|                var data = message.Bytes;
+		|                await stream.WriteAsync(data, 0, data.Length).ConfigureAwait(false);
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                Utils.GlobalContext().Echo(""Ошибка отправки буфера двоичных данных: "" + ex.Message);
+		|            }
+		|        }
+		|
+		|        public async void Send(string message)
+		|        {
+		|            if (!M_TcpClient.Connected)
+		|            {
+		|                Utils.GlobalContext().Echo(""Ошибка отправки текста: Клиентотключен."");
+		|                return;
+		|            }
+		|
+		|            try
+		|            {
+		|                var stream = M_TcpClient.GetStream();
+		|                var data = Encoding.GetBytes(message.EndsWith(""\n"") ? message : message + ""\n"");
+		|                await stream.WriteAsync(data, 0, data.Length).ConfigureAwait(false);
+		|            }
+		|            catch (Exception ex)
+		|            {
+		|                Utils.GlobalContext().Echo(""Ошибка отправки текста: "" + ex.Message);
+		|            }
+		|        }
+		|    }
+		|
+		|    [ContextClass(""ТсTCPКлиент"", ""TsTCPClient"")]
+		|    public class TsTCPClient : AutoContext<TsTCPClient>
+		|    {
+		|        public TsTCPClient()
+		|        {
+		|            TCPClient TCPClient1 = new TCPClient();
+		|            TCPClient1.dll_obj = this;
+		|            Base_obj = TCPClient1;
+		|        }
+		|
+		|        public TsTCPClient(string HostName, int port)
+		|        {
+		|            TCPClient TCPClient1 = new TCPClient(HostName, port);
+		|            TCPClient1.dll_obj = this;
+		|            Base_obj = TCPClient1;
+		|        }
+		|
+		|        public TsTCPClient(osfMultiTcp.TCPClient p1)
+		|        {
+		|            TCPClient TCPClient1 = p1;
+		|            TCPClient1.dll_obj = this;
+		|            Base_obj = TCPClient1;
+		|        }
+		|
+		|        public osfMultiTcp.TCPClient Base_obj;
+		|
+		|        [ContextProperty(""КлиентПолучилДанные"", ""ClientReceived"")]
+		|        public TsAction ClientReceived { get; set; }
+		|
+		|        [ContextMethod(""ОбработатьКлиентПолучилДанные"", ""ProcessingClientReceived"")]
+		|        public void ProcessingClientReceived(BinaryDataBuffer p1)
+		|        {
+		|            OneScriptForms.ProcessingClientReceived(p1);
+		|        }
+		|
+		|        [ContextProperty(""Кодировка"", ""Encoding"")]
+		|        public ClEncoding Encoding
+		|        {
+		|            get
+		|            {
+		|                osf.Encoding Encoding1 = new osf.Encoding();
+		|                Encoding1.M_Encoding = Base_obj.Encoding;
+		|                return new ClEncoding(Encoding1);
+		|            }
+		|            set { Base_obj.Encoding = value.Base_obj.M_Encoding; }
+		|        }
+		|
+		|        [ContextProperty(""Подключен"", ""Connected"")]
 		|        public bool Connected
 		|        {
-		|            get { return M_TcpClient.Connected; }
+		|            get { return Base_obj.Connected; }
 		|        }
-		|    }//endClass
-		|}//endnamespace
+		|
+		|        [ContextMethod(""Закрыть"", ""Close"")]
+		|        public void Close()
+		|        {
+		|            Base_obj.Close();
+		|        }
+		|
+		|        [ContextMethod(""Отправить"", ""Send"")]
+		|        public void Send(IValue p1)
+		|        {
+		|            if (Utils.IsType<BinaryDataBuffer>(p1))
+		|            {
+		|                _ = Task.Run(() =>
+		|                {
+		|                    Base_obj.Send((BinaryDataBuffer)p1);
+		|                });
+		|            }
+		|            else
+		|            {
+		|                _ = Task.Run(() =>
+		|                {
+		|                    Base_obj.Send(p1.AsString());
+		|                });
+		|            }
+		|        }
+		|
+		|        [ContextMethod(""Подключить"", ""Connect"")]
+		|        public void Connect(string p1, int p2)
+		|        {
+		|            Base_obj.Connect(p1, p2);
+		|        }
+		|
+		|        [ContextMethod(""ПолучитьПоток"", ""GetStream"")]
+		|        public TsNetworkStream GetStream()
+		|        {
+		|            try
+		|            {
+		|                return new TsNetworkStream(Base_obj.GetStream());
+		|            }
+		|            catch
+		|            {
+		|                return null;
+		|            }
+		|        }
+		|
+		|        public static OneScriptMultithreadedTCPServer serverBase = null;
+		|        public OneScriptMultithreadedTCPServer ServerBase
+		|        {
+		|            get { return serverBase; }
+		|            set
+		|            {
+		|                if (serverBase == null)
+		|                {
+		|                    serverBase = value;
+		|                }
+		|            }
+		|        }
+		|    }
+		|}
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
 		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "TCPListener" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
-		"namespace osf
+		"using ScriptEngine.Machine.Contexts;
+		|using System.Reflection;
+		|using osfMultiTcp;
+		|
+		|namespace osf
 		|{
 		|    public class TCPListener
 		|    {
-		|        private System.Net.Sockets.TcpListener M_TcpListener;
 		|        public ClTCPListener dll_obj;
+		|        private System.Net.Sockets.TcpListener M_TcpListener;
+		|
+		|        public TCPListener(osf.IpAddress p1, int p2)
+		|        {
+		|            M_TcpListener = new System.Net.Sockets.TcpListener(p1.IPaddress, p2);
+		|        }
 		|
 		|        public TCPListener(osf.TCPListener p1)
 		|        {
@@ -14953,19 +19100,29 @@
 		|            M_TcpListener = new System.Net.Sockets.TcpListener(p1, p2);
 		|        }
 		|
-		|        public TCPListener(osf.IpAddress p1, int p2)
-		|        {
-		|            M_TcpListener = new System.Net.Sockets.TcpListener(p1.IPaddress, p2);
-		|        }
-		|
 		|        public TCPListener(System.Net.Sockets.TcpListener p1)
 		|        {
 		|            M_TcpListener = p1;
 		|        }
 		|
-		|        public osf.TCPClient AcceptTCPclient()
+		|        public bool Active
 		|        {
-		|            return new osf.TCPClient(M_TcpListener.AcceptTcpClient());
+		|            get
+		|            {
+		|                bool res = (bool)typeof(System.Net.Sockets.TcpListener).InvokeMember(
+		|                        ""Active"",
+		|                        BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
+		|                        null,
+		|                        M_TcpListener,
+		|                        null);
+		|
+		|                return res;
+		|            }
+		|        }
+		|
+		|        public osfMultiTcp.TCPClient AcceptTCPclient()
+		|        {
+		|            return new osfMultiTcp.TCPClient(M_TcpListener.AcceptTcpClient());
 		|        }
 		|
 		|        public bool Pending()
@@ -14982,23 +19139,58 @@
 		|        {
 		|            M_TcpListener.Stop();
 		|        }
-		|		
+		|    }
+		|
+		|    [ContextClass(""КлTCPСлушатель"", ""ClTCPListener"")]
+		|    public class ClTCPListener : AutoContext<ClTCPListener>
+		|    {
+		|        public ClTCPListener(ClIpAddress p1, int p2)
+		|        {
+		|            TCPListener TCPListener1 = new TCPListener(p1.Base_obj, p2);
+		|            TCPListener1.dll_obj = this;
+		|            Base_obj = TCPListener1;
+		|        }
+		|
+		|        public ClTCPListener(osf.TCPListener p1)
+		|        {
+		|            TCPListener TCPListener1 = p1;
+		|            TCPListener1.dll_obj = this;
+		|            Base_obj = TCPListener1;
+		|        }
+		|
+		|        public TCPListener Base_obj;
+		|
+		|        [ContextProperty(""Активен"", ""Active"")]
 		|        public bool Active
 		|        {
-		|            get
-		|            {
-		|                bool res = (bool)typeof(System.Net.Sockets.TcpListener).InvokeMember(
-		|                        ""Active"",
-		|                        BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
-		|                        null,
-		|                        M_TcpListener,
-		|                        null);
-		|
-		|                return res;
-		|            }
+		|            get { return Base_obj.Active; }
 		|        }
-		|    }//endClass
-		|}//endnamespace
+		|
+		|        [ContextMethod(""Начать"", ""Start"")]
+		|        public void Start()
+		|        {
+		|            Base_obj.Start();
+		|        }
+		|
+		|        [ContextMethod(""Ожидающие"", ""Pending"")]
+		|        public bool Pending()
+		|        {
+		|            return Base_obj.Pending();
+		|        }
+		|
+		|        [ContextMethod(""Остановить"", ""Stop"")]
+		|        public void Stop()
+		|        {
+		|            Base_obj.Stop();
+		|        }
+		|
+		|        [ContextMethod(""ПринимающийКлиент"", ""AcceptTCPclient"")]
+		|        public TsTCPClient AcceptTCPclient()
+		|        {
+		|            return new TsTCPClient(Base_obj.AcceptTCPclient());
+		|        }
+		|    }
+		|}
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
@@ -15148,7 +19340,7 @@
 		|            // Восстановить блок страниц.
 		|            pGraphics.PageUnit = oldPageUnit;
 		|        }
-		|		
+		|
 		|        public static void SetRoundedShape(System.Windows.Forms.Panel control, int radius)
 		|        {
 		|            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
@@ -15163,7 +19355,7 @@
 		|            control.Region = new Region(path);
 		|        }
 		|    }
-		|}//endnamespace
+		|}
 		|";
 		ТекстДокХХХ = Новый ТекстовыйДокумент;
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
@@ -15216,7 +19408,7 @@
 		|        }
 		|    }
 		|}
-		|		
+		|
 		|namespace osf
 		|{
 		|}//endnamespace
@@ -15238,7 +19430,7 @@
 		|        public NodeStateIcon()
 		|        {
 		|        }
-		|		
+		|
 		|        public void ResetStateIconImage(Node p1)
 		|        {
 		|            nodeStateIconImage.Remove(p1);
@@ -15279,7 +19471,7 @@
 		|            {
 		|                image = imageNode;
 		|            }
-		|		
+		|
 		|            if (node.IsSelected)
 		|            {
 		|                if (SelectedImage != null)
@@ -15339,7 +19531,7 @@
 		|        {
 		|            return Image;
 		|        }
-		|		
+		|
 		|        public System.Drawing.Image Image
 		|        {
 		|            get { return image; }
@@ -15351,7 +19543,7 @@
 		|            get { return selectedImage; }
 		|            set { selectedImage = value; }
 		|        }
-		|		
+		|
 		|        public override Size MeasureSize(TreeNodeAdv node, DrawContext context)
 		|        {
 		|            Image image = GetIcon(node);
@@ -15360,7 +19552,7 @@
 		|            {
 		|                image = imageNode;
 		|            }
-		|		
+		|
 		|            if (node.IsSelected)
 		|            {
 		|                if (SelectedImage != null)
@@ -15368,7 +19560,7 @@
 		|                    image = SelectedImage;
 		|                }
 		|            }
-		|		
+		|
 		|            if (image != null)
 		|            {
 		|                if (this.ScaleMode == ImageScaleMode.AlwaysScale)
@@ -15419,7 +19611,7 @@
 		|            this.LabelChanged += NodeComboBox_LabelChanged;
 		|            ValueChanged = """";
 		|        }
-		|		
+		|
 		|        // Здесь по клавише F2, нажатию ENTER вызывается редактирование элемента узла.
 		|        public override void KeyDown(KeyEventArgs args)
 		|        {
@@ -15432,7 +19624,7 @@
 		|                BeginEdit();
 		|            }
 		|        }
-		|		
+		|
 		|        public void NodeComboBox_LabelChanged(object sender, LabelEventArgs e)
 		|        {
 		|            if (ValueChanged.Length > 0)
@@ -15722,7 +19914,7 @@
 		|                base.MouseUp(args);
 		|            }
 		|        }
-		|		
+		|
 		|        protected void OnLabelChanged(object subject, object oldLabel, object newLabel)
 		|        {
 		|            if (LabelChanged != null)
@@ -15758,7 +19950,7 @@
 		|            this.LabelChanged += NodeDecimalTextBox_LabelChanged;
 		|            ValueChanged = """";
 		|        }
-		|		
+		|
 		|        public void NodeDecimalTextBox_LabelChanged(object sender, LabelEventArgs e)
 		|        {
 		|            if (ValueChanged.Length > 0)
@@ -15792,7 +19984,7 @@
 		|            textBox.AllowNegativeSign = AllowNegativeSign;
 		|            return textBox;
 		|        }
-		|		
+		|
 		|        protected override Control CreateEditor(TreeNodeAdv node)
 		|        {
 		|            NumericTextBox textBox = CreateTextBox();
@@ -15813,14 +20005,14 @@
 		|            SetEditControlProperties(textBox, node);
 		|            return textBox;
 		|        }
-		|		
+		|
 		|        protected override void DisposeEditor(Control editor)
 		|        {
 		|            var textBox = editor as NumericTextBox;
 		|            textBox.TextChanged -= EditorTextChanged;
 		|            textBox.KeyDown -= EditorKeyDown;
 		|        }
-		|		
+		|
 		|        private void EditorKeyDown(object sender, KeyEventArgs e)
 		|        {
 		|            if (e.KeyCode == Keys.Escape)
@@ -15846,13 +20038,13 @@
 		|            ((Node)node.Tag).dll_obj.SetControlValue(this.dll_obj, (dynamic)label);
 		|            OnLabelChanged(this, oldLabel, label);
 		|        }
-		|		
+		|
 		|        public string CustomFormat
 		|        {
 		|            get { return _customFormat; }
 		|            set { _customFormat = value; }
 		|        }
-		|		
+		|
 		|        protected new void OnLabelChanged(object subject, object oldLabel, object newLabel)
 		|        {
 		|            if (LabelChanged != null)
@@ -15890,7 +20082,7 @@
 		|            this.LabelChanged += NodeNumericUpDown_LabelChanged;
 		|            ValueChanged = """";
 		|        }
-		|		
+		|
 		|        // Здесь по клавише F2, нажатию ENTER вызывается редактирование элемента узла.
 		|        public override void KeyDown(KeyEventArgs args)
 		|        {
@@ -15903,7 +20095,7 @@
 		|                BeginEdit();
 		|            }
 		|        }
-		|		
+		|
 		|        public void NodeNumericUpDown_LabelChanged(object sender, LabelEventArgs e)
 		|        {
 		|            if (ValueChanged.Length > 0)
@@ -16007,7 +20199,7 @@
 		|            ((Node)node.Tag).dll_obj.SetControlValue(this.dll_obj, (dynamic)label);
 		|            OnLabelChanged(this, oldLabel, label);
 		|        }
-		|		
+		|
 		|        protected void OnLabelChanged(object subject, object oldLabel, object newLabel)
 		|        {
 		|            if (LabelChanged != null)
@@ -16042,7 +20234,7 @@
 		|            this.LabelChanged += NodeTextBox_LabelChanged;
 		|            ValueChanged = """";
 		|        }
-		|		
+		|
 		|        public void NodeTextBox_LabelChanged(object sender, LabelEventArgs e)
 		|        {
 		|            if (ValueChanged.Length > 0)
@@ -16195,7 +20387,7 @@
 		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "TreeViewAdvSupport" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
-		"    #region Aga.Controls.Threading
+		"#region Aga.Controls.Threading
 		|
 		|namespace Aga.Controls.Threading
 		|{
@@ -16359,9 +20551,9 @@
 		|    }
 		|}
 		|
-		|    #endregion Aga.Controls.Threading
+		|#endregion Aga.Controls.Threading
 		|
-		|    #region Aga.Controls
+		|#region Aga.Controls
 		|
 		|namespace Aga.Controls
 		|{
@@ -17489,9 +21681,9 @@
 		|    }
 		|}
 		|
-		|    #endregion Aga.Controls
+		|#endregion Aga.Controls
 		|
-		|    #region Aga.Controls.Tree.NodeControls
+		|#region Aga.Controls.Tree.NodeControls
 		|
 		|namespace Aga.Controls.Tree.NodeControls
 		|{
@@ -17685,7 +21877,7 @@
 		|                }
 		|            }
 		|            catch { }
-		|		
+		|
 		|            Rectangle bounds = GetBounds(node, context);
 		|            if (this.VerticalAlign == VerticalAlignment.Center)
 		|            {
@@ -18493,7 +22685,7 @@
 		|    public abstract class NodeControl : Component
 		|    {
 		|        public Dictionary<osf.ClToolTip, object> ObjTooltip = new Dictionary<osf.ClToolTip, object>();
-		|		
+		|
 		|        private object _tooltipText = """";
 		|        public object TooltipText
 		|        {
@@ -18906,9 +23098,9 @@
 		|    }
 		|}
 		|
-		|    #endregion Aga.Controls.Tree.NodeControls
+		|#endregion Aga.Controls.Tree.NodeControls
 		|
-		|    #region Aga.Controls.Tree
+		|#region Aga.Controls.Tree
 		|
 		|namespace Aga.Controls.Tree
 		|{
@@ -18990,7 +23182,7 @@
 		|            return _headerHeight.Value;
 		|        }
 		|    }
-		|		
+		|
 		|    public class TreeViewAdvCancelEventArgs : TreeViewAdvEventArgs
 		|    {
 		|        private bool _cancel;
@@ -20860,7 +25052,7 @@
 		|                _tree.EndUpdate();
 		|            }
 		|        }
-		|		
+		|
 		|        public void SetControl(int p1, NodeControl p2)
 		|        {
 		|            SetItem(p1, p2);
@@ -20934,14 +25126,14 @@
 		|        public override void Draw(TreeNodeAdv node, DrawContext context)
 		|        {
 		|            Rectangle bounds = GetBounds(node, context);
-		|		
+		|
 		|            CheckState state = System.Windows.Forms.CheckState.Unchecked;
 		|            try
 		|            {
 		|                state = (System.Windows.Forms.CheckState)((Node)node.Tag).nodeControlValue[this];
 		|            }
 		|            catch { }
-		|		
+		|
 		|            if (Application.RenderWithVisualStyles)
 		|            {
 		|                VisualStyleRenderer renderer;
@@ -21142,7 +25334,7 @@
 		|        }
 		|
 		|        public TreeNodeAdv TreeNodeAdv { get; set; }
-		|		
+		|
 		|        public string NodeName { get; set; }
 		|
 		|        internal TreeModel Model
@@ -21155,7 +25347,7 @@
 		|        {
 		|            get { return _nodes; }
 		|        }
-		|		
+		|
 		|        public object TooltipText { get; set; }
 		|
 		|        public Node Parent
@@ -21319,7 +25511,7 @@
 		|                }
 		|            }
 		|        }
-		|		
+		|
 		|        public string FullPath
 		|        {
 		|            get { return GetFullPath(); }
@@ -21336,7 +25528,7 @@
 		|            }
 		|            return fullPath.TrimStart(this.TreeNodeAdv.Tree.PathSeparator.ToCharArray());
 		|        }
-		|		
+		|
 		|        public void SetControlValue(NodeControl p1, object p2)
 		|        {
 		|            if (p2 == null)
@@ -21355,7 +25547,7 @@
 		|                }
 		|            }
 		|        }
-		|		
+		|
 		|        public object GetControlValue(NodeControl p1)
 		|        {
 		|            object obj;
@@ -22159,7 +26351,7 @@
 		|                OnIsVisibleChanged();
 		|            }
 		|        }
-		|		
+		|
 		|        public bool Visible
 		|        {
 		|            get { return IsVisible; }
@@ -22214,7 +26406,7 @@
 		|                }
 		|            }
 		|        }
-		|		
+		|
 		|        public TextFormatFlags HeaderFlags
 		|        {
 		|            get { return _headerFlags; }
@@ -22406,7 +26598,7 @@
 		|                WidthChanged(this, EventArgs.Empty);
 		|            }
 		|        }
-		|		
+		|
 		|        internal Size GetActualSize(DrawContext context)
 		|        {
 		|            if (!IsVisible)
@@ -22525,7 +26717,7 @@
 		|        {
 		|            get { return M_TreeColumn.Index; }
 		|        }
-		|		
+		|
 		|        public int TextAlign
 		|        {
 		|            get { return (int)M_TreeColumn.TextAlign; }
@@ -22685,7 +26877,7 @@
 		|        {
 		|            _treeView.UpdateView();
 		|        }
-		|		
+		|
 		|        public void SetColumn(int p1, TreeColumn p2)
 		|        {
 		|            SetItem(p1, p2);
@@ -22702,7 +26894,7 @@
 		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	ИначеЕсли ИмяФайлаCs = "TreeViewAdv" Тогда
 		СтрВыгрузки = СтрВыгрузки + 
-		"    #region Aga.Controls.Tree
+		"#region Aga.Controls.Tree
 		|
 		|namespace Aga.Controls.Tree
 		|{
@@ -22930,7 +27122,7 @@
 		|            Size = new System.Drawing.Size(121, 97);
 		|            ExpandingIcon.IconChanged += ExpandingIconChanged;
 		|        }
-		|		
+		|
 		|        public string PathSeparator
 		|        {
 		|            get { return pathSeparator; }
@@ -22962,155 +27154,155 @@
 		|            base.Dispose(disposing);
 		|        }
 		|
-		|		private void OnItemDrag(MouseButtons buttons, object item)
-		|		{
-		|			if (ItemDrag != null)
+		|        private void OnItemDrag(MouseButtons buttons, object item)
+		|        {
+		|            if (ItemDrag != null)
 		|            {
 		|                ItemDrag(this, new ItemDragEventArgs(buttons, item));
 		|            }
 		|        }
 		|
-		|		private void OnNodeMouseClick(TreeNodeAdvMouseEventArgs args)
-		|		{
-		|			if (NodeMouseClick != null)
+		|        private void OnNodeMouseClick(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            if (NodeMouseClick != null)
 		|            {
 		|                NodeMouseClick(this, args);
 		|            }
 		|        }
 		|
-		|		private void OnNodeMouseDoubleClick(TreeNodeAdvMouseEventArgs args)
-		|		{
-		|			if (NodeMouseDoubleClick != null)
+		|        private void OnNodeMouseDoubleClick(TreeNodeAdvMouseEventArgs args)
+		|        {
+		|            if (NodeMouseDoubleClick != null)
 		|            {
 		|                NodeMouseDoubleClick(this, args);
 		|            }
 		|        }
 		|
-		|		internal void OnColumnWidthChanged(TreeColumn column)
-		|		{
-		|			if (ColumnWidthChanged != null)
+		|        internal void OnColumnWidthChanged(TreeColumn column)
+		|        {
+		|            if (ColumnWidthChanged != null)
 		|            {
 		|                ColumnWidthChanged(this, new TreeColumnEventArgs(column));
 		|            }
 		|        }
 		|
-		|		internal void OnColumnReordered(TreeColumn column)
-		|		{
-		|			if (ColumnReordered != null)
+		|        internal void OnColumnReordered(TreeColumn column)
+		|        {
+		|            if (ColumnReordered != null)
 		|            {
 		|                ColumnReordered(this, new TreeColumnEventArgs(column));
 		|            }
 		|        }
 		|
-		|		internal void OnColumnClicked(TreeColumn column)
-		|		{
-		|			if (ColumnClicked != null)
+		|        internal void OnColumnClicked(TreeColumn column)
+		|        {
+		|            if (ColumnClicked != null)
 		|            {
 		|                ColumnClicked(this, new TreeColumnEventArgs(column));
 		|            }
 		|        }
 		|
-		|		internal void OnSelectionChanged()
-		|		{
-		|			if (SuspendSelectionEvent)
+		|        internal void OnSelectionChanged()
+		|        {
+		|            if (SuspendSelectionEvent)
 		|            {
 		|                _fireSelectionEvent = true;
 		|            }
 		|            else
-		|			{
-		|				_fireSelectionEvent = false;
-		|				if (SelectionChanged != null)
+		|            {
+		|                _fireSelectionEvent = false;
+		|                if (SelectionChanged != null)
 		|                {
 		|                    SelectionChanged(this, EventArgs.Empty);
 		|                }
 		|            }
-		|		}
+		|        }
 		|
-		|		private void OnCollapsing(TreeNodeAdv node)
-		|		{
-		|			if (Collapsing != null)
+		|        private void OnCollapsing(TreeNodeAdv node)
+		|        {
+		|            if (Collapsing != null)
 		|            {
 		|                Collapsing(this, new TreeViewAdvEventArgs(node));
 		|            }
 		|        }
 		|
-		|		private void OnCollapsed(TreeNodeAdv node)
-		|		{
-		|			if (Collapsed != null)
+		|        private void OnCollapsed(TreeNodeAdv node)
+		|        {
+		|            if (Collapsed != null)
 		|            {
 		|                Collapsed(this, new TreeViewAdvEventArgs(node));
 		|            }
 		|        }
 		|
-		|		private void OnExpanding(TreeNodeAdv node)
-		|		{
-		|			if (Expanding != null)
+		|        private void OnExpanding(TreeNodeAdv node)
+		|        {
+		|            if (Expanding != null)
 		|            {
 		|                Expanding(this, new TreeViewAdvEventArgs(node));
 		|            }
 		|        }
 		|
-		|		private void OnExpanded(TreeNodeAdv node)
-		|		{
-		|			if (Expanded != null)
+		|        private void OnExpanded(TreeNodeAdv node)
+		|        {
+		|            if (Expanded != null)
 		|            {
 		|                Expanded(this, new TreeViewAdvEventArgs(node));
 		|            }
 		|        }
 		|
-		|		private void OnGridLineStyleChanged()
-		|		{
-		|			if (GridLineStyleChanged != null)
+		|        private void OnGridLineStyleChanged()
+		|        {
+		|            if (GridLineStyleChanged != null)
 		|            {
 		|                GridLineStyleChanged(this, EventArgs.Empty);
 		|            }
 		|        }
 		|
-		|		protected virtual void OnScroll(ScrollEventArgs e)
-		|		{
-		|			if (Scroll != null)
+		|        protected virtual void OnScroll(ScrollEventArgs e)
+		|        {
+		|            if (Scroll != null)
 		|            {
 		|                Scroll(this, e);
 		|            }
 		|        }
 		|
-		|		protected virtual void OnRowDraw(PaintEventArgs e, TreeNodeAdv node, DrawContext context, int row, Rectangle rowRect)
-		|		{
-		|			if (RowDraw != null)
-		|			{
-		|				TreeViewRowDrawEventArgs args = new TreeViewRowDrawEventArgs(e.Graphics, e.ClipRectangle, node, context, row, rowRect);
-		|				RowDraw(this, args);
-		|			}
-		|		}
+		|        protected virtual void OnRowDraw(PaintEventArgs e, TreeNodeAdv node, DrawContext context, int row, Rectangle rowRect)
+		|        {
+		|            if (RowDraw != null)
+		|            {
+		|                TreeViewRowDrawEventArgs args = new TreeViewRowDrawEventArgs(e.Graphics, e.ClipRectangle, node, context, row, rowRect);
+		|                RowDraw(this, args);
+		|            }
+		|        }
 		|
 		|        // Срабатывает, когда управление переходит в режим прорисовки. Может использоваться для изменения текста или цвета задней панели.
-		|		internal bool DrawControlMustBeFired()
-		|		{
-		|			return DrawControl != null;
-		|		}
+		|        internal bool DrawControlMustBeFired()
+		|        {
+		|            return DrawControl != null;
+		|        }
 		|
-		|		internal void FireDrawControl(DrawEventArgs args)
-		|		{
-		|			OnDrawControl(args);
-		|		}
+		|        internal void FireDrawControl(DrawEventArgs args)
+		|        {
+		|            OnDrawControl(args);
+		|        }
 		|
-		|		protected virtual void OnDrawControl(DrawEventArgs args)
-		|		{
-		|			if (DrawControl != null)
+		|        protected virtual void OnDrawControl(DrawEventArgs args)
+		|        {
+		|            if (DrawControl != null)
 		|            {
 		|                DrawControl(this, args);
 		|            }
 		|        }
 		|
-		|		protected virtual void OnDropNodeValidating(Point point, ref TreeNodeAdv node)
-		|		{
-		|			if (DropNodeValidating != null)
-		|			{
-		|				DropNodeValidatingEventArgs args = new DropNodeValidatingEventArgs(point, node);
-		|				DropNodeValidating(this, args);
-		|				node = args.Node;
-		|			}
-		|		}
+		|        protected virtual void OnDropNodeValidating(Point point, ref TreeNodeAdv node)
+		|        {
+		|            if (DropNodeValidating != null)
+		|            {
+		|                DropNodeValidatingEventArgs args = new DropNodeValidatingEventArgs(point, node);
+		|                DropNodeValidating(this, args);
+		|                node = args.Node;
+		|            }
+		|        }
 		|
 		|        private static Cursor GetCursor(string str)
 		|        {
@@ -23127,72 +27319,72 @@
 		|        }
 		|
 		|        void ExpandingIconChanged(object sender, EventArgs e)
-		|		{
-		|			if (IsHandleCreated && !IsDisposed)
+		|        {
+		|            if (IsHandleCreated && !IsDisposed)
 		|            {
 		|                BeginInvoke(new MethodInvoker(DrawIcons));
 		|            }
 		|        }
 		|
-		|		private void DrawIcons()
-		|		{
-		|			using (Graphics gr = Graphics.FromHwnd(this.Handle))
-		|			{
+		|        private void DrawIcons()
+		|        {
+		|            using (Graphics gr = Graphics.FromHwnd(this.Handle))
+		|            {
 		|                // Примените ту же логику преобразования графики, что и в OnPaint.
 		|                int y = 0;
-		|				if (UseColumns)
-		|				{
-		|					y += ColumnHeaderHeight;
-		|					if (Columns.Count == 0)
+		|                if (UseColumns)
+		|                {
+		|                    y += ColumnHeaderHeight;
+		|                    if (Columns.Count == 0)
 		|                    {
 		|                        return;
 		|                    }
 		|                }
-		|				int firstRowY = _rowLayout.GetRowBounds(FirstVisibleRow).Y;
-		|				y -= firstRowY;
-		|				gr.ResetTransform();
-		|				gr.TranslateTransform(-OffsetX, y);
+		|                int firstRowY = _rowLayout.GetRowBounds(FirstVisibleRow).Y;
+		|                y -= firstRowY;
+		|                gr.ResetTransform();
+		|                gr.TranslateTransform(-OffsetX, y);
 		|
-		|				DrawContext context = new DrawContext();
-		|				context.Graphics = gr;
-		|				for (int i = 0; i < _expandingNodes.Count; i++)
-		|				{
-		|					foreach (NodeControlInfo item in GetNodeControls(_expandingNodes[i]))
-		|					{
-		|						if (item.Control is ExpandingIcon)
-		|						{
-		|							Rectangle bounds = item.Bounds;
-		|							if (item.Node.Parent == null && UseColumns)
+		|                DrawContext context = new DrawContext();
+		|                context.Graphics = gr;
+		|                for (int i = 0; i < _expandingNodes.Count; i++)
+		|                {
+		|                    foreach (NodeControlInfo item in GetNodeControls(_expandingNodes[i]))
+		|                    {
+		|                        if (item.Control is ExpandingIcon)
+		|                        {
+		|                            Rectangle bounds = item.Bounds;
+		|                            if (item.Node.Parent == null && UseColumns)
 		|                            {
 		|                                bounds.Location = Point.Empty; // Отображение значка расширения корня на уровне 0,0
 		|                            }
 		|
 		|                            context.Bounds = bounds;
-		|							item.Control.Draw(item.Node, context);
-		|						}
-		|					}
-		|				}
-		|			}
-		|		}
+		|                            item.Control.Draw(item.Node, context);
+		|                        }
+		|                    }
+		|                }
+		|            }
+		|        }
 		|
-		|		public TreePath GetPath(TreeNodeAdv node)
-		|		{
-		|			if (node == _root)
+		|        public TreePath GetPath(TreeNodeAdv node)
+		|        {
+		|            if (node == _root)
 		|            {
 		|                return TreePath.Empty;
 		|            }
 		|            else
-		|			{
-		|				Stack<object> stack = new Stack<object>();
-		|				while (node != _root && node != null)
-		|				{
-		|					stack.Push(node.Tag);
-		|					node = node.Parent;
-		|				}
-		|				return new TreePath(stack.ToArray());
-		|			}
-		|		}
-		|		
+		|            {
+		|                Stack<object> stack = new Stack<object>();
+		|                while (node != _root && node != null)
+		|                {
+		|                    stack.Push(node.Tag);
+		|                    node = node.Parent;
+		|                }
+		|                return new TreePath(stack.ToArray());
+		|            }
+		|        }
+		|
 		|        public string GetFullPath(TreeNodeAdv node)
 		|        {
 		|            Node _node = (Node)node.Tag;
@@ -23205,21 +27397,21 @@
 		|            return fullPath.TrimStart(this.PathSeparator.ToCharArray());
 		|        }
 		|
-		|		public TreeNodeAdv GetNodeAt(Point point)
-		|		{
-		|			NodeControlInfo info = GetNodeControlInfoAt(point);
-		|			return info.Node;
-		|		}
+		|        public TreeNodeAdv GetNodeAt(Point point)
+		|        {
+		|            NodeControlInfo info = GetNodeControlInfoAt(point);
+		|            return info.Node;
+		|        }
 		|
-		|		public NodeControlInfo GetNodeControlInfoAt(Point point)
-		|		{
-		|			if (point.X < 0 || point.Y < 0)
+		|        public NodeControlInfo GetNodeControlInfoAt(Point point)
+		|        {
+		|            if (point.X < 0 || point.Y < 0)
 		|            {
 		|                return NodeControlInfo.Empty;
 		|            }
 		|
 		|            int row = _rowLayout.GetRowAt(point);
-		|			if (row < RowCount && row >= 0)
+		|            if (row < RowCount && row >= 0)
 		|            {
 		|                return GetNodeControlInfoAt(RowMap[row], point);
 		|            }
@@ -23228,19 +27420,19 @@
 		|                return NodeControlInfo.Empty;
 		|            }
 		|        }
-		|		
+		|
 		|        public NodeControlInfo GetNodeControlInfoAt2(TreeNodeAdv node, Point point)
 		|        {
 		|            return GetNodeControlInfoAt(node, point);
 		|        }
 		|
-		|		private NodeControlInfo GetNodeControlInfoAt(TreeNodeAdv node, Point point)
-		|		{
-		|			Rectangle rect = _rowLayout.GetRowBounds(FirstVisibleRow);
-		|			point.Y += (rect.Y - ColumnHeaderHeight);
-		|			point.X += OffsetX;
-		|			foreach (NodeControlInfo info in GetNodeControls(node))
-		|				if (info.Bounds.Contains(point))
+		|        private NodeControlInfo GetNodeControlInfoAt(TreeNodeAdv node, Point point)
+		|        {
+		|            Rectangle rect = _rowLayout.GetRowBounds(FirstVisibleRow);
+		|            point.Y += (rect.Y - ColumnHeaderHeight);
+		|            point.X += OffsetX;
+		|            foreach (NodeControlInfo info in GetNodeControls(node))
+		|                if (info.Bounds.Contains(point))
 		|                {
 		|                    return info;
 		|                }
@@ -23255,16 +27447,16 @@
 		|            }
 		|        }
 		|
-		|		public void BeginUpdate()
-		|		{
-		|			_suspendUpdate = true;
-		|			SuspendSelectionEvent = true;
-		|		}
+		|        public void BeginUpdate()
+		|        {
+		|            _suspendUpdate = true;
+		|            SuspendSelectionEvent = true;
+		|        }
 		|
-		|		public void EndUpdate()
-		|		{
-		|			_suspendUpdate = false;
-		|			if (_needFullUpdate)
+		|        public void EndUpdate()
+		|        {
+		|            _suspendUpdate = false;
+		|            if (_needFullUpdate)
 		|            {
 		|                FullUpdate();
 		|            }
@@ -23273,22 +27465,22 @@
 		|                UpdateView();
 		|            }
 		|            SuspendSelectionEvent = false;
-		|		}
+		|        }
 		|
-		|		public void ExpandAll()
-		|		{
-		|			_root.ExpandAll();
-		|		}
+		|        public void ExpandAll()
+		|        {
+		|            _root.ExpandAll();
+		|        }
 		|
-		|		public void CollapseAll()
-		|		{
-		|			_root.CollapseAll();
-		|		}
+		|        public void CollapseAll()
+		|        {
+		|            _root.CollapseAll();
+		|        }
 		|
 		|        // Разверните все родительские узлы, а затем прокрутите до указанного узла.
 		|        public void EnsureVisible(TreeNodeAdv node)
-		|		{
-		|			if (node == null)
+		|        {
+		|            if (node == null)
 		|            {
 		|                throw new ArgumentNullException(""node"");
 		|            }
@@ -23299,18 +27491,18 @@
 		|            }
 		|
 		|            TreeNodeAdv parent = node.Parent;
-		|			while (parent != _root)
-		|			{
-		|				parent.IsExpanded = true;
-		|				parent = parent.Parent;
-		|			}
-		|			ScrollTo(node);
-		|		}
+		|            while (parent != _root)
+		|            {
+		|                parent.IsExpanded = true;
+		|                parent = parent.Parent;
+		|            }
+		|            ScrollTo(node);
+		|        }
 		|
 		|        // Сделайте узел видимым, при необходимости прокрутите его. Все родительские узлы указанного узла должны быть развернуты.
 		|        public void ScrollTo(TreeNodeAdv node)
-		|		{
-		|			if (node == null)
+		|        {
+		|            if (node == null)
 		|            {
 		|                throw new ArgumentNullException(""node"");
 		|            }
@@ -23325,69 +27517,69 @@
 		|
 		|            int row = -1;
 		|
-		|			if (node.Row < FirstVisibleRow)
+		|            if (node.Row < FirstVisibleRow)
 		|            {
 		|                row = node.Row;
 		|            }
 		|            else
-		|			{
-		|				int pageStart = _rowLayout.GetRowBounds(FirstVisibleRow).Top;
-		|				int rowBottom = _rowLayout.GetRowBounds(node.Row).Bottom;
-		|				if (rowBottom > pageStart + DisplayRectangle.Height - ColumnHeaderHeight)
+		|            {
+		|                int pageStart = _rowLayout.GetRowBounds(FirstVisibleRow).Top;
+		|                int rowBottom = _rowLayout.GetRowBounds(node.Row).Bottom;
+		|                if (rowBottom > pageStart + DisplayRectangle.Height - ColumnHeaderHeight)
 		|                {
 		|                    row = _rowLayout.GetFirstRow(node.Row);
 		|                }
 		|            }
 		|
-		|			if (row >= _vScrollBar.Minimum && row <= _vScrollBar.Maximum)
+		|            if (row >= _vScrollBar.Minimum && row <= _vScrollBar.Maximum)
 		|            {
 		|                _vScrollBar.Value = row;
 		|            }
 		|        }
 		|
-		|		public void ClearSelection()
-		|		{
-		|			BeginUpdate();
-		|			try
-		|			{
-		|				ClearSelectionInternal();
-		|			}
-		|			finally
-		|			{
-		|				EndUpdate();
-		|			}
-		|		}
+		|        public void ClearSelection()
+		|        {
+		|            BeginUpdate();
+		|            try
+		|            {
+		|                ClearSelectionInternal();
+		|            }
+		|            finally
+		|            {
+		|                EndUpdate();
+		|            }
+		|        }
 		|
-		|		internal void ClearSelectionInternal()
-		|		{
-		|			while (Selection.Count > 0)
-		|			{
-		|				var t = Selection[0];
-		|				t.IsSelected = false;
-		|				Selection.Remove(t); // Трюк.
-		|			}
-		|		}
+		|        internal void ClearSelectionInternal()
+		|        {
+		|            while (Selection.Count > 0)
+		|            {
+		|                var t = Selection[0];
+		|                t.IsSelected = false;
+		|                Selection.Remove(t); // Трюк.
+		|            }
+		|        }
 		|
-		|		protected override void OnSizeChanged(EventArgs e)
-		|		{
-		|			ArrangeControls();
-		|			SafeUpdateScrollBars();
-		|			base.OnSizeChanged(e);
-		|		}
+		|        protected override void OnSizeChanged(EventArgs e)
+		|        {
+		|            ArrangeControls();
+		|            SafeUpdateScrollBars();
+		|            base.OnSizeChanged(e);
+		|        }
 		|
-		|		private void ArrangeControls()
-		|		{
-		|			int hBarSize = _hScrollBar.Height;
-		|			int vBarSize = _vScrollBar.Width;
-		|			Rectangle clientRect = ClientRectangle;
+		|        private void ArrangeControls()
+		|        {
+		|            int hBarSize = _hScrollBar.Height;
+		|            int vBarSize = _vScrollBar.Width;
+		|            Rectangle clientRect = ClientRectangle;
 		|
-		|			_hScrollBar.SetBounds(clientRect.X, clientRect.Bottom - hBarSize, clientRect.Width - vBarSize, hBarSize);
-		|			_vScrollBar.SetBounds(clientRect.Right - vBarSize, clientRect.Y, vBarSize, clientRect.Height - hBarSize);
-		|		}
+		|            _hScrollBar.SetBounds(clientRect.X, clientRect.Bottom - hBarSize, clientRect.Width - vBarSize, hBarSize);
+		|            _vScrollBar.SetBounds(clientRect.Right - vBarSize, clientRect.Y, vBarSize, clientRect.Height - hBarSize);
+		|        }
 		|
-		|		private void SafeUpdateScrollBars()
-		|		{
-		|			if (InvokeRequired)
+		|        private void SafeUpdateScrollBars()
+		|        {
+		|            if (InvokeRequired)
 		|            {
 		|                BeginInvoke(new MethodInvoker(UpdateScrollBars));
 		|            }
@@ -23397,173 +27589,173 @@
 		|            }
 		|        }
 		|
-		|		private void UpdateScrollBars()
-		|		{
-		|			UpdateVScrollBar();
-		|			UpdateHScrollBar();
-		|			UpdateVScrollBar();
-		|			UpdateHScrollBar();
-		|			_hScrollBar.Width = DisplayRectangle.Width;
-		|			_vScrollBar.Height = DisplayRectangle.Height;
-		|		}
+		|        private void UpdateScrollBars()
+		|        {
+		|            UpdateVScrollBar();
+		|            UpdateHScrollBar();
+		|            UpdateVScrollBar();
+		|            UpdateHScrollBar();
+		|            _hScrollBar.Width = DisplayRectangle.Width;
+		|            _vScrollBar.Height = DisplayRectangle.Height;
+		|        }
 		|
-		|		private void UpdateHScrollBar()
-		|		{
-		|			_hScrollBar.Maximum = ContentWidth;
-		|			_hScrollBar.LargeChange = Math.Max(DisplayRectangle.Width, 0);
-		|			_hScrollBar.SmallChange = 5;
-		|			_hScrollBar.Visible = _hScrollBar.LargeChange < _hScrollBar.Maximum;
-		|			_hScrollBar.Value = Math.Min(_hScrollBar.Value, _hScrollBar.Maximum - _hScrollBar.LargeChange + 1);
-		|		}
+		|        private void UpdateHScrollBar()
+		|        {
+		|            _hScrollBar.Maximum = ContentWidth;
+		|            _hScrollBar.LargeChange = Math.Max(DisplayRectangle.Width, 0);
+		|            _hScrollBar.SmallChange = 5;
+		|            _hScrollBar.Visible = _hScrollBar.LargeChange < _hScrollBar.Maximum;
+		|            _hScrollBar.Value = Math.Min(_hScrollBar.Value, _hScrollBar.Maximum - _hScrollBar.LargeChange + 1);
+		|        }
 		|
-		|		private void UpdateVScrollBar()
-		|		{
-		|			_vScrollBar.Maximum = Math.Max(RowCount - 1, 0);
-		|			_vScrollBar.LargeChange = _rowLayout.PageRowCount;
-		|			_vScrollBar.Visible = (RowCount > 0) && (_vScrollBar.LargeChange <= _vScrollBar.Maximum);
-		|			_vScrollBar.Value = Math.Min(_vScrollBar.Value, _vScrollBar.Maximum - _vScrollBar.LargeChange + 1);
-		|		}
+		|        private void UpdateVScrollBar()
+		|        {
+		|            _vScrollBar.Maximum = Math.Max(RowCount - 1, 0);
+		|            _vScrollBar.LargeChange = _rowLayout.PageRowCount;
+		|            _vScrollBar.Visible = (RowCount > 0) && (_vScrollBar.LargeChange <= _vScrollBar.Maximum);
+		|            _vScrollBar.Value = Math.Min(_vScrollBar.Value, _vScrollBar.Maximum - _vScrollBar.LargeChange + 1);
+		|        }
 		|
-		|		protected override CreateParams CreateParams
-		|		{
-		|			[SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
-		|			get
-		|			{
-		|				CreateParams res = base.CreateParams;
-		|				switch (BorderStyle)
-		|				{
-		|					case BorderStyle.FixedSingle:
-		|						res.Style |= 0x800000;
-		|						break;
-		|					case BorderStyle.Fixed3D:
-		|						res.ExStyle |= 0x200;
-		|						break;
-		|				}
-		|				return res;
-		|			}
-		|		}
+		|        protected override CreateParams CreateParams
+		|        {
+		|            [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
+		|            get
+		|            {
+		|                CreateParams res = base.CreateParams;
+		|                switch (BorderStyle)
+		|                {
+		|                    case BorderStyle.FixedSingle:
+		|                        res.Style |= 0x800000;
+		|                        break;
+		|                    case BorderStyle.Fixed3D:
+		|                        res.ExStyle |= 0x200;
+		|                        break;
+		|                }
+		|                return res;
+		|            }
+		|        }
 		|
-		|		protected override void OnGotFocus(EventArgs e)
-		|		{
-		|			UpdateView();
-		|			ChangeInput();
-		|			base.OnGotFocus(e);
-		|		}
+		|        protected override void OnGotFocus(EventArgs e)
+		|        {
+		|            UpdateView();
+		|            ChangeInput();
+		|            base.OnGotFocus(e);
+		|        }
 		|
-		|		protected override void OnFontChanged(EventArgs e)
-		|		{
-		|			base.OnFontChanged(e);
-		|			_measureContext.Font = Font;
-		|			FullUpdate();
-		|		}
+		|        protected override void OnFontChanged(EventArgs e)
+		|        {
+		|            base.OnFontChanged(e);
+		|            _measureContext.Font = Font;
+		|            FullUpdate();
+		|        }
 		|
-		|		internal IEnumerable<NodeControlInfo> GetNodeControls(TreeNodeAdv node)
-		|		{
-		|			if (node == null)
+		|        internal IEnumerable<NodeControlInfo> GetNodeControls(TreeNodeAdv node)
+		|        {
+		|            if (node == null)
 		|            {
 		|                yield break;
 		|            }
 		|            Rectangle rowRect = _rowLayout.GetRowBounds(node.Row);
-		|			foreach (NodeControlInfo n in GetNodeControls(node, rowRect))
+		|            foreach (NodeControlInfo n in GetNodeControls(node, rowRect))
 		|            {
 		|                yield return n;
 		|            }
 		|        }
 		|
-		|		internal IEnumerable<NodeControlInfo> GetNodeControls(TreeNodeAdv node, Rectangle rowRect)
-		|		{
-		|			if (node == null)
+		|        internal IEnumerable<NodeControlInfo> GetNodeControls(TreeNodeAdv node, Rectangle rowRect)
+		|        {
+		|            if (node == null)
 		|            {
 		|                yield break;
 		|            }
 		|
 		|            int y = rowRect.Y;
-		|			int x = (node.Level - 1) * _indent + LeftMargin;
-		|			int width = 0;
-		|			if (node.Row == 0 && ShiftFirstNode)
+		|            int x = (node.Level - 1) * _indent + LeftMargin;
+		|            int width = 0;
+		|            if (node.Row == 0 && ShiftFirstNode)
 		|            {
 		|                x -= _indent;
 		|            }
 		|            Rectangle rect = Rectangle.Empty;
 		|
-		|			if (ShowPlusMinus)
-		|			{
-		|				width = _plusMinus.GetActualSize(node, _measureContext).Width;
-		|				rect = new Rectangle(x, y, width, rowRect.Height);
-		|				if (UseColumns && Columns.Count > 0 && Columns[0].Width < rect.Right)
+		|            if (ShowPlusMinus)
+		|            {
+		|                width = _plusMinus.GetActualSize(node, _measureContext).Width;
+		|                rect = new Rectangle(x, y, width, rowRect.Height);
+		|                if (UseColumns && Columns.Count > 0 && Columns[0].Width < rect.Right)
 		|                {
 		|                    rect.Width = Columns[0].Width - x;
 		|                }
 		|
 		|                yield return new NodeControlInfo(_plusMinus, rect, node);
-		|				x += width;
-		|			}
+		|                x += width;
+		|            }
 		|
-		|			if (!UseColumns)
-		|			{
-		|				foreach (NodeControl c in NodeControls)
-		|				{
-		|					Size s = c.GetActualSize(node, _measureContext);
-		|					if (!s.IsEmpty)
-		|					{
-		|						width = s.Width;
-		|						rect = new Rectangle(x, y, width, rowRect.Height);
-		|						x += rect.Width;
-		|						yield return new NodeControlInfo(c, rect, node);
-		|					}
-		|				}
-		|			}
-		|			else
-		|			{
-		|				int right = 0;
-		|				foreach (TreeColumn col in Columns)
-		|				{
-		|					if (col.IsVisible && col.Width > 0)
-		|					{
-		|						right += col.Width;
-		|						for (int i = 0; i < NodeControls.Count; i++)
-		|						{
-		|							NodeControl nc = NodeControls[i];
-		|							if (nc.ParentColumn == col)
-		|							{
-		|								Size s = nc.GetActualSize(node, _measureContext);
-		|								if (!s.IsEmpty)
-		|								{
-		|									bool isLastControl = true;
-		|									for (int k = i + 1; k < NodeControls.Count; k++)
-		|										if (NodeControls[k].ParentColumn == col)
-		|										{
-		|											isLastControl = false;
-		|											break;
-		|										}
+		|            if (!UseColumns)
+		|            {
+		|                foreach (NodeControl c in NodeControls)
+		|                {
+		|                    Size s = c.GetActualSize(node, _measureContext);
+		|                    if (!s.IsEmpty)
+		|                    {
+		|                        width = s.Width;
+		|                        rect = new Rectangle(x, y, width, rowRect.Height);
+		|                        x += rect.Width;
+		|                        yield return new NodeControlInfo(c, rect, node);
+		|                    }
+		|                }
+		|            }
+		|            else
+		|            {
+		|                int right = 0;
+		|                foreach (TreeColumn col in Columns)
+		|                {
+		|                    if (col.IsVisible && col.Width > 0)
+		|                    {
+		|                        right += col.Width;
+		|                        for (int i = 0; i < NodeControls.Count; i++)
+		|                        {
+		|                            NodeControl nc = NodeControls[i];
+		|                            if (nc.ParentColumn == col)
+		|                            {
+		|                                Size s = nc.GetActualSize(node, _measureContext);
+		|                                if (!s.IsEmpty)
+		|                                {
+		|                                    bool isLastControl = true;
+		|                                    for (int k = i + 1; k < NodeControls.Count; k++)
+		|                                        if (NodeControls[k].ParentColumn == col)
+		|                                        {
+		|                                            isLastControl = false;
+		|                                            break;
+		|                                        }
 		|
-		|									width = right - x;
-		|									if (!isLastControl)
+		|                                    width = right - x;
+		|                                    if (!isLastControl)
 		|                                    {
 		|                                        width = s.Width;
 		|                                    }
 		|                                    int maxWidth = Math.Max(0, right - x);
-		|									rect = new Rectangle(x, y, Math.Min(maxWidth, width), rowRect.Height);
-		|									x += width;
-		|									yield return new NodeControlInfo(nc, rect, node);
-		|								}
-		|							}
-		|						}
-		|						x = right;
-		|					}
-		|				}
-		|			}
-		|		}
+		|                                    rect = new Rectangle(x, y, Math.Min(maxWidth, width), rowRect.Height);
+		|                                    x += width;
+		|                                    yield return new NodeControlInfo(nc, rect, node);
+		|                                }
+		|                            }
+		|                        }
+		|                        x = right;
+		|                    }
+		|                }
+		|            }
+		|        }
 		|
-		|		internal static double Dist(Point p1, Point p2)
-		|		{
-		|			return Math.Sqrt(Math.Pow(p1.X - p2.X, 2) + Math.Pow(p1.Y - p2.Y, 2));
-		|		}
+		|        internal static double Dist(Point p1, Point p2)
+		|        {
+		|            return Math.Sqrt(Math.Pow(p1.X - p2.X, 2) + Math.Pow(p1.Y - p2.Y, 2));
+		|        }
 		|
-		|		public void FullUpdate()
-		|		{
-		|			HideEditor();
-		|			if (InvokeRequired)
+		|        public void FullUpdate()
+		|        {
+		|            HideEditor();
+		|            if (InvokeRequired)
 		|            {
 		|                BeginInvoke(new MethodInvoker(UnsafeFullUpdate));
 		|            }
@@ -23573,40 +27765,40 @@
 		|            }
 		|        }
 		|
-		|		private void UnsafeFullUpdate()
-		|		{
-		|			_rowLayout.ClearCache();
-		|			CreateRowMap();
-		|			SafeUpdateScrollBars();
-		|			UpdateView();
-		|			_needFullUpdate = false;
-		|		}
+		|        private void UnsafeFullUpdate()
+		|        {
+		|            _rowLayout.ClearCache();
+		|            CreateRowMap();
+		|            SafeUpdateScrollBars();
+		|            UpdateView();
+		|            _needFullUpdate = false;
+		|        }
 		|
-		|		internal void UpdateView()
-		|		{
-		|			if (!_suspendUpdate)
+		|        internal void UpdateView()
+		|        {
+		|            if (!_suspendUpdate)
 		|            {
 		|                Invalidate(false);
 		|            }
 		|        }
 		|
-		|		internal void UpdateHeaders()
-		|		{
-		|			Invalidate(new Rectangle(0, 0, Width, ColumnHeaderHeight));
-		|		}
+		|        internal void UpdateHeaders()
+		|        {
+		|            Invalidate(new Rectangle(0, 0, Width, ColumnHeaderHeight));
+		|        }
 		|
-		|		internal void UpdateColumns()
-		|		{
-		|			FullUpdate();
-		|		}
+		|        internal void UpdateColumns()
+		|        {
+		|            FullUpdate();
+		|        }
 		|
-		|		private void CreateNodes()
-		|		{
-		|			Selection.Clear();
-		|			SelectionStart = null;
-		|			_root = new TreeNodeAdv(this, null);
-		|			_root.IsExpanded = true;
-		|			if (_root.Nodes.Count > 0)
+		|        private void CreateNodes()
+		|        {
+		|            Selection.Clear();
+		|            SelectionStart = null;
+		|            _root = new TreeNodeAdv(this, null);
+		|            _root.IsExpanded = true;
+		|            if (_root.Nodes.Count > 0)
 		|            {
 		|                CurrentNode = _root.Nodes[0];
 		|            }
@@ -23616,22 +27808,22 @@
 		|            }
 		|        }
 		|
-		|		internal void ReadChilds(TreeNodeAdv parentNode)
-		|		{
-		|			ReadChilds(parentNode, false);
-		|		}
+		|        internal void ReadChilds(TreeNodeAdv parentNode)
+		|        {
+		|            ReadChilds(parentNode, false);
+		|        }
 		|
-		|		internal void ReadChilds(TreeNodeAdv parentNode, bool performFullUpdate)
-		|		{
-		|			if (!parentNode.IsLeaf)
-		|			{
-		|				parentNode.IsExpandedOnce = true;
-		|				parentNode.Nodes.Clear();
+		|        internal void ReadChilds(TreeNodeAdv parentNode, bool performFullUpdate)
+		|        {
+		|            if (!parentNode.IsLeaf)
+		|            {
+		|                parentNode.IsExpandedOnce = true;
+		|                parentNode.Nodes.Clear();
 		|
-		|				if (Model != null)
-		|				{
-		|					IEnumerable items = Model.GetChildren(GetPath(parentNode));
-		|					if (items != null)
+		|                if (Model != null)
+		|                {
+		|                    IEnumerable items = Model.GetChildren(GetPath(parentNode));
+		|                    if (items != null)
 		|                    {
 		|                        foreach (object obj in items)
 		|                        {
@@ -23644,22 +27836,22 @@
 		|                    }
 		|                }
 		|
-		|				if (parentNode.AutoExpandOnStructureChanged)
+		|                if (parentNode.AutoExpandOnStructureChanged)
 		|                {
 		|                    parentNode.ExpandAll();
 		|                }
 		|            }
-		|		}
+		|        }
 		|
-		|		private void AddNewNode(TreeNodeAdv parent, object tag, int index)
-		|		{
-		|			TreeNodeAdv node = new TreeNodeAdv(this, tag);
-		|			AddNode(parent, index, node);
-		|		}
+		|        private void AddNewNode(TreeNodeAdv parent, object tag, int index)
+		|        {
+		|            TreeNodeAdv node = new TreeNodeAdv(this, tag);
+		|            AddNode(parent, index, node);
+		|        }
 		|
-		|		private void AddNode(TreeNodeAdv parent, int index, TreeNodeAdv node)
-		|		{
-		|			if (index >= 0 && index < parent.Nodes.Count)
+		|        private void AddNode(TreeNodeAdv parent, int index, TreeNodeAdv node)
+		|        {
+		|            if (index >= 0 && index < parent.Nodes.Count)
 		|            {
 		|                parent.Nodes.Insert(index, node);
 		|            }
@@ -23669,7 +27861,7 @@
 		|            }
 		|
 		|            node.IsLeaf = Model.IsLeaf(GetPath(node));
-		|			if (node.IsLeaf)
+		|            if (node.IsLeaf)
 		|            {
 		|                node.Nodes.Clear();
 		|            }
@@ -23679,52 +27871,52 @@
 		|            }
 		|        }
 		|
-		|		private struct ExpandArgs
-		|		{
-		|			public TreeNodeAdv Node;
-		|			public bool Value;
-		|			public bool IgnoreChildren;
-		|		}
+		|        private struct ExpandArgs
+		|        {
+		|            public TreeNodeAdv Node;
+		|            public bool Value;
+		|            public bool IgnoreChildren;
+		|        }
 		|
-		|		public void AbortBackgroundExpandingThreads()
-		|		{
-		|			_threadPool.CancelAll(true);
-		|			for (int i = 0; i < _expandingNodes.Count; i++)
+		|        public void AbortBackgroundExpandingThreads()
+		|        {
+		|            _threadPool.CancelAll(true);
+		|            for (int i = 0; i < _expandingNodes.Count; i++)
 		|            {
 		|                _expandingNodes[i].IsExpandingNow = false;
 		|            }
 		|            _expandingNodes.Clear();
-		|			Invalidate();
-		|		}
+		|            Invalidate();
+		|        }
 		|
-		|		internal void SetIsExpanded(TreeNodeAdv node, bool value, bool ignoreChildren)
-		|		{
-		|			ExpandArgs eargs = new ExpandArgs();
-		|			eargs.Node = node;
-		|			eargs.Value = value;
-		|			eargs.IgnoreChildren = ignoreChildren;
+		|        internal void SetIsExpanded(TreeNodeAdv node, bool value, bool ignoreChildren)
+		|        {
+		|            ExpandArgs eargs = new ExpandArgs();
+		|            eargs.Node = node;
+		|            eargs.Value = value;
+		|            eargs.IgnoreChildren = ignoreChildren;
 		|
-		|			if (AsyncExpanding && LoadOnDemand && !_threadPool.IsMyThread(Thread.CurrentThread))
-		|			{
-		|				WaitCallback wc = delegate(object argument) { SetIsExpanded((ExpandArgs)argument); };
-		|				_threadPool.QueueUserWorkItem(wc, eargs);
-		|			}
+		|            if (AsyncExpanding && LoadOnDemand && !_threadPool.IsMyThread(Thread.CurrentThread))
+		|            {
+		|                WaitCallback wc = delegate (object argument) { SetIsExpanded((ExpandArgs)argument); };
+		|                _threadPool.QueueUserWorkItem(wc, eargs);
+		|            }
 		|            else
 		|            {
 		|                SetIsExpanded(eargs);
 		|            }
 		|        }
 		|
-		|		private void SetIsExpanded(ExpandArgs eargs)
-		|		{
-		|			bool update = !eargs.IgnoreChildren && !AsyncExpanding;
-		|			if (update)
+		|        private void SetIsExpanded(ExpandArgs eargs)
+		|        {
+		|            bool update = !eargs.IgnoreChildren && !AsyncExpanding;
+		|            if (update)
 		|            {
 		|                BeginUpdate();
 		|            }
 		|            try
-		|			{
-		|				if (IsMyNode(eargs.Node) && eargs.Node.IsExpanded != eargs.Value)
+		|            {
+		|                if (IsMyNode(eargs.Node) && eargs.Node.IsExpanded != eargs.Value)
 		|                {
 		|                    SetIsExpanded(eargs.Node, eargs.Value);
 		|                }
@@ -23733,105 +27925,105 @@
 		|                    SetIsExpandedRecursive(eargs.Node, eargs.Value);
 		|                }
 		|            }
-		|			finally
-		|			{
-		|				if (update)
+		|            finally
+		|            {
+		|                if (update)
 		|                {
 		|                    EndUpdate();
 		|                }
 		|            }
-		|		}
+		|        }
 		|
-		|		internal void SetIsExpanded(TreeNodeAdv node, bool value)
-		|		{
-		|			if (Root == node && !value)
+		|        internal void SetIsExpanded(TreeNodeAdv node, bool value)
+		|        {
+		|            if (Root == node && !value)
 		|            {
 		|                return; // Не удается свернуть корневой узел.
 		|            }
 		|
 		|            if (value)
-		|			{
-		|				OnExpanding(node);
-		|				node.OnExpanding();
-		|			}
-		|			else
-		|			{
-		|				OnCollapsing(node);
-		|				node.OnCollapsing();
-		|			}
+		|            {
+		|                OnExpanding(node);
+		|                node.OnExpanding();
+		|            }
+		|            else
+		|            {
+		|                OnCollapsing(node);
+		|                node.OnCollapsing();
+		|            }
 		|
-		|			if (value && !node.IsExpandedOnce)
-		|			{
-		|				if (AsyncExpanding && LoadOnDemand)
-		|				{
-		|					AddExpandingNode(node);
-		|					node.AssignIsExpanded(true);
-		|					Invalidate();
-		|				}
-		|				ReadChilds(node, AsyncExpanding);
-		|				RemoveExpandingNode(node);
-		|			}
-		|			node.AssignIsExpanded(value);
-		|			SmartFullUpdate();
+		|            if (value && !node.IsExpandedOnce)
+		|            {
+		|                if (AsyncExpanding && LoadOnDemand)
+		|                {
+		|                    AddExpandingNode(node);
+		|                    node.AssignIsExpanded(true);
+		|                    Invalidate();
+		|                }
+		|                ReadChilds(node, AsyncExpanding);
+		|                RemoveExpandingNode(node);
+		|            }
+		|            node.AssignIsExpanded(value);
+		|            SmartFullUpdate();
 		|
-		|			if (value)
-		|			{
-		|				OnExpanded(node);
-		|				node.OnExpanded();
-		|			}
-		|			else
-		|			{
-		|				OnCollapsed(node);
-		|				node.OnCollapsed();
-		|			}
-		|		}
+		|            if (value)
+		|            {
+		|                OnExpanded(node);
+		|                node.OnExpanded();
+		|            }
+		|            else
+		|            {
+		|                OnCollapsed(node);
+		|                node.OnCollapsed();
+		|            }
+		|        }
 		|
-		|		private void RemoveExpandingNode(TreeNodeAdv node)
-		|		{
-		|			node.IsExpandingNow = false;
-		|			_expandingNodes.Remove(node);
-		|			if (_expandingNodes.Count <= 0)
+		|        private void RemoveExpandingNode(TreeNodeAdv node)
+		|        {
+		|            node.IsExpandingNow = false;
+		|            _expandingNodes.Remove(node);
+		|            if (_expandingNodes.Count <= 0)
 		|            {
 		|                ExpandingIcon.Stop();
 		|            }
 		|        }
 		|
-		|		private void AddExpandingNode(TreeNodeAdv node)
-		|		{
-		|			node.IsExpandingNow = true;
-		|			_expandingNodes.Add(node);
-		|			ExpandingIcon.Start();
-		|		}
+		|        private void AddExpandingNode(TreeNodeAdv node)
+		|        {
+		|            node.IsExpandingNow = true;
+		|            _expandingNodes.Add(node);
+		|            ExpandingIcon.Start();
+		|        }
 		|
-		|		internal void SetIsExpandedRecursive(TreeNodeAdv root, bool value)
-		|		{
-		|			for (int i = 0; i < root.Nodes.Count; i++)
-		|			{
-		|				TreeNodeAdv node = root.Nodes[i];
-		|				node.IsExpanded = value;
-		|				SetIsExpandedRecursive(node, value);
-		|			}
-		|		}
+		|        internal void SetIsExpandedRecursive(TreeNodeAdv root, bool value)
+		|        {
+		|            for (int i = 0; i < root.Nodes.Count; i++)
+		|            {
+		|                TreeNodeAdv node = root.Nodes[i];
+		|                node.IsExpanded = value;
+		|                SetIsExpandedRecursive(node, value);
+		|            }
+		|        }
 		|
-		|		private void CreateRowMap()
-		|		{
-		|			RowMap.Clear();
-		|			int row = 0;
-		|			_contentWidth = 0;
-		|			foreach (TreeNodeAdv node in VisibleNodes)
-		|			{
-		|				node.Row = row;
-		|				RowMap.Add(node);
-		|				if (!UseColumns)
-		|				{
-		|					_contentWidth = Math.Max(_contentWidth, GetNodeWidth(node));
-		|				}
-		|				row++;
-		|			}
-		|			if (UseColumns)
-		|			{
-		|				_contentWidth = 0;
-		|				foreach (TreeColumn col in _columns)
+		|        private void CreateRowMap()
+		|        {
+		|            RowMap.Clear();
+		|            int row = 0;
+		|            _contentWidth = 0;
+		|            foreach (TreeNodeAdv node in VisibleNodes)
+		|            {
+		|                node.Row = row;
+		|                RowMap.Add(node);
+		|                if (!UseColumns)
+		|                {
+		|                    _contentWidth = Math.Max(_contentWidth, GetNodeWidth(node));
+		|                }
+		|                row++;
+		|            }
+		|            if (UseColumns)
+		|            {
+		|                _contentWidth = 0;
+		|                foreach (TreeColumn col in _columns)
 		|                {
 		|                    if (col.IsVisible)
 		|                    {
@@ -23839,29 +28031,29 @@
 		|                    }
 		|                }
 		|            }
-		|		}
+		|        }
 		|
-		|		private int GetNodeWidth(TreeNodeAdv node)
-		|		{
-		|			if (node.RightBounds == null)
-		|			{
-		|				Rectangle res = GetNodeBounds(GetNodeControls(node, Rectangle.Empty));
-		|				node.RightBounds = res.Right;
-		|			}
-		|			return node.RightBounds.Value;
-		|		}
+		|        private int GetNodeWidth(TreeNodeAdv node)
+		|        {
+		|            if (node.RightBounds == null)
+		|            {
+		|                Rectangle res = GetNodeBounds(GetNodeControls(node, Rectangle.Empty));
+		|                node.RightBounds = res.Right;
+		|            }
+		|            return node.RightBounds.Value;
+		|        }
 		|
-		|		internal Rectangle GetNodeBounds(TreeNodeAdv node)
-		|		{
-		|			return GetNodeBounds(GetNodeControls(node));
-		|		}
+		|        internal Rectangle GetNodeBounds(TreeNodeAdv node)
+		|        {
+		|            return GetNodeBounds(GetNodeControls(node));
+		|        }
 		|
-		|		private Rectangle GetNodeBounds(IEnumerable<NodeControlInfo> nodeControls)
-		|		{
-		|			Rectangle res = Rectangle.Empty;
-		|			foreach (NodeControlInfo info in nodeControls)
-		|			{
-		|				if (res == Rectangle.Empty)
+		|        private Rectangle GetNodeBounds(IEnumerable<NodeControlInfo> nodeControls)
+		|        {
+		|            Rectangle res = Rectangle.Empty;
+		|            foreach (NodeControlInfo info in nodeControls)
+		|            {
+		|                if (res == Rectangle.Empty)
 		|                {
 		|                    res = info.Bounds;
 		|                }
@@ -23870,32 +28062,32 @@
 		|                    res = Rectangle.Union(res, info.Bounds);
 		|                }
 		|            }
-		|			return res;
-		|		}
+		|            return res;
+		|        }
 		|
-		|		private void _vScrollBar_ValueChanged(object sender, EventArgs e)
-		|		{
-		|			FirstVisibleRow = _vScrollBar.Value;
-		|		}
+		|        private void _vScrollBar_ValueChanged(object sender, EventArgs e)
+		|        {
+		|            FirstVisibleRow = _vScrollBar.Value;
+		|        }
 		|
-		|		private void _hScrollBar_ValueChanged(object sender, EventArgs e)
-		|		{
-		|			OffsetX = _hScrollBar.Value;
-		|		}
+		|        private void _hScrollBar_ValueChanged(object sender, EventArgs e)
+		|        {
+		|            OffsetX = _hScrollBar.Value;
+		|        }
 		|
-		|		private void _vScrollBar_Scroll(object sender, ScrollEventArgs e)
-		|		{
-		|			OnScroll(e);
-		|		}
+		|        private void _vScrollBar_Scroll(object sender, ScrollEventArgs e)
+		|        {
+		|            OnScroll(e);
+		|        }
 		|
-		|		private void _hScrollBar_Scroll(object sender, ScrollEventArgs e)
-		|		{
-		|			OnScroll(e);
-		|		}
+		|        private void _hScrollBar_Scroll(object sender, ScrollEventArgs e)
+		|        {
+		|            OnScroll(e);
+		|        }
 		|
-		|		internal void SmartFullUpdate()
-		|		{
-		|			if (_suspendUpdate)
+		|        internal void SmartFullUpdate()
+		|        {
+		|            if (_suspendUpdate)
 		|            {
 		|                _needFullUpdate = true;
 		|            }
@@ -23905,9 +28097,9 @@
 		|            }
 		|        }
 		|
-		|		internal bool IsMyNode(TreeNodeAdv node)
-		|		{
-		|			if (node == null)
+		|        internal bool IsMyNode(TreeNodeAdv node)
+		|        {
+		|            if (node == null)
 		|            {
 		|                return false;
 		|            }
@@ -23923,13 +28115,13 @@
 		|            }
 		|
 		|            return node == _root;
-		|		}
+		|        }
 		|
-		|		internal void UpdateSelection()
-		|		{
-		|			bool flag = false;
+		|        internal void UpdateSelection()
+		|        {
+		|            bool flag = false;
 		|
-		|			if (!IsMyNode(CurrentNode))
+		|            if (!IsMyNode(CurrentNode))
 		|            {
 		|                CurrentNode = null;
 		|            }
@@ -23953,23 +28145,23 @@
 		|            }
 		|        }
 		|
-		|		internal void ChangeColumnWidth(TreeColumn column)
-		|		{
-		|			if (!(_input is ResizeColumnState))
-		|			{
-		|				FullUpdate();
-		|				OnColumnWidthChanged(column);
-		|			}
-		|		}
+		|        internal void ChangeColumnWidth(TreeColumn column)
+		|        {
+		|            if (!(_input is ResizeColumnState))
+		|            {
+		|                FullUpdate();
+		|                OnColumnWidthChanged(column);
+		|            }
+		|        }
 		|
-		|		public TreeNodeAdv FindNode(TreePath path)
-		|		{
-		|			return FindNode(path, false);
-		|		}
+		|        public TreeNodeAdv FindNode(TreePath path)
+		|        {
+		|            return FindNode(path, false);
+		|        }
 		|
-		|		public TreeNodeAdv FindNode(TreePath path, bool readChilds)
-		|		{
-		|			if (path.IsEmpty())
+		|        public TreeNodeAdv FindNode(TreePath path, bool readChilds)
+		|        {
+		|            if (path.IsEmpty())
 		|            {
 		|                return _root;
 		|            }
@@ -23979,19 +28171,19 @@
 		|            }
 		|        }
 		|
-		|		private TreeNodeAdv FindNode(TreeNodeAdv root, TreePath path, int level, bool readChilds)
-		|		{
-		|			if (!root.IsExpandedOnce && readChilds)
+		|        private TreeNodeAdv FindNode(TreeNodeAdv root, TreePath path, int level, bool readChilds)
+		|        {
+		|            if (!root.IsExpandedOnce && readChilds)
 		|            {
 		|                ReadChilds(root);
 		|            }
 		|
 		|            for (int i = 0; i < root.Nodes.Count; i++)
-		|			{
-		|				TreeNodeAdv node = root.Nodes[i];
-		|				if (node.Tag == path.FullPath[level])
-		|				{
-		|					if (level == path.FullPath.Length - 1)
+		|            {
+		|                TreeNodeAdv node = root.Nodes[i];
+		|                if (node.Tag == path.FullPath[level])
+		|                {
+		|                    if (level == path.FullPath.Length - 1)
 		|                    {
 		|                        return node;
 		|                    }
@@ -24000,150 +28192,150 @@
 		|                        return FindNode(node, path, level + 1, readChilds);
 		|                    }
 		|                }
-		|			}
-		|			return null;
-		|		}
+		|            }
+		|            return null;
+		|        }
 		|
-		|		public TreeNodeAdv FindNodeByTag(object tag)
-		|		{
-		|			return FindNodeByTag(_root, tag);
-		|		}
+		|        public TreeNodeAdv FindNodeByTag(object tag)
+		|        {
+		|            return FindNodeByTag(_root, tag);
+		|        }
 		|
-		|		private TreeNodeAdv FindNodeByTag(TreeNodeAdv root, object tag)
-		|		{
-		|			foreach (TreeNodeAdv node in root.Nodes)
-		|			{
-		|				if (node.Tag == tag)
+		|        private TreeNodeAdv FindNodeByTag(TreeNodeAdv root, object tag)
+		|        {
+		|            foreach (TreeNodeAdv node in root.Nodes)
+		|            {
+		|                if (node.Tag == tag)
 		|                {
 		|                    return node;
 		|                }
 		|                TreeNodeAdv res = FindNodeByTag(node, tag);
-		|				if (res != null)
+		|                if (res != null)
 		|                {
 		|                    return res;
 		|                }
 		|            }
-		|			return null;
-		|		}
+		|            return null;
+		|        }
 		|
-		|		public void SelectAllNodes()
-		|		{
-		|			SuspendSelectionEvent = true;
-		|			try
-		|			{
-		|				if (SelectionMode == TreeSelectionMode.MultiSameParent)
-		|				{
-		|					if (CurrentNode != null)
-		|					{
-		|						foreach (TreeNodeAdv n in CurrentNode.Parent.Nodes)
+		|        public void SelectAllNodes()
+		|        {
+		|            SuspendSelectionEvent = true;
+		|            try
+		|            {
+		|                if (SelectionMode == TreeSelectionMode.MultiSameParent)
+		|                {
+		|                    if (CurrentNode != null)
+		|                    {
+		|                        foreach (TreeNodeAdv n in CurrentNode.Parent.Nodes)
 		|                        {
 		|                            n.IsSelected = true;
 		|                        }
 		|                    }
-		|				}
-		|				else if (SelectionMode == TreeSelectionMode.Multi)
-		|				{
-		|					SelectNodes(Root.Nodes);
-		|				}
-		|			}
-		|			finally
-		|			{
-		|				SuspendSelectionEvent = false;
-		|			}
-		|		}
+		|                }
+		|                else if (SelectionMode == TreeSelectionMode.Multi)
+		|                {
+		|                    SelectNodes(Root.Nodes);
+		|                }
+		|            }
+		|            finally
+		|            {
+		|                SuspendSelectionEvent = false;
+		|            }
+		|        }
 		|
-		|		private void SelectNodes(Collection<TreeNodeAdv> nodes)
-		|		{
-		|			foreach (TreeNodeAdv n in nodes)
-		|			{
-		|				n.IsSelected = true;
-		|				if (n.IsExpanded)
+		|        private void SelectNodes(Collection<TreeNodeAdv> nodes)
+		|        {
+		|            foreach (TreeNodeAdv n in nodes)
+		|            {
+		|                n.IsSelected = true;
+		|                if (n.IsExpanded)
 		|                {
 		|                    SelectNodes(n.Nodes);
 		|                }
 		|            }
-		|		}
+		|        }
 		|
-		|		private void BindModelEvents()
-		|		{
-		|			_model.NodesChanged += new EventHandler<TreeModelEventArgs>(_model_NodesChanged);
-		|			_model.NodesInserted += new EventHandler<TreeModelEventArgs>(_model_NodesInserted);
-		|			_model.NodesRemoved += new EventHandler<TreeModelEventArgs>(_model_NodesRemoved);
-		|			_model.StructureChanged += new EventHandler<TreePathEventArgs>(_model_StructureChanged);
-		|		}
+		|        private void BindModelEvents()
+		|        {
+		|            _model.NodesChanged += new EventHandler<TreeModelEventArgs>(_model_NodesChanged);
+		|            _model.NodesInserted += new EventHandler<TreeModelEventArgs>(_model_NodesInserted);
+		|            _model.NodesRemoved += new EventHandler<TreeModelEventArgs>(_model_NodesRemoved);
+		|            _model.StructureChanged += new EventHandler<TreePathEventArgs>(_model_StructureChanged);
+		|        }
 		|
-		|		private void UnbindModelEvents()
-		|		{
-		|			_model.NodesChanged -= new EventHandler<TreeModelEventArgs>(_model_NodesChanged);
-		|			_model.NodesInserted -= new EventHandler<TreeModelEventArgs>(_model_NodesInserted);
-		|			_model.NodesRemoved -= new EventHandler<TreeModelEventArgs>(_model_NodesRemoved);
-		|			_model.StructureChanged -= new EventHandler<TreePathEventArgs>(_model_StructureChanged);
-		|		}
+		|        private void UnbindModelEvents()
+		|        {
+		|            _model.NodesChanged -= new EventHandler<TreeModelEventArgs>(_model_NodesChanged);
+		|            _model.NodesInserted -= new EventHandler<TreeModelEventArgs>(_model_NodesInserted);
+		|            _model.NodesRemoved -= new EventHandler<TreeModelEventArgs>(_model_NodesRemoved);
+		|            _model.StructureChanged -= new EventHandler<TreePathEventArgs>(_model_StructureChanged);
+		|        }
 		|
-		|		private void _model_StructureChanged(object sender, TreePathEventArgs e)
-		|		{
-		|			if (e.Path == null)
+		|        private void _model_StructureChanged(object sender, TreePathEventArgs e)
+		|        {
+		|            if (e.Path == null)
 		|            {
 		|                throw new ArgumentNullException();
 		|            }
 		|
 		|            TreeNodeAdv node = FindNode(e.Path);
-		|			if (node != null)
-		|			{
-		|				if (node != Root)
+		|            if (node != null)
+		|            {
+		|                if (node != Root)
 		|                {
 		|                    node.IsLeaf = Model.IsLeaf(GetPath(node));
 		|                }
 		|
 		|                var list = new Dictionary<object, object>();
-		|				SaveExpandedNodes(node, list);
-		|				ReadChilds(node);
-		|				RestoreExpandedNodes(node, list);
+		|                SaveExpandedNodes(node, list);
+		|                ReadChilds(node);
+		|                RestoreExpandedNodes(node, list);
 		|
-		|				UpdateSelection();
-		|				SmartFullUpdate();
-		|			}
-		|			//else 
-		|			//	throw new ArgumentException(""Path not found"");
-		|		}
+		|                UpdateSelection();
+		|                SmartFullUpdate();
+		|            }
+		|            //else 
+		|            //	throw new ArgumentException(""Path not found"");
+		|        }
 		|
-		|		private void RestoreExpandedNodes(TreeNodeAdv node, Dictionary<object, object> list)
-		|		{
-		|			if (node.Tag != null && list.ContainsKey(node.Tag))
-		|			{
-		|				node.IsExpanded = true;
-		|				foreach (var child in node.Children)
+		|        private void RestoreExpandedNodes(TreeNodeAdv node, Dictionary<object, object> list)
+		|        {
+		|            if (node.Tag != null && list.ContainsKey(node.Tag))
+		|            {
+		|                node.IsExpanded = true;
+		|                foreach (var child in node.Children)
 		|                {
 		|                    RestoreExpandedNodes(child, list);
 		|                }
 		|            }
-		|		}
+		|        }
 		|
-		|		private void SaveExpandedNodes(TreeNodeAdv node, Dictionary<object, object> list)
-		|		{
-		|			if (node.IsExpanded && node.Tag != null)
-		|			{
-		|				list.Add(node.Tag, null);
-		|				foreach (var child in node.Children)
+		|        private void SaveExpandedNodes(TreeNodeAdv node, Dictionary<object, object> list)
+		|        {
+		|            if (node.IsExpanded && node.Tag != null)
+		|            {
+		|                list.Add(node.Tag, null);
+		|                foreach (var child in node.Children)
 		|                {
 		|                    SaveExpandedNodes(child, list);
 		|                }
 		|            }
-		|		}
+		|        }
 		|
-		|		private void _model_NodesRemoved(object sender, TreeModelEventArgs e)
-		|		{
-		|			TreeNodeAdv parent = FindNode(e.Path);
-		|			if (parent != null)
-		|			{
-		|				if (e.Indices != null)
-		|				{
-		|					List<int> list = new List<int>(e.Indices);
-		|					list.Sort();
-		|					for (int n = list.Count - 1; n >= 0; n--)
-		|					{
-		|						int index = list[n];
-		|						if (index >= 0 && index <= parent.Nodes.Count)
+		|        private void _model_NodesRemoved(object sender, TreeModelEventArgs e)
+		|        {
+		|            TreeNodeAdv parent = FindNode(e.Path);
+		|            if (parent != null)
+		|            {
+		|                if (e.Indices != null)
+		|                {
+		|                    List<int> list = new List<int>(e.Indices);
+		|                    list.Sort();
+		|                    for (int n = list.Count - 1; n >= 0; n--)
+		|                    {
+		|                        int index = list[n];
+		|                        if (index >= 0 && index <= parent.Nodes.Count)
 		|                        {
 		|                            parent.Nodes.RemoveAt(index);
 		|                        }
@@ -24152,12 +28344,12 @@
 		|                            throw new ArgumentOutOfRangeException(""Index out of range"");
 		|                        }
 		|                    }
-		|				}
-		|				else
-		|				{
-		|					for (int i = parent.Nodes.Count - 1; i >= 0; i--)
-		|					{
-		|						for (int n = 0; n < e.Children.Length; n++)
+		|                }
+		|                else
+		|                {
+		|                    for (int i = parent.Nodes.Count - 1; i >= 0; i--)
+		|                    {
+		|                        for (int n = 0; n < e.Children.Length; n++)
 		|                        {
 		|                            if (parent.Nodes[i].Tag == e.Children[n])
 		|                            {
@@ -24166,36 +28358,36 @@
 		|                            }
 		|                        }
 		|                    }
-		|				}
-		|			}
-		|			UpdateSelection();
-		|			SmartFullUpdate();
-		|		}
+		|                }
+		|            }
+		|            UpdateSelection();
+		|            SmartFullUpdate();
+		|        }
 		|
-		|		private void _model_NodesInserted(object sender, TreeModelEventArgs e)
-		|		{
-		|			if (e.Indices == null)
+		|        private void _model_NodesInserted(object sender, TreeModelEventArgs e)
+		|        {
+		|            if (e.Indices == null)
 		|            {
 		|                throw new ArgumentNullException(""Indices"");
 		|            }
 		|
 		|            TreeNodeAdv parent = FindNode(e.Path);
-		|			if (parent != null)
-		|			{
-		|				for (int i = 0; i < e.Children.Length; i++)
+		|            if (parent != null)
+		|            {
+		|                for (int i = 0; i < e.Children.Length; i++)
 		|                {
 		|                    AddNewNode(parent, e.Children[i], e.Indices[i]);
 		|                }
 		|            }
-		|			SmartFullUpdate();
-		|		}
+		|            SmartFullUpdate();
+		|        }
 		|
-		|		private void _model_NodesChanged(object sender, TreeModelEventArgs e)
-		|		{
-		|			TreeNodeAdv parent = FindNode(e.Path);
-		|			if (parent != null && parent.IsVisible && parent.IsExpanded)
-		|			{
-		|				if (InvokeRequired)
+		|        private void _model_NodesChanged(object sender, TreeModelEventArgs e)
+		|        {
+		|            TreeNodeAdv parent = FindNode(e.Path);
+		|            if (parent != null && parent.IsVisible && parent.IsExpanded)
+		|            {
+		|                if (InvokeRequired)
 		|                {
 		|                    BeginInvoke(new UpdateContentWidthDelegate(ClearNodesSize), e, parent);
 		|                }
@@ -24204,31 +28396,31 @@
 		|                    ClearNodesSize(e, parent);
 		|                }
 		|                SmartFullUpdate();
-		|			}
-		|		}
+		|            }
+		|        }
 		|
-		|		private void ClearNodesSize(TreeModelEventArgs e, TreeNodeAdv parent)
-		|		{
-		|			if (e.Indices != null)
-		|			{
-		|				foreach (int index in e.Indices)
-		|				{
-		|					if (index >= 0 && index < parent.Nodes.Count)
-		|					{
-		|						TreeNodeAdv node = parent.Nodes[index];
-		|						node.Height = node.RightBounds = null;
-		|					}
+		|        private void ClearNodesSize(TreeModelEventArgs e, TreeNodeAdv parent)
+		|        {
+		|            if (e.Indices != null)
+		|            {
+		|                foreach (int index in e.Indices)
+		|                {
+		|                    if (index >= 0 && index < parent.Nodes.Count)
+		|                    {
+		|                        TreeNodeAdv node = parent.Nodes[index];
+		|                        node.Height = node.RightBounds = null;
+		|                    }
 		|                    else
 		|                    {
 		|                        throw new ArgumentOutOfRangeException(""Index out of range"");
 		|                    }
 		|                }
-		|			}
-		|			else
-		|			{
-		|				foreach (TreeNodeAdv node in parent.Nodes)
-		|				{
-		|					foreach (object obj in e.Children)
+		|            }
+		|            else
+		|            {
+		|                foreach (TreeNodeAdv node in parent.Nodes)
+		|                {
+		|                    foreach (object obj in e.Children)
 		|                    {
 		|                        if (node.Tag == obj)
 		|                        {
@@ -24236,8 +28428,8 @@
 		|                        }
 		|                    }
 		|                }
-		|			}
-		|		}
+		|            }
+		|        }
 		|
 		|        public void HideEditor()
 		|        {
@@ -25165,7 +29357,7 @@
 		|                }
 		|            }
 		|        }
-		|		
+		|
 		|        public int ColumnHeadersHeight
 		|        {
 		|            get { return _columnHeaderHeight; }
@@ -25476,7 +29668,7 @@
 		|                FullUpdate();
 		|            }
 		|        }
-		|		
+		|
 		|        public bool AutoHeaderHeight
 		|        {
 		|            get { return _autoHeaderHeight; }
@@ -25640,7 +29832,7 @@
 		|            get { return _defaultToolTipProvider; }
 		|            set { _defaultToolTipProvider = value; }
 		|        }
-		|		
+		|
 		|        public Aga.Controls.Tree.TreeNodeAdv.NodeCollection Nodes
 		|        {
 		|            get { return _root.Nodes; }
@@ -26106,7 +30298,7 @@
 		|            }
 		|            gr.ResetClip();
 		|        }
-		|		
+		|
 		|        public System.Drawing.Image Image
 		|        {
 		|            get { return image; }
@@ -26121,9 +30313,9 @@
 		|    }
 		|}
 		|
-		|    #endregion Aga.Controls.Tree
+		|#endregion Aga.Controls.Tree
 		|
-		|		
+		|
 		|namespace osf
 		|{
 		|    public class TreeViewAdvEx : Aga.Controls.Tree.TreeViewAdv
@@ -26157,7 +30349,7 @@
 		|            M_TreeViewAdv = new TreeViewAdvEx();
 		|            M_TreeViewAdv.M_Object = this;
 		|            base.M_Control = M_TreeViewAdv;
-		|		
+		|
 		|            M_TreeViewAdv.SelectionChanged += M_TreeViewAdv_SelectionChanged;
 		|            SelectionChanged = """";
 		|            M_TreeViewAdv.ColumnReordered += M_TreeViewAdv_ColumnReordered;
@@ -26185,7 +30377,7 @@
 		|            M_TreeViewAdv = p1.M_TreeViewAdv;
 		|            M_TreeViewAdv.M_Object = this;
 		|            base.M_Control = M_TreeViewAdv;
-		|		
+		|
 		|            M_TreeViewAdv.SelectionChanged += M_TreeViewAdv_SelectionChanged;
 		|            SelectionChanged = """";
 		|            M_TreeViewAdv.ColumnReordered += M_TreeViewAdv_ColumnReordered;
@@ -26213,7 +30405,7 @@
 		|            M_TreeViewAdv = (TreeViewAdvEx)p1;
 		|            M_TreeViewAdv.M_Object = this;
 		|            base.M_Control = M_TreeViewAdv;
-		|		
+		|
 		|            M_TreeViewAdv.SelectionChanged += M_TreeViewAdv_SelectionChanged;
 		|            SelectionChanged = """";
 		|            M_TreeViewAdv.ColumnReordered += M_TreeViewAdv_ColumnReordered;
@@ -26235,7 +30427,7 @@
 		|            M_TreeViewAdv.Collapsed += M_TreeViewAdv_Collapsed;
 		|            Collapsed = """";
 		|        }
-		|		
+		|
 		|        public void M_TreeViewAdv_Collapsed(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
 		|        {
 		|            if (Collapsed.Length > 0)
@@ -26312,7 +30504,7 @@
 		|
 		|        private void M_TreeViewAdv_ItemDrag(object sender, ItemDragEventArgs e)
 		|        {
-		|            
+		|
 		|        }
 		|
 		|        public void M_TreeViewAdv_NodeMouseClick(object sender, Aga.Controls.Tree.TreeNodeAdvMouseEventArgs e)
@@ -26380,7 +30572,7 @@
 		|                CurrentControl.Key = null;
 		|                CurrentControl.Value = null;
 		|            }
-		|		
+		|
 		|            if (SelectionChanged.Length > 0)
 		|            {
 		|                EventArgs EventArgs1 = new EventArgs();
@@ -26392,7 +30584,7 @@
 		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.SelectionChanged);
 		|            }
 		|        }
-		|		
+		|
 		|        public bool UseColumns
 		|        {
 		|            get { return M_TreeViewAdv.UseColumns; }
@@ -26423,17 +30615,17 @@
 		|        {
 		|            get { return M_TreeViewAdv.Columns; }
 		|        }
-		|		
+		|
 		|        public void FullUpdate()
 		|        {
 		|            M_TreeViewAdv.FullUpdate();
 		|        }
-		|		
+		|
 		|        public Aga.Controls.Tree.TreeNodeAdv.NodeCollection Nodes
 		|        {
 		|            get { return M_TreeViewAdv.Nodes; }
 		|        }
-		|		
+		|
 		|        public osf.Rectangle DisplayRectangle
 		|        {
 		|            get { return new Rectangle(M_TreeViewAdv.DisplayRectangle); }
@@ -26611,7 +30803,7 @@
 		|            get { return M_TreeViewAdv.DragDropMarkWidth; }
 		|            set { M_TreeViewAdv.DragDropMarkWidth = value; }
 		|        }
-		|		
+		|
 		|        public void AutoSizeColumn(TreeColumn p1 = null)
 		|        {
 		|            if (p1 != null)
@@ -26653,13 +30845,13 @@
 		|        {
 		|            M_TreeViewAdv.ExpandAll();
 		|        }
-		|		
+		|
 		|        public string PathSeparator
 		|        {
 		|            get { return M_TreeViewAdv.PathSeparator; }
 		|            set { M_TreeViewAdv.PathSeparator = value; }
 		|        }
-		|		
+		|
 		|        public System.Drawing.Image Image
 		|        {
 		|            get { return M_TreeViewAdv.Image; }
@@ -26671,7 +30863,7 @@
 		|            get { return M_TreeViewAdv.SelectedImage; }
 		|            set { M_TreeViewAdv.SelectedImage = value; }
 		|        }
-		|		
+		|
 		|        public bool SelectNodeControl
 		|        {
 		|            get { return selectNodeControl; }
@@ -26691,7 +30883,7 @@
 		|    // Этот элемент управления используется для обеспечения пользовательского интерфейса для DataGridViewGrouper.
 		|    // Код создан на основе разработки автора Robert.Verpalen https://www.codeproject.com/Tips/995958/DataGridViewGrouper под лицензией 
 		|    // The Code Project Open License (CPOL) 1.02 https://www.codeproject.com/info/cpol10.aspx
-		|		
+		|
 		|    public partial class DataGridViewGrouperControl : UserControl
 		|    {
 		|        private System.ComponentModel.IContainer components = null;
@@ -26741,12 +30933,12 @@
 		|            ResumeLayout(false);
 		|            PerformLayout();
 		|        }
-		|		
+		|
 		|        public System.Windows.Forms.ComboBox CmbFields
 		|        {
 		|            get { return cmbFields; }
 		|        }
-		|		
+		|
 		|        public System.Windows.Forms.CheckBox Chk
 		|        {
 		|            get { return chk; }
@@ -26834,7 +31026,7 @@
 		|        public DataGridView DataGridView
 		|        {
 		|            get
-		|            {                
+		|            {
 		|                if (grouper != null)
 		|                {
 		|                    return grouper.DataGridView;
@@ -27128,7 +31320,7 @@
 		|
 		|// Код создан на основе разработки автора Robert.Verpalen https://www.codeproject.com/Tips/995958/DataGridViewGrouper под лицензией 
 		|// The Code Project Open License (CPOL) 1.02 https://www.codeproject.com/info/cpol10.aspx
-		|		
+		|
 		|namespace Subro.IO
 		|{
 		|    public static class IOFunctions
@@ -28852,7 +33044,7 @@
 		|                    grid.MouseMove -= new MouseEventHandler(grid_MouseMove);
 		|                    grid.SelectionChanged -= new EventHandler(grid_SelectionChanged);
 		|                    grid.DataSourceChanged -= new EventHandler(grid_DataSourceChanged);
-		|                    grid.AllowUserToAddRowsChanged -= new EventHandler(grid_AllowUserToAddRowsChanged);    
+		|                    grid.AllowUserToAddRowsChanged -= new EventHandler(grid_AllowUserToAddRowsChanged);
 		|                }
 		|                RemoveGrouping();
 		|                selectedGroups.Clear();
@@ -28869,7 +33061,7 @@
 		|                    grid.MouseMove += new MouseEventHandler(grid_MouseMove);
 		|                    grid.SelectionChanged += new EventHandler(grid_SelectionChanged);
 		|                    grid.DataSourceChanged += new EventHandler(grid_DataSourceChanged);
-		|                    grid.AllowUserToAddRowsChanged += new EventHandler(grid_AllowUserToAddRowsChanged);       
+		|                    grid.AllowUserToAddRowsChanged += new EventHandler(grid_AllowUserToAddRowsChanged);
 		|                }
 		|            }
 		|        }
@@ -28896,7 +33088,7 @@
 		|                        return;
 		|                    }
 		|                }
-		|            }            
+		|            }
 		|            checkcollapsedfocused(-1, -1);
 		|        }
 		|
@@ -28971,7 +33163,7 @@
 		|            }
 		|            invalidateselected();
 		|        }
-		|        
+		|
 		|        void invalidateselected()
 		|        {
 		|            if (selectedGroups.Count == 0 || grid.SelectionMode == DataGridViewSelectionMode.FullRowSelect)
@@ -29003,7 +33195,7 @@
 		|            if (IsGroupRow(e.RowIndex) && capturedcollapsebox.Y != e.RowIndex && Options.SelectRowsOnDoubleClick)
 		|            {
 		|                var gr = GetGroupRow(e.RowIndex);
-		|                gr.Collapsed = false;                
+		|                gr.Collapsed = false;
 		|                grid.SuspendLayout();
 		|                grid.CurrentCell = grid[1, e.RowIndex + 1];
 		|                grid.Rows[e.RowIndex].Selected = false;
@@ -29020,7 +33212,7 @@
 		|        IEnumerable<DataGridViewRow> GetRows(int index)
 		|        {
 		|            var gr = GetGroupRow(index);
-		|            
+		|
 		|            for (int i = 0; i < gr.Count; i++)
 		|            {
 		|                yield return grid.Rows[++index];
@@ -29197,7 +33389,7 @@
 		|            return CheckSource().SetGroupOn(Property);
 		|        }
 		|
-		|        public void SetCustomGroup<T>(Func<T,object> GroupValueProvider, string Description = null)
+		|        public void SetCustomGroup<T>(Func<T, object> GroupValueProvider, string Description = null)
 		|        {
 		|            CheckSource().SetCustomGroup(GroupValueProvider, Description);
 		|        }
@@ -29258,7 +33450,7 @@
 		|            if (IsGroupRow(e.RowIndex))
 		|            {
 		|                e.Handled = true;
-		|                PaintGroupRow(e);                
+		|                PaintGroupRow(e);
 		|            }
 		|        }
 		|
@@ -29336,7 +33528,7 @@
 		|            }
 		|            var r = e.RowBounds;
 		|            r.Height--;
-		|            
+		|
 		|            using (var bgb = new SolidBrush(info.BackColor))
 		|            {
 		|                // Строка под строкой группы.
@@ -29445,13 +33637,13 @@
 		|            this.Group = Row;
 		|            this.GroupingInfo = Info;
 		|        }
-		|        
+		|
 		|        // Возвращает значение группировки для рисуемой строки.
 		|        public object Value { get { return Group.Value; } }
-		|        
+		|
 		|        // Возвращает или задает отображаемое значение (после заголовка).
 		|        public string DisplayValue { get; set; }
-		|        
+		|
 		|        // Заголовок обычно содержит имя свойства / группы, его можно изменить здесь.
 		|        public string Header { get; set; }
 		|
@@ -29461,7 +33653,7 @@
 		|        public Color BackColor { get; set; }
 		|        public Color ForeColor { get; set; }
 		|        public Font Font { get; set; }
-		|        
+		|
 		|        // Указывает, выбрана ли в данный момент отображаемая строка.
 		|        public bool Selected { get; internal set; }
 		|
@@ -29471,7 +33663,7 @@
 		|            {
 		|                return DisplayValue;
 		|            }
-		|            return string.Format(""{0}   {1}"", DisplayValue, Summary);            
+		|            return string.Format(""{0}   {1}"", DisplayValue, Summary);
 		|        }
 		|
 		|        // То же, что и Group. Добавлено для обеспечения обратной совместимости.
@@ -30001,7 +34193,7 @@
 		|            {
 		|                e.DisplayValue = o == null ? ""<Null>"" : ""Ложь"";
 		|            }
-		|            else if(o.ToString() == ""True"")
+		|            else if (o.ToString() == ""True"")
 		|            {
 		|                e.DisplayValue = o == null ? ""<Null>"" : ""Истина"";
 		|            }
@@ -32941,7 +37133,7 @@
 		|        protected virtual bool search(StringSearchMatcher search)
 		|        {
 		|            object pos = GetPosition();
-		|            for (;;)
+		|            for (; ; )
 		|            {
 		|                var val = GetCurrent();
 		|                if (val != null && search.Matches(val.ToString()))
@@ -34640,7 +38832,7 @@
 		|        public DataGridViewRowCollection()
 		|        {
 		|        }
-		|		
+		|
 		|        public DataGridViewRowCollection(System.Windows.Forms.DataGridViewRowCollection p1)
 		|        {
 		|            M_DataGridViewRowCollection = p1;
@@ -34746,7 +38938,7 @@
 		|            M_DataGridViewTextBoxColumn.M_Object = this;
 		|            base.M_DataGridViewColumn = M_DataGridViewTextBoxColumn;
 		|        }
-		|		
+		|
 		|        public DataGridViewTextBoxColumn(System.Windows.Forms.DataGridViewTextBoxColumn p1)
 		|        {
 		|            M_DataGridViewTextBoxColumn = p1;
@@ -34960,13 +39152,13 @@
 		|        }
 		|
 		|        private void NativePaint(
-		|            System.Drawing.Graphics graphics, 
-		|            System.Drawing.Rectangle clipBounds, 
-		|            System.Drawing.Rectangle cellBounds, 
+		|            System.Drawing.Graphics graphics,
+		|            System.Drawing.Rectangle clipBounds,
+		|            System.Drawing.Rectangle cellBounds,
 		|            int rowIndex,
-		|            System.Windows.Forms.DataGridViewElementStates cellState, 
-		|            object value, 
-		|            object formattedValue, 
+		|            System.Windows.Forms.DataGridViewElementStates cellState,
+		|            object value,
+		|            object formattedValue,
 		|            string errorText,
 		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
 		|            System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle,
@@ -35027,17 +39219,17 @@
 		|        }
 		|
 		|        public override System.Drawing.Rectangle PositionEditingPanel(
-		|            System.Drawing.Rectangle cellBounds, 
+		|            System.Drawing.Rectangle cellBounds,
 		|            System.Drawing.Rectangle cellClip,
-		|            System.Windows.Forms.DataGridViewCellStyle cellStyle, 
-		|            bool singleVerticalBorderAdded, 
-		|            bool singleHorizontalBorderAdded, 
-		|            bool isFirstDisplayedColumn, 
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+		|            bool singleVerticalBorderAdded,
+		|            bool singleHorizontalBorderAdded,
+		|            bool isFirstDisplayedColumn,
 		|            bool isFirstDisplayedRow)
 		|        {
 		|            if (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1)
 		|            {
-		|                return base.PositionEditingPanel( cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, isFirstDisplayedColumn, isFirstDisplayedRow);
+		|                return base.PositionEditingPanel(cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, isFirstDisplayedColumn, isFirstDisplayedRow);
 		|            }
 		|
 		|            var ownerCell = this;
@@ -35064,9 +39256,9 @@
 		|                singleVerticalBorderAdded,
 		|                singleHorizontalBorderAdded);
 		|            cellClip = DataGridViewCellExHelper.GetSpannedCellClipBounds(
-		|                ownerCell, 
-		|                cellBounds, 
-		|                singleVerticalBorderAdded, 
+		|                ownerCell,
+		|                cellBounds,
+		|                singleVerticalBorderAdded,
 		|                singleHorizontalBorderAdded);
 		|            return base.PositionEditingPanel(cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, ownerCell.InFirstDisplayedColumn(), ownerCell.InFirstDisplayedRow());
 		|        }
@@ -35125,7 +39317,7 @@
 		|
 		|        protected override System.Drawing.Size GetPreferredSize(
 		|            System.Drawing.Graphics graphics,
-		|            System.Windows.Forms.DataGridViewCellStyle cellStyle, 
+		|            System.Windows.Forms.DataGridViewCellStyle cellStyle,
 		|            int rowIndex,
 		|            System.Drawing.Size constraintSize)
 		|        {
@@ -35183,7 +39375,7 @@
 		|            M_DataGridViewTextBoxCell.M_Object = this;
 		|            base.M_DataGridViewCell = M_DataGridViewTextBoxCell;
 		|        }
-		|		
+		|
 		|        public DataGridViewTextBoxCell(System.Windows.Forms.DataGridViewTextBoxCell p1)
 		|        {
 		|            M_DataGridViewTextBoxCell = p1;
@@ -35209,12 +39401,12 @@
 		|    {
 		|        public new ClDataGridViewRowHeaderCell dll_obj;
 		|        private System.Windows.Forms.DataGridViewRowHeaderCell m_DataGridViewRowHeaderCell;
-		|		
+		|
 		|        public DataGridViewRowHeaderCell()
 		|        {
 		|            M_DataGridViewRowHeaderCell = new System.Windows.Forms.DataGridViewRowHeaderCell();
 		|        }
-		|		
+		|
 		|        public DataGridViewRowHeaderCell(System.Windows.Forms.DataGridViewRowHeaderCell p1)
 		|        {
 		|            M_DataGridViewRowHeaderCell = p1;
@@ -35274,7 +39466,7 @@
 		|            M_DataGridViewLinkColumn.M_Object = this;
 		|            base.M_DataGridViewColumn = M_DataGridViewLinkColumn;
 		|        }
-		|		
+		|
 		|        public DataGridViewLinkColumn(System.Windows.Forms.DataGridViewLinkColumn p1)
 		|        {
 		|            M_DataGridViewLinkColumn = p1;
@@ -35336,7 +39528,7 @@
 		|    {
 		|        public new ClDataGridViewRow dll_obj;
 		|        private System.Windows.Forms.DataGridViewRow m_DataGridViewRow;
-		|		
+		|
 		|        public DataGridViewRow()
 		|        {
 		|            M_DataGridViewRow = new System.Windows.Forms.DataGridViewRow();
@@ -35361,19 +39553,19 @@
 		|        {
 		|            get { return new osf.DataGridViewCellCollection(M_DataGridViewRow.Cells); }
 		|        }
-		|		
+		|
 		|        public osf.DataGridViewRowHeaderCell HeaderCell
 		|        {
 		|            get { return new osf.DataGridViewRowHeaderCell(M_DataGridViewRow.HeaderCell); }
 		|            set { M_DataGridViewRow.HeaderCell = value.M_DataGridViewRowHeaderCell; }
 		|        }
-		|		
+		|
 		|        public int Resizable
 		|        {
 		|            get { return (int)M_DataGridViewRow.Resizable; }
 		|            set { M_DataGridViewRow.Resizable = (System.Windows.Forms.DataGridViewTriState)value; }
 		|        }
-		|		
+		|
 		|        public osf.DataGridViewCellStyle DefaultCellStyle
 		|        {
 		|            get
@@ -35424,7 +39616,7 @@
 		|        {
 		|            get { return M_DataGridViewRow.IsNewRow; }
 		|        }
-		|		
+		|
 		|        public int Height
 		|        {
 		|            get { return M_DataGridViewRow.Height; }
@@ -35859,7 +40051,7 @@
 		|            M_DataGridViewLinkCell.M_Object = this;
 		|            base.M_DataGridViewCell = M_DataGridViewLinkCell;
 		|        }
-		|		
+		|
 		|        public DataGridViewLinkCell(System.Windows.Forms.DataGridViewLinkCell p1)
 		|        {
 		|            M_DataGridViewLinkCell = p1;
@@ -36521,7 +40713,7 @@
 		|            M_DataGridViewComboBoxColumn.M_Object = this;
 		|            base.M_DataGridViewColumn = M_DataGridViewComboBoxColumn;
 		|        }
-		|		
+		|
 		|        public DataGridViewComboBoxColumn(System.Windows.Forms.DataGridViewComboBoxColumn p1)
 		|        {
 		|            M_DataGridViewComboBoxColumn = p1;
@@ -37025,7 +41217,7 @@
 		|            M_DataGridViewComboBoxCell.M_Object = this;
 		|            base.M_DataGridViewCell = M_DataGridViewComboBoxCell;
 		|        }
-		|		
+		|
 		|        public DataGridViewComboBoxCell(System.Windows.Forms.DataGridViewComboBoxCell p1)
 		|        {
 		|            M_DataGridViewComboBoxCell = p1;
@@ -37118,7 +41310,7 @@
 		|    {
 		|        public new ClDataGridViewColumnHeaderCell dll_obj;
 		|        private System.Windows.Forms.DataGridViewColumnHeaderCell m_DataGridViewColumnHeaderCell;
-		|		
+		|
 		|        public DataGridViewColumnHeaderCell()
 		|        {
 		|            M_DataGridViewColumnHeaderCell = new System.Windows.Forms.DataGridViewColumnHeaderCell();
@@ -37152,7 +41344,7 @@
 		|    {
 		|        public new ClDataGridViewHeaderCell dll_obj;
 		|        private System.Windows.Forms.DataGridViewHeaderCell m_DataGridViewHeaderCell;
-		|		
+		|
 		|        public DataGridViewHeaderCell()
 		|        {
 		|            M_DataGridViewHeaderCell = new System.Windows.Forms.DataGridViewHeaderCell();
@@ -37162,12 +41354,12 @@
 		|        {
 		|            M_DataGridViewHeaderCell = p1;
 		|        }
-		|		
+		|
 		|        public new bool Visible
 		|        {
 		|            get { return M_DataGridViewHeaderCell.Visible; }
 		|        }
-		|		
+		|
 		|        public new bool Resizable
 		|        {
 		|            get { return M_DataGridViewHeaderCell.Resizable; }
@@ -37227,7 +41419,7 @@
 		|            M_DataGridViewCheckBoxColumn.M_Object = this;
 		|            base.M_DataGridViewColumn = M_DataGridViewCheckBoxColumn;
 		|        }
-		|		
+		|
 		|        public DataGridViewCheckBoxColumn(System.Windows.Forms.DataGridViewCheckBoxColumn p1)
 		|        {
 		|            M_DataGridViewCheckBoxColumn = p1;
@@ -37280,7 +41472,7 @@
 		|        public DataGridViewCheckBoxCellEx() : base()
 		|        {
 		|        }
-		|		
+		|
 		|        protected override void OnClick(System.Windows.Forms.DataGridViewCellEventArgs e)
 		|        {
 		|            DataGridViewCheckBoxCellEx cell1 = (DataGridViewCheckBoxCellEx)DataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
@@ -37717,7 +41909,7 @@
 		|            M_DataGridViewCheckBoxCell.M_Object = this;
 		|            base.M_DataGridViewCell = M_DataGridViewCheckBoxCell;
 		|        }
-		|		
+		|
 		|        public DataGridViewCheckBoxCell(System.Windows.Forms.DataGridViewCheckBoxCell p1)
 		|        {
 		|            M_DataGridViewCheckBoxCell = p1;
@@ -37837,7 +42029,7 @@
 		|            M_DataGridViewButtonColumn.M_Object = this;
 		|            base.M_DataGridViewColumn = M_DataGridViewButtonColumn;
 		|        }
-		|		
+		|
 		|        public DataGridViewButtonColumn(System.Windows.Forms.DataGridViewButtonColumn p1)
 		|        {
 		|            M_DataGridViewButtonColumn = p1;
@@ -38318,7 +42510,7 @@
 		|    {
 		|        public new ClDataGridViewColumn dll_obj;
 		|        private System.Windows.Forms.DataGridViewColumn m_DataGridViewColumn;
-		|		
+		|
 		|        public DataGridViewColumn()
 		|        {
 		|            M_DataGridViewColumn = new System.Windows.Forms.DataGridViewColumn();
@@ -38355,13 +42547,13 @@
 		|            get { return (int)M_DataGridViewColumn.Width; }
 		|            set { M_DataGridViewColumn.Width = value; }
 		|        }
-		|		
+		|
 		|        public string DataPropertyName
 		|        {
 		|            get { return M_DataGridViewColumn.DataPropertyName; }
 		|            set { M_DataGridViewColumn.DataPropertyName = value; }
 		|        }
-		|		
+		|
 		|        public int DisplayIndex
 		|        {
 		|            get
@@ -38374,13 +42566,13 @@
 		|            }
 		|            set { M_DataGridViewColumn.DisplayIndex = value; }
 		|        }
-		|		
+		|
 		|        public float FillWeight
 		|        {
 		|            get { return M_DataGridViewColumn.FillWeight; }
 		|            set { M_DataGridViewColumn.FillWeight = value; }
 		|        }
-		|		
+		|
 		|        public osf.DataGridViewCellStyle DefaultCellStyle
 		|        {
 		|            get
@@ -38396,7 +42588,7 @@
 		|            }
 		|            set { M_DataGridViewColumn.DefaultCellStyle = value.M_DataGridViewCellStyle; }
 		|        }
-		|		
+		|
 		|        public bool Frozen
 		|        {
 		|            get { return M_DataGridViewColumn.Frozen; }
@@ -38444,19 +42636,19 @@
 		|            get { return M_DataGridViewColumn.DividerWidth; }
 		|            set { M_DataGridViewColumn.DividerWidth = value; }
 		|        }
-		|		
+		|
 		|        public int Resizable
 		|        {
 		|            get { return (int)M_DataGridViewColumn.Resizable; }
 		|            set { M_DataGridViewColumn.Resizable = (System.Windows.Forms.DataGridViewTriState)value; }
 		|        }
-		|		
+		|
 		|        public string HeaderText
 		|        {
 		|            get { return M_DataGridViewColumn.HeaderText; }
 		|            set { M_DataGridViewColumn.HeaderText = value; }
 		|        }
-		|		
+		|
 		|        public osf.DataGridViewColumnHeaderCell HeaderCell
 		|        {
 		|            get { return new DataGridViewColumnHeaderCell(M_DataGridViewColumn.HeaderCell); }
@@ -38480,7 +42672,7 @@
 		|        {
 		|            get { return M_DataGridViewBand.Index; }
 		|        }
-		|		
+		|
 		|        public bool Selected
 		|        {
 		|            get { return M_DataGridViewBand.Selected; }
@@ -38491,7 +42683,7 @@
 		|        {
 		|            get { return M_DataGridViewBand.Displayed; }
 		|        }
-		|		
+		|
 		|        public object Tag
 		|        {
 		|            get { return M_DataGridViewBand.Tag; }
@@ -38570,7 +42762,7 @@
 		|    {
 		|        public new ClDataGridViewCell dll_obj;
 		|        public System.Windows.Forms.DataGridViewCell m_DataGridViewCell;
-		|		
+		|
 		|        public DataGridViewCell()
 		|        {
 		|        }
@@ -38579,60 +42771,60 @@
 		|        {
 		|            M_DataGridViewCell = p1;
 		|        }
-		|		
+		|
 		|        public bool ReadOnly
 		|        {
 		|            get { return M_DataGridViewCell.ReadOnly; }
 		|            set { M_DataGridViewCell.ReadOnly = value; }
 		|        }
-		|		
+		|
 		|        public string ToolTipText
 		|        {
 		|            get { return M_DataGridViewCell.ToolTipText; }
 		|            set { M_DataGridViewCell.ToolTipText = value; }
 		|        }
-		|		
+		|
 		|        public bool Resizable
 		|        {
 		|            get { return M_DataGridViewCell.Resizable; }
 		|        }
-		|		
+		|
 		|        public int ColumnIndex
 		|        {
 		|            get { return M_DataGridViewCell.ColumnIndex; }
 		|        }
-		|		
+		|
 		|        public int RowIndex
 		|        {
 		|            get { return M_DataGridViewCell.RowIndex; }
 		|        }
-		|		
+		|
 		|        public osf.DataGridViewColumn OwningColumn
 		|        {
 		|            get { return new DataGridViewColumn(M_DataGridViewCell.OwningColumn); }
 		|        }
-		|		
+		|
 		|        public osf.Size PreferredSize
 		|        {
 		|            get { return new Size(M_DataGridViewCell.PreferredSize); }
 		|        }
-		|		
+		|
 		|        public osf.DataGridViewRow OwningRow
 		|        {
 		|            get { return new DataGridViewRow(M_DataGridViewCell.OwningRow); }
 		|        }
-		|		
+		|
 		|        public osf.Size Size
 		|        {
 		|            get { return new Size(M_DataGridViewCell.Size); }
 		|        }
-		|		
+		|
 		|        public object Value
 		|        {
 		|            get { return M_DataGridViewCell.Value; }
 		|            set { M_DataGridViewCell.Value = value; }
 		|        }
-		|		
+		|
 		|        public osf.Rectangle ContentBounds
 		|        {
 		|            get { return new Rectangle(M_DataGridViewCell.ContentBounds); }
@@ -38657,7 +42849,7 @@
 		|        {
 		|            get { return M_DataGridViewCell.Visible; }
 		|        }
-		|		
+		|
 		|        public bool Selected
 		|        {
 		|            get { return M_DataGridViewCell.Selected; }
@@ -38684,7 +42876,7 @@
 		|        {
 		|            get { return M_DataGridViewCell.HasStyle; }
 		|        }
-		|		
+		|
 		|        public object FormattedValue
 		|        {
 		|            get { return M_DataGridViewCell.FormattedValue; }
@@ -38718,7 +42910,7 @@
 		|    {
 		|        public ClDataGridViewElement dll_obj;
 		|        public System.Windows.Forms.DataGridViewElement M_DataGridViewElement;
-		|		
+		|
 		|        public new osf.DataGridView DataGridView
 		|        {
 		|            get { return new osf.DataGridView(M_DataGridViewElement.DataGridView); }
@@ -38912,7 +43104,7 @@
 		|            AutoNumberingRows = false;
 		|            typeof(System.Windows.Forms.DataGridView).InvokeMember(""DoubleBuffered"", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.SetProperty, null, M_DataGridView, new object[] { true });
 		|        }
-		|		
+		|
 		|        private void M_DataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
 		|        {
 		|            if (e.Context.ToString() == ""InitialValueRestoration"")
@@ -38920,7 +43112,7 @@
 		|                e.ThrowException = false;
 		|            }
 		|        }
-		|		
+		|
 		|        public int AutoSizeColumnsMode
 		|        {
 		|            get { return (int)M_DataGridView.AutoSizeColumnsMode; }
@@ -38938,19 +43130,19 @@
 		|            get { return M_DataGridView.AllowUserToAddRows; }
 		|            set { M_DataGridView.AllowUserToAddRows = value; }
 		|        }
-		|		
+		|
 		|        public int SelectionMode
 		|        {
 		|            get { return (int)M_DataGridView.SelectionMode; }
 		|            set { M_DataGridView.SelectionMode = (System.Windows.Forms.DataGridViewSelectionMode)value; }
 		|        }
-		|		
+		|
 		|        public int ColumnHeadersHeightSizeMode
 		|        {
 		|            get { return (int)M_DataGridView.ColumnHeadersHeightSizeMode; }
 		|            set { M_DataGridView.ColumnHeadersHeightSizeMode = (System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode)value; }
 		|        }
-		|		
+		|
 		|        public bool ColumnHeadersVisible
 		|        {
 		|            get { return M_DataGridView.ColumnHeadersVisible; }
@@ -39165,7 +43357,7 @@
 		|                    return;
 		|                }
 		|            }
-		|		
+		|
 		|            if (CellBeginEdit.Length > 0)
 		|            {
 		|                DataGridViewCellCancelEventArgs DataGridViewCellCancelEventArgs1 = new DataGridViewCellCancelEventArgs();
@@ -39210,7 +43402,7 @@
 		|                    cell2.LinkVisited = true;
 		|                }
 		|            }
-		|		
+		|
 		|            if (CellContentClick.Length > 0)
 		|            {
 		|                DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
@@ -39265,7 +43457,7 @@
 		|                    }
 		|                }
 		|            }
-		|		
+		|
 		|            if (CellDoubleClick.Length > 0)
 		|            {
 		|                DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
@@ -39434,7 +43626,7 @@
 		|            {
 		|                return;
 		|            }
-		|		
+		|
 		|            if (CellValueChanged.Length > 0)
 		|            {
 		|                DataGridViewCellEventArgs DataGridViewCellEventArgs1 = new DataGridViewCellEventArgs();
@@ -40192,8 +44384,8 @@
 		|
 		|        public osf.Font SelectionFont
 		|        {
-		|            get { return new Font(M_RichTextBox.SelectionFont);            }
-		|            set { M_RichTextBox.SelectionFont = (System.Drawing.Font)value.M_Font;            }
+		|            get { return new Font(M_RichTextBox.SelectionFont); }
+		|            set { M_RichTextBox.SelectionFont = (System.Drawing.Font)value.M_Font; }
 		|        }
 		|
 		|        public int SelectionIndent
@@ -40991,7 +45183,7 @@
 		|            base.WndProc(ref m);
 		|        }
 		|    }//endClass
-		|		
+		|
 		|    public class ComboBoxEx : System.Windows.Forms.ComboBox
 		|    {
 		|        public osf.ComboBox M_Object;
@@ -41973,13 +46165,13 @@
 		|        {
 		|            Enumerator.Reset();
 		|        }
-		|		
-		|        public bool ContainsValue(object  p1)
+		|
+		|        public bool ContainsValue(object p1)
 		|        {
 		|            return M_SortedList.ContainsValue(p1);
 		|        }
 		|
-		|        public bool ContainsKey(object  p1)
+		|        public bool ContainsKey(object p1)
 		|        {
 		|            return M_SortedList.ContainsKey(p1);
 		|        }
@@ -42018,14 +46210,14 @@
 		|
 		|        public object Key
 		|        {
-		|            get{return M_DictionaryEntry.Key;}
-		|            set{M_DictionaryEntry.Key = value;}
+		|            get { return M_DictionaryEntry.Key; }
+		|            set { M_DictionaryEntry.Key = value; }
 		|        }
 		|
 		|        public object Value
 		|        {
-		|            get{return M_DictionaryEntry.Value;}
-		|            set{M_DictionaryEntry.Value = value;}
+		|            get { return M_DictionaryEntry.Value; }
+		|            set { M_DictionaryEntry.Value = value; }
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -42043,142 +46235,142 @@
 		|
 		|        public osf.Cursor AppStarting
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.AppStarting); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.AppStarting); }
 		|        }
 		|
 		|        public osf.Cursor Arrow
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.Arrow); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.Arrow); }
 		|        }
 		|
 		|        public osf.Cursor Cross
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.Cross); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.Cross); }
 		|        }
 		|
 		|        public osf.Cursor Default
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.Default); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.Default); }
 		|        }
 		|
 		|        public osf.Cursor Hand
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.Hand); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.Hand); }
 		|        }
 		|
 		|        public osf.Cursor Help
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.Help); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.Help); }
 		|        }
 		|
 		|        public osf.Cursor HSplit
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.HSplit); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.HSplit); }
 		|        }
 		|
 		|        public osf.Cursor IBeam
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.IBeam); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.IBeam); }
 		|        }
 		|
 		|        public osf.Cursor No
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.No); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.No); }
 		|        }
 		|
 		|        public osf.Cursor NoMove2D
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.NoMove2D); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.NoMove2D); }
 		|        }
 		|
 		|        public osf.Cursor NoMoveHoriz
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.NoMoveHoriz); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.NoMoveHoriz); }
 		|        }
 		|
 		|        public osf.Cursor NoMoveVert
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.NoMoveVert); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.NoMoveVert); }
 		|        }
 		|
 		|        public osf.Cursor PanEast
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.PanEast); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.PanEast); }
 		|        }
 		|
 		|        public osf.Cursor PanNE
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.PanNE); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.PanNE); }
 		|        }
 		|
 		|        public osf.Cursor PanNorth
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.PanNorth); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.PanNorth); }
 		|        }
 		|
 		|        public osf.Cursor PanNW
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.PanNW); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.PanNW); }
 		|        }
 		|
 		|        public osf.Cursor PanSE
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.PanSE); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.PanSE); }
 		|        }
 		|
 		|        public osf.Cursor PanSouth
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.PanSouth); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.PanSouth); }
 		|        }
 		|
 		|        public osf.Cursor PanSW
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.PanSW); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.PanSW); }
 		|        }
 		|
 		|        public osf.Cursor PanWest
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.PanWest); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.PanWest); }
 		|        }
 		|
 		|        public osf.Cursor SizeAll
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.SizeAll); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.SizeAll); }
 		|        }
 		|
 		|        public osf.Cursor SizeNESW
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.SizeNESW); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.SizeNESW); }
 		|        }
 		|
 		|        public osf.Cursor SizeNS
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.SizeNS); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.SizeNS); }
 		|        }
 		|
 		|        public osf.Cursor SizeNWSE
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.SizeNWSE); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.SizeNWSE); }
 		|        }
 		|
 		|        public osf.Cursor SizeWE
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.SizeWE); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.SizeWE); }
 		|        }
 		|
 		|        public osf.Cursor UpArrow
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.UpArrow); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.UpArrow); }
 		|        }
 		|
 		|        public osf.Cursor VSplit
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.VSplit); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.VSplit); }
 		|        }
 		|
 		|        public osf.Cursor WaitCursor
 		|        {
-		|            get {return new Cursor(System.Windows.Forms.Cursors.WaitCursor); }
+		|            get { return new Cursor(System.Windows.Forms.Cursors.WaitCursor); }
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -42194,7 +46386,7 @@
 		|    {
 		|        public osf.DataGridTextBoxColumn M_Object;
 		|    }//endClass
-		|		
+		|
 		|    public class DataGridTextBoxColumn : DataGridColumnStyle
 		|    {
 		|        public ClDataGridTextBoxColumn dll_obj;
@@ -42210,7 +46402,7 @@
 		|            M_DataGridTextBoxColumn.TextBox.MouseDown += TextBox_MouseDown;
 		|            DoubleClick = """";
 		|        }
-		|		
+		|
 		|        public DataGridTextBoxColumn(osf.DataGridTextBoxColumn p1)
 		|        {
 		|            M_DataGridTextBoxColumn = p1.M_DataGridTextBoxColumn;
@@ -42220,7 +46412,7 @@
 		|            M_DataGridTextBoxColumn.TextBox.MouseDown += TextBox_MouseDown;
 		|            DoubleClick = """";
 		|        }
-		|		
+		|
 		|        public DataGridTextBoxColumn(System.Windows.Forms.DataGridTextBoxColumn p1)
 		|        {
 		|            M_DataGridTextBoxColumn = (DataGridTextBoxColumnEx)p1;
@@ -42235,7 +46427,7 @@
 		|        {
 		|            get { return new DataGridTextBox((System.Windows.Forms.DataGridTextBox)M_DataGridTextBoxColumn.TextBox); }
 		|        }
-		|		
+		|
 		|        public void TextBox_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
 		|        {
 		|            if (System.DateTime.Now < OneScriptForms.gridMouseDownTime.AddMilliseconds(System.Windows.Forms.SystemInformation.DoubleClickTime))
@@ -42319,7 +46511,7 @@
 		|            get { return M_DataGridColumnStyle.Width; }
 		|            set { M_DataGridColumnStyle.Width = value; }
 		|        }
-		|		
+		|
 		|        public bool ReadOnly
 		|        {
 		|            get { return M_DataGridColumnStyle.ReadOnly; }
@@ -42421,7 +46613,7 @@
 		|            M_DataGridTableStyle.M_Object = this;
 		|            base.M_Component = M_DataGridTableStyle;
 		|        }
-		|		
+		|
 		|        public DataGridTableStyle(osf.DataGridTableStyle p1)
 		|        {
 		|            M_DataGridTableStyle = p1.M_DataGridTableStyle;
@@ -42476,7 +46668,7 @@
 		|            get { return M_DataGridTableStyle.PreferredRowHeight; }
 		|            set { M_DataGridTableStyle.PreferredRowHeight = value; }
 		|        }
-		|		
+		|
 		|        public int PreferredColumnWidth
 		|        {
 		|            get { return M_DataGridTableStyle.PreferredColumnWidth; }
@@ -42596,7 +46788,7 @@
 		|            M_DataGridCell = p1.M_DataGridCell;
 		|            OneScriptForms.AddToHashtable(M_DataGridCell, this);
 		|        }
-		|		
+		|
 		|        public DataGridCell(System.Windows.Forms.DataGridCell p1)
 		|        {
 		|            M_DataGridCell = p1;
@@ -42672,7 +46864,7 @@
 		|            M_DataGrid.MouseDown += M_DataGrid_MouseDown;
 		|            CurrentCellChanged = """";
 		|        }
-		|		
+		|
 		|        private void M_DataGrid_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
 		|        {
 		|            OneScriptForms.gridMouseDownTime = DateTime.Now;
@@ -42791,7 +46983,7 @@
 		|        {
 		|            return M_DataGrid.IsSelected(row);
 		|        }
-		|		
+		|
 		|        public void SelectRow(int row)
 		|        {
 		|            M_DataGrid.Select(row);
@@ -42887,7 +47079,7 @@
 		|            M_DataRow = p1;
 		|            Index = p2;
 		|        }
-		|		
+		|
 		|        public DataItem(osf.DataItem p1)
 		|        {
 		|            M_DataRow = p1.M_DataRow;
@@ -43073,7 +47265,7 @@
 		|            }
 		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
-		|		
+		|
 		|        public void BeginEdit()
 		|        {
 		|            M_DataRow.BeginEdit();
@@ -43088,12 +47280,12 @@
 		|        {
 		|            M_DataRow.RejectChanges();
 		|        }
-		|		
+		|
 		|        public void Delete()
 		|        {
 		|            M_DataRow.Delete();
 		|        }
-		|		
+		|
 		|        public void CancelEdit()
 		|        {
 		|            M_DataRow.CancelEdit();
@@ -43103,7 +47295,7 @@
 		|        {
 		|            get { return (int)M_DataRow.RowState; }
 		|        }
-		|		
+		|
 		|        public osf.DataTable Table
 		|        {
 		|            get { return ((osf.DataTableEx)M_DataRow.Table).M_Object; }
@@ -43211,7 +47403,7 @@
 		|
 		|        public osf.DataTable Table
 		|        {
-		|            get { return  (DataTable)((DataTableEx)M_DataView.Table).M_Object; }
+		|            get { return (DataTable)((DataTableEx)M_DataView.Table).M_Object; }
 		|            set { M_DataView.Table = (System.Data.DataTable)value.M_DataTable; }
 		|        }
 		|
@@ -43249,7 +47441,7 @@
 		|    {
 		|        public osf.DataSet M_Object;
 		|    }//endClass
-		|		
+		|
 		|    public class DataSet
 		|    {
 		|        public ClDataSet dll_obj;
@@ -43747,9 +47939,9 @@
 		|
 		|        public osf.DataTable Table
 		|        {
-		|            get { return  (DataTable)((DataTableEx)M_DataColumn.Table).M_Object; }
+		|            get { return (DataTable)((DataTableEx)M_DataColumn.Table).M_Object; }
 		|        }
-		|		
+		|
 		|        public int AutoIncrementSeed
 		|        {
 		|            get { return Convert.ToInt32(M_DataColumn.AutoIncrementSeed); }
@@ -43866,7 +48058,7 @@
 		|            M_LinkArea = new System.Windows.Forms.LinkArea(p1, p2);
 		|            OneScriptForms.AddToHashtable(M_LinkArea, this);
 		|        }
-		|		
+		|
 		|        public LinkArea(osf.LinkArea p1)
 		|        {
 		|            M_LinkArea = p1.M_LinkArea;
@@ -44514,7 +48706,7 @@
 		|            base.M_Control = M_ToolBar;
 		|            ButtonClick = """";
 		|        }
-		|		
+		|
 		|        public ToolBar(osf.ToolBar p1)
 		|        {
 		|            M_ToolBar = p1.M_ToolBar;
@@ -44876,7 +49068,7 @@
 		|            base.M_ContainerControl = M_UserControl;
 		|            M_Value = null;
 		|        }
-		|		
+		|
 		|        public UserControl(osf.UserControl p1)
 		|        {
 		|            M_UserControl = p1.M_UserControl;
@@ -44948,7 +49140,7 @@
 		|                m_NotifyIcon.MouseDown += M_NotifyIcon_MouseDown;
 		|            }
 		|        }
-		|		
+		|
 		|        public NotifyIcon()
 		|        {
 		|            M_NotifyIcon = new System.Windows.Forms.NotifyIcon();
@@ -45099,7 +49291,7 @@
 		|                OneScriptForms.ExecuteEvent(dll_obj.DoubleClick);
 		|            }
 		|        }
-		|		
+		|
 		|        public void ShowBalloonTip(int p1, string p2, string p3, int p4)
 		|        {
 		|            M_NotifyIcon.ShowBalloonTip(p1, p2, p3, (System.Windows.Forms.ToolTipIcon)p4);
@@ -45148,7 +49340,7 @@
 		|            base.M_FileDialog = M_SaveFileDialog;
 		|            OneScriptForms.AddToHashtable(M_SaveFileDialog, this);
 		|        }
-		|		
+		|
 		|        public SaveFileDialog(osf.SaveFileDialog p1)
 		|        {
 		|            M_SaveFileDialog = p1.M_SaveFileDialog;
@@ -45200,7 +49392,7 @@
 		|            base.M_FileDialog = M_OpenFileDialog;
 		|            OneScriptForms.AddToHashtable(M_OpenFileDialog, this);
 		|        }
-		|		
+		|
 		|        public OpenFileDialog(osf.OpenFileDialog p1)
 		|        {
 		|            M_OpenFileDialog = p1.M_OpenFileDialog;
@@ -45463,7 +49655,7 @@
 		|            M_Timer.Tick += M_Timer_Tick1;
 		|            Tick = """";
 		|        }
-		|		
+		|
 		|        public Timer(osf.Timer p1)
 		|        {
 		|            M_Timer = p1.M_Timer;
@@ -45497,7 +49689,7 @@
 		|        {
 		|            M_Timer.Stop();
 		|        }
-		|		
+		|
 		|        public bool Enabled
 		|        {
 		|            get { return M_Timer.Enabled; }
@@ -45833,7 +50025,7 @@
 		|        public string BeforeExpand;
 		|        public string BeforeLabelEdit;
 		|        public string BeforeSelect;
-		|        private int selectedImageIndex;		
+		|        private int selectedImageIndex;
 		|
 		|        public TreeView()
 		|        {
@@ -45974,12 +50166,12 @@
 		|        public int SelectedImageIndex
 		|        {
 		|            get { return selectedImageIndex; }
-		|            set 
+		|            set
 		|            {
 		|                // В документации к MONO SelectedImageIndex всегда равен -1
 		|                // поэтому пишем свой код.
 		|                // в событии AfterSelect сами устанавливаем для узла изображение
-		|                selectedImageIndex = value; 
+		|                selectedImageIndex = value;
 		|            }
 		|        }
 		|
@@ -46041,7 +50233,7 @@
 		|
 		|        public void M_TreeView_AfterSelect(object sender, System.Windows.Forms.TreeViewEventArgs e)
 		|        {
-		|		
+		|
 		|            // Установим изображение для узла согласно заданному SelectedImageIndex
 		|            if (e.Node.SelectedImageIndex < 0)
 		|            {
@@ -46058,7 +50250,7 @@
 		|            {
 		|                e.Node.ImageIndex = ImageIndex;
 		|            }
-		|		
+		|
 		|            if (AfterSelect.Length > 0)
 		|            {
 		|                TreeViewEventArgs TreeViewEventArgs1 = new TreeViewEventArgs();
@@ -46168,13 +50360,13 @@
 		|                flags = SHGFI.Icon | SHGFI.LargeIcon | SHGFI.UseFileAttributes;
 		|
 		|            SHGetFileInfo(strPath, 256, out info, (uint)cbFileInfo, flags);
-		|            
+		|
 		|            return System.Drawing.Icon.FromHandle(info.hIcon);
-		|        }        
+		|        }
 		|
 		|        public static System.Drawing.Icon GetSysIcon(int icNo)
 		|        {
-		|            IntPtr HIcon = ExtractIcon(GetModuleHandle(string.Empty), ""DDORes.dll""/*""Shell32.dll""*/, icNo);            
+		|            IntPtr HIcon = ExtractIcon(GetModuleHandle(string.Empty), ""DDORes.dll""/*""Shell32.dll""*/, icNo);
 		|            return System.Drawing.Icon.FromHandle(HIcon);
 		|        }
 		|        public static System.Drawing.Icon GetSysIconFromDll(int icNo, string dll)
@@ -46413,7 +50605,7 @@
 		|            M_SelectionRange = p1.M_SelectionRange;
 		|            OneScriptForms.AddToHashtable(M_SelectionRange, this);
 		|        }
-		|		
+		|
 		|        public SelectionRange(System.Windows.Forms.SelectionRange p1)
 		|        {
 		|            M_SelectionRange = p1;
@@ -46456,7 +50648,7 @@
 		|            M_Process = new ProcessEx();
 		|            M_Process.M_Object = this;
 		|        }
-		|		
+		|
 		|        public Process(osf.Process p1)
 		|        {
 		|            M_Process = p1.M_Process;
@@ -46484,7 +50676,7 @@
 		|            M_Process.Start();
 		|            return this;
 		|        }
-		|		
+		|
 		|        public void Close()
 		|        {
 		|            M_Process.Close();
@@ -46521,7 +50713,7 @@
 		|            M_ProcessStartInfo = p1.M_ProcessStartInfo;
 		|            OneScriptForms.AddToHashtable(M_ProcessStartInfo, this);
 		|        }
-		|		
+		|
 		|        public ProcessStartInfo(System.Diagnostics.ProcessStartInfo p1)
 		|        {
 		|            M_ProcessStartInfo = p1;
@@ -46615,7 +50807,7 @@
 		|            M_TextBox.M_Object = this;
 		|            base.M_TextBoxBase = M_TextBox;
 		|        }
-		|		
+		|
 		|        public TextBox(osf.TextBox p1)
 		|        {
 		|            M_TextBox = p1.M_TextBox;
@@ -47003,7 +51195,7 @@
 		|            M_GridItem = p1.M_GridItem;
 		|            OneScriptForms.AddToHashtable(M_GridItem, this);
 		|        }
-		|		
+		|
 		|        public GridItem(System.Windows.Forms.GridItem p1)
 		|        {
 		|            M_GridItem = p1;
@@ -48467,7 +52659,7 @@
 		|            M_Value = value;
 		|            OneScriptForms.AddToHashtable(this, this);
 		|        }
-		|		
+		|
 		|        public ListItem(osf.ListItem p1)
 		|        {
 		|            M_ForeColor = p1.M_ForeColor;
@@ -48602,7 +52794,7 @@
 		|            M_SelectedBackColor = new Color(SystemColors.Highlight);
 		|            M_SelectedIndexChanged = """";
 		|        }
-		|		
+		|
 		|        public void M_ListBox_SelectedIndexChanged(object sender, System.EventArgs e)
 		|        {
 		|            if (M_SelectedIndexChanged.Length > 0)
@@ -49001,7 +53193,7 @@
 		|        {
 		|            M_StreamReader = p1.M_StreamReader;
 		|        }
-		|		
+		|
 		|        public StreamReader(System.IO.StreamReader p1)
 		|        {
 		|            M_StreamReader = p1;
@@ -49237,7 +53429,7 @@
 		|                M_TabPage.Text = p1;
 		|            }
 		|        }
-		|		
+		|
 		|        public TabPage(osf.TabPage p1)
 		|        {
 		|            M_TabPage = p1.M_TabPage;
@@ -49384,7 +53576,7 @@
 		|            M_Panel.M_Object = this;
 		|            base.M_ScrollableControl = M_Panel;
 		|        }
-		|		
+		|
 		|        public Panel(osf.Panel p1)
 		|        {
 		|            M_Panel = p1.M_Panel;
@@ -49404,7 +53596,7 @@
 		|            get { return (int)M_Panel.BorderStyle; }
 		|            set { M_Panel.BorderStyle = (System.Windows.Forms.BorderStyle)value; }
 		|        }
-		|		
+		|
 		|        public void SetRoundedShape(osf.Panel p1, int p2)
 		|        {
 		|            JonasKohl.Graphics.RoundRect.SetRoundedShape(p1.M_Panel, p2);
@@ -49659,12 +53851,12 @@
 		|        {
 		|            get { return new Version(Assembly.GetExecutingAssembly().GetName().Version); }
 		|        }
-		|		
+		|
 		|        public string NewLine
 		|        {
 		|            get { return System.Environment.NewLine; }
 		|        }
-		|		
+		|
 		|        public string GetFolderPath(int p1)
 		|        {
 		|            return System.Environment.GetFolderPath((System.Environment.SpecialFolder)p1);
@@ -49915,7 +54107,7 @@
 		|    {
 		|        public object M_Object;
 		|    }//endClass
-		|		
+		|
 		|    public class ContextMenu : Menu
 		|    {
 		|        public new ClContextMenu dll_obj;
@@ -50035,7 +54227,7 @@
 		|        {
 		|            get { return new MenuItemCollection(M_Menu.MenuItems); }
 		|        }
-		|		
+		|
 		|        public osf.MenuItem MenuItems2(int p1)
 		|        {
 		|            return MenuItems[p1];
@@ -50122,18 +54314,18 @@
 		|        {
 		|            M_ArrayList.RemoveAt(index);
 		|        }
-		|		
+		|
 		|        public void Reverse()
 		|        {
 		|            M_ArrayList.Reverse();
 		|        }
-		|		
+		|
 		|        public void Sort(int p1, int p2)
 		|        {
 		|            System.Collections.IComparer myComparer = new ArrayListItemSorter(p1, p2);
 		|            M_ArrayList.Sort(myComparer);
 		|        }
-		|		
+		|
 		|        public bool Contains(object obj)
 		|        {
 		|            return M_ArrayList.Contains(obj);
@@ -50160,7 +54352,7 @@
 		|            Enumerator.Reset();
 		|        }
 		|    }//endClass
-		|		
+		|
 		|    public class ArrayListItemSorter : System.Collections.IComparer
 		|    {
 		|        private int sortType;
@@ -50202,7 +54394,7 @@
 		|                    }
 		|                    else if (sortOrder == 1)
 		|                    {
-		|                        
+		|
 		|                    }
 		|                    else if (sortOrder == 2)
 		|                    {
@@ -50472,7 +54664,7 @@
 		|                    Convert.ToInt32(y),
 		|                    Convert.ToInt32(width),
 		|                    Convert.ToInt32(height)
-		|                    ), 
+		|                    ),
 		|                System.Drawing.Imaging.PixelFormat.Undefined)
 		|                );
 		|        }
@@ -50514,12 +54706,12 @@
 		|            memoryStream.Close();
 		|            return base64String;
 		|        }
-		|		
+		|
 		|        public void SetPixel(int x, int y, osf.Color color)
 		|        {
 		|            M_Bitmap.SetPixel(x, y, color.M_Color);
 		|        }
-		|		
+		|
 		|        public osf.BitmapData LockBits()
 		|        {
 		|            osf.Rectangle Rectangle1 = new Rectangle(0, 0, M_Bitmap.Width, M_Bitmap.Height);
@@ -50533,7 +54725,7 @@
 		|        {
 		|            M_Bitmap.UnlockBits(p1.M_BitmapData);
 		|        }
-		|		
+		|
 		|        public void SetBytes(osf.BitmapData p1, osf.ArrayList p2)
 		|        {
 		|            int num = p2.M_ArrayList.Count;
@@ -50557,7 +54749,7 @@
 		|            }
 		|            return ArrayList1;
 		|        }
-		|		
+		|
 		|        public osf.Color GetPixel(int p1, int p2)
 		|        {
 		|            return new Color(M_Bitmap.GetPixel(p1, p2));
@@ -50615,7 +54807,7 @@
 		|            M_Icon = System.Drawing.Icon.FromHandle(((System.Drawing.Bitmap)bitmap.M_Bitmap).GetHicon());
 		|            OneScriptForms.AddToHashtable(M_Icon, this);
 		|        }
-		|		
+		|
 		|        public Icon(osf.Icon p1)
 		|        {
 		|            M_Icon = p1.M_Icon;
@@ -50753,7 +54945,7 @@
 		|            base.M_Brush = M_SolidBrush;
 		|            OneScriptForms.AddToHashtable(M_SolidBrush, this);
 		|        }
-		|		
+		|
 		|        public SolidBrush(osf.SolidBrush p1)
 		|        {
 		|            M_SolidBrush = p1.M_SolidBrush;
@@ -50799,7 +54991,7 @@
 		|    {
 		|        public ClGraphics dll_obj;
 		|        public System.Drawing.Graphics M_Graphics;
-		|		
+		|
 		|        public Graphics(osf.Graphics p1)
 		|        {
 		|            M_Graphics = p1.M_Graphics;
@@ -50866,7 +55058,7 @@
 		|            M_Graphics.FillRectangle((System.Drawing.Brush)brush.M_Brush, x, y, width, height);
 		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
-		|		
+		|
 		|        public void FillRoundRect(System.Drawing.Brush pBrush, System.Drawing.Rectangle r, System.Drawing.Color border, int radius)
 		|        {
 		|            JonasKohl.Graphics.RoundRect.FillRoundRect(this.M_Graphics, pBrush, r, border, radius);
@@ -50876,7 +55068,7 @@
 		|        {
 		|            JonasKohl.Graphics.RoundRect.DrawRoundRect(this.M_Graphics, r, color, radius, width);
 		|        }
-		|		
+		|
 		|        public void FillEllipse(osf.Brush brush, float x, float y, float width, float height)
 		|        {
 		|            M_Graphics.FillEllipse((System.Drawing.Brush)brush.M_Brush, x, y, width, height);
@@ -50889,12 +55081,12 @@
 		|            //System.Windows.Forms.Application.DoEvents();
 		|            return Graphics1;
 		|        }
-		|		
+		|
 		|        public void Dispose()
 		|        {
 		|            M_Graphics.Dispose();
 		|        }
-		|		
+		|
 		|        public float DpiX
 		|        {
 		|            get { return M_Graphics.DpiX; }
@@ -50904,22 +55096,22 @@
 		|        {
 		|            get { return M_Graphics.DpiY; }
 		|        }
-		|		
+		|
 		|        public void CopyFromScreen(int p1, int p2, int p3, int p4, Size p5)
 		|        {
 		|            M_Graphics.CopyFromScreen(p1, p2, p3, p4, p5.M_Size);
 		|        }
-		|		
+		|
 		|        public void ScaleTransform(float p1, float p2)
 		|        {
 		|            M_Graphics.ScaleTransform(p1, p2);
 		|        }
-		|		
+		|
 		|        public void TranslateTransform(float p1, float p2)
 		|        {
 		|            M_Graphics.TranslateTransform(p1, p2);
 		|        }
-		|		
+		|
 		|        public void RotateTransform(float p1)
 		|        {
 		|            M_Graphics.RotateTransform(p1);
@@ -51060,7 +55252,7 @@
 		|            get
 		|            {
 		|                int count = 0;
-		|                foreach (KeyValuePair<string, object>  DictionaryEntry in M_Collection)
+		|                foreach (KeyValuePair<string, object> DictionaryEntry in M_Collection)
 		|                {
 		|                    count = count + 1;
 		|                }
@@ -51460,7 +55652,7 @@
 		|        {
 		|            node = treeNodeAdv;
 		|        }
-		|		
+		|
 		|        public TreeViewAdvEventArgs(Aga.Controls.Tree.TreeViewAdvEventArgs args)
 		|        {
 		|            node = args.Node;
@@ -51844,7 +56036,7 @@
 		|    {
 		|        public ClDockPaddingEdges dll_obj;
 		|        public System.Windows.Forms.ScrollableControl.DockPaddingEdges M_DockPaddingEdges;
-		|		
+		|
 		|        public DockPaddingEdges(osf.DockPaddingEdges p1)
 		|        {
 		|            M_DockPaddingEdges = p1.M_DockPaddingEdges;
@@ -51928,7 +56120,7 @@
 		|        {
 		|            M_Stream = (System.IO.Stream)new System.IO.MemoryStream();
 		|        }
-		|		
+		|
 		|        public Stream(osf.Stream p1)
 		|        {
 		|            M_Stream = p1.M_Stream;
@@ -52028,7 +56220,7 @@
 		|        {
 		|            M_ImageFormat = p1.M_ImageFormat;
 		|        }
-		|		
+		|
 		|        public ImageFormat(System.Drawing.Imaging.ImageFormat p1)
 		|        {
 		|            M_ImageFormat = p1;
@@ -52071,24 +56263,29 @@
 		|    public class Image
 		|    {
 		|        public System.Drawing.Image M_Image;
-		|		
+		|
 		|        public Image()
 		|        {
-		|        }
-		|		
-		|        public Image(Stream stream)
-		|        {
-		|            M_Image = System.Drawing.Image.FromStream((System.IO.Stream)stream.M_Stream);
 		|        }
 		|
 		|        public Image(osf.Image p1)
 		|        {
 		|            M_Image = p1.M_Image;
 		|        }
-		|		
+		|
+		|        public Image(Stream stream)
+		|        {
+		|            M_Image = System.Drawing.Image.FromStream((System.IO.Stream)stream.M_Stream);
+		|        }
+		|
 		|        public Image(System.Drawing.Image p1)
 		|        {
 		|            M_Image = p1;
+		|        }
+		|
+		|        public osf.ImageFormat RawFormat
+		|        {
+		|            get { return new ImageFormat(M_Image.RawFormat); }
 		|        }
 		|
 		|        public int Height
@@ -52096,9 +56293,34 @@
 		|            get { return M_Image.Height; }
 		|        }
 		|
-		|        public osf.ImageFormat  RawFormat
+		|        public int PixelFormat
 		|        {
-		|            get { return new ImageFormat(M_Image.RawFormat); }
+		|            get { return (int)M_Image.PixelFormat; }
+		|        }
+		|
+		|        public osf.Size Size
+		|        {
+		|            get { return new Size(M_Image.Size); }
+		|        }
+		|
+		|        public int Width
+		|        {
+		|            get { return M_Image.Width; }
+		|        }
+		|
+		|        public object Clone()
+		|        {
+		|            return M_Image.Clone();
+		|        }
+		|
+		|        public void Dispose()
+		|        {
+		|            M_Image.Dispose();
+		|        }
+		|
+		|        public void Save(Stream p1, ImageFormat p2)
+		|        {
+		|            M_Image.Save(p1.M_Stream, p2.M_ImageFormat);
 		|        }
 		|
 		|        public void Save(string p1, ImageFormat p2 = null)
@@ -52111,36 +56333,6 @@
 		|            {
 		|                M_Image.Save(p1, p2.M_ImageFormat);
 		|            }
-		|        }
-		|
-		|        public void Save(Stream p1, ImageFormat p2)
-		|        {
-		|            M_Image.Save(p1.M_Stream, p2.M_ImageFormat);
-		|        }
-		|
-		|        public osf.Size Size
-		|        {
-		|            get { return new Size(M_Image.Size); }
-		|        }
-		|
-		|        public int Width
-		|        {
-		|            get { return M_Image.Width; }
-		|        }
-		|		
-		|        public void Dispose()
-		|        {
-		|            M_Image.Dispose();
-		|        }
-		|
-		|        public object Clone()
-		|        {
-		|            return M_Image.Clone();
-		|        }
-		|		
-		|        public int PixelFormat
-		|        {
-		|            get { return (int)M_Image.PixelFormat; }
 		|        }
 		|    }//endClass
 		|}//endnamespace
@@ -52223,7 +56415,7 @@
 		|            Width = p1.Width;
 		|            Height = p1.Height;
 		|        }
-		|		
+		|
 		|        public Rectangle(System.Drawing.Rectangle p1)
 		|        {
 		|            M_Rectangle = p1;
@@ -52307,7 +56499,7 @@
 		|    {
 		|        public ClVersion dll_obj;
 		|        public System.Version M_Version;
-		|		
+		|
 		|        public Version(System.Version p1)
 		|        {
 		|            M_Version = p1;
@@ -52435,7 +56627,7 @@
 		|        {
 		|            M_Size = p1.M_Size;
 		|        }
-		|		
+		|
 		|        public Size(System.Drawing.Size p1)
 		|        {
 		|            M_Size = p1;
@@ -52471,7 +56663,7 @@
 		|        {
 		|            M_Point = new System.Drawing.Point(x, y);
 		|        }
-		|		
+		|
 		|        public Point(osf.Point p1)
 		|        {
 		|            M_Point = p1.M_Point;
@@ -53478,7 +57670,7 @@
 		|                base.M_Control = m_ScrollableControl;
 		|            }
 		|        }
-		|		
+		|
 		|        public bool AutoScroll
 		|        {
 		|            get { return m_ScrollableControl.AutoScroll; }
@@ -53574,7 +57766,7 @@
 		|            M_Form.FormClosing += M_Form_FormClosing;
 		|            Closing = """";
 		|        }
-		|		
+		|
 		|        public void M_Form_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
 		|        {
 		|            if (Closing.Length > 0)
@@ -53591,7 +57783,7 @@
 		|                e.Cancel = FormClosingEventArgs1.Cancel;
 		|            }
 		|        }
-		|		
+		|
 		|        public void M_Form_Activated(object sender, System.EventArgs e)
 		|        {
 		|            if (Activated.Length > 0)
@@ -53605,7 +57797,7 @@
 		|                OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.Activated);
 		|            }
 		|        }
-		|		
+		|
 		|        public void M_Form_Deactivate(object sender, System.EventArgs e)
 		|        {
 		|            if (Deactivate.Length > 0)
@@ -54044,7 +58236,7 @@
 		|    public class Control : Component
 		|    {
 		|        private System.Windows.Forms.Control m_Control;
-		|		
+		|
 		|        public System.Windows.Forms.Control M_Control
 		|        {
 		|            get { return m_Control; }
@@ -54096,7 +58288,7 @@
 		|                ControlRemoved = """";
 		|            }//endset
 		|        }
-		|		
+		|
 		|        public Control(System.Windows.Forms.Control control = null)
 		|        {
 		|        }
@@ -54789,7 +58981,7 @@
 		|            get { return (int)M_Control.Anchor; }
 		|            set { M_Control.Anchor = (System.Windows.Forms.AnchorStyles)value; }
 		|        }
-		|		
+		|
 		|        public bool DoubleBuffered
 		|        {
 		|            get
@@ -54846,7 +59038,7 @@
 		|                M_Control,
 		|                null);
 		|        }
-		|		
+		|
 		|        public void PlaceLeft(Control p1, int p2)
 		|        {
 		|            p1.M_Control.Location = new System.Drawing.Point(p1.M_Control.Left - Width - p2, p1.M_Control.Top);
@@ -54863,7 +59055,7 @@
 		|        {
 		|            p1.M_Control.Location = new System.Drawing.Point(p1.M_Control.Left, p1.M_Control.Top + p1.M_Control.Height + p2);
 		|        }
-		|		
+		|
 		|        public void Refresh()
 		|        {
 		|            M_Control.Refresh();
@@ -54947,7 +59139,7 @@
 		|            M_Control.SuspendLayout();
 		|            //System.Windows.Forms.Application.DoEvents();
 		|        }
-		|		
+		|
 		|        public void Update()
 		|        {
 		|            M_Control.Update();
@@ -54977,7 +59169,7 @@
 		|        {
 		|            return new Graphics(M_Control.CreateGraphics());
 		|        }
-		|		
+		|
 		|        public void CreateControl()
 		|        {
 		|            M_Control.CreateControl();
@@ -54987,7 +59179,7 @@
 		|        {
 		|            return new Point(M_Control.PointToClient(p1.M_Point));
 		|        }
-		|		
+		|
 		|        public osf.Point PointToScreen(Point p1)
 		|        {
 		|            return new Point(M_Control.PointToScreen(p1.M_Point));
@@ -55091,7 +59283,7 @@
 		|    {
 		|        private System.Windows.Forms.ButtonBase m_ButtonBase;
 		|        private osf.Bitmap image;
-		|		
+		|
 		|        public System.Windows.Forms.ButtonBase M_ButtonBase
 		|        {
 		|            get { return m_ButtonBase; }
@@ -55105,7 +59297,7 @@
 		|        public ButtonBase()
 		|        {
 		|        }
-		|		
+		|
 		|        public int FlatStyle
 		|        {
 		|            get { return (int)M_ButtonBase.FlatStyle; }
@@ -55153,469 +59345,666 @@
 		ТекстДокХХХ.УстановитьТекст(СтрВыгрузки);
 		ТекстДокХХХ.Записать(КаталогВыгрузки + "\" + ИмяФайлаCs + ".cs");
 	КонецЕсли;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 КонецПроцедуры//СоздатьФайлCs
+
+Функция ПроверитьКоличествоНезавершенных()
+	КолНезавершенных = 0;
+	Для А67 = 0 По СписокПроцессов.Количество() - 1 Цикл
+		Проц = СписокПроцессов.Получить(А67).Значение;
+		Если Не Проц.Завершен Тогда
+			КолНезавершенных = КолНезавершенных + 1;
+		КонецЕсли;
+	КонецЦикла;
+	Возврат КолНезавершенных;
+КонецФункции
+
+Функция Команда1(ИмяФайла, Аргументы)
+	ИнформацияЗапускаПроцесса1 = Ф.ИнформацияЗапускаПроцесса();
+	ИнформацияЗапускаПроцесса1.ИмяФайла = ИмяФайла;
+	ИнформацияЗапускаПроцесса1.Аргументы = Аргументы;
+	ИнформацияЗапускаПроцесса1.СоздатьБезОкна = Истина;
+	ИнформацияЗапускаПроцесса1.ИспользоватьОболочку = Ложь;
+	ИнформацияЗапускаПроцесса1.СтильОкна = Ф.СтильОкнаПроцесса.Скрытое;
+
+	Процесс1 = Ф.Процесс();
+	СписокПроцессов.Добавить(Процесс1);
+	Процесс1.НачальнаяИнформация = ИнформацияЗапускаПроцесса1;
+	Процесс1.Начать();
+	Ф.ПередатьУправление();
+КонецФункции//Команда1
 
 Процедура СортировкаКода()
 	Таймер = ТекущаяУниверсальнаяДатаВМиллисекундах();
 	
+	ТекстТемпФайла = "
+	|Перем КаталогВыгрузки;
+	|
+	|Функция СтрНайтиМежду(СтрПараметр, Фрагмент1 = Неопределено, Фрагмент2 = Неопределено, ИсключитьФрагменты = Истина, БезНаложения = Истина)
+	|	//Стр - исходная строка
+	|	//Фрагмент1 - подстрока поиска от которой ведем поиск
+	|	//Фрагмент2 - подстрока поиска до которой ведем поиск
+	|	//ИсключитьФрагменты - не включать Фрагмент1 и Фрагмент2 в результат
+	|	//БезНаложения - в результат не будут включены участки, содержащие другие найденные участки, удовлетворяющие переданным параметрам
+	|	//функция возвращает массив строк
+	|	Стр = СтрПараметр;
+	|	М = Новый Массив;
+	|	Если (Фрагмент1 <> Неопределено) и (Фрагмент2 = Неопределено) Тогда
+	|		Позиция = Найти(Стр, Фрагмент1);
+	|		Пока Позиция > 0 Цикл
+	|			М.Добавить(?(ИсключитьФрагменты, Сред(Стр, Позиция + СтрДлина(Фрагмент1)), Сред(Стр, Позиция)));
+	|			Стр = Сред(Стр, Позиция + 1);
+	|			Позиция = Найти(Стр, Фрагмент1);
+	|		КонецЦикла;
+	|	ИначеЕсли (Фрагмент1 = Неопределено) и (Фрагмент2 <> Неопределено) Тогда
+	|		Позиция = Найти(Стр, Фрагмент2);
+	|		СуммаПозиций = Позиция;
+	|		Пока Позиция > 0 Цикл
+	|			М.Добавить(?(ИсключитьФрагменты, Сред(Стр, 1, СуммаПозиций - 1), Сред(Стр, 1, СуммаПозиций - 1 + СтрДлина(Фрагмент2))));
+	|			Позиция = Найти(Сред(Стр, СуммаПозиций + 1), Фрагмент2);
+	|			СуммаПозиций = СуммаПозиций + Позиция;
+	|		КонецЦикла;
+	|	ИначеЕсли (Фрагмент1 <> Неопределено) и (Фрагмент2 <> Неопределено) Тогда
+	|		Позиция = Найти(Стр, Фрагмент1);
+	|		Пока Позиция > 0 Цикл
+	|			Стр2 = ?(ИсключитьФрагменты, Сред(Стр, Позиция + СтрДлина(Фрагмент1)), Сред(Стр, Позиция));
+	|			Позиция2 = Найти(Стр2, Фрагмент2);
+	|			СуммаПозиций2 = Позиция2;
+	|			Пока Позиция2 > 0 Цикл
+	|				Если БезНаложения Тогда
+	|					Если Найти(Сред(Стр2, 1, СуммаПозиций2 - 1), Фрагмент2) = 0 Тогда
+	|						М.Добавить("""" + ?(ИсключитьФрагменты, Сред(Стр2, 1, СуммаПозиций2 - 1), Сред(Стр2, 1, СуммаПозиций2 - 1 + СтрДлина(Фрагмент2))));
+	|					КонецЕсли;
+	|				Иначе
+	|					М.Добавить("""" + ?(ИсключитьФрагменты, Сред(Стр2, 1, СуммаПозиций2 - 1), Сред(Стр2, 1, СуммаПозиций2 - 1 + СтрДлина(Фрагмент2))));
+	|				КонецЕсли;
+	|				Позиция2 = Найти(Сред(Стр2, СуммаПозиций2 + 1), Фрагмент2);
+	|				СуммаПозиций2 = СуммаПозиций2 + Позиция2;
+	|			КонецЦикла;
+	|			Стр = Сред(Стр, Позиция + 1);
+	|			Позиция = Найти(Стр, Фрагмент1);
+	|		КонецЦикла;
+	|	КонецЕсли;
+	|	
+	|	Возврат М;
+	|КонецФункции//СтрНайтиМежду	
+	|
+	|Функция СортировкаКласса2Уровня(СтрКласса)
+	|	Стр = СтрЗаменить(СтрКласса,  ""}//endClass"", ""//end"");
+	|	
+	|	М3 = СтрНайтиМежду(Стр, ""[DllImport"", "";"", Ложь, );
+	|	Для А = 0 По М3.ВГраница() Цикл
+	|		Стр = СтрЗаменить(Стр, М3[А], """");
+	|	КонецЦикла;
+	|	
+	|	//повставлять \r\n//end перед каждым private, public, [DllImport
+	|	Стр = СтрЗаменить(Стр, ""private"", ""//end"" + Символы.ПС + ""private"");
+	|	Стр = СтрЗаменить(Стр, ""public"", ""//end"" + Символы.ПС + ""public"");
+	|	
+	|	Голова = """";
+	|	Поля = Новый СписокЗначений;
+	|	Конструкторы = Новый СписокЗначений;
+	|	Свойства = Новый СписокЗначений;
+	|	Методы = Новый СписокЗначений;
+	|	
+	|	М = Новый Массив;
+	|	М1 = СтрНайтиМежду(Стр, ""private"", ""//end"", , );
+	|	М2 = СтрНайтиМежду(Стр, ""public"", ""//end"", , );
+	|	Для А = 0 По М1.ВГраница() Цикл
+	|		М.Добавить(""private"" + М1[А]);
+	|	КонецЦикла;
+	|	Для А = 0 По М2.ВГраница() Цикл
+	|		М.Добавить(""public"" + М2[А]);
+	|	КонецЦикла;
+	|	Для А = 0 По М3.ВГраница() Цикл
+	|		М.Добавить("""" + М3[А]);
+	|	КонецЦикла;
+	|	
+	|	Для А = 0 По М.ВГраница() Цикл
+	|		Фрагмент = СокрЛП(М[А]);
+	|		ВтороеСловоВоФрагменте = """";
+	|		М125 = СтрРазделить(Фрагмент, """");
+	|		Если М125.Количество() > 0 Тогда
+	|			ВтороеСловоВоФрагменте = М125[1];
+	|		КонецЕсли;
+	|		
+	|		ИмяКласса = """";
+	|		СтрокаСИменемКласса = СтрПолучитьСтроку(СокрЛП(СтрКласса), 1);
+	|		ИмяКласса = СтрРазделить(СтрПолучитьСтроку(СокрЛП(СтрКласса), 1), "" "")[2];
+	|		
+	|		// если есть слово class тогда это Голова
+	|		Если СтрНайти(Фрагмент, ""class"") > 0 Тогда
+	|			Голова = Голова + Символы.ПС + ""    "" + Фрагмент;
+	|		// если последний знак ; тогда это Поля
+	|		ИначеЕсли (Прав(Фрагмент, 1) = "";"") или (СтрНайти(Фрагмент, ""DllImport"") > 0) Тогда
+	|			//создать представление
+	|			Поля.Добавить(""        "" + Фрагмент, СтрРазделить(СтрПолучитьСтроку(Фрагмент, 1), "" "")[2]);
+	|		// если первая строка содержит имя класса со следующей за ним скобкой тогда это Конструкторы
+	|		ИначеЕсли Лев(ВтороеСловоВоФрагменте, СтрДлина(ИмяКласса + ""("")) = ИмяКласса + ""("" Тогда
+	|			Конструкторы.Добавить(""        "" + Фрагмент);
+	|		// если есть слово set или get тогда это Свойства
+	|		ИначеЕсли (СтрНайти(Фрагмент, ""get"") > 0) или (СтрНайти(Фрагмент, ""set"") > 0) Тогда
+	|			Свойства.Добавить(""        "" + Фрагмент, СтрРазделить(СтрПолучитьСтроку(Фрагмент, 1), "" "")[2]);
+	|		// если в первой строке есть скобка ( тогда это Методы
+	|		ИначеЕсли СтрНайти(СтрПолучитьСтроку(Фрагмент, 1), ""("") > 0 Тогда
+	|			Методы.Добавить(""        "" + Фрагмент, СтрРазделить(СтрПолучитьСтроку(Фрагмент, 1), "" "")[2]);
+	|		// иначе сообщить этот фрагмент
+	|		Иначе
+	|			Сообщить(""====================================="");
+	|			Сообщить(""Не обработан фрагмент "" + Символы.ПС + М[А]);
+	|			Сообщить(""====================================="");
+	|		КонецЕсли;
+	|	КонецЦикла;
+	|	
+	|	Поля.СортироватьПоПредставлению();
+	|	Конструкторы.СортироватьПоЗначению();
+	|	Свойства.СортироватьПоПредставлению();
+	|	Методы.СортироватьПоПредставлению();
+	|
+	|	Стр = Голова;
+	|	Для А = 0 По Поля.Количество() - 1 Цикл
+	|		Стр = Стр + Символы.ПС + Поля.Получить(А).Значение;
+	|	КонецЦикла;
+	|	Для А = 0 По Конструкторы.Количество() - 1 Цикл
+	|		Стр = Стр + Символы.ПС + Символы.ПС + Конструкторы.Получить(А).Значение;
+	|	КонецЦикла;
+	|	Если Свойства.Количество() > 0 Тогда
+	|		Стр = Стр + Символы.ПС + Символы.ПС + ""        //Свойства============================================================"";
+	|		Для А = 0 По Свойства.Количество() - 1 Цикл
+	|			Стр = Стр + Символы.ПС + Символы.ПС + Свойства.Получить(А).Значение;
+	|		КонецЦикла;
+	|	КонецЕсли;
+	|	Если Методы.Количество() > 0 Тогда
+	|		Стр = Стр + Символы.ПС + Символы.ПС + ""        //Методы============================================================"";
+	|		Для А = 0 По Методы.Количество() - 1 Цикл
+	|			Стр = Стр + Символы.ПС + Символы.ПС + Методы.Получить(А).Значение;
+	|		КонецЦикла;
+	|	КонецЕсли;
+	|	
+	|	ПодстрокаПоиска = ""ControlRemoved = """""""";
+	|	|            }"";
+	|	ПодстрокаЗамены = ""ControlRemoved = """""""";
+	|	|            }
+	|	|        }
+	|	|"";
+	|	Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|	
+	|	Возврат Стр;
+	|КонецФункции//СортировкаКласса2Уровня(СтрКласса)	
+	|
+	|КаталогВыгрузки = """ + КаталогВыгрузки + """;// без слэша в конце
+	|ИмяСортируемого = ""НовоеИмяСортируемого"";
+	|СтрДирективы = """";
+	|Директивы = Новый СписокЗначений;
+	|Классы1Уровня = Новый СписокЗначений;
+	|Классы2Уровня = Новый СписокЗначений;
+	|Классы3Уровня = Новый СписокЗначений;
+	|
+	|Если ИмяСортируемого = ""ExtractIconClass.cs"" или 
+	|	ИмяСортируемого = ""FormsCollection.cs"" или 
+	|	ИмяСортируемого = ""DataGridViewGrouper.cs"" или 
+	|	ИмяСортируемого = ""DataGridViewGrouperControl.cs"" или 
+	|	ИмяСортируемого = ""TreeViewAdv.cs"" или 
+	|	ИмяСортируемого = ""TreeColumnCollection.cs"" или 
+	|	ИмяСортируемого = ""TreeNodeAdvCollection.cs"" или 
+	|	ИмяСортируемого = ""TreeNodeAdv.cs"" или 
+	|	ИмяСортируемого = ""NodeCheckBox.cs"" или 
+	|	ИмяСортируемого = ""NodeControlsCollection.cs"" или 
+	|	ИмяСортируемого = ""TreeViewAdvSupport.cs"" или 
+	|	ИмяСортируемого = ""NodeStateIcon.cs"" или 
+	|	ИмяСортируемого = ""NodeComboBox.cs"" или 
+	|	ИмяСортируемого = ""NodeDecimalTextBox.cs"" или 
+	|	ИмяСортируемого = ""NodeNumericUpDown.cs"" или 
+	|	ИмяСортируемого = ""NodeTextBox.cs"" или 
+	|	ИмяСортируемого = ""NodeComboBoxObjectCollection.cs"" или 
+	|	ИмяСортируемого = ""SelectedTreeNodeAdvCollection.cs"" или 
+	|	ИмяСортируемого = ""RoundRect.cs"" или 
+	|	ИмяСортируемого = ""DataGridViewCellExHelper.cs"" или 
+	|	ИмяСортируемого = ""DataGridViewHelper.cs"" или 
+	|	ИмяСортируемого = ""ISpannedCell.cs"" или 
+	|	ИмяСортируемого = ""MultithreadedTCPServer.cs"" или 
+	|	ИмяСортируемого = ""TreeColumn.cs"" или 
+	|	ИмяСортируемого = ""NetworkStream.cs"" или 
+	|	ИмяСортируемого = ""SupportTCPServer.cs"" или 
+	|	ИмяСортируемого = ""MultithreadedTCPServer.cs"" или 
+	|	ИмяСортируемого = ""MultithreadedTCPServerSSL.cs"" или 
+	|	ИмяСортируемого = ""TCPClient.cs"" или 
+	|	ИмяСортируемого = ""TCPListener.cs"" или 
+	|	ИмяСортируемого = ""TCPClientSSL.cs"" или 
+	|	ИмяСортируемого = ""ServerEventArgs.cs"" или 
+	|	ИмяСортируемого = ""SslStreamWrapper.cs"" 
+	|	
+	|	Тогда
+	|	
+	|Иначе
+	|	ТекстДок = Новый ТекстовыйДокумент;
+	|	ТекстДок.Прочитать(КаталогВыгрузки + ""\"" + ИмяСортируемого);
+	|
+	|	Стр = ТекстДок.ПолучитьТекст();
+	|	М = СтрНайтиМежду(Стр, ""using"", ""namespace"", , );
+	|	Если М.Количество() > 0 Тогда
+	|		СтрДирективы = М[0];
+	|		СтрДирективы = СокрЛП(СтрДирективы);
+	|		Директивы.Добавить(""using "" + СтрДирективы);
+	|	КонецЕсли;
+	|
+	|	Если Не (СтрДирективы = """") Тогда
+	|		Стр = СтрЗаменить(Стр, СтрДирективы, """");
+	|	КонецЕсли;
+	|
+	|	//Классы3Уровня оставляем без изменения
+	|	М = СтрНайтиМежду(Стр, ""[ContextClass"", ""//endClass"", , );
+	|	Если М.Количество() > 0 Тогда
+	|		Для А1 = 0 По М.ВГраница() Цикл
+	|			СтрКлассы3Уровня = М[А1];
+	|			СтрКлассы3Уровня = СокрЛП(СтрКлассы3Уровня);
+	|			Классы3Уровня.Добавить(""    [ContextClass"" + СтрКлассы3Уровня);
+	|		КонецЦикла;
+	|		Стр = СтрЗаменить(Стр, СтрКлассы3Уровня, """");
+	|	КонецЕсли;
+	|
+	|	//Классы1Уровня оставляем без изменения
+	|	М = СтрНайтиМежду(Стр, ""public class"", ""//endClass"", Ложь, );
+	|	Если М.Количество() > 0 Тогда
+	|		Для А1 = 0 По М.ВГраница() Цикл
+	|			Если СтрНайти(М[А1], ""Ex :"") > 0 Тогда
+	|				СтрКлассы1Уровня = М[А1];
+	|				СтрКлассы1Уровня = СтрЗаменить(СтрКлассы1Уровня, ""//endClass"", """");
+	|				СтрКлассы1Уровня = СокрЛП(СтрКлассы1Уровня);
+	|				Классы1Уровня.Добавить(""    "" + СтрКлассы1Уровня);
+	|				Стр = СтрЗаменить(Стр, СтрКлассы1Уровня, """");
+	|			Иначе
+	|				СтрКлассы2Уровня = М[А1];
+	|				СтрКлассы2Уровня = СокрЛП(СтрКлассы2Уровня);
+	|				Классы2Уровня.Добавить(СортировкаКласса2Уровня(СтрКлассы2Уровня));
+	|				Стр = СтрЗаменить(Стр, СтрКлассы2Уровня, """");
+	|			КонецЕсли;
+	|		КонецЦикла;
+	|	КонецЕсли;
+	|
+	|	//Классы1Уровня оставляем без изменения
+	|	М = СтрНайтиМежду(Стр, ""public sealed class"", ""//endClass"", Ложь, );
+	|	Если М.Количество() > 0 Тогда
+	|		Для А1 = 0 По М.ВГраница() Цикл
+	|			Если СтрНайти(М[А1], ""Ex :"") > 0 Тогда
+	|				СтрКлассы1Уровня = М[А1];
+	|				СтрКлассы1Уровня = СтрЗаменить(СтрКлассы1Уровня, ""//endClass"", """");
+	|				СтрКлассы1Уровня = СокрЛП(СтрКлассы1Уровня);
+	|				Классы1Уровня.Добавить(""    "" + СтрКлассы1Уровня);
+	|				Стр = СтрЗаменить(Стр, СтрКлассы1Уровня, """");
+	|			Иначе
+	|				СтрКлассы2Уровня = М[А1];
+	|				СтрКлассы2Уровня = СокрЛП(СтрКлассы2Уровня);
+	|				Классы2Уровня.Добавить(СортировкаКласса2Уровня(СтрКлассы2Уровня));
+	|				Стр = СтрЗаменить(Стр, СтрКлассы2Уровня, """");
+	|			КонецЕсли;
+	|		КонецЦикла;
+	|	КонецЕсли;
+	|
+	|	Директивы.СортироватьПоЗначению();
+	|	Стр = """";
+	|
+	|	Для А1 = 0 По Директивы.Количество() - 1 Цикл
+	|			Стр = Стр + Символы.ПС + Директивы.Получить(А1).Значение;
+	|	КонецЦикла;
+	|	Стр = Стр + Символы.ПС + Символы.ПС + ""namespace osf"" + Символы.ПС + ""{"";
+	|	Для А1 = 0 По Классы1Уровня.Количество() - 1 Цикл
+	|		Стр = Стр + Символы.ПС + Классы1Уровня.Получить(А1).Значение;
+	|	КонецЦикла;
+	|	Если Классы2Уровня.Количество() > 0 Тогда
+	|		Для А1 = 0 По Классы2Уровня.Количество() - 1 Цикл
+	|			Стр = Стр + Символы.ПС + Классы2Уровня.Получить(А1).Значение;
+	|			Стр = Стр + Символы.ПС;
+	|			Стр = Стр + Символы.ПС + ""    }"" + Символы.ПС;
+	|		КонецЦикла;
+	|	КонецЕсли;
+	|	Для А1 = 0 По Классы3Уровня.Количество() - 1 Цикл
+	|		Стр = Стр + Символы.ПС + Классы3Уровня.Получить(А1).Значение;
+	|	КонецЦикла;
+	|	Стр = Стр + Символы.ПС + ""}"";
+	|
+	|	//удалим ""//endMethods""
+	|	СтрКонечная = """";
+	|	Для А1 = 1 По СтрЧислоСтрок(Стр) - 1 Цикл
+	|		Фрагмент1 = СокрЛП(СтрПолучитьСтроку(Стр, А1)) + СокрЛП(СтрПолучитьСтроку(Стр, А1 + 1));
+	|		Если Не (Фрагмент1 = ""//endMethods"") Тогда
+	|			СтрКонечная = СтрКонечная + Символы.ПС + СтрПолучитьСтроку(Стр, А1);
+	|		КонецЕсли;
+	|	КонецЦикла;
+	|	СтрКонечная = СтрКонечная + Символы.ПС + СтрПолучитьСтроку(Стр, СтрЧислоСтрок(Стр));
+	|	Стр = СтрКонечная;
+	|	СтрКонечная = """";
+	|	Для А1 = 1 По СтрЧислоСтрок(Стр) Цикл
+	|		Если Не (СокрЛП(СтрПолучитьСтроку(Стр, А1)) = ""//endMethods"") Тогда
+	|			СтрКонечная = СтрКонечная + Символы.ПС + СтрПолучитьСтроку(Стр, А1);
+	|		КонецЕсли;
+	|	КонецЦикла;
+	|
+	|	//удалим ""//endProperty""
+	|	Стр = СтрКонечная;
+	|	СтрКонечная = """";
+	|	Для А1 = 1 По СтрЧислоСтрок(Стр) - 1 Цикл
+	|		Фрагмент1 = СокрЛП(СтрПолучитьСтроку(Стр, А1)) + СокрЛП(СтрПолучитьСтроку(Стр, А1 + 1));
+	|		Если Не (Фрагмент1 = ""//endProperty"") Тогда
+	|			СтрКонечная = СтрКонечная + Символы.ПС + СтрПолучитьСтроку(Стр, А1);
+	|		КонецЕсли;
+	|	КонецЦикла;
+	|	СтрКонечная = СтрКонечная + Символы.ПС + СтрПолучитьСтроку(Стр, СтрЧислоСтрок(Стр));
+	|	Стр = СтрКонечная;
+	|	СтрКонечная = """";
+	|	Для А1 = 1 По СтрЧислоСтрок(Стр) Цикл
+	|		Если Не (СокрЛП(СтрПолучитьСтроку(Стр, А1)) = ""//endProperty"") Тогда
+	|			СтрКонечная = СтрКонечная + Символы.ПС + СтрПолучитьСтроку(Стр, А1);
+	|		КонецЕсли;
+	|	КонецЦикла;
+	|
+	|	СтрКонечная = СтрЗаменить(СтрКонечная, ""//Свойства============================================================"", """");
+	|	СтрКонечная = СтрЗаменить(СтрКонечная, ""//Методы============================================================"", """");
+	|
+	|	ПодстрокаПоиска = "">
+	|	|    {
+	|	|
+	|	|        public"";
+	|	ПодстрокаЗамены = "">
+	|	|    {
+	|	|        public"";
+	|	СтрКонечная = СтрЗаменить(СтрКонечная, ПодстрокаПоиска, ПодстрокаЗамены);
+	|
+	|	ПодстрокаПоиска = ""}
+	|	|
+	|	|    }
+	|	|
+	|	|    [ContextClass"";
+	|	ПодстрокаЗамены = ""}
+	|	|    }
+	|	|
+	|	|    [ContextClass"";
+	|	СтрКонечная = СтрЗаменить(СтрКонечная, ПодстрокаПоиска, ПодстрокаЗамены);
+	|
+	|	ПодстрокаПоиска = ""osf
+	|	|{
+	|	|
+	|	|    public"";
+	|	ПодстрокаЗамены = ""osf
+	|	|{
+	|	|    public"";
+	|	СтрКонечная = СтрЗаменить(СтрКонечная, ПодстрокаПоиска, ПодстрокаЗамены);
+	|
+	|	ПодстрокаПоиска = ""}
+	|	|
+	|	|    }
+	|	|}"";
+	|	ПодстрокаЗамены = ""}
+	|	|    }
+	|	|}"";
+	|	СтрКонечная = СтрЗаменить(СтрКонечная, ПодстрокаПоиска, ПодстрокаЗамены);
+	|
+	|	ПодстрокаПоиска = ""}
+	|	|
+	|	|    }
+	|	|
+	|	|    public class"";
+	|	ПодстрокаЗамены = ""}
+	|	|    }
+	|	|
+	|	|    public class"";
+	|	СтрКонечная = СтрЗаменить(СтрКонечная, ПодстрокаПоиска, ПодстрокаЗамены);
+	|
+	|	ПодстрокаПоиска = ""}
+	|	|
+	|	|    }
+	|	|
+	|	|}"";
+	|	ПодстрокаЗамены = ""}
+	|	|    }
+	|	|}"";
+	|	СтрКонечная = СтрЗаменить(СтрКонечная, ПодстрокаПоиска, ПодстрокаЗамены);
+	|
+	|	ПодстрокаПоиска = "";
+	|	|        }
+	|	|
+	|	|    }"";
+	|	ПодстрокаЗамены = "";
+	|	|        }
+	|	|    }"";
+	|	СтрКонечная = СтрЗаменить(СтрКонечная, ПодстрокаПоиска, ПодстрокаЗамены);
+	|
+	|	//заменим две пустые строки подряд на одну пустую
+	|	Стр = СтрКонечная;
+	|	СтрКонечная = """";
+	|	Для А1 = 1 По СтрЧислоСтрок(Стр) - 1 Цикл
+	|		Фрагмент1 = СокрЛП(СтрПолучитьСтроку(Стр, А1)) + СокрЛП(СтрПолучитьСтроку(Стр, А1 + 1));
+	|		Если Не (Фрагмент1 = """") Тогда
+	|			СтрКонечная = СтрКонечная + Символы.ПС + СтрПолучитьСтроку(Стр, А1);
+	|		КонецЕсли;
+	|	КонецЦикла;
+	|	СтрКонечная = СтрКонечная + Символы.ПС + СтрПолучитьСтроку(Стр, СтрЧислоСтрок(Стр));
+	|
+	|	//удалим ""//end_constr""
+	|	ПодстрокаПоиска = ""//end_constr"";
+	|	ПодстрокаЗамены = """";
+	|	СтрКонечная = СтрЗаменить(СтрКонечная, ПодстрокаПоиска, ПодстрокаЗамены);
+	|
+	|	СтрКонечная = СокрЛП(СтрКонечная);
+	|
+	|	ТекстДок.УстановитьТекст(СтрКонечная);
+	|	ТекстДок.Записать(КаталогВыгрузки + ""\"" + ИмяСортируемого);
+	|КонецЕсли;
+	|
+	|Если ИмяСортируемого = ""FormsCollection.cs"" или 
+	|	ИмяСортируемого = ""DataGridViewGrouper.cs"" или 
+	|	ИмяСортируемого = ""DataGridViewGrouperControl.cs"" Тогда
+	|	
+	|	ТекстДок = Новый ТекстовыйДокумент;
+	|	ТекстДок.Прочитать(КаталогВыгрузки + ""\"" + ИмяСортируемого);
+	|	Стр = ТекстДок.ПолучитьТекст();
+	|	
+	|	ПодстрокаПоиска = ""        }
+	|	|        
+	|	|        //endMethods
+	|	|    }//endClass
+	|	|
+	|	|}//endnamespace"";
+	|	ПодстрокаЗамены = ""        }
+	|	|    }
+	|	|}"";
+	|	Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|	
+	|	ПодстрокаПоиска = ""//endProperty
+	|	|        //Методы============================================================"";
+	|	ПодстрокаЗамены = ""//Методы============================================================"";
+	|	Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|	
+	|	ТекстДок.УстановитьТекст(Стр);
+	|	ТекстДок.Записать(КаталогВыгрузки + ""\"" + ИмяСортируемого);
+	|ИначеЕсли ИмяСортируемого = ""TreeViewAdv.cs"" Тогда
+	|	ТекстДок = Новый ТекстовыйДокумент;
+	|	ТекстДок.Прочитать(КаталогВыгрузки + ""\"" + ИмяСортируемого);
+	|	Стр = ТекстДок.ПолучитьТекст();
+	|	
+	|	ПодстрокаПоиска = ""//endTreeViewAdv"";
+	|	ПодстрокаЗамены = """";
+	|	Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|	
+	|	ТекстДок.УстановитьТекст(Стр);
+	|	ТекстДок.Записать(КаталогВыгрузки + ""\"" + ИмяСортируемого);
+	|КонецЕсли;
+	|
+	|ТекстДок = Новый ТекстовыйДокумент;
+	|ТекстДок.Прочитать(КаталогВыгрузки + ""\"" + ИмяСортируемого);
+	|Стр = ТекстДок.ПолучитьТекст();
+	|
+	|ПодстрокаПоиска = ""}
+	||        
+	||        ["";
+	|ПодстрокаЗамены = ""}
+	||
+	||        ["";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|
+	|ПодстрокаПоиска = ""}
+	||        
+	||    }"";
+	|ПодстрокаЗамены = ""}
+	||
+	||    }"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|
+	|ПодстрокаПоиска = ""}
+	||        
+	||        public"";
+	|ПодстрокаЗамены = ""}
+	||
+	||        public"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|ПодстрокаПоиска = ""Base_obj;
+	||        
+	||        [ContextProperty"";
+	|ПодстрокаЗамены = ""Base_obj;
+	||
+	||        [ContextProperty"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|ПодстрокаПоиска = ""Base_obj;
+	||        
+	||    }"";
+	|ПодстрокаЗамены = ""Base_obj;
+	||
+	||    }"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|ПодстрокаПоиска = ""{
+	||        
+	||        [ContextMethod"";
+	|ПодстрокаЗамены = ""{
+	||
+	||        [ContextMethod"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|ПодстрокаПоиска = ""private int m_narrowHorizontal = (int)System.Drawing.Drawing2D.HatchStyle.NarrowHorizontal; // 27 Горизонтальные линии, расположенные на 75 процентов ближе друг к другу, чем при штриховке <B>Горизонтальная&nbsp;(Horizontal)</B> (или на 25 процентов ближе друг к другу, чем при штриховке <B>СветлаяГоризонтальная&nbsp;(LightHorizontal)</B>)."";
+	|ПодстрокаЗамены = ""private int m_narrowHorizontal = (int)System.Drawing.Drawing2D.HatchStyle.NarrowHorizontal; // 27 Горизонтальные линии, расположенные на 75 процентов ближе друг к другу, чем при штриховке <B>Горизонтальная&nbsp;(Horizontal)</B>  (или на 25 процентов ближе друг к другу, чем при штриховке <B>СветлаяГоризонтальная&nbsp;(LightHorizontal)</B>)."";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|ПодстрокаПоиска = ""{
+	||        
+	||        [ContextProperty"";
+	|ПодстрокаЗамены = ""{
+	||
+	||        [ContextProperty"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|ПодстрокаПоиска = ""        }
+	||        
+	||        //endMethods
+	||    }//endClass
+	||
+	||}//endnamespace"";
+	|ПодстрокаЗамены = ""        }
+	||
+	||    }
+	||}"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|ПодстрокаПоиска = ""}
+	||
+	||        //endMethods
+	||    }//endClass
+	||
+	||}//endnamespace"";
+	|ПодстрокаЗамены = ""}
+	||
+	||    }
+	||}"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|ПодстрокаПоиска = ""}
+	||    }//endClass
+	||}//endnamespace"";
+	|ПодстрокаЗамены = ""}
+	||    }
+	||}"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|ПодстрокаПоиска = ""Base_obj;
+	||        
+	||        [ContextMethod"";
+	|ПодстрокаЗамены = ""Base_obj;
+	||
+	||        [ContextMethod"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|ПодстрокаПоиска = ""        //endProperty
+	||        //Методы============================================================"";
+	|ПодстрокаЗамены = ""        //Методы============================================================"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|ПодстрокаПоиска = ""    public bool IsSubclassOf(osf.Type p1)"";
+	|ПодстрокаЗамены = ""        public bool IsSubclassOf(osf.Type p1)"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|ПодстрокаПоиска = ""        //Методы============================================================
+	||        //endMethods
+	||    }//endClass
+	||
+	||}//endnamespace"";
+	|ПодстрокаЗамены = ""        //Методы============================================================
+	||
+	||    }
+	||}"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|ПодстрокаПоиска = ""//end_constr"";
+	|ПодстрокаЗамены = """";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|ПодстрокаПоиска = ""        //Свойства============================================================
+	||        [ContextProperty"";
+	|ПодстрокаЗамены = ""        [ContextProperty"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|ПодстрокаПоиска = ""        //Методы============================================================
+	||        [ContextMethod"";
+	|ПодстрокаЗамены = ""        [ContextMethod"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|ПодстрокаПоиска = ""        //Методы============================================================
+	||
+	||    }"";
+	|ПодстрокаЗамены = ""    }"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|
+	|ТекстДок.УстановитьТекст(Стр);
+	|ТекстДок.Записать(КаталогВыгрузки + ""\"" + ИмяСортируемого);
+	|";
+
 	ВыбранныеФайлы = НайтиФайлы(КаталогВыгрузки, "*.cs", Ложь);
 	Найдено1 = 0;
-	Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
-		СтрДирективы = "";
-		Директивы = Новый СписокЗначений;
-		Классы1Уровня = Новый СписокЗначений;
-		Классы2Уровня = Новый СписокЗначений;
-		Классы3Уровня = Новый СписокЗначений;
+	Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл //ВыбранныеФайлы.ВГраница()
+		// Чтобы параллельные сортировки не мешали друг другу пусть пишут каждая в свой файл.
+		ФайлРезультата = СтрЗаменить("" + Ф.Математика().Случайное(), "0.", "");
+		ФайлРезультата = СтрЗаменить(ФайлРезультата, "0,", "");
+		ФайлРезультата = ФайлРезультата + ".os";
 		
-		Если ВыбранныеФайлы[А].Имя = "ExtractIconClass.cs" или 
-			ВыбранныеФайлы[А].Имя = "FormsCollection.cs" или 
-			ВыбранныеФайлы[А].Имя = "DataGridViewGrouper.cs" или 
-			ВыбранныеФайлы[А].Имя = "DataGridViewGrouperControl.cs" или 
-			ВыбранныеФайлы[А].Имя = "TreeViewAdv.cs" или 
-			ВыбранныеФайлы[А].Имя = "TreeColumnCollection.cs" или 
-			ВыбранныеФайлы[А].Имя = "TreeNodeAdvCollection.cs" или 
-			ВыбранныеФайлы[А].Имя = "TreeNodeAdv.cs" или 
-			ВыбранныеФайлы[А].Имя = "NodeCheckBox.cs" или 
-			ВыбранныеФайлы[А].Имя = "NodeControlsCollection.cs" или 
-			ВыбранныеФайлы[А].Имя = "TreeViewAdvSupport.cs" или 
-			ВыбранныеФайлы[А].Имя = "NodeStateIcon.cs" или 
-			ВыбранныеФайлы[А].Имя = "NodeComboBox.cs" или 
-			ВыбранныеФайлы[А].Имя = "NodeDecimalTextBox.cs" или 
-			ВыбранныеФайлы[А].Имя = "NodeNumericUpDown.cs" или 
-			ВыбранныеФайлы[А].Имя = "NodeTextBox.cs" или 
-			ВыбранныеФайлы[А].Имя = "NodeComboBoxObjectCollection.cs" или 
-			ВыбранныеФайлы[А].Имя = "SelectedTreeNodeAdvCollection.cs" или 
-			ВыбранныеФайлы[А].Имя = "RoundRect.cs" или 
-			ВыбранныеФайлы[А].Имя = "DataGridViewCellExHelper.cs" или 
-			ВыбранныеФайлы[А].Имя = "DataGridViewHelper.cs" или 
-			ВыбранныеФайлы[А].Имя = "ISpannedCell.cs" или 
-			// ВыбранныеФайлы[А].Имя = "DataGridViewImageColumn.cs" или 
-			
-			
-		
-
-			
-			ВыбранныеФайлы[А].Имя = "TreeColumn.cs" Тогда
-		
-			Продолжить;
-		КонецЕсли;
-		
-		
-		
+		ТекстТемпФайла2 = СтрЗаменить(ТекстТемпФайла, "НовоеИмяСортируемого", ВыбранныеФайлы[А].Имя);
 		
 		ТекстДок = Новый ТекстовыйДокумент;
-		ТекстДок.Прочитать(ВыбранныеФайлы[А].ПолноеИмя);
+		ТекстДок.УстановитьТекст(ТекстТемпФайла2);
+		ТекстДок.Записать(КаталогВыгрузки + "\" + ФайлРезультата);
+		
+		Пока ПроверитьКоличествоНезавершенных() > 15 Цикл
+			Приостановить(500);
+		КонецЦикла;
 		
 		Сообщить(" (" + Лев(Строка(((ТекущаяУниверсальнаяДатаВМиллисекундах() - Таймер)/1000)/60), 4) + " мин." + " " + (А + 1) + " из " + ВыбранныеФайлы.Количество() + ") " + ВыбранныеФайлы[А].ПолноеИмя);
 		
-		// Сообщить("=== " + ВыбранныеФайлы[А].Имя + " ========================================================================================");
-		Стр = ТекстДок.ПолучитьТекст();
-		М = СтрНайтиМежду(Стр, "using", "namespace", , );
-		Если М.Количество() > 0 Тогда
-			// Сообщить("=== " + ВыбранныеФайлы[А].Имя + " =========================================================================");
-			СтрДирективы = М[0];
-			СтрДирективы = СокрЛП(СтрДирективы);
-			Директивы.Добавить("using " + СтрДирективы);
-		КонецЕсли;
-		
-		Если Не (СтрДирективы = "") Тогда
-			Стр = СтрЗаменить(Стр, СтрДирективы, "");
-		КонецЕсли;
-		
-		//Классы3Уровня оставляем без изменения
-		М = СтрНайтиМежду(Стр, "[ContextClass", "//endClass", , );
-		Если М.Количество() > 0 Тогда
-			Для А1 = 0 По М.ВГраница() Цикл
-				СтрКлассы3Уровня = М[А1];
-				СтрКлассы3Уровня = СокрЛП(СтрКлассы3Уровня);
-				Классы3Уровня.Добавить("    [ContextClass " + СтрКлассы3Уровня);
-			КонецЦикла;
-			Стр = СтрЗаменить(Стр, СтрКлассы3Уровня, "");
-		КонецЕсли;
-		
-		//Классы1Уровня оставляем без изменения
-		М = СтрНайтиМежду(Стр, "public class", "//endClass", Ложь, );
-		Если М.Количество() > 0 Тогда
-			Для А1 = 0 По М.ВГраница() Цикл
-				Если СтрНайти(М[А1], "Ex :") > 0 Тогда
-					СтрКлассы1Уровня = М[А1];
-					СтрКлассы1Уровня = СтрЗаменить(СтрКлассы1Уровня, "//endClass", "");
-					СтрКлассы1Уровня = СокрЛП(СтрКлассы1Уровня);
-					Классы1Уровня.Добавить("    " + СтрКлассы1Уровня);
-					Стр = СтрЗаменить(Стр, СтрКлассы1Уровня, "");
-				Иначе
-					СтрКлассы2Уровня = М[А1];
-					СтрКлассы2Уровня = СокрЛП(СтрКлассы2Уровня);
-					Классы2Уровня.Добавить(СортировкаКласса2Уровня(СтрКлассы2Уровня));
-					Стр = СтрЗаменить(Стр, СтрКлассы2Уровня, "");
-				КонецЕсли;
-			КонецЦикла;
-		КонецЕсли;
-		//Классы1Уровня оставляем без изменения
-		М = СтрНайтиМежду(Стр, "public sealed class", "//endClass", Ложь, );
-		Если М.Количество() > 0 Тогда
-			Для А1 = 0 По М.ВГраница() Цикл
-				Если СтрНайти(М[А1], "Ex :") > 0 Тогда
-					СтрКлассы1Уровня = М[А1];
-					СтрКлассы1Уровня = СтрЗаменить(СтрКлассы1Уровня, "//endClass", "");
-					СтрКлассы1Уровня = СокрЛП(СтрКлассы1Уровня);
-					Классы1Уровня.Добавить("    " + СтрКлассы1Уровня);
-					Стр = СтрЗаменить(Стр, СтрКлассы1Уровня, "");
-				Иначе
-					СтрКлассы2Уровня = М[А1];
-					СтрКлассы2Уровня = СокрЛП(СтрКлассы2Уровня);
-					Классы2Уровня.Добавить(СортировкаКласса2Уровня(СтрКлассы2Уровня));
-					Стр = СтрЗаменить(Стр, СтрКлассы2Уровня, "");
-				КонецЕсли;
-			КонецЦикла;
-		КонецЕсли;
-		
-		
-		
-		
-		
-		
-		
-		Директивы.СортироватьПоЗначению();
-		Стр = "";
-		
-		Для А1 = 0 По Директивы.Количество() - 1 Цикл
-				Стр = Стр + Символы.ПС + Директивы.Получить(А1).Значение;
-		КонецЦикла;
-		Стр = Стр + Символы.ПС + Символы.ПС + "namespace osf" + Символы.ПС + "{";
-		Для А1 = 0 По Классы1Уровня.Количество() - 1 Цикл
-			Стр = Стр + Символы.ПС + Классы1Уровня.Получить(А1).Значение;
-		КонецЦикла;
-		Если Классы2Уровня.Количество() > 0 Тогда
-			Для А1 = 0 По Классы2Уровня.Количество() - 1 Цикл
-				Стр = Стр + Символы.ПС + Классы2Уровня.Получить(А1).Значение;
-				Стр = Стр + Символы.ПС;
-				Стр = Стр + Символы.ПС + "    }" + Символы.ПС;
-			КонецЦикла;
-		КонецЕсли;
-		Для А1 = 0 По Классы3Уровня.Количество() - 1 Цикл
-			Стр = Стр + Символы.ПС + Классы3Уровня.Получить(А1).Значение;
-		КонецЦикла;
-		Стр = Стр + Символы.ПС + "}";
-		
-		//удалим "//endMethods"
-		СтрКонечная = "";
-		Для А1 = 1 По СтрЧислоСтрок(Стр) - 1 Цикл
-			Фрагмент1 = СокрЛП(СтрПолучитьСтроку(Стр, А1)) + СокрЛП(СтрПолучитьСтроку(Стр, А1 + 1));
-			Если Не (Фрагмент1 = "//endMethods") Тогда
-				СтрКонечная = СтрКонечная + Символы.ПС + СтрПолучитьСтроку(Стр, А1);
-			КонецЕсли;
-		КонецЦикла;
-		СтрКонечная = СтрКонечная + Символы.ПС + СтрПолучитьСтроку(Стр, СтрЧислоСтрок(Стр));
-		Стр = СтрКонечная;
-		СтрКонечная = "";
-		Для А1 = 1 По СтрЧислоСтрок(Стр) Цикл
-			Если Не (СокрЛП(СтрПолучитьСтроку(Стр, А1)) = "//endMethods") Тогда
-				СтрКонечная = СтрКонечная + Символы.ПС + СтрПолучитьСтроку(Стр, А1);
-			КонецЕсли;
-		КонецЦикла;
-		
-		//удалим "//endProperty"
-		Стр = СтрКонечная;
-		СтрКонечная = "";
-		Для А1 = 1 По СтрЧислоСтрок(Стр) - 1 Цикл
-			Фрагмент1 = СокрЛП(СтрПолучитьСтроку(Стр, А1)) + СокрЛП(СтрПолучитьСтроку(Стр, А1 + 1));
-			Если Не (Фрагмент1 = "//endProperty") Тогда
-				СтрКонечная = СтрКонечная + Символы.ПС + СтрПолучитьСтроку(Стр, А1);
-			КонецЕсли;
-		КонецЦикла;
-		СтрКонечная = СтрКонечная + Символы.ПС + СтрПолучитьСтроку(Стр, СтрЧислоСтрок(Стр));
-		Стр = СтрКонечная;
-		СтрКонечная = "";
-		Для А1 = 1 По СтрЧислоСтрок(Стр) Цикл
-			Если Не (СокрЛП(СтрПолучитьСтроку(Стр, А1)) = "//endProperty") Тогда
-				СтрКонечная = СтрКонечная + Символы.ПС + СтрПолучитьСтроку(Стр, А1);
-			КонецЕсли;
-		КонецЦикла;
-		
-		СтрКонечная = СтрЗаменить(СтрКонечная, "//Свойства============================================================", "");
-		СтрКонечная = СтрЗаменить(СтрКонечная, "//Методы============================================================", "");
-		
-		ПодстрокаПоиска = ">
-		|    {
-		|
-		|        public";
-		ПодстрокаЗамены = ">
-		|    {
-		|        public";
-		СтрКонечная = СтрЗаменить(СтрКонечная, ПодстрокаПоиска, ПодстрокаЗамены);
-		
-		ПодстрокаПоиска = "}
-		|
-		|    }
-		|
-		|    [ContextClass";
-		ПодстрокаЗамены = "}
-		|    }
-		|
-		|    [ContextClass";
-		СтрКонечная = СтрЗаменить(СтрКонечная, ПодстрокаПоиска, ПодстрокаЗамены);
-		
-		ПодстрокаПоиска = "osf
-		|{
-		|
-		|    public";
-		ПодстрокаЗамены = "osf
-		|{
-		|    public";
-		СтрКонечная = СтрЗаменить(СтрКонечная, ПодстрокаПоиска, ПодстрокаЗамены);
-		
-		ПодстрокаПоиска = "}
-		|
-		|    }
-		|}";
-		ПодстрокаЗамены = "}
-		|    }
-		|}";
-		СтрКонечная = СтрЗаменить(СтрКонечная, ПодстрокаПоиска, ПодстрокаЗамены);
-		
-		ПодстрокаПоиска = "}
-		|
-		|    }
-		|
-		|    public class";
-		ПодстрокаЗамены = "}
-		|    }
-		|
-		|    public class";
-		СтрКонечная = СтрЗаменить(СтрКонечная, ПодстрокаПоиска, ПодстрокаЗамены);
-		
-		ПодстрокаПоиска = "}
-		|
-		|    }
-		|
-		|}";
-		ПодстрокаЗамены = "}
-		|    }
-		|}";
-		СтрКонечная = СтрЗаменить(СтрКонечная, ПодстрокаПоиска, ПодстрокаЗамены);
-		
-		ПодстрокаПоиска = ";
-		|        }
-		|
-		|    }";
-		ПодстрокаЗамены = ";
-		|        }
-		|    }";
-		СтрКонечная = СтрЗаменить(СтрКонечная, ПодстрокаПоиска, ПодстрокаЗамены);
-		
-		
-		
-		
-		
-		
-		
-		
-		//заменим две пустые строки подряд на одну пустую
-		Стр = СтрКонечная;
-		СтрКонечная = "";
-		Для А1 = 1 По СтрЧислоСтрок(Стр) - 1 Цикл
-			Фрагмент1 = СокрЛП(СтрПолучитьСтроку(Стр, А1)) + СокрЛП(СтрПолучитьСтроку(Стр, А1 + 1));
-			Если Не (Фрагмент1 = "") Тогда
-				СтрКонечная = СтрКонечная + Символы.ПС + СтрПолучитьСтроку(Стр, А1);
-			КонецЕсли;
-		КонецЦикла;
-		СтрКонечная = СтрКонечная + Символы.ПС + СтрПолучитьСтроку(Стр, СтрЧислоСтрок(Стр));
-		
-		//удалим "//end_constr"
-		ПодстрокаПоиска = "//end_constr";
-		ПодстрокаЗамены = "";
-		СтрКонечная = СтрЗаменить(СтрКонечная, ПодстрокаПоиска, ПодстрокаЗамены);
-		
-		СтрКонечная = СокрЛП(СтрКонечная);
-		// Сообщить("" + СтрКонечная);
-		
-		ТекстДок.УстановитьТекст(СтрКонечная);
-		ТекстДок.Записать(ВыбранныеФайлы[А].ПолноеИмя);
+		Команда1("""" + ПутьДо_oscript + """", КаталогВыгрузки + "\" + ФайлРезультата);
 	КонецЦикла;
 	
-	ВыбранныеФайлы = НайтиФайлы(КаталогВыгрузки, "*.cs", Ложь);
-	Для А = 0 По ВыбранныеФайлы.ВГраница() Цикл
-		Если ВыбранныеФайлы[А].Имя = "FormsCollection.cs" или 
-		    ВыбранныеФайлы[А].Имя = "DataGridViewGrouper.cs" или 
-			ВыбранныеФайлы[А].Имя = "DataGridViewGrouperControl.cs" Тогда
-			
-			ТекстДок = Новый ТекстовыйДокумент;
-			ТекстДок.Прочитать(ВыбранныеФайлы[А].ПолноеИмя);
-			Стр = ТекстДок.ПолучитьТекст();
-			
-			ПодстрокаПоиска = "        }
-			|        
-			|        //endMethods
-			|    }//endClass
-			|
-			|}//endnamespace";
-			ПодстрокаЗамены = "        }
-			|    }
-			|}";
-			Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
-			
-			ПодстрокаПоиска = "//endProperty
-			|        //Методы============================================================";
-			ПодстрокаЗамены = "//Методы============================================================";
-			Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			ТекстДок.УстановитьТекст(Стр);
-			ТекстДок.Записать(ВыбранныеФайлы[А].ПолноеИмя);
-		ИначеЕсли ВыбранныеФайлы[А].Имя = "TreeViewAdv.cs" Тогда
-			ТекстДок = Новый ТекстовыйДокумент;
-			ТекстДок.Прочитать(ВыбранныеФайлы[А].ПолноеИмя);
-			Стр = ТекстДок.ПолучитьТекст();
-			
-			ПодстрокаПоиска = "//endTreeViewAdv";
-			ПодстрокаЗамены = "";
-			Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
-			
-			ТекстДок.УстановитьТекст(Стр);
-			ТекстДок.Записать(ВыбранныеФайлы[А].ПолноеИмя);
-			
-		Иначе
-			Продолжить;
-		КонецЕсли;
-
+	КолНезавершенных = ПроверитьКоличествоНезавершенных();
+	Пока КолНезавершенных > 0 Цикл
+		// Сообщить("КоличествоНезавершенных = " + КолНезавершенных);
+		Приостановить(1000);
+		КолНезавершенных = ПроверитьКоличествоНезавершенных();
 	КонецЦикла;
 	
 	Сообщить("Найдено " + ВыбранныеФайлы.Количество());
 	Сообщить("Выполнено за: " + ((ТекущаяУниверсальнаяДатаВМиллисекундах() - Таймер)/1000)/60 + " мин.");
 КонецПроцедуры//СортировкаКода()
 
-Функция СортировкаКласса2Уровня(СтрКласса)
-	Стр = СтрЗаменить(СтрКласса,  "}//endClass", "//end");
-	
-	М3 = СтрНайтиМежду(Стр, "[DllImport", ";", Ложь, );
-	Для А = 0 По М3.ВГраница() Цикл
-		Стр = СтрЗаменить(Стр, М3[А], "");
-	КонецЦикла;
-	
-	//повставлять \r\n//end перед каждым private, public, [DllImport
-	Стр = СтрЗаменить(Стр, "private", "//end" + Символы.ПС + "private");
-	Стр = СтрЗаменить(Стр, "public", "//end" + Символы.ПС + "public");
-	
-	Голова = "";
-	Поля = Новый СписокЗначений;
-	Конструкторы = Новый СписокЗначений;
-	Свойства = Новый СписокЗначений;
-	Методы = Новый СписокЗначений;
-	
-	М = Новый Массив;
-	М1 = СтрНайтиМежду(Стр, "private", "//end", , );
-	М2 = СтрНайтиМежду(Стр, "public", "//end", , );
-	Для А = 0 По М1.ВГраница() Цикл
-		М.Добавить("private" + М1[А]);
-	КонецЦикла;
-	Для А = 0 По М2.ВГраница() Цикл
-		М.Добавить("public" + М2[А]);
-	КонецЦикла;
-	Для А = 0 По М3.ВГраница() Цикл
-		М.Добавить("" + М3[А]);
-	КонецЦикла;
-	
-	Для А = 0 По М.ВГраница() Цикл
-		Фрагмент = СокрЛП(М[А]);
-		ВтороеСловоВоФрагменте = "";
-		М125 = СтрРазделить(Фрагмент, "");
-		Если М125.Количество() > 0 Тогда
-			ВтороеСловоВоФрагменте = М125[1];
-		КонецЕсли;
-		
-		ИмяКласса = "";
-		СтрокаСИменемКласса = СтрПолучитьСтроку(СокрЛП(СтрКласса), 1);
-		ИмяКласса = СтрРазделить(СтрПолучитьСтроку(СокрЛП(СтрКласса), 1), " ")[2];
-		
-		// если есть слово class тогда это Голова
-		Если СтрНайти(Фрагмент, "class") > 0 Тогда
-			Голова = Голова + Символы.ПС + "    " + Фрагмент;
-		// если последний знак ; тогда это Поля
-		ИначеЕсли (Прав(Фрагмент, 1) = ";") или (СтрНайти(Фрагмент, "DllImport") > 0) Тогда
-			//создать представление
-			Поля.Добавить("        " + Фрагмент, СтрРазделить(СтрПолучитьСтроку(Фрагмент, 1), " ")[2]);
-		// если первая строка содержит имя класса со следующей за ним скобкой тогда это Конструкторы
-		ИначеЕсли Лев(ВтороеСловоВоФрагменте, СтрДлина(ИмяКласса + "(")) = ИмяКласса + "(" Тогда
-			Конструкторы.Добавить("        " + Фрагмент);
-		// если есть слово set или get тогда это Свойства
-		ИначеЕсли (СтрНайти(Фрагмент, "get") > 0) или (СтрНайти(Фрагмент, "set") > 0) Тогда
-			Свойства.Добавить("        " + Фрагмент, СтрРазделить(СтрПолучитьСтроку(Фрагмент, 1), " ")[2]);
-		// если в первой строке есть скобка ( тогда это Методы
-		ИначеЕсли СтрНайти(СтрПолучитьСтроку(Фрагмент, 1), "(") > 0 Тогда
-			Методы.Добавить("        " + Фрагмент, СтрРазделить(СтрПолучитьСтроку(Фрагмент, 1), " ")[2]);
-		// иначе сообщить этот фрагмент
-		Иначе
-			Сообщить("=====================================");
-			Сообщить("Не обработан фрагмент " + Символы.ПС + М[А]);
-			Сообщить("=====================================");
-		КонецЕсли;
-	КонецЦикла;
-	
-	Поля.СортироватьПоПредставлению();
-	Конструкторы.СортироватьПоЗначению();
-	Свойства.СортироватьПоПредставлению();
-	Методы.СортироватьПоПредставлению();
+// Зададим все необходимые пути.
+КаталогСправки = "C:\444\OneScriptForms\docs\OneScriptFormsru";// без слэша в конце
+КаталогВыгрузки = "C:\444\ВыгруженныеОбъекты";// без слэша в конце
+ПутьДо_oscript = "C:\Program Files\OneScript\bin\oscript.exe";
+ПутьДоOneScriptForms_dll = "C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll";
 
-	Стр = Голова;
-	Для А = 0 По Поля.Количество() - 1 Цикл
-		Стр = Стр + Символы.ПС + Поля.Получить(А).Значение;
-	КонецЦикла;
-	Для А = 0 По Конструкторы.Количество() - 1 Цикл
-		Стр = Стр + Символы.ПС + Символы.ПС + Конструкторы.Получить(А).Значение;
-	КонецЦикла;
-	Если Свойства.Количество() > 0 Тогда
-		Стр = Стр + Символы.ПС + Символы.ПС + "        //Свойства============================================================";
-		Для А = 0 По Свойства.Количество() - 1 Цикл
-			Стр = Стр + Символы.ПС + Символы.ПС + Свойства.Получить(А).Значение;
-		КонецЦикла;
-	КонецЕсли;
-	Если Методы.Количество() > 0 Тогда
-		Стр = Стр + Символы.ПС + Символы.ПС + "        //Методы============================================================";
-		Для А = 0 По Методы.Количество() - 1 Цикл
-			Стр = Стр + Символы.ПС + Символы.ПС + Методы.Получить(А).Значение;
-		КонецЦикла;
-	КонецЕсли;
-	
-	ПодстрокаПоиска = "ControlRemoved = """";
-	|            }";
-	ПодстрокаЗамены = "ControlRemoved = """";
-	|            }
-	|        }
-	|	";
-	Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
-	
-	Возврат Стр;
-КонецФункции//СортировкаКласса2Уровня(СтрКласса)
-
-ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+ПодключитьВнешнююКомпоненту(ПутьДоOneScriptForms_dll);
 Ф = Новый ФормыДляОдноСкрипта();
 
-КаталогСправки = "C:\444\OneScriptFormsru";// без слэша в конце
-КаталогВыгрузки = "C:\444\ВыгруженныеОбъекты";// без слэша в конце
+СписокПроцессов = Новый СписокЗначений();
 
 ВыгрузкаДляCS();
 СортировкаКода();
