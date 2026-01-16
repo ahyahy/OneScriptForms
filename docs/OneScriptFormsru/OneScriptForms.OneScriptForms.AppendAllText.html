@@ -1,0 +1,87 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+    <TITLE>AppendAllText Method</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
+</HEAD>
+<BODY id=bodyID class=dtBODY onclick="divrightClick(event)">
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>ФормыДляОдноСкрипта.ДобавитьВесьТекст (OneScriptForms.AppendAllText)&nbsp;Метод</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <H4 class=dtH4>Синтаксис</H4>
+        <P>ДобавитьВесьТекст(&lt;ПутьДоФайла&gt;, &lt;Текст&gt;)</P>
+        <H4 class=dtH4>Параметры</H4>
+        <DL>
+            <DT><I>ПутьДоФайла</I> (обязательный)</DT>
+            <DD>Тип: Строка.</DD>
+            <DD>Путь до файла, к которому нужно добавить указанный текст.</DD>
+            <DT><I>Текст</I> (обязательный)</DT>
+            <DD>Тип: Строка.</DD>
+            <DD>Текст, добавляемый к файлу.</DD>
+        </DL>
+        <H4 class=dtH4>Возвращаемое значение</H4>
+        <P></P>
+        <H4 class=dtH4>Описание</H4>
+        <P>Открывает файл, добавляет указанную строку в файл, а затем закрывает файл. Если файл не существует, этот метод создает файл, записывает указанную строку в файл, а затем закрывает файл.</P>
+        <H4 class=dtH4>Примечание</H4>
+        <P>Метод создан для упрощения тестирования библиотеки.</P>
+        <P>Используется кодировка <B>UTF8</B>.</P>
+        <H4 class=dtH4>Пример</H4>
+        <P>
+            <PRE class=code>
+Ф.ДобавитьВесьТекст("C:\444\Файл1.txt", "Текст для файла.");
+</PRE>
+            <details>
+                <summary>Полный пример кода</summary>
+                <P>
+                    <PRE class=code>
+<button id="copy1" type="button" style="font-size:100%;">Копировать</button>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Ф.ДобавитьВесьТекст("C:\444\Файл1.txt", "Текст для файла.");
+
+Ф.ЗапуститьОбработкуСобытий();
+</DIV>
+</PRE>
+            </details>
+        <P></P>
+        <details>
+            <summary>Тестовый код</summary>
+            <P>
+                <PRE class=code>
+<button id="copy2" type="button" style="font-size:100%;">Копировать</button>
+<hr style="border-color: lightgray;"><DIV id="cont2">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Ф.ДобавитьВесьТекст("C:\444\Файл1.txt", "Текст для файла.");
+
+Сообщить(?(
+Истина
+, "", "!!! ") + "ФормыДляОдноСкрипта.ДобавитьВесьТекст (OneScriptForms.AppendAllText) Метод" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+        </details>
+        <P></P>
+        <H4 class=dtH4>Смотрите также</H4>
+        <P>
+            <A href="OneScriptForms.OneScriptForms.html">ФормыДляОдноСкрипта&nbsp;(OneScriptForms)&nbsp;Класс</A> | <A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A>
+        </P>
+    </DIV>
+</BODY>
+</HTML>

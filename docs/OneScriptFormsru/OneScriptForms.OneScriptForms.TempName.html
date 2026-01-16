@@ -1,0 +1,79 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+    <TITLE>TempName Property</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
+</HEAD>
+<BODY id=bodyID class=dtBODY onclick="divrightClick(event)">
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>ФормыДляОдноСкрипта.СлучайноеИмя&nbsp;(OneScriptForms.TempName)&nbsp;Свойство</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <H4 class=dtH4>Использование</H4>
+        <P>Только чтение.</P>
+        <H4 class=dtH4>Значение</H4>
+        <P>Тип: Строка.</P>
+        <P>Возвращает уникальную комбинацию символов для имени временного файла, сформированную на основе GUID.</P>
+        <H4 class=dtH4>Примечание</H4>
+        <P></P>
+        <H4 class=dtH4>Пример</H4>
+        <P>
+            <PRE class=code>
+СлучайноеИмя1 = Ф.СлучайноеИмя;
+</PRE>
+            <details>
+                <summary>Полный пример кода</summary>
+                <P>
+                    <PRE class=code>
+<button id="copy1" type="button" style="font-size:100%;">Копировать</button>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+СлучайноеИмя1 = Ф.СлучайноеИмя;
+СлучайноеИмя2 = Ф.СлучайноеИмя;
+Сообщить("СлучайноеИмя = " + Ф.СлучайноеИмя);
+
+Ф.ЗапуститьОбработкуСобытий();
+</DIV>
+</PRE>
+            </details>
+        <P></P>
+        <details>
+            <summary>Тестовый код</summary>
+            <P>
+                <PRE class=code>
+<button id="copy2" type="button" style="font-size:100%;">Копировать</button>
+<hr style="border-color: lightgray;"><DIV id="cont2">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+СлучайноеИмя1 = Ф.СлучайноеИмя;
+СлучайноеИмя2 = Ф.СлучайноеИмя;
+
+Сообщить(?(
+СлучайноеИмя1 <> СлучайноеИмя2
+, "", "!!! ") + "ФормыДляОдноСкрипта.СлучайноеИмя (OneScriptForms.TempName) Свойство" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+        </details>
+        <P></P>
+        <H4 class=dtH4>Смотрите также</H4>
+        <P>
+            <A href="OneScriptForms.OneScriptForms.html">ФормыДляОдноСкрипта&nbsp;(OneScriptForms)&nbsp;Класс</A> | <A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A>
+        </P>
+    </DIV>
+</BODY>
+</HTML>

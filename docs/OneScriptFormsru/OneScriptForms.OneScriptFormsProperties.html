@@ -6,7 +6,7 @@
     <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
     <script defer src="mobilstyle.js"></script>
 </HEAD>
-<BODY id=bodyID class=dtBODY>
+<BODY id=bodyID class=dtBODY onclick="divrightClick(event)">
     <DIV id=nsbanner>
         <DIV id=bannerrow1>
             <TABLE class=bannerparthead cellSpacing=0>
@@ -47,6 +47,10 @@
                         <TD width="50%">Дает возможность установки одной из форм главной формой.</TD>
                     </TR>
                     <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.OneScriptForms.ClientReceived.html">КлиентПолучилДанные&nbsp;(ClientReceived)</A></TD>
+                        <TD width="50%">Возвращает или задает код для выполнения при получении клиентом данных.</TD>
+                    </TR>
+                    <TR vAlign=top>
                         <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.OneScriptForms.FormsCollection.html">КоллекцияФорм&nbsp;(FormsCollection)</A></TD>
                         <TD width="50%">Возвращает коллекцию созданных в приложении форм.</TD>
                     </TR>
@@ -59,6 +63,18 @@
                         <TD width="50%">Возвращает значение, показывающее, используется ли операционная система семейства Windows.</TD>
                     </TR>
                     <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.OneScriptForms.ClientDisconnected.html">ПриОтключенииКлиента&nbsp;(ClientDisconnected)</A></TD>
+                        <TD width="50%">Возвращает или задает код для выполнения при отключении клиента.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.OneScriptForms.ErrorServer.html">ПриОшибкеСервера&nbsp;(ErrorServer)</A></TD>
+                        <TD width="50%">Возвращает или задает код для выполнения при возникновении ошибки или предупреждения на сервере.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.OneScriptForms.ClientConnected.html">ПриПодключенииКлиента&nbsp;(ClientConnected)</A></TD>
+                        <TD width="50%">Возвращает или задает код для выполнения при подключении клиента.</TD>
+                    </TR>
+                    <TR vAlign=top>
                         <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.OneScriptForms.GoOn.html">Продолжать&nbsp;(GoOn)</A></TD>
                         <TD width="50%">Возвращает значение, показывающее, следует ли продолжать цикл обработки событий.</TD>
                     </TR>
@@ -69,6 +85,14 @@
                     <TR vAlign=top>
                         <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.OneScriptForms.Build.html">Сборка&nbsp;(Build)</A></TD>
                         <TD width="50%">Возвращает номер текущей сборки.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.OneScriptForms.ServerReceived.html">СерверПолучилДанные&nbsp;(ServerReceived)</A></TD>
+                        <TD width="50%">Возвращает или задает код для выполнения при получении сервером данных.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.OneScriptForms.TempName.html">СлучайноеИмя&nbsp;(TempName)</A></TD>
+                        <TD width="50%">Возвращает уникальную комбинацию символов для имени временного файла, сформированную на основе GUID.</TD>
                     </TR>
                     <TR vAlign=top>
                         <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.OneScriptForms.CurrentLayout.html">ТекущаяРаскладка&nbsp;(CurrentLayout)</A></TD>

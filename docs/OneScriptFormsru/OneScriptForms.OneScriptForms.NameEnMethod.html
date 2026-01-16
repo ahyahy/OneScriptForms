@@ -1,0 +1,114 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+    <TITLE>[Перечисление].Name Method</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
+</HEAD>
+<BODY id=bodyID class=dtBODY onclick="divrightClick(event)">
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>ФормыДляОдноСкрипта.[Перечисление].Name (OneScriptForms.[Перечисление].Name)&nbsp;Метод</H1>
+        </DIV>
+    </DIV>
+    <DIV id=nstext>
+        <H4 class=dtH4>Синтаксис</H4>
+        <P>[Перечисление].Name(&lt;Значение&gt;)</P>
+        <H4 class=dtH4>Параметры</H4>
+        <DL>
+            <DT><I>Значение</I> (обязательный)</DT>
+            <DD>Тип: Число.</DD>
+            <DD></DD>
+        </DL>
+        <H4 class=dtH4>Возвращаемое значение</H4>
+        <P>Тип: Строка.</P>
+        <H4 class=dtH4>Описание</H4>
+        <P>Возвращает строковое представление значения перечисления на английском языке.</P>
+        <H4 class=dtH4>Примечание</H4>
+        <P></P>
+        <H4 class=dtH4>Пример</H4>
+        <P>
+            <PRE class=code>
+Стр = "Перечисление СтилиПривязки через цикл Для Каждого...";
+Для Каждого Эл Из Ф.СтилиПривязки Цикл
+	Стр = Стр + "
+	|    Значение = " + Эл + " Name = " + Ф.СтилиПривязки.Name(Эл);
+КонецЦикла;
+Сообщить(Стр);
+</PRE>
+            <details>
+                <summary>Полный пример кода</summary>
+                <P>
+                    <PRE class=code>
+<button id="copy1" type="button" style="font-size:100%;">Копировать</button>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+
+Стр = "Перечисление СтилиПривязки через цикл Для Каждого...";
+Для Каждого Эл Из Ф.СтилиПривязки Цикл
+	Стр = Стр + "
+	|    Значение = " + Эл + " Name = " + Ф.СтилиПривязки.Name(Эл);
+КонецЦикла;
+Сообщить(Стр);
+
+Стр = "Перечисление СтилиПривязки через цикл Для ... По ... Цикл";
+Для А = 0 По Ф.СтилиПривязки.Количество - 1 Цикл
+	Эл = Ф.СтилиПривязки.Получить(А);
+	Стр = Стр + "
+	|    Значение = " + Эл + " Name = " + Ф.СтилиПривязки.Name(Эл);
+КонецЦикла;
+Сообщить(Стр);
+</DIV>
+</PRE>
+            </details>
+        <P></P>
+        <details>
+            <summary>Тестовый код</summary>
+            <P>
+                <PRE class=code>
+<button id="copy2" type="button" style="font-size:100%;">Копировать</button>
+<hr style="border-color: lightgray;"><DIV id="cont2">
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+
+Стр = "Перечисление СтилиПривязки через цикл Для Каждого...";
+Для Каждого Эл Из Ф.СтилиПривязки Цикл
+	Стр = Стр + "
+	|    Значение = " + Эл + " Name = " + Ф.СтилиПривязки.Name(Эл);
+КонецЦикла;
+// Сообщить(Стр);
+
+Стр = "Перечисление СтилиПривязки через цикл Для ... По ... Цикл";
+Для А = 0 По Ф.СтилиПривязки.Количество - 1 Цикл
+	Эл = Ф.СтилиПривязки.Получить(А);
+	Стр = Стр + "
+	|    Значение = " + Эл + " Name = " + Ф.СтилиПривязки.Name(Эл);
+КонецЦикла;
+// Сообщить(Стр);
+
+Сообщить(?(
+Ф.СтилиПривязки.Name(Ф.СтилиПривязки.Получить(0)) = "Bottom"
+, "", "!!! ") + "ФормыДляОдноСкрипта.[Перечисление].Name (OneScriptForms.[Перечисление].Name) Метод" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+        </details>
+        <P></P>
+        <H4 class=dtH4>Смотрите также</H4>
+        <P>
+            <A href="OneScriptForms.OneScriptForms.html">ФормыДляОдноСкрипта&nbsp;(OneScriptForms)&nbsp;Класс</A> | <A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A>
+        </P>
+    </DIV>
+</BODY>
+</HTML>

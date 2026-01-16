@@ -6,7 +6,7 @@
     <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
     <script defer src="mobilstyle.js"></script>
 </HEAD>
-<BODY id=bodyID class=dtBODY>
+<BODY id=bodyID class=dtBODY onclick="divrightClick(event)">
     <DIV id=nsbanner>
         <DIV id=bannerrow1>
             <TABLE class=bannerparthead cellSpacing=0>
@@ -31,6 +31,14 @@
             <TABLE class=dtTABLE cellSpacing=0>
                 <TBODY>
                     <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.NameEnMethod.html">[Перечисление].Name&nbsp;([Перечисление].Name)</A></TD>
+                        <TD width="50%">Возвращает строковое представление значения перечисления на английском языке.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.NameRuMethod.html">[Перечисление].Имя&nbsp;([Перечисление].Имя)</A></TD>
+                        <TD width="50%">Возвращает строковое представление значения перечисления на русском языке.</TD>
+                    </TR>
+                    <TR vAlign=top>
                         <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.Dns.html">Dns&nbsp;(Dns)</A></TD>
                         <TD width="50%">Создаёт новый экземпляр класса <B>Dns&nbsp;(Dns)</B>.</TD>
                     </TR>
@@ -45,6 +53,10 @@
                     <TR vAlign=top>
                         <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.TCPClient.html">TCPКлиент&nbsp;(TCPClient)</A></TD>
                         <TD width="50%">Создаёт новый экземпляр класса <B>TCPКлиент&nbsp;(TCPClient)</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.TCPClientSSL.html">TCPКлиентSSL&nbsp;(TCPClientSSL)</A></TD>
+                        <TD width="50%">Создаёт новый экземпляр класса <B>TCPКлиентSSL&nbsp;(TCPClientSSL)</B>.</TD>
                     </TR>
                     <TR vAlign=top>
                         <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.TCPListener.html">TCPСлушатель&nbsp;(TCPListener)</A></TD>
@@ -125,6 +137,10 @@
                     <TR vAlign=top>
                         <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.SaveFileDialog.html">ДиалогСохраненияФайла&nbsp;(SaveFileDialog)</A></TD>
                         <TD width="50%">Создаёт новый экземпляр класса <B>ДиалогСохраненияФайла&nbsp;(SaveFileDialog)</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.AppendAllText.html">ДобавитьВесьТекст&nbsp;(AppendAllText)</A></TD>
+                        <TD width="50%">Открывает файл, добавляет указанную строку в файл, а затем закрывает файл. Если файл не существует, этот метод создает файл, записывает указанную строку в файл, а затем закрывает файл.</TD>
                     </TR>
                     <TR vAlign=top>
                         <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.Padding.html">Заполнение&nbsp;(Padding)</A></TD>
@@ -225,6 +241,14 @@
                     <TR vAlign=top>
                         <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.MethodsObj.html">МетодыОбъекта&nbsp;(MethodsObj)</A></TD>
                         <TD width="50%">Возвращает строку методов переданного в параметре объекта в русскоязычном и англоязычном вариантах.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.MultithreadedTCPServer.html">МногопоточныйTCPСервер&nbsp;(MultithreadedTCPServer)</A></TD>
+                        <TD width="50%">Создаёт новый экземпляр класса <B>МногопоточныйTCPСервер&nbsp;(MultithreadedTCPServer)</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.MultithreadedTCPServerSSL.html">МногопоточныйTCPСерверSSL&nbsp;(MultithreadedTCPServerSSL)</A></TD>
+                        <TD width="50%">Создаёт новый экземпляр класса <B>МногопоточныйTCPСерверSSL&nbsp;(MultithreadedTCPServerSSL)</B>.</TD>
                     </TR>
                     <TR vAlign=top>
                         <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.FileSystemWatcher.html">НаблюдательФайловойСистемы&nbsp;(FileSystemWatcher)</A></TD>
@@ -387,6 +411,10 @@
                         <TD width="50%">Создаёт новый экземпляр класса <B>Размер&nbsp;(Size)</B>.</TD>
                     </TR>
                     <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.SplitString.html">РазобратьСтроку&nbsp;(SplitString)</A></TD>
+                        <TD width="50%">Разделяет строку на массив подстрок.</TD>
+                    </TR>
+                    <TR vAlign=top>
                         <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.GroupBox.html">РамкаГруппы&nbsp;(GroupBox)</A></TD>
                         <TD width="50%">Создаёт новый экземпляр класса <B>РамкаГруппы&nbsp;(GroupBox)</B>.</TD>
                     </TR>
@@ -521,6 +549,22 @@
                     <TR vAlign=top>
                         <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.NodeCheckBox.html">ФлажокУзла&nbsp;(NodeCheckBox)</A></TD>
                         <TD width="50%">Создаёт новый экземпляр класса <B>ФлажокУзла&nbsp;(NodeCheckBox)</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.BackgroundTCPClient.html">ФоновыйTCPКлиент&nbsp;(BackgroundTCPClient)</A></TD>
+                        <TD width="50%">Создаёт и выполняет фоновое задание в котором создается и запускается новый экземпляр класса <B>TCPКлиент&nbsp;(TCPClient)</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.BackgroundTCPClientSSL.html">ФоновыйTCPКлиентSSL&nbsp;(BackgroundTCPClientSSL)</A></TD>
+                        <TD width="50%">Создаёт и выполняет фоновое задание в котором создается и запускается новый экземпляр класса <B>TCPСерверSSL&nbsp;(TCPServerSSL)</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.BackgroundMultithreadedServer.html">ФоновыйМногопоточныйСервер&nbsp;(BackgroundMultithreadedServer)</A></TD>
+                        <TD width="50%">Создаёт и выполняет фоновое задание в котором создается и запускается новый экземпляр класса <B>МногопоточныйTCPСервер&nbsp;(MultithreadedTCPServer)</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.BackgroundMultithreadedServerSSL.html">ФоновыйМногопоточныйСерверSSL&nbsp;(BackgroundMultithreadedServerSSL)</A></TD>
+                        <TD width="50%">Создаёт и выполняет фоновое задание в котором создается и запускается новый экземпляр класса <B>МногопоточныйTCPСерверSSL&nbsp;(MultithreadedTCPServerSSL)</B>.</TD>
                     </TR>
                     <TR vAlign=top>
                         <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.OneScriptForms.Form.html">Форма&nbsp;(Form)</A></TD>
