@@ -6,7 +6,7 @@
     <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
     <script defer src="mobilstyle.js"></script>
 </HEAD>
-<BODY id=bodyID class=dtBODY>
+<BODY id=bodyID class=dtBODY onclick="divrightClick(event)">
     <DIV id=nsbanner>
         <DIV id=bannerrow1>
             <TABLE class=bannerparthead cellSpacing=0>
@@ -58,6 +58,10 @@
                     <TR vAlign=top>
                         <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.NetworkStream.Read.html">Прочитать&nbsp;(Read)</A></TD>
                         <TD width="50%">Считывает данные из потока сети и сохраняет их в массив байтов.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.NetworkStream.ReadToBinaryDataBuffer.html">ПрочитатьВБуферДвоичныхДанных&nbsp;(ReadToBinaryDataBuffer)</A></TD>
+                        <TD width="50%">Производит чтение данных из сетевого потока с переводом их в тип <B>БуферДвоичныхДанных (BinaryDataBuffer)</B>.</TD>
                     </TR>
                     <TR vAlign=top>
                         <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.NetworkStream.ReadByte.html">ЧитатьБайт&nbsp;(ReadByte)</A></TD>

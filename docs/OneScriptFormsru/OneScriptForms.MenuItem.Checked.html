@@ -6,7 +6,7 @@
     <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
     <script defer src="mobilstyle.js"></script>
 </HEAD>
-<BODY id=bodyID class=dtBODY>
+<BODY id=bodyID class=dtBODY onclick="divrightClick(event)">
     <DIV id=nsbanner>
         <DIV id=bannerrow1>
             <TABLE class=bannerparthead cellSpacing=0>
@@ -40,7 +40,7 @@
                 <summary>Полный пример кода</summary>
                 <P>
                     <PRE class=code>
-<a id="copy1" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select1" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<button id="copy1" type="button" style="font-size:100%;">Копировать</button>
 <hr style="border-color: lightgray;"><DIV id="cont1">
 ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();
@@ -79,7 +79,7 @@ _Справка = ГлавноеМеню1.ЭлементыМеню.Добави�
             <summary>Тестовый код</summary>
             <P>
                 <PRE class=code>
-<a id="copy2" href="jаvascript://" title="Выделяет код, копирует и снимает выделение.">Копировать</a>     <a id="select2" href="jаvascript://" title="Выделяет код.">Выделить всё</a>
+<button id="copy2" type="button" style="font-size:100%;">Копировать</button>
 <hr style="border-color: lightgray;"><DIV id="cont2">
 ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();
@@ -123,56 +123,5 @@ _Справка = ГлавноеМеню1.ЭлементыМеню.Добави�
             <A href="OneScriptForms.MenuItem.html">ЭлементМеню&nbsp;(MenuItem)&nbsp;Класс</A> | <A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A>
         </P>
     </DIV>
-    <script>
-        window.onload = function () {
-            var a = document.getElementById('select1');
-            a.onclick = function () {
-                window.getSelection().removeAllRanges();
-                var ta1 = document.getElementById('cont1');
-                var range1 = document.createRange();
-                range1.selectNode(ta1);
-                window.getSelection().addRange(range1);
-                return false;
-            }
-
-            var b = document.getElementById('copy1');
-            b.onclick = function () {
-                window.getSelection().removeAllRanges();
-                var ta2 = document.getElementById('cont1');
-                var range2 = document.createRange();
-                range2.selectNode(ta2);
-                window.getSelection().addRange(range2);
-                try {
-                    document.execCommand('copy');
-                } catch (err) { }
-                window.getSelection().removeRange(range2);
-                return false;
-            }
-
-            var c = document.getElementById('select2');
-            c.onclick = function () {
-                window.getSelection().removeAllRanges();
-                var ta3 = document.getElementById('cont2');
-                var range3 = document.createRange();
-                range3.selectNode(ta3);
-                window.getSelection().addRange(range3);
-                return false;
-            }
-
-            var d = document.getElementById('copy2');
-            d.onclick = function () {
-                window.getSelection().removeAllRanges();
-                var ta4 = document.getElementById('cont2');
-                var range4 = document.createRange();
-                range4.selectNode(ta4);
-                window.getSelection().addRange(range4);
-                try {
-                    document.execCommand('copy');
-                } catch (err) { }
-                window.getSelection().removeRange(range4);
-                return false;
-            }
-        }
-    </script>
 </BODY>
 </HTML>
