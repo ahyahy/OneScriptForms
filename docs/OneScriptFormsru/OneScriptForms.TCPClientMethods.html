@@ -6,7 +6,7 @@
     <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
     <script defer src="mobilstyle.js"></script>
 </HEAD>
-<BODY id=bodyID class=dtBODY>
+<BODY id=bodyID class=dtBODY onclick="divrightClick(event)">
     <DIV id=nsbanner>
         <DIV id=bannerrow1>
             <TABLE class=bannerparthead cellSpacing=0>
@@ -33,6 +33,14 @@
                     <TR vAlign=top>
                         <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.TCPClient.Close.html">Закрыть&nbsp;(Close)</A></TD>
                         <TD width="50%">Удаляет данный экземпляр TcpClient и запрашивает закрытие базового подключения TCP.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.TCPClient.ProcessingClientReceived.html">ОбработатьКлиентПолучилДанные&nbsp;(ProcessingClientReceived)</A></TD>
+                        <TD width="50%">Метод создает событие <B>ФормыДляОдноСкрипта.КлиентПолучилДанные (OneScriptForms.ClientReceived)</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
+                        <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.TCPClient.Send.html">Отправить&nbsp;(Send)</A></TD>
+                        <TD width="50%">Отправляет сообщение.</TD>
                     </TR>
                     <TR vAlign=top>
                         <TD width="50%"><IMG src="pubmethod.gif"></IMG><A href="OneScriptForms.TCPClient.Connect.html">Подключить&nbsp;(Connect)</A></TD>

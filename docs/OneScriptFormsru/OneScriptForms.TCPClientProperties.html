@@ -6,7 +6,7 @@
     <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
     <script defer src="mobilstyle.js"></script>
 </HEAD>
-<BODY id=bodyID class=dtBODY>
+<BODY id=bodyID class=dtBODY onclick="divrightClick(event)">
     <DIV id=nsbanner>
         <DIV id=bannerrow1>
             <TABLE class=bannerparthead cellSpacing=0>
@@ -32,7 +32,10 @@
             <TABLE class=dtTABLE cellSpacing=0>
                 <TBODY>
                     <TR vAlign=top>
-                        TCPКлиент.Подключен (TCPClient.Connected)
+                        <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.TCPClient.Encoding.html">Кодировка&nbsp;(Encoding)</A></TD>
+                        <TD width="50%">Возвращает или задает кодировку текста. Значение по умолчанию <B>Кодировка.UTF8 (Encoding.UTF8)</B>.</TD>
+                    </TR>
+                    <TR vAlign=top>
                         <TD width="50%"><IMG src="pubproperty.gif"></IMG><A href="OneScriptForms.TCPClient.Connected.html">Подключен&nbsp;(Connected)</A></TD>
                         <TD width="50%">Возвращает значение, указывающее, установлено ли подключение.</TD>
                     </TR>
