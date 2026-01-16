@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлВыравниваниеВкладок", "ClTabAlignment")]
+    [ContextClass("КлВыравниваниеВкладок", "ClTabAlignment")]
     public class ClTabAlignment : AutoContext<ClTabAlignment>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_top = (int)System.Windows.Forms.TabAlignment.Top; // 0 Вкладки расположены по верхнему краю элемента управления.
@@ -38,6 +38,46 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {0, "Верх"},
+            {2, "Лево"},
+            {1, "Низ"},
+            {3, "Право"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {0, "Top"},
+            {2, "Left"},
+            {1, "Bottom"},
+            {3, "Right"},
+        };
+
         public ClTabAlignment()
         {
             _list = new List<IValue>();
@@ -50,25 +90,25 @@ namespace osf
         [ContextProperty("Верх", "Top")]
         public int Top
         {
-        	get { return m_top; }
+            get { return m_top; }
         }
 
         [ContextProperty("Лево", "Left")]
         public int Left
         {
-        	get { return m_left; }
+            get { return m_left; }
         }
 
         [ContextProperty("Низ", "Bottom")]
         public int Bottom
         {
-        	get { return m_bottom; }
+            get { return m_bottom; }
         }
 
         [ContextProperty("Право", "Right")]
         public int Right
         {
-        	get { return m_right; }
+            get { return m_right; }
         }
     }
 }

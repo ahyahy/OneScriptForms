@@ -136,7 +136,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлСтильТаблицыСеткиДанных", "ClDataGridTableStyle")]
+    [ContextClass("КлСтильТаблицыСеткиДанных", "ClDataGridTableStyle")]
     public class ClDataGridTableStyle : AutoContext<ClDataGridTableStyle>
     {
         private ClColor alternatingBackColor;
@@ -161,7 +161,7 @@ namespace osf
             headerBackColor = new ClColor(Base_obj.HeaderBackColor);
             alternatingBackColor = new ClColor(Base_obj.AlternatingBackColor);
         }
-		
+
         public ClDataGridTableStyle(DataGridTableStyle p1)
         {
             DataGridTableStyle DataGridTableStyle1 = p1;
@@ -177,7 +177,7 @@ namespace osf
         }
 
         public DataGridTableStyle Base_obj;
-        
+
         [ContextProperty("ИмяОтображаемого", "MappingName")]
         public string MappingName
         {
@@ -189,7 +189,7 @@ namespace osf
         public ClColor ForeColor
         {
             get { return foreColor; }
-            set 
+            set
             {
                 foreColor = value;
                 Base_obj.ForeColor = value.Base_obj;
@@ -200,7 +200,7 @@ namespace osf
         public ClColor HeaderForeColor
         {
             get { return headerForeColor; }
-            set 
+            set
             {
                 headerForeColor = value;
                 Base_obj.HeaderForeColor = value.Base_obj;
@@ -260,7 +260,7 @@ namespace osf
         {
             get { return new ClType(this); }
         }
-        
+
         [ContextProperty("ТолькоЧтение", "ReadOnly")]
         public bool ReadOnly
         {
@@ -272,7 +272,7 @@ namespace osf
         public ClColor GridLineColor
         {
             get { return gridLineColor; }
-            set 
+            set
             {
                 gridLineColor = value;
                 Base_obj.GridLineColor = value.Base_obj;
@@ -283,7 +283,7 @@ namespace osf
         public ClColor BackColor
         {
             get { return backColor; }
-            set 
+            set
             {
                 backColor = value;
                 Base_obj.BackColor = value.Base_obj;
@@ -294,7 +294,7 @@ namespace osf
         public ClColor HeaderBackColor
         {
             get { return headerBackColor; }
-            set 
+            set
             {
                 headerBackColor = value;
                 Base_obj.HeaderBackColor = value.Base_obj;
@@ -305,7 +305,7 @@ namespace osf
         public ClColor AlternatingBackColor
         {
             get { return alternatingBackColor; }
-            set 
+            set
             {
                 alternatingBackColor = value;
                 Base_obj.AlternatingBackColor = value.Base_obj;
@@ -323,19 +323,19 @@ namespace osf
         public ClFont HeaderFont
         {
             get { return headerFont; }
-            set 
+            set
             {
                 Base_obj.HeaderFont = value.Base_obj;
                 headerFont = value;
             }
         }
-        
+
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {
             Base_obj.Dispose();
         }
-					
+
         [ContextMethod("СтилиКолонкиСеткиДанных", "GridColumnStyles")]
         public IValue GridColumnStyles2(int p1)
         {

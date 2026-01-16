@@ -77,7 +77,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлКолонкаФлажок", "ClDataGridViewCheckBoxColumn")]
+    [ContextClass("КлКолонкаФлажок", "ClDataGridViewCheckBoxColumn")]
     public class ClDataGridViewCheckBoxColumn : AutoContext<ClDataGridViewCheckBoxColumn>
     {
         private ClCollection tag = new ClCollection();
@@ -88,23 +88,23 @@ namespace osf
             DataGridViewCheckBoxColumn1.dll_obj = this;
             Base_obj = DataGridViewCheckBoxColumn1;
         }
-		
+
         public ClDataGridViewCheckBoxColumn(DataGridViewCheckBoxColumn p1)
         {
             DataGridViewCheckBoxColumn DataGridViewCheckBoxColumn1 = p1;
             DataGridViewCheckBoxColumn1.dll_obj = this;
             Base_obj = DataGridViewCheckBoxColumn1;
         }
-        
+
         public DataGridViewCheckBoxColumn Base_obj;
-        
+
         [ContextProperty("ВесЗаполнения", "FillWeight")]
         public IValue FillWeight
         {
             get { return ValueFactory.Create((Convert.ToDecimal(Base_obj.FillWeight))); }
             set { Base_obj.FillWeight = Convert.ToSingle(value.AsNumber()); }
         }
-        
+
         [ContextProperty("Выбран", "Selected")]
         public bool Selected
         {
@@ -165,7 +165,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("МинимальнаяШирина", "MinimumWidth")]
         public int MinimumWidth
         {
@@ -282,6 +282,6 @@ namespace osf
             get { return Base_obj.DividerWidth; }
             set { Base_obj.DividerWidth = value; }
         }
-        
+
     }
 }

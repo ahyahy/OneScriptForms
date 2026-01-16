@@ -89,7 +89,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлХэшТаблица", "ClHashTable")]
+    [ContextClass("КлХэшТаблица", "ClHashTable")]
     public class ClHashTable : AutoContext<ClHashTable>
     {
         public ClHashTable()
@@ -98,16 +98,16 @@ namespace osf
             HashTable1.dll_obj = this;
             Base_obj = HashTable1;
         }
-		
+
         public ClHashTable(HashTable p1)
         {
             HashTable HashTable1 = p1;
             HashTable1.dll_obj = this;
             Base_obj = HashTable1;
         }
-        
+
         public HashTable Base_obj;
-        
+
         [ContextProperty("Значения", "Values")]
         public ClArrayList Values
         {
@@ -145,7 +145,7 @@ namespace osf
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public void Add(IValue p1, IValue p2)
         {
@@ -157,7 +157,7 @@ namespace osf
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Удалить", "Remove")]
         public void Remove(IValue p1)
         {

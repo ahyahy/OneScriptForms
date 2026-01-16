@@ -28,18 +28,18 @@ namespace osf
 
         public object Key
         {
-            get{return M_DictionaryEntry.Key;}
-            set{M_DictionaryEntry.Key = value;}
+            get { return M_DictionaryEntry.Key; }
+            set { M_DictionaryEntry.Key = value; }
         }
 
         public object Value
         {
-            get{return M_DictionaryEntry.Value;}
-            set{M_DictionaryEntry.Value = value;}
+            get { return M_DictionaryEntry.Value; }
+            set { M_DictionaryEntry.Value = value; }
         }
     }
 
-    [ContextClass ("КлСловарнаяЗапись", "ClDictionaryEntry")]
+    [ContextClass("КлСловарнаяЗапись", "ClDictionaryEntry")]
     public class ClDictionaryEntry : AutoContext<ClDictionaryEntry>
     {
         public ClDictionaryEntry(IValue p1, IValue p2)
@@ -48,7 +48,7 @@ namespace osf
             DictionaryEntry1.dll_obj = this;
             Base_obj = DictionaryEntry1;
         }
-		
+
         public ClDictionaryEntry(DictionaryEntry p1)
         {
             DictionaryEntry DictionaryEntry1 = p1;
@@ -57,20 +57,20 @@ namespace osf
         }
 
         public DictionaryEntry Base_obj;
-        
+
         [ContextProperty("Значение", "Value")]
         public IValue Value
         {
             get { return OneScriptForms.RevertObj(Base_obj.Value); }
             set { Base_obj.Value = value; }
         }
-        
+
         [ContextProperty("Ключ", "Key")]
         public IValue Key
         {
             get { return OneScriptForms.RevertObj(Base_obj.Key); }
             set { Base_obj.Key = value; }
         }
-        
+
     }
 }

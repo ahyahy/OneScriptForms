@@ -28,7 +28,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлОкружение", "ClEnvironment")]
+    [ContextClass("КлОкружение", "ClEnvironment")]
     public class ClEnvironment : AutoContext<ClEnvironment>
     {
         public ClEnvironment()
@@ -37,16 +37,16 @@ namespace osf
             Environment1.dll_obj = this;
             Base_obj = Environment1;
         }
-		
+
         public ClEnvironment(Environment p1)
         {
             Environment Environment1 = p1;
             Environment1.dll_obj = this;
             Base_obj = Environment1;
         }
-        
+
         public Environment Base_obj;
-        
+
         [ContextProperty("Версия", "Version")]
         public ClVersion Version
         {
@@ -64,7 +64,7 @@ namespace osf
         {
             get { return Base_obj.NewLine; }
         }
-        
+
         [ContextMethod("ПолучитьПутьКаталога", "GetFolderPath")]
         public string GetFolderPath(int p1)
         {

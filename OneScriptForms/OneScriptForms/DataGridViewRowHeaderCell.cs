@@ -29,7 +29,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЗаголовокСтроки", "ClDataGridViewRowHeaderCell")]
+    [ContextClass("КлЗаголовокСтроки", "ClDataGridViewRowHeaderCell")]
     public class ClDataGridViewRowHeaderCell : AutoContext<ClDataGridViewRowHeaderCell>
     {
         private ClCollection tag = new ClCollection();
@@ -40,16 +40,16 @@ namespace osf
             DataGridViewRowHeaderCell1.dll_obj = this;
             Base_obj = DataGridViewRowHeaderCell1;
         }
-		
+
         public ClDataGridViewRowHeaderCell(DataGridViewRowHeaderCell p1)
         {
             DataGridViewRowHeaderCell DataGridViewRowHeaderCell1 = p1;
             DataGridViewRowHeaderCell1.dll_obj = this;
             Base_obj = DataGridViewRowHeaderCell1;
         }
-        
+
         public DataGridViewRowHeaderCell Base_obj;
-        
+
         [ContextProperty("Закреплено", "Frozen")]
         public bool Frozen
         {
@@ -62,7 +62,7 @@ namespace osf
             get { return OneScriptForms.RevertObj(Base_obj.Value); }
             set { Base_obj.Value = value.AsString(); }
         }
-        
+
         [ContextProperty("ИзменяемыйРазмер", "Resizable")]
         public bool Resizable
         {
@@ -86,7 +86,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("Отображается", "Displayed")]
         public bool Displayed
         {
@@ -129,12 +129,12 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.FormattedValue); }
         }
-        
+
         [ContextProperty("ФорматированноеЗначениеРедактируемого", "EditedFormattedValue")]
         public IValue EditedFormattedValue
         {
             get { return OneScriptForms.RevertObj(Base_obj.EditedFormattedValue); }
         }
-        
+
     }
 }

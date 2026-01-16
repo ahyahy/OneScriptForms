@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлСтильЭлементаУправления", "ClControlStyles")]
+    [ContextClass("КлСтильЭлементаУправления", "ClControlStyles")]
     public class ClControlStyles : AutoContext<ClControlStyles>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_containerControl = (int)System.Windows.Forms.ControlStyles.ContainerControl; // 1 Если присвоено значение <B>Истина</B>, элемент управления является контейнером.
@@ -50,6 +50,70 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {512, "Выбираемый"},
+            {65536, "ДвойнаяБуферизация"},
+            {1, "Контейнер"},
+            {16384, "КэшироватьТекст"},
+            {4, "Непрозрачный"},
+            {8192, "НеСтиратьФон"},
+            {131072, "ОптимизированнаяДвойнаяБуферизация"},
+            {16, "ПерерисоватьПриМасштабировании"},
+            {2048, "ПоддержкаПрозрачногоЦвета"},
+            {1024, "ПользовательскаяМышь"},
+            {2, "ПользовательскаяОтрисовка"},
+            {4096, "СтандартноеДвойноеНажатие"},
+            {256, "СтандартноеНажатие"},
+            {32768, "Уведомления"},
+            {64, "ФиксированнаяВысота"},
+            {32, "ФиксированнаяШирина"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {512, "Selectable"},
+            {65536, "DoubleBuffer"},
+            {1, "ContainerControl"},
+            {16384, "CacheText"},
+            {4, "Opaque"},
+            {8192, "AllPaintingInWmPaint"},
+            {131072, "OptimizedDoubleBuffer"},
+            {16, "ResizeRedraw"},
+            {2048, "SupportsTransparentBackColor"},
+            {1024, "UserMouse"},
+            {2, "UserPaint"},
+            {4096, "StandardDoubleClick"},
+            {256, "StandardClick"},
+            {32768, "EnableNotifyMessage"},
+            {64, "FixedHeight"},
+            {32, "FixedWidth"},
+        };
+
         public ClControlStyles()
         {
             _list = new List<IValue>();
@@ -74,97 +138,97 @@ namespace osf
         [ContextProperty("Выбираемый", "Selectable")]
         public int Selectable
         {
-        	get { return m_selectable; }
+            get { return m_selectable; }
         }
 
         [ContextProperty("ДвойнаяБуферизация", "DoubleBuffer")]
         public int DoubleBuffer
         {
-        	get { return m_doubleBuffer; }
+            get { return m_doubleBuffer; }
         }
 
         [ContextProperty("Контейнер", "ContainerControl")]
         public int ContainerControl
         {
-        	get { return m_containerControl; }
+            get { return m_containerControl; }
         }
 
         [ContextProperty("КэшироватьТекст", "CacheText")]
         public int CacheText
         {
-        	get { return m_cacheText; }
+            get { return m_cacheText; }
         }
 
         [ContextProperty("Непрозрачный", "Opaque")]
         public int Opaque
         {
-        	get { return m_opaque; }
+            get { return m_opaque; }
         }
 
         [ContextProperty("НеСтиратьФон", "AllPaintingInWmPaint")]
         public int AllPaintingInWmPaint
         {
-        	get { return m_allPaintingInWmPaint; }
+            get { return m_allPaintingInWmPaint; }
         }
 
         [ContextProperty("ОптимизированнаяДвойнаяБуферизация", "OptimizedDoubleBuffer")]
         public int OptimizedDoubleBuffer
         {
-        	get { return m_optimizedDoubleBuffer; }
+            get { return m_optimizedDoubleBuffer; }
         }
 
         [ContextProperty("ПерерисоватьПриМасштабировании", "ResizeRedraw")]
         public int ResizeRedraw
         {
-        	get { return m_resizeRedraw; }
+            get { return m_resizeRedraw; }
         }
 
         [ContextProperty("ПоддержкаПрозрачногоЦвета", "SupportsTransparentBackColor")]
         public int SupportsTransparentBackColor
         {
-        	get { return m_supportsTransparentBackColor; }
+            get { return m_supportsTransparentBackColor; }
         }
 
         [ContextProperty("ПользовательскаяМышь", "UserMouse")]
         public int UserMouse
         {
-        	get { return m_userMouse; }
+            get { return m_userMouse; }
         }
 
         [ContextProperty("ПользовательскаяОтрисовка", "UserPaint")]
         public int UserPaint
         {
-        	get { return m_userPaint; }
+            get { return m_userPaint; }
         }
 
         [ContextProperty("СтандартноеДвойноеНажатие", "StandardDoubleClick")]
         public int StandardDoubleClick
         {
-        	get { return m_standardDoubleClick; }
+            get { return m_standardDoubleClick; }
         }
 
         [ContextProperty("СтандартноеНажатие", "StandardClick")]
         public int StandardClick
         {
-        	get { return m_standardClick; }
+            get { return m_standardClick; }
         }
 
         [ContextProperty("Уведомления", "EnableNotifyMessage")]
         public int EnableNotifyMessage
         {
-        	get { return m_enableNotifyMessage; }
+            get { return m_enableNotifyMessage; }
         }
 
         [ContextProperty("ФиксированнаяВысота", "FixedHeight")]
         public int FixedHeight
         {
-        	get { return m_fixedHeight; }
+            get { return m_fixedHeight; }
         }
 
         [ContextProperty("ФиксированнаяШирина", "FixedWidth")]
         public int FixedWidth
         {
-        	get { return m_fixedWidth; }
+            get { return m_fixedWidth; }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлАтрибутыКартинки", "ClBitmapData")]
+    [ContextClass("КлАтрибутыКартинки", "ClBitmapData")]
     public class ClBitmapData : AutoContext<ClBitmapData>
     {
         public ClBitmapData(BitmapData p1)
@@ -31,6 +31,6 @@ namespace osf
         }
 
         public BitmapData Base_obj;
-        
+
     }
 }

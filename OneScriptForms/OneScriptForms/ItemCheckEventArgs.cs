@@ -12,7 +12,7 @@ namespace osf
 
     }
 
-    [ContextClass ("КлЭлементПомеченАрг", "ClItemCheckEventArgs")]
+    [ContextClass("КлЭлементПомеченАрг", "ClItemCheckEventArgs")]
     public class ClItemCheckEventArgs : AutoContext<ClItemCheckEventArgs>
     {
         public ClItemCheckEventArgs()
@@ -21,16 +21,16 @@ namespace osf
             ItemCheckEventArgs1.dll_obj = this;
             Base_obj = ItemCheckEventArgs1;
         }
-		
+
         public ClItemCheckEventArgs(ItemCheckEventArgs p1)
         {
             ItemCheckEventArgs ItemCheckEventArgs1 = p1;
             ItemCheckEventArgs1.dll_obj = this;
             Base_obj = ItemCheckEventArgs1;
         }
-        
+
         public ItemCheckEventArgs Base_obj;
-        
+
         [ContextProperty("Индекс", "Index")]
         public int Index
         {
@@ -48,7 +48,7 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
@@ -60,6 +60,6 @@ namespace osf
         {
             get { return (int)Base_obj.CurrentValue; }
         }
-        
+
     }
 }

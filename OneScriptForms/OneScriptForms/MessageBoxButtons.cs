@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлКнопкиОкнаСообщений", "ClMessageBoxButtons")]
+    [ContextClass("КлКнопкиОкнаСообщений", "ClMessageBoxButtons")]
     public class ClMessageBoxButtons : AutoContext<ClMessageBoxButtons>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_oK = (int)System.Windows.Forms.MessageBoxButtons.OK; // 0 Окно сообщения содержит кнопку <B>ОК</B>.
@@ -40,6 +40,50 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {4, "ДаНет"},
+            {3, "ДаНетОтмена"},
+            {0, "ОК"},
+            {1, "ОКОтмена"},
+            {5, "ПовторитьОтмена"},
+            {2, "ПрерватьПовторитьПропустить"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {4, "YesNo"},
+            {3, "YesNoCancel"},
+            {0, "OK"},
+            {1, "OKCancel"},
+            {5, "RetryCancel"},
+            {2, "AbortRetryIgnore"},
+        };
+
         public ClMessageBoxButtons()
         {
             _list = new List<IValue>();
@@ -54,37 +98,37 @@ namespace osf
         [ContextProperty("ДаНет", "YesNo")]
         public int YesNo
         {
-        	get { return m_yesNo; }
+            get { return m_yesNo; }
         }
 
         [ContextProperty("ДаНетОтмена", "YesNoCancel")]
         public int YesNoCancel
         {
-        	get { return m_yesNoCancel; }
+            get { return m_yesNoCancel; }
         }
 
         [ContextProperty("ОК", "OK")]
         public int OK
         {
-        	get { return m_oK; }
+            get { return m_oK; }
         }
 
         [ContextProperty("ОКОтмена", "OKCancel")]
         public int OKCancel
         {
-        	get { return m_oKCancel; }
+            get { return m_oKCancel; }
         }
 
         [ContextProperty("ПовторитьОтмена", "RetryCancel")]
         public int RetryCancel
         {
-        	get { return m_retryCancel; }
+            get { return m_retryCancel; }
         }
 
         [ContextProperty("ПрерватьПовторитьПропустить", "AbortRetryIgnore")]
         public int AbortRetryIgnore
         {
-        	get { return m_abortRetryIgnore; }
+            get { return m_abortRetryIgnore; }
         }
     }
 }

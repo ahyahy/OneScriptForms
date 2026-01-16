@@ -66,7 +66,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлНаборДанных", "ClDataSet")]
+    [ContextClass("КлНаборДанных", "ClDataSet")]
     public class ClDataSet : AutoContext<ClDataSet>
     {
         private ClDataTableCollection tables;
@@ -78,7 +78,7 @@ namespace osf
             Base_obj = DataSet1;
             tables = new ClDataTableCollection(Base_obj.Tables);
         }
-		
+
         public ClDataSet(DataSet p1)
         {
             DataSet DataSet1 = p1;
@@ -86,9 +86,9 @@ namespace osf
             Base_obj = DataSet1;
             tables = new ClDataTableCollection(Base_obj.Tables);
         }
-        
+
         public DataSet Base_obj;
-        
+
         [ContextProperty("ИмяНабораДанных", "DataSetName")]
         public string DataSetName
         {
@@ -101,7 +101,7 @@ namespace osf
         {
             get { return tables; }
         }
-        
+
         [ContextMethod("Изменен", "HasChanges")]
         public bool HasChanges()
         {
@@ -113,13 +113,13 @@ namespace osf
         {
             Base_obj.RejectChanges();
         }
-					
+
         [ContextMethod("ПринятьИзменения", "AcceptChanges")]
         public void AcceptChanges()
         {
             Base_obj.AcceptChanges();
         }
-					
+
         [ContextMethod("Таблицы", "Tables")]
         public ClDataTable Tables2(IValue p1)
         {

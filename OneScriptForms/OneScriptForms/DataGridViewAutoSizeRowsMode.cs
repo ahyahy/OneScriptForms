@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлРежимАвтоРазмераСтрок", "ClDataGridViewAutoSizeRowsMode")]
+    [ContextClass("КлРежимАвтоРазмераСтрок", "ClDataGridViewAutoSizeRowsMode")]
     public class ClDataGridViewAutoSizeRowsMode : AutoContext<ClDataGridViewAutoSizeRowsMode>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_none = (int)System.Windows.Forms.DataGridViewAutoSizeRowsMode.None; // 0 Значения высоты строк не изменяются автоматически.
@@ -41,6 +41,52 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {5, "ВсеЗаголовки"},
+            {7, "ВсеЯчейки"},
+            {6, "ВсеЯчейкиБезЗаголовков"},
+            {9, "ОтобразритьЗаголовки"},
+            {11, "ОтобразритьЯчейки"},
+            {10, "ОтобразритьЯчейкиБезЗаголовков"},
+            {0, "Отсутствие"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {5, "AllHeaders"},
+            {7, "AllCells"},
+            {6, "AllCellsExceptHeaders"},
+            {9, "DisplayedHeaders"},
+            {11, "DisplayedCells"},
+            {10, "DisplayedCellsExceptHeaders"},
+            {0, "None"},
+        };
+
         public ClDataGridViewAutoSizeRowsMode()
         {
             _list = new List<IValue>();
@@ -56,43 +102,43 @@ namespace osf
         [ContextProperty("ВсеЗаголовки", "AllHeaders")]
         public int AllHeaders
         {
-        	get { return m_allHeaders; }
+            get { return m_allHeaders; }
         }
 
         [ContextProperty("ВсеЯчейки", "AllCells")]
         public int AllCells
         {
-        	get { return m_allCells; }
+            get { return m_allCells; }
         }
 
         [ContextProperty("ВсеЯчейкиБезЗаголовков", "AllCellsExceptHeaders")]
         public int AllCellsExceptHeaders
         {
-        	get { return m_allCellsExceptHeaders; }
+            get { return m_allCellsExceptHeaders; }
         }
 
         [ContextProperty("ОтобразритьЗаголовки", "DisplayedHeaders")]
         public int DisplayedHeaders
         {
-        	get { return m_displayedHeaders; }
+            get { return m_displayedHeaders; }
         }
 
         [ContextProperty("ОтобразритьЯчейки", "DisplayedCells")]
         public int DisplayedCells
         {
-        	get { return m_displayedCells; }
+            get { return m_displayedCells; }
         }
 
         [ContextProperty("ОтобразритьЯчейкиБезЗаголовков", "DisplayedCellsExceptHeaders")]
         public int DisplayedCellsExceptHeaders
         {
-        	get { return m_displayedCellsExceptHeaders; }
+            get { return m_displayedCellsExceptHeaders; }
         }
 
         [ContextProperty("Отсутствие", "None")]
         public int None
         {
-        	get { return m_none; }
+            get { return m_none; }
         }
     }
 }

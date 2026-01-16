@@ -44,7 +44,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлВыбранныеЭлементыПоляСписка", "ClListBoxSelectedObjectCollection")]
+    [ContextClass("КлВыбранныеЭлементыПоляСписка", "ClListBoxSelectedObjectCollection")]
     public class ClListBoxSelectedObjectCollection : AutoContext<ClListBoxSelectedObjectCollection>
     {
         public ClListBox M_obj;
@@ -58,13 +58,13 @@ namespace osf
         }
 
         public ListBoxSelectedObjectCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Индекс", "IndexOf")]
         public int IndexOf(IValue p1)
         {
@@ -77,7 +77,7 @@ namespace osf
             }
             return Base_obj.IndexOf(p1.AsString());
         }
-        
+
         [ContextMethod("Содержит", "Contains")]
         public bool Contains(IValue p1)
         {
@@ -90,7 +90,7 @@ namespace osf
             }
             return false;
         }
-        
+
         [ContextMethod("Элемент", "Item")]
         public IValue Item(int p1)
         {

@@ -2,27 +2,18 @@
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using System.Threading;
-using System.Text;
-using System.Security.Permissions;
-using System.Runtime.Serialization;
 using System.Runtime.InteropServices;
 using System.Reflection;
 using System.IO;
 using System.Globalization;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Drawing.Drawing2D;
-using System.Drawing.Design;
 using System.ComponentModel;
 using System.Collections;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using Aga.Controls.Tree.NodeControls;
-using Aga.Controls.Threading;
-using ScriptEngine.Machine.Contexts;
-using ScriptEngine.Machine;
 
-    #region Aga.Controls.Threading
+#region Aga.Controls.Threading
 
 namespace Aga.Controls.Threading
 {
@@ -186,9 +177,9 @@ namespace Aga.Controls.Threading
     }
 }
 
-    #endregion Aga.Controls.Threading
+#endregion Aga.Controls.Threading
 
-    #region Aga.Controls
+#region Aga.Controls
 
 namespace Aga.Controls
 {
@@ -1316,9 +1307,9 @@ namespace Aga.Controls
     }
 }
 
-    #endregion Aga.Controls
+#endregion Aga.Controls
 
-    #region Aga.Controls.Tree.NodeControls
+#region Aga.Controls.Tree.NodeControls
 
 namespace Aga.Controls.Tree.NodeControls
 {
@@ -1512,7 +1503,7 @@ namespace Aga.Controls.Tree.NodeControls
                 }
             }
             catch { }
-		
+
             Rectangle bounds = GetBounds(node, context);
             if (this.VerticalAlign == VerticalAlignment.Center)
             {
@@ -2320,7 +2311,7 @@ namespace Aga.Controls.Tree.NodeControls
     public abstract class NodeControl : Component
     {
         public Dictionary<osf.ClToolTip, object> ObjTooltip = new Dictionary<osf.ClToolTip, object>();
-		
+
         private object _tooltipText = "";
         public object TooltipText
         {
@@ -2733,9 +2724,9 @@ namespace Aga.Controls.Tree.NodeControls
     }
 }
 
-    #endregion Aga.Controls.Tree.NodeControls
+#endregion Aga.Controls.Tree.NodeControls
 
-    #region Aga.Controls.Tree
+#region Aga.Controls.Tree
 
 namespace Aga.Controls.Tree
 {
@@ -2817,7 +2808,7 @@ namespace Aga.Controls.Tree
             return _headerHeight.Value;
         }
     }
-		
+
     public class TreeViewAdvCancelEventArgs : TreeViewAdvEventArgs
     {
         private bool _cancel;

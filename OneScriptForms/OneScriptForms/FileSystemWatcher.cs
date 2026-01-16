@@ -196,7 +196,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлНаблюдательФайловойСистемы", "ClFileSystemWatcher")]
+    [ContextClass("КлНаблюдательФайловойСистемы", "ClFileSystemWatcher")]
     public class ClFileSystemWatcher : AutoContext<ClFileSystemWatcher>
     {
         private IValue _Changed;
@@ -210,16 +210,16 @@ namespace osf
             FileSystemWatcher1.dll_obj = this;
             Base_obj = FileSystemWatcher1;
         }
-		
+
         public ClFileSystemWatcher(FileSystemWatcher p1)
         {
             FileSystemWatcher FileSystemWatcher1 = p1;
             FileSystemWatcher1.dll_obj = this;
             Base_obj = FileSystemWatcher1;
         }
-        
+
         public FileSystemWatcher Base_obj;
-        
+
         [ContextProperty("ВключаяПодкаталоги", "IncludeSubDirectories")]
         public bool IncludeSubDirectories
         {
@@ -252,7 +252,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриПереименовании", "Renamed")]
         public IValue Renamed
         {
@@ -271,7 +271,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриСоздании", "Created")]
         public IValue Created
         {
@@ -290,7 +290,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриУдалении", "Deleted")]
         public IValue Deleted
         {
@@ -309,7 +309,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("Путь", "Path")]
         public string Path
         {
@@ -329,7 +329,7 @@ namespace osf
         {
             get { return new ClType(this); }
         }
-        
+
         [ContextProperty("Фильтр", "Filter")]
         public string Filter
         {
@@ -343,7 +343,7 @@ namespace osf
             get { return (int)Base_obj.NotifyFilter; }
             set { Base_obj.NotifyFilter = value; }
         }
-        
+
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

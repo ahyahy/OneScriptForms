@@ -37,7 +37,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлМеню", "ClMenu")]
+    [ContextClass("КлМеню", "ClMenu")]
     public class ClMenu : AutoContext<ClMenu>
     {
         private ClMenuItemCollection menuItems;
@@ -49,7 +49,7 @@ namespace osf
             Base_obj = Menu1;
             menuItems = new ClMenuItemCollection(Base_obj.MenuItems);
         }
-		
+
         public ClMenu(Menu p1)
         {
             Menu Menu1 = p1;
@@ -57,21 +57,21 @@ namespace osf
             Base_obj = Menu1;
             menuItems = new ClMenuItemCollection(Base_obj.MenuItems);
         }
-        
+
         public Menu Base_obj;
-        
+
         [ContextProperty("ЭлементыМеню", "MenuItems")]
         public ClMenuItemCollection MenuItems
         {
             get { return menuItems; }
         }
-        
+
         [ContextMethod("ПолучитьГлавноеМеню", "GetMainMenu")]
         public ClMainMenu GetMainMenu()
         {
             return (ClMainMenu)OneScriptForms.RevertObj(Base_obj.GetMainMenu());
         }
-        
+
         [ContextMethod("СлитьМеню", "MergeMenu")]
         public void MergeMenu(IValue p1)
         {
@@ -134,13 +134,13 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextMethod("ЭлементМеню", "MenuItem")]
         public ClMenuItem MenuItem(int p1)
         {
             return new ClMenuItem(Base_obj.MenuItems[p1]);
         }
-        
+
         [ContextMethod("ЭлементыМеню", "MenuItems")]
         public ClMenuItem MenuItems2(int p1)
         {

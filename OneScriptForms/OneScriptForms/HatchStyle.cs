@@ -5,17 +5,14 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлСтильШтриховки", "ClHatchStyle")]
+    [ContextClass("КлСтильШтриховки", "ClHatchStyle")]
     public class ClHatchStyle : AutoContext<ClHatchStyle>, ICollectionContext, IEnumerable<IValue>
     {
-        private int m_min = (int)System.Drawing.Drawing2D.HatchStyle.Min; // 0 Стиль штриховки <B>Горизонтальная&nbsp;(Horizontal)</B>.
         private int m_horizontal = (int)System.Drawing.Drawing2D.HatchStyle.Horizontal; // 0 Горизонтальные линии.
         private int m_vertical = (int)System.Drawing.Drawing2D.HatchStyle.Vertical; // 1 Штриховка в виде вертикальных линий.
         private int m_forwardDiagonal = (int)System.Drawing.Drawing2D.HatchStyle.ForwardDiagonal; // 2 Линии по диагонали из верхнего левого угла к нижнему правому.
         private int m_backwardDiagonal = (int)System.Drawing.Drawing2D.HatchStyle.BackwardDiagonal; // 3 Линии по диагонали от правого верхнего угла к левому нижнему углу.
         private int m_largeGrid = (int)System.Drawing.Drawing2D.HatchStyle.LargeGrid; // 4 Пересекающиеся горизонтальные и вертикальные линии.
-        private int m_max = (int)System.Drawing.Drawing2D.HatchStyle.Max; // 4 Стиль штриховки <B>СплошнойАлмаз&nbsp;(SolidDiamond)</B>.
-        private int m_cross = (int)System.Drawing.Drawing2D.HatchStyle.Cross; // 4 Пересекающиеся горизонтальные и вертикальные линии.
         private int m_diagonalCross = (int)System.Drawing.Drawing2D.HatchStyle.DiagonalCross; // 5 Перекрещивающиеся диагональные линии.
         private int m_percent05 = (int)System.Drawing.Drawing2D.HatchStyle.Percent05; // 6 Штриховка 5 процентов. Цвет переднего плана к цвету фона составляет 5:95.
         private int m_percent10 = (int)System.Drawing.Drawing2D.HatchStyle.Percent10; // 7 Штриховка 10 процентов. Цвет переднего плана к цвету фона составляет 10:90.
@@ -90,11 +87,148 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {4, "БольшаяРешетка"},
+            {50, "БольшаяШахматнаяДоска"},
+            {35, "БольшоеКонфетти"},
+            {1, "Вертикальная"},
+            {37, "Волна"},
+            {0, "Горизонтальная"},
+            {39, "ГоризонтальныеБлоки"},
+            {42, "Дерн"},
+            {5, "ДиагональнаяСетка"},
+            {38, "ДиагональныйБлок"},
+            {36, "ЗигЗаг"},
+            {48, "МаленькаяРешетка"},
+            {49, "МаленькаяШахматнаяДоска"},
+            {34, "МаленькоеКонфетти"},
+            {46, "Мешковина"},
+            {51, "ОбведенныйАлмаз"},
+            {3, "ОбратнаяДиагональная"},
+            {41, "Плед"},
+            {6, "Процент05"},
+            {7, "Процент10"},
+            {8, "Процент20"},
+            {9, "Процент25"},
+            {10, "Процент30"},
+            {11, "Процент40"},
+            {12, "Процент50"},
+            {13, "Процент60"},
+            {14, "Процент70"},
+            {15, "Процент75"},
+            {16, "Процент80"},
+            {17, "Процент90"},
+            {2, "ПрямаяДиагональная"},
+            {33, "ПунктирнаяВертикальная"},
+            {31, "ПунктирнаяВосходящаяДиагональная"},
+            {32, "ПунктирнаяГоризонтальная"},
+            {30, "ПунктирнаяНисходящаяДиагональная"},
+            {24, "СветлаяВертикальная"},
+            {19, "СветлаяВосходящаяДиагональная"},
+            {25, "СветлаяГоризонтальная"},
+            {18, "СветлаяНисходящаяДиагональная"},
+            {52, "СплошнойАлмаз"},
+            {47, "Сфера"},
+            {28, "ТемнаяВертикальная"},
+            {21, "ТемнаяВосходящаяДиагональная"},
+            {29, "ТемнаяГоризонтальная"},
+            {20, "ТемнаяНисходящаяДиагональная"},
+            {40, "Ткань"},
+            {43, "ТочечнаяРешетка"},
+            {44, "ТочечныйАлмаз"},
+            {26, "УзкаяВертикальная"},
+            {27, "УзкаяГоризонтальная"},
+            {45, "Черепица"},
+            {23, "ШирокаяВосходящаяДиагональная"},
+            {22, "ШирокаяНисходящаяДиагональная"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {4, "LargeGrid"},
+            {50, "LargeCheckerBoard"},
+            {35, "LargeConfetti"},
+            {1, "Vertical"},
+            {37, "Wave"},
+            {0, "Horizontal"},
+            {39, "HorizontalBrick"},
+            {42, "Divot"},
+            {5, "DiagonalCross"},
+            {38, "DiagonalBrick"},
+            {36, "ZigZag"},
+            {48, "SmallGrid"},
+            {49, "SmallCheckerBoard"},
+            {34, "SmallConfetti"},
+            {46, "Trellis"},
+            {51, "OutlinedDiamond"},
+            {3, "BackwardDiagonal"},
+            {41, "Plaid"},
+            {6, "Percent05"},
+            {7, "Percent10"},
+            {8, "Percent20"},
+            {9, "Percent25"},
+            {10, "Percent30"},
+            {11, "Percent40"},
+            {12, "Percent50"},
+            {13, "Percent60"},
+            {14, "Percent70"},
+            {15, "Percent75"},
+            {16, "Percent80"},
+            {17, "Percent90"},
+            {2, "ForwardDiagonal"},
+            {33, "DashedVertical"},
+            {31, "DashedUpwardDiagonal"},
+            {32, "DashedHorizontal"},
+            {30, "DashedDownwardDiagonal"},
+            {24, "LightVertical"},
+            {19, "LightUpwardDiagonal"},
+            {25, "LightHorizontal"},
+            {18, "LightDownwardDiagonal"},
+            {52, "SolidDiamond"},
+            {47, "Sphere"},
+            {28, "DarkVertical"},
+            {21, "DarkUpwardDiagonal"},
+            {29, "DarkHorizontal"},
+            {20, "DarkDownwardDiagonal"},
+            {40, "Weave"},
+            {43, "DottedGrid"},
+            {44, "DottedDiamond"},
+            {26, "NarrowVertical"},
+            {27, "NarrowHorizontal"},
+            {45, "Shingle"},
+            {23, "WideUpwardDiagonal"},
+            {22, "WideDownwardDiagonal"},
+        };
+
         public ClHatchStyle()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(BackwardDiagonal));
-            _list.Add(ValueFactory.Create(Cross));
             _list.Add(ValueFactory.Create(DarkDownwardDiagonal));
             _list.Add(ValueFactory.Create(DarkHorizontal));
             _list.Add(ValueFactory.Create(DarkUpwardDiagonal));
@@ -118,8 +252,6 @@ namespace osf
             _list.Add(ValueFactory.Create(LightHorizontal));
             _list.Add(ValueFactory.Create(LightUpwardDiagonal));
             _list.Add(ValueFactory.Create(LightVertical));
-            _list.Add(ValueFactory.Create(Max));
-            _list.Add(ValueFactory.Create(Min));
             _list.Add(ValueFactory.Create(NarrowHorizontal));
             _list.Add(ValueFactory.Create(NarrowVertical));
             _list.Add(ValueFactory.Create(OutlinedDiamond));
@@ -154,337 +286,319 @@ namespace osf
         [ContextProperty("БольшаяРешетка", "LargeGrid")]
         public int LargeGrid
         {
-        	get { return m_largeGrid; }
+            get { return m_largeGrid; }
         }
 
         [ContextProperty("БольшаяШахматнаяДоска", "LargeCheckerBoard")]
         public int LargeCheckerBoard
         {
-        	get { return m_largeCheckerBoard; }
+            get { return m_largeCheckerBoard; }
         }
 
         [ContextProperty("БольшоеКонфетти", "LargeConfetti")]
         public int LargeConfetti
         {
-        	get { return m_largeConfetti; }
+            get { return m_largeConfetti; }
         }
 
         [ContextProperty("Вертикальная", "Vertical")]
         public int Vertical
         {
-        	get { return m_vertical; }
-        }
-
-        [ContextProperty("ВертикальнаяСетка", "Cross")]
-        public int Cross
-        {
-        	get { return m_cross; }
+            get { return m_vertical; }
         }
 
         [ContextProperty("Волна", "Wave")]
         public int Wave
         {
-        	get { return m_wave; }
+            get { return m_wave; }
         }
 
         [ContextProperty("Горизонтальная", "Horizontal")]
         public int Horizontal
         {
-        	get { return m_horizontal; }
+            get { return m_horizontal; }
         }
 
         [ContextProperty("ГоризонтальныеБлоки", "HorizontalBrick")]
         public int HorizontalBrick
         {
-        	get { return m_horizontalBrick; }
+            get { return m_horizontalBrick; }
         }
 
         [ContextProperty("Дерн", "Divot")]
         public int Divot
         {
-        	get { return m_divot; }
+            get { return m_divot; }
         }
 
         [ContextProperty("ДиагональнаяСетка", "DiagonalCross")]
         public int DiagonalCross
         {
-        	get { return m_diagonalCross; }
+            get { return m_diagonalCross; }
         }
 
         [ContextProperty("ДиагональныйБлок", "DiagonalBrick")]
         public int DiagonalBrick
         {
-        	get { return m_diagonalBrick; }
+            get { return m_diagonalBrick; }
         }
 
         [ContextProperty("ЗигЗаг", "ZigZag")]
         public int ZigZag
         {
-        	get { return m_zigZag; }
+            get { return m_zigZag; }
         }
 
         [ContextProperty("МаленькаяРешетка", "SmallGrid")]
         public int SmallGrid
         {
-        	get { return m_smallGrid; }
+            get { return m_smallGrid; }
         }
 
         [ContextProperty("МаленькаяШахматнаяДоска", "SmallCheckerBoard")]
         public int SmallCheckerBoard
         {
-        	get { return m_smallCheckerBoard; }
+            get { return m_smallCheckerBoard; }
         }
 
         [ContextProperty("МаленькоеКонфетти", "SmallConfetti")]
         public int SmallConfetti
         {
-        	get { return m_smallConfetti; }
+            get { return m_smallConfetti; }
         }
 
         [ContextProperty("Мешковина", "Trellis")]
         public int Trellis
         {
-        	get { return m_trellis; }
+            get { return m_trellis; }
         }
 
         [ContextProperty("ОбведенныйАлмаз", "OutlinedDiamond")]
         public int OutlinedDiamond
         {
-        	get { return m_outlinedDiamond; }
+            get { return m_outlinedDiamond; }
         }
 
         [ContextProperty("ОбратнаяДиагональная", "BackwardDiagonal")]
         public int BackwardDiagonal
         {
-        	get { return m_backwardDiagonal; }
+            get { return m_backwardDiagonal; }
         }
 
         [ContextProperty("Плед", "Plaid")]
         public int Plaid
         {
-        	get { return m_plaid; }
+            get { return m_plaid; }
         }
 
         [ContextProperty("Процент05", "Percent05")]
         public int Percent05
         {
-        	get { return m_percent05; }
+            get { return m_percent05; }
         }
 
         [ContextProperty("Процент10", "Percent10")]
         public int Percent10
         {
-        	get { return m_percent10; }
+            get { return m_percent10; }
         }
 
         [ContextProperty("Процент20", "Percent20")]
         public int Percent20
         {
-        	get { return m_percent20; }
+            get { return m_percent20; }
         }
 
         [ContextProperty("Процент25", "Percent25")]
         public int Percent25
         {
-        	get { return m_percent25; }
+            get { return m_percent25; }
         }
 
         [ContextProperty("Процент30", "Percent30")]
         public int Percent30
         {
-        	get { return m_percent30; }
+            get { return m_percent30; }
         }
 
         [ContextProperty("Процент40", "Percent40")]
         public int Percent40
         {
-        	get { return m_percent40; }
+            get { return m_percent40; }
         }
 
         [ContextProperty("Процент50", "Percent50")]
         public int Percent50
         {
-        	get { return m_percent50; }
+            get { return m_percent50; }
         }
 
         [ContextProperty("Процент60", "Percent60")]
         public int Percent60
         {
-        	get { return m_percent60; }
+            get { return m_percent60; }
         }
 
         [ContextProperty("Процент70", "Percent70")]
         public int Percent70
         {
-        	get { return m_percent70; }
+            get { return m_percent70; }
         }
 
         [ContextProperty("Процент75", "Percent75")]
         public int Percent75
         {
-        	get { return m_percent75; }
+            get { return m_percent75; }
         }
 
         [ContextProperty("Процент80", "Percent80")]
         public int Percent80
         {
-        	get { return m_percent80; }
+            get { return m_percent80; }
         }
 
         [ContextProperty("Процент90", "Percent90")]
         public int Percent90
         {
-        	get { return m_percent90; }
+            get { return m_percent90; }
         }
 
         [ContextProperty("ПрямаяДиагональная", "ForwardDiagonal")]
         public int ForwardDiagonal
         {
-        	get { return m_forwardDiagonal; }
+            get { return m_forwardDiagonal; }
         }
 
         [ContextProperty("ПунктирнаяВертикальная", "DashedVertical")]
         public int DashedVertical
         {
-        	get { return m_dashedVertical; }
+            get { return m_dashedVertical; }
         }
 
         [ContextProperty("ПунктирнаяВосходящаяДиагональная", "DashedUpwardDiagonal")]
         public int DashedUpwardDiagonal
         {
-        	get { return m_dashedUpwardDiagonal; }
+            get { return m_dashedUpwardDiagonal; }
         }
 
         [ContextProperty("ПунктирнаяГоризонтальная", "DashedHorizontal")]
         public int DashedHorizontal
         {
-        	get { return m_dashedHorizontal; }
+            get { return m_dashedHorizontal; }
         }
 
         [ContextProperty("ПунктирнаяНисходящаяДиагональная", "DashedDownwardDiagonal")]
         public int DashedDownwardDiagonal
         {
-        	get { return m_dashedDownwardDiagonal; }
+            get { return m_dashedDownwardDiagonal; }
         }
 
         [ContextProperty("СветлаяВертикальная", "LightVertical")]
         public int LightVertical
         {
-        	get { return m_lightVertical; }
+            get { return m_lightVertical; }
         }
 
         [ContextProperty("СветлаяВосходящаяДиагональная", "LightUpwardDiagonal")]
         public int LightUpwardDiagonal
         {
-        	get { return m_lightUpwardDiagonal; }
+            get { return m_lightUpwardDiagonal; }
         }
 
         [ContextProperty("СветлаяГоризонтальная", "LightHorizontal")]
         public int LightHorizontal
         {
-        	get { return m_lightHorizontal; }
+            get { return m_lightHorizontal; }
         }
 
         [ContextProperty("СветлаяНисходящаяДиагональная", "LightDownwardDiagonal")]
         public int LightDownwardDiagonal
         {
-        	get { return m_lightDownwardDiagonal; }
+            get { return m_lightDownwardDiagonal; }
         }
 
         [ContextProperty("СплошнойАлмаз", "SolidDiamond")]
         public int SolidDiamond
         {
-        	get { return m_solidDiamond; }
+            get { return m_solidDiamond; }
         }
 
         [ContextProperty("Сфера", "Sphere")]
         public int Sphere
         {
-        	get { return m_sphere; }
+            get { return m_sphere; }
         }
 
         [ContextProperty("ТемнаяВертикальная", "DarkVertical")]
         public int DarkVertical
         {
-        	get { return m_darkVertical; }
+            get { return m_darkVertical; }
         }
 
         [ContextProperty("ТемнаяВосходящаяДиагональная", "DarkUpwardDiagonal")]
         public int DarkUpwardDiagonal
         {
-        	get { return m_darkUpwardDiagonal; }
+            get { return m_darkUpwardDiagonal; }
         }
 
         [ContextProperty("ТемнаяГоризонтальная", "DarkHorizontal")]
         public int DarkHorizontal
         {
-        	get { return m_darkHorizontal; }
+            get { return m_darkHorizontal; }
         }
 
         [ContextProperty("ТемнаяНисходящаяДиагональная", "DarkDownwardDiagonal")]
         public int DarkDownwardDiagonal
         {
-        	get { return m_darkDownwardDiagonal; }
+            get { return m_darkDownwardDiagonal; }
         }
 
         [ContextProperty("Ткань", "Weave")]
         public int Weave
         {
-        	get { return m_weave; }
+            get { return m_weave; }
         }
 
         [ContextProperty("ТочечнаяРешетка", "DottedGrid")]
         public int DottedGrid
         {
-        	get { return m_dottedGrid; }
+            get { return m_dottedGrid; }
         }
 
         [ContextProperty("ТочечныйАлмаз", "DottedDiamond")]
         public int DottedDiamond
         {
-        	get { return m_dottedDiamond; }
+            get { return m_dottedDiamond; }
         }
 
         [ContextProperty("УзкаяВертикальная", "NarrowVertical")]
         public int NarrowVertical
         {
-        	get { return m_narrowVertical; }
+            get { return m_narrowVertical; }
         }
 
         [ContextProperty("УзкаяГоризонтальная", "NarrowHorizontal")]
         public int NarrowHorizontal
         {
-        	get { return m_narrowHorizontal; }
+            get { return m_narrowHorizontal; }
         }
 
         [ContextProperty("Черепица", "Shingle")]
         public int Shingle
         {
-        	get { return m_shingle; }
+            get { return m_shingle; }
         }
 
         [ContextProperty("ШирокаяВосходящаяДиагональная", "WideUpwardDiagonal")]
         public int WideUpwardDiagonal
         {
-        	get { return m_wideUpwardDiagonal; }
+            get { return m_wideUpwardDiagonal; }
         }
 
         [ContextProperty("ШирокаяНисходящаяДиагональная", "WideDownwardDiagonal")]
         public int WideDownwardDiagonal
         {
-        	get { return m_wideDownwardDiagonal; }
-        }
-
-        [ContextProperty("ШтриховкаГоризонтальная", "Min")]
-        public int Min
-        {
-        	get { return m_min; }
-        }
-
-        [ContextProperty("ШтриховкаСплошнойАлмаз", "Max")]
-        public int Max
-        {
-        	get { return m_max; }
+            get { return m_wideDownwardDiagonal; }
         }
     }
 }

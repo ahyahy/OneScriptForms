@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлТипДанных", "ClDataType")]
+    [ContextClass("КлТипДанных", "ClDataType")]
     public class ClDataType : AutoContext<ClDataType>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_string = 0; // 0 Тип данных <B>Строка</B>.
@@ -39,6 +39,48 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {2, "Булево"},
+            {3, "Дата"},
+            {4, "Объект"},
+            {0, "Строка"},
+            {1, "Число"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {2, "Boolean"},
+            {3, "Date"},
+            {4, "Object"},
+            {0, "String"},
+            {1, "Number"},
+        };
+
         public ClDataType()
         {
             _list = new List<IValue>();
@@ -52,31 +94,31 @@ namespace osf
         [ContextProperty("Булево", "Boolean")]
         public int Boolean
         {
-        	get { return m_boolean; }
+            get { return m_boolean; }
         }
 
         [ContextProperty("Дата", "Date")]
         public int Date
         {
-        	get { return m_date; }
+            get { return m_date; }
         }
 
         [ContextProperty("Объект", "Object")]
         public int Object
         {
-        	get { return m_object; }
+            get { return m_object; }
         }
 
         [ContextProperty("Строка", "String")]
         public int String
         {
-        	get { return m_string; }
+            get { return m_string; }
         }
 
         [ContextProperty("Число", "Number")]
         public int Number
         {
-        	get { return m_number; }
+            get { return m_number; }
         }
     }
 }

@@ -63,7 +63,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЭлементДанных", "ClDataItem")]
+    [ContextClass("КлЭлементДанных", "ClDataItem")]
     public class ClDataItem : AutoContext<ClDataItem>
     {
         public ClDataItem()
@@ -72,16 +72,16 @@ namespace osf
             DataItem1.dll_obj = this;
             Base_obj = DataItem1;
         }
-		
+
         public ClDataItem(DataItem p1)
         {
             DataItem DataItem1 = p1;
             DataItem1.dll_obj = this;
             Base_obj = DataItem1;
         }
-        
+
         public DataItem Base_obj;
-        
+
         [ContextProperty("Значение", "Value")]
         public IValue Value
         {
@@ -98,6 +98,6 @@ namespace osf
             get { return (ClDataRow)OneScriptForms.RevertObj(Base_obj.DataRow); }
             set { Base_obj.DataRow = value.Base_obj; }
         }
-        
+
     }
 }

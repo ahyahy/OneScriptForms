@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace osf
 {
-    [ContextClass ("КлПлоскийСтиль", "ClFlatStyle")]
+    [ContextClass("КлПлоскийСтиль", "ClFlatStyle")]
     public class ClFlatStyle : AutoContext<ClFlatStyle>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_flat = (int)(System.Windows.Forms.FlatStyle)FlatStyle.Flat; // 0 Элемент управления выглядит плоским.
@@ -39,6 +39,46 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1, "Всплывающий"},
+            {0, "Плоский"},
+            {3, "Система"},
+            {2, "Стандартный"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1, "Popup"},
+            {0, "Flat"},
+            {3, "System"},
+            {2, "Standard"},
+        };
+
         public ClFlatStyle()
         {
             _list = new List<IValue>();
@@ -51,25 +91,25 @@ namespace osf
         [ContextProperty("Всплывающий", "Popup")]
         public int Popup
         {
-        	get { return m_popup; }
+            get { return m_popup; }
         }
 
         [ContextProperty("Плоский", "Flat")]
         public int Flat
         {
-        	get { return m_flat; }
+            get { return m_flat; }
         }
 
         [ContextProperty("Система", "System")]
         public int System
         {
-        	get { return m_system; }
+            get { return m_system; }
         }
 
         [ContextProperty("Стандартный", "Standard")]
         public int Standard
         {
-        	get { return m_standard; }
+            get { return m_standard; }
         }
     }
 }

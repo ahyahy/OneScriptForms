@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлНачальноеПоложениеФормы", "ClFormStartPosition")]
+    [ContextClass("КлНачальноеПоложениеФормы", "ClFormStartPosition")]
     public class ClFormStartPosition : AutoContext<ClFormStartPosition>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_manual = (int)System.Windows.Forms.FormStartPosition.Manual; // 0 Положение формы определяется свойством <B>Положение&nbsp;(Location)</B>.
@@ -39,6 +39,48 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {0, "Вручную"},
+            {3, "ГраницыОкнаПоУмолчанию"},
+            {2, "ПоложениеОкнаПоУмолчанию"},
+            {4, "ЦентрРодителя"},
+            {1, "ЦентрЭкрана"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {0, "Manual"},
+            {3, "WindowsDefaultBounds"},
+            {2, "WindowsDefaultLocation"},
+            {4, "CenterParent"},
+            {1, "CenterScreen"},
+        };
+
         public ClFormStartPosition()
         {
             _list = new List<IValue>();
@@ -52,31 +94,31 @@ namespace osf
         [ContextProperty("Вручную", "Manual")]
         public int Manual
         {
-        	get { return m_manual; }
+            get { return m_manual; }
         }
 
         [ContextProperty("ГраницыОкнаПоУмолчанию", "WindowsDefaultBounds")]
         public int WindowsDefaultBounds
         {
-        	get { return m_windowsDefaultBounds; }
+            get { return m_windowsDefaultBounds; }
         }
 
         [ContextProperty("ПоложениеОкнаПоУмолчанию", "WindowsDefaultLocation")]
         public int WindowsDefaultLocation
         {
-        	get { return m_windowsDefaultLocation; }
+            get { return m_windowsDefaultLocation; }
         }
 
         [ContextProperty("ЦентрРодителя", "CenterParent")]
         public int CenterParent
         {
-        	get { return m_centerParent; }
+            get { return m_centerParent; }
         }
 
         [ContextProperty("ЦентрЭкрана", "CenterScreen")]
         public int CenterScreen
         {
-        	get { return m_centerScreen; }
+            get { return m_centerScreen; }
         }
     }
 }

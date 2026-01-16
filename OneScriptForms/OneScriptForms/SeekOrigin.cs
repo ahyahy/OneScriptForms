@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлПозицияПоиска", "ClSeekOrigin")]
+    [ContextClass("КлПозицияПоиска", "ClSeekOrigin")]
     public class ClSeekOrigin : AutoContext<ClSeekOrigin>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_begin = (int)System.IO.SeekOrigin.Begin; // 0 Начало потока.
@@ -37,6 +37,44 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {2, "Конец"},
+            {0, "Начало"},
+            {1, "Текущая"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {2, "End"},
+            {0, "Begin"},
+            {1, "Current"},
+        };
+
         public ClSeekOrigin()
         {
             _list = new List<IValue>();
@@ -48,19 +86,19 @@ namespace osf
         [ContextProperty("Конец", "End")]
         public int End
         {
-        	get { return m_end; }
+            get { return m_end; }
         }
 
         [ContextProperty("Начало", "Begin")]
         public int Begin
         {
-        	get { return m_begin; }
+            get { return m_begin; }
         }
 
         [ContextProperty("Текущая", "Current")]
         public int Current
         {
-        	get { return m_current; }
+            get { return m_current; }
         }
     }
 }

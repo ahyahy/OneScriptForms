@@ -59,7 +59,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлКолонки", "ClListViewColumnHeaderCollection")]
+    [ContextClass("КлКолонки", "ClListViewColumnHeaderCollection")]
     public class ClListViewColumnHeaderCollection : AutoContext<ClListViewColumnHeaderCollection>
     {
         public ClListViewColumnHeaderCollection()
@@ -68,28 +68,28 @@ namespace osf
             ListViewColumnHeaderCollection1.dll_obj = this;
             Base_obj = ListViewColumnHeaderCollection1;
         }
-		
+
         public ClListViewColumnHeaderCollection(ListViewColumnHeaderCollection p1)
         {
             ListViewColumnHeaderCollection ListViewColumnHeaderCollection1 = p1;
             ListViewColumnHeaderCollection1.dll_obj = this;
             Base_obj = ListViewColumnHeaderCollection1;
         }
-        
+
         public ListViewColumnHeaderCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Вставить", "Insert")]
         public ClColumnHeader Insert(int p1, ClColumnHeader p2)
         {
             return Base_obj.Insert(p1, p2.Base_obj).dll_obj;
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public ClColumnHeader Add(IValue p1 = null)
         {
@@ -107,13 +107,13 @@ namespace osf
             }
             return null;
         }
-        
+
         [ContextMethod("Очистить", "Clear")]
         public void Clear()
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Удалить", "Remove")]
         public void Remove(ClColumnHeader p1)
         {

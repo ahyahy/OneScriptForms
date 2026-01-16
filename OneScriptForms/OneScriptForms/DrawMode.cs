@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлРежимРисования", "ClDrawMode")]
+    [ContextClass("КлРежимРисования", "ClDrawMode")]
     public class ClDrawMode : AutoContext<ClDrawMode>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_normal = (int)System.Windows.Forms.DrawMode.Normal; // 0 Рисование всех элементов в элементе управления выполняется операционной системой, и все элементы имеют одинаковый размер.
@@ -37,6 +37,44 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {2, "ВручнуюПеременный"},
+            {1, "ВручнуюФиксированный"},
+            {0, "Стандартный"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {2, "OwnerDrawVariable"},
+            {1, "OwnerDrawFixed"},
+            {0, "Normal"},
+        };
+
         public ClDrawMode()
         {
             _list = new List<IValue>();
@@ -48,19 +86,19 @@ namespace osf
         [ContextProperty("ВручнуюПеременный", "OwnerDrawVariable")]
         public int OwnerDrawVariable
         {
-        	get { return m_ownerDrawVariable; }
+            get { return m_ownerDrawVariable; }
         }
 
         [ContextProperty("ВручнуюФиксированный", "OwnerDrawFixed")]
         public int OwnerDrawFixed
         {
-        	get { return m_ownerDrawFixed; }
+            get { return m_ownerDrawFixed; }
         }
 
         [ContextProperty("Стандартный", "Normal")]
         public int Normal
         {
-        	get { return m_normal; }
+            get { return m_normal; }
         }
     }
 }

@@ -44,7 +44,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлКолонкиТаблицы", "ClDataGridViewColumnCollection")]
+    [ContextClass("КлКолонкиТаблицы", "ClDataGridViewColumnCollection")]
     public class ClDataGridViewColumnCollection : AutoContext<ClDataGridViewColumnCollection>
     {
         public ClDataGridViewColumnCollection()
@@ -53,22 +53,22 @@ namespace osf
             DataGridViewColumnCollection1.dll_obj = this;
             Base_obj = DataGridViewColumnCollection1;
         }
-		
+
         public ClDataGridViewColumnCollection(DataGridViewColumnCollection p1)
         {
             DataGridViewColumnCollection DataGridViewColumnCollection1 = p1;
             DataGridViewColumnCollection1.dll_obj = this;
             Base_obj = DataGridViewColumnCollection1;
         }
-        
+
         public DataGridViewColumnCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Вставить", "Insert")]
         public void Insert(int p1, IValue p2)
         {
@@ -80,13 +80,13 @@ namespace osf
         {
             return Base_obj.Add(((dynamic)p1).Base_obj);
         }
-        
+
         [ContextMethod("Очистить", "Clear")]
         public void Clear()
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Удалить", "Remove")]
         public void Remove(IValue p1)
         {

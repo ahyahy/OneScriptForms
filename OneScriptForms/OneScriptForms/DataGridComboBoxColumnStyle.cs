@@ -162,7 +162,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлСтильКолонкиПолеВыбора", "ClDataGridComboBoxColumnStyle")]
+    [ContextClass("КлСтильКолонкиПолеВыбора", "ClDataGridComboBoxColumnStyle")]
     public class ClDataGridComboBoxColumnStyle : AutoContext<ClDataGridComboBoxColumnStyle>
     {
         public ClDataGridComboBoxColumnStyle()
@@ -180,7 +180,7 @@ namespace osf
         }
 
         public DataGridComboBoxColumn Base_obj;
-        
+
         [ContextProperty("Выравнивание", "Alignment")]
         public int Alignment
         {
@@ -221,7 +221,7 @@ namespace osf
             get { return Base_obj.Width; }
             set { Base_obj.Width = value; }
         }
-        
+
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

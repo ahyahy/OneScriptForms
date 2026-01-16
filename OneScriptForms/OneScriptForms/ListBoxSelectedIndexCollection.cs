@@ -47,7 +47,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлИндексыВыбранныхПоляСписка", "ClListBoxSelectedIndexCollection")]
+    [ContextClass("КлИндексыВыбранныхПоляСписка", "ClListBoxSelectedIndexCollection")]
     public class ClListBoxSelectedIndexCollection : AutoContext<ClListBoxSelectedIndexCollection>
     {
         public ClListBoxSelectedIndexCollection()
@@ -56,22 +56,22 @@ namespace osf
             ListBoxSelectedIndexCollection1.dll_obj = this;
             Base_obj = ListBoxSelectedIndexCollection1;
         }
-		
+
         public ClListBoxSelectedIndexCollection(ListBoxSelectedIndexCollection p1)
         {
             ListBoxSelectedIndexCollection ListBoxSelectedIndexCollection1 = p1;
             ListBoxSelectedIndexCollection1.dll_obj = this;
             Base_obj = ListBoxSelectedIndexCollection1;
         }
-        
+
         public ListBoxSelectedIndexCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Индекс", "IndexOf")]
         public int IndexOf(int p1)
         {

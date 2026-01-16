@@ -1,7 +1,6 @@
 ﻿using System;
 using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
-using System.ComponentModel;
 
 namespace osf
 {
@@ -117,7 +116,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлКолонкаКартинка", "ClDataGridViewImageColumn")]
+    [ContextClass("КлКолонкаКартинка", "ClDataGridViewImageColumn")]
     public class ClDataGridViewImageColumn : AutoContext<ClDataGridViewImageColumn>
     {
         private ClCollection tag = new ClCollection();
@@ -128,23 +127,23 @@ namespace osf
             DataGridViewImageColumn1.dll_obj = this;
             Base_obj = DataGridViewImageColumn1;
         }
-		
+
         public ClDataGridViewImageColumn(DataGridViewImageColumn p1)
         {
             DataGridViewImageColumn DataGridViewImageColumn1 = p1;
             DataGridViewImageColumn1.dll_obj = this;
             Base_obj = DataGridViewImageColumn1;
         }
-        
+
         public DataGridViewImageColumn Base_obj;
-        
+
         [ContextProperty("ВесЗаполнения", "FillWeight")]
         public IValue FillWeight
         {
             get { return ValueFactory.Create((Convert.ToDecimal(Base_obj.FillWeight))); }
             set { Base_obj.FillWeight = Convert.ToSingle(value.AsNumber()); }
         }
-        
+
         [ContextProperty("Выбран", "Selected")]
         public bool Selected
         {
@@ -170,9 +169,9 @@ namespace osf
         public ClIcon Icon
         {
             get { return (ClIcon)OneScriptForms.RevertObj(Base_obj.Icon); }
-            set 
+            set
             {
-                Base_obj.Icon = value.Base_obj; 
+                Base_obj.Icon = value.Base_obj;
                 Base_obj.Icon.dll_obj = value;
             }
         }
@@ -223,7 +222,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("МинимальнаяШирина", "MinimumWidth")]
         public int MinimumWidth
         {
@@ -326,6 +325,6 @@ namespace osf
             get { return Base_obj.ValuesAreIcons; }
             set { Base_obj.ValuesAreIcons = value; }
         }
-        
+
     }
 }

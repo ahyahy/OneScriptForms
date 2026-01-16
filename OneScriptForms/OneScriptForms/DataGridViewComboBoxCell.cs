@@ -501,7 +501,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлПолеВыбораЯчейки", "ClDataGridViewComboBoxCell")]
+    [ContextClass("КлПолеВыбораЯчейки", "ClDataGridViewComboBoxCell")]
     public class ClDataGridViewComboBoxCell : AutoContext<ClDataGridViewComboBoxCell>
     {
         private ClRectangle contentBounds;
@@ -514,7 +514,7 @@ namespace osf
             Base_obj = DataGridViewComboBoxCell1;
             contentBounds = new ClRectangle(Base_obj.ContentBounds);
         }
-		
+
         public ClDataGridViewComboBoxCell(DataGridViewComboBoxCell p1)
         {
             DataGridViewComboBoxCell DataGridViewComboBoxCell1 = p1;
@@ -522,9 +522,9 @@ namespace osf
             Base_obj = DataGridViewComboBoxCell1;
             contentBounds = new ClRectangle(Base_obj.ContentBounds);
         }
-        
+
         public DataGridViewComboBoxCell Base_obj;
-        
+
         [ContextProperty("Выбран", "Selected")]
         public bool Selected
         {
@@ -550,7 +550,7 @@ namespace osf
             get { return OneScriptForms.RevertObj(Base_obj.Value); }
             set { Base_obj.Value = value; }
         }
-        
+
         [ContextProperty("ЗначениеЭлемента", "ValueMember")]
         public string ValueMember
         {
@@ -617,7 +617,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("Отображается", "Displayed")]
         public bool Displayed
         {
@@ -720,19 +720,19 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.FormattedValue); }
         }
-        
+
         [ContextProperty("ФорматированноеЗначениеРедактируемого", "EditedFormattedValue")]
         public IValue EditedFormattedValue
         {
             get { return OneScriptForms.RevertObj(Base_obj.EditedFormattedValue); }
         }
-        
+
         [ContextProperty("Элементы", "Items")]
         public ClDataGridViewComboBoxCellObjectCollection Items
         {
             get { return (ClDataGridViewComboBoxCellObjectCollection)OneScriptForms.RevertObj(Base_obj.Items); }
         }
-        
+
         [ContextMethod("Элементы", "Items")]
         public IValue Items2(int p1)
         {

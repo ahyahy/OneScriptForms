@@ -1,26 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using System.Threading;
-using System.Text;
-using System.Security.Permissions;
-using System.Runtime.Serialization;
-using System.Runtime.InteropServices;
-using System.Reflection;
-using System.IO;
-using System.Globalization;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Drawing.Drawing2D;
-using System.Drawing.Design;
-using System.ComponentModel;
-using System.Collections;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using Aga.Controls.Tree.NodeControls;
-using Aga.Controls.Threading;
-using ScriptEngine.Machine.Contexts;
-using ScriptEngine.Machine;
+﻿using ScriptEngine.Machine.Contexts;
 
 namespace osf
 {
@@ -32,19 +10,16 @@ namespace osf
         public ClNodeCollection(Aga.Controls.Tree.Node.NodeCollection p1)
         {
             Base_obj = p1;
-        }//end_constr
+        }
 
         public Aga.Controls.Tree.Node.NodeCollection Base_obj;
 
-        //Свойства============================================================
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
 
-        //endProperty
-        //Методы============================================================
         [ContextMethod("Вставить", "Insert")]
         public void Insert(int p1, ClNode p2)
         {
@@ -68,7 +43,7 @@ namespace osf
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Содержит", "Contains")]
         public bool Contains(ClNode p1)
         {
@@ -99,7 +74,5 @@ namespace osf
             return (ClNode)OneScriptForms.RevertObj(Base_obj[p1]);
         }
 
-        //endMethods
-    }//endClass
-
-}//endnamespace
+    }
+}

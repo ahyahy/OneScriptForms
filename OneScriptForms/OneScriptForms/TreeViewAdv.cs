@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using System.Threading;
-using System.Text;
 using System.Security.Permissions;
-using System.Runtime.Serialization;
-using System.Runtime.InteropServices;
 using System.Reflection;
 using System.IO;
-using System.Globalization;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
-using System.Drawing.Design;
 using System.ComponentModel;
 using System.Collections;
 using System.Collections.ObjectModel;
@@ -22,7 +16,7 @@ using Aga.Controls.Threading;
 using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
 
-    #region Aga.Controls.Tree
+#region Aga.Controls.Tree
 
 namespace Aga.Controls.Tree
 {
@@ -250,7 +244,7 @@ namespace Aga.Controls.Tree
             Size = new System.Drawing.Size(121, 97);
             ExpandingIcon.IconChanged += ExpandingIconChanged;
         }
-		
+
         public string PathSeparator
         {
             get { return pathSeparator; }
@@ -282,155 +276,155 @@ namespace Aga.Controls.Tree
             base.Dispose(disposing);
         }
 
-		private void OnItemDrag(MouseButtons buttons, object item)
-		{
-			if (ItemDrag != null)
+        private void OnItemDrag(MouseButtons buttons, object item)
+        {
+            if (ItemDrag != null)
             {
                 ItemDrag(this, new ItemDragEventArgs(buttons, item));
             }
         }
 
-		private void OnNodeMouseClick(TreeNodeAdvMouseEventArgs args)
-		{
-			if (NodeMouseClick != null)
+        private void OnNodeMouseClick(TreeNodeAdvMouseEventArgs args)
+        {
+            if (NodeMouseClick != null)
             {
                 NodeMouseClick(this, args);
             }
         }
 
-		private void OnNodeMouseDoubleClick(TreeNodeAdvMouseEventArgs args)
-		{
-			if (NodeMouseDoubleClick != null)
+        private void OnNodeMouseDoubleClick(TreeNodeAdvMouseEventArgs args)
+        {
+            if (NodeMouseDoubleClick != null)
             {
                 NodeMouseDoubleClick(this, args);
             }
         }
 
-		internal void OnColumnWidthChanged(TreeColumn column)
-		{
-			if (ColumnWidthChanged != null)
+        internal void OnColumnWidthChanged(TreeColumn column)
+        {
+            if (ColumnWidthChanged != null)
             {
                 ColumnWidthChanged(this, new TreeColumnEventArgs(column));
             }
         }
 
-		internal void OnColumnReordered(TreeColumn column)
-		{
-			if (ColumnReordered != null)
+        internal void OnColumnReordered(TreeColumn column)
+        {
+            if (ColumnReordered != null)
             {
                 ColumnReordered(this, new TreeColumnEventArgs(column));
             }
         }
 
-		internal void OnColumnClicked(TreeColumn column)
-		{
-			if (ColumnClicked != null)
+        internal void OnColumnClicked(TreeColumn column)
+        {
+            if (ColumnClicked != null)
             {
                 ColumnClicked(this, new TreeColumnEventArgs(column));
             }
         }
 
-		internal void OnSelectionChanged()
-		{
-			if (SuspendSelectionEvent)
+        internal void OnSelectionChanged()
+        {
+            if (SuspendSelectionEvent)
             {
                 _fireSelectionEvent = true;
             }
             else
-			{
-				_fireSelectionEvent = false;
-				if (SelectionChanged != null)
+            {
+                _fireSelectionEvent = false;
+                if (SelectionChanged != null)
                 {
                     SelectionChanged(this, EventArgs.Empty);
                 }
             }
-		}
+        }
 
-		private void OnCollapsing(TreeNodeAdv node)
-		{
-			if (Collapsing != null)
+        private void OnCollapsing(TreeNodeAdv node)
+        {
+            if (Collapsing != null)
             {
                 Collapsing(this, new TreeViewAdvEventArgs(node));
             }
         }
 
-		private void OnCollapsed(TreeNodeAdv node)
-		{
-			if (Collapsed != null)
+        private void OnCollapsed(TreeNodeAdv node)
+        {
+            if (Collapsed != null)
             {
                 Collapsed(this, new TreeViewAdvEventArgs(node));
             }
         }
 
-		private void OnExpanding(TreeNodeAdv node)
-		{
-			if (Expanding != null)
+        private void OnExpanding(TreeNodeAdv node)
+        {
+            if (Expanding != null)
             {
                 Expanding(this, new TreeViewAdvEventArgs(node));
             }
         }
 
-		private void OnExpanded(TreeNodeAdv node)
-		{
-			if (Expanded != null)
+        private void OnExpanded(TreeNodeAdv node)
+        {
+            if (Expanded != null)
             {
                 Expanded(this, new TreeViewAdvEventArgs(node));
             }
         }
 
-		private void OnGridLineStyleChanged()
-		{
-			if (GridLineStyleChanged != null)
+        private void OnGridLineStyleChanged()
+        {
+            if (GridLineStyleChanged != null)
             {
                 GridLineStyleChanged(this, EventArgs.Empty);
             }
         }
 
-		protected virtual void OnScroll(ScrollEventArgs e)
-		{
-			if (Scroll != null)
+        protected virtual void OnScroll(ScrollEventArgs e)
+        {
+            if (Scroll != null)
             {
                 Scroll(this, e);
             }
         }
 
-		protected virtual void OnRowDraw(PaintEventArgs e, TreeNodeAdv node, DrawContext context, int row, Rectangle rowRect)
-		{
-			if (RowDraw != null)
-			{
-				TreeViewRowDrawEventArgs args = new TreeViewRowDrawEventArgs(e.Graphics, e.ClipRectangle, node, context, row, rowRect);
-				RowDraw(this, args);
-			}
-		}
+        protected virtual void OnRowDraw(PaintEventArgs e, TreeNodeAdv node, DrawContext context, int row, Rectangle rowRect)
+        {
+            if (RowDraw != null)
+            {
+                TreeViewRowDrawEventArgs args = new TreeViewRowDrawEventArgs(e.Graphics, e.ClipRectangle, node, context, row, rowRect);
+                RowDraw(this, args);
+            }
+        }
 
         // Срабатывает, когда управление переходит в режим прорисовки. Может использоваться для изменения текста или цвета задней панели.
-		internal bool DrawControlMustBeFired()
-		{
-			return DrawControl != null;
-		}
+        internal bool DrawControlMustBeFired()
+        {
+            return DrawControl != null;
+        }
 
-		internal void FireDrawControl(DrawEventArgs args)
-		{
-			OnDrawControl(args);
-		}
+        internal void FireDrawControl(DrawEventArgs args)
+        {
+            OnDrawControl(args);
+        }
 
-		protected virtual void OnDrawControl(DrawEventArgs args)
-		{
-			if (DrawControl != null)
+        protected virtual void OnDrawControl(DrawEventArgs args)
+        {
+            if (DrawControl != null)
             {
                 DrawControl(this, args);
             }
         }
 
-		protected virtual void OnDropNodeValidating(Point point, ref TreeNodeAdv node)
-		{
-			if (DropNodeValidating != null)
-			{
-				DropNodeValidatingEventArgs args = new DropNodeValidatingEventArgs(point, node);
-				DropNodeValidating(this, args);
-				node = args.Node;
-			}
-		}
+        protected virtual void OnDropNodeValidating(Point point, ref TreeNodeAdv node)
+        {
+            if (DropNodeValidating != null)
+            {
+                DropNodeValidatingEventArgs args = new DropNodeValidatingEventArgs(point, node);
+                DropNodeValidating(this, args);
+                node = args.Node;
+            }
+        }
 
         private static Cursor GetCursor(string str)
         {
@@ -447,72 +441,72 @@ namespace Aga.Controls.Tree
         }
 
         void ExpandingIconChanged(object sender, EventArgs e)
-		{
-			if (IsHandleCreated && !IsDisposed)
+        {
+            if (IsHandleCreated && !IsDisposed)
             {
                 BeginInvoke(new MethodInvoker(DrawIcons));
             }
         }
 
-		private void DrawIcons()
-		{
-			using (Graphics gr = Graphics.FromHwnd(this.Handle))
-			{
+        private void DrawIcons()
+        {
+            using (Graphics gr = Graphics.FromHwnd(this.Handle))
+            {
                 // Примените ту же логику преобразования графики, что и в OnPaint.
                 int y = 0;
-				if (UseColumns)
-				{
-					y += ColumnHeaderHeight;
-					if (Columns.Count == 0)
+                if (UseColumns)
+                {
+                    y += ColumnHeaderHeight;
+                    if (Columns.Count == 0)
                     {
                         return;
                     }
                 }
-				int firstRowY = _rowLayout.GetRowBounds(FirstVisibleRow).Y;
-				y -= firstRowY;
-				gr.ResetTransform();
-				gr.TranslateTransform(-OffsetX, y);
+                int firstRowY = _rowLayout.GetRowBounds(FirstVisibleRow).Y;
+                y -= firstRowY;
+                gr.ResetTransform();
+                gr.TranslateTransform(-OffsetX, y);
 
-				DrawContext context = new DrawContext();
-				context.Graphics = gr;
-				for (int i = 0; i < _expandingNodes.Count; i++)
-				{
-					foreach (NodeControlInfo item in GetNodeControls(_expandingNodes[i]))
-					{
-						if (item.Control is ExpandingIcon)
-						{
-							Rectangle bounds = item.Bounds;
-							if (item.Node.Parent == null && UseColumns)
+                DrawContext context = new DrawContext();
+                context.Graphics = gr;
+                for (int i = 0; i < _expandingNodes.Count; i++)
+                {
+                    foreach (NodeControlInfo item in GetNodeControls(_expandingNodes[i]))
+                    {
+                        if (item.Control is ExpandingIcon)
+                        {
+                            Rectangle bounds = item.Bounds;
+                            if (item.Node.Parent == null && UseColumns)
                             {
                                 bounds.Location = Point.Empty; // Отображение значка расширения корня на уровне 0,0
                             }
 
                             context.Bounds = bounds;
-							item.Control.Draw(item.Node, context);
-						}
-					}
-				}
-			}
-		}
+                            item.Control.Draw(item.Node, context);
+                        }
+                    }
+                }
+            }
+        }
 
-		public TreePath GetPath(TreeNodeAdv node)
-		{
-			if (node == _root)
+        public TreePath GetPath(TreeNodeAdv node)
+        {
+            if (node == _root)
             {
                 return TreePath.Empty;
             }
             else
-			{
-				Stack<object> stack = new Stack<object>();
-				while (node != _root && node != null)
-				{
-					stack.Push(node.Tag);
-					node = node.Parent;
-				}
-				return new TreePath(stack.ToArray());
-			}
-		}
-		
+            {
+                Stack<object> stack = new Stack<object>();
+                while (node != _root && node != null)
+                {
+                    stack.Push(node.Tag);
+                    node = node.Parent;
+                }
+                return new TreePath(stack.ToArray());
+            }
+        }
+
         public string GetFullPath(TreeNodeAdv node)
         {
             Node _node = (Node)node.Tag;
@@ -525,21 +519,21 @@ namespace Aga.Controls.Tree
             return fullPath.TrimStart(this.PathSeparator.ToCharArray());
         }
 
-		public TreeNodeAdv GetNodeAt(Point point)
-		{
-			NodeControlInfo info = GetNodeControlInfoAt(point);
-			return info.Node;
-		}
+        public TreeNodeAdv GetNodeAt(Point point)
+        {
+            NodeControlInfo info = GetNodeControlInfoAt(point);
+            return info.Node;
+        }
 
-		public NodeControlInfo GetNodeControlInfoAt(Point point)
-		{
-			if (point.X < 0 || point.Y < 0)
+        public NodeControlInfo GetNodeControlInfoAt(Point point)
+        {
+            if (point.X < 0 || point.Y < 0)
             {
                 return NodeControlInfo.Empty;
             }
 
             int row = _rowLayout.GetRowAt(point);
-			if (row < RowCount && row >= 0)
+            if (row < RowCount && row >= 0)
             {
                 return GetNodeControlInfoAt(RowMap[row], point);
             }
@@ -548,19 +542,19 @@ namespace Aga.Controls.Tree
                 return NodeControlInfo.Empty;
             }
         }
-		
+
         public NodeControlInfo GetNodeControlInfoAt2(TreeNodeAdv node, Point point)
         {
             return GetNodeControlInfoAt(node, point);
         }
 
-		private NodeControlInfo GetNodeControlInfoAt(TreeNodeAdv node, Point point)
-		{
-			Rectangle rect = _rowLayout.GetRowBounds(FirstVisibleRow);
-			point.Y += (rect.Y - ColumnHeaderHeight);
-			point.X += OffsetX;
-			foreach (NodeControlInfo info in GetNodeControls(node))
-				if (info.Bounds.Contains(point))
+        private NodeControlInfo GetNodeControlInfoAt(TreeNodeAdv node, Point point)
+        {
+            Rectangle rect = _rowLayout.GetRowBounds(FirstVisibleRow);
+            point.Y += (rect.Y - ColumnHeaderHeight);
+            point.X += OffsetX;
+            foreach (NodeControlInfo info in GetNodeControls(node))
+                if (info.Bounds.Contains(point))
                 {
                     return info;
                 }
@@ -575,16 +569,16 @@ namespace Aga.Controls.Tree
             }
         }
 
-		public void BeginUpdate()
-		{
-			_suspendUpdate = true;
-			SuspendSelectionEvent = true;
-		}
+        public void BeginUpdate()
+        {
+            _suspendUpdate = true;
+            SuspendSelectionEvent = true;
+        }
 
-		public void EndUpdate()
-		{
-			_suspendUpdate = false;
-			if (_needFullUpdate)
+        public void EndUpdate()
+        {
+            _suspendUpdate = false;
+            if (_needFullUpdate)
             {
                 FullUpdate();
             }
@@ -593,22 +587,22 @@ namespace Aga.Controls.Tree
                 UpdateView();
             }
             SuspendSelectionEvent = false;
-		}
+        }
 
-		public void ExpandAll()
-		{
-			_root.ExpandAll();
-		}
+        public void ExpandAll()
+        {
+            _root.ExpandAll();
+        }
 
-		public void CollapseAll()
-		{
-			_root.CollapseAll();
-		}
+        public void CollapseAll()
+        {
+            _root.CollapseAll();
+        }
 
         // Разверните все родительские узлы, а затем прокрутите до указанного узла.
         public void EnsureVisible(TreeNodeAdv node)
-		{
-			if (node == null)
+        {
+            if (node == null)
             {
                 throw new ArgumentNullException("node");
             }
@@ -619,18 +613,18 @@ namespace Aga.Controls.Tree
             }
 
             TreeNodeAdv parent = node.Parent;
-			while (parent != _root)
-			{
-				parent.IsExpanded = true;
-				parent = parent.Parent;
-			}
-			ScrollTo(node);
-		}
+            while (parent != _root)
+            {
+                parent.IsExpanded = true;
+                parent = parent.Parent;
+            }
+            ScrollTo(node);
+        }
 
         // Сделайте узел видимым, при необходимости прокрутите его. Все родительские узлы указанного узла должны быть развернуты.
         public void ScrollTo(TreeNodeAdv node)
-		{
-			if (node == null)
+        {
+            if (node == null)
             {
                 throw new ArgumentNullException("node");
             }
@@ -645,69 +639,69 @@ namespace Aga.Controls.Tree
 
             int row = -1;
 
-			if (node.Row < FirstVisibleRow)
+            if (node.Row < FirstVisibleRow)
             {
                 row = node.Row;
             }
             else
-			{
-				int pageStart = _rowLayout.GetRowBounds(FirstVisibleRow).Top;
-				int rowBottom = _rowLayout.GetRowBounds(node.Row).Bottom;
-				if (rowBottom > pageStart + DisplayRectangle.Height - ColumnHeaderHeight)
+            {
+                int pageStart = _rowLayout.GetRowBounds(FirstVisibleRow).Top;
+                int rowBottom = _rowLayout.GetRowBounds(node.Row).Bottom;
+                if (rowBottom > pageStart + DisplayRectangle.Height - ColumnHeaderHeight)
                 {
                     row = _rowLayout.GetFirstRow(node.Row);
                 }
             }
 
-			if (row >= _vScrollBar.Minimum && row <= _vScrollBar.Maximum)
+            if (row >= _vScrollBar.Minimum && row <= _vScrollBar.Maximum)
             {
                 _vScrollBar.Value = row;
             }
         }
 
-		public void ClearSelection()
-		{
-			BeginUpdate();
-			try
-			{
-				ClearSelectionInternal();
-			}
-			finally
-			{
-				EndUpdate();
-			}
-		}
+        public void ClearSelection()
+        {
+            BeginUpdate();
+            try
+            {
+                ClearSelectionInternal();
+            }
+            finally
+            {
+                EndUpdate();
+            }
+        }
 
-		internal void ClearSelectionInternal()
-		{
-			while (Selection.Count > 0)
-			{
-				var t = Selection[0];
-				t.IsSelected = false;
-				Selection.Remove(t); // Трюк.
-			}
-		}
+        internal void ClearSelectionInternal()
+        {
+            while (Selection.Count > 0)
+            {
+                var t = Selection[0];
+                t.IsSelected = false;
+                Selection.Remove(t); // Трюк.
+            }
+        }
 
-		protected override void OnSizeChanged(EventArgs e)
-		{
-			ArrangeControls();
-			SafeUpdateScrollBars();
-			base.OnSizeChanged(e);
-		}
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            ArrangeControls();
+            SafeUpdateScrollBars();
+            base.OnSizeChanged(e);
+        }
 
-		private void ArrangeControls()
-		{
-			int hBarSize = _hScrollBar.Height;
-			int vBarSize = _vScrollBar.Width;
-			Rectangle clientRect = ClientRectangle;
+        private void ArrangeControls()
+        {
+            int hBarSize = _hScrollBar.Height;
+            int vBarSize = _vScrollBar.Width;
+            Rectangle clientRect = ClientRectangle;
 
-			_hScrollBar.SetBounds(clientRect.X, clientRect.Bottom - hBarSize, clientRect.Width - vBarSize, hBarSize);
-			_vScrollBar.SetBounds(clientRect.Right - vBarSize, clientRect.Y, vBarSize, clientRect.Height - hBarSize);
-		}
+            _hScrollBar.SetBounds(clientRect.X, clientRect.Bottom - hBarSize, clientRect.Width - vBarSize, hBarSize);
+            _vScrollBar.SetBounds(clientRect.Right - vBarSize, clientRect.Y, vBarSize, clientRect.Height - hBarSize);
+        }
 
-		private void SafeUpdateScrollBars()
-		{
-			if (InvokeRequired)
+        private void SafeUpdateScrollBars()
+        {
+            if (InvokeRequired)
             {
                 BeginInvoke(new MethodInvoker(UpdateScrollBars));
             }
@@ -717,173 +711,173 @@ namespace Aga.Controls.Tree
             }
         }
 
-		private void UpdateScrollBars()
-		{
-			UpdateVScrollBar();
-			UpdateHScrollBar();
-			UpdateVScrollBar();
-			UpdateHScrollBar();
-			_hScrollBar.Width = DisplayRectangle.Width;
-			_vScrollBar.Height = DisplayRectangle.Height;
-		}
+        private void UpdateScrollBars()
+        {
+            UpdateVScrollBar();
+            UpdateHScrollBar();
+            UpdateVScrollBar();
+            UpdateHScrollBar();
+            _hScrollBar.Width = DisplayRectangle.Width;
+            _vScrollBar.Height = DisplayRectangle.Height;
+        }
 
-		private void UpdateHScrollBar()
-		{
-			_hScrollBar.Maximum = ContentWidth;
-			_hScrollBar.LargeChange = Math.Max(DisplayRectangle.Width, 0);
-			_hScrollBar.SmallChange = 5;
-			_hScrollBar.Visible = _hScrollBar.LargeChange < _hScrollBar.Maximum;
-			_hScrollBar.Value = Math.Min(_hScrollBar.Value, _hScrollBar.Maximum - _hScrollBar.LargeChange + 1);
-		}
+        private void UpdateHScrollBar()
+        {
+            _hScrollBar.Maximum = ContentWidth;
+            _hScrollBar.LargeChange = Math.Max(DisplayRectangle.Width, 0);
+            _hScrollBar.SmallChange = 5;
+            _hScrollBar.Visible = _hScrollBar.LargeChange < _hScrollBar.Maximum;
+            _hScrollBar.Value = Math.Min(_hScrollBar.Value, _hScrollBar.Maximum - _hScrollBar.LargeChange + 1);
+        }
 
-		private void UpdateVScrollBar()
-		{
-			_vScrollBar.Maximum = Math.Max(RowCount - 1, 0);
-			_vScrollBar.LargeChange = _rowLayout.PageRowCount;
-			_vScrollBar.Visible = (RowCount > 0) && (_vScrollBar.LargeChange <= _vScrollBar.Maximum);
-			_vScrollBar.Value = Math.Min(_vScrollBar.Value, _vScrollBar.Maximum - _vScrollBar.LargeChange + 1);
-		}
+        private void UpdateVScrollBar()
+        {
+            _vScrollBar.Maximum = Math.Max(RowCount - 1, 0);
+            _vScrollBar.LargeChange = _rowLayout.PageRowCount;
+            _vScrollBar.Visible = (RowCount > 0) && (_vScrollBar.LargeChange <= _vScrollBar.Maximum);
+            _vScrollBar.Value = Math.Min(_vScrollBar.Value, _vScrollBar.Maximum - _vScrollBar.LargeChange + 1);
+        }
 
-		protected override CreateParams CreateParams
-		{
-			[SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
-			get
-			{
-				CreateParams res = base.CreateParams;
-				switch (BorderStyle)
-				{
-					case BorderStyle.FixedSingle:
-						res.Style |= 0x800000;
-						break;
-					case BorderStyle.Fixed3D:
-						res.ExStyle |= 0x200;
-						break;
-				}
-				return res;
-			}
-		}
+        protected override CreateParams CreateParams
+        {
+            [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
+            get
+            {
+                CreateParams res = base.CreateParams;
+                switch (BorderStyle)
+                {
+                    case BorderStyle.FixedSingle:
+                        res.Style |= 0x800000;
+                        break;
+                    case BorderStyle.Fixed3D:
+                        res.ExStyle |= 0x200;
+                        break;
+                }
+                return res;
+            }
+        }
 
-		protected override void OnGotFocus(EventArgs e)
-		{
-			UpdateView();
-			ChangeInput();
-			base.OnGotFocus(e);
-		}
+        protected override void OnGotFocus(EventArgs e)
+        {
+            UpdateView();
+            ChangeInput();
+            base.OnGotFocus(e);
+        }
 
-		protected override void OnFontChanged(EventArgs e)
-		{
-			base.OnFontChanged(e);
-			_measureContext.Font = Font;
-			FullUpdate();
-		}
+        protected override void OnFontChanged(EventArgs e)
+        {
+            base.OnFontChanged(e);
+            _measureContext.Font = Font;
+            FullUpdate();
+        }
 
-		internal IEnumerable<NodeControlInfo> GetNodeControls(TreeNodeAdv node)
-		{
-			if (node == null)
+        internal IEnumerable<NodeControlInfo> GetNodeControls(TreeNodeAdv node)
+        {
+            if (node == null)
             {
                 yield break;
             }
             Rectangle rowRect = _rowLayout.GetRowBounds(node.Row);
-			foreach (NodeControlInfo n in GetNodeControls(node, rowRect))
+            foreach (NodeControlInfo n in GetNodeControls(node, rowRect))
             {
                 yield return n;
             }
         }
 
-		internal IEnumerable<NodeControlInfo> GetNodeControls(TreeNodeAdv node, Rectangle rowRect)
-		{
-			if (node == null)
+        internal IEnumerable<NodeControlInfo> GetNodeControls(TreeNodeAdv node, Rectangle rowRect)
+        {
+            if (node == null)
             {
                 yield break;
             }
 
             int y = rowRect.Y;
-			int x = (node.Level - 1) * _indent + LeftMargin;
-			int width = 0;
-			if (node.Row == 0 && ShiftFirstNode)
+            int x = (node.Level - 1) * _indent + LeftMargin;
+            int width = 0;
+            if (node.Row == 0 && ShiftFirstNode)
             {
                 x -= _indent;
             }
             Rectangle rect = Rectangle.Empty;
 
-			if (ShowPlusMinus)
-			{
-				width = _plusMinus.GetActualSize(node, _measureContext).Width;
-				rect = new Rectangle(x, y, width, rowRect.Height);
-				if (UseColumns && Columns.Count > 0 && Columns[0].Width < rect.Right)
+            if (ShowPlusMinus)
+            {
+                width = _plusMinus.GetActualSize(node, _measureContext).Width;
+                rect = new Rectangle(x, y, width, rowRect.Height);
+                if (UseColumns && Columns.Count > 0 && Columns[0].Width < rect.Right)
                 {
                     rect.Width = Columns[0].Width - x;
                 }
 
                 yield return new NodeControlInfo(_plusMinus, rect, node);
-				x += width;
-			}
+                x += width;
+            }
 
-			if (!UseColumns)
-			{
-				foreach (NodeControl c in NodeControls)
-				{
-					Size s = c.GetActualSize(node, _measureContext);
-					if (!s.IsEmpty)
-					{
-						width = s.Width;
-						rect = new Rectangle(x, y, width, rowRect.Height);
-						x += rect.Width;
-						yield return new NodeControlInfo(c, rect, node);
-					}
-				}
-			}
-			else
-			{
-				int right = 0;
-				foreach (TreeColumn col in Columns)
-				{
-					if (col.IsVisible && col.Width > 0)
-					{
-						right += col.Width;
-						for (int i = 0; i < NodeControls.Count; i++)
-						{
-							NodeControl nc = NodeControls[i];
-							if (nc.ParentColumn == col)
-							{
-								Size s = nc.GetActualSize(node, _measureContext);
-								if (!s.IsEmpty)
-								{
-									bool isLastControl = true;
-									for (int k = i + 1; k < NodeControls.Count; k++)
-										if (NodeControls[k].ParentColumn == col)
-										{
-											isLastControl = false;
-											break;
-										}
+            if (!UseColumns)
+            {
+                foreach (NodeControl c in NodeControls)
+                {
+                    Size s = c.GetActualSize(node, _measureContext);
+                    if (!s.IsEmpty)
+                    {
+                        width = s.Width;
+                        rect = new Rectangle(x, y, width, rowRect.Height);
+                        x += rect.Width;
+                        yield return new NodeControlInfo(c, rect, node);
+                    }
+                }
+            }
+            else
+            {
+                int right = 0;
+                foreach (TreeColumn col in Columns)
+                {
+                    if (col.IsVisible && col.Width > 0)
+                    {
+                        right += col.Width;
+                        for (int i = 0; i < NodeControls.Count; i++)
+                        {
+                            NodeControl nc = NodeControls[i];
+                            if (nc.ParentColumn == col)
+                            {
+                                Size s = nc.GetActualSize(node, _measureContext);
+                                if (!s.IsEmpty)
+                                {
+                                    bool isLastControl = true;
+                                    for (int k = i + 1; k < NodeControls.Count; k++)
+                                        if (NodeControls[k].ParentColumn == col)
+                                        {
+                                            isLastControl = false;
+                                            break;
+                                        }
 
-									width = right - x;
-									if (!isLastControl)
+                                    width = right - x;
+                                    if (!isLastControl)
                                     {
                                         width = s.Width;
                                     }
                                     int maxWidth = Math.Max(0, right - x);
-									rect = new Rectangle(x, y, Math.Min(maxWidth, width), rowRect.Height);
-									x += width;
-									yield return new NodeControlInfo(nc, rect, node);
-								}
-							}
-						}
-						x = right;
-					}
-				}
-			}
-		}
+                                    rect = new Rectangle(x, y, Math.Min(maxWidth, width), rowRect.Height);
+                                    x += width;
+                                    yield return new NodeControlInfo(nc, rect, node);
+                                }
+                            }
+                        }
+                        x = right;
+                    }
+                }
+            }
+        }
 
-		internal static double Dist(Point p1, Point p2)
-		{
-			return Math.Sqrt(Math.Pow(p1.X - p2.X, 2) + Math.Pow(p1.Y - p2.Y, 2));
-		}
+        internal static double Dist(Point p1, Point p2)
+        {
+            return Math.Sqrt(Math.Pow(p1.X - p2.X, 2) + Math.Pow(p1.Y - p2.Y, 2));
+        }
 
-		public void FullUpdate()
-		{
-			HideEditor();
-			if (InvokeRequired)
+        public void FullUpdate()
+        {
+            HideEditor();
+            if (InvokeRequired)
             {
                 BeginInvoke(new MethodInvoker(UnsafeFullUpdate));
             }
@@ -893,40 +887,40 @@ namespace Aga.Controls.Tree
             }
         }
 
-		private void UnsafeFullUpdate()
-		{
-			_rowLayout.ClearCache();
-			CreateRowMap();
-			SafeUpdateScrollBars();
-			UpdateView();
-			_needFullUpdate = false;
-		}
+        private void UnsafeFullUpdate()
+        {
+            _rowLayout.ClearCache();
+            CreateRowMap();
+            SafeUpdateScrollBars();
+            UpdateView();
+            _needFullUpdate = false;
+        }
 
-		internal void UpdateView()
-		{
-			if (!_suspendUpdate)
+        internal void UpdateView()
+        {
+            if (!_suspendUpdate)
             {
                 Invalidate(false);
             }
         }
 
-		internal void UpdateHeaders()
-		{
-			Invalidate(new Rectangle(0, 0, Width, ColumnHeaderHeight));
-		}
+        internal void UpdateHeaders()
+        {
+            Invalidate(new Rectangle(0, 0, Width, ColumnHeaderHeight));
+        }
 
-		internal void UpdateColumns()
-		{
-			FullUpdate();
-		}
+        internal void UpdateColumns()
+        {
+            FullUpdate();
+        }
 
-		private void CreateNodes()
-		{
-			Selection.Clear();
-			SelectionStart = null;
-			_root = new TreeNodeAdv(this, null);
-			_root.IsExpanded = true;
-			if (_root.Nodes.Count > 0)
+        private void CreateNodes()
+        {
+            Selection.Clear();
+            SelectionStart = null;
+            _root = new TreeNodeAdv(this, null);
+            _root.IsExpanded = true;
+            if (_root.Nodes.Count > 0)
             {
                 CurrentNode = _root.Nodes[0];
             }
@@ -936,22 +930,22 @@ namespace Aga.Controls.Tree
             }
         }
 
-		internal void ReadChilds(TreeNodeAdv parentNode)
-		{
-			ReadChilds(parentNode, false);
-		}
+        internal void ReadChilds(TreeNodeAdv parentNode)
+        {
+            ReadChilds(parentNode, false);
+        }
 
-		internal void ReadChilds(TreeNodeAdv parentNode, bool performFullUpdate)
-		{
-			if (!parentNode.IsLeaf)
-			{
-				parentNode.IsExpandedOnce = true;
-				parentNode.Nodes.Clear();
+        internal void ReadChilds(TreeNodeAdv parentNode, bool performFullUpdate)
+        {
+            if (!parentNode.IsLeaf)
+            {
+                parentNode.IsExpandedOnce = true;
+                parentNode.Nodes.Clear();
 
-				if (Model != null)
-				{
-					IEnumerable items = Model.GetChildren(GetPath(parentNode));
-					if (items != null)
+                if (Model != null)
+                {
+                    IEnumerable items = Model.GetChildren(GetPath(parentNode));
+                    if (items != null)
                     {
                         foreach (object obj in items)
                         {
@@ -964,22 +958,22 @@ namespace Aga.Controls.Tree
                     }
                 }
 
-				if (parentNode.AutoExpandOnStructureChanged)
+                if (parentNode.AutoExpandOnStructureChanged)
                 {
                     parentNode.ExpandAll();
                 }
             }
-		}
+        }
 
-		private void AddNewNode(TreeNodeAdv parent, object tag, int index)
-		{
-			TreeNodeAdv node = new TreeNodeAdv(this, tag);
-			AddNode(parent, index, node);
-		}
+        private void AddNewNode(TreeNodeAdv parent, object tag, int index)
+        {
+            TreeNodeAdv node = new TreeNodeAdv(this, tag);
+            AddNode(parent, index, node);
+        }
 
-		private void AddNode(TreeNodeAdv parent, int index, TreeNodeAdv node)
-		{
-			if (index >= 0 && index < parent.Nodes.Count)
+        private void AddNode(TreeNodeAdv parent, int index, TreeNodeAdv node)
+        {
+            if (index >= 0 && index < parent.Nodes.Count)
             {
                 parent.Nodes.Insert(index, node);
             }
@@ -989,7 +983,7 @@ namespace Aga.Controls.Tree
             }
 
             node.IsLeaf = Model.IsLeaf(GetPath(node));
-			if (node.IsLeaf)
+            if (node.IsLeaf)
             {
                 node.Nodes.Clear();
             }
@@ -999,52 +993,52 @@ namespace Aga.Controls.Tree
             }
         }
 
-		private struct ExpandArgs
-		{
-			public TreeNodeAdv Node;
-			public bool Value;
-			public bool IgnoreChildren;
-		}
+        private struct ExpandArgs
+        {
+            public TreeNodeAdv Node;
+            public bool Value;
+            public bool IgnoreChildren;
+        }
 
-		public void AbortBackgroundExpandingThreads()
-		{
-			_threadPool.CancelAll(true);
-			for (int i = 0; i < _expandingNodes.Count; i++)
+        public void AbortBackgroundExpandingThreads()
+        {
+            _threadPool.CancelAll(true);
+            for (int i = 0; i < _expandingNodes.Count; i++)
             {
                 _expandingNodes[i].IsExpandingNow = false;
             }
             _expandingNodes.Clear();
-			Invalidate();
-		}
+            Invalidate();
+        }
 
-		internal void SetIsExpanded(TreeNodeAdv node, bool value, bool ignoreChildren)
-		{
-			ExpandArgs eargs = new ExpandArgs();
-			eargs.Node = node;
-			eargs.Value = value;
-			eargs.IgnoreChildren = ignoreChildren;
+        internal void SetIsExpanded(TreeNodeAdv node, bool value, bool ignoreChildren)
+        {
+            ExpandArgs eargs = new ExpandArgs();
+            eargs.Node = node;
+            eargs.Value = value;
+            eargs.IgnoreChildren = ignoreChildren;
 
-			if (AsyncExpanding && LoadOnDemand && !_threadPool.IsMyThread(Thread.CurrentThread))
-			{
-				WaitCallback wc = delegate(object argument) { SetIsExpanded((ExpandArgs)argument); };
-				_threadPool.QueueUserWorkItem(wc, eargs);
-			}
+            if (AsyncExpanding && LoadOnDemand && !_threadPool.IsMyThread(Thread.CurrentThread))
+            {
+                WaitCallback wc = delegate (object argument) { SetIsExpanded((ExpandArgs)argument); };
+                _threadPool.QueueUserWorkItem(wc, eargs);
+            }
             else
             {
                 SetIsExpanded(eargs);
             }
         }
 
-		private void SetIsExpanded(ExpandArgs eargs)
-		{
-			bool update = !eargs.IgnoreChildren && !AsyncExpanding;
-			if (update)
+        private void SetIsExpanded(ExpandArgs eargs)
+        {
+            bool update = !eargs.IgnoreChildren && !AsyncExpanding;
+            if (update)
             {
                 BeginUpdate();
             }
             try
-			{
-				if (IsMyNode(eargs.Node) && eargs.Node.IsExpanded != eargs.Value)
+            {
+                if (IsMyNode(eargs.Node) && eargs.Node.IsExpanded != eargs.Value)
                 {
                     SetIsExpanded(eargs.Node, eargs.Value);
                 }
@@ -1053,105 +1047,105 @@ namespace Aga.Controls.Tree
                     SetIsExpandedRecursive(eargs.Node, eargs.Value);
                 }
             }
-			finally
-			{
-				if (update)
+            finally
+            {
+                if (update)
                 {
                     EndUpdate();
                 }
             }
-		}
+        }
 
-		internal void SetIsExpanded(TreeNodeAdv node, bool value)
-		{
-			if (Root == node && !value)
+        internal void SetIsExpanded(TreeNodeAdv node, bool value)
+        {
+            if (Root == node && !value)
             {
                 return; // Не удается свернуть корневой узел.
             }
 
             if (value)
-			{
-				OnExpanding(node);
-				node.OnExpanding();
-			}
-			else
-			{
-				OnCollapsing(node);
-				node.OnCollapsing();
-			}
+            {
+                OnExpanding(node);
+                node.OnExpanding();
+            }
+            else
+            {
+                OnCollapsing(node);
+                node.OnCollapsing();
+            }
 
-			if (value && !node.IsExpandedOnce)
-			{
-				if (AsyncExpanding && LoadOnDemand)
-				{
-					AddExpandingNode(node);
-					node.AssignIsExpanded(true);
-					Invalidate();
-				}
-				ReadChilds(node, AsyncExpanding);
-				RemoveExpandingNode(node);
-			}
-			node.AssignIsExpanded(value);
-			SmartFullUpdate();
+            if (value && !node.IsExpandedOnce)
+            {
+                if (AsyncExpanding && LoadOnDemand)
+                {
+                    AddExpandingNode(node);
+                    node.AssignIsExpanded(true);
+                    Invalidate();
+                }
+                ReadChilds(node, AsyncExpanding);
+                RemoveExpandingNode(node);
+            }
+            node.AssignIsExpanded(value);
+            SmartFullUpdate();
 
-			if (value)
-			{
-				OnExpanded(node);
-				node.OnExpanded();
-			}
-			else
-			{
-				OnCollapsed(node);
-				node.OnCollapsed();
-			}
-		}
+            if (value)
+            {
+                OnExpanded(node);
+                node.OnExpanded();
+            }
+            else
+            {
+                OnCollapsed(node);
+                node.OnCollapsed();
+            }
+        }
 
-		private void RemoveExpandingNode(TreeNodeAdv node)
-		{
-			node.IsExpandingNow = false;
-			_expandingNodes.Remove(node);
-			if (_expandingNodes.Count <= 0)
+        private void RemoveExpandingNode(TreeNodeAdv node)
+        {
+            node.IsExpandingNow = false;
+            _expandingNodes.Remove(node);
+            if (_expandingNodes.Count <= 0)
             {
                 ExpandingIcon.Stop();
             }
         }
 
-		private void AddExpandingNode(TreeNodeAdv node)
-		{
-			node.IsExpandingNow = true;
-			_expandingNodes.Add(node);
-			ExpandingIcon.Start();
-		}
+        private void AddExpandingNode(TreeNodeAdv node)
+        {
+            node.IsExpandingNow = true;
+            _expandingNodes.Add(node);
+            ExpandingIcon.Start();
+        }
 
-		internal void SetIsExpandedRecursive(TreeNodeAdv root, bool value)
-		{
-			for (int i = 0; i < root.Nodes.Count; i++)
-			{
-				TreeNodeAdv node = root.Nodes[i];
-				node.IsExpanded = value;
-				SetIsExpandedRecursive(node, value);
-			}
-		}
+        internal void SetIsExpandedRecursive(TreeNodeAdv root, bool value)
+        {
+            for (int i = 0; i < root.Nodes.Count; i++)
+            {
+                TreeNodeAdv node = root.Nodes[i];
+                node.IsExpanded = value;
+                SetIsExpandedRecursive(node, value);
+            }
+        }
 
-		private void CreateRowMap()
-		{
-			RowMap.Clear();
-			int row = 0;
-			_contentWidth = 0;
-			foreach (TreeNodeAdv node in VisibleNodes)
-			{
-				node.Row = row;
-				RowMap.Add(node);
-				if (!UseColumns)
-				{
-					_contentWidth = Math.Max(_contentWidth, GetNodeWidth(node));
-				}
-				row++;
-			}
-			if (UseColumns)
-			{
-				_contentWidth = 0;
-				foreach (TreeColumn col in _columns)
+        private void CreateRowMap()
+        {
+            RowMap.Clear();
+            int row = 0;
+            _contentWidth = 0;
+            foreach (TreeNodeAdv node in VisibleNodes)
+            {
+                node.Row = row;
+                RowMap.Add(node);
+                if (!UseColumns)
+                {
+                    _contentWidth = Math.Max(_contentWidth, GetNodeWidth(node));
+                }
+                row++;
+            }
+            if (UseColumns)
+            {
+                _contentWidth = 0;
+                foreach (TreeColumn col in _columns)
                 {
                     if (col.IsVisible)
                     {
@@ -1159,29 +1153,29 @@ namespace Aga.Controls.Tree
                     }
                 }
             }
-		}
+        }
 
-		private int GetNodeWidth(TreeNodeAdv node)
-		{
-			if (node.RightBounds == null)
-			{
-				Rectangle res = GetNodeBounds(GetNodeControls(node, Rectangle.Empty));
-				node.RightBounds = res.Right;
-			}
-			return node.RightBounds.Value;
-		}
+        private int GetNodeWidth(TreeNodeAdv node)
+        {
+            if (node.RightBounds == null)
+            {
+                Rectangle res = GetNodeBounds(GetNodeControls(node, Rectangle.Empty));
+                node.RightBounds = res.Right;
+            }
+            return node.RightBounds.Value;
+        }
 
-		internal Rectangle GetNodeBounds(TreeNodeAdv node)
-		{
-			return GetNodeBounds(GetNodeControls(node));
-		}
+        internal Rectangle GetNodeBounds(TreeNodeAdv node)
+        {
+            return GetNodeBounds(GetNodeControls(node));
+        }
 
-		private Rectangle GetNodeBounds(IEnumerable<NodeControlInfo> nodeControls)
-		{
-			Rectangle res = Rectangle.Empty;
-			foreach (NodeControlInfo info in nodeControls)
-			{
-				if (res == Rectangle.Empty)
+        private Rectangle GetNodeBounds(IEnumerable<NodeControlInfo> nodeControls)
+        {
+            Rectangle res = Rectangle.Empty;
+            foreach (NodeControlInfo info in nodeControls)
+            {
+                if (res == Rectangle.Empty)
                 {
                     res = info.Bounds;
                 }
@@ -1190,32 +1184,32 @@ namespace Aga.Controls.Tree
                     res = Rectangle.Union(res, info.Bounds);
                 }
             }
-			return res;
-		}
+            return res;
+        }
 
-		private void _vScrollBar_ValueChanged(object sender, EventArgs e)
-		{
-			FirstVisibleRow = _vScrollBar.Value;
-		}
+        private void _vScrollBar_ValueChanged(object sender, EventArgs e)
+        {
+            FirstVisibleRow = _vScrollBar.Value;
+        }
 
-		private void _hScrollBar_ValueChanged(object sender, EventArgs e)
-		{
-			OffsetX = _hScrollBar.Value;
-		}
+        private void _hScrollBar_ValueChanged(object sender, EventArgs e)
+        {
+            OffsetX = _hScrollBar.Value;
+        }
 
-		private void _vScrollBar_Scroll(object sender, ScrollEventArgs e)
-		{
-			OnScroll(e);
-		}
+        private void _vScrollBar_Scroll(object sender, ScrollEventArgs e)
+        {
+            OnScroll(e);
+        }
 
-		private void _hScrollBar_Scroll(object sender, ScrollEventArgs e)
-		{
-			OnScroll(e);
-		}
+        private void _hScrollBar_Scroll(object sender, ScrollEventArgs e)
+        {
+            OnScroll(e);
+        }
 
-		internal void SmartFullUpdate()
-		{
-			if (_suspendUpdate)
+        internal void SmartFullUpdate()
+        {
+            if (_suspendUpdate)
             {
                 _needFullUpdate = true;
             }
@@ -1225,9 +1219,9 @@ namespace Aga.Controls.Tree
             }
         }
 
-		internal bool IsMyNode(TreeNodeAdv node)
-		{
-			if (node == null)
+        internal bool IsMyNode(TreeNodeAdv node)
+        {
+            if (node == null)
             {
                 return false;
             }
@@ -1243,13 +1237,13 @@ namespace Aga.Controls.Tree
             }
 
             return node == _root;
-		}
+        }
 
-		internal void UpdateSelection()
-		{
-			bool flag = false;
+        internal void UpdateSelection()
+        {
+            bool flag = false;
 
-			if (!IsMyNode(CurrentNode))
+            if (!IsMyNode(CurrentNode))
             {
                 CurrentNode = null;
             }
@@ -1273,23 +1267,23 @@ namespace Aga.Controls.Tree
             }
         }
 
-		internal void ChangeColumnWidth(TreeColumn column)
-		{
-			if (!(_input is ResizeColumnState))
-			{
-				FullUpdate();
-				OnColumnWidthChanged(column);
-			}
-		}
+        internal void ChangeColumnWidth(TreeColumn column)
+        {
+            if (!(_input is ResizeColumnState))
+            {
+                FullUpdate();
+                OnColumnWidthChanged(column);
+            }
+        }
 
-		public TreeNodeAdv FindNode(TreePath path)
-		{
-			return FindNode(path, false);
-		}
+        public TreeNodeAdv FindNode(TreePath path)
+        {
+            return FindNode(path, false);
+        }
 
-		public TreeNodeAdv FindNode(TreePath path, bool readChilds)
-		{
-			if (path.IsEmpty())
+        public TreeNodeAdv FindNode(TreePath path, bool readChilds)
+        {
+            if (path.IsEmpty())
             {
                 return _root;
             }
@@ -1299,19 +1293,19 @@ namespace Aga.Controls.Tree
             }
         }
 
-		private TreeNodeAdv FindNode(TreeNodeAdv root, TreePath path, int level, bool readChilds)
-		{
-			if (!root.IsExpandedOnce && readChilds)
+        private TreeNodeAdv FindNode(TreeNodeAdv root, TreePath path, int level, bool readChilds)
+        {
+            if (!root.IsExpandedOnce && readChilds)
             {
                 ReadChilds(root);
             }
 
             for (int i = 0; i < root.Nodes.Count; i++)
-			{
-				TreeNodeAdv node = root.Nodes[i];
-				if (node.Tag == path.FullPath[level])
-				{
-					if (level == path.FullPath.Length - 1)
+            {
+                TreeNodeAdv node = root.Nodes[i];
+                if (node.Tag == path.FullPath[level])
+                {
+                    if (level == path.FullPath.Length - 1)
                     {
                         return node;
                     }
@@ -1320,150 +1314,150 @@ namespace Aga.Controls.Tree
                         return FindNode(node, path, level + 1, readChilds);
                     }
                 }
-			}
-			return null;
-		}
+            }
+            return null;
+        }
 
-		public TreeNodeAdv FindNodeByTag(object tag)
-		{
-			return FindNodeByTag(_root, tag);
-		}
+        public TreeNodeAdv FindNodeByTag(object tag)
+        {
+            return FindNodeByTag(_root, tag);
+        }
 
-		private TreeNodeAdv FindNodeByTag(TreeNodeAdv root, object tag)
-		{
-			foreach (TreeNodeAdv node in root.Nodes)
-			{
-				if (node.Tag == tag)
+        private TreeNodeAdv FindNodeByTag(TreeNodeAdv root, object tag)
+        {
+            foreach (TreeNodeAdv node in root.Nodes)
+            {
+                if (node.Tag == tag)
                 {
                     return node;
                 }
                 TreeNodeAdv res = FindNodeByTag(node, tag);
-				if (res != null)
+                if (res != null)
                 {
                     return res;
                 }
             }
-			return null;
-		}
+            return null;
+        }
 
-		public void SelectAllNodes()
-		{
-			SuspendSelectionEvent = true;
-			try
-			{
-				if (SelectionMode == TreeSelectionMode.MultiSameParent)
-				{
-					if (CurrentNode != null)
-					{
-						foreach (TreeNodeAdv n in CurrentNode.Parent.Nodes)
+        public void SelectAllNodes()
+        {
+            SuspendSelectionEvent = true;
+            try
+            {
+                if (SelectionMode == TreeSelectionMode.MultiSameParent)
+                {
+                    if (CurrentNode != null)
+                    {
+                        foreach (TreeNodeAdv n in CurrentNode.Parent.Nodes)
                         {
                             n.IsSelected = true;
                         }
                     }
-				}
-				else if (SelectionMode == TreeSelectionMode.Multi)
-				{
-					SelectNodes(Root.Nodes);
-				}
-			}
-			finally
-			{
-				SuspendSelectionEvent = false;
-			}
-		}
+                }
+                else if (SelectionMode == TreeSelectionMode.Multi)
+                {
+                    SelectNodes(Root.Nodes);
+                }
+            }
+            finally
+            {
+                SuspendSelectionEvent = false;
+            }
+        }
 
-		private void SelectNodes(Collection<TreeNodeAdv> nodes)
-		{
-			foreach (TreeNodeAdv n in nodes)
-			{
-				n.IsSelected = true;
-				if (n.IsExpanded)
+        private void SelectNodes(Collection<TreeNodeAdv> nodes)
+        {
+            foreach (TreeNodeAdv n in nodes)
+            {
+                n.IsSelected = true;
+                if (n.IsExpanded)
                 {
                     SelectNodes(n.Nodes);
                 }
             }
-		}
+        }
 
-		private void BindModelEvents()
-		{
-			_model.NodesChanged += new EventHandler<TreeModelEventArgs>(_model_NodesChanged);
-			_model.NodesInserted += new EventHandler<TreeModelEventArgs>(_model_NodesInserted);
-			_model.NodesRemoved += new EventHandler<TreeModelEventArgs>(_model_NodesRemoved);
-			_model.StructureChanged += new EventHandler<TreePathEventArgs>(_model_StructureChanged);
-		}
+        private void BindModelEvents()
+        {
+            _model.NodesChanged += new EventHandler<TreeModelEventArgs>(_model_NodesChanged);
+            _model.NodesInserted += new EventHandler<TreeModelEventArgs>(_model_NodesInserted);
+            _model.NodesRemoved += new EventHandler<TreeModelEventArgs>(_model_NodesRemoved);
+            _model.StructureChanged += new EventHandler<TreePathEventArgs>(_model_StructureChanged);
+        }
 
-		private void UnbindModelEvents()
-		{
-			_model.NodesChanged -= new EventHandler<TreeModelEventArgs>(_model_NodesChanged);
-			_model.NodesInserted -= new EventHandler<TreeModelEventArgs>(_model_NodesInserted);
-			_model.NodesRemoved -= new EventHandler<TreeModelEventArgs>(_model_NodesRemoved);
-			_model.StructureChanged -= new EventHandler<TreePathEventArgs>(_model_StructureChanged);
-		}
+        private void UnbindModelEvents()
+        {
+            _model.NodesChanged -= new EventHandler<TreeModelEventArgs>(_model_NodesChanged);
+            _model.NodesInserted -= new EventHandler<TreeModelEventArgs>(_model_NodesInserted);
+            _model.NodesRemoved -= new EventHandler<TreeModelEventArgs>(_model_NodesRemoved);
+            _model.StructureChanged -= new EventHandler<TreePathEventArgs>(_model_StructureChanged);
+        }
 
-		private void _model_StructureChanged(object sender, TreePathEventArgs e)
-		{
-			if (e.Path == null)
+        private void _model_StructureChanged(object sender, TreePathEventArgs e)
+        {
+            if (e.Path == null)
             {
                 throw new ArgumentNullException();
             }
 
             TreeNodeAdv node = FindNode(e.Path);
-			if (node != null)
-			{
-				if (node != Root)
+            if (node != null)
+            {
+                if (node != Root)
                 {
                     node.IsLeaf = Model.IsLeaf(GetPath(node));
                 }
 
                 var list = new Dictionary<object, object>();
-				SaveExpandedNodes(node, list);
-				ReadChilds(node);
-				RestoreExpandedNodes(node, list);
+                SaveExpandedNodes(node, list);
+                ReadChilds(node);
+                RestoreExpandedNodes(node, list);
 
-				UpdateSelection();
-				SmartFullUpdate();
-			}
-			//else 
-			//	throw new ArgumentException("Path not found");
-		}
+                UpdateSelection();
+                SmartFullUpdate();
+            }
+            //else 
+            //	throw new ArgumentException("Path not found");
+        }
 
-		private void RestoreExpandedNodes(TreeNodeAdv node, Dictionary<object, object> list)
-		{
-			if (node.Tag != null && list.ContainsKey(node.Tag))
-			{
-				node.IsExpanded = true;
-				foreach (var child in node.Children)
+        private void RestoreExpandedNodes(TreeNodeAdv node, Dictionary<object, object> list)
+        {
+            if (node.Tag != null && list.ContainsKey(node.Tag))
+            {
+                node.IsExpanded = true;
+                foreach (var child in node.Children)
                 {
                     RestoreExpandedNodes(child, list);
                 }
             }
-		}
+        }
 
-		private void SaveExpandedNodes(TreeNodeAdv node, Dictionary<object, object> list)
-		{
-			if (node.IsExpanded && node.Tag != null)
-			{
-				list.Add(node.Tag, null);
-				foreach (var child in node.Children)
+        private void SaveExpandedNodes(TreeNodeAdv node, Dictionary<object, object> list)
+        {
+            if (node.IsExpanded && node.Tag != null)
+            {
+                list.Add(node.Tag, null);
+                foreach (var child in node.Children)
                 {
                     SaveExpandedNodes(child, list);
                 }
             }
-		}
+        }
 
-		private void _model_NodesRemoved(object sender, TreeModelEventArgs e)
-		{
-			TreeNodeAdv parent = FindNode(e.Path);
-			if (parent != null)
-			{
-				if (e.Indices != null)
-				{
-					List<int> list = new List<int>(e.Indices);
-					list.Sort();
-					for (int n = list.Count - 1; n >= 0; n--)
-					{
-						int index = list[n];
-						if (index >= 0 && index <= parent.Nodes.Count)
+        private void _model_NodesRemoved(object sender, TreeModelEventArgs e)
+        {
+            TreeNodeAdv parent = FindNode(e.Path);
+            if (parent != null)
+            {
+                if (e.Indices != null)
+                {
+                    List<int> list = new List<int>(e.Indices);
+                    list.Sort();
+                    for (int n = list.Count - 1; n >= 0; n--)
+                    {
+                        int index = list[n];
+                        if (index >= 0 && index <= parent.Nodes.Count)
                         {
                             parent.Nodes.RemoveAt(index);
                         }
@@ -1472,12 +1466,12 @@ namespace Aga.Controls.Tree
                             throw new ArgumentOutOfRangeException("Index out of range");
                         }
                     }
-				}
-				else
-				{
-					for (int i = parent.Nodes.Count - 1; i >= 0; i--)
-					{
-						for (int n = 0; n < e.Children.Length; n++)
+                }
+                else
+                {
+                    for (int i = parent.Nodes.Count - 1; i >= 0; i--)
+                    {
+                        for (int n = 0; n < e.Children.Length; n++)
                         {
                             if (parent.Nodes[i].Tag == e.Children[n])
                             {
@@ -1486,36 +1480,36 @@ namespace Aga.Controls.Tree
                             }
                         }
                     }
-				}
-			}
-			UpdateSelection();
-			SmartFullUpdate();
-		}
+                }
+            }
+            UpdateSelection();
+            SmartFullUpdate();
+        }
 
-		private void _model_NodesInserted(object sender, TreeModelEventArgs e)
-		{
-			if (e.Indices == null)
+        private void _model_NodesInserted(object sender, TreeModelEventArgs e)
+        {
+            if (e.Indices == null)
             {
                 throw new ArgumentNullException("Indices");
             }
 
             TreeNodeAdv parent = FindNode(e.Path);
-			if (parent != null)
-			{
-				for (int i = 0; i < e.Children.Length; i++)
+            if (parent != null)
+            {
+                for (int i = 0; i < e.Children.Length; i++)
                 {
                     AddNewNode(parent, e.Children[i], e.Indices[i]);
                 }
             }
-			SmartFullUpdate();
-		}
+            SmartFullUpdate();
+        }
 
-		private void _model_NodesChanged(object sender, TreeModelEventArgs e)
-		{
-			TreeNodeAdv parent = FindNode(e.Path);
-			if (parent != null && parent.IsVisible && parent.IsExpanded)
-			{
-				if (InvokeRequired)
+        private void _model_NodesChanged(object sender, TreeModelEventArgs e)
+        {
+            TreeNodeAdv parent = FindNode(e.Path);
+            if (parent != null && parent.IsVisible && parent.IsExpanded)
+            {
+                if (InvokeRequired)
                 {
                     BeginInvoke(new UpdateContentWidthDelegate(ClearNodesSize), e, parent);
                 }
@@ -1524,31 +1518,31 @@ namespace Aga.Controls.Tree
                     ClearNodesSize(e, parent);
                 }
                 SmartFullUpdate();
-			}
-		}
+            }
+        }
 
-		private void ClearNodesSize(TreeModelEventArgs e, TreeNodeAdv parent)
-		{
-			if (e.Indices != null)
-			{
-				foreach (int index in e.Indices)
-				{
-					if (index >= 0 && index < parent.Nodes.Count)
-					{
-						TreeNodeAdv node = parent.Nodes[index];
-						node.Height = node.RightBounds = null;
-					}
+        private void ClearNodesSize(TreeModelEventArgs e, TreeNodeAdv parent)
+        {
+            if (e.Indices != null)
+            {
+                foreach (int index in e.Indices)
+                {
+                    if (index >= 0 && index < parent.Nodes.Count)
+                    {
+                        TreeNodeAdv node = parent.Nodes[index];
+                        node.Height = node.RightBounds = null;
+                    }
                     else
                     {
                         throw new ArgumentOutOfRangeException("Index out of range");
                     }
                 }
-			}
-			else
-			{
-				foreach (TreeNodeAdv node in parent.Nodes)
-				{
-					foreach (object obj in e.Children)
+            }
+            else
+            {
+                foreach (TreeNodeAdv node in parent.Nodes)
+                {
+                    foreach (object obj in e.Children)
                     {
                         if (node.Tag == obj)
                         {
@@ -1556,8 +1550,8 @@ namespace Aga.Controls.Tree
                         }
                     }
                 }
-			}
-		}
+            }
+        }
 
         public void HideEditor()
         {
@@ -2485,7 +2479,7 @@ namespace Aga.Controls.Tree
                 }
             }
         }
-		
+
         public int ColumnHeadersHeight
         {
             get { return _columnHeaderHeight; }
@@ -2796,7 +2790,7 @@ namespace Aga.Controls.Tree
                 FullUpdate();
             }
         }
-		
+
         public bool AutoHeaderHeight
         {
             get { return _autoHeaderHeight; }
@@ -2960,7 +2954,7 @@ namespace Aga.Controls.Tree
             get { return _defaultToolTipProvider; }
             set { _defaultToolTipProvider = value; }
         }
-		
+
         public Aga.Controls.Tree.TreeNodeAdv.NodeCollection Nodes
         {
             get { return _root.Nodes; }
@@ -3426,7 +3420,7 @@ namespace Aga.Controls.Tree
             }
             gr.ResetClip();
         }
-		
+
         public System.Drawing.Image Image
         {
             get { return image; }
@@ -3441,9 +3435,9 @@ namespace Aga.Controls.Tree
     }
 }
 
-    #endregion Aga.Controls.Tree
+#endregion Aga.Controls.Tree
 
-		
+
 namespace osf
 {
     public class TreeViewAdvEx : Aga.Controls.Tree.TreeViewAdv
@@ -3477,7 +3471,7 @@ namespace osf
             M_TreeViewAdv = new TreeViewAdvEx();
             M_TreeViewAdv.M_Object = this;
             base.M_Control = M_TreeViewAdv;
-		
+
             M_TreeViewAdv.SelectionChanged += M_TreeViewAdv_SelectionChanged;
             SelectionChanged = "";
             M_TreeViewAdv.ColumnReordered += M_TreeViewAdv_ColumnReordered;
@@ -3505,7 +3499,7 @@ namespace osf
             M_TreeViewAdv = p1.M_TreeViewAdv;
             M_TreeViewAdv.M_Object = this;
             base.M_Control = M_TreeViewAdv;
-		
+
             M_TreeViewAdv.SelectionChanged += M_TreeViewAdv_SelectionChanged;
             SelectionChanged = "";
             M_TreeViewAdv.ColumnReordered += M_TreeViewAdv_ColumnReordered;
@@ -3533,7 +3527,7 @@ namespace osf
             M_TreeViewAdv = (TreeViewAdvEx)p1;
             M_TreeViewAdv.M_Object = this;
             base.M_Control = M_TreeViewAdv;
-		
+
             M_TreeViewAdv.SelectionChanged += M_TreeViewAdv_SelectionChanged;
             SelectionChanged = "";
             M_TreeViewAdv.ColumnReordered += M_TreeViewAdv_ColumnReordered;
@@ -3555,7 +3549,7 @@ namespace osf
             M_TreeViewAdv.Collapsed += M_TreeViewAdv_Collapsed;
             Collapsed = "";
         }
-		
+
         public void M_TreeViewAdv_Collapsed(object sender, Aga.Controls.Tree.TreeViewAdvEventArgs e)
         {
             if (Collapsed.Length > 0)
@@ -3632,7 +3626,7 @@ namespace osf
 
         private void M_TreeViewAdv_ItemDrag(object sender, ItemDragEventArgs e)
         {
-            
+
         }
 
         public void M_TreeViewAdv_NodeMouseClick(object sender, Aga.Controls.Tree.TreeNodeAdvMouseEventArgs e)
@@ -3700,7 +3694,7 @@ namespace osf
                 CurrentControl.Key = null;
                 CurrentControl.Value = null;
             }
-		
+
             if (SelectionChanged.Length > 0)
             {
                 EventArgs EventArgs1 = new EventArgs();
@@ -3712,7 +3706,7 @@ namespace osf
                 OneScriptForms.ExecuteEvent(((dynamic)sender).M_Object.dll_obj.SelectionChanged);
             }
         }
-		
+
         public bool UseColumns
         {
             get { return M_TreeViewAdv.UseColumns; }
@@ -3743,17 +3737,17 @@ namespace osf
         {
             get { return M_TreeViewAdv.Columns; }
         }
-		
+
         public void FullUpdate()
         {
             M_TreeViewAdv.FullUpdate();
         }
-		
+
         public Aga.Controls.Tree.TreeNodeAdv.NodeCollection Nodes
         {
             get { return M_TreeViewAdv.Nodes; }
         }
-		
+
         public osf.Rectangle DisplayRectangle
         {
             get { return new Rectangle(M_TreeViewAdv.DisplayRectangle); }
@@ -3822,7 +3816,7 @@ namespace osf
         {
             get { return M_TreeViewAdv.ItemCount; }
         }
-        
+
         public Aga.Controls.Tree.TreeNodeAdv Root
         {
             get { return M_TreeViewAdv.Root; }
@@ -3925,13 +3919,13 @@ namespace osf
             get { return M_TreeViewAdv.BottomEdgeSensivity; }
             set { M_TreeViewAdv.BottomEdgeSensivity = value; }
         }
-        
+
         public float DragDropMarkWidth
         {
             get { return M_TreeViewAdv.DragDropMarkWidth; }
             set { M_TreeViewAdv.DragDropMarkWidth = value; }
         }
-		
+
         public void AutoSizeColumn(TreeColumn p1 = null)
         {
             if (p1 != null)
@@ -3973,13 +3967,13 @@ namespace osf
         {
             M_TreeViewAdv.ExpandAll();
         }
-		
+
         public string PathSeparator
         {
             get { return M_TreeViewAdv.PathSeparator; }
             set { M_TreeViewAdv.PathSeparator = value; }
         }
-		
+
         public System.Drawing.Image Image
         {
             get { return M_TreeViewAdv.Image; }
@@ -3991,7 +3985,7 @@ namespace osf
             get { return M_TreeViewAdv.SelectedImage; }
             set { M_TreeViewAdv.SelectedImage = value; }
         }
-		
+
         public bool SelectNodeControl
         {
             get { return selectNodeControl; }
@@ -4063,11 +4057,10 @@ namespace osf
             lineColor = new ClColor(Base_obj.LineColor);
             backColor = new ClColor(Base_obj.BackColor);
             controls = new ClControlCollection(Base_obj.Controls);
-        }//end_constr
+        }
 
         public TreeViewAdv Base_obj;
 
-        //Свойства============================================================
         [ContextProperty("АвтоВысотаСтрок", "AutoRowHeight")]
         public bool AutoRowHeight
         {
@@ -4100,14 +4093,14 @@ namespace osf
         {
             get { return selectedNodes; }
         }
-        
+
         [ContextProperty("ВыбранныйУзел", "SelectedNode")]
         public ClNode SelectedNode
         {
             get { return (ClNode)OneScriptForms.RevertObj(Base_obj.SelectedNode.Tag); }
             set { Base_obj.SelectedNode = value.Base_obj.TreeNodeAdv; }
         }
-        
+
         [ContextProperty("ВыделениеИзменено", "SelectionChanged")]
         public IValue SelectionChanged
         {
@@ -4126,7 +4119,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ВыделятьЭлементУзла", "SelectNodeControl")]
         public bool SelectNodeControl
         {
@@ -4160,12 +4153,12 @@ namespace osf
         {
             get { return Convert.ToInt32(Base_obj.FontHeight); }
         }
-        
+
         [ContextProperty("Границы", "Bounds")]
         public ClRectangle Bounds
         {
             get { return bounds; }
-            set 
+            set
             {
                 bounds = value;
                 Base_obj.Bounds = value.Base_obj;
@@ -4190,7 +4183,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("Доступность", "Enabled")]
         public bool Enabled
         {
@@ -4231,7 +4224,7 @@ namespace osf
         {
             get { return ((AssemblyTitleAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false)[0]).Title.ToString(); }
         }
-        
+
         [ContextProperty("ИмяШрифта", "FontName")]
         public string FontName
         {
@@ -4271,7 +4264,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("КлавишаВниз", "KeyDown")]
         public IValue KeyDown
         {
@@ -4290,7 +4283,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("КлавишаНажата", "KeyPress")]
         public IValue KeyPress
         {
@@ -4309,7 +4302,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("КлиентВысота", "ClientHeight")]
         public int ClientHeight
         {
@@ -4361,7 +4354,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("КолонкаПерестроена", "ColumnReordered")]
         public IValue ColumnReordered
         {
@@ -4380,13 +4373,13 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("Колонки", "Columns")]
         public ClTreeColumnCollection Columns
         {
             get { return columns; }
         }
-        
+
         [ContextProperty("КонтекстноеМеню", "ContextMenu")]
         public ClContextMenu ContextMenu
         {
@@ -4411,7 +4404,7 @@ namespace osf
                 Base_obj.Cursor = value.Base_obj;
             }
         }
-        
+
         [ContextProperty("Лево", "Left")]
         public int Left
         {
@@ -4424,7 +4417,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("МышьНадЭлементом", "MouseEnter")]
         public IValue MouseEnter
         {
@@ -4443,7 +4436,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("МышьПокинулаЭлемент", "MouseLeave")]
         public IValue MouseLeave
         {
@@ -4462,7 +4455,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("Нажатие", "Click")]
         public IValue Click
         {
@@ -4481,7 +4474,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("Низ", "Bottom")]
         public int Bottom
         {
@@ -4492,7 +4485,7 @@ namespace osf
         public ClColor ForeColor
         {
             get { return foreColor; }
-            set 
+            set
             {
                 foreColor = value;
                 Base_obj.ForeColor = value.Base_obj;
@@ -4518,7 +4511,7 @@ namespace osf
         {
             get { return new ClPoint(System.Windows.Forms.Control.MousePosition); }
         }
-        
+
         [ContextProperty("ПоказатьЛинии", "ShowLines")]
         public bool ShowLines
         {
@@ -4573,7 +4566,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПорядокОбхода", "TabIndex")]
         public int TabIndex
         {
@@ -4605,7 +4598,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриЗадержкеМыши", "MouseHover")]
         public IValue MouseHover
         {
@@ -4624,7 +4617,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриНажатииКнопкиМыши", "MouseDown")]
         public IValue MouseDown
         {
@@ -4643,7 +4636,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриНажатииУзла", "NodeMouseClick")]
         public IValue NodeMouseClick
         {
@@ -4662,7 +4655,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриОтпусканииМыши", "MouseUp")]
         public IValue MouseUp
         {
@@ -4681,7 +4674,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриПеремещении", "Move")]
         public IValue Move
         {
@@ -4700,7 +4693,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриПеремещенииМыши", "MouseMove")]
         public IValue MouseMove
         {
@@ -4719,7 +4712,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриПерерисовке", "Paint")]
         public IValue Paint
         {
@@ -4738,7 +4731,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриПотереФокуса", "LostFocus")]
         public IValue LostFocus
         {
@@ -4757,7 +4750,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриПрокручивании", "Scroll")]
         public IValue Scroll
         {
@@ -4776,7 +4769,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриРазворачивании", "Expanding")]
         public IValue Expanding
         {
@@ -4795,7 +4788,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриСвертывании", "Collapsing")]
         public IValue Collapsing
         {
@@ -4814,7 +4807,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриУходе", "Leave")]
         public IValue Leave
         {
@@ -4833,7 +4826,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("Развернут", "Expanded")]
         public IValue Expanded
         {
@@ -4852,7 +4845,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("РазделительПути", "PathSeparator")]
         public string PathSeparator
         {
@@ -4885,14 +4878,14 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("РазмерШрифта", "FontSize")]
         public int FontSize
         {
             get { return Convert.ToInt32(Base_obj.FontSize); }
             set { Base_obj.FontSize = value; }
         }
-        
+
         [ContextProperty("РазрешитьПерестраиватьКолонки", "AllowColumnReorder")]
         public bool AllowColumnReorder
         {
@@ -4906,14 +4899,14 @@ namespace osf
             get { return (int)Base_obj.SelectionMode; }
             set { Base_obj.SelectionMode = (Aga.Controls.Tree.TreeSelectionMode)value; }
         }
-        
+
         [ContextProperty("Родитель", "Parent")]
         public IValue Parent
         {
             get { return OneScriptForms.RevertObj(Base_obj.Parent); }
             set { Base_obj.Parent = ((dynamic)value).Base_obj; }
         }
-        
+
         [ContextProperty("Свернут", "Collapsed")]
         public IValue Collapsed
         {
@@ -4932,7 +4925,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("СкрытьВыделение", "HideSelection")]
         public bool HideSelection
         {
@@ -4953,7 +4946,7 @@ namespace osf
             get { return (int)Base_obj.GridLineStyle; }
             set { Base_obj.GridLineStyle = (Aga.Controls.Tree.GridLineStyle)value; }
         }
-        
+
         [ContextProperty("Стыковка", "Dock")]
         public int Dock
         {
@@ -4999,7 +4992,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ТекущийУзел", "CurrentNode")]
         public ClNode CurrentNode
         {
@@ -5018,19 +5011,19 @@ namespace osf
                 return new ClNode((Aga.Controls.Tree.Node)Base_obj.CurrentNode.Tag);
             }
         }
-        
+
         [ContextProperty("Тип", "Type")]
         public ClType Type
         {
             get { return new ClType(this); }
         }
-        
+
         [ContextProperty("Узлы", "Nodes")]
         public ClNodeCollection Nodes
         {
             get { return new ClNodeCollection(TreeModel1.Nodes); }
         }
-        
+
         [ContextProperty("Фокусируемый", "CanFocus")]
         public bool CanFocus
         {
@@ -5048,7 +5041,7 @@ namespace osf
         public ClColor LineColor
         {
             get { return lineColor; }
-            set 
+            set
             {
                 lineColor = value;
                 Base_obj.LineColor = value.Base_obj;
@@ -5059,7 +5052,7 @@ namespace osf
         public ClColor BackColor
         {
             get { return backColor; }
-            set 
+            set
             {
                 backColor = value;
                 Base_obj.BackColor = value.Base_obj;
@@ -5090,13 +5083,13 @@ namespace osf
                 Base_obj.Font = value.Base_obj;
             }
         }
-        
+
         [ContextProperty("ЭлементВерхнегоУровня", "TopLevelControl")]
         public IValue TopLevelControl
         {
             get { return OneScriptForms.RevertObj(Base_obj.TopLevelControl); }
         }
-        
+
         [ContextProperty("ЭлементДобавлен", "ControlAdded")]
         public IValue ControlAdded
         {
@@ -5115,7 +5108,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ЭлементУдален", "ControlRemoved")]
         public IValue ControlRemoved
         {
@@ -5134,13 +5127,13 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ЭлементыУзла", "NodeControls")]
         public ClNodeControlsCollection NodeControls
         {
             get { return nodeControls; }
         }
-        
+
         [ContextProperty("ЭлементыУправления", "Controls")]
         public ClControlCollection Controls
         {
@@ -5154,8 +5147,6 @@ namespace osf
             set { Base_obj.Anchor = value; }
         }
 
-        //endProperty
-        //Методы============================================================
         [ContextMethod("АвтоРазмерКолонки", "AutoSizeColumn")]
         public void AutoSizeColumn(ClTreeColumn p1 = null)
         {
@@ -5174,13 +5165,13 @@ namespace osf
         {
             Base_obj.Refresh();
         }
-					
+
         [ContextMethod("Аннулировать", "Invalidate")]
         public void Invalidate()
         {
             Base_obj.Invalidate();
         }
-					
+
         [ContextMethod("ВозобновитьРазмещение", "ResumeLayout")]
         public void ResumeLayout(bool p1 = false)
         {
@@ -5192,51 +5183,51 @@ namespace osf
         {
             Base_obj.Select();
         }
-					
+
         [ContextMethod("ВыбратьВсеУзлы", "SelectAllNodes")]
         public void SelectAllNodes()
         {
             Base_obj.SelectAllNodes();
         }
-					
+
         [ContextMethod("ВыполнитьРазмещение", "PerformLayout")]
         public void PerformLayout()
         {
             Base_obj.PerformLayout();
         }
-					
+
         [ContextMethod("Выше", "PlaceTop")]
         public void PlaceTop(IValue p1, int p2)
         {
             dynamic p3 = ((dynamic)p1).Base_obj;
             Base_obj.Location = new Point(p3.Left, p3.Top - Base_obj.Height - p2);
         }
-        
+
         [ContextMethod("ДочернийПоКоординатам", "GetChildAtPoint")]
         public IValue GetChildAtPoint(ClPoint p1)
         {
             return ((dynamic)Base_obj.GetChildAtPoint(p1.Base_obj)).dll_obj;
         }
-        
+
         [ContextMethod("ЗавершитьОбновление", "EndUpdate")]
         public void EndUpdate()
         {
             Base_obj.EndUpdate();
         }
-					
+
         [ContextMethod("Левее", "PlaceLeft")]
         public void PlaceLeft(IValue p1, int p2)
         {
             dynamic p3 = ((dynamic)p1).Base_obj;
             Base_obj.Location = new Point(p3.Left - Base_obj.Width - p2, p3.Top);
         }
-        
+
         [ContextMethod("НаЗаднийПлан", "SendToBack")]
         public void SendToBack()
         {
             Base_obj.SendToBack();
         }
-					
+
         [ContextMethod("НайтиФорму", "FindForm")]
         public ClForm FindForm()
         {
@@ -5246,74 +5237,74 @@ namespace osf
             }
             return null;
         }
-        
+
         [ContextMethod("НайтиЭлемент", "FindControl")]
         public IValue FindControl(string p1)
         {
             return OneScriptForms.RevertObj(Base_obj.FindControl(p1));
         }
-        
+
         [ContextMethod("НаПереднийПлан", "BringToFront")]
         public void BringToFront()
         {
             Base_obj.BringToFront();
         }
-					
+
         [ContextMethod("НачатьОбновление", "BeginUpdate")]
         public void BeginUpdate()
         {
             Base_obj.BeginUpdate();
         }
-					
+
         [ContextMethod("Ниже", "PlaceBottom")]
         public void PlaceBottom(IValue p1, int p2)
         {
             dynamic p3 = ((dynamic)p1).Base_obj;
             Base_obj.Location = new Point(p3.Left, p3.Top + p3.Height + p2);
         }
-        
+
         [ContextMethod("ОбеспечитьОтображение", "EnsureVisible")]
         public void EnsureVisible(ClNode p1)
         {
             Base_obj.EnsureVisible(p1.Base_obj.TreeNodeAdv);
         }
-        
+
         [ContextMethod("Обновить", "Update")]
         public void Update()
         {
             Base_obj.Update();
         }
-					
+
         [ContextMethod("ОбновитьСтили", "UpdateStyles")]
         public void UpdateStyles()
         {
             Base_obj.UpdateStyles();
         }
-					
+
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {
             Base_obj.Dispose();
         }
-					
+
         [ContextMethod("ОчиститьВыделение", "ClearSelection")]
         public void ClearSelection()
         {
             Base_obj.ClearSelection();
         }
-					
+
         [ContextMethod("Показать", "Show")]
         public void Show()
         {
             Base_obj.Show();
         }
-					
+
         [ContextMethod("ПолучитьПолныйПуть", "GetFullPath")]
         public string GetFullPath(ClNode p1)
         {
             return Base_obj.GetFullPath(p1.Base_obj.TreeNodeAdv);
         }
-        
+
         [ContextMethod("ПолучитьСтиль", "GetStyle")]
         public bool GetStyle(int p1)
         {
@@ -5325,62 +5316,62 @@ namespace osf
         {
             return new ClNode((Aga.Controls.Tree.Node)Base_obj.M_TreeViewAdv.GetNodeAt(p1.Base_obj.M_Point).Tag);
         }
-        
+
         [ContextMethod("Правее", "PlaceRight")]
         public void PlaceRight(IValue p1, int p2)
         {
             dynamic p3 = ((dynamic)p1).Base_obj;
             Base_obj.Location = new Point(p3.Right + p2, p3.Top);
         }
-        
+
         [ContextMethod("ПриостановитьРазмещение", "SuspendLayout")]
         public void SuspendLayout()
         {
             Base_obj.SuspendLayout();
         }
-					
+
         [ContextMethod("ПрокрутитьДоУзла", "ScrollTo")]
         public void ScrollTo(ClNode p1)
         {
             Base_obj.ScrollTo(p1.Base_obj.TreeNodeAdv);
         }
-        
+
         [ContextMethod("РазвернутьВсе", "ExpandAll")]
         public void ExpandAll()
         {
             Base_obj.ExpandAll();
         }
-					
+
         [ContextMethod("СвернутьВсе", "CollapseAll")]
         public void CollapseAll()
         {
             Base_obj.CollapseAll();
         }
-					
+
         [ContextMethod("Скрыть", "Hide")]
         public void Hide()
         {
             Base_obj.Hide();
         }
-					
+
         [ContextMethod("СледующийЭлемент", "GetNextControl")]
         public IValue GetNextControl(IValue p1, bool p2)
         {
             return Base_obj.GetNextControl(((dynamic)p1).Base_obj, p2).dll_obj;
         }
-        
+
         [ContextMethod("СоздатьГрафику", "CreateGraphics")]
         public ClGraphics CreateGraphics()
         {
             return new ClGraphics(Base_obj.CreateGraphics());
         }
-        
+
         [ContextMethod("СоздатьЭлемент", "CreateControl")]
         public void CreateControl()
         {
             Base_obj.CreateControl();
         }
-					
+
         [ContextMethod("ТочкаНаКлиенте", "PointToClient")]
         public ClPoint PointToClient(ClPoint p1)
         {
@@ -5416,19 +5407,19 @@ namespace osf
         {
             Base_obj.Focus();
         }
-					
+
         [ContextMethod("Центр", "Center")]
         public void Center()
         {
             Base_obj.Center();
         }
-					
+
         [ContextMethod("ЭлементУправления", "Control")]
         public IValue Control(int p1)
         {
             return OneScriptForms.RevertObj(Base_obj.getControl(p1));
         }
-        
+
         [ContextMethod("ЭлементыУзла", "NodeControls")]
         public IValue NodeControls2(int p1)
         {
@@ -5440,15 +5431,13 @@ namespace osf
             Obj1 = Activator.CreateInstance(Type1, args1);
             return OneScriptForms.RevertObj(Obj1);
         }
-        
+
         [ContextMethod("ЭлементыУправления", "Controls")]
         public IValue Controls2(int p1)
         {
             return OneScriptForms.RevertObj(Base_obj.Controls2(p1));
         }
 
-        //endMethods
-    }//endClass
-
-}//endnamespace
+    }
+}
 

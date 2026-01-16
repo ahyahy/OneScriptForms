@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлЗначокВсплывающейПодсказки", "ClToolTipIcon")]
+    [ContextClass("КлЗначокВсплывающейПодсказки", "ClToolTipIcon")]
     public class ClToolTipIcon : AutoContext<ClToolTipIcon>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_none = (int)System.Windows.Forms.ToolTipIcon.None; // 0 Нестандартный значок.
@@ -38,6 +38,46 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1, "Информация"},
+            {0, "Отсутствие"},
+            {3, "Ошибка"},
+            {2, "Предупреждение"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1, "Info"},
+            {0, "None"},
+            {3, "Error"},
+            {2, "Warning"},
+        };
+
         public ClToolTipIcon()
         {
             _list = new List<IValue>();
@@ -50,25 +90,25 @@ namespace osf
         [ContextProperty("Информация", "Info")]
         public int Info
         {
-        	get { return m_info; }
+            get { return m_info; }
         }
 
         [ContextProperty("Отсутствие", "None")]
         public int None
         {
-        	get { return m_none; }
+            get { return m_none; }
         }
 
         [ContextProperty("Ошибка", "Error")]
         public int Error
         {
-        	get { return m_error; }
+            get { return m_error; }
         }
 
         [ContextProperty("Предупреждение", "Warning")]
         public int Warning
         {
-        	get { return m_warning; }
+            get { return m_warning; }
         }
     }
 }

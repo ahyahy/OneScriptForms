@@ -68,7 +68,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлКоллекцияСсылок", "ClLinkCollection")]
+    [ContextClass("КлКоллекцияСсылок", "ClLinkCollection")]
     public class ClLinkCollection : AutoContext<ClLinkCollection>
     {
         public ClLinkCollection(LinkCollection p1)
@@ -79,7 +79,7 @@ namespace osf
         }
 
         public LinkCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
@@ -97,7 +97,7 @@ namespace osf
         {
             get { return Base_obj.IsReadOnly; }
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public int Add(ClLink p1)
         {
@@ -109,7 +109,7 @@ namespace osf
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Удалить", "Remove")]
         public void Remove(ClLink p1)
         {

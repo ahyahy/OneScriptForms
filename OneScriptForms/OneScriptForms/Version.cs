@@ -38,7 +38,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлВерсия", "ClVersion")]
+    [ContextClass("КлВерсия", "ClVersion")]
     public class ClVersion : AutoContext<ClVersion>
     {
         public ClVersion(Version p1)
@@ -56,7 +56,7 @@ namespace osf
         }
 
         public Version Base_obj;
-        
+
         [ContextProperty("ДополнительныйНомер", "Minor")]
         public int Minor
         {
@@ -80,6 +80,6 @@ namespace osf
         {
             get { return Base_obj.Build; }
         }
-        
+
     }
 }

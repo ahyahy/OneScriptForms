@@ -50,7 +50,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЭлементыСетки", "ClGridItemCollection")]
+    [ContextClass("КлЭлементыСетки", "ClGridItemCollection")]
     public class ClGridItemCollection : AutoContext<ClGridItemCollection>
     {
         public ClGridItemCollection(GridItemCollection p1)
@@ -68,13 +68,13 @@ namespace osf
         }
 
         public GridItemCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Элемент", "Item")]
         public ClGridItem Item(IValue p1)
         {

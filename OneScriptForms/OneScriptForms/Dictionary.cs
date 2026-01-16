@@ -97,7 +97,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлСловарь", "ClDictionary")]
+    [ContextClass("КлСловарь", "ClDictionary")]
     public class ClDictionary : AutoContext<ClDictionary>
     {
         public ClDictionary()
@@ -106,16 +106,16 @@ namespace osf
             Dictionary1.dll_obj = this;
             Base_obj = Dictionary1;
         }
-		
+
         public ClDictionary(Dictionary p1)
         {
             Dictionary Dictionary1 = p1;
             Dictionary1.dll_obj = this;
             Base_obj = Dictionary1;
         }
-        
+
         public Dictionary Base_obj;
-        
+
         [ContextProperty("Значения", "Values")]
         public ClArrayList Values
         {
@@ -153,7 +153,7 @@ namespace osf
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public void Add(IValue p1, IValue p2)
         {
@@ -165,7 +165,7 @@ namespace osf
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("СодержитЗначение", "ContainsValue")]
         public bool ContainsValue(object p1)
         {

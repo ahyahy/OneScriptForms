@@ -58,7 +58,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлПроцесс", "ClProcess")]
+    [ContextClass("КлПроцесс", "ClProcess")]
     public class ClProcess : AutoContext<ClProcess>
     {
         private ClProcessStartInfo startInfo;
@@ -69,16 +69,16 @@ namespace osf
             Process1.dll_obj = this;
             Base_obj = Process1;
         }
-		
+
         public ClProcess(Process p1)
         {
             Process Process1 = p1;
             Process1.dll_obj = this;
             Base_obj = Process1;
         }
-        
+
         public Process Base_obj;
-        
+
         [ContextProperty("Завершен", "HasExited")]
         public bool HasExited
         {
@@ -95,19 +95,19 @@ namespace osf
                 Base_obj.StartInfo = value.Base_obj;
             }
         }
-        
+
         [ContextProperty("СтандартныйВывод", "StandardOutput")]
         public ClStreamReader StandardOutput
         {
             get { return (ClStreamReader)OneScriptForms.RevertObj(Base_obj.StandardOutput); }
         }
-        
+
         [ContextMethod("Закрыть", "Close")]
         public void Close()
         {
             Base_obj.Close();
         }
-					
+
         [ContextMethod("Начать", "Start")]
         public ClProcess Start()
         {

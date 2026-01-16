@@ -78,7 +78,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЗаполнение", "ClPadding")]
+    [ContextClass("КлЗаполнение", "ClPadding")]
     public class ClPadding : AutoContext<ClPadding>
     {
         public ClPadding()
@@ -87,7 +87,7 @@ namespace osf
             Padding1.dll_obj = this;
             Base_obj = Padding1;
         }
-		
+
         public ClPadding(int p1)
         {
             Padding Padding1 = new Padding(p1);
@@ -110,7 +110,7 @@ namespace osf
         }
 
         public Padding Base_obj;
-        
+
         [ContextProperty("Вертикаль", "Vertical")]
         public int Vertical
         {
@@ -163,6 +163,6 @@ namespace osf
         {
             get { return (ClSize)OneScriptForms.RevertObj(Base_obj.Size); }
         }
-        
+
     }
 }

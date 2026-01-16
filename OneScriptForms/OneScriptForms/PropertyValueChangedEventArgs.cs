@@ -16,7 +16,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЗначениеСвойстваИзмененоАрг", "ClPropertyValueChangedEventArgs")]
+    [ContextClass("КлЗначениеСвойстваИзмененоАрг", "ClPropertyValueChangedEventArgs")]
     public class ClPropertyValueChangedEventArgs : AutoContext<ClPropertyValueChangedEventArgs>
     {
         public ClPropertyValueChangedEventArgs()
@@ -25,16 +25,16 @@ namespace osf
             PropertyValueChangedEventArgs1.dll_obj = this;
             Base_obj = PropertyValueChangedEventArgs1;
         }
-		
+
         public ClPropertyValueChangedEventArgs(PropertyValueChangedEventArgs p1)
         {
             PropertyValueChangedEventArgs PropertyValueChangedEventArgs1 = p1;
             PropertyValueChangedEventArgs1.dll_obj = this;
             Base_obj = PropertyValueChangedEventArgs1;
         }
-        
+
         public PropertyValueChangedEventArgs Base_obj;
-        
+
         [ContextProperty("ИзмененныйЭлемент", "ChangedItem")]
         public ClGridItem ChangedItem
         {
@@ -46,7 +46,7 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
@@ -58,6 +58,6 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.OldValue); }
         }
-        
+
     }
 }

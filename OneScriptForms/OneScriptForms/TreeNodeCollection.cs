@@ -56,7 +56,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлУзлыДерева", "ClTreeNodeCollection")]
+    [ContextClass("КлУзлыДерева", "ClTreeNodeCollection")]
     public class ClTreeNodeCollection : AutoContext<ClTreeNodeCollection>
     {
         public ClTreeNodeCollection()
@@ -65,22 +65,22 @@ namespace osf
             TreeNodeCollection1.dll_obj = this;
             Base_obj = TreeNodeCollection1;
         }
-		
+
         public ClTreeNodeCollection(TreeNodeCollection p1)
         {
             TreeNodeCollection TreeNodeCollection1 = p1;
             TreeNodeCollection1.dll_obj = this;
             Base_obj = TreeNodeCollection1;
         }
-        
+
         public TreeNodeCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Вставить", "Insert")]
         public ClTreeNode Insert(int p1, ClTreeNode p2)
         {
@@ -103,13 +103,13 @@ namespace osf
             }
             return null;
         }
-        
+
         [ContextMethod("Очистить", "Clear")]
         public void Clear()
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Удалить", "Remove")]
         public void Remove(ClTreeNode p1)
         {

@@ -2,11 +2,10 @@
 using ScriptEngine.Machine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace osf
 {
-    [ContextClass ("КлСтильПоляВыбораЯчейки", "ClDataGridViewComboBoxDisplayStyle")]
+    [ContextClass("КлСтильПоляВыбораЯчейки", "ClDataGridViewComboBoxDisplayStyle")]
     public class ClDataGridViewComboBoxDisplayStyle : AutoContext<ClDataGridViewComboBoxDisplayStyle>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_comboBox = (int)System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox; // 0 Ячейка <A href="OneScriptForms.DataGridViewComboBoxCell.html">ПолеВыбораЯчейки&nbsp;(DataGridViewComboBoxCell)</A> не находится в режиме редактирования, ее внешний вид аналогичен элементу управления <A href="OneScriptForms.ComboBox.html">ПолеВыбора&nbsp;(ComboBox)</A>.
@@ -38,6 +37,44 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1, "КнопкаСписка"},
+            {2, "Отсутствие"},
+            {0, "ПолеВыбора"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1, "DropDownButton"},
+            {2, "Nothing"},
+            {0, "ComboBox"},
+        };
+
         public ClDataGridViewComboBoxDisplayStyle()
         {
             _list = new List<IValue>();
@@ -49,19 +86,19 @@ namespace osf
         [ContextProperty("КнопкаСписка", "DropDownButton")]
         public int DropDownButton
         {
-        	get { return m_dropDownButton; }
+            get { return m_dropDownButton; }
         }
 
         [ContextProperty("Отсутствие", "Nothing")]
         public int Nothing
         {
-        	get { return m_nothing; }
+            get { return m_nothing; }
         }
 
         [ContextProperty("ПолеВыбора", "ComboBox")]
         public int ComboBox
         {
-        	get { return m_comboBox; }
+            get { return m_comboBox; }
         }
     }
 }

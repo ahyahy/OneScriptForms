@@ -12,7 +12,7 @@ namespace osf
 
     }
 
-    [ContextClass ("КлРедактированиеНадписиАрг", "ClLabelEditEventArgs")]
+    [ContextClass("КлРедактированиеНадписиАрг", "ClLabelEditEventArgs")]
     public class ClLabelEditEventArgs : AutoContext<ClLabelEditEventArgs>
     {
         public ClLabelEditEventArgs()
@@ -21,16 +21,16 @@ namespace osf
             LabelEditEventArgs1.dll_obj = this;
             Base_obj = LabelEditEventArgs1;
         }
-		
+
         public ClLabelEditEventArgs(LabelEditEventArgs p1)
         {
             LabelEditEventArgs LabelEditEventArgs1 = p1;
             LabelEditEventArgs1.dll_obj = this;
             Base_obj = LabelEditEventArgs1;
         }
-        
+
         public LabelEditEventArgs Base_obj;
-        
+
         [ContextProperty("Надпись", "Label")]
         public string Label
         {
@@ -49,7 +49,7 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
@@ -61,6 +61,6 @@ namespace osf
         {
             get { return Base_obj.Item; }
         }
-        
+
     }
 }

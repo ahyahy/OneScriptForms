@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлОформление", "ClAppearance")]
+    [ContextClass("КлОформление", "ClAppearance")]
     public class ClAppearance : AutoContext<ClAppearance>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_normal = (int)System.Windows.Forms.Appearance.Normal; // 0 Внешний вид по умолчанию, определенный классом элемента управления.
@@ -36,6 +36,42 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1, "Кнопка"},
+            {0, "Стандартное"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1, "Button"},
+            {0, "Normal"},
+        };
+
         public ClAppearance()
         {
             _list = new List<IValue>();
@@ -46,13 +82,13 @@ namespace osf
         [ContextProperty("Кнопка", "Button")]
         public int Button
         {
-        	get { return m_button; }
+            get { return m_button; }
         }
 
         [ContextProperty("Стандартное", "Normal")]
         public int Normal
         {
-        	get { return m_normal; }
+            get { return m_normal; }
         }
     }
 }

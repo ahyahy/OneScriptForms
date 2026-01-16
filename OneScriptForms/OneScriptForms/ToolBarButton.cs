@@ -101,7 +101,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлКнопкаПанелиИнструментов", "ClToolBarButton")]
+    [ContextClass("КлКнопкаПанелиИнструментов", "ClToolBarButton")]
     public class ClToolBarButton : AutoContext<ClToolBarButton>
     {
         private ClCollection tag = new ClCollection();
@@ -112,7 +112,7 @@ namespace osf
             ToolBarButton1.dll_obj = this;
             Base_obj = ToolBarButton1;
         }
-		
+
         public ClToolBarButton(ToolBarButton p1)
         {
             ToolBarButton ToolBarButton1 = p1;
@@ -121,7 +121,7 @@ namespace osf
         }
 
         public ToolBarButton Base_obj;
-        
+
         [ContextProperty("ВыпадающееМеню", "DropDownMenu")]
         public ClContextMenu DropDownMenu
         {
@@ -148,7 +148,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("Нажата", "Pushed")]
         public bool Pushed
         {
@@ -196,6 +196,6 @@ namespace osf
             get { return Base_obj.ToolTipText; }
             set { Base_obj.ToolTipText = value; }
         }
-        
+
     }
 }

@@ -111,11 +111,11 @@ namespace osf
 
         public osf.DataTable Table
         {
-            get { return  (DataTable)((DataTableEx)M_DataColumn.Table).M_Object; }
+            get { return (DataTable)((DataTableEx)M_DataColumn.Table).M_Object; }
         }
     }
 
-    [ContextClass ("КлКолонкаДанных", "ClDataColumn")]
+    [ContextClass("КлКолонкаДанных", "ClDataColumn")]
     public class ClDataColumn : AutoContext<ClDataColumn>
     {
         public ClDataColumn()
@@ -131,7 +131,7 @@ namespace osf
             DataColumn1.dll_obj = this;
             Base_obj = DataColumn1;
         }
-		
+
         public ClDataColumn(string p1, System.Type p2)
         {
             DataColumn DataColumn1 = new DataColumn(p1, p2);
@@ -147,7 +147,7 @@ namespace osf
         }
 
         public DataColumn Base_obj;
-        
+
         [ContextProperty("АвтоПриращение", "AutoIncrement")]
         public bool AutoIncrement
         {
@@ -295,6 +295,6 @@ namespace osf
             get { return Base_obj.AutoIncrementStep; }
             set { Base_obj.AutoIncrementStep = value; }
         }
-        
+
     }
 }

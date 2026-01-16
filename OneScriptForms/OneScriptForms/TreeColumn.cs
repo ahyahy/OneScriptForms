@@ -1,26 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using System.Threading;
-using System.Text;
-using System.Security.Permissions;
-using System.Runtime.Serialization;
-using System.Runtime.InteropServices;
-using System.Reflection;
-using System.IO;
-using System.Globalization;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Drawing.Drawing2D;
-using System.Drawing.Design;
-using System.ComponentModel;
-using System.Collections;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
-using Aga.Controls.Tree.NodeControls;
-using Aga.Controls.Threading;
 using ScriptEngine.Machine.Contexts;
-using ScriptEngine.Machine;
 
 namespace Aga.Controls.Tree
 {
@@ -152,7 +136,7 @@ namespace Aga.Controls.Tree
                 OnIsVisibleChanged();
             }
         }
-		
+
         public bool Visible
         {
             get { return IsVisible; }
@@ -207,7 +191,7 @@ namespace Aga.Controls.Tree
                 }
             }
         }
-		
+
         public TextFormatFlags HeaderFlags
         {
             get { return _headerFlags; }
@@ -399,7 +383,7 @@ namespace Aga.Controls.Tree
                 WidthChanged(this, EventArgs.Empty);
             }
         }
-		
+
         internal Size GetActualSize(DrawContext context)
         {
             if (!IsVisible)
@@ -518,7 +502,7 @@ namespace osf
         {
             get { return M_TreeColumn.Index; }
         }
-		
+
         public int TextAlign
         {
             get { return (int)M_TreeColumn.TextAlign; }
@@ -588,18 +572,17 @@ namespace osf
             TreeColumn TreeColumn1 = new TreeColumn(p1, p2);
             TreeColumn1.dll_obj = this;
             Base_obj = TreeColumn1;
-        }//end_constr
-		
+        }
+
         public ClTreeColumn(TreeColumn p1)
         {
             TreeColumn TreeColumn1 = p1;
             TreeColumn1.dll_obj = this;
             Base_obj = TreeColumn1;
-        }//end_constr
+        }
 
         public TreeColumn Base_obj;
 
-        //Свойства============================================================
         [ContextProperty("ВыравниваниеТекста", "TextAlign")]
         public int TextAlign
         {
@@ -648,9 +631,5 @@ namespace osf
             set { Base_obj.Width = value; }
         }
 
-        //endProperty
-        //Методы============================================================
-        //endMethods
-    }//endClass
-
-}//endnamespace
+    }
+}

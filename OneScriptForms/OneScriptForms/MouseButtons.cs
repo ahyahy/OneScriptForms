@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлКнопкиМыши", "ClMouseButtons")]
+    [ContextClass("КлКнопкиМыши", "ClMouseButtons")]
     public class ClMouseButtons : AutoContext<ClMouseButtons>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_left = (int)System.Windows.Forms.MouseButtons.Left; // 1048576 Была нажата левая кнопка мыши.
@@ -37,6 +37,44 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1048576, "Левая"},
+            {2097152, "Правая"},
+            {4194304, "Средняя"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1048576, "Left"},
+            {2097152, "Right"},
+            {4194304, "Middle"},
+        };
+
         public ClMouseButtons()
         {
             _list = new List<IValue>();
@@ -48,19 +86,19 @@ namespace osf
         [ContextProperty("Левая", "Left")]
         public int Left
         {
-        	get { return m_left; }
+            get { return m_left; }
         }
 
         [ContextProperty("Правая", "Right")]
         public int Right
         {
-        	get { return m_right; }
+            get { return m_right; }
         }
 
         [ContextProperty("Средняя", "Middle")]
         public int Middle
         {
-        	get { return m_middle; }
+            get { return m_middle; }
         }
     }
 }

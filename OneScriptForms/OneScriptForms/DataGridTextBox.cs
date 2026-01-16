@@ -33,7 +33,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлПолеВводаКолонки", "ClDataGridTextBox")]
+    [ContextClass("КлПолеВводаКолонки", "ClDataGridTextBox")]
     public class ClDataGridTextBox : AutoContext<ClDataGridTextBox>
     {
         private ClColor backColor;
@@ -49,7 +49,7 @@ namespace osf
             foreColor = new ClColor(Base_obj.ForeColor);
             backColor = new ClColor(Base_obj.BackColor);
         }
-		
+
         public ClDataGridTextBox(DataGridTextBox p1)
         {
             DataGridTextBox DataGridTextBox1 = p1;
@@ -58,15 +58,15 @@ namespace osf
             foreColor = new ClColor(Base_obj.ForeColor);
             backColor = new ClColor(Base_obj.BackColor);
         }
-        
+
         public DataGridTextBox Base_obj;
-        
+
         [ContextProperty("ВысотаШрифта", "FontHeight")]
         public int FontHeight
         {
             get { return Convert.ToInt32(Base_obj.FontHeight); }
         }
-        
+
         [ContextProperty("ЖирныйШрифт", "FontBold")]
         public bool FontBold
         {
@@ -93,12 +93,12 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("ОсновнойЦвет", "ForeColor")]
         public ClColor ForeColor
         {
             get { return foreColor; }
-            set 
+            set
             {
                 foreColor = value;
                 Base_obj.ForeColor = value.Base_obj;
@@ -111,7 +111,7 @@ namespace osf
             get { return Convert.ToInt32(Base_obj.FontSize); }
             set { Base_obj.FontSize = value; }
         }
-        
+
         [ContextProperty("Текст", "Text")]
         public string Text
         {
@@ -130,7 +130,7 @@ namespace osf
         public ClColor BackColor
         {
             get { return backColor; }
-            set 
+            set
             {
                 backColor = value;
                 Base_obj.BackColor = value.Base_obj;
@@ -154,6 +154,6 @@ namespace osf
                 Base_obj.Font = value.Base_obj;
             }
         }
-        
+
     }
 }

@@ -81,7 +81,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлСтильКолонкиПолеВвода", "ClDataGridTextBoxColumn")]
+    [ContextClass("КлСтильКолонкиПолеВвода", "ClDataGridTextBoxColumn")]
     public class ClDataGridTextBoxColumn : AutoContext<ClDataGridTextBoxColumn>
     {
         private IValue _DoubleClick;
@@ -92,16 +92,16 @@ namespace osf
             DataGridTextBoxColumn1.dll_obj = this;
             Base_obj = DataGridTextBoxColumn1;
         }
-		
+
         public ClDataGridTextBoxColumn(DataGridTextBoxColumn p1)
         {
             DataGridTextBoxColumn DataGridTextBoxColumn1 = p1;
             DataGridTextBoxColumn1.dll_obj = this;
             Base_obj = DataGridTextBoxColumn1;
         }
-        
+
         public DataGridTextBoxColumn Base_obj;
-        
+
         [ContextProperty("Выравнивание", "Alignment")]
         public int Alignment
         {
@@ -127,7 +127,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ИмяОтображаемого", "MappingName")]
         public string MappingName
         {
@@ -161,7 +161,7 @@ namespace osf
             get { return Base_obj.Width; }
             set { Base_obj.Width = value; }
         }
-        
+
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

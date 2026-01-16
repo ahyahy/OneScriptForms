@@ -35,7 +35,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЯчейкиТаблицы", "ClDataGridViewCellCollection")]
+    [ContextClass("КлЯчейкиТаблицы", "ClDataGridViewCellCollection")]
     public class ClDataGridViewCellCollection : AutoContext<ClDataGridViewCellCollection>
     {
         public ClDataGridViewCellCollection()
@@ -44,22 +44,22 @@ namespace osf
             DataGridViewCellCollection1.dll_obj = this;
             Base_obj = DataGridViewCellCollection1;
         }
-		
+
         public ClDataGridViewCellCollection(DataGridViewCellCollection p1)
         {
             DataGridViewCellCollection DataGridViewCellCollection1 = p1;
             DataGridViewCellCollection1.dll_obj = this;
             Base_obj = DataGridViewCellCollection1;
         }
-        
+
         public DataGridViewCellCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Элемент", "Item")]
         public IValue Item(int p1)
         {

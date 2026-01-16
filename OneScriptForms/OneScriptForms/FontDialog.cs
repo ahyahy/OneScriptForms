@@ -54,7 +54,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлДиалогВыбораШрифта", "ClFontDialog")]
+    [ContextClass("КлДиалогВыбораШрифта", "ClFontDialog")]
     public class ClFontDialog : AutoContext<ClFontDialog>
     {
         private ClFont font;
@@ -65,22 +65,22 @@ namespace osf
             FontDialog1.dll_obj = this;
             Base_obj = FontDialog1;
         }
-		
+
         public ClFontDialog(FontDialog p1)
         {
             FontDialog FontDialog1 = p1;
             FontDialog1.dll_obj = this;
             Base_obj = FontDialog1;
         }
-        
+
         public FontDialog Base_obj;
-        
+
         [ContextProperty("Тип", "Type")]
         public ClType Type
         {
             get { return new ClType(this); }
         }
-        
+
         [ContextProperty("Цвет", "Color")]
         public ClColor Color
         {
@@ -105,18 +105,18 @@ namespace osf
                 Base_obj.Font = value.Base_obj;
             }
         }
-        
+
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {
             Base_obj.Dispose();
         }
-					
+
         [ContextMethod("ПоказатьДиалог", "ShowDialog")]
         public IValue ShowDialog()
         {
             int Res1 = 0;
-            var thread = new Thread(() => 
+            var thread = new Thread(() =>
                 {
                     Base_obj.ShowColor = true;
                     Res1 = (int)Base_obj.ShowDialog();

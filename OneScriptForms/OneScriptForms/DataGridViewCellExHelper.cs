@@ -84,7 +84,7 @@ namespace osf
             var dataGridView = childCell.DataGridView;
             var ownerCell = childCell.OwnerCell as TCell ?? childCell;
             var spannedCellBounds = childCellBounds;
-            
+
             var firstVisibleColumnIndex = Enumerable.Range(ownerCell.ColumnIndex, ownerCell.ColumnSpan)
                 .First(i => dataGridView.Columns[i].Visible);
             if (dataGridView.Columns[firstVisibleColumnIndex].Frozen)
@@ -101,7 +101,7 @@ namespace osf
                                           ? spannedCellBounds.X + dx
                                           : spannedCellBounds.X - dx;
             }
-            
+
             var firstVisibleRowIndex = Enumerable.Range(ownerCell.RowIndex, ownerCell.RowSpan)
                 .First(i => dataGridView.Rows[i].Visible);
             if (dataGridView.Rows[firstVisibleRowIndex].Frozen)
@@ -115,7 +115,7 @@ namespace osf
                     .Where(rowItem => rowItem.Visible)
                     .Sum(rowItem => rowItem.Height);
             }
-            
+
             var spannedCellWidth = Enumerable.Range(ownerCell.ColumnIndex, ownerCell.ColumnSpan)
                 .Select(columnIndex => dataGridView.Columns[columnIndex])
                 .Where(column => column.Visible)
@@ -125,7 +125,7 @@ namespace osf
                 spannedCellBounds.X = spannedCellBounds.Right - spannedCellWidth;
             }
             spannedCellBounds.Width = spannedCellWidth;
-            
+
             spannedCellBounds.Height = Enumerable.Range(ownerCell.RowIndex, ownerCell.RowSpan)
                 .Select(rowIndex => dataGridView.Rows[rowIndex])
                 .Where(row => row.Visible)
@@ -165,12 +165,12 @@ namespace osf
             var dataGridViewAdvancedBorderStylePlaceholder = new System.Windows.Forms.DataGridViewAdvancedBorderStyle();
             var dataGridView = cell.DataGridView;
             return cell.AdjustCellBorderStyle(
-                dataGridView.AdvancedCellBorderStyle, 
+                dataGridView.AdvancedCellBorderStyle,
                 dataGridViewAdvancedBorderStylePlaceholder,
                 dataGridView.SingleVerticalBorderAdded(),
                 dataGridView.SingleHorizontalBorderAdded(),
                 InFirstDisplayedColumn(cell),
-                InFirstDisplayedRow(cell)); 
+                InFirstDisplayedRow(cell));
         }
 
         public static bool InFirstDisplayedColumn<TCell>(this TCell cell) where TCell : System.Windows.Forms.DataGridViewCell, ISpannedCell

@@ -29,7 +29,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлВыбранныеЭлементыСпискаЭлементов", "ClListViewSelectedItemCollection")]
+    [ContextClass("КлВыбранныеЭлементыСпискаЭлементов", "ClListViewSelectedItemCollection")]
     public class ClListViewSelectedItemCollection : AutoContext<ClListViewSelectedItemCollection>
     {
         public ClListViewSelectedItemCollection(ListViewSelectedItemCollection p1)
@@ -40,19 +40,19 @@ namespace osf
         }
 
         public ListViewSelectedItemCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Очистить", "Clear")]
         public void Clear()
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Содержит", "Contains")]
         public bool Contains(ClListViewItem p1)
         {

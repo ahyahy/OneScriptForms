@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлСтильШрифта", "ClFontStyle")]
+    [ContextClass("КлСтильШрифта", "ClFontStyle")]
     public class ClFontStyle : AutoContext<ClFontStyle>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_regular = (int)System.Drawing.FontStyle.Regular; // 0 Обычный шрифт.
@@ -39,6 +39,48 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1, "Жирный"},
+            {8, "Зачеркнутый"},
+            {2, "Курсив"},
+            {4, "Подчеркнутый"},
+            {0, "Стандартный"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1, "Bold"},
+            {8, "Strikeout"},
+            {2, "Italic"},
+            {4, "Underline"},
+            {0, "Regular"},
+        };
+
         public ClFontStyle()
         {
             _list = new List<IValue>();
@@ -52,31 +94,31 @@ namespace osf
         [ContextProperty("Жирный", "Bold")]
         public int Bold
         {
-        	get { return m_bold; }
+            get { return m_bold; }
         }
 
         [ContextProperty("Зачеркнутый", "Strikeout")]
         public int Strikeout
         {
-        	get { return m_strikeout; }
+            get { return m_strikeout; }
         }
 
         [ContextProperty("Курсив", "Italic")]
         public int Italic
         {
-        	get { return m_italic; }
+            get { return m_italic; }
         }
 
         [ContextProperty("Подчеркнутый", "Underline")]
         public int Underline
         {
-        	get { return m_underline; }
+            get { return m_underline; }
         }
 
         [ContextProperty("Стандартный", "Regular")]
         public int Regular
         {
-        	get { return m_regular; }
+            get { return m_regular; }
         }
     }
 }

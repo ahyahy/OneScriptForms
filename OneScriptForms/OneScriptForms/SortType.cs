@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлТипСортировки", "ClSortType")]
+    [ContextClass("КлТипСортировки", "ClSortType")]
     public class ClSortType : AutoContext<ClSortType>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_text = 0; // 0 Тип сортировки <B>Текст</B>.
@@ -38,6 +38,46 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {3, "Булево"},
+            {2, "ДатаВремя"},
+            {0, "Текст"},
+            {1, "Число"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {3, "Boolean"},
+            {2, "DateTime"},
+            {0, "Text"},
+            {1, "Number"},
+        };
+
         public ClSortType()
         {
             _list = new List<IValue>();
@@ -50,25 +90,25 @@ namespace osf
         [ContextProperty("Булево", "Boolean")]
         public int Boolean
         {
-        	get { return m_boolean; }
+            get { return m_boolean; }
         }
 
         [ContextProperty("ДатаВремя", "DateTime")]
         public int DateTime
         {
-        	get { return m_dateTime; }
+            get { return m_dateTime; }
         }
 
         [ContextProperty("Текст", "Text")]
         public int Text
         {
-        	get { return m_text; }
+            get { return m_text; }
         }
 
         [ContextProperty("Число", "Number")]
         public int Number
         {
-        	get { return m_number; }
+            get { return m_number; }
         }
     }
 }

@@ -51,7 +51,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЭлементыПоляВыбора", "ClComboBoxObjectCollection")]
+    [ContextClass("КлЭлементыПоляВыбора", "ClComboBoxObjectCollection")]
     public class ClComboBoxObjectCollection : AutoContext<ClComboBoxObjectCollection>
     {
         public ArrayList heightItems;
@@ -65,13 +65,13 @@ namespace osf
         }
 
         public ComboBoxObjectCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Вставить", "Insert")]
         public IValue Insert(int p1, IValue p2)
         {
@@ -108,7 +108,7 @@ namespace osf
             }
             return m_obj.Height;
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public IValue Add(IValue p1)
         {
@@ -140,7 +140,7 @@ namespace osf
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Удалить", "Remove")]
         public void Remove(ClListItem p1)
         {

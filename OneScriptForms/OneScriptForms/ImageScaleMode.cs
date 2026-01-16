@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлРежимМасштабированияКартинки", "ClImageScaleMode")]
+    [ContextClass("КлРежимМасштабированияКартинки", "ClImageScaleMode")]
     public class ClImageScaleMode : AutoContext<ClImageScaleMode>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_clip = 0; // 0 Не масштабировать
@@ -37,6 +37,44 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1, "Вписать"},
+            {0, "Клип"},
+            {2, "Масштабировать"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1, "Fit"},
+            {0, "Clip"},
+            {2, "AlwaysScale"},
+        };
+
         public ClImageScaleMode()
         {
             _list = new List<IValue>();
@@ -48,19 +86,19 @@ namespace osf
         [ContextProperty("Вписать", "Fit")]
         public int Fit
         {
-        	get { return m_fit; }
+            get { return m_fit; }
         }
 
         [ContextProperty("Клип", "Clip")]
         public int Clip
         {
-        	get { return m_clip; }
+            get { return m_clip; }
         }
 
         [ContextProperty("Масштабировать", "AlwaysScale")]
         public int AlwaysScale
         {
-        	get { return m_alwaysScale; }
+            get { return m_alwaysScale; }
         }
     }
 }

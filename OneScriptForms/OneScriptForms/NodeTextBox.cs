@@ -1,24 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using System.Threading;
-using System.Text;
-using System.Security.Permissions;
-using System.Runtime.Serialization;
-using System.Runtime.InteropServices;
-using System.Reflection;
-using System.IO;
-using System.Globalization;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.Drawing.Drawing2D;
-using System.Drawing.Design;
-using System.ComponentModel;
-using System.Collections;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using Aga.Controls.Tree.NodeControls;
-using Aga.Controls.Threading;
 using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
 
@@ -37,7 +19,7 @@ namespace Aga.Controls.Tree.NodeControls
             this.LabelChanged += NodeTextBox_LabelChanged;
             ValueChanged = "";
         }
-		
+
         public void NodeTextBox_LabelChanged(object sender, LabelEventArgs e)
         {
             if (ValueChanged.Length > 0)
@@ -193,17 +175,16 @@ namespace osf
         {
             Base_obj = new Aga.Controls.Tree.NodeControls.NodeTextBox();
             Base_obj.dll_obj = this;
-        }//end_constr
-		
+        }
+
         public ClNodeTextBox(Aga.Controls.Tree.NodeControls.NodeTextBox p1)
         {
             Base_obj = p1;
             Base_obj.dll_obj = this;
-        }//end_constr
+        }
 
         public Aga.Controls.Tree.NodeControls.NodeTextBox Base_obj;
 
-        //Свойства============================================================
         [ContextProperty("ВертикальноеВыравнивание", "VerticalAlign")]
         public int VerticalAlign
         {
@@ -236,7 +217,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ИспользоватьСовместимуюОтрисовку", "UseCompatibleTextRendering")]
         public bool UseCompatibleTextRendering
         {
@@ -254,7 +235,7 @@ namespace osf
                 OneScriptForms.AddToHashtable(Base_obj.ParentColumn, value);
             }
         }
-        
+
         [ContextProperty("ЛевыйОтступ", "LeftMargin")]
         public int LeftMargin
         {
@@ -287,8 +268,6 @@ namespace osf
             }
         }
 
-        //endProperty
-        //Методы============================================================
         [ContextMethod("ПолучитьЗначение", "GetValue")]
         public IValue GetValue(ClNode p1)
         {
@@ -301,7 +280,5 @@ namespace osf
             p1.Base_obj.SetControlValue(Base_obj, (object)p2);
         }
 
-        //endMethods
-    }//endClass
-
-}//endnamespace
+    }
+}

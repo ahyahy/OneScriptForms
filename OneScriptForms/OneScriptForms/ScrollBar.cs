@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace osf
+﻿namespace osf
 {
     public class ScrollBar : Control
     {

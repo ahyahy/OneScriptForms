@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлЛевоеПравоеВыравнивание", "ClLeftRightAlignment")]
+    [ContextClass("КлЛевоеПравоеВыравнивание", "ClLeftRightAlignment")]
     public class ClLeftRightAlignment : AutoContext<ClLeftRightAlignment>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_left = (int)System.Windows.Forms.LeftRightAlignment.Left; // 0 Объект или текст выравнивается влево от контрольной точки.
@@ -36,6 +36,42 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {0, "Лево"},
+            {1, "Право"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {0, "Left"},
+            {1, "Right"},
+        };
+
         public ClLeftRightAlignment()
         {
             _list = new List<IValue>();
@@ -46,13 +82,13 @@ namespace osf
         [ContextProperty("Лево", "Left")]
         public int Left
         {
-        	get { return m_left; }
+            get { return m_left; }
         }
 
         [ContextProperty("Право", "Right")]
         public int Right
         {
-        	get { return m_right; }
+            get { return m_right; }
         }
     }
 }

@@ -14,7 +14,7 @@ namespace osf
 
     }
 
-    [ContextClass ("КлКлавишаАрг", "ClKeyEventArgs")]
+    [ContextClass("КлКлавишаАрг", "ClKeyEventArgs")]
     public class ClKeyEventArgs : AutoContext<ClKeyEventArgs>
     {
         public ClKeyEventArgs()
@@ -23,16 +23,16 @@ namespace osf
             KeyEventArgs1.dll_obj = this;
             Base_obj = KeyEventArgs1;
         }
-		
+
         public ClKeyEventArgs(KeyEventArgs p1)
         {
             KeyEventArgs KeyEventArgs1 = p1;
             KeyEventArgs1.dll_obj = this;
             Base_obj = KeyEventArgs1;
         }
-        
+
         public KeyEventArgs Base_obj;
-        
+
         [ContextProperty("Alt", "Alt")]
         public bool Alt
         {
@@ -68,12 +68,12 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
             get { return (IValue)Base_obj.Parameter; }
         }
-        
+
     }
 }

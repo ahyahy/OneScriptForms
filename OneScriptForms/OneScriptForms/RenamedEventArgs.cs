@@ -11,7 +11,7 @@ namespace osf
 
     }
 
-    [ContextClass ("КлПереименованиеАрг", "ClRenamedEventArgs")]
+    [ContextClass("КлПереименованиеАрг", "ClRenamedEventArgs")]
     public class ClRenamedEventArgs : AutoContext<ClRenamedEventArgs>
     {
         public ClRenamedEventArgs()
@@ -20,16 +20,16 @@ namespace osf
             RenamedEventArgs1.dll_obj = this;
             Base_obj = RenamedEventArgs1;
         }
-		
+
         public ClRenamedEventArgs(RenamedEventArgs p1)
         {
             RenamedEventArgs RenamedEventArgs1 = p1;
             RenamedEventArgs1.dll_obj = this;
             Base_obj = RenamedEventArgs1;
         }
-        
+
         public RenamedEventArgs Base_obj;
-        
+
         [ContextProperty("Имя", "Name")]
         public string Name
         {
@@ -41,7 +41,7 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
@@ -71,6 +71,6 @@ namespace osf
         {
             get { return (int)Base_obj.ChangeType; }
         }
-        
+
     }
 }

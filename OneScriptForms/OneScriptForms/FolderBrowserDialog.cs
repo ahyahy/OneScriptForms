@@ -58,7 +58,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлДиалогВыбораКаталога", "ClFolderBrowserDialog")]
+    [ContextClass("КлДиалогВыбораКаталога", "ClFolderBrowserDialog")]
     public class ClFolderBrowserDialog : AutoContext<ClFolderBrowserDialog>
     {
         public ClFolderBrowserDialog()
@@ -67,16 +67,16 @@ namespace osf
             FolderBrowserDialog1.dll_obj = this;
             Base_obj = FolderBrowserDialog1;
         }
-		
+
         public ClFolderBrowserDialog(FolderBrowserDialog p1)
         {
             FolderBrowserDialog FolderBrowserDialog1 = p1;
             FolderBrowserDialog1.dll_obj = this;
             Base_obj = FolderBrowserDialog1;
         }
-        
+
         public FolderBrowserDialog Base_obj;
-        
+
         [ContextProperty("ВыбранныйПуть", "SelectedPath")]
         public string SelectedPath
         {
@@ -110,13 +110,13 @@ namespace osf
         {
             get { return new ClType(this); }
         }
-        
+
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {
             Base_obj.Dispose();
         }
-					
+
         [ContextMethod("ПоказатьДиалог", "ShowDialog")]
         public IValue ShowDialog()
         {
@@ -128,7 +128,7 @@ namespace osf
             thread.Join();
             return ValueFactory.Create(Res1);
         }
-        
+
         [ContextMethod("Сбросить", "Reset")]
         public void Reset()
         {

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлПоведениеСсылки", "ClLinkLabelLinkBehavior")]
+    [ContextClass("КлПоведениеСсылки", "ClLinkLabelLinkBehavior")]
     public class ClLinkLabelLinkBehavior : AutoContext<ClLinkLabelLinkBehavior>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_systemDefault = (int)System.Windows.Forms.LinkBehavior.SystemDefault; // 0 Поведение данной настройки зависит от параметров, заданных с помощью диалогового окна "Свойства обозревателя" панели управления или Internet Explorer.
@@ -38,6 +38,46 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1, "ВсегдаПодчеркнутый"},
+            {3, "НеПодчеркнутый"},
+            {2, "ПодчеркнутыйПриНаведении"},
+            {0, "СистемныйПоУмолчанию"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1, "AlwaysUnderline"},
+            {3, "NeverUnderline"},
+            {2, "HoverUnderline"},
+            {0, "SystemDefault"},
+        };
+
         public ClLinkLabelLinkBehavior()
         {
             _list = new List<IValue>();
@@ -50,25 +90,25 @@ namespace osf
         [ContextProperty("ВсегдаПодчеркнутый", "AlwaysUnderline")]
         public int AlwaysUnderline
         {
-        	get { return m_alwaysUnderline; }
+            get { return m_alwaysUnderline; }
         }
 
         [ContextProperty("НеПодчеркнутый", "NeverUnderline")]
         public int NeverUnderline
         {
-        	get { return m_neverUnderline; }
+            get { return m_neverUnderline; }
         }
 
         [ContextProperty("ПодчеркнутыйПриНаведении", "HoverUnderline")]
         public int HoverUnderline
         {
-        	get { return m_hoverUnderline; }
+            get { return m_hoverUnderline; }
         }
 
         [ContextProperty("СистемныйПоУмолчанию", "SystemDefault")]
         public int SystemDefault
         {
-        	get { return m_systemDefault; }
+            get { return m_systemDefault; }
         }
     }
 }

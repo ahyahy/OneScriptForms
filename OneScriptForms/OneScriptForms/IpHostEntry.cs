@@ -41,7 +41,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлIpУзел", "ClIpHostEntry")]
+    [ContextClass("КлIpУзел", "ClIpHostEntry")]
     public class ClIpHostEntry : AutoContext<ClIpHostEntry>
     {
         public ClIpHostEntry(string p1)
@@ -49,14 +49,14 @@ namespace osf
             IpHostEntry IpHostEntry1 = new IpHostEntry(p1);
             Base_obj = IpHostEntry1;
         }
-		
+
         public ClIpHostEntry(osf.IpHostEntry p1)
         {
             Base_obj = p1;
         }
 
         public IpHostEntry Base_obj;
-        
+
         [ContextProperty("Адреса", "AddressList")]
         public ClArrayList AddressList
         {
@@ -82,7 +82,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ИмяУзла", "HostName")]
         public string HostName
         {
@@ -112,6 +112,6 @@ namespace osf
                 }
             }
         }
-        
+
     }
 }

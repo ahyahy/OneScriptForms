@@ -78,7 +78,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлТаймер", "ClTimer")]
+    [ContextClass("КлТаймер", "ClTimer")]
     public class ClTimer : AutoContext<ClTimer>
     {
         private IValue _Tick;
@@ -90,16 +90,16 @@ namespace osf
             Timer1.dll_obj = this;
             Base_obj = Timer1;
         }
-		
+
         public ClTimer(Timer p1)
         {
             Timer Timer1 = p1;
             Timer1.dll_obj = this;
             Base_obj = Timer1;
         }
-        
+
         public Timer Base_obj;
-        
+
         [ContextProperty("Активен", "Enabled")]
         public bool Enabled
         {
@@ -119,7 +119,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("ПриСрабатыванииТаймера", "Tick")]
         public IValue Tick
         {
@@ -138,25 +138,25 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("Тип", "Type")]
         public ClType Type
         {
             get { return new ClType(this); }
         }
-        
+
         [ContextMethod("Начать", "Start")]
         public void Start()
         {
             Base_obj.Start();
         }
-					
+
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {
             Base_obj.Dispose();
         }
-					
+
         [ContextMethod("Остановить", "Stop")]
         public void Stop()
         {

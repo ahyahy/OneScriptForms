@@ -23,7 +23,7 @@ using ScriptEngine.Machine.Contexts;
 
 // Код создан на основе разработки автора Robert.Verpalen https://www.codeproject.com/Tips/995958/DataGridViewGrouper под лицензией 
 // The Code Project Open License (CPOL) 1.02 https://www.codeproject.com/info/cpol10.aspx
-		
+
 namespace Subro.IO
 {
     public static class IOFunctions
@@ -1747,7 +1747,7 @@ namespace Subro.Controls
                     grid.MouseMove -= new MouseEventHandler(grid_MouseMove);
                     grid.SelectionChanged -= new EventHandler(grid_SelectionChanged);
                     grid.DataSourceChanged -= new EventHandler(grid_DataSourceChanged);
-                    grid.AllowUserToAddRowsChanged -= new EventHandler(grid_AllowUserToAddRowsChanged);    
+                    grid.AllowUserToAddRowsChanged -= new EventHandler(grid_AllowUserToAddRowsChanged);
                 }
                 RemoveGrouping();
                 selectedGroups.Clear();
@@ -1764,7 +1764,7 @@ namespace Subro.Controls
                     grid.MouseMove += new MouseEventHandler(grid_MouseMove);
                     grid.SelectionChanged += new EventHandler(grid_SelectionChanged);
                     grid.DataSourceChanged += new EventHandler(grid_DataSourceChanged);
-                    grid.AllowUserToAddRowsChanged += new EventHandler(grid_AllowUserToAddRowsChanged);       
+                    grid.AllowUserToAddRowsChanged += new EventHandler(grid_AllowUserToAddRowsChanged);
                 }
             }
         }
@@ -1791,7 +1791,7 @@ namespace Subro.Controls
                         return;
                     }
                 }
-            }            
+            }
             checkcollapsedfocused(-1, -1);
         }
 
@@ -1866,7 +1866,7 @@ namespace Subro.Controls
             }
             invalidateselected();
         }
-        
+
         void invalidateselected()
         {
             if (selectedGroups.Count == 0 || grid.SelectionMode == DataGridViewSelectionMode.FullRowSelect)
@@ -1898,7 +1898,7 @@ namespace Subro.Controls
             if (IsGroupRow(e.RowIndex) && capturedcollapsebox.Y != e.RowIndex && Options.SelectRowsOnDoubleClick)
             {
                 var gr = GetGroupRow(e.RowIndex);
-                gr.Collapsed = false;                
+                gr.Collapsed = false;
                 grid.SuspendLayout();
                 grid.CurrentCell = grid[1, e.RowIndex + 1];
                 grid.Rows[e.RowIndex].Selected = false;
@@ -1915,7 +1915,7 @@ namespace Subro.Controls
         IEnumerable<DataGridViewRow> GetRows(int index)
         {
             var gr = GetGroupRow(index);
-            
+
             for (int i = 0; i < gr.Count; i++)
             {
                 yield return grid.Rows[++index];
@@ -2092,7 +2092,7 @@ namespace Subro.Controls
             return CheckSource().SetGroupOn(Property);
         }
 
-        public void SetCustomGroup<T>(Func<T,object> GroupValueProvider, string Description = null)
+        public void SetCustomGroup<T>(Func<T, object> GroupValueProvider, string Description = null)
         {
             CheckSource().SetCustomGroup(GroupValueProvider, Description);
         }
@@ -2153,7 +2153,7 @@ namespace Subro.Controls
             if (IsGroupRow(e.RowIndex))
             {
                 e.Handled = true;
-                PaintGroupRow(e);                
+                PaintGroupRow(e);
             }
         }
 
@@ -2231,7 +2231,7 @@ namespace Subro.Controls
             }
             var r = e.RowBounds;
             r.Height--;
-            
+
             using (var bgb = new SolidBrush(info.BackColor))
             {
                 // Строка под строкой группы.
@@ -2340,13 +2340,13 @@ namespace Subro.Controls
             this.Group = Row;
             this.GroupingInfo = Info;
         }
-        
+
         // Возвращает значение группировки для рисуемой строки.
         public object Value { get { return Group.Value; } }
-        
+
         // Возвращает или задает отображаемое значение (после заголовка).
         public string DisplayValue { get; set; }
-        
+
         // Заголовок обычно содержит имя свойства / группы, его можно изменить здесь.
         public string Header { get; set; }
 
@@ -2356,7 +2356,7 @@ namespace Subro.Controls
         public Color BackColor { get; set; }
         public Color ForeColor { get; set; }
         public Font Font { get; set; }
-        
+
         // Указывает, выбрана ли в данный момент отображаемая строка.
         public bool Selected { get; internal set; }
 
@@ -2366,7 +2366,7 @@ namespace Subro.Controls
             {
                 return DisplayValue;
             }
-            return string.Format("{0}   {1}", DisplayValue, Summary);            
+            return string.Format("{0}   {1}", DisplayValue, Summary);
         }
 
         // То же, что и Group. Добавлено для обеспечения обратной совместимости.
@@ -2896,7 +2896,7 @@ namespace Subro.Controls
             {
                 e.DisplayValue = o == null ? "<Null>" : "Ложь";
             }
-            else if(o.ToString() == "True")
+            else if (o.ToString() == "True")
             {
                 e.DisplayValue = o == null ? "<Null>" : "Истина";
             }
@@ -5836,7 +5836,7 @@ namespace Subro.Controls
         protected virtual bool search(StringSearchMatcher search)
         {
             object pos = GetPosition();
-            for (;;)
+            for (; ; )
             {
                 var val = GetCurrent();
                 if (val != null && search.Matches(val.ToString()))
@@ -7297,7 +7297,7 @@ namespace Subro.Controls
             DataGridViewGrouper1.dll_obj = this;
             Base_obj = DataGridViewGrouper1;
         }
-		
+
         public ClDataGridViewGrouper(osf.ClDataGridView p1)
         {
             DataGridViewGrouper DataGridViewGrouper1 = new DataGridViewGrouper(p1.Base_obj.M_DataGridView);
@@ -7314,28 +7314,27 @@ namespace Subro.Controls
 
         public DataGridViewGrouper Base_obj;
 
-        //Свойства============================================================
         [ContextProperty("ВсегдаГруппироватьКакТекст", "AlwaysGroupOnText")]
         public bool AlwaysGroupOnText
         {
             get { return Base_obj.Options.AlwaysGroupOnText; }
             set { Base_obj.Options.AlwaysGroupOnText = value; }
         }
-        
+
         [ContextProperty("ВыделятьСтрокиПриДвойномНажатии", "SelectRowsOnDoubleClick")]
         public bool SelectRowsOnDoubleClick
         {
             get { return Base_obj.Options.SelectRowsOnDoubleClick; }
             set { Base_obj.Options.SelectRowsOnDoubleClick = value; }
         }
-        
+
         [ContextProperty("ГруппироватьКакТекст", "ForceAsText")]
         public bool ForceAsText
         {
             get { return Base_obj.ForceAsText; }
             set { Base_obj.ForceAsText = value; }
         }
-        
+
         [ContextProperty("ИмяГруппы", "GroupName")]
         public IValue GroupName
         {
@@ -7351,67 +7350,66 @@ namespace Subro.Controls
                 }
             }
         }
-        
+
         [ContextProperty("ПоказатьИмяГруппы", "ShowGroupName")]
         public bool ShowGroupName
         {
             get { return Base_obj.Options.ShowGroupName; }
             set { Base_obj.Options.ShowGroupName = value; }
         }
-        
+
         [ContextProperty("ПоказатьКоличество", "ShowCount")]
         public bool ShowCount
         {
             get { return Base_obj.Options.ShowCount; }
             set { Base_obj.Options.ShowCount = value; }
         }
-        
+
         [ContextProperty("ПорядокСортировки", "GroupSortOrder")]
         public int GroupSortOrder
         {
             get { return (int)Base_obj.GroupSortOrder; }
             set { Base_obj.GroupSortOrder = (System.Windows.Forms.SortOrder)value; }
         }
-        
+
         [ContextProperty("СвернутоПриСтарте", "StartCollapsed")]
         public bool StartCollapsed
         {
             get { return Base_obj.Options.StartCollapsed; }
             set { Base_obj.Options.StartCollapsed = value; }
         }
-        
+
         [ContextProperty("СтильГруппировкиТаблицы", "DataGridViewGrouperStyle")]
         public int DataGridViewGrouperStyle
         {
             get { return Base_obj.DataGridViewGrouperStyle; }
             set { Base_obj.DataGridViewGrouperStyle = value; }
         }
-        
+
         [ContextProperty("Таблица", "DataGridView")]
         public osf.ClDataGridView DataGridView
         {
             get { return ((osf.DataGridViewEx)Base_obj.DataGridView).M_Object.dll_obj; }
         }
-        
-        //Методы============================================================
+
         [ContextMethod("РазвернутьВсе", "ExpandAll")]
         public void ExpandAll()
         {
             Base_obj.ExpandAll();
         }
-					
+
         [ContextMethod("СвернутьВсе", "CollapseAll")]
         public void CollapseAll()
         {
             Base_obj.CollapseAll();
         }
-					
+
         [ContextMethod("УдалитьГруппировку", "RemoveGroup")]
         public void RemoveGroup()
         {
             Base_obj.RemoveGrouping();
         }
-        
+
         [ContextMethod("УстановитьГруппировку", "SetGroup")]
         public bool SetGroup(IValue p1)
         {

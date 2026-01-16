@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлПричинаЗакрытия", "ClCloseReason")]
+    [ContextClass("КлПричинаЗакрытия", "ClCloseReason")]
     public class ClCloseReason : AutoContext<ClCloseReason>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_none = (int)System.Windows.Forms.CloseReason.None; // 0 Причина закрытия не была определена или не может быть определена.
@@ -41,6 +41,52 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {5, "Владелец"},
+            {6, "Выход"},
+            {4, "Диспетчер"},
+            {0, "Отсутствие"},
+            {3, "Пользователь"},
+            {1, "Система"},
+            {2, "ФормаMDI"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {5, "FormOwnerClosing"},
+            {6, "ApplicationExitCall"},
+            {4, "TaskManagerClosing"},
+            {0, "None"},
+            {3, "UserClosing"},
+            {1, "WindowsShutDown"},
+            {2, "MdiFormClosing"},
+        };
+
         public ClCloseReason()
         {
             _list = new List<IValue>();
@@ -56,43 +102,43 @@ namespace osf
         [ContextProperty("Владелец", "FormOwnerClosing")]
         public int FormOwnerClosing
         {
-        	get { return m_formOwnerClosing; }
+            get { return m_formOwnerClosing; }
         }
 
         [ContextProperty("Выход", "ApplicationExitCall")]
         public int ApplicationExitCall
         {
-        	get { return m_applicationExitCall; }
+            get { return m_applicationExitCall; }
         }
 
         [ContextProperty("Диспетчер", "TaskManagerClosing")]
         public int TaskManagerClosing
         {
-        	get { return m_taskManagerClosing; }
+            get { return m_taskManagerClosing; }
         }
 
         [ContextProperty("Отсутствие", "None")]
         public int None
         {
-        	get { return m_none; }
+            get { return m_none; }
         }
 
         [ContextProperty("Пользователь", "UserClosing")]
         public int UserClosing
         {
-        	get { return m_userClosing; }
+            get { return m_userClosing; }
         }
 
         [ContextProperty("Система", "WindowsShutDown")]
         public int WindowsShutDown
         {
-        	get { return m_windowsShutDown; }
+            get { return m_windowsShutDown; }
         }
 
         [ContextProperty("ФормаMDI", "MdiFormClosing")]
         public int MdiFormClosing
         {
-        	get { return m_mdiFormClosing; }
+            get { return m_mdiFormClosing; }
         }
     }
 }

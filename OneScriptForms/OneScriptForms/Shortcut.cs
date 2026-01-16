@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлСочетаниеКлавиш", "ClShortcut")]
+    [ContextClass("КлСочетаниеКлавиш", "ClShortcut")]
     public class ClShortcut : AutoContext<ClShortcut>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_none = (int)System.Windows.Forms.Shortcut.None; // 0 Никакая комбинация клавиш не связана с пунктом меню.
@@ -184,6 +184,338 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {262192, "Alt0"},
+            {262193, "Alt1"},
+            {262194, "Alt2"},
+            {262195, "Alt3"},
+            {262196, "Alt4"},
+            {262197, "Alt5"},
+            {262198, "Alt6"},
+            {262199, "Alt7"},
+            {262200, "Alt8"},
+            {262201, "Alt9"},
+            {262152, "AltBksp"},
+            {262256, "AltF1"},
+            {262265, "AltF10"},
+            {262266, "AltF11"},
+            {262267, "AltF12"},
+            {262257, "AltF2"},
+            {262258, "AltF3"},
+            {262259, "AltF4"},
+            {262260, "AltF5"},
+            {262261, "AltF6"},
+            {262262, "AltF7"},
+            {262263, "AltF8"},
+            {262264, "AltF9"},
+            {131120, "Ctrl0"},
+            {131121, "Ctrl1"},
+            {131122, "Ctrl2"},
+            {131123, "Ctrl3"},
+            {131124, "Ctrl4"},
+            {131125, "Ctrl5"},
+            {131126, "Ctrl6"},
+            {131127, "Ctrl7"},
+            {131128, "Ctrl8"},
+            {131129, "Ctrl9"},
+            {131137, "CtrlA"},
+            {131138, "CtrlB"},
+            {131139, "CtrlC"},
+            {131140, "CtrlD"},
+            {131118, "CtrlDel"},
+            {131141, "CtrlE"},
+            {131142, "CtrlF"},
+            {131184, "CtrlF1"},
+            {131193, "CtrlF10"},
+            {131194, "CtrlF11"},
+            {131195, "CtrlF12"},
+            {131185, "CtrlF2"},
+            {131186, "CtrlF3"},
+            {131187, "CtrlF4"},
+            {131188, "CtrlF5"},
+            {131189, "CtrlF6"},
+            {131190, "CtrlF7"},
+            {131191, "CtrlF8"},
+            {131192, "CtrlF9"},
+            {131143, "CtrlG"},
+            {131144, "CtrlH"},
+            {131145, "CtrlI"},
+            {131117, "CtrlIns"},
+            {131146, "CtrlJ"},
+            {131147, "CtrlK"},
+            {131148, "CtrlL"},
+            {131149, "CtrlM"},
+            {131150, "CtrlN"},
+            {131151, "CtrlO"},
+            {131152, "CtrlP"},
+            {131153, "CtrlQ"},
+            {131154, "CtrlR"},
+            {131155, "CtrlS"},
+            {196656, "CtrlShift0"},
+            {196657, "CtrlShift1"},
+            {196658, "CtrlShift2"},
+            {196659, "CtrlShift3"},
+            {196660, "CtrlShift4"},
+            {196661, "CtrlShift5"},
+            {196662, "CtrlShift6"},
+            {196663, "CtrlShift7"},
+            {196664, "CtrlShift8"},
+            {196665, "CtrlShift9"},
+            {196673, "CtrlShiftA"},
+            {196674, "CtrlShiftB"},
+            {196675, "CtrlShiftC"},
+            {196676, "CtrlShiftD"},
+            {196677, "CtrlShiftE"},
+            {196678, "CtrlShiftF"},
+            {196720, "CtrlShiftF1"},
+            {196729, "CtrlShiftF10"},
+            {196730, "CtrlShiftF11"},
+            {196731, "CtrlShiftF12"},
+            {196721, "CtrlShiftF2"},
+            {196722, "CtrlShiftF3"},
+            {196723, "CtrlShiftF4"},
+            {196724, "CtrlShiftF5"},
+            {196725, "CtrlShiftF6"},
+            {196726, "CtrlShiftF7"},
+            {196727, "CtrlShiftF8"},
+            {196728, "CtrlShiftF9"},
+            {196679, "CtrlShiftG"},
+            {196680, "CtrlShiftH"},
+            {196681, "CtrlShiftI"},
+            {196682, "CtrlShiftJ"},
+            {196683, "CtrlShiftK"},
+            {196684, "CtrlShiftL"},
+            {196685, "CtrlShiftM"},
+            {196686, "CtrlShiftN"},
+            {196687, "CtrlShiftO"},
+            {196688, "CtrlShiftP"},
+            {196689, "CtrlShiftQ"},
+            {196690, "CtrlShiftR"},
+            {196691, "CtrlShiftS"},
+            {196692, "CtrlShiftT"},
+            {196693, "CtrlShiftU"},
+            {196694, "CtrlShiftV"},
+            {196695, "CtrlShiftW"},
+            {196696, "CtrlShiftX"},
+            {196697, "CtrlShiftY"},
+            {196698, "CtrlShiftZ"},
+            {131156, "CtrlT"},
+            {131157, "CtrlU"},
+            {131158, "CtrlV"},
+            {131159, "CtrlW"},
+            {131160, "CtrlX"},
+            {131161, "CtrlY"},
+            {131162, "CtrlZ"},
+            {46, "Del"},
+            {112, "F1"},
+            {121, "F10"},
+            {122, "F11"},
+            {123, "F12"},
+            {113, "F2"},
+            {114, "F3"},
+            {115, "F4"},
+            {116, "F5"},
+            {117, "F6"},
+            {118, "F7"},
+            {119, "F8"},
+            {120, "F9"},
+            {45, "Ins"},
+            {65582, "ShiftDel"},
+            {65648, "ShiftF1"},
+            {65657, "ShiftF10"},
+            {65658, "ShiftF11"},
+            {65659, "ShiftF12"},
+            {65649, "ShiftF2"},
+            {65650, "ShiftF3"},
+            {65651, "ShiftF4"},
+            {65652, "ShiftF5"},
+            {65653, "ShiftF6"},
+            {65654, "ShiftF7"},
+            {65655, "ShiftF8"},
+            {65656, "ShiftF9"},
+            {65581, "ShiftIns"},
+            {0, "Отсутствие"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {262192, "Alt0"},
+            {262193, "Alt1"},
+            {262194, "Alt2"},
+            {262195, "Alt3"},
+            {262196, "Alt4"},
+            {262197, "Alt5"},
+            {262198, "Alt6"},
+            {262199, "Alt7"},
+            {262200, "Alt8"},
+            {262201, "Alt9"},
+            {262152, "AltBksp"},
+            {262256, "AltF1"},
+            {262265, "AltF10"},
+            {262266, "AltF11"},
+            {262267, "AltF12"},
+            {262257, "AltF2"},
+            {262258, "AltF3"},
+            {262259, "AltF4"},
+            {262260, "AltF5"},
+            {262261, "AltF6"},
+            {262262, "AltF7"},
+            {262263, "AltF8"},
+            {262264, "AltF9"},
+            {131120, "Ctrl0"},
+            {131121, "Ctrl1"},
+            {131122, "Ctrl2"},
+            {131123, "Ctrl3"},
+            {131124, "Ctrl4"},
+            {131125, "Ctrl5"},
+            {131126, "Ctrl6"},
+            {131127, "Ctrl7"},
+            {131128, "Ctrl8"},
+            {131129, "Ctrl9"},
+            {131137, "CtrlA"},
+            {131138, "CtrlB"},
+            {131139, "CtrlC"},
+            {131140, "CtrlD"},
+            {131118, "CtrlDel"},
+            {131141, "CtrlE"},
+            {131142, "CtrlF"},
+            {131184, "CtrlF1"},
+            {131193, "CtrlF10"},
+            {131194, "CtrlF11"},
+            {131195, "CtrlF12"},
+            {131185, "CtrlF2"},
+            {131186, "CtrlF3"},
+            {131187, "CtrlF4"},
+            {131188, "CtrlF5"},
+            {131189, "CtrlF6"},
+            {131190, "CtrlF7"},
+            {131191, "CtrlF8"},
+            {131192, "CtrlF9"},
+            {131143, "CtrlG"},
+            {131144, "CtrlH"},
+            {131145, "CtrlI"},
+            {131117, "CtrlIns"},
+            {131146, "CtrlJ"},
+            {131147, "CtrlK"},
+            {131148, "CtrlL"},
+            {131149, "CtrlM"},
+            {131150, "CtrlN"},
+            {131151, "CtrlO"},
+            {131152, "CtrlP"},
+            {131153, "CtrlQ"},
+            {131154, "CtrlR"},
+            {131155, "CtrlS"},
+            {196656, "CtrlShift0"},
+            {196657, "CtrlShift1"},
+            {196658, "CtrlShift2"},
+            {196659, "CtrlShift3"},
+            {196660, "CtrlShift4"},
+            {196661, "CtrlShift5"},
+            {196662, "CtrlShift6"},
+            {196663, "CtrlShift7"},
+            {196664, "CtrlShift8"},
+            {196665, "CtrlShift9"},
+            {196673, "CtrlShiftA"},
+            {196674, "CtrlShiftB"},
+            {196675, "CtrlShiftC"},
+            {196676, "CtrlShiftD"},
+            {196677, "CtrlShiftE"},
+            {196678, "CtrlShiftF"},
+            {196720, "CtrlShiftF1"},
+            {196729, "CtrlShiftF10"},
+            {196730, "CtrlShiftF11"},
+            {196731, "CtrlShiftF12"},
+            {196721, "CtrlShiftF2"},
+            {196722, "CtrlShiftF3"},
+            {196723, "CtrlShiftF4"},
+            {196724, "CtrlShiftF5"},
+            {196725, "CtrlShiftF6"},
+            {196726, "CtrlShiftF7"},
+            {196727, "CtrlShiftF8"},
+            {196728, "CtrlShiftF9"},
+            {196679, "CtrlShiftG"},
+            {196680, "CtrlShiftH"},
+            {196681, "CtrlShiftI"},
+            {196682, "CtrlShiftJ"},
+            {196683, "CtrlShiftK"},
+            {196684, "CtrlShiftL"},
+            {196685, "CtrlShiftM"},
+            {196686, "CtrlShiftN"},
+            {196687, "CtrlShiftO"},
+            {196688, "CtrlShiftP"},
+            {196689, "CtrlShiftQ"},
+            {196690, "CtrlShiftR"},
+            {196691, "CtrlShiftS"},
+            {196692, "CtrlShiftT"},
+            {196693, "CtrlShiftU"},
+            {196694, "CtrlShiftV"},
+            {196695, "CtrlShiftW"},
+            {196696, "CtrlShiftX"},
+            {196697, "CtrlShiftY"},
+            {196698, "CtrlShiftZ"},
+            {131156, "CtrlT"},
+            {131157, "CtrlU"},
+            {131158, "CtrlV"},
+            {131159, "CtrlW"},
+            {131160, "CtrlX"},
+            {131161, "CtrlY"},
+            {131162, "CtrlZ"},
+            {46, "Del"},
+            {112, "F1"},
+            {121, "F10"},
+            {122, "F11"},
+            {123, "F12"},
+            {113, "F2"},
+            {114, "F3"},
+            {115, "F4"},
+            {116, "F5"},
+            {117, "F6"},
+            {118, "F7"},
+            {119, "F8"},
+            {120, "F9"},
+            {45, "Ins"},
+            {65582, "ShiftDel"},
+            {65648, "ShiftF1"},
+            {65657, "ShiftF10"},
+            {65658, "ShiftF11"},
+            {65659, "ShiftF12"},
+            {65649, "ShiftF2"},
+            {65650, "ShiftF3"},
+            {65651, "ShiftF4"},
+            {65652, "ShiftF5"},
+            {65653, "ShiftF6"},
+            {65654, "ShiftF7"},
+            {65655, "ShiftF8"},
+            {65656, "ShiftF9"},
+            {65581, "ShiftIns"},
+            {0, "None"},
+        };
+
         public ClShortcut()
         {
             _list = new List<IValue>();
@@ -342,901 +674,901 @@ namespace osf
         [ContextProperty("Alt0", "Alt0")]
         public int Alt0
         {
-        	get { return m_alt0; }
+            get { return m_alt0; }
         }
 
         [ContextProperty("Alt1", "Alt1")]
         public int Alt1
         {
-        	get { return m_alt1; }
+            get { return m_alt1; }
         }
 
         [ContextProperty("Alt2", "Alt2")]
         public int Alt2
         {
-        	get { return m_alt2; }
+            get { return m_alt2; }
         }
 
         [ContextProperty("Alt3", "Alt3")]
         public int Alt3
         {
-        	get { return m_alt3; }
+            get { return m_alt3; }
         }
 
         [ContextProperty("Alt4", "Alt4")]
         public int Alt4
         {
-        	get { return m_alt4; }
+            get { return m_alt4; }
         }
 
         [ContextProperty("Alt5", "Alt5")]
         public int Alt5
         {
-        	get { return m_alt5; }
+            get { return m_alt5; }
         }
 
         [ContextProperty("Alt6", "Alt6")]
         public int Alt6
         {
-        	get { return m_alt6; }
+            get { return m_alt6; }
         }
 
         [ContextProperty("Alt7", "Alt7")]
         public int Alt7
         {
-        	get { return m_alt7; }
+            get { return m_alt7; }
         }
 
         [ContextProperty("Alt8", "Alt8")]
         public int Alt8
         {
-        	get { return m_alt8; }
+            get { return m_alt8; }
         }
 
         [ContextProperty("Alt9", "Alt9")]
         public int Alt9
         {
-        	get { return m_alt9; }
+            get { return m_alt9; }
         }
 
         [ContextProperty("AltBksp", "AltBksp")]
         public int AltBksp
         {
-        	get { return m_altBksp; }
+            get { return m_altBksp; }
         }
 
         [ContextProperty("AltF1", "AltF1")]
         public int AltF1
         {
-        	get { return m_altF1; }
+            get { return m_altF1; }
         }
 
         [ContextProperty("AltF10", "AltF10")]
         public int AltF10
         {
-        	get { return m_altF10; }
+            get { return m_altF10; }
         }
 
         [ContextProperty("AltF11", "AltF11")]
         public int AltF11
         {
-        	get { return m_altF11; }
+            get { return m_altF11; }
         }
 
         [ContextProperty("AltF12", "AltF12")]
         public int AltF12
         {
-        	get { return m_altF12; }
+            get { return m_altF12; }
         }
 
         [ContextProperty("AltF2", "AltF2")]
         public int AltF2
         {
-        	get { return m_altF2; }
+            get { return m_altF2; }
         }
 
         [ContextProperty("AltF3", "AltF3")]
         public int AltF3
         {
-        	get { return m_altF3; }
+            get { return m_altF3; }
         }
 
         [ContextProperty("AltF4", "AltF4")]
         public int AltF4
         {
-        	get { return m_altF4; }
+            get { return m_altF4; }
         }
 
         [ContextProperty("AltF5", "AltF5")]
         public int AltF5
         {
-        	get { return m_altF5; }
+            get { return m_altF5; }
         }
 
         [ContextProperty("AltF6", "AltF6")]
         public int AltF6
         {
-        	get { return m_altF6; }
+            get { return m_altF6; }
         }
 
         [ContextProperty("AltF7", "AltF7")]
         public int AltF7
         {
-        	get { return m_altF7; }
+            get { return m_altF7; }
         }
 
         [ContextProperty("AltF8", "AltF8")]
         public int AltF8
         {
-        	get { return m_altF8; }
+            get { return m_altF8; }
         }
 
         [ContextProperty("AltF9", "AltF9")]
         public int AltF9
         {
-        	get { return m_altF9; }
+            get { return m_altF9; }
         }
 
         [ContextProperty("Ctrl0", "Ctrl0")]
         public int Ctrl0
         {
-        	get { return m_ctrl0; }
+            get { return m_ctrl0; }
         }
 
         [ContextProperty("Ctrl1", "Ctrl1")]
         public int Ctrl1
         {
-        	get { return m_ctrl1; }
+            get { return m_ctrl1; }
         }
 
         [ContextProperty("Ctrl2", "Ctrl2")]
         public int Ctrl2
         {
-        	get { return m_ctrl2; }
+            get { return m_ctrl2; }
         }
 
         [ContextProperty("Ctrl3", "Ctrl3")]
         public int Ctrl3
         {
-        	get { return m_ctrl3; }
+            get { return m_ctrl3; }
         }
 
         [ContextProperty("Ctrl4", "Ctrl4")]
         public int Ctrl4
         {
-        	get { return m_ctrl4; }
+            get { return m_ctrl4; }
         }
 
         [ContextProperty("Ctrl5", "Ctrl5")]
         public int Ctrl5
         {
-        	get { return m_ctrl5; }
+            get { return m_ctrl5; }
         }
 
         [ContextProperty("Ctrl6", "Ctrl6")]
         public int Ctrl6
         {
-        	get { return m_ctrl6; }
+            get { return m_ctrl6; }
         }
 
         [ContextProperty("Ctrl7", "Ctrl7")]
         public int Ctrl7
         {
-        	get { return m_ctrl7; }
+            get { return m_ctrl7; }
         }
 
         [ContextProperty("Ctrl8", "Ctrl8")]
         public int Ctrl8
         {
-        	get { return m_ctrl8; }
+            get { return m_ctrl8; }
         }
 
         [ContextProperty("Ctrl9", "Ctrl9")]
         public int Ctrl9
         {
-        	get { return m_ctrl9; }
+            get { return m_ctrl9; }
         }
 
         [ContextProperty("CtrlA", "CtrlA")]
         public int CtrlA
         {
-        	get { return m_ctrlA; }
+            get { return m_ctrlA; }
         }
 
         [ContextProperty("CtrlB", "CtrlB")]
         public int CtrlB
         {
-        	get { return m_ctrlB; }
+            get { return m_ctrlB; }
         }
 
         [ContextProperty("CtrlC", "CtrlC")]
         public int CtrlC
         {
-        	get { return m_ctrlC; }
+            get { return m_ctrlC; }
         }
 
         [ContextProperty("CtrlD", "CtrlD")]
         public int CtrlD
         {
-        	get { return m_ctrlD; }
+            get { return m_ctrlD; }
         }
 
         [ContextProperty("CtrlDel", "CtrlDel")]
         public int CtrlDel
         {
-        	get { return m_ctrlDel; }
+            get { return m_ctrlDel; }
         }
 
         [ContextProperty("CtrlE", "CtrlE")]
         public int CtrlE
         {
-        	get { return m_ctrlE; }
+            get { return m_ctrlE; }
         }
 
         [ContextProperty("CtrlF", "CtrlF")]
         public int CtrlF
         {
-        	get { return m_ctrlF; }
+            get { return m_ctrlF; }
         }
 
         [ContextProperty("CtrlF1", "CtrlF1")]
         public int CtrlF1
         {
-        	get { return m_ctrlF1; }
+            get { return m_ctrlF1; }
         }
 
         [ContextProperty("CtrlF10", "CtrlF10")]
         public int CtrlF10
         {
-        	get { return m_ctrlF10; }
+            get { return m_ctrlF10; }
         }
 
         [ContextProperty("CtrlF11", "CtrlF11")]
         public int CtrlF11
         {
-        	get { return m_ctrlF11; }
+            get { return m_ctrlF11; }
         }
 
         [ContextProperty("CtrlF12", "CtrlF12")]
         public int CtrlF12
         {
-        	get { return m_ctrlF12; }
+            get { return m_ctrlF12; }
         }
 
         [ContextProperty("CtrlF2", "CtrlF2")]
         public int CtrlF2
         {
-        	get { return m_ctrlF2; }
+            get { return m_ctrlF2; }
         }
 
         [ContextProperty("CtrlF3", "CtrlF3")]
         public int CtrlF3
         {
-        	get { return m_ctrlF3; }
+            get { return m_ctrlF3; }
         }
 
         [ContextProperty("CtrlF4", "CtrlF4")]
         public int CtrlF4
         {
-        	get { return m_ctrlF4; }
+            get { return m_ctrlF4; }
         }
 
         [ContextProperty("CtrlF5", "CtrlF5")]
         public int CtrlF5
         {
-        	get { return m_ctrlF5; }
+            get { return m_ctrlF5; }
         }
 
         [ContextProperty("CtrlF6", "CtrlF6")]
         public int CtrlF6
         {
-        	get { return m_ctrlF6; }
+            get { return m_ctrlF6; }
         }
 
         [ContextProperty("CtrlF7", "CtrlF7")]
         public int CtrlF7
         {
-        	get { return m_ctrlF7; }
+            get { return m_ctrlF7; }
         }
 
         [ContextProperty("CtrlF8", "CtrlF8")]
         public int CtrlF8
         {
-        	get { return m_ctrlF8; }
+            get { return m_ctrlF8; }
         }
 
         [ContextProperty("CtrlF9", "CtrlF9")]
         public int CtrlF9
         {
-        	get { return m_ctrlF9; }
+            get { return m_ctrlF9; }
         }
 
         [ContextProperty("CtrlG", "CtrlG")]
         public int CtrlG
         {
-        	get { return m_ctrlG; }
+            get { return m_ctrlG; }
         }
 
         [ContextProperty("CtrlH", "CtrlH")]
         public int CtrlH
         {
-        	get { return m_ctrlH; }
+            get { return m_ctrlH; }
         }
 
         [ContextProperty("CtrlI", "CtrlI")]
         public int CtrlI
         {
-        	get { return m_ctrlI; }
+            get { return m_ctrlI; }
         }
 
         [ContextProperty("CtrlIns", "CtrlIns")]
         public int CtrlIns
         {
-        	get { return m_ctrlIns; }
+            get { return m_ctrlIns; }
         }
 
         [ContextProperty("CtrlJ", "CtrlJ")]
         public int CtrlJ
         {
-        	get { return m_ctrlJ; }
+            get { return m_ctrlJ; }
         }
 
         [ContextProperty("CtrlK", "CtrlK")]
         public int CtrlK
         {
-        	get { return m_ctrlK; }
+            get { return m_ctrlK; }
         }
 
         [ContextProperty("CtrlL", "CtrlL")]
         public int CtrlL
         {
-        	get { return m_ctrlL; }
+            get { return m_ctrlL; }
         }
 
         [ContextProperty("CtrlM", "CtrlM")]
         public int CtrlM
         {
-        	get { return m_ctrlM; }
+            get { return m_ctrlM; }
         }
 
         [ContextProperty("CtrlN", "CtrlN")]
         public int CtrlN
         {
-        	get { return m_ctrlN; }
+            get { return m_ctrlN; }
         }
 
         [ContextProperty("CtrlO", "CtrlO")]
         public int CtrlO
         {
-        	get { return m_ctrlO; }
+            get { return m_ctrlO; }
         }
 
         [ContextProperty("CtrlP", "CtrlP")]
         public int CtrlP
         {
-        	get { return m_ctrlP; }
+            get { return m_ctrlP; }
         }
 
         [ContextProperty("CtrlQ", "CtrlQ")]
         public int CtrlQ
         {
-        	get { return m_ctrlQ; }
+            get { return m_ctrlQ; }
         }
 
         [ContextProperty("CtrlR", "CtrlR")]
         public int CtrlR
         {
-        	get { return m_ctrlR; }
+            get { return m_ctrlR; }
         }
 
         [ContextProperty("CtrlS", "CtrlS")]
         public int CtrlS
         {
-        	get { return m_ctrlS; }
+            get { return m_ctrlS; }
         }
 
         [ContextProperty("CtrlShift0", "CtrlShift0")]
         public int CtrlShift0
         {
-        	get { return m_ctrlShift0; }
+            get { return m_ctrlShift0; }
         }
 
         [ContextProperty("CtrlShift1", "CtrlShift1")]
         public int CtrlShift1
         {
-        	get { return m_ctrlShift1; }
+            get { return m_ctrlShift1; }
         }
 
         [ContextProperty("CtrlShift2", "CtrlShift2")]
         public int CtrlShift2
         {
-        	get { return m_ctrlShift2; }
+            get { return m_ctrlShift2; }
         }
 
         [ContextProperty("CtrlShift3", "CtrlShift3")]
         public int CtrlShift3
         {
-        	get { return m_ctrlShift3; }
+            get { return m_ctrlShift3; }
         }
 
         [ContextProperty("CtrlShift4", "CtrlShift4")]
         public int CtrlShift4
         {
-        	get { return m_ctrlShift4; }
+            get { return m_ctrlShift4; }
         }
 
         [ContextProperty("CtrlShift5", "CtrlShift5")]
         public int CtrlShift5
         {
-        	get { return m_ctrlShift5; }
+            get { return m_ctrlShift5; }
         }
 
         [ContextProperty("CtrlShift6", "CtrlShift6")]
         public int CtrlShift6
         {
-        	get { return m_ctrlShift6; }
+            get { return m_ctrlShift6; }
         }
 
         [ContextProperty("CtrlShift7", "CtrlShift7")]
         public int CtrlShift7
         {
-        	get { return m_ctrlShift7; }
+            get { return m_ctrlShift7; }
         }
 
         [ContextProperty("CtrlShift8", "CtrlShift8")]
         public int CtrlShift8
         {
-        	get { return m_ctrlShift8; }
+            get { return m_ctrlShift8; }
         }
 
         [ContextProperty("CtrlShift9", "CtrlShift9")]
         public int CtrlShift9
         {
-        	get { return m_ctrlShift9; }
+            get { return m_ctrlShift9; }
         }
 
         [ContextProperty("CtrlShiftA", "CtrlShiftA")]
         public int CtrlShiftA
         {
-        	get { return m_ctrlShiftA; }
+            get { return m_ctrlShiftA; }
         }
 
         [ContextProperty("CtrlShiftB", "CtrlShiftB")]
         public int CtrlShiftB
         {
-        	get { return m_ctrlShiftB; }
+            get { return m_ctrlShiftB; }
         }
 
         [ContextProperty("CtrlShiftC", "CtrlShiftC")]
         public int CtrlShiftC
         {
-        	get { return m_ctrlShiftC; }
+            get { return m_ctrlShiftC; }
         }
 
         [ContextProperty("CtrlShiftD", "CtrlShiftD")]
         public int CtrlShiftD
         {
-        	get { return m_ctrlShiftD; }
+            get { return m_ctrlShiftD; }
         }
 
         [ContextProperty("CtrlShiftE", "CtrlShiftE")]
         public int CtrlShiftE
         {
-        	get { return m_ctrlShiftE; }
+            get { return m_ctrlShiftE; }
         }
 
         [ContextProperty("CtrlShiftF", "CtrlShiftF")]
         public int CtrlShiftF
         {
-        	get { return m_ctrlShiftF; }
+            get { return m_ctrlShiftF; }
         }
 
         [ContextProperty("CtrlShiftF1", "CtrlShiftF1")]
         public int CtrlShiftF1
         {
-        	get { return m_ctrlShiftF1; }
+            get { return m_ctrlShiftF1; }
         }
 
         [ContextProperty("CtrlShiftF10", "CtrlShiftF10")]
         public int CtrlShiftF10
         {
-        	get { return m_ctrlShiftF10; }
+            get { return m_ctrlShiftF10; }
         }
 
         [ContextProperty("CtrlShiftF11", "CtrlShiftF11")]
         public int CtrlShiftF11
         {
-        	get { return m_ctrlShiftF11; }
+            get { return m_ctrlShiftF11; }
         }
 
         [ContextProperty("CtrlShiftF12", "CtrlShiftF12")]
         public int CtrlShiftF12
         {
-        	get { return m_ctrlShiftF12; }
+            get { return m_ctrlShiftF12; }
         }
 
         [ContextProperty("CtrlShiftF2", "CtrlShiftF2")]
         public int CtrlShiftF2
         {
-        	get { return m_ctrlShiftF2; }
+            get { return m_ctrlShiftF2; }
         }
 
         [ContextProperty("CtrlShiftF3", "CtrlShiftF3")]
         public int CtrlShiftF3
         {
-        	get { return m_ctrlShiftF3; }
+            get { return m_ctrlShiftF3; }
         }
 
         [ContextProperty("CtrlShiftF4", "CtrlShiftF4")]
         public int CtrlShiftF4
         {
-        	get { return m_ctrlShiftF4; }
+            get { return m_ctrlShiftF4; }
         }
 
         [ContextProperty("CtrlShiftF5", "CtrlShiftF5")]
         public int CtrlShiftF5
         {
-        	get { return m_ctrlShiftF5; }
+            get { return m_ctrlShiftF5; }
         }
 
         [ContextProperty("CtrlShiftF6", "CtrlShiftF6")]
         public int CtrlShiftF6
         {
-        	get { return m_ctrlShiftF6; }
+            get { return m_ctrlShiftF6; }
         }
 
         [ContextProperty("CtrlShiftF7", "CtrlShiftF7")]
         public int CtrlShiftF7
         {
-        	get { return m_ctrlShiftF7; }
+            get { return m_ctrlShiftF7; }
         }
 
         [ContextProperty("CtrlShiftF8", "CtrlShiftF8")]
         public int CtrlShiftF8
         {
-        	get { return m_ctrlShiftF8; }
+            get { return m_ctrlShiftF8; }
         }
 
         [ContextProperty("CtrlShiftF9", "CtrlShiftF9")]
         public int CtrlShiftF9
         {
-        	get { return m_ctrlShiftF9; }
+            get { return m_ctrlShiftF9; }
         }
 
         [ContextProperty("CtrlShiftG", "CtrlShiftG")]
         public int CtrlShiftG
         {
-        	get { return m_ctrlShiftG; }
+            get { return m_ctrlShiftG; }
         }
 
         [ContextProperty("CtrlShiftH", "CtrlShiftH")]
         public int CtrlShiftH
         {
-        	get { return m_ctrlShiftH; }
+            get { return m_ctrlShiftH; }
         }
 
         [ContextProperty("CtrlShiftI", "CtrlShiftI")]
         public int CtrlShiftI
         {
-        	get { return m_ctrlShiftI; }
+            get { return m_ctrlShiftI; }
         }
 
         [ContextProperty("CtrlShiftJ", "CtrlShiftJ")]
         public int CtrlShiftJ
         {
-        	get { return m_ctrlShiftJ; }
+            get { return m_ctrlShiftJ; }
         }
 
         [ContextProperty("CtrlShiftK", "CtrlShiftK")]
         public int CtrlShiftK
         {
-        	get { return m_ctrlShiftK; }
+            get { return m_ctrlShiftK; }
         }
 
         [ContextProperty("CtrlShiftL", "CtrlShiftL")]
         public int CtrlShiftL
         {
-        	get { return m_ctrlShiftL; }
+            get { return m_ctrlShiftL; }
         }
 
         [ContextProperty("CtrlShiftM", "CtrlShiftM")]
         public int CtrlShiftM
         {
-        	get { return m_ctrlShiftM; }
+            get { return m_ctrlShiftM; }
         }
 
         [ContextProperty("CtrlShiftN", "CtrlShiftN")]
         public int CtrlShiftN
         {
-        	get { return m_ctrlShiftN; }
+            get { return m_ctrlShiftN; }
         }
 
         [ContextProperty("CtrlShiftO", "CtrlShiftO")]
         public int CtrlShiftO
         {
-        	get { return m_ctrlShiftO; }
+            get { return m_ctrlShiftO; }
         }
 
         [ContextProperty("CtrlShiftP", "CtrlShiftP")]
         public int CtrlShiftP
         {
-        	get { return m_ctrlShiftP; }
+            get { return m_ctrlShiftP; }
         }
 
         [ContextProperty("CtrlShiftQ", "CtrlShiftQ")]
         public int CtrlShiftQ
         {
-        	get { return m_ctrlShiftQ; }
+            get { return m_ctrlShiftQ; }
         }
 
         [ContextProperty("CtrlShiftR", "CtrlShiftR")]
         public int CtrlShiftR
         {
-        	get { return m_ctrlShiftR; }
+            get { return m_ctrlShiftR; }
         }
 
         [ContextProperty("CtrlShiftS", "CtrlShiftS")]
         public int CtrlShiftS
         {
-        	get { return m_ctrlShiftS; }
+            get { return m_ctrlShiftS; }
         }
 
         [ContextProperty("CtrlShiftT", "CtrlShiftT")]
         public int CtrlShiftT
         {
-        	get { return m_ctrlShiftT; }
+            get { return m_ctrlShiftT; }
         }
 
         [ContextProperty("CtrlShiftU", "CtrlShiftU")]
         public int CtrlShiftU
         {
-        	get { return m_ctrlShiftU; }
+            get { return m_ctrlShiftU; }
         }
 
         [ContextProperty("CtrlShiftV", "CtrlShiftV")]
         public int CtrlShiftV
         {
-        	get { return m_ctrlShiftV; }
+            get { return m_ctrlShiftV; }
         }
 
         [ContextProperty("CtrlShiftW", "CtrlShiftW")]
         public int CtrlShiftW
         {
-        	get { return m_ctrlShiftW; }
+            get { return m_ctrlShiftW; }
         }
 
         [ContextProperty("CtrlShiftX", "CtrlShiftX")]
         public int CtrlShiftX
         {
-        	get { return m_ctrlShiftX; }
+            get { return m_ctrlShiftX; }
         }
 
         [ContextProperty("CtrlShiftY", "CtrlShiftY")]
         public int CtrlShiftY
         {
-        	get { return m_ctrlShiftY; }
+            get { return m_ctrlShiftY; }
         }
 
         [ContextProperty("CtrlShiftZ", "CtrlShiftZ")]
         public int CtrlShiftZ
         {
-        	get { return m_ctrlShiftZ; }
+            get { return m_ctrlShiftZ; }
         }
 
         [ContextProperty("CtrlT", "CtrlT")]
         public int CtrlT
         {
-        	get { return m_ctrlT; }
+            get { return m_ctrlT; }
         }
 
         [ContextProperty("CtrlU", "CtrlU")]
         public int CtrlU
         {
-        	get { return m_ctrlU; }
+            get { return m_ctrlU; }
         }
 
         [ContextProperty("CtrlV", "CtrlV")]
         public int CtrlV
         {
-        	get { return m_ctrlV; }
+            get { return m_ctrlV; }
         }
 
         [ContextProperty("CtrlW", "CtrlW")]
         public int CtrlW
         {
-        	get { return m_ctrlW; }
+            get { return m_ctrlW; }
         }
 
         [ContextProperty("CtrlX", "CtrlX")]
         public int CtrlX
         {
-        	get { return m_ctrlX; }
+            get { return m_ctrlX; }
         }
 
         [ContextProperty("CtrlY", "CtrlY")]
         public int CtrlY
         {
-        	get { return m_ctrlY; }
+            get { return m_ctrlY; }
         }
 
         [ContextProperty("CtrlZ", "CtrlZ")]
         public int CtrlZ
         {
-        	get { return m_ctrlZ; }
+            get { return m_ctrlZ; }
         }
 
         [ContextProperty("Del", "Del")]
         public int Del
         {
-        	get { return m_del; }
+            get { return m_del; }
         }
 
         [ContextProperty("F1", "F1")]
         public int F1
         {
-        	get { return m_f1; }
+            get { return m_f1; }
         }
 
         [ContextProperty("F10", "F10")]
         public int F10
         {
-        	get { return m_f10; }
+            get { return m_f10; }
         }
 
         [ContextProperty("F11", "F11")]
         public int F11
         {
-        	get { return m_f11; }
+            get { return m_f11; }
         }
 
         [ContextProperty("F12", "F12")]
         public int F12
         {
-        	get { return m_f12; }
+            get { return m_f12; }
         }
 
         [ContextProperty("F2", "F2")]
         public int F2
         {
-        	get { return m_f2; }
+            get { return m_f2; }
         }
 
         [ContextProperty("F3", "F3")]
         public int F3
         {
-        	get { return m_f3; }
+            get { return m_f3; }
         }
 
         [ContextProperty("F4", "F4")]
         public int F4
         {
-        	get { return m_f4; }
+            get { return m_f4; }
         }
 
         [ContextProperty("F5", "F5")]
         public int F5
         {
-        	get { return m_f5; }
+            get { return m_f5; }
         }
 
         [ContextProperty("F6", "F6")]
         public int F6
         {
-        	get { return m_f6; }
+            get { return m_f6; }
         }
 
         [ContextProperty("F7", "F7")]
         public int F7
         {
-        	get { return m_f7; }
+            get { return m_f7; }
         }
 
         [ContextProperty("F8", "F8")]
         public int F8
         {
-        	get { return m_f8; }
+            get { return m_f8; }
         }
 
         [ContextProperty("F9", "F9")]
         public int F9
         {
-        	get { return m_f9; }
+            get { return m_f9; }
         }
 
         [ContextProperty("Ins", "Ins")]
         public int Ins
         {
-        	get { return m_ins; }
+            get { return m_ins; }
         }
 
         [ContextProperty("ShiftDel", "ShiftDel")]
         public int ShiftDel
         {
-        	get { return m_shiftDel; }
+            get { return m_shiftDel; }
         }
 
         [ContextProperty("ShiftF1", "ShiftF1")]
         public int ShiftF1
         {
-        	get { return m_shiftF1; }
+            get { return m_shiftF1; }
         }
 
         [ContextProperty("ShiftF10", "ShiftF10")]
         public int ShiftF10
         {
-        	get { return m_shiftF10; }
+            get { return m_shiftF10; }
         }
 
         [ContextProperty("ShiftF11", "ShiftF11")]
         public int ShiftF11
         {
-        	get { return m_shiftF11; }
+            get { return m_shiftF11; }
         }
 
         [ContextProperty("ShiftF12", "ShiftF12")]
         public int ShiftF12
         {
-        	get { return m_shiftF12; }
+            get { return m_shiftF12; }
         }
 
         [ContextProperty("ShiftF2", "ShiftF2")]
         public int ShiftF2
         {
-        	get { return m_shiftF2; }
+            get { return m_shiftF2; }
         }
 
         [ContextProperty("ShiftF3", "ShiftF3")]
         public int ShiftF3
         {
-        	get { return m_shiftF3; }
+            get { return m_shiftF3; }
         }
 
         [ContextProperty("ShiftF4", "ShiftF4")]
         public int ShiftF4
         {
-        	get { return m_shiftF4; }
+            get { return m_shiftF4; }
         }
 
         [ContextProperty("ShiftF5", "ShiftF5")]
         public int ShiftF5
         {
-        	get { return m_shiftF5; }
+            get { return m_shiftF5; }
         }
 
         [ContextProperty("ShiftF6", "ShiftF6")]
         public int ShiftF6
         {
-        	get { return m_shiftF6; }
+            get { return m_shiftF6; }
         }
 
         [ContextProperty("ShiftF7", "ShiftF7")]
         public int ShiftF7
         {
-        	get { return m_shiftF7; }
+            get { return m_shiftF7; }
         }
 
         [ContextProperty("ShiftF8", "ShiftF8")]
         public int ShiftF8
         {
-        	get { return m_shiftF8; }
+            get { return m_shiftF8; }
         }
 
         [ContextProperty("ShiftF9", "ShiftF9")]
         public int ShiftF9
         {
-        	get { return m_shiftF9; }
+            get { return m_shiftF9; }
         }
 
         [ContextProperty("ShiftIns", "ShiftIns")]
         public int ShiftIns
         {
-        	get { return m_shiftIns; }
+            get { return m_shiftIns; }
         }
 
         [ContextProperty("Отсутствие", "None")]
         public int None
         {
-        	get { return m_none; }
+            get { return m_none; }
         }
     }
 }

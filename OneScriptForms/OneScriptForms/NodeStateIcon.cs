@@ -1,26 +1,7 @@
 ﻿using System;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using System.Threading;
-using System.Text;
-using System.Security.Permissions;
-using System.Runtime.Serialization;
-using System.Runtime.InteropServices;
-using System.Reflection;
-using System.IO;
-using System.Globalization;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.Drawing.Drawing2D;
-using System.Drawing.Design;
-using System.ComponentModel;
-using System.Collections;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
-using Aga.Controls.Tree.NodeControls;
-using Aga.Controls.Threading;
 using ScriptEngine.Machine.Contexts;
-using ScriptEngine.Machine;
 
 namespace Aga.Controls.Tree.NodeControls
 {
@@ -34,7 +15,7 @@ namespace Aga.Controls.Tree.NodeControls
         public NodeStateIcon()
         {
         }
-		
+
         public void ResetStateIconImage(Node p1)
         {
             nodeStateIconImage.Remove(p1);
@@ -75,7 +56,7 @@ namespace Aga.Controls.Tree.NodeControls
             {
                 image = imageNode;
             }
-		
+
             if (node.IsSelected)
             {
                 if (SelectedImage != null)
@@ -135,7 +116,7 @@ namespace Aga.Controls.Tree.NodeControls
         {
             return Image;
         }
-		
+
         public System.Drawing.Image Image
         {
             get { return image; }
@@ -147,7 +128,7 @@ namespace Aga.Controls.Tree.NodeControls
             get { return selectedImage; }
             set { selectedImage = value; }
         }
-		
+
         public override Size MeasureSize(TreeNodeAdv node, DrawContext context)
         {
             Image image = GetIcon(node);
@@ -156,7 +137,7 @@ namespace Aga.Controls.Tree.NodeControls
             {
                 image = imageNode;
             }
-		
+
             if (node.IsSelected)
             {
                 if (SelectedImage != null)
@@ -164,7 +145,7 @@ namespace Aga.Controls.Tree.NodeControls
                     image = SelectedImage;
                 }
             }
-		
+
             if (image != null)
             {
                 if (this.ScaleMode == ImageScaleMode.AlwaysScale)
@@ -198,18 +179,17 @@ namespace osf
         {
             Base_obj = new Aga.Controls.Tree.NodeControls.NodeStateIcon();
             Image = new ClBitmap("iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAK0lEQVR42u3NMQEAAAiEQL5/aF2s8JMQgAswFMsBKf1HQEBAQEBA4BlQawFcRy4BIkls/QAAAABJRU5ErkJggg==");
-        }//end_constr
-		
+        }
+
         public ClNodeStateIcon(Aga.Controls.Tree.NodeControls.NodeStateIcon p1)
         {
             Base_obj = p1;
-        }//end_constr
+        }
 
         public Aga.Controls.Tree.NodeControls.NodeStateIcon Base_obj;
 
-        //Свойства============================================================
         [ContextProperty("Изображение", "Image")]
-       public ClBitmap Image
+        public ClBitmap Image
         {
             get { return (ClBitmap)OneScriptForms.RevertEqualsObj(Base_obj.Image); }
             set
@@ -218,7 +198,7 @@ namespace osf
                 OneScriptForms.AddToHashtable(Base_obj.Image, value);
             }
         }
-        
+
         [ContextProperty("ИзображениеВыбранного", "SelectedImage")]
         public ClBitmap SelectedImage
         {
@@ -229,7 +209,7 @@ namespace osf
                 OneScriptForms.AddToHashtable(Base_obj.SelectedImage, value);
             }
         }
-        
+
         [ContextProperty("Колонка", "ParentColumn")]
         public ClTreeColumn ParentColumn
         {
@@ -240,7 +220,7 @@ namespace osf
                 OneScriptForms.AddToHashtable(Base_obj.ParentColumn, value);
             }
         }
-        
+
         [ContextProperty("ЛевыйОтступ", "LeftMargin")]
         public int LeftMargin
         {
@@ -255,8 +235,6 @@ namespace osf
             set { Base_obj.ScaleMode = (Aga.Controls.Tree.ImageScaleMode)value; }
         }
 
-        //endProperty
-        //Методы============================================================
         [ContextMethod("ПолучитьЗначение", "GetValue")]
         public ClBitmap GetValue(ClNode p1)
         {
@@ -283,7 +261,5 @@ namespace osf
             Base_obj.StateIconImage.Add(p1.Base_obj, p2);
         }
 
-        //endMethods
-    }//endClass
-
-}//endnamespace
+    }
+}

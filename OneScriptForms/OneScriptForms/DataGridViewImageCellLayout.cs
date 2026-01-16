@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлРазмещениеИзображенияЯчейки", "ClDataGridViewImageCellLayout")]
+    [ContextClass("КлРазмещениеИзображенияЯчейки", "ClDataGridViewImageCellLayout")]
     public class ClDataGridViewImageCellLayout : AutoContext<ClDataGridViewImageCellLayout>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_notSet = (int)System.Windows.Forms.DataGridViewImageCellLayout.NotSet; // 0 Спецификация расположения не установлена.
@@ -38,6 +38,46 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {3, "Масштабировать"},
+            {0, "НеУстановлено"},
+            {2, "Растянуть"},
+            {1, "Стандартное"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {3, "Zoom"},
+            {0, "NotSet"},
+            {2, "Stretch"},
+            {1, "Normal"},
+        };
+
         public ClDataGridViewImageCellLayout()
         {
             _list = new List<IValue>();
@@ -50,25 +90,25 @@ namespace osf
         [ContextProperty("Масштабировать", "Zoom")]
         public int Zoom
         {
-        	get { return m_zoom; }
+            get { return m_zoom; }
         }
 
         [ContextProperty("НеУстановлено", "NotSet")]
         public int NotSet
         {
-        	get { return m_notSet; }
+            get { return m_notSet; }
         }
 
         [ContextProperty("Растянуть", "Stretch")]
         public int Stretch
         {
-        	get { return m_stretch; }
+            get { return m_stretch; }
         }
 
         [ContextProperty("Стандартное", "Normal")]
         public int Normal
         {
-        	get { return m_normal; }
+            get { return m_normal; }
         }
     }
 }

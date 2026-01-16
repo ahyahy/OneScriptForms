@@ -42,7 +42,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлИзображения", "ClImageCollection")]
+    [ContextClass("КлИзображения", "ClImageCollection")]
     public class ClImageCollection : AutoContext<ClImageCollection>
     {
         public ClImageCollection()
@@ -51,22 +51,22 @@ namespace osf
             ImageCollection1.dll_obj = this;
             Base_obj = ImageCollection1;
         }
-		
+
         public ClImageCollection(ImageCollection p1)
         {
             ImageCollection ImageCollection1 = p1;
             ImageCollection1.dll_obj = this;
             Base_obj = ImageCollection1;
         }
-        
+
         public ImageCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public int Add(ClBitmap p1, ClColor p2 = null)
         {
@@ -81,7 +81,7 @@ namespace osf
             }
             return index1;
         }
-        
+
         [ContextMethod("ДобавитьПолосу", "AddStrip")]
         public int AddStrip(ClBitmap p1)
         {
@@ -93,7 +93,7 @@ namespace osf
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("УдалитьПоИндексу", "RemoveAt")]
         public void RemoveAt(int p1)
         {

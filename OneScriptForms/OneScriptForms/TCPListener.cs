@@ -1,5 +1,6 @@
 ﻿using ScriptEngine.Machine.Contexts;
 using System.Reflection;
+using osfMultiTcp;
 
 namespace osf
 {
@@ -43,9 +44,9 @@ namespace osf
             }
         }
 
-        public osf.TCPClient AcceptTCPclient()
+        public osfMultiTcp.TCPClient AcceptTCPclient()
         {
-            return new osf.TCPClient(M_TcpListener.AcceptTcpClient());
+            return new osfMultiTcp.TCPClient(M_TcpListener.AcceptTcpClient());
         }
 
         public bool Pending()
@@ -64,7 +65,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлTCPСлушатель", "ClTCPListener")]
+    [ContextClass("КлTCPСлушатель", "ClTCPListener")]
     public class ClTCPListener : AutoContext<ClTCPListener>
     {
         public ClTCPListener(ClIpAddress p1, int p2)
@@ -73,7 +74,7 @@ namespace osf
             TCPListener1.dll_obj = this;
             Base_obj = TCPListener1;
         }
-		
+
         public ClTCPListener(osf.TCPListener p1)
         {
             TCPListener TCPListener1 = p1;
@@ -82,19 +83,19 @@ namespace osf
         }
 
         public TCPListener Base_obj;
-        
+
         [ContextProperty("Активен", "Active")]
         public bool Active
         {
             get { return Base_obj.Active; }
         }
-        
+
         [ContextMethod("Начать", "Start")]
         public void Start()
         {
             Base_obj.Start();
         }
-					
+
         [ContextMethod("Ожидающие", "Pending")]
         public bool Pending()
         {
@@ -106,11 +107,11 @@ namespace osf
         {
             Base_obj.Stop();
         }
-					
+
         [ContextMethod("ПринимающийКлиент", "AcceptTCPclient")]
-        public ClTCPClient AcceptTCPclient()
+        public TsTCPClient AcceptTCPclient()
         {
-            return new ClTCPClient(Base_obj.AcceptTCPclient());
+            return new TsTCPClient(Base_obj.AcceptTCPclient());
         }
     }
 }

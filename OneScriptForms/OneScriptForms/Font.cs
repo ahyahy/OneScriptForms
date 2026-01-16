@@ -48,7 +48,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлШрифт", "ClFont")]
+    [ContextClass("КлШрифт", "ClFont")]
     public class ClFont : AutoContext<ClFont>
     {
         public ClFont(string p1 = null, float p2 = 6.0f, int p3 = 0)
@@ -57,7 +57,7 @@ namespace osf
             Font1.dll_obj = this;
             Base_obj = Font1;
         }
-		
+
         public ClFont(Font p1)
         {
             Font Font1 = p1;
@@ -66,7 +66,7 @@ namespace osf
         }
 
         public Font Base_obj;
-        
+
         [ContextProperty("Высота", "Height")]
         public int Height
         {
@@ -84,12 +84,12 @@ namespace osf
         {
             get { return ValueFactory.Create((Convert.ToDecimal(Base_obj.Size))); }
         }
-        
+
         [ContextProperty("Стиль", "Style")]
         public int Style
         {
             get { return (int)Base_obj.Style; }
         }
-        
+
     }
 }

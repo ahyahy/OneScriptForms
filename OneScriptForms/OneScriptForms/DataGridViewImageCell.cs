@@ -444,7 +444,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлКартинкаЯчейки", "ClDataGridViewImageCell")]
+    [ContextClass("КлКартинкаЯчейки", "ClDataGridViewImageCell")]
     public class ClDataGridViewImageCell : AutoContext<ClDataGridViewImageCell>
     {
         private ClRectangle contentBounds;
@@ -457,7 +457,7 @@ namespace osf
             Base_obj = DataGridViewImageCell1;
             contentBounds = new ClRectangle(Base_obj.ContentBounds);
         }
-		
+
         public ClDataGridViewImageCell(DataGridViewImageCell p1)
         {
             DataGridViewImageCell DataGridViewImageCell1 = p1;
@@ -465,9 +465,9 @@ namespace osf
             Base_obj = DataGridViewImageCell1;
             contentBounds = new ClRectangle(Base_obj.ContentBounds);
         }
-        
+
         public DataGridViewImageCell Base_obj;
-        
+
         [ContextProperty("Выбран", "Selected")]
         public bool Selected
         {
@@ -493,7 +493,7 @@ namespace osf
             get { return OneScriptForms.RevertObj(new Bitmap(((System.Drawing.Bitmap)Base_obj.Value))); }
             set { Base_obj.Value = ((ClBitmap)value.AsObject()).Base_obj.M_Bitmap; }
         }
-        
+
         [ContextProperty("ИзменяемыйРазмер", "Resizable")]
         public bool Resizable
         {
@@ -523,7 +523,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("Описание", "Description")]
         public string Description
         {
@@ -606,19 +606,19 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.FormattedValue.ToString()); }
         }
-        
+
         [ContextProperty("ФорматированноеЗначениеРедактируемого", "EditedFormattedValue")]
         public IValue EditedFormattedValue
         {
             get { return OneScriptForms.RevertObj(Base_obj.EditedFormattedValue.ToString()); }
         }
-        
+
         [ContextProperty("ЭтоИконка", "ValueIsIcon")]
         public bool ValueIsIcon
         {
             get { return Base_obj.ValueIsIcon; }
             set { Base_obj.ValueIsIcon = value; }
         }
-        
+
     }
 }

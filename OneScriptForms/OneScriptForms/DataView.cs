@@ -91,7 +91,7 @@ namespace osf
 
         public osf.DataTable Table
         {
-            get { return  (DataTable)((DataTableEx)M_DataView.Table).M_Object; }
+            get { return (DataTable)((DataTableEx)M_DataView.Table).M_Object; }
             set { M_DataView.Table = (System.Data.DataTable)value.M_DataTable; }
         }
 
@@ -122,7 +122,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлПредставлениеДанных", "ClDataView")]
+    [ContextClass("КлПредставлениеДанных", "ClDataView")]
     public class ClDataView : AutoContext<ClDataView>
     {
         public ClDataView()
@@ -131,14 +131,14 @@ namespace osf
             DataView1.dll_obj = this;
             Base_obj = DataView1;
         }
-		
+
         public ClDataView(DataView p1)
         {
             DataView DataView1 = p1;
             DataView1.dll_obj = this;
             Base_obj = DataView1;
         }
-        
+
         public ClDataView(System.Data.DataView p1)
         {
             DataView DataView1 = new DataView(p1);
@@ -147,7 +147,7 @@ namespace osf
         }
 
         public DataView Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
@@ -195,7 +195,7 @@ namespace osf
             get { return Base_obj.RowFilter; }
             set { Base_obj.RowFilter = value; }
         }
-        
+
         [ContextMethod("ДобавитьНовуюСтроку", "AddNew")]
         public ClDataRowView AddNew()
         {
@@ -207,13 +207,13 @@ namespace osf
         {
             Base_obj.EndInit();
         }
-					
+
         [ContextMethod("НачатьИнициализацию", "BeginInit")]
         public void BeginInit()
         {
             Base_obj.BeginInit();
         }
-					
+
         [ContextMethod("Элемент", "Item")]
         public ClDataRowView Item(int p1)
         {

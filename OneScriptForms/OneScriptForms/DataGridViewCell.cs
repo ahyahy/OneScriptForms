@@ -143,7 +143,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЯчейкаТаблицы", "ClDataGridViewCell")]
+    [ContextClass("КлЯчейкаТаблицы", "ClDataGridViewCell")]
     public class ClDataGridViewCell : AutoContext<ClDataGridViewCell>
     {
         private ClRectangle contentBounds;
@@ -156,7 +156,7 @@ namespace osf
             Base_obj = DataGridViewCell1;
             contentBounds = new ClRectangle(Base_obj.ContentBounds);
         }
-		
+
         public ClDataGridViewCell(DataGridViewCell p1)
         {
             DataGridViewCell DataGridViewCell1 = p1;
@@ -164,9 +164,9 @@ namespace osf
             Base_obj = DataGridViewCell1;
             contentBounds = new ClRectangle(Base_obj.ContentBounds);
         }
-        
+
         public DataGridViewCell Base_obj;
-        
+
         [ContextProperty("Выбран", "Selected")]
         public bool Selected
         {
@@ -214,7 +214,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ИзменяемыйРазмер", "Resizable")]
         public bool Resizable
         {
@@ -244,7 +244,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("Отображается", "Displayed")]
         public bool Displayed
         {
@@ -313,12 +313,12 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.FormattedValue); }
         }
-        
+
         [ContextProperty("ФорматированноеЗначениеРедактируемого", "EditedFormattedValue")]
         public IValue EditedFormattedValue
         {
             get { return OneScriptForms.RevertObj(Base_obj.EditedFormattedValue); }
         }
-        
+
     }
 }

@@ -45,7 +45,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлПанелиСтрокиСостояния", "ClStatusBarPanelCollection")]
+    [ContextClass("КлПанелиСтрокиСостояния", "ClStatusBarPanelCollection")]
     public class ClStatusBarPanelCollection : AutoContext<ClStatusBarPanelCollection>
     {
         public ClStatusBarPanelCollection()
@@ -54,40 +54,40 @@ namespace osf
             StatusBarPanelCollection1.dll_obj = this;
             Base_obj = StatusBarPanelCollection1;
         }
-		
+
         public ClStatusBarPanelCollection(StatusBarPanelCollection p1)
         {
             StatusBarPanelCollection StatusBarPanelCollection1 = p1;
             StatusBarPanelCollection1.dll_obj = this;
             Base_obj = StatusBarPanelCollection1;
         }
-        
+
         public StatusBarPanelCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Вставить", "Insert")]
         public ClStatusBarPanel Insert(int p1, ClStatusBarPanel p2)
         {
             return (ClStatusBarPanel)OneScriptForms.RevertObj(Base_obj.Insert(p1, p2.Base_obj));
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public ClStatusBarPanel Add(ClStatusBarPanel p1)
         {
             return (ClStatusBarPanel)OneScriptForms.RevertObj(Base_obj.Add(p1.Base_obj));
         }
-        
+
         [ContextMethod("Очистить", "Clear")]
         public void Clear()
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Удалить", "Remove")]
         public void Remove(ClStatusBarPanel p1)
         {

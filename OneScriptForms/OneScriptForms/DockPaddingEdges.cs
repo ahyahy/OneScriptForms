@@ -50,7 +50,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЗаполнениеГраниц", "ClDockPaddingEdges")]
+    [ContextClass("КлЗаполнениеГраниц", "ClDockPaddingEdges")]
     public class ClDockPaddingEdges : AutoContext<ClDockPaddingEdges>
     {
         public ClDockPaddingEdges(DockPaddingEdges p1)
@@ -61,7 +61,7 @@ namespace osf
         }
 
         public DockPaddingEdges Base_obj;
-        
+
         [ContextProperty("Верх", "Top")]
         public int Top
         {
@@ -96,6 +96,6 @@ namespace osf
             get { return Base_obj.Right; }
             set { Base_obj.Right = value; }
         }
-        
+
     }
 }

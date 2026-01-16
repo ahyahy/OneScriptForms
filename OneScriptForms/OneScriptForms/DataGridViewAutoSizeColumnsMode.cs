@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлРежимАвтоРазмераКолонок", "ClDataGridViewAutoSizeColumnsMode")]
+    [ContextClass("КлРежимАвтоРазмераКолонок", "ClDataGridViewAutoSizeColumnsMode")]
     public class ClDataGridViewAutoSizeColumnsMode : AutoContext<ClDataGridViewAutoSizeColumnsMode>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_none = (int)System.Windows.Forms.DataGridViewAutoSizeColumnsMode.None; // 1 Значения ширины колонок не изменяются автоматически.
@@ -41,6 +41,52 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {6, "ВсеЯчейки"},
+            {4, "ВсеЯчейкиБезЗаголовков"},
+            {2, "ЗаголовокКолонки"},
+            {16, "Заполнение"},
+            {10, "ОтобразритьЯчейки"},
+            {8, "ОтобразритьЯчейкиБезЗаголовков"},
+            {1, "Отсутствие"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {6, "AllCells"},
+            {4, "AllCellsExceptHeader"},
+            {2, "ColumnHeader"},
+            {16, "Fill"},
+            {10, "DisplayedCells"},
+            {8, "DisplayedCellsExceptHeader"},
+            {1, "None"},
+        };
+
         public ClDataGridViewAutoSizeColumnsMode()
         {
             _list = new List<IValue>();
@@ -56,43 +102,43 @@ namespace osf
         [ContextProperty("ВсеЯчейки", "AllCells")]
         public int AllCells
         {
-        	get { return m_allCells; }
+            get { return m_allCells; }
         }
 
         [ContextProperty("ВсеЯчейкиБезЗаголовков", "AllCellsExceptHeader")]
         public int AllCellsExceptHeader
         {
-        	get { return m_allCellsExceptHeader; }
+            get { return m_allCellsExceptHeader; }
         }
 
         [ContextProperty("ЗаголовокКолонки", "ColumnHeader")]
         public int ColumnHeader
         {
-        	get { return m_columnHeader; }
+            get { return m_columnHeader; }
         }
 
         [ContextProperty("Заполнение", "Fill")]
         public int Fill
         {
-        	get { return m_fill; }
+            get { return m_fill; }
         }
 
         [ContextProperty("ОтобразритьЯчейки", "DisplayedCells")]
         public int DisplayedCells
         {
-        	get { return m_displayedCells; }
+            get { return m_displayedCells; }
         }
 
         [ContextProperty("ОтобразритьЯчейкиБезЗаголовков", "DisplayedCellsExceptHeader")]
         public int DisplayedCellsExceptHeader
         {
-        	get { return m_displayedCellsExceptHeader; }
+            get { return m_displayedCellsExceptHeader; }
         }
 
         [ContextProperty("Отсутствие", "None")]
         public int None
         {
-        	get { return m_none; }
+            get { return m_none; }
         }
     }
 }

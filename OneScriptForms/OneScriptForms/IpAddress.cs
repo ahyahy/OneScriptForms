@@ -62,7 +62,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлIpАдрес", "ClIpAddress")]
+    [ContextClass("КлIpАдрес", "ClIpAddress")]
     public class ClIpAddress : AutoContext<ClIpAddress>
     {
         public ClIpAddress(string p1)
@@ -71,7 +71,7 @@ namespace osf
             IpAddress1.dll_obj = this;
             Base_obj = IpAddress1;
         }
-		
+
         public ClIpAddress(osf.IpAddress p1)
         {
             IpAddress IpAddress1 = p1;
@@ -80,7 +80,7 @@ namespace osf
         }
 
         public IpAddress Base_obj;
-        
+
         [ContextProperty("Замыкание", "LoopBack")]
         public ClIpAddress LoopBack
         {
@@ -104,13 +104,13 @@ namespace osf
         {
             get { return (ClIpAddress)OneScriptForms.RevertObj(Base_obj.BroadCast); }
         }
-        
+
         [ContextMethod("ВСтроку", "ToString")]
         public new string ToString()
         {
             return Base_obj.ToString();
         }
-        
+
         [ContextMethod("Равен", "Equals")]
         public bool Equals(ClIpAddress p1)
         {

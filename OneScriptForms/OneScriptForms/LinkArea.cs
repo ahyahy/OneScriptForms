@@ -43,7 +43,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлОбластьСсылки", "ClLinkArea")]
+    [ContextClass("КлОбластьСсылки", "ClLinkArea")]
     public class ClLinkArea : AutoContext<ClLinkArea>
     {
         public ClLinkArea(int p1, int p2)
@@ -52,14 +52,14 @@ namespace osf
             LinkArea1.dll_obj = this;
             Base_obj = LinkArea1;
         }
-		
+
         public ClLinkArea(LinkArea p1)
         {
             LinkArea LinkArea1 = p1;
             LinkArea1.dll_obj = this;
             Base_obj = LinkArea1;
         }
-		
+
         public ClLinkArea(System.Windows.Forms.LinkArea p1)
         {
             LinkArea LinkArea1 = new LinkArea(p1);
@@ -68,7 +68,7 @@ namespace osf
         }
 
         public LinkArea Base_obj;
-        
+
         [ContextProperty("Длина", "Length")]
         public int Length
         {
@@ -88,6 +88,6 @@ namespace osf
         {
             get { return Base_obj.IsEmpty; }
         }
-        
+
     }
 }

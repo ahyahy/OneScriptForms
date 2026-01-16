@@ -25,7 +25,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЗвук", "ClSound")]
+    [ContextClass("КлЗвук", "ClSound")]
     public class ClSound : AutoContext<ClSound>
     {
         public ClSound()
@@ -34,16 +34,16 @@ namespace osf
             Sound1.dll_obj = this;
             Base_obj = Sound1;
         }
-		
+
         public ClSound(Sound p1)
         {
             Sound Sound1 = p1;
             Sound1.dll_obj = this;
             Base_obj = Sound1;
         }
-        
+
         public Sound Base_obj;
-        
+
         [ContextMethod("Воспроизвести", "Play")]
         public void Play(string p1)
         {
@@ -64,15 +64,15 @@ namespace osf
             else if (p1 == 2)
             {
                 System.Media.SystemSounds.Beep.Play();
-             }
-             else if (p1 == 3)
-             {
-                 System.Media.SystemSounds.Asterisk.Play();
-             }
-             else if (p1 == 4)
-             {
-                 System.Media.SystemSounds.Hand.Play();
-             }
-         }
+            }
+            else if (p1 == 3)
+            {
+                System.Media.SystemSounds.Asterisk.Play();
+            }
+            else if (p1 == 4)
+            {
+                System.Media.SystemSounds.Hand.Play();
+            }
+        }
     }
 }

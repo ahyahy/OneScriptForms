@@ -89,7 +89,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлКолонкаСсылка", "ClDataGridViewLinkColumn")]
+    [ContextClass("КлКолонкаСсылка", "ClDataGridViewLinkColumn")]
     public class ClDataGridViewLinkColumn : AutoContext<ClDataGridViewLinkColumn>
     {
         private ClColor activeLinkColor;
@@ -106,7 +106,7 @@ namespace osf
             visitedLinkColor = new ClColor(Base_obj.VisitedLinkColor);
             linkColor = new ClColor(Base_obj.LinkColor);
         }
-		
+
         public ClDataGridViewLinkColumn(DataGridViewLinkColumn p1)
         {
             DataGridViewLinkColumn DataGridViewLinkColumn1 = p1;
@@ -116,16 +116,16 @@ namespace osf
             visitedLinkColor = new ClColor(Base_obj.VisitedLinkColor);
             linkColor = new ClColor(Base_obj.LinkColor);
         }
-        
+
         public DataGridViewLinkColumn Base_obj;
-        
+
         [ContextProperty("ВесЗаполнения", "FillWeight")]
         public IValue FillWeight
         {
             get { return ValueFactory.Create((Convert.ToDecimal(Base_obj.FillWeight))); }
             set { Base_obj.FillWeight = Convert.ToSingle(value.AsNumber()); }
         }
-        
+
         [ContextProperty("Выбран", "Selected")]
         public bool Selected
         {
@@ -193,7 +193,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("МинимальнаяШирина", "MinimumWidth")]
         public int MinimumWidth
         {
@@ -280,7 +280,7 @@ namespace osf
         public ClColor ActiveLinkColor
         {
             get { return activeLinkColor; }
-            set 
+            set
             {
                 activeLinkColor = value;
                 Base_obj.ActiveLinkColor = value.Base_obj;
@@ -298,7 +298,7 @@ namespace osf
         public ClColor VisitedLinkColor
         {
             get { return visitedLinkColor; }
-            set 
+            set
             {
                 visitedLinkColor = value;
                 Base_obj.VisitedLinkColor = value.Base_obj;
@@ -309,7 +309,7 @@ namespace osf
         public ClColor LinkColor
         {
             get { return linkColor; }
-            set 
+            set
             {
                 linkColor = value;
                 Base_obj.LinkColor = value.Base_obj;
@@ -329,6 +329,6 @@ namespace osf
             get { return Base_obj.DividerWidth; }
             set { Base_obj.DividerWidth = value; }
         }
-        
+
     }
 }

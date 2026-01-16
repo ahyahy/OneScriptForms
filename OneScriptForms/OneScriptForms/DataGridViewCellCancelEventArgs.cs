@@ -10,7 +10,7 @@ namespace osf
 
     }
 
-    [ContextClass ("КлЯчейкаОтменаАрг", "ClDataGridViewCellCancelEventArgs")]
+    [ContextClass("КлЯчейкаОтменаАрг", "ClDataGridViewCellCancelEventArgs")]
     public class ClDataGridViewCellCancelEventArgs : AutoContext<ClDataGridViewCellCancelEventArgs>
     {
         public ClDataGridViewCellCancelEventArgs()
@@ -19,16 +19,16 @@ namespace osf
             DataGridViewCellCancelEventArgs1.dll_obj = this;
             Base_obj = DataGridViewCellCancelEventArgs1;
         }
-		
+
         public ClDataGridViewCellCancelEventArgs(DataGridViewCellCancelEventArgs p1)
         {
             DataGridViewCellCancelEventArgs DataGridViewCellCancelEventArgs1 = p1;
             DataGridViewCellCancelEventArgs1.dll_obj = this;
             Base_obj = DataGridViewCellCancelEventArgs1;
         }
-        
+
         public DataGridViewCellCancelEventArgs Base_obj;
-        
+
         [ContextProperty("ИндексКолонки", "ColumnIndex")]
         public int ColumnIndex
         {
@@ -47,6 +47,6 @@ namespace osf
             get { return Base_obj.Cancel; }
             set { Base_obj.Cancel = value; }
         }
-        
+
     }
 }

@@ -79,7 +79,7 @@ namespace osf
                     Convert.ToInt32(y),
                     Convert.ToInt32(width),
                     Convert.ToInt32(height)
-                    ), 
+                    ),
                 System.Drawing.Imaging.PixelFormat.Undefined)
                 );
         }
@@ -171,7 +171,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлКартинка", "ClBitmap")]
+    [ContextClass("КлКартинка", "ClBitmap")]
     public class ClBitmap : AutoContext<ClBitmap>
     {
         public ClBitmap(ClSize p1)
@@ -217,7 +217,7 @@ namespace osf
         }
 
         public Bitmap Base_obj;
-        
+
         [ContextProperty("Высота", "Height")]
         public int Height
         {
@@ -247,7 +247,7 @@ namespace osf
         {
             get { return Base_obj.Width; }
         }
-        
+
         [ContextMethod("Блокировать", "LockBits")]
         public ClBitmapData LockBits()
         {
@@ -263,20 +263,20 @@ namespace osf
             }
             return Base_obj.ToBase64String(p1.Base_obj);
         }
-        
+
         [ContextMethod("Клонировать", "Clone")]
         public ClBitmap Clone(int p1, int p2, int p3, int p4)
         {
             Bitmap Bitmap1 = Base_obj.Clone(Convert.ToSingle(p1), Convert.ToSingle(p2), Convert.ToSingle(p3), Convert.ToSingle(p4));
             return new ClBitmap(Bitmap1);
         }
-        
+
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {
             Base_obj.Dispose();
         }
-					
+
         [ContextMethod("ПолучитьБайты", "GetBytes")]
         public ClArrayList GetBytes(ClBitmapData p1)
         {

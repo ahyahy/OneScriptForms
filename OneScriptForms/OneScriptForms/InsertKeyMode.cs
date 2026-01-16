@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлРежимВставки", "ClInsertKeyMode")]
+    [ContextClass("КлРежимВставки", "ClInsertKeyMode")]
     public class ClInsertKeyMode : AutoContext<ClInsertKeyMode>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_default = (int)System.Windows.Forms.InsertKeyMode.Default; // 0 Учитывает текущий режим клавиши INSERT на клавиатуре.
@@ -37,6 +37,44 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1, "Вставить"},
+            {2, "Перезаписать"},
+            {0, "ПоУмолчанию"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1, "Insert"},
+            {2, "Overwrite"},
+            {0, "Default"},
+        };
+
         public ClInsertKeyMode()
         {
             _list = new List<IValue>();
@@ -48,19 +86,19 @@ namespace osf
         [ContextProperty("Вставить", "Insert")]
         public int Insert
         {
-        	get { return m_insert; }
+            get { return m_insert; }
         }
 
         [ContextProperty("Перезаписать", "Overwrite")]
         public int Overwrite
         {
-        	get { return m_overwrite; }
+            get { return m_overwrite; }
         }
 
         [ContextProperty("ПоУмолчанию", "Default")]
         public int Default
         {
-        	get { return m_default; }
+            get { return m_default; }
         }
     }
 }

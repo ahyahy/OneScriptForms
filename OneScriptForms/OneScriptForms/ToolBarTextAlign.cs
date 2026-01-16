@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлВыравниваниеТекстаВПанелиИнструментов", "ClToolBarTextAlign")]
+    [ContextClass("КлВыравниваниеТекстаВПанелиИнструментов", "ClToolBarTextAlign")]
     public class ClToolBarTextAlign : AutoContext<ClToolBarTextAlign>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_underneath = (int)System.Windows.Forms.ToolBarTextAlign.Underneath; // 0 Текст выравнивается по нижней границе изображения кнопки панели инструментов.
@@ -36,6 +36,42 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {0, "Понизу"},
+            {1, "Право"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {0, "Underneath"},
+            {1, "Right"},
+        };
+
         public ClToolBarTextAlign()
         {
             _list = new List<IValue>();
@@ -46,13 +82,13 @@ namespace osf
         [ContextProperty("Понизу", "Underneath")]
         public int Underneath
         {
-        	get { return m_underneath; }
+            get { return m_underneath; }
         }
 
         [ContextProperty("Право", "Right")]
         public int Right
         {
-        	get { return m_right; }
+            get { return m_right; }
         }
     }
 }

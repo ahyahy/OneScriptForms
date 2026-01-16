@@ -10,7 +10,7 @@ namespace osf
 
     }
 
-    [ContextClass ("КлКнопкаПанелиИнструментовАрг", "ClToolBarButtonClickEventArgs")]
+    [ContextClass("КлКнопкаПанелиИнструментовАрг", "ClToolBarButtonClickEventArgs")]
     public class ClToolBarButtonClickEventArgs : AutoContext<ClToolBarButtonClickEventArgs>
     {
         public ClToolBarButtonClickEventArgs()
@@ -19,16 +19,16 @@ namespace osf
             ToolBarButtonClickEventArgs1.dll_obj = this;
             Base_obj = ToolBarButtonClickEventArgs1;
         }
-		
+
         public ClToolBarButtonClickEventArgs(ToolBarButtonClickEventArgs p1)
         {
             ToolBarButtonClickEventArgs ToolBarButtonClickEventArgs1 = p1;
             ToolBarButtonClickEventArgs1.dll_obj = this;
             Base_obj = ToolBarButtonClickEventArgs1;
         }
-        
+
         public ToolBarButtonClickEventArgs Base_obj;
-        
+
         [ContextProperty("Кнопка", "Button")]
         public ClToolBarButton Button
         {
@@ -40,12 +40,12 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
             get { return (IValue)Base_obj.Parameter; }
         }
-        
+
     }
 }

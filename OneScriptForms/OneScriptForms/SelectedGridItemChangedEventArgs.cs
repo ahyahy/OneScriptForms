@@ -13,7 +13,7 @@ namespace osf
 
     }
 
-    [ContextClass ("КлВыбранныйЭлементСеткиИзмененАрг", "ClSelectedGridItemChangedEventArgs")]
+    [ContextClass("КлВыбранныйЭлементСеткиИзмененАрг", "ClSelectedGridItemChangedEventArgs")]
     public class ClSelectedGridItemChangedEventArgs : AutoContext<ClSelectedGridItemChangedEventArgs>
     {
         public ClSelectedGridItemChangedEventArgs()
@@ -22,16 +22,16 @@ namespace osf
             SelectedGridItemChangedEventArgs1.dll_obj = this;
             Base_obj = SelectedGridItemChangedEventArgs1;
         }
-		
+
         public ClSelectedGridItemChangedEventArgs(SelectedGridItemChangedEventArgs p1)
         {
             SelectedGridItemChangedEventArgs SelectedGridItemChangedEventArgs1 = p1;
             SelectedGridItemChangedEventArgs1.dll_obj = this;
             Base_obj = SelectedGridItemChangedEventArgs1;
         }
-        
+
         public SelectedGridItemChangedEventArgs Base_obj;
-        
+
         [ContextProperty("НоваяНадпись", "NewLabel")]
         public string NewLabel
         {
@@ -43,13 +43,13 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.NewValue); }
         }
-        
+
         [ContextProperty("Отправитель", "Sender")]
         public IValue Sender
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
@@ -67,6 +67,6 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.OldValue); }
         }
-        
+
     }
 }

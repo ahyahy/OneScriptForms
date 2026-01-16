@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлФлагиМыши", "ClMouseFlags")]
+    [ContextClass("КлФлагиМыши", "ClMouseFlags")]
     public class ClMouseFlags : AutoContext<ClMouseFlags>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_move = 1; // 1 Переместить мышь.
@@ -42,6 +42,54 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {32768, "Абсолютно"},
+            {4, "ЛеваяВверх"},
+            {2, "ЛеваяВниз"},
+            {1, "Переместить"},
+            {16, "ПраваяВверх"},
+            {8, "ПраваяВниз"},
+            {64, "СредняяВверх"},
+            {32, "СредняяВниз"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {32768, "Absolute"},
+            {4, "LeftUp"},
+            {2, "LeftDown"},
+            {1, "Move"},
+            {16, "RightUp"},
+            {8, "RightDown"},
+            {64, "MiddleUp"},
+            {32, "MiddleDown"},
+        };
+
         public ClMouseFlags()
         {
             _list = new List<IValue>();
@@ -58,49 +106,49 @@ namespace osf
         [ContextProperty("Абсолютно", "Absolute")]
         public int Absolute
         {
-        	get { return m_absolute; }
+            get { return m_absolute; }
         }
 
         [ContextProperty("ЛеваяВверх", "LeftUp")]
         public int LeftUp
         {
-        	get { return m_leftUp; }
+            get { return m_leftUp; }
         }
 
         [ContextProperty("ЛеваяВниз", "LeftDown")]
         public int LeftDown
         {
-        	get { return m_leftDown; }
+            get { return m_leftDown; }
         }
 
         [ContextProperty("Переместить", "Move")]
         public int Move
         {
-        	get { return m_move; }
+            get { return m_move; }
         }
 
         [ContextProperty("ПраваяВверх", "RightUp")]
         public int RightUp
         {
-        	get { return m_rightUp; }
+            get { return m_rightUp; }
         }
 
         [ContextProperty("ПраваяВниз", "RightDown")]
         public int RightDown
         {
-        	get { return m_rightDown; }
+            get { return m_rightDown; }
         }
 
         [ContextProperty("СредняяВверх", "MiddleUp")]
         public int MiddleUp
         {
-        	get { return m_middleUp; }
+            get { return m_middleUp; }
         }
 
         [ContextProperty("СредняяВниз", "MiddleDown")]
         public int MiddleDown
         {
-        	get { return m_middleDown; }
+            get { return m_middleDown; }
         }
     }
 }

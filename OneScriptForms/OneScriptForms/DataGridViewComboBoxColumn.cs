@@ -122,7 +122,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлКолонкаПолеВыбора", "ClDataGridViewComboBoxColumn")]
+    [ContextClass("КлКолонкаПолеВыбора", "ClDataGridViewComboBoxColumn")]
     public class ClDataGridViewComboBoxColumn : AutoContext<ClDataGridViewComboBoxColumn>
     {
         private ClCollection tag = new ClCollection();
@@ -133,23 +133,23 @@ namespace osf
             DataGridViewComboBoxColumn1.dll_obj = this;
             Base_obj = DataGridViewComboBoxColumn1;
         }
-		
+
         public ClDataGridViewComboBoxColumn(DataGridViewComboBoxColumn p1)
         {
             DataGridViewComboBoxColumn DataGridViewComboBoxColumn1 = p1;
             DataGridViewComboBoxColumn1.dll_obj = this;
             Base_obj = DataGridViewComboBoxColumn1;
         }
-        
+
         public DataGridViewComboBoxColumn Base_obj;
-        
+
         [ContextProperty("ВесЗаполнения", "FillWeight")]
         public IValue FillWeight
         {
             get { return ValueFactory.Create((Convert.ToDecimal(Base_obj.FillWeight))); }
             set { Base_obj.FillWeight = Convert.ToSingle(value.AsNumber()); }
         }
-        
+
         [ContextProperty("Выбран", "Selected")]
         public bool Selected
         {
@@ -241,7 +241,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("МинимальнаяШирина", "MinimumWidth")]
         public int MinimumWidth
         {
@@ -357,7 +357,7 @@ namespace osf
         {
             get { return (ClDataGridViewComboBoxCellObjectCollection)OneScriptForms.RevertObj(Base_obj.Items); }
         }
-        
+
         [ContextMethod("Элементы", "Items")]
         public IValue Items2(int p1)
         {

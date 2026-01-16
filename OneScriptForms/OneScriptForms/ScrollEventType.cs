@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлТипСобытияПрокрутки", "ClScrollEventType")]
+    [ContextClass("КлТипСобытияПрокрутки", "ClScrollEventType")]
     public class ClScrollEventType : AutoContext<ClScrollEventType>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_smallDecrement = (int)System.Windows.Forms.ScrollEventType.SmallDecrement; // 0 Ползунок полосы прокрутки переместился на малое расстояние. Пользователь щелкнул левую (на горизонтальной полосе) или верхнюю (на вертикальной) кнопку со стрелкой для прокрутки, либо нажал клавишу СТРЕЛКА ВВЕРХ.
@@ -43,6 +43,56 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {3, "БольшоеУвеличение"},
+            {2, "БольшоеУменьшение"},
+            {7, "Максимум"},
+            {1, "МалоеУвеличение"},
+            {0, "МалоеУменьшение"},
+            {6, "Минимум"},
+            {4, "Переместился"},
+            {5, "Перемещается"},
+            {8, "ПолзунокОстановился"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {3, "LargeIncrement"},
+            {2, "LargeDecrement"},
+            {7, "Last"},
+            {1, "SmallIncrement"},
+            {0, "SmallDecrement"},
+            {6, "First"},
+            {4, "ThumbPosition"},
+            {5, "ThumbTrack"},
+            {8, "EndScroll"},
+        };
+
         public ClScrollEventType()
         {
             _list = new List<IValue>();
@@ -60,55 +110,55 @@ namespace osf
         [ContextProperty("БольшоеУвеличение", "LargeIncrement")]
         public int LargeIncrement
         {
-        	get { return m_largeIncrement; }
+            get { return m_largeIncrement; }
         }
 
         [ContextProperty("БольшоеУменьшение", "LargeDecrement")]
         public int LargeDecrement
         {
-        	get { return m_largeDecrement; }
+            get { return m_largeDecrement; }
         }
 
         [ContextProperty("Максимум", "Last")]
         public int Last
         {
-        	get { return m_last; }
+            get { return m_last; }
         }
 
         [ContextProperty("МалоеУвеличение", "SmallIncrement")]
         public int SmallIncrement
         {
-        	get { return m_smallIncrement; }
+            get { return m_smallIncrement; }
         }
 
         [ContextProperty("МалоеУменьшение", "SmallDecrement")]
         public int SmallDecrement
         {
-        	get { return m_smallDecrement; }
+            get { return m_smallDecrement; }
         }
 
         [ContextProperty("Минимум", "First")]
         public int First
         {
-        	get { return m_first; }
+            get { return m_first; }
         }
 
         [ContextProperty("Переместился", "ThumbPosition")]
         public int ThumbPosition
         {
-        	get { return m_thumbPosition; }
+            get { return m_thumbPosition; }
         }
 
         [ContextProperty("Перемещается", "ThumbTrack")]
         public int ThumbTrack
         {
-        	get { return m_thumbTrack; }
+            get { return m_thumbTrack; }
         }
 
         [ContextProperty("ПолзунокОстановился", "EndScroll")]
         public int EndScroll
         {
-        	get { return m_endScroll; }
+            get { return m_endScroll; }
         }
     }
 }

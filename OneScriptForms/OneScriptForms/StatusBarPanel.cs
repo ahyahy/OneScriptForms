@@ -74,7 +74,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлПанельСтрокиСостояния", "ClStatusBarPanel")]
+    [ContextClass("КлПанельСтрокиСостояния", "ClStatusBarPanel")]
     public class ClStatusBarPanel : AutoContext<ClStatusBarPanel>
     {
         public ClIcon icon;
@@ -85,16 +85,16 @@ namespace osf
             StatusBarPanel1.dll_obj = this;
             Base_obj = StatusBarPanel1;
         }
-		
+
         public ClStatusBarPanel(StatusBarPanel p1)
         {
             StatusBarPanel StatusBarPanel1 = p1;
             StatusBarPanel1.dll_obj = this;
             Base_obj = StatusBarPanel1;
         }
-        
+
         public StatusBarPanel Base_obj;
-        
+
         [ContextProperty("АвтоРазмер", "AutoSize")]
         public int AutoSize
         {
@@ -106,13 +106,13 @@ namespace osf
         public ClIcon Icon
         {
             get { return icon; }
-            set 
+            set
             {
                 icon = value;
                 Base_obj.Icon = value.Base_obj;
             }
         }
-        
+
         [ContextProperty("МинимальнаяШирина", "MinWidth")]
         public int MinWidth
         {
@@ -139,14 +139,14 @@ namespace osf
         {
             get { return new ClType(this); }
         }
-        
+
         [ContextProperty("Ширина", "Width")]
         public int Width
         {
             get { return Base_obj.Width; }
             set { Base_obj.Width = value; }
         }
-        
+
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

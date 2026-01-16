@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлРежимШириныЗаголовковСтрок", "ClDataGridViewRowHeadersWidthSizeMode")]
+    [ContextClass("КлРежимШириныЗаголовковСтрок", "ClDataGridViewRowHeadersWidthSizeMode")]
     public class ClDataGridViewRowHeadersWidthSizeMode : AutoContext<ClDataGridViewRowHeadersWidthSizeMode>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_enableResizing = (int)System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.EnableResizing; // 0 Пользователи могут изменять ширину заголовка колонки с помощью мыши.
@@ -39,6 +39,48 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {0, "Включить"},
+            {2, "ДляВсех"},
+            {3, "ДляОтображаемых"},
+            {4, "ДляПервого"},
+            {1, "Отключить"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {0, "EnableResizing"},
+            {2, "AutoSizeToAllHeaders"},
+            {3, "AutoSizeToDisplayedHeaders"},
+            {4, "AutoSizeToFirstHeader"},
+            {1, "DisableResizing"},
+        };
+
         public ClDataGridViewRowHeadersWidthSizeMode()
         {
             _list = new List<IValue>();
@@ -52,31 +94,31 @@ namespace osf
         [ContextProperty("Включить", "EnableResizing")]
         public int EnableResizing
         {
-        	get { return m_enableResizing; }
+            get { return m_enableResizing; }
         }
 
         [ContextProperty("ДляВсех", "AutoSizeToAllHeaders")]
         public int AutoSizeToAllHeaders
         {
-        	get { return m_autoSizeToAllHeaders; }
+            get { return m_autoSizeToAllHeaders; }
         }
 
         [ContextProperty("ДляОтображаемых", "AutoSizeToDisplayedHeaders")]
         public int AutoSizeToDisplayedHeaders
         {
-        	get { return m_autoSizeToDisplayedHeaders; }
+            get { return m_autoSizeToDisplayedHeaders; }
         }
 
         [ContextProperty("ДляПервого", "AutoSizeToFirstHeader")]
         public int AutoSizeToFirstHeader
         {
-        	get { return m_autoSizeToFirstHeader; }
+            get { return m_autoSizeToFirstHeader; }
         }
 
         [ContextProperty("Отключить", "DisableResizing")]
         public int DisableResizing
         {
-        	get { return m_disableResizing; }
+            get { return m_disableResizing; }
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлВертикальноеВыравнивание", "ClVerticalAlign")]
+    [ContextClass("КлВертикальноеВыравнивание", "ClVerticalAlign")]
     public class ClVerticalAlign : AutoContext<ClVerticalAlign>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_top = 0; // 0 Выравнивание по верхнему краю.
@@ -37,6 +37,44 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {0, "Верх"},
+            {1, "Низ"},
+            {2, "Центр"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {0, "Top"},
+            {1, "Bottom"},
+            {2, "Center"},
+        };
+
         public ClVerticalAlign()
         {
             _list = new List<IValue>();
@@ -48,19 +86,19 @@ namespace osf
         [ContextProperty("Верх", "Top")]
         public int Top
         {
-        	get { return m_top; }
+            get { return m_top; }
         }
 
         [ContextProperty("Низ", "Bottom")]
         public int Bottom
         {
-        	get { return m_bottom; }
+            get { return m_bottom; }
         }
 
         [ContextProperty("Центр", "Center")]
         public int Center
         {
-        	get { return m_center; }
+            get { return m_center; }
         }
     }
 }

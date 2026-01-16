@@ -5,10 +5,10 @@ using System.Threading;
 
 namespace osf
 {
-    [ContextClass ("КлБуферОбмена", "ClClipboard")]
+    [ContextClass("КлБуферОбмена", "ClClipboard")]
     public class ClClipboard : AutoContext<ClClipboard>
     {
-        
+
         [ContextMethod("Очистить", "Clear")]
         public void Clear()
         {
@@ -17,7 +17,7 @@ namespace osf
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
         }
-        
+
         [ContextMethod("ПолучитьИзображение", "GetImage")]
         public ClBitmap GetImage()
         {
@@ -38,12 +38,12 @@ namespace osf
 
             return ClBitmap1;
         }
-        
+
         [ContextMethod("ПолучитьТекст", "GetText")]
         public string GetText()
         {
             string str1 = null;
-            var thread = new Thread(() => 
+            var thread = new Thread(() =>
                 {
                     IDataObject dataObject = Clipboard.GetDataObject();
                     if (dataObject.GetDataPresent(DataFormats.UnicodeText))
@@ -59,7 +59,7 @@ namespace osf
 
             return str1;
         }
-        
+
         [ContextMethod("СодержитДанные", "ContainsData")]
         public bool ContainsData()
         {
@@ -80,7 +80,7 @@ namespace osf
 
             return res;
         }
-        
+
         [ContextMethod("СодержитЮникод", "ContainsUnicode")]
         public bool ContainsUnicode()
         {
@@ -97,7 +97,7 @@ namespace osf
 
             return res;
         }
-        
+
         [ContextMethod("УстановитьИзображение", "SetImage")]
         public void SetImage(ClBitmap bitmap)
         {
@@ -109,7 +109,7 @@ namespace osf
             thread.Start();
             thread.Join();
         }
-        
+
         [ContextMethod("УстановитьТекст", "SetText")]
         public void SetText(string text)
         {

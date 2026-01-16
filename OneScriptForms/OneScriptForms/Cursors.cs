@@ -11,146 +11,146 @@ namespace osf
 
         public osf.Cursor AppStarting
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.AppStarting); }
+            get { return new Cursor(System.Windows.Forms.Cursors.AppStarting); }
         }
 
         public osf.Cursor Arrow
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.Arrow); }
+            get { return new Cursor(System.Windows.Forms.Cursors.Arrow); }
         }
 
         public osf.Cursor Cross
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.Cross); }
+            get { return new Cursor(System.Windows.Forms.Cursors.Cross); }
         }
 
         public osf.Cursor Default
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.Default); }
+            get { return new Cursor(System.Windows.Forms.Cursors.Default); }
         }
 
         public osf.Cursor Hand
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.Hand); }
+            get { return new Cursor(System.Windows.Forms.Cursors.Hand); }
         }
 
         public osf.Cursor Help
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.Help); }
+            get { return new Cursor(System.Windows.Forms.Cursors.Help); }
         }
 
         public osf.Cursor HSplit
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.HSplit); }
+            get { return new Cursor(System.Windows.Forms.Cursors.HSplit); }
         }
 
         public osf.Cursor IBeam
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.IBeam); }
+            get { return new Cursor(System.Windows.Forms.Cursors.IBeam); }
         }
 
         public osf.Cursor No
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.No); }
+            get { return new Cursor(System.Windows.Forms.Cursors.No); }
         }
 
         public osf.Cursor NoMove2D
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.NoMove2D); }
+            get { return new Cursor(System.Windows.Forms.Cursors.NoMove2D); }
         }
 
         public osf.Cursor NoMoveHoriz
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.NoMoveHoriz); }
+            get { return new Cursor(System.Windows.Forms.Cursors.NoMoveHoriz); }
         }
 
         public osf.Cursor NoMoveVert
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.NoMoveVert); }
+            get { return new Cursor(System.Windows.Forms.Cursors.NoMoveVert); }
         }
 
         public osf.Cursor PanEast
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.PanEast); }
+            get { return new Cursor(System.Windows.Forms.Cursors.PanEast); }
         }
 
         public osf.Cursor PanNE
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.PanNE); }
+            get { return new Cursor(System.Windows.Forms.Cursors.PanNE); }
         }
 
         public osf.Cursor PanNorth
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.PanNorth); }
+            get { return new Cursor(System.Windows.Forms.Cursors.PanNorth); }
         }
 
         public osf.Cursor PanNW
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.PanNW); }
+            get { return new Cursor(System.Windows.Forms.Cursors.PanNW); }
         }
 
         public osf.Cursor PanSE
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.PanSE); }
+            get { return new Cursor(System.Windows.Forms.Cursors.PanSE); }
         }
 
         public osf.Cursor PanSouth
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.PanSouth); }
+            get { return new Cursor(System.Windows.Forms.Cursors.PanSouth); }
         }
 
         public osf.Cursor PanSW
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.PanSW); }
+            get { return new Cursor(System.Windows.Forms.Cursors.PanSW); }
         }
 
         public osf.Cursor PanWest
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.PanWest); }
+            get { return new Cursor(System.Windows.Forms.Cursors.PanWest); }
         }
 
         public osf.Cursor SizeAll
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.SizeAll); }
+            get { return new Cursor(System.Windows.Forms.Cursors.SizeAll); }
         }
 
         public osf.Cursor SizeNESW
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.SizeNESW); }
+            get { return new Cursor(System.Windows.Forms.Cursors.SizeNESW); }
         }
 
         public osf.Cursor SizeNS
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.SizeNS); }
+            get { return new Cursor(System.Windows.Forms.Cursors.SizeNS); }
         }
 
         public osf.Cursor SizeNWSE
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.SizeNWSE); }
+            get { return new Cursor(System.Windows.Forms.Cursors.SizeNWSE); }
         }
 
         public osf.Cursor SizeWE
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.SizeWE); }
+            get { return new Cursor(System.Windows.Forms.Cursors.SizeWE); }
         }
 
         public osf.Cursor UpArrow
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.UpArrow); }
+            get { return new Cursor(System.Windows.Forms.Cursors.UpArrow); }
         }
 
         public osf.Cursor VSplit
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.VSplit); }
+            get { return new Cursor(System.Windows.Forms.Cursors.VSplit); }
         }
 
         public osf.Cursor WaitCursor
         {
-            get {return new Cursor(System.Windows.Forms.Cursors.WaitCursor); }
+            get { return new Cursor(System.Windows.Forms.Cursors.WaitCursor); }
         }
     }
 
-    [ContextClass ("КлКурсоры", "ClCursors")]
+    [ContextClass("КлКурсоры", "ClCursors")]
     public class ClCursors : AutoContext<ClCursors>, ICollectionContext, IEnumerable<IValue>
     {
         private List<IValue> _list;
@@ -253,7 +253,7 @@ namespace osf
         }
 
         public Cursors Base_obj;
-        
+
         [ContextProperty("БезДвижения2D", "NoMove2D")]
         public ClCursor NoMove2D
         {
@@ -421,6 +421,6 @@ namespace osf
         {
             get { return (ClCursor)OneScriptForms.RevertObj(Base_obj.UpArrow); }
         }
-        
+
     }
 }

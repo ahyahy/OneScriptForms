@@ -63,7 +63,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЭлементыМеню", "ClMenuItemCollection")]
+    [ContextClass("КлЭлементыМеню", "ClMenuItemCollection")]
     public class ClMenuItemCollection : AutoContext<ClMenuItemCollection>
     {
         public ClMenuItemCollection()
@@ -72,28 +72,28 @@ namespace osf
             MenuItemCollection1.dll_obj = this;
             Base_obj = MenuItemCollection1;
         }
-		
+
         public ClMenuItemCollection(MenuItemCollection p1)
         {
             MenuItemCollection MenuItemCollection1 = p1;
             MenuItemCollection1.dll_obj = this;
             Base_obj = MenuItemCollection1;
         }
-        
+
         public MenuItemCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public ClMenuItem Add(ClMenuItem p1)
         {
             return Base_obj.Add(p1.Base_obj).dll_obj;
         }
-        
+
         [ContextMethod("Индекс", "IndexOf")]
         public int IndexOf(ClMenuItem p1)
         {
@@ -105,7 +105,7 @@ namespace osf
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Содержит", "Contains")]
         public bool Contains(ClMenuItem p1)
         {

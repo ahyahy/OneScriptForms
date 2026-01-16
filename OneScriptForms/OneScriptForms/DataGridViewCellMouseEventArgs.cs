@@ -10,7 +10,7 @@ namespace osf
 
     }
 
-    [ContextClass ("КлЯчейкаТаблицыМышьАрг", "ClDataGridViewCellMouseEventArgs")]
+    [ContextClass("КлЯчейкаТаблицыМышьАрг", "ClDataGridViewCellMouseEventArgs")]
     public class ClDataGridViewCellMouseEventArgs : AutoContext<ClDataGridViewCellMouseEventArgs>
     {
         public ClDataGridViewCellMouseEventArgs()
@@ -19,16 +19,16 @@ namespace osf
             DataGridViewCellMouseEventArgs1.dll_obj = this;
             Base_obj = DataGridViewCellMouseEventArgs1;
         }
-		
+
         public ClDataGridViewCellMouseEventArgs(DataGridViewCellMouseEventArgs p1)
         {
             DataGridViewCellMouseEventArgs DataGridViewCellMouseEventArgs1 = p1;
             DataGridViewCellMouseEventArgs1.dll_obj = this;
             Base_obj = DataGridViewCellMouseEventArgs1;
         }
-        
+
         public DataGridViewCellMouseEventArgs Base_obj;
-        
+
         [ContextProperty("Игрек", "Y")]
         public int Y
         {
@@ -64,6 +64,6 @@ namespace osf
         {
             get { return Base_obj.Clicks; }
         }
-        
+
     }
 }

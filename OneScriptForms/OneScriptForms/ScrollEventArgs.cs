@@ -13,7 +13,7 @@ namespace osf
 
     }
 
-    [ContextClass ("КлПриПрокручиванииАрг", "ClScrollEventArgs")]
+    [ContextClass("КлПриПрокручиванииАрг", "ClScrollEventArgs")]
     public class ClScrollEventArgs : AutoContext<ClScrollEventArgs>
     {
         public ClScrollEventArgs()
@@ -22,16 +22,16 @@ namespace osf
             ScrollEventArgs1.dll_obj = this;
             Base_obj = ScrollEventArgs1;
         }
-		
+
         public ClScrollEventArgs(ScrollEventArgs p1)
         {
             ScrollEventArgs ScrollEventArgs1 = p1;
             ScrollEventArgs1.dll_obj = this;
             Base_obj = ScrollEventArgs1;
         }
-        
+
         public ScrollEventArgs Base_obj;
-        
+
         [ContextProperty("НовоеЗначение", "NewValue")]
         public int NewValue
         {
@@ -50,7 +50,7 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
@@ -68,6 +68,6 @@ namespace osf
         {
             get { return (int)Base_obj.EventType; }
         }
-        
+
     }
 }

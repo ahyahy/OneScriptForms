@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлФорматированноеПолеВводаПоиск", "ClRichTextBoxFinds")]
+    [ContextClass("КлФорматированноеПолеВводаПоиск", "ClRichTextBoxFinds")]
     public class ClRichTextBoxFinds : AutoContext<ClRichTextBoxFinds>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_none = (int)System.Windows.Forms.RichTextBoxFinds.None; // 0 Найти все экземпляры искомого текста, независимо от того целые это слова или нет.
@@ -39,6 +39,48 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {8, "НеВыделять"},
+            {0, "Отсутствие"},
+            {16, "ПоискВОбратномНаправлении"},
+            {2, "ТолькоЦелыеСлова"},
+            {4, "УчитыватьРегистр"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {8, "NoHighlight"},
+            {0, "None"},
+            {16, "Reverse"},
+            {2, "WholeWord"},
+            {4, "MatchCase"},
+        };
+
         public ClRichTextBoxFinds()
         {
             _list = new List<IValue>();
@@ -52,31 +94,31 @@ namespace osf
         [ContextProperty("НеВыделять", "NoHighlight")]
         public int NoHighlight
         {
-        	get { return m_noHighlight; }
+            get { return m_noHighlight; }
         }
 
         [ContextProperty("Отсутствие", "None")]
         public int None
         {
-        	get { return m_none; }
+            get { return m_none; }
         }
 
         [ContextProperty("ПоискВОбратномНаправлении", "Reverse")]
         public int Reverse
         {
-        	get { return m_reverse; }
+            get { return m_reverse; }
         }
 
         [ContextProperty("ТолькоЦелыеСлова", "WholeWord")]
         public int WholeWord
         {
-        	get { return m_wholeWord; }
+            get { return m_wholeWord; }
         }
 
         [ContextProperty("УчитыватьРегистр", "MatchCase")]
         public int MatchCase
         {
-        	get { return m_matchCase; }
+            get { return m_matchCase; }
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлРезультатДиалога", "ClDialogResult")]
+    [ContextClass("КлРезультатДиалога", "ClDialogResult")]
     public class ClDialogResult : AutoContext<ClDialogResult>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_none = (int)System.Windows.Forms.DialogResult.None; // 0 Диалоговое окно возвращает значение <B>Ничего</B>. Это означает, что модальное диалоговое окно не закрывается.
@@ -42,6 +42,54 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {6, "Да"},
+            {7, "Нет"},
+            {1, "ОК"},
+            {2, "Отмена"},
+            {0, "Отсутствие"},
+            {4, "Повторить"},
+            {3, "Прервать"},
+            {5, "Пропустить"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {6, "Yes"},
+            {7, "No"},
+            {1, "OK"},
+            {2, "Cancel"},
+            {0, "None"},
+            {4, "Retry"},
+            {3, "Abort"},
+            {5, "Ignore"},
+        };
+
         public ClDialogResult()
         {
             _list = new List<IValue>();
@@ -58,49 +106,49 @@ namespace osf
         [ContextProperty("Да", "Yes")]
         public int Yes
         {
-        	get { return m_yes; }
+            get { return m_yes; }
         }
 
         [ContextProperty("Нет", "No")]
         public int No
         {
-        	get { return m_no; }
+            get { return m_no; }
         }
 
         [ContextProperty("ОК", "OK")]
         public int OK
         {
-        	get { return m_oK; }
+            get { return m_oK; }
         }
 
         [ContextProperty("Отмена", "Cancel")]
         public int Cancel
         {
-        	get { return m_cancel; }
+            get { return m_cancel; }
         }
 
         [ContextProperty("Отсутствие", "None")]
         public int None
         {
-        	get { return m_none; }
+            get { return m_none; }
         }
 
         [ContextProperty("Повторить", "Retry")]
         public int Retry
         {
-        	get { return m_retry; }
+            get { return m_retry; }
         }
 
         [ContextProperty("Прервать", "Abort")]
         public int Abort
         {
-        	get { return m_abort; }
+            get { return m_abort; }
         }
 
         [ContextProperty("Пропустить", "Ignore")]
         public int Ignore
         {
-        	get { return m_ignore; }
+            get { return m_ignore; }
         }
     }
 }

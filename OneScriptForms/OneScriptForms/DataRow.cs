@@ -80,7 +80,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлСтрокаДанных", "ClDataRow")]
+    [ContextClass("КлСтрокаДанных", "ClDataRow")]
     public class ClDataRow : AutoContext<ClDataRow>
     {
         public ClDataRow(DataRow p1)
@@ -91,7 +91,7 @@ namespace osf
         }
 
         public DataRow Base_obj;
-        
+
         [ContextProperty("Состояние", "RowState")]
         public int RowState
         {
@@ -103,13 +103,13 @@ namespace osf
         {
             get { return (ClDataTable)OneScriptForms.RevertObj(Base_obj.Table); }
         }
-        
+
         [ContextMethod("ЗавершитьРедактирование", "EndEdit")]
         public void EndEdit()
         {
             Base_obj.EndEdit();
         }
-					
+
         [ContextMethod("НачатьРедактирование", "BeginEdit")]
         public void BeginEdit()
         {
@@ -121,25 +121,25 @@ namespace osf
         {
             Base_obj.RejectChanges();
         }
-					
+
         [ContextMethod("ОтменаРедактирования", "CancelEdit")]
         public void CancelEdit()
         {
             Base_obj.CancelEdit();
         }
-					
+
         [ContextMethod("ПринятьИзменения", "AcceptChanges")]
         public void AcceptChanges()
         {
             Base_obj.AcceptChanges();
         }
-					
+
         [ContextMethod("Удалить", "Delete")]
         public void Delete()
         {
             Base_obj.Delete();
         }
-					
+
         [ContextMethod("УстановитьЭлемент", "SetItem")]
         public void SetItem(IValue p1, IValue p2)
         {

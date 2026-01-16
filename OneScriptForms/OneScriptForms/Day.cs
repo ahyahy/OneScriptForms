@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлДень", "ClDay")]
+    [ContextClass("КлДень", "ClDay")]
     public class ClDay : AutoContext<ClDay>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_monday = (int)System.Windows.Forms.Day.Monday; // 0 День: понедельник.
@@ -42,6 +42,54 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {6, "Воскресенье"},
+            {1, "Вторник"},
+            {0, "Понедельник"},
+            {7, "ПоУмолчанию"},
+            {4, "Пятница"},
+            {2, "Среда"},
+            {5, "Суббота"},
+            {3, "Четверг"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {6, "Sunday"},
+            {1, "Tuesday"},
+            {0, "Monday"},
+            {7, "Default"},
+            {4, "Friday"},
+            {2, "Wednesday"},
+            {5, "Saturday"},
+            {3, "Thursday"},
+        };
+
         public ClDay()
         {
             _list = new List<IValue>();
@@ -58,49 +106,49 @@ namespace osf
         [ContextProperty("Воскресенье", "Sunday")]
         public int Sunday
         {
-        	get { return m_sunday; }
+            get { return m_sunday; }
         }
 
         [ContextProperty("Вторник", "Tuesday")]
         public int Tuesday
         {
-        	get { return m_tuesday; }
+            get { return m_tuesday; }
         }
 
         [ContextProperty("Понедельник", "Monday")]
         public int Monday
         {
-        	get { return m_monday; }
+            get { return m_monday; }
         }
 
         [ContextProperty("ПоУмолчанию", "Default")]
         public int Default
         {
-        	get { return m_default; }
+            get { return m_default; }
         }
 
         [ContextProperty("Пятница", "Friday")]
         public int Friday
         {
-        	get { return m_friday; }
+            get { return m_friday; }
         }
 
         [ContextProperty("Среда", "Wednesday")]
         public int Wednesday
         {
-        	get { return m_wednesday; }
+            get { return m_wednesday; }
         }
 
         [ContextProperty("Суббота", "Saturday")]
         public int Saturday
         {
-        	get { return m_saturday; }
+            get { return m_saturday; }
         }
 
         [ContextProperty("Четверг", "Thursday")]
         public int Thursday
         {
-        	get { return m_thursday; }
+            get { return m_thursday; }
         }
     }
 }

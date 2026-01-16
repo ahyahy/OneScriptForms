@@ -11,7 +11,7 @@ namespace osf
 
     }
 
-    [ContextClass ("КлРисованиеАрг", "ClPaintEventArgs")]
+    [ContextClass("КлРисованиеАрг", "ClPaintEventArgs")]
     public class ClPaintEventArgs : AutoContext<ClPaintEventArgs>
     {
         public ClPaintEventArgs()
@@ -20,28 +20,28 @@ namespace osf
             PaintEventArgs1.dll_obj = this;
             Base_obj = PaintEventArgs1;
         }
-		
+
         public ClPaintEventArgs(PaintEventArgs p1)
         {
             PaintEventArgs PaintEventArgs1 = p1;
             PaintEventArgs1.dll_obj = this;
             Base_obj = PaintEventArgs1;
         }
-        
+
         public PaintEventArgs Base_obj;
-        
+
         [ContextProperty("Графика", "Graphics")]
         public ClGraphics Graphics
         {
             get { return new ClGraphics(Base_obj.Graphics); }
         }
-        
+
         [ContextProperty("Отправитель", "Sender")]
         public IValue Sender
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
@@ -53,6 +53,6 @@ namespace osf
         {
             get { return (ClRectangle)OneScriptForms.RevertObj(Base_obj.ClipRectangle); }
         }
-        
+
     }
 }

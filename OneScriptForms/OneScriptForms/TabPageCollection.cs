@@ -92,7 +92,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлВкладки", "ClTabPageCollection")]
+    [ContextClass("КлВкладки", "ClTabPageCollection")]
     public class ClTabPageCollection : AutoContext<ClTabPageCollection>
     {
         public ClTabPageCollection(TabPageCollection p1)
@@ -103,13 +103,13 @@ namespace osf
         }
 
         public TabPageCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Вставить", "Insert")]
         public ClTabPage Insert(int p1, IValue p2)
         {
@@ -130,13 +130,13 @@ namespace osf
                 return null;
             }
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public ClTabPage Add(ClTabPage p1)
         {
             return Base_obj.Add(p1.Base_obj).dll_obj;
         }
-        
+
         [ContextMethod("Индекс", "IndexOf")]
         public int IndexOf(ClTabPage p1)
         {
@@ -148,7 +148,7 @@ namespace osf
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Удалить", "Remove")]
         public void Remove(ClTabPage p1)
         {

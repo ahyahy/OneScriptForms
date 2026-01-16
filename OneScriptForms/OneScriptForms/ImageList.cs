@@ -49,7 +49,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлСписокИзображений", "ClImageList")]
+    [ContextClass("КлСписокИзображений", "ClImageList")]
     public class ClImageList : AutoContext<ClImageList>
     {
         private ClImageCollection images;
@@ -61,7 +61,7 @@ namespace osf
             Base_obj = ImageList1;
             images = new ClImageCollection(Base_obj.Images);
         }
-		
+
         public ClImageList(ImageList p1)
         {
             ImageList ImageList1 = p1;
@@ -71,7 +71,7 @@ namespace osf
         }
 
         public ImageList Base_obj;
-        
+
         [ContextProperty("ГлубинаЦвета", "ColorDepth")]
         public int ColorDepth
         {
@@ -91,7 +91,7 @@ namespace osf
             get { return (ClSize)OneScriptForms.RevertObj(Base_obj.ImageSize); }
             set { Base_obj.ImageSize = value.Base_obj; }
         }
-        
+
         [ContextMethod("Изображения", "Images")]
         public ClBitmap Images2(int p1)
         {

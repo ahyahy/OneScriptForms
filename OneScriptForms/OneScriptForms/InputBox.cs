@@ -3,10 +3,10 @@ using System.Windows.Forms;
 
 namespace osf
 {
-    [ContextClass ("КлОкноВвода", "ClInputBox")]
+    [ContextClass("КлОкноВвода", "ClInputBox")]
     public class ClInputBox : AutoContext<ClInputBox>
     {
-        
+
         [ContextMethod("Показать", "Show")]
         public string Show(string Prompt, string Title = "", string DefaultResponse = "", int XPos = -1, int YPos = -1)
         {
@@ -33,8 +33,8 @@ namespace osf
             form.Size = new System.Drawing.Size(457, 182);
             form.Controls.Add(label);
             form.Controls.Add(textBox);
-            form.Controls.Add(buttonOk); 
-            form.Controls.Add(buttonCancel); 
+            form.Controls.Add(buttonOk);
+            form.Controls.Add(buttonCancel);
 
             form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             form.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

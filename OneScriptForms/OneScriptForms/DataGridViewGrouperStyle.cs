@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлСтильГруппировкиТаблицы", "ClDataGridViewGrouperStyle")]
+    [ContextClass("КлСтильГруппировкиТаблицы", "ClDataGridViewGrouperStyle")]
     public class ClDataGridViewGrouperStyle : AutoContext<ClDataGridViewGrouperStyle>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_firstLetter = 0; // 0 Группировка осуществляется на основе первого символа.
@@ -37,6 +37,44 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1, "ПервоеСлово"},
+            {0, "ПервыйСимвол"},
+            {2, "ПоследнееСлово"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1, "FirstWord"},
+            {0, "FirstLetter"},
+            {2, "LastWord"},
+        };
+
         public ClDataGridViewGrouperStyle()
         {
             _list = new List<IValue>();
@@ -48,19 +86,19 @@ namespace osf
         [ContextProperty("ПервоеСлово", "FirstWord")]
         public int FirstWord
         {
-        	get { return m_firstWord; }
+            get { return m_firstWord; }
         }
 
         [ContextProperty("ПервыйСимвол", "FirstLetter")]
         public int FirstLetter
         {
-        	get { return m_firstLetter; }
+            get { return m_firstLetter; }
         }
 
         [ContextProperty("ПоследнееСлово", "LastWord")]
         public int LastWord
         {
-        	get { return m_lastWord; }
+            get { return m_lastWord; }
         }
     }
 }

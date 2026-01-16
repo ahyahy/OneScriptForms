@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлРежимВысотыЗаголовковКолонок", "ClDataGridViewColumnHeadersHeightSizeMode")]
+    [ContextClass("КлРежимВысотыЗаголовковКолонок", "ClDataGridViewColumnHeadersHeightSizeMode")]
     public class ClDataGridViewColumnHeadersHeightSizeMode : AutoContext<ClDataGridViewColumnHeadersHeightSizeMode>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_enableResizing = (int)System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing; // 0 Пользователи могут настраивать высоту заголовка колонки с помощью мыши.
@@ -37,6 +37,44 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {2, "АвтоРазмер"},
+            {0, "Включить"},
+            {1, "Отключить"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {2, "AutoSize"},
+            {0, "EnableResizing"},
+            {1, "DisableResizing"},
+        };
+
         public ClDataGridViewColumnHeadersHeightSizeMode()
         {
             _list = new List<IValue>();
@@ -48,19 +86,19 @@ namespace osf
         [ContextProperty("АвтоРазмер", "AutoSize")]
         public int AutoSize
         {
-        	get { return m_autoSize; }
+            get { return m_autoSize; }
         }
 
         [ContextProperty("Включить", "EnableResizing")]
         public int EnableResizing
         {
-        	get { return m_enableResizing; }
+            get { return m_enableResizing; }
         }
 
         [ContextProperty("Отключить", "DisableResizing")]
         public int DisableResizing
         {
-        	get { return m_disableResizing; }
+            get { return m_disableResizing; }
         }
     }
 }

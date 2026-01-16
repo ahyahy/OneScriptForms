@@ -13,7 +13,7 @@ namespace osf
 
     }
 
-    [ContextClass ("КлРедактированиеНадписиУзлаАрг", "ClNodeLabelEditEventArgs")]
+    [ContextClass("КлРедактированиеНадписиУзлаАрг", "ClNodeLabelEditEventArgs")]
     public class ClNodeLabelEditEventArgs : AutoContext<ClNodeLabelEditEventArgs>
     {
         public ClNodeLabelEditEventArgs()
@@ -22,16 +22,16 @@ namespace osf
             NodeLabelEditEventArgs1.dll_obj = this;
             Base_obj = NodeLabelEditEventArgs1;
         }
-		
+
         public ClNodeLabelEditEventArgs(NodeLabelEditEventArgs p1)
         {
             NodeLabelEditEventArgs NodeLabelEditEventArgs1 = p1;
             NodeLabelEditEventArgs1.dll_obj = this;
             Base_obj = NodeLabelEditEventArgs1;
         }
-        
+
         public NodeLabelEditEventArgs Base_obj;
-        
+
         [ContextProperty("Надпись", "Label")]
         public string Label
         {
@@ -50,7 +50,7 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
@@ -62,6 +62,6 @@ namespace osf
         {
             get { return (ClTreeNode)OneScriptForms.RevertObj(Base_obj.Node); }
         }
-        
+
     }
 }

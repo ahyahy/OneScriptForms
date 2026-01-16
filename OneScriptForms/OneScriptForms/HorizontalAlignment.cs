@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлГоризонтальноеВыравнивание", "ClHorizontalAlignment")]
+    [ContextClass("КлГоризонтальноеВыравнивание", "ClHorizontalAlignment")]
     public class ClHorizontalAlignment : AutoContext<ClHorizontalAlignment>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_left = (int)System.Windows.Forms.HorizontalAlignment.Left; // 0 Объект или текст выравнивается по левой части элемента управления.
@@ -37,6 +37,44 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {0, "Лево"},
+            {1, "Право"},
+            {2, "Центр"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {0, "Left"},
+            {1, "Right"},
+            {2, "Center"},
+        };
+
         public ClHorizontalAlignment()
         {
             _list = new List<IValue>();
@@ -48,19 +86,19 @@ namespace osf
         [ContextProperty("Лево", "Left")]
         public int Left
         {
-        	get { return m_left; }
+            get { return m_left; }
         }
 
         [ContextProperty("Право", "Right")]
         public int Right
         {
-        	get { return m_right; }
+            get { return m_right; }
         }
 
         [ContextProperty("Центр", "Center")]
         public int Center
         {
-        	get { return m_center; }
+            get { return m_center; }
         }
     }
 }

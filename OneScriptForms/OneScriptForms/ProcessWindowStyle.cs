@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлСтильОкнаПроцесса", "ClProcessWindowStyle")]
+    [ContextClass("КлСтильОкнаПроцесса", "ClProcessWindowStyle")]
     public class ClProcessWindowStyle : AutoContext<ClProcessWindowStyle>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_normal = (int)System.Diagnostics.ProcessWindowStyle.Normal; // 0 Стиль окна нормальный, видимый. Система отображает окно на экране в расположении по умолчанию. Если окно отображается, пользователь может вводить входные данные в окно и видеть выходные данные окна. Часто приложение может инициализировать новое окно со стилем Скрытое, пока не определит внешний вид окна, а затем меняет стиль окна на <B>Стандартное&nbsp;(Normal)</B>.
@@ -38,6 +38,46 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {3, "Развернутое"},
+            {2, "Свернутое"},
+            {1, "Скрытое"},
+            {0, "Стандартное"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {3, "Maximized"},
+            {2, "Minimized"},
+            {1, "Hidden"},
+            {0, "Normal"},
+        };
+
         public ClProcessWindowStyle()
         {
             _list = new List<IValue>();
@@ -50,25 +90,25 @@ namespace osf
         [ContextProperty("Развернутое", "Maximized")]
         public int Maximized
         {
-        	get { return m_maximized; }
+            get { return m_maximized; }
         }
 
         [ContextProperty("Свернутое", "Minimized")]
         public int Minimized
         {
-        	get { return m_minimized; }
+            get { return m_minimized; }
         }
 
         [ContextProperty("Скрытое", "Hidden")]
         public int Hidden
         {
-        	get { return m_hidden; }
+            get { return m_hidden; }
         }
 
         [ContextProperty("Стандартное", "Normal")]
         public int Normal
         {
-        	get { return m_normal; }
+            get { return m_normal; }
         }
     }
 }

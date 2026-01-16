@@ -131,7 +131,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлУзелДерева", "ClTreeNode")]
+    [ContextClass("КлУзелДерева", "ClTreeNode")]
     public class ClTreeNode : AutoContext<ClTreeNode>
     {
         private ClFont nodeFont;
@@ -145,7 +145,7 @@ namespace osf
             Base_obj = TreeNode1;
             nodes = new ClTreeNodeCollection(Base_obj.Nodes);
         }
-		
+
         public ClTreeNode(string p1)
         {
             TreeNode TreeNode1 = new TreeNode(p1);
@@ -153,7 +153,7 @@ namespace osf
             Base_obj = TreeNode1;
             nodes = new ClTreeNodeCollection(Base_obj.Nodes);
         }
-		
+
         public ClTreeNode(TreeNode p1)
         {
             TreeNode TreeNode1 = p1;
@@ -161,7 +161,7 @@ namespace osf
             Base_obj = TreeNode1;
             nodes = new ClTreeNodeCollection(Base_obj.Nodes);
         }
-		
+
         public ClTreeNode(System.Windows.Forms.TreeNode p1)
         {
             TreeNode TreeNode1 = new TreeNode(p1);
@@ -171,7 +171,7 @@ namespace osf
         }
 
         public TreeNode Base_obj;
-        
+
         [ContextProperty("Дерево", "TreeView")]
         public ClTreeView TreeView
         {
@@ -203,7 +203,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("ПолныйПуть", "FullPath")]
         public string FullPath
         {
@@ -228,7 +228,7 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.Parent); }
         }
-        
+
         [ContextProperty("СледующийОтображаемыйУзел", "NextVisibleNode")]
         public ClTreeNode NextVisibleNode
         {
@@ -252,37 +252,37 @@ namespace osf
         public ClFont NodeFont
         {
             get { return nodeFont; }
-            set 
+            set
             {
                 nodeFont = value;
                 Base_obj.NodeFont = value.Base_obj;
             }
         }
-        
+
         [ContextMethod("НачатьРедактирование", "BeginEdit")]
         public void BeginEdit()
         {
             Base_obj.BeginEdit();
         }
-					
+
         [ContextMethod("Развернуть", "Expand")]
         public void Expand()
         {
             Base_obj.Expand();
         }
-					
+
         [ContextMethod("Свернуть", "Collapse")]
         public void Collapse()
         {
             Base_obj.Collapse();
         }
-					
+
         [ContextMethod("Удалить", "Remove")]
         public void Remove()
         {
             Base_obj.Remove();
         }
-					
+
         [ContextMethod("Узлы", "Nodes")]
         public ClTreeNode Nodes2(int p1)
         {

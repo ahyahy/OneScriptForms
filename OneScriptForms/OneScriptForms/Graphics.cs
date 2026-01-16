@@ -135,7 +135,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлГрафика", "ClGraphics")]
+    [ContextClass("КлГрафика", "ClGraphics")]
     public class ClGraphics : AutoContext<ClGraphics>
     {
         public ClGraphics(Graphics p1)
@@ -146,61 +146,61 @@ namespace osf
         }
 
         public Graphics Base_obj;
-        
+
         [ContextProperty("РазрешениеИгрек", "DpiY")]
         public IValue DpiY
         {
             get { return ValueFactory.Create((Convert.ToDecimal(Base_obj.DpiY))); }
         }
-        
+
         [ContextProperty("РазрешениеИкс", "DpiX")]
         public IValue DpiX
         {
             get { return ValueFactory.Create((Convert.ToDecimal(Base_obj.DpiX))); }
         }
-        
+
         [ContextMethod("ЗаполнитьЗакругленныйПрямоугольник", "FillRoundRect")]
         public void FillRoundRect(IValue p1, ClRectangle p2, ClColor p3, int p4)
         {
             Base_obj.FillRoundRect(((dynamic)p1).Base_obj.M_Brush, p2.Base_obj.M_Rectangle, p3.Base_obj.M_Color, p4);
         }
-        
+
         [ContextMethod("ЗаполнитьПрямоугольник", "FillRectangle")]
         public void FillRectangle(IValue p1, IValue p2, IValue p3, IValue p4, IValue p5)
         {
             Base_obj.FillRectangle(((dynamic)p1).Base_obj, Convert.ToSingle(p2.AsNumber()), Convert.ToSingle(p3.AsNumber()), Convert.ToSingle(p4.AsNumber()), Convert.ToSingle(p5.AsNumber()));
         }
-        
+
         [ContextMethod("ЗаполнитьЭллипс", "FillEllipse")]
         public void FillEllipse(IValue p1, IValue p2, IValue p3, IValue p4, IValue p5)
         {
             Base_obj.FillEllipse(((dynamic)p1).Base_obj, Convert.ToSingle(p2.AsNumber()), Convert.ToSingle(p3.AsNumber()), Convert.ToSingle(p4.AsNumber()), Convert.ToSingle(p5.AsNumber()));
         }
-        
+
         [ContextMethod("ИзИзображения", "FromImage")]
         public ClGraphics FromImage(ClBitmap p1)
         {
             return new ClGraphics(Base_obj.FromImage(p1.Base_obj));
         }
-        
+
         [ContextMethod("КопироватьСЭкрана", "CopyFromScreen")]
         public void CopyFromScreen(int p1, int p2, int p3, int p4, ClSize p5)
         {
             Base_obj.CopyFromScreen(p1, p2, p3, p4, p5.Base_obj);
         }
-        
+
         [ContextMethod("Масштабировать", "ScaleTransform")]
         public void ScaleTransform(IValue p1, IValue p2)
         {
             Base_obj.ScaleTransform(Convert.ToSingle(p1.AsNumber()), Convert.ToSingle(p2.AsNumber()));
         }
-        
+
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {
             Base_obj.Dispose();
         }
-					
+
         [ContextMethod("Очистить", "Clear")]
         public void Clear(ClColor p1)
         {
@@ -212,43 +212,43 @@ namespace osf
         {
             Base_obj.RotateTransform(Convert.ToSingle(p1.AsNumber()));
         }
-        
+
         [ContextMethod("РисоватьЗакругленныйПрямоугольник", "DrawRoundRect")]
         public void DrawRoundRect(ClRectangle p1, ClColor p2, int p3, int p4)
         {
             Base_obj.DrawRoundRect(p1.Base_obj.M_Rectangle, p2.Base_obj.M_Color, p3, p4);
         }
-        
+
         [ContextMethod("РисоватьИзображение", "DrawImage")]
         public void DrawImage(ClBitmap p1, IValue p2, IValue p3, IValue p4, IValue p5)
         {
             Base_obj.DrawImage(p1.Base_obj, Convert.ToSingle(p2.AsNumber()), Convert.ToSingle(p3.AsNumber()), Convert.ToSingle(p4.AsNumber()), Convert.ToSingle(p5.AsNumber()));
         }
-        
+
         [ContextMethod("РисоватьЛинию", "DrawLine")]
         public void DrawLine(ClPen p1, IValue p2, IValue p3, IValue p4, IValue p5)
         {
             Base_obj.DrawLine(p1.Base_obj, Convert.ToSingle(p2.AsNumber()), Convert.ToSingle(p3.AsNumber()), Convert.ToSingle(p4.AsNumber()), Convert.ToSingle(p5.AsNumber()));
         }
-        
+
         [ContextMethod("РисоватьПрямоугольник", "DrawRectangle")]
         public void DrawRectangle(ClPen p1, IValue p2, IValue p3, IValue p4, IValue p5)
         {
             Base_obj.DrawRectangle(p1.Base_obj, Convert.ToSingle(p2.AsNumber()), Convert.ToSingle(p3.AsNumber()), Convert.ToSingle(p4.AsNumber()), Convert.ToSingle(p5.AsNumber()));
         }
-        
+
         [ContextMethod("РисоватьСтроку", "DrawString")]
         public void DrawString(string p1, ClFont p2, IValue p3, IValue p4, IValue p5)
         {
             Base_obj.DrawString(p1, p2.Base_obj, ((dynamic)p3).Base_obj, Convert.ToSingle(p4.AsNumber()), Convert.ToSingle(p5.AsNumber()));
         }
-        
+
         [ContextMethod("РисоватьЭллипс", "DrawEllipse")]
         public void DrawEllipse(ClPen p1, IValue p2, IValue p3, IValue p4, IValue p5)
         {
             Base_obj.DrawEllipse(p1.Base_obj, Convert.ToSingle(p2.AsNumber()), Convert.ToSingle(p3.AsNumber()), Convert.ToSingle(p4.AsNumber()), Convert.ToSingle(p5.AsNumber()));
         }
-        
+
         [ContextMethod("Сдвинуть", "TranslateTransform")]
         public void TranslateTransform(IValue p1, IValue p2)
         {

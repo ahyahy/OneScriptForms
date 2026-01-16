@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлВыравниваниеСодержимого", "ClContentAlignment")]
+    [ContextClass("КлВыравниваниеСодержимого", "ClContentAlignment")]
     public class ClContentAlignment : AutoContext<ClContentAlignment>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_topLeft = (int)System.Drawing.ContentAlignment.TopLeft; // 1 Содержимое выравнивается вертикально сверху и горизонтально по левому краю.
@@ -43,6 +43,56 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1, "ВерхЛево"},
+            {4, "ВерхПраво"},
+            {2, "ВерхЦентр"},
+            {256, "НизЛево"},
+            {1024, "НизПраво"},
+            {512, "НизЦентр"},
+            {16, "СерединаЛево"},
+            {64, "СерединаПраво"},
+            {32, "СерединаЦентр"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1, "TopLeft"},
+            {4, "TopRight"},
+            {2, "TopCenter"},
+            {256, "BottomLeft"},
+            {1024, "BottomRight"},
+            {512, "BottomCenter"},
+            {16, "MiddleLeft"},
+            {64, "MiddleRight"},
+            {32, "MiddleCenter"},
+        };
+
         public ClContentAlignment()
         {
             _list = new List<IValue>();
@@ -60,55 +110,55 @@ namespace osf
         [ContextProperty("ВерхЛево", "TopLeft")]
         public int TopLeft
         {
-        	get { return m_topLeft; }
+            get { return m_topLeft; }
         }
 
         [ContextProperty("ВерхПраво", "TopRight")]
         public int TopRight
         {
-        	get { return m_topRight; }
+            get { return m_topRight; }
         }
 
         [ContextProperty("ВерхЦентр", "TopCenter")]
         public int TopCenter
         {
-        	get { return m_topCenter; }
+            get { return m_topCenter; }
         }
 
         [ContextProperty("НизЛево", "BottomLeft")]
         public int BottomLeft
         {
-        	get { return m_bottomLeft; }
+            get { return m_bottomLeft; }
         }
 
         [ContextProperty("НизПраво", "BottomRight")]
         public int BottomRight
         {
-        	get { return m_bottomRight; }
+            get { return m_bottomRight; }
         }
 
         [ContextProperty("НизЦентр", "BottomCenter")]
         public int BottomCenter
         {
-        	get { return m_bottomCenter; }
+            get { return m_bottomCenter; }
         }
 
         [ContextProperty("СерединаЛево", "MiddleLeft")]
         public int MiddleLeft
         {
-        	get { return m_middleLeft; }
+            get { return m_middleLeft; }
         }
 
         [ContextProperty("СерединаПраво", "MiddleRight")]
         public int MiddleRight
         {
-        	get { return m_middleRight; }
+            get { return m_middleRight; }
         }
 
         [ContextProperty("СерединаЦентр", "MiddleCenter")]
         public int MiddleCenter
         {
-        	get { return m_middleCenter; }
+            get { return m_middleCenter; }
         }
     }
 }

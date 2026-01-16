@@ -57,7 +57,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЭлементыСпискаЭлементов", "ClListViewItemCollection")]
+    [ContextClass("КлЭлементыСпискаЭлементов", "ClListViewItemCollection")]
     public class ClListViewItemCollection : AutoContext<ClListViewItemCollection>
     {
         public ClListViewItemCollection()
@@ -66,22 +66,22 @@ namespace osf
             ListViewItemCollection1.dll_obj = this;
             Base_obj = ListViewItemCollection1;
         }
-		
+
         public ClListViewItemCollection(ListViewItemCollection p1)
         {
             ListViewItemCollection ListViewItemCollection1 = p1;
             ListViewItemCollection1.dll_obj = this;
             Base_obj = ListViewItemCollection1;
         }
-        
+
         public ListViewItemCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Вставить", "Insert")]
         public ClListViewItem Insert(int p1, ClListViewItem p2)
         {
@@ -106,13 +106,13 @@ namespace osf
             }
             return new ClListViewItem(ListViewItem1);
         }
-        
+
         [ContextMethod("Очистить", "Clear")]
         public void Clear()
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Удалить", "Remove")]
         public void Remove(ClListViewItem p1)
         {

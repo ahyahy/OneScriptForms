@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлСтильГраницыПанелиСтрокиСостояния", "ClStatusBarPanelBorderStyle")]
+    [ContextClass("КлСтильГраницыПанелиСтрокиСостояния", "ClStatusBarPanelBorderStyle")]
     public class ClStatusBarPanelBorderStyle : AutoContext<ClStatusBarPanelBorderStyle>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_none = (int)System.Windows.Forms.StatusBarPanelBorderStyle.None; // 1 Граница не отображается.
@@ -37,6 +37,44 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1, "Отсутствие"},
+            {2, "Рельефная"},
+            {3, "Утопленная"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1, "None"},
+            {2, "Raised"},
+            {3, "Sunken"},
+        };
+
         public ClStatusBarPanelBorderStyle()
         {
             _list = new List<IValue>();
@@ -48,19 +86,19 @@ namespace osf
         [ContextProperty("Отсутствие", "None")]
         public int None
         {
-        	get { return m_none; }
+            get { return m_none; }
         }
 
         [ContextProperty("Рельефная", "Raised")]
         public int Raised
         {
-        	get { return m_raised; }
+            get { return m_raised; }
         }
 
         [ContextProperty("Утопленная", "Sunken")]
         public int Sunken
         {
-        	get { return m_sunken; }
+            get { return m_sunken; }
         }
     }
 }

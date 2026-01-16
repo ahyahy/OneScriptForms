@@ -54,7 +54,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлДиалогОткрытияФайла", "ClOpenFileDialog")]
+    [ContextClass("КлДиалогОткрытияФайла", "ClOpenFileDialog")]
     public class ClOpenFileDialog : AutoContext<ClOpenFileDialog>
     {
         public ClOpenFileDialog()
@@ -63,16 +63,16 @@ namespace osf
             OpenFileDialog1.dll_obj = this;
             Base_obj = OpenFileDialog1;
         }
-		
+
         public ClOpenFileDialog(OpenFileDialog p1)
         {
             OpenFileDialog OpenFileDialog1 = p1;
             OpenFileDialog1.dll_obj = this;
             Base_obj = OpenFileDialog1;
         }
-        
+
         public OpenFileDialog Base_obj;
-        
+
         [ContextProperty("ВосстанавливатьКаталог", "RestoreDirectory")]
         public bool RestoreDirectory
         {
@@ -162,20 +162,20 @@ namespace osf
         {
             get { return new ClType(this); }
         }
-        
+
         [ContextProperty("Фильтр", "Filter")]
         public string Filter
         {
             get { return Base_obj.Filter; }
             set { Base_obj.Filter = value; }
         }
-        
+
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {
             Base_obj.Dispose();
         }
-					
+
         [ContextMethod("ПоказатьДиалог", "ShowDialog")]
         public IValue ShowDialog()
         {
@@ -200,7 +200,7 @@ namespace osf
             }
             return val1;
         }
-        
+
         [ContextMethod("Сбросить", "Reset")]
         public void Reset()
         {

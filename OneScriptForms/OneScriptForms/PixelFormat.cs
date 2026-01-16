@@ -5,10 +5,9 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлФорматПикселей", "ClPixelFormat")]
+    [ContextClass("КлФорматПикселей", "ClPixelFormat")]
     public class ClPixelFormat : AutoContext<ClPixelFormat>, ICollectionContext, IEnumerable<IValue>
     {
-        private int m_dontCare = (int)System.Drawing.Imaging.PixelFormat.DontCare; // 0 Формат пикселей не указан.
         private int m_undefined = (int)System.Drawing.Imaging.PixelFormat.Undefined; // 0 Формат пикселей не определен.
         private int m_max = (int)System.Drawing.Imaging.PixelFormat.Max; // 15 Максимальное значение данного перечисления.
         private int m_indexed = (int)System.Drawing.Imaging.PixelFormat.Indexed; // 65536 Данные о пикселях содержат значения индексированных цветов, то есть значение является индексом цвета в системной таблице цветов, в отличие от отдельных значений цветов.
@@ -57,12 +56,87 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {262144, "Альфа"},
+            {397319, "Бит16АКЗС1555"},
+            {135173, "Бит16КЗС555"},
+            {135174, "Бит16КЗС565"},
+            {1052676, "Бит16ОттенкиСерого"},
+            {196865, "Бит1Индексированный"},
+            {137224, "Бит24КЗС"},
+            {2498570, "Бит32АКЗС"},
+            {925707, "Бит32АКЗСОбратно"},
+            {139273, "Бит32КЗС"},
+            {1060876, "Бит48КЗС"},
+            {197634, "Бит4Индексированный"},
+            {3424269, "Бит64АКЗС"},
+            {1851406, "Бит64АКЗСОбратно"},
+            {198659, "Бит8Индексированный"},
+            {65536, "Индексированный"},
+            {2097152, "Канонический"},
+            {15, "Максимум"},
+            {0, "Неопределенный"},
+            {524288, "ОбратноАльфа"},
+            {1048576, "Расширенный"},
+            {131072, "ЦветаGDI"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {262144, "Alpha"},
+            {397319, "Format16bppArgb1555"},
+            {135173, "Format16bppRgb555"},
+            {135174, "Format16bppRgb565"},
+            {1052676, "Format16bppGrayScale"},
+            {196865, "Format1bppIndexed"},
+            {137224, "Format24bppRgb"},
+            {2498570, "Format32bppArgb"},
+            {925707, "Format32bppPArgb"},
+            {139273, "Format32bppRgb"},
+            {1060876, "Format48bppRgb"},
+            {197634, "Format4bppIndexed"},
+            {3424269, "Format64bppArgb"},
+            {1851406, "Format64bppPArgb"},
+            {198659, "Format8bppIndexed"},
+            {65536, "Indexed"},
+            {2097152, "Canonical"},
+            {15, "Max"},
+            {0, "Undefined"},
+            {524288, "PAlpha"},
+            {1048576, "Extended"},
+            {131072, "Gdi"},
+        };
+
         public ClPixelFormat()
         {
             _list = new List<IValue>();
             _list.Add(ValueFactory.Create(Alpha));
             _list.Add(ValueFactory.Create(Canonical));
-            _list.Add(ValueFactory.Create(DontCare));
             _list.Add(ValueFactory.Create(Extended));
             _list.Add(ValueFactory.Create(Format16bppArgb1555));
             _list.Add(ValueFactory.Create(Format16bppGrayScale));
@@ -88,139 +162,133 @@ namespace osf
         [ContextProperty("Альфа", "Alpha")]
         public int Alpha
         {
-        	get { return m_alpha; }
+            get { return m_alpha; }
         }
 
         [ContextProperty("Бит16АКЗС1555", "Format16bppArgb1555")]
         public int Format16bppArgb1555
         {
-        	get { return m_format16bppArgb1555; }
+            get { return m_format16bppArgb1555; }
         }
 
         [ContextProperty("Бит16КЗС555", "Format16bppRgb555")]
         public int Format16bppRgb555
         {
-        	get { return m_format16bppRgb555; }
+            get { return m_format16bppRgb555; }
         }
 
         [ContextProperty("Бит16КЗС565", "Format16bppRgb565")]
         public int Format16bppRgb565
         {
-        	get { return m_format16bppRgb565; }
+            get { return m_format16bppRgb565; }
         }
 
         [ContextProperty("Бит16ОттенкиСерого", "Format16bppGrayScale")]
         public int Format16bppGrayScale
         {
-        	get { return m_format16bppGrayScale; }
+            get { return m_format16bppGrayScale; }
         }
 
         [ContextProperty("Бит1Индексированный", "Format1bppIndexed")]
         public int Format1bppIndexed
         {
-        	get { return m_format1bppIndexed; }
+            get { return m_format1bppIndexed; }
         }
 
         [ContextProperty("Бит24КЗС", "Format24bppRgb")]
         public int Format24bppRgb
         {
-        	get { return m_format24bppRgb; }
+            get { return m_format24bppRgb; }
         }
 
         [ContextProperty("Бит32АКЗС", "Format32bppArgb")]
         public int Format32bppArgb
         {
-        	get { return m_format32bppArgb; }
+            get { return m_format32bppArgb; }
         }
 
         [ContextProperty("Бит32АКЗСОбратно", "Format32bppPArgb")]
         public int Format32bppPArgb
         {
-        	get { return m_format32bppPArgb; }
+            get { return m_format32bppPArgb; }
         }
 
         [ContextProperty("Бит32КЗС", "Format32bppRgb")]
         public int Format32bppRgb
         {
-        	get { return m_format32bppRgb; }
+            get { return m_format32bppRgb; }
         }
 
         [ContextProperty("Бит48КЗС", "Format48bppRgb")]
         public int Format48bppRgb
         {
-        	get { return m_format48bppRgb; }
+            get { return m_format48bppRgb; }
         }
 
         [ContextProperty("Бит4Индексированный", "Format4bppIndexed")]
         public int Format4bppIndexed
         {
-        	get { return m_format4bppIndexed; }
+            get { return m_format4bppIndexed; }
         }
 
         [ContextProperty("Бит64АКЗС", "Format64bppArgb")]
         public int Format64bppArgb
         {
-        	get { return m_format64bppArgb; }
+            get { return m_format64bppArgb; }
         }
 
         [ContextProperty("Бит64АКЗСОбратно", "Format64bppPArgb")]
         public int Format64bppPArgb
         {
-        	get { return m_format64bppPArgb; }
+            get { return m_format64bppPArgb; }
         }
 
         [ContextProperty("Бит8Индексированный", "Format8bppIndexed")]
         public int Format8bppIndexed
         {
-        	get { return m_format8bppIndexed; }
+            get { return m_format8bppIndexed; }
         }
 
         [ContextProperty("Индексированный", "Indexed")]
         public int Indexed
         {
-        	get { return m_indexed; }
+            get { return m_indexed; }
         }
 
         [ContextProperty("Канонический", "Canonical")]
         public int Canonical
         {
-        	get { return m_canonical; }
+            get { return m_canonical; }
         }
 
         [ContextProperty("Максимум", "Max")]
         public int Max
         {
-        	get { return m_max; }
+            get { return m_max; }
         }
 
         [ContextProperty("Неопределенный", "Undefined")]
         public int Undefined
         {
-        	get { return m_undefined; }
-        }
-
-        [ContextProperty("НеУказан", "DontCare")]
-        public int DontCare
-        {
-        	get { return m_dontCare; }
+            get { return m_undefined; }
         }
 
         [ContextProperty("ОбратноАльфа", "PAlpha")]
         public int PAlpha
         {
-        	get { return m_pAlpha; }
+            get { return m_pAlpha; }
         }
 
         [ContextProperty("Расширенный", "Extended")]
         public int Extended
         {
-        	get { return m_extended; }
+            get { return m_extended; }
         }
 
         [ContextProperty("ЦветаGDI", "Gdi")]
         public int Gdi
         {
-        	get { return m_gdi; }
+            get { return m_gdi; }
         }
     }
 }

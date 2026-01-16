@@ -1,24 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using System.Threading;
-using System.Text;
-using System.Security.Permissions;
-using System.Runtime.Serialization;
-using System.Runtime.InteropServices;
-using System.Reflection;
 using System.IO;
-using System.Globalization;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.Drawing.Drawing2D;
-using System.Drawing.Design;
-using System.ComponentModel;
-using System.Collections;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using Aga.Controls.Tree.NodeControls;
-using Aga.Controls.Threading;
 using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
 
@@ -79,14 +63,14 @@ namespace Aga.Controls.Tree.NodeControls
         public override void Draw(TreeNodeAdv node, DrawContext context)
         {
             Rectangle bounds = GetBounds(node, context);
-		
+
             CheckState state = System.Windows.Forms.CheckState.Unchecked;
             try
             {
                 state = (System.Windows.Forms.CheckState)((Node)node.Tag).nodeControlValue[this];
             }
             catch { }
-		
+
             if (Application.RenderWithVisualStyles)
             {
                 VisualStyleRenderer renderer;
@@ -262,17 +246,16 @@ namespace osf
         {
             Base_obj = new Aga.Controls.Tree.NodeControls.NodeCheckBox();
             Base_obj.dll_obj = this;
-        }//end_constr
-		
+        }
+
         public ClNodeCheckBox(Aga.Controls.Tree.NodeControls.NodeCheckBox p1)
         {
             Base_obj = p1;
             Base_obj.dll_obj = this;
-        }//end_constr
+        }
 
         public Aga.Controls.Tree.NodeControls.NodeCheckBox Base_obj;
 
-        //Свойства============================================================
         [ContextProperty("Колонка", "ParentColumn")]
         public ClTreeColumn ParentColumn
         {
@@ -283,7 +266,7 @@ namespace osf
                 OneScriptForms.AddToHashtable(Base_obj.ParentColumn, value);
             }
         }
-        
+
         [ContextProperty("ЛевыйОтступ", "LeftMargin")]
         public int LeftMargin
         {
@@ -316,7 +299,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ТриСостояния", "ThreeState")]
         public bool ThreeState
         {
@@ -324,8 +307,6 @@ namespace osf
             set { Base_obj.ThreeState = value; }
         }
 
-        //endProperty
-        //Методы============================================================
         [ContextMethod("ПолучитьЗначение", "GetValue")]
         public int GetValue(ClNode p1)
         {
@@ -338,7 +319,5 @@ namespace osf
             p1.Base_obj.SetControlValue(this.Base_obj, (object)(System.Windows.Forms.CheckState)Convert.ToInt32(p2.AsNumber()));
         }
 
-        //endMethods
-    }//endClass
-
-}//endnamespace
+    }
+}

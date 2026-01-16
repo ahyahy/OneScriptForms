@@ -1,24 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using System.Threading;
 using System.Text;
-using System.Security.Permissions;
-using System.Runtime.Serialization;
-using System.Runtime.InteropServices;
-using System.Reflection;
-using System.IO;
-using System.Globalization;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.Drawing.Drawing2D;
-using System.Drawing.Design;
 using System.ComponentModel;
 using System.Collections;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
-using Aga.Controls.Tree.NodeControls;
-using Aga.Controls.Threading;
 using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
 
@@ -41,7 +27,7 @@ namespace Aga.Controls.Tree.NodeControls
             this.LabelChanged += NodeComboBox_LabelChanged;
             ValueChanged = "";
         }
-		
+
         // Здесь по клавише F2, нажатию ENTER вызывается редактирование элемента узла.
         public override void KeyDown(KeyEventArgs args)
         {
@@ -54,7 +40,7 @@ namespace Aga.Controls.Tree.NodeControls
                 BeginEdit();
             }
         }
-		
+
         public void NodeComboBox_LabelChanged(object sender, LabelEventArgs e)
         {
             if (ValueChanged.Length > 0)
@@ -344,7 +330,7 @@ namespace Aga.Controls.Tree.NodeControls
                 base.MouseUp(args);
             }
         }
-		
+
         protected void OnLabelChanged(object subject, object oldLabel, object newLabel)
         {
             if (LabelChanged != null)
@@ -367,17 +353,16 @@ namespace osf
         {
             Base_obj = new Aga.Controls.Tree.NodeControls.NodeComboBox();
             Base_obj.dll_obj = this;
-        }//end_constr
-		
+        }
+
         public ClNodeComboBox(Aga.Controls.Tree.NodeControls.NodeComboBox p1)
         {
             Base_obj = p1;
             Base_obj.dll_obj = this;
-        }//end_constr
+        }
 
         public Aga.Controls.Tree.NodeControls.NodeComboBox Base_obj;
 
-        //Свойства============================================================
         [ContextProperty("ВертикальноеВыравнивание", "VerticalAlign")]
         public int VerticalAlign
         {
@@ -410,7 +395,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ИспользоватьСовместимуюОтрисовку", "UseCompatibleTextRendering")]
         public bool UseCompatibleTextRendering
         {
@@ -428,7 +413,7 @@ namespace osf
                 OneScriptForms.AddToHashtable(Base_obj.ParentColumn, value);
             }
         }
-        
+
         [ContextProperty("ЛевыйОтступ", "LeftMargin")]
         public int LeftMargin
         {
@@ -467,8 +452,6 @@ namespace osf
             get { return (ClNodeComboBoxObjectCollection)OneScriptForms.RevertObj(Base_obj.DropDownItems); }
         }
 
-        //endProperty
-        //Методы============================================================
         [ContextMethod("ПолучитьЗначение", "GetValue")]
         public IValue GetValue(ClNode p1)
         {
@@ -481,7 +464,5 @@ namespace osf
             p1.Base_obj.SetControlValue(Base_obj, (object)p2);
         }
 
-        //endMethods
-    }//endClass
-
-}//endnamespace
+    }
+}

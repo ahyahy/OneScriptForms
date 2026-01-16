@@ -102,7 +102,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлКолонкиДанных", "ClDataColumnCollection")]
+    [ContextClass("КлКолонкиДанных", "ClDataColumnCollection")]
     public class ClDataColumnCollection : AutoContext<ClDataColumnCollection>
     {
         public ClDataColumnCollection(DataColumnCollection p1)
@@ -113,13 +113,13 @@ namespace osf
         }
 
         public DataColumnCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public ClDataColumn Add(ClDataColumn p1)
         {
@@ -137,7 +137,7 @@ namespace osf
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Удалить", "Remove")]
         public void Remove(ClDataColumn p1)
         {

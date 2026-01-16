@@ -129,7 +129,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлТаблицаДанных", "ClDataTable")]
+    [ContextClass("КлТаблицаДанных", "ClDataTable")]
     public class ClDataTable : AutoContext<ClDataTable>
     {
         private ClDataColumnCollection columns;
@@ -143,7 +143,7 @@ namespace osf
             columns = new ClDataColumnCollection(Base_obj.Columns);
             rows = new ClDataRowCollection(Base_obj.Rows);
         }
-		
+
         public ClDataTable(string p1)
         {
             DataTable DataTable1 = new DataTable(p1);
@@ -163,7 +163,7 @@ namespace osf
         }
 
         public DataTable Base_obj;
-        
+
         [ContextProperty("ИмяТаблицы", "TableName")]
         public string TableName
         {
@@ -194,7 +194,7 @@ namespace osf
         {
             get { return rows; }
         }
-        
+
         [ContextMethod("Выбрать", "Select")]
         public ClArrayList Select(string p1)
         {
@@ -289,7 +289,7 @@ namespace osf
             }
             return null;
         }
-        
+
         [ContextMethod("Колонки", "Columns")]
         public ClDataColumn Columns2(IValue p1)
         {
@@ -321,13 +321,13 @@ namespace osf
         {
             Base_obj.RejectChanges();
         }
-					
+
         [ContextMethod("ПринятьИзменения", "AcceptChanges")]
         public void AcceptChanges()
         {
             Base_obj.AcceptChanges();
         }
-					
+
         [ContextMethod("Строки", "Rows")]
         public ClDataRow Rows2(int p1)
         {

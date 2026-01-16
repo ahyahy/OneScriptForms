@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлНаблюдательИзмененияВида", "ClWatcherChangeTypes")]
+    [ContextClass("КлНаблюдательИзмененияВида", "ClWatcherChangeTypes")]
     public class ClWatcherChangeTypes : AutoContext<ClWatcherChangeTypes>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_created = (int)System.IO.WatcherChangeTypes.Created; // 1 Создание файла или каталога.
@@ -39,6 +39,48 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {15, "Все"},
+            {4, "Изменение"},
+            {8, "Переименование"},
+            {1, "Создание"},
+            {2, "Удаление"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {15, "All"},
+            {4, "Changed"},
+            {8, "Renamed"},
+            {1, "Created"},
+            {2, "Deleted"},
+        };
+
         public ClWatcherChangeTypes()
         {
             _list = new List<IValue>();
@@ -52,31 +94,31 @@ namespace osf
         [ContextProperty("Все", "All")]
         public int All
         {
-        	get { return m_all; }
+            get { return m_all; }
         }
 
         [ContextProperty("Изменение", "Changed")]
         public int Changed
         {
-        	get { return m_changed; }
+            get { return m_changed; }
         }
 
         [ContextProperty("Переименование", "Renamed")]
         public int Renamed
         {
-        	get { return m_renamed; }
+            get { return m_renamed; }
         }
 
         [ContextProperty("Создание", "Created")]
         public int Created
         {
-        	get { return m_created; }
+            get { return m_created; }
         }
 
         [ContextProperty("Удаление", "Deleted")]
         public int Deleted
         {
-        	get { return m_deleted; }
+            get { return m_deleted; }
         }
     }
 }

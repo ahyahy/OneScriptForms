@@ -7,10 +7,12 @@ using ScriptEngine.Machine;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using ScriptEngine.HostedScript.Library;
+using ScriptEngine.HostedScript.Library.Binary;
+using osfMultiTcp;
 
 namespace osf
 {
-    [ContextClass ("ФормыДляОдноСкрипта", "OneScriptForms")]
+    [ContextClass("ФормыДляОдноСкрипта", "OneScriptForms")]
     public class OneScriptForms : AutoContext<OneScriptForms>
     {
         [DllImport("user32.dll", SetLastError = true)] static extern int MessageBoxTimeout(IntPtr hwnd, String text, String title, MesBoxFlags type, Int16 wLanguageId, Int32 milliseconds);
@@ -69,6 +71,7 @@ namespace osf
         private static ClMessageBoxIcon cl_MessageBoxIcon = new ClMessageBoxIcon();
         private static ClMouseButtons cl_MouseButtons = new ClMouseButtons();
         private static ClMouseFlags cl_MouseFlags = new ClMouseFlags();
+        private static ClMultithreadedTCPServerState cl_MultithreadedTCPServerState = new ClMultithreadedTCPServerState();
         private static ClNotifyFilters cl_NotifyFilters = new ClNotifyFilters();
         private static ClPictureBoxSizeMode cl_PictureBoxSizeMode = new ClPictureBoxSizeMode();
         private static ClPixelFormat cl_PixelFormat = new ClPixelFormat();
@@ -118,6 +121,19 @@ namespace osf
         public static bool useMainForm = true;
         [DllImport("User32.dll")] static extern void mouse_event(uint dwFlags, int dx, int dy, int dwData, UIntPtr dwExtraInfo);
 
+        public static OneScriptMultithreadedTCPServer osmtcpServer = null;
+        public static OneScriptMultithreadedTCPServer OSMTCPServer
+        {
+            get { return osmtcpServer; }
+            set
+            {
+                if (osmtcpServer == null)
+                {
+                    osmtcpServer = value;
+                }
+            }
+        }
+
         public static OneScriptForms getInstance()
         {
             if (instance == null)
@@ -136,9 +152,167 @@ namespace osf
             {
                 systemVersionIsMicrosoft = true;
             }
+
+            instance.ClientConnected += Instance_ClientConnected;
+            instance.ClientDisconnected += Instance_ClientDisconnected;
+            instance.ServerReceived += Instance_ServerReceived;
+            instance.ErrorServer += Instance_ErrorServer;
+            instance.ClientReceived += Instance_ClientReceived;
+
             return instance;
         }
-		
+
+        private static void Instance_ClientDisconnected(object sender, ServerEventArgs e)
+        {
+            if (instance.ClientDisconnectedProp != null)
+            {
+                ServerEventArgs ServerEventArgs1 = new ServerEventArgs();
+                ServerEventArgs1.EventString = clientDisconnected;
+                ServerEventArgs1.Sender = instance;
+                ServerEventArgs1.Parameter = OneScriptForms.GetEventParameter(instance.ClientDisconnectedProp);
+                ServerEventArgs1.clientId = e.clientId;
+                ClServerEventArgs ClServerEventArgs1 = new ClServerEventArgs(ServerEventArgs1);
+                OneScriptForms.Event = ClServerEventArgs1;
+                OneScriptForms.ExecuteEvent(instance.ClientDisconnectedProp);
+            }
+        }
+
+        private static void Instance_ClientConnected(object sender, ServerEventArgs e)
+        {
+            if (instance.ClientConnectedProp != null)
+            {
+                ServerEventArgs ServerEventArgs1 = new ServerEventArgs();
+                ServerEventArgs1.EventString = clientConnected;
+                ServerEventArgs1.Sender = instance;
+                ServerEventArgs1.Parameter = OneScriptForms.GetEventParameter(instance.ClientConnectedProp);
+                ServerEventArgs1.clientId = e.clientId;
+                ClServerEventArgs ClServerEventArgs1 = new ClServerEventArgs(ServerEventArgs1);
+                OneScriptForms.Event = ClServerEventArgs1;
+                OneScriptForms.ExecuteEvent(instance.ClientConnectedProp);
+            }
+        }
+
+        private static void Instance_ServerReceived(object sender, ServerEventArgs e)
+        {
+            if (instance.ServerReceivedProp != null)
+            {
+                ServerEventArgs ServerEventArgs1 = new ServerEventArgs();
+                ServerEventArgs1.EventString = serverReceived;
+                ServerEventArgs1.Sender = instance;
+                ServerEventArgs1.Parameter = OneScriptForms.GetEventParameter(instance.ServerReceivedProp);
+                ServerEventArgs1.clientId = e.clientId;
+                ServerEventArgs1.data = e.data;
+                ClServerEventArgs ClServerEventArgs1 = new ClServerEventArgs(ServerEventArgs1);
+                OneScriptForms.Event = ClServerEventArgs1;
+                OneScriptForms.ExecuteEvent(instance.ServerReceivedProp);
+            }
+        }
+
+        private static void Instance_ErrorServer(object sender, ServerEventArgs e)
+        {
+            if (instance.ErrorServerProp != null)
+            {
+                ServerEventArgs ServerEventArgs1 = new ServerEventArgs();
+                ServerEventArgs1.EventString = errorServer;
+                ServerEventArgs1.Sender = instance;
+                ServerEventArgs1.Parameter = OneScriptForms.GetEventParameter(instance.ErrorServerProp);
+                ServerEventArgs1.serverError = e.serverError;
+                ClServerEventArgs ClServerEventArgs1 = new ClServerEventArgs(ServerEventArgs1);
+                OneScriptForms.Event = ClServerEventArgs1;
+                OneScriptForms.ExecuteEvent(instance.ErrorServerProp);
+            }
+        }
+
+        private static void Instance_ClientReceived(object sender, ServerEventArgs e)
+        {
+            if (instance.ClientReceivedProp != null)
+            {
+                ServerEventArgs ServerEventArgs1 = new ServerEventArgs();
+                ServerEventArgs1.EventString = clientReceived;
+                ServerEventArgs1.Sender = instance;
+                ServerEventArgs1.Parameter = OneScriptForms.GetEventParameter(instance.ClientReceivedProp);
+                ServerEventArgs1.data = e.data;
+                ClServerEventArgs ClServerEventArgs1 = new ClServerEventArgs(ServerEventArgs1);
+                OneScriptForms.Event = ClServerEventArgs1;
+                OneScriptForms.ExecuteEvent(instance.ClientReceivedProp);
+            }
+        }
+
+        public event EventHandler<ServerEventArgs> ClientReceived;
+        public void OnClientReceived(BinaryDataBuffer p1)
+        {
+            var handler = ClientReceived;
+            if (handler != null)
+            {
+                handler(this, new ServerEventArgs(p1));
+            }
+        }
+
+        public event EventHandler<ServerEventArgs> ClientConnected;
+        public void OnClientConnected(TsEventArgs args)
+        {
+            var handler = ClientConnected;
+            if (handler != null)
+            {
+                handler(this, new ServerEventArgs(args));
+            }
+        }
+
+        public event EventHandler<ServerEventArgs> ClientDisconnected;
+        public void OnClientDisconnected(TsEventArgs args)
+        {
+            var handler = ClientDisconnected;
+            if (handler != null)
+            {
+                handler(this, new ServerEventArgs(args));
+            }
+        }
+
+        public event EventHandler<ServerEventArgs> ServerReceived;
+        public void OnServerReceived(TsEventArgs args)
+        {
+            var handler = ServerReceived;
+            if (handler != null)
+            {
+                handler(this, new ServerEventArgs(args));
+            }
+        }
+
+        public event EventHandler<ServerEventArgs> ErrorServer;
+        public void OnErrorServer(TsEventArgs args)
+        {
+            var handler = ErrorServer;
+            if (handler != null)
+            {
+                handler(this, new ServerEventArgs(args));
+            }
+        }
+
+        public static void ProcessingClientReceived(BinaryDataBuffer p1)
+        {
+            instance.OnClientReceived(p1);
+        }
+
+        public static void ProcessingClientDisconnected(TsEventArgs args)
+        {
+            instance.OnClientDisconnected(args);
+        }
+
+        public static void ProcessingErrorServer(TsEventArgs args)
+        {
+            instance.OnErrorServer(args);
+        }
+
+        public static void ProcessingClientConnected(TsEventArgs args)
+        {
+            instance.OnClientConnected(args);
+        }
+
+        public static void ProcessingServerReceived(TsEventArgs args)
+        {
+            instance.OnServerReceived(args);
+        }
+
         private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
             if (e.Exception.TargetSite.ToString() != "Void SetDataObject(System.Object, Boolean, Int32, Int32)")
@@ -171,48 +345,132 @@ namespace osf
         {
             return getInstance();
         }
-        
+
         [ContextProperty("АргументыСобытия", "EventArgs")]
         public IValue EventArgs
         {
             get { return Event; }
         }
-        
+
         [ContextProperty("ВерсияПродукта", "ProductVersion")]
         public ClVersion ProductVersion
         {
             get { return new ClVersion(Assembly.GetExecutingAssembly().GetName().Version); }
         }
-        
+
         [ContextProperty("ИмяПродукта", "ProductName")]
         public string ProductName
         {
             get { return ((AssemblyTitleAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false)[0]).Title.ToString(); }
         }
-        
+
         [ContextProperty("ИспользоватьГлавнуюФорму", "UseMainForm")]
         public bool UseMainForm
         {
             get { return useMainForm; }
             set { useMainForm = value; }
         }
-        
+
+        private IValue _ClientReceived;
+        public static string clientReceived = "";
+        [ContextProperty("КлиентПолучилДанные", "ClientReceived")]
+        public IValue ClientReceivedProp
+        {
+            get { return _ClientReceived; }
+            set
+            {
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    _ClientReceived = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+                    clientReceived = "DelegateActionClientReceivedProp";
+                }
+                else
+                {
+                    _ClientReceived = value;
+                    clientReceived = "osfActionClientReceivedProp";
+                }
+            }
+        }
+
         [ContextProperty("КоллекцияФорм", "FormsCollection")]
         public FormsCollection FormsCollection
         {
             get { return formsCollection; }
         }
-        
+
         [ContextProperty("Отправитель", "Sender")]
         public IValue Sender
         {
             get { return OneScriptForms.RevertObj(((dynamic)Event).Base_obj.Sender); }
         }
-        
+
         [ContextProperty("ПлатформаWin", "WinPlatform")]
         public bool WinPlatform
         {
             get { return systemVersionIsMicrosoft; }
+        }
+
+        private IValue _ClientDisconnected;
+        public static string clientDisconnected = "";
+        [ContextProperty("ПриОтключенииКлиента", "ClientDisconnected")]
+        public IValue ClientDisconnectedProp
+        {
+            get { return _ClientDisconnected; }
+            set
+            {
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    _ClientDisconnected = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+                    clientDisconnected = "DelegateActionClientDisconnectedProp";
+                }
+                else
+                {
+                    _ClientDisconnected = value;
+                    clientDisconnected = "osfActionClientDisconnectedProp";
+                }
+            }
+        }
+
+        private IValue _ErrorServer;
+        public static string errorServer = "";
+        [ContextProperty("ПриОшибкеСервера", "ErrorServer")]
+        public IValue ErrorServerProp
+        {
+            get { return _ErrorServer; }
+            set
+            {
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    _ErrorServer = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+                    errorServer = "DelegateActionErrorServerProp";
+                }
+                else
+                {
+                    _ErrorServer = value;
+                    errorServer = "osfActionErrorServerProp";
+                }
+            }
+        }
+
+        private IValue _ClientConnected;
+        public static string clientConnected = "";
+        [ContextProperty("ПриПодключенииКлиента", "ClientConnected")]
+        public IValue ClientConnectedProp
+        {
+            get { return _ClientConnected; }
+            set
+            {
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    _ClientConnected = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+                    clientConnected = "DelegateActionClientConnectedProp";
+                }
+                else
+                {
+                    _ClientConnected = value;
+                    clientConnected = "osfActionClientConnectedProp";
+                }
+            }
         }
 
         [ContextProperty("Продолжать", "GoOn")]
@@ -224,32 +482,59 @@ namespace osf
             }
             set { goOn = value; }
         }
-        
+
         [ContextProperty("РазрешитьСобытия", "AllowEvents")]
         public bool HandleEvents
         {
             get { return handleEvents; }
             set { handleEvents = value; }
         }
-        
+
         [ContextProperty("Сборка", "Build")]
         public int Build
         {
             get { return Assembly.GetExecutingAssembly().GetName().Version.Build; }
-        }				
-        
+        }
+
+        private IValue _ServerReceived;
+        public static string serverReceived = "";
+        [ContextProperty("СерверПолучилДанные", "ServerReceived")]
+        public IValue ServerReceivedProp
+        {
+            get { return _ServerReceived; }
+            set
+            {
+                if (value.GetType() == typeof(ScriptEngine.HostedScript.Library.DelegateAction))
+                {
+                    _ServerReceived = (ScriptEngine.HostedScript.Library.DelegateAction)value.AsObject();
+                    serverReceived = "DelegateActionServerReceivedProp";
+                }
+                else
+                {
+                    _ServerReceived = value;
+                    serverReceived = "osfActionServerReceivedProp";
+                }
+            }
+        }
+
+        [ContextProperty("СлучайноеИмя", "TempName")]
+        public string TempName
+        {
+            get { return Utils.TempName; }
+        }
+
         [ContextProperty("ТекущаяРаскладка", "CurrentLayout")]
         public string CurrentLayout
         {
             get { return System.Windows.Forms.InputLanguage.CurrentInputLanguage.LayoutName; }
         }
-        
+
         [ContextProperty("ТекущийЯзыкВвода", "CurrentInputLanguage")]
         public string CurrentInputLanguage
         {
             get { return System.Windows.Forms.InputLanguage.CurrentInputLanguage.Culture.Name; }
         }
-        
+
         [ContextProperty("УстановленныеЯзыкиВвода", "InstalledInputLanguages")]
         public string InstalledInputLanguages
         {
@@ -263,7 +548,7 @@ namespace osf
                 return str;
             }
         }
-        
+
         [ContextProperty("ЯзыкВводаПоУмолчанию", "DefaultInputLanguage")]
         public string DefaultInputLanguage
         {
@@ -614,6 +899,12 @@ namespace osf
             get { return cl_PropertySort; }
         }
 
+        [ContextProperty("СостояниеМногопоточногоTCPСервера", "MultithreadedTCPServerState")]
+        public ClMultithreadedTCPServerState MultithreadedTCPServerState
+        {
+            get { return cl_MultithreadedTCPServerState; }
+        }
+
         [ContextProperty("СостояниеОкнаФормы", "FormWindowState")]
         public ClFormWindowState FormWindowState
         {
@@ -805,37 +1096,63 @@ namespace osf
         {
             get { return cl_FormatDateTimePicker; }
         }
-        
+
         [ContextMethod("Dns", "Dns")]
         public ClDns Dns()
         {
             return new ClDns();
         }
-        
+
         [ContextMethod("IpАдрес", "IpAddress")]
         public ClIpAddress IpAddress(string p1)
         {
             return new ClIpAddress(p1);
         }
-        
+
         [ContextMethod("IpУзел", "IpHostEntry")]
         public ClIpHostEntry IpHostEntry(string p1)
         {
             return new ClIpHostEntry(p1);
         }
-        
+
         [ContextMethod("TCPКлиент", "TCPClient")]
-        public ClTCPClient TCPClient(string HostName = null, int port = 0)
+        public TsTCPClient TCPClient(IValue HostName = null, IValue port = null)
         {
-            return new ClTCPClient(HostName, port);
+            if (OSMTCPServer == null)
+            {
+                OSMTCPServer = new OneScriptMultithreadedTCPServer();
+            }
+
+            if (Utils.AllNotNull(HostName, port))
+            {
+                TsTCPClient clientTCP = new TsTCPClient(Utils.ToString(HostName), Utils.ToInt32(port));
+                clientTCP.ServerBase = OSMTCPServer;
+                return clientTCP;
+            }
+            else
+            {
+                TsTCPClient clientTCP = new TsTCPClient();
+                clientTCP.ServerBase = OSMTCPServer;
+                return clientTCP;
+            }
         }
-        
+
+        [ContextMethod("TCPКлиентSSL", "TCPClientSSL")]
+        public TsTCPClientSSL TCPClientSSL(IValue HostName = null, IValue port = null, string path_certificate_crt = "certificate.crt")
+        {
+            if (Utils.AllNotNull(HostName, port))
+            {
+                return new TsTCPClientSSL(Utils.ToString(HostName), Utils.ToInt32(port), path_certificate_crt);
+            }
+            return new TsTCPClientSSL();
+        }
+
         [ContextMethod("TCPСлушатель", "TCPListener")]
         public ClTCPListener TCPListener(ClIpAddress p1, int p2)
         {
             return new ClTCPListener(p1, p2);
         }
-        
+
         [ContextMethod("БуферОбмена", "Clipboard")]
         public ClClipboard Clipboard()
         {
@@ -853,7 +1170,7 @@ namespace osf
         {
             return new ClTabPage(p1);
         }
-        
+
         [ContextMethod("ВключитьВизуальныеСтили", "EnableVisualStyles")]
         public void EnableVisualStyles()
         {
@@ -882,7 +1199,7 @@ namespace osf
             }
             return null;
         }
-        
+
         [ContextMethod("ВызватьСобытие", "CallEvent")]
         public void CallEvent(IValue p1, string p2, ClDictionary p3 = null)
         {
@@ -1038,7 +1355,7 @@ namespace osf
             {
                 obj.m_Control_DoubleClick(obj.M_Control, new System.EventArgs());
             }
-				
+
             if (p1.GetType() == typeof(osf.ClLinkLabel) && p2 == "СсылкаНажата")
             {
                 obj.M_LinkLabel_LinkClicked(obj.M_LinkLabel, new System.Windows.Forms.LinkLabelLinkClickedEventArgs(
@@ -1092,7 +1409,7 @@ namespace osf
             }
 
         }
-        
+
         [ContextMethod("ГлавноеМеню", "MainMenu")]
         public ClMainMenu MainMenu()
         {
@@ -1133,7 +1450,7 @@ namespace osf
         public ClTreeViewAdv TreeViewAdv()
         {
             return new ClTreeViewAdv();
-        }		
+        }
 
         [ContextMethod("ДиалогВыбораКаталога", "FolderBrowserDialog")]
         public ClFolderBrowserDialog FolderBrowserDialog()
@@ -1165,6 +1482,16 @@ namespace osf
             return new ClSaveFileDialog();
         }
 
+        [ContextMethod("ДобавитьВесьТекст", "AppendAllText")]
+        public void AppendAllText(string p1, string p2)
+        {
+            if (!System.IO.File.Exists(p1))
+            {
+                System.IO.File.Create(p1).Close();
+            }
+            System.IO.File.AppendAllText(p1, p2, System.Text.Encoding.UTF8);
+        }
+
         [ContextMethod("Заполнение", "Padding")]
         public ClPadding Padding(IValue p1 = null, IValue p2 = null, IValue p3 = null, IValue p4 = null)
         {
@@ -1178,7 +1505,7 @@ namespace osf
             }
             return new ClPadding();
         }
-        
+
         [ContextMethod("ЗапуститьОбработкуСобытий", "StartEventProcessing")]
         public void StartEventProcessing()
         {
@@ -1189,7 +1516,7 @@ namespace osf
                 //System.Windows.Forms.Application.DoEvents();
             }
         }
-        
+
         [ContextMethod("Звук", "Sound")]
         public ClSound Sound()
         {
@@ -1220,7 +1547,7 @@ namespace osf
             }
             return null;
         }
-        
+
         [ContextMethod("ЗначокУведомления", "NotifyIcon")]
         public ClNotifyIcon NotifyIcon()
         {
@@ -1232,7 +1559,7 @@ namespace osf
         {
             return new ClNodeStateIcon();
         }
-        
+
         [ContextMethod("Индикатор", "ProgressBar")]
         public ClProgressBar ProgressBar(bool p1)
         {
@@ -1244,7 +1571,7 @@ namespace osf
         {
             return new ClProcessStartInfo(p1, p2);
         }
-        
+
         [ContextMethod("Календарь", "MonthCalendar")]
         public ClMonthCalendar MonthCalendar()
         {
@@ -1315,7 +1642,7 @@ namespace osf
             }
             return null;
         }
-        
+
         [ContextMethod("Кнопка", "Button")]
         public ClButton Button()
         {
@@ -1345,7 +1672,7 @@ namespace osf
         {
             return new ClColumnHeader(p1, p2, p3);
         }
-        
+
         [ContextMethod("КолонкаДанных", "DataColumn")]
         public ClDataColumn DataColumn(string p1 = null, IValue p2 = null)
         {
@@ -1397,43 +1724,43 @@ namespace osf
         {
             return new ClDataGridViewImageColumn();
         }
-        
+
         [ContextMethod("КолонкаКнопка", "DataGridViewButtonColumn")]
         public ClDataGridViewButtonColumn DataGridViewButtonColumn()
         {
             return new ClDataGridViewButtonColumn();
         }
-        
+
         [ContextMethod("КолонкаПолеВвода", "DataGridViewTextBoxColumn")]
         public ClDataGridViewTextBoxColumn DataGridViewTextBoxColumn()
         {
             return new ClDataGridViewTextBoxColumn();
         }
-        
+
         [ContextMethod("КолонкаПолеВыбора", "DataGridViewComboBoxColumn")]
         public ClDataGridViewComboBoxColumn DataGridViewComboBoxColumn()
         {
             return new ClDataGridViewComboBoxColumn();
         }
-        
+
         [ContextMethod("КолонкаСсылка", "DataGridViewLinkColumn")]
         public ClDataGridViewLinkColumn DataGridViewLinkColumn()
         {
             return new ClDataGridViewLinkColumn();
         }
-        
+
         [ContextMethod("КолонкаФлажок", "DataGridViewCheckBoxColumn")]
         public ClDataGridViewCheckBoxColumn DataGridViewCheckBoxColumn()
         {
             return new ClDataGridViewCheckBoxColumn();
         }
-        
+
         [ContextMethod("КольцевойИндикатор", "CircularProgressBar")]
         public ClCircularProgressBar CircularProgressBar()
         {
             return new ClCircularProgressBar();
-        }				
-        
+        }
+
         [ContextMethod("КонтекстноеМеню", "ContextMenu")]
         public ClContextMenu ContextMenu()
         {
@@ -1457,7 +1784,7 @@ namespace osf
         {
             return new ClMaskedTextBox(p1);
         }
-        
+
         [ContextMethod("МассивСписок", "ArrayList")]
         public ClArrayList ArrayList(IValue p1 = null)
         {
@@ -1514,7 +1841,31 @@ namespace osf
             }
             return str1;
         }
-        
+
+        [ContextMethod("МногопоточныйTCPСервер", "MultithreadedTCPServer")]
+        public TsMultithreadedTCPServer MultithreadedTCPServer(int port = 8080)
+        {
+            if (OSMTCPServer == null)
+            {
+                OSMTCPServer = new OneScriptMultithreadedTCPServer();
+            }
+            TsMultithreadedTCPServer server = OSMTCPServer.MultithreadedTCPServer(port);
+            server.ServerBase = OSMTCPServer;
+            return server;
+        }
+
+        [ContextMethod("МногопоточныйTCPСерверSSL", "MultithreadedTCPServerSSL")]
+        public TsMultithreadedTCPServerSSL MultithreadedTCPServerSSL(int port, string path_cert = "certificate.pfx", string pas = "swordfish20231223")
+        {
+            if (OSMTCPServer == null)
+            {
+                OSMTCPServer = new OneScriptMultithreadedTCPServer();
+            }
+            TsMultithreadedTCPServerSSL MultiTCPServerSSL = new TsMultithreadedTCPServerSSL(port, path_cert, pas);
+            MultiTCPServerSSL.ServerBase = OSMTCPServer;
+            return MultiTCPServerSSL;
+        }
+
         [ContextMethod("НаблюдательФайловойСистемы", "FileSystemWatcher")]
         public ClFileSystemWatcher FileSystemWatcher()
         {
@@ -1614,16 +1965,16 @@ namespace osf
             }
             return null;
         }
-        
+
         [DllImport("user32.dll", EntryPoint = "FindWindow", CharSet = CharSet.Auto, SetLastError = true)] private static extern IntPtr FindWindowByCaption(IntPtr ZeroOnly, string WindowName);
-        
+
         [ContextMethod("НайтиОкноПоЗаголовку", "FindWindowByCaption")]
         public IValue FindWindowByCaption(string WindowName)
         {
             IntPtr numWnd = FindWindowByCaption(IntPtr.Zero, WindowName);
             return ValueFactory.Create((int)numWnd);
         }
-        
+
         [ContextMethod("НайтиЦентр", "FindCenter")]
         public ClPoint FindCenter(IValue p1)
         {
@@ -1686,7 +2037,7 @@ namespace osf
                 GetParentTop(Parent, ref offsetY);
             }
         }
-        
+
         [ContextMethod("ОбластьСсылки", "LinkArea")]
         public ClLinkArea LinkArea(int p1, int p2)
         {
@@ -1717,7 +2068,7 @@ namespace osf
             System.Windows.Forms.SendKeys.SendWait(p1);
             //System.Windows.Forms.Application.DoEvents();
         }
-        
+
         [ContextMethod("Панель", "Panel")]
         public ClPanel Panel()
         {
@@ -1768,7 +2119,7 @@ namespace osf
             }
             return new ClPen(p1, _p2);
         }
-        
+
         [ContextMethod("Подсказка", "ToolTip")]
         public ClToolTip ToolTip()
         {
@@ -1780,7 +2131,7 @@ namespace osf
         {
             return new ClListViewSubItem(p1);
         }
-        
+
         [ContextMethod("ПолеВвода", "TextBox")]
         public ClTextBox TextBox()
         {
@@ -1792,7 +2143,7 @@ namespace osf
         {
             return new ClNodeTextBox();
         }
-        
+
         [ContextMethod("ПолеВыбора", "ComboBox")]
         public ClComboBox ComboBox()
         {
@@ -1804,7 +2155,7 @@ namespace osf
         {
             return new ClNodeComboBox();
         }
-        
+
         [ContextMethod("ПолеКалендаря", "DateTimePicker")]
         public ClDateTimePicker DateTimePicker()
         {
@@ -1853,7 +2204,7 @@ namespace osf
             int timeout = p2 * 1000;
             MessageBoxTimeout(IntPtr.Zero, p1, p3, MesBoxFlags.MB_OK | MesBoxFlags.MB_TASKMODAL, 0, timeout);
         }
-        
+
         [ContextMethod("Приложение", "Application")]
         public ClApplication Application()
         {
@@ -1903,6 +2254,18 @@ namespace osf
             return new ClSize(p1, p2);
         }
 
+        [ContextMethod("РазобратьСтроку", "SplitString")]
+        public ArrayImpl SplitString(string p1, string p2)
+        {
+            ArrayImpl array = new ArrayImpl();
+            string[] result = p1.Split(new string[] { p2 }, StringSplitOptions.None);
+            for (int i = 0; i < result.Length; i++)
+            {
+                array.Add(ValueFactory.Create(result[i]));
+            }
+            return array;
+        }
+
         [ContextMethod("РамкаГруппы", "GroupBox")]
         public ClGroupBox GroupBox()
         {
@@ -1920,7 +2283,7 @@ namespace osf
         {
             return new ClNodeNumericUpDown();
         }
-        
+
         [ContextMethod("СвернутьКонсоль", "MinimizedConsole")]
         public void MinimizedConsole()
         {
@@ -2050,7 +2413,7 @@ namespace osf
             }
             return ClSortedList1;
         }
-        
+
         [ContextMethod("СвойстваОбъекта", "PropObj")]
         public string PropObj1(IValue p1)
         {
@@ -2182,7 +2545,7 @@ namespace osf
             };
             return ClForm1;
         }
-        
+
         [ContextMethod("СортированныйСписок", "SortedList")]
         public ClSortedList SortedList()
         {
@@ -2246,7 +2609,7 @@ namespace osf
             }
             return new ClDataGridViewCellStyle();
         }
-        
+
         [ContextMethod("СтрНайтиМежду", "StrFindBetween")]
         public ClArrayList StrFindBetween(string p1, string p2 = null, string p3 = null, bool p4 = true, bool p5 = true)
         {
@@ -2338,13 +2701,13 @@ namespace osf
         {
             return new ClDataGridViewRow();
         }
-        
+
         [ContextMethod("Таблица", "DataGridView")]
         public ClDataGridView DataGridView()
         {
             return new ClDataGridView();
         }
-        
+
         [ContextMethod("ТаблицаДанных", "DataTable")]
         public ClDataTable DataTable(string p1 = null)
         {
@@ -2372,7 +2735,7 @@ namespace osf
         {
             return new ClType(p1);
         }
-        
+
         [ContextMethod("Точка", "Point")]
         public ClPoint Point(int p1, int p2)
         {
@@ -2384,13 +2747,13 @@ namespace osf
         {
             return new ClTreeNode(p1);
         }
-        
+
         [ContextMethod("УзелДереваЗначений", "TreeNodeAdv")]
         public ClNode Node(string p1)
         {
             return new ClNode(p1);
         }
-        
+
         [ContextMethod("Флажок", "CheckBox")]
         public ClCheckBox CheckBox()
         {
@@ -2402,7 +2765,259 @@ namespace osf
         {
             return new ClNodeCheckBox();
         }
-        
+
+        [ContextMethod("ФоновыйTCPКлиент", "BackgroundTCPClient")]
+        public TsTCPClient BackgroundTCPClient(string HostName, int port)
+        {
+            string backgroundTasksTCPConnection = @"
+Процедура ЗапускКлиента(параметр1, параметр2) Экспорт
+    Контекст = Новый Структура();
+    Контекст.Вставить(""Клиент"", параметр1);
+    Контекст.Вставить(""Ф"", параметр2);
+	Стр = ""
+	|Перем ПотокСети1;
+	|
+	|Процедура ПроверитьСообщение()
+	|    Клиент.ОбработатьКлиентПолучилДанные(ПотокСети1.ПрочитатьВБуферДвоичныхДанных());
+	|КонецПроцедуры
+	|
+    |Ф.РазрешитьСобытия = Истина;
+	|ПотокСети1 = Клиент.ПолучитьПоток();
+	|
+	|Пока Клиент.Подключен Цикл
+	|    Если Не ПотокСети1.ДанныеДоступны Тогда
+	|        Приостановить(100);
+	|    Иначе
+	|        ПроверитьСообщение();
+	|    КонецЕсли;
+	|КонецЦикла;
+	|"";
+	ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+КонецПроцедуры
+
+МассивПараметров = Новый Массив(2);
+МассивПараметров[0] = Клиент;
+МассивПараметров[1] = Ф;
+Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, ""ЗапускКлиента"", МассивПараметров);
+";
+            if (OSMTCPServer == null)
+            {
+                OSMTCPServer = new OneScriptMultithreadedTCPServer();
+            }
+            TsTCPClient clientTCP = new TsTCPClient(HostName, port);
+            clientTCP.ServerBase = OSMTCPServer;
+            StructureImpl extContext = new StructureImpl();
+            extContext.Insert("Клиент", clientTCP);
+            extContext.Insert("Ф", instance);
+            Utils.GlobalContext().LoadScriptFromString(backgroundTasksTCPConnection, extContext);
+
+            if (clientTCP.Connected)
+            {
+                return clientTCP;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        [ContextMethod("ФоновыйTCPКлиентSSL", "BackgroundTCPClientSSL")]
+        public TsTCPClientSSL BackgroundTCPClientSSL(string HostName, int port, string path_certificate_crt = "certificate.crt")
+        {
+            string backgroundTasksTCPConnectionSSL = @"
+Процедура ЗапускКлиентаSSL(параметр1, параметр2) Экспорт
+    Контекст = Новый Структура();
+    Контекст.Вставить(""Клиент"", параметр1);
+    Контекст.Вставить(""Ф"", параметр2);
+    Стр = ""
+    |Перем ПотокСети1;
+    |
+    |Процедура ПроверитьСообщение()
+    |    Клиент.ОбработатьКлиентПолучилДанные(ПотокСети1.ПрочитатьВБуферДвоичныхДанных());
+    |КонецПроцедуры
+    |
+    |Ф.РазрешитьСобытия = Истина;
+    |ПотокСети1 = Клиент.ПолучитьПотокSSL();
+    |
+    |Пока Клиент.Подключен Цикл
+    |    Приостановить(100);
+    |    ПроверитьСообщение();
+    |КонецЦикла;
+    |"";
+    ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+КонецПроцедуры
+
+МассивПараметров = Новый Массив(2);
+МассивПараметров[0] = Клиент;
+МассивПараметров[1] = Ф;
+Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, ""ЗапускКлиентаSSL"", МассивПараметров);
+";
+            TsTCPClientSSL clientTCPSSL = new TsTCPClientSSL(HostName, port, path_certificate_crt);
+            StructureImpl extContext = new StructureImpl();
+            extContext.Insert("Клиент", clientTCPSSL);
+            extContext.Insert("Ф", instance);
+            Utils.GlobalContext().LoadScriptFromString(backgroundTasksTCPConnectionSSL, extContext);
+
+            if (clientTCPSSL.Connected)
+            {
+                return clientTCPSSL;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static bool multiServerUploaded = false;
+        public static bool multiServerError = false;
+        [ContextMethod("ФоновыйМногопоточныйСервер", "BackgroundMultithreadedServer")]
+        public TsMultithreadedTCPServer BackgroundMultithreadedServer(int p1)
+        {
+            string backgroundTasksMultiTCPServer = @"
+Процедура ЗапускМногопоточногоСервера(параметр1, параметр2, параметр3) Экспорт
+    Контекст = Новый Структура();
+    Контекст.Вставить(""Ф"", параметр1);
+    Контекст.Вставить(""Сервер"", параметр2);
+    Контекст.Вставить(""МС"", параметр3);
+    Стр = ""
+    |
+    |Процедура Сервер_ПриПодключенииКлиента() Экспорт
+    |    МС.ОбработатьПриПодключенииКлиента(МС.АргументыСобытия);
+    |КонецПроцедуры
+    |
+    |Процедура Сервер_ПриОтключенииКлиента() Экспорт
+    |    МС.ОбработатьПриОтключенииКлиента(МС.АргументыСобытия);
+    |КонецПроцедуры
+    |
+    |Процедура Сервер_СерверПолучилДанные() Экспорт
+    |    МС.ОбработатьСерверПолучилДанные(МС.АргументыСобытия);
+    |КонецПроцедуры
+    |
+    |Процедура Сервер_ПриОшибкеСервера() Экспорт
+    |    МС.ОбработатьПриОшибкеСервера(МС.АргументыСобытия);
+    |КонецПроцедуры
+    |
+    |Ф.РазрешитьСобытия = Истина;
+    |Сервер.ПриПодключенииКлиента = МС.Действие(ЭтотОбъект, """"Сервер_ПриПодключенииКлиента"""");
+    |Сервер.ПриОтключенииКлиента = МС.Действие(ЭтотОбъект, """"Сервер_ПриОтключенииКлиента"""");
+    |Сервер.СерверПолучилДанные = МС.Действие(ЭтотОбъект, """"Сервер_СерверПолучилДанные"""");
+    |Сервер.ПриОшибкеСервера = МС.Действие(ЭтотОбъект, """"Сервер_ПриОшибкеСервера"""");
+    |Сервер.Начать();
+    |
+    |Пока МС.Продолжать Цикл
+    |   МС.ПолучитьСобытие().Выполнить();
+    |КонецЦикла;
+    |"";
+    ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+КонецПроцедуры
+
+МассивПараметров = Новый Массив(3);
+МассивПараметров[0] = Ф;
+МассивПараметров[1] = Сервер;
+МассивПараметров[2] = МС;
+Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, ""ЗапускМногопоточногоСервера"", МассивПараметров);
+";
+            if (OSMTCPServer == null)
+            {
+                OSMTCPServer = new OneScriptMultithreadedTCPServer();
+            }
+            TsMultithreadedTCPServer MultiTCPServer = new TsMultithreadedTCPServer(p1);
+            MultiTCPServer.ServerBase = OSMTCPServer;
+            StructureImpl extContext = new StructureImpl();
+            extContext.Insert("Ф", instance);
+            extContext.Insert("Сервер", MultiTCPServer);
+            extContext.Insert("МС", OSMTCPServer);
+            Utils.GlobalContext().LoadScriptFromString(backgroundTasksMultiTCPServer, extContext);
+            while (!multiServerUploaded)
+            {
+                System.Threading.Thread.Sleep(300);
+                if (multiServerError)
+                {
+                    break;
+                }
+            }
+            if (multiServerError)
+            {
+                return null;
+            }
+            return MultiTCPServer;
+        }
+
+        public static bool multiServerUploadedSSL = false;
+        public static bool multiServerErrorSSL = false;
+        [ContextMethod("ФоновыйМногопоточныйСерверSSL", "BackgroundMultithreadedServerSSL")]
+        public TsMultithreadedTCPServerSSL BackgroundMultithreadedServerSSL(int port, string path_cert = "certificate.pfx", string pas = "swordfish20231223")
+        {
+            string backgroundTasksMultiTCPServerSSL = @"
+Процедура ЗапускМногопоточногоСервераSSL(параметр1, параметр2, параметр3) Экспорт
+    Контекст = Новый Структура();
+    Контекст.Вставить(""Ф"", параметр1);
+    Контекст.Вставить(""Сервер"", параметр2);
+    Контекст.Вставить(""МС"", параметр3);
+    Стр = ""
+    |
+    |Процедура Сервер_ПриПодключенииКлиента() Экспорт
+    |    МС.ОбработатьПриПодключенииКлиента(МС.АргументыСобытия);
+    |КонецПроцедуры
+    |
+    |Процедура Сервер_ПриОтключенииКлиента() Экспорт
+    |    МС.ОбработатьПриОтключенииКлиента(МС.АргументыСобытия);
+    |КонецПроцедуры
+    |
+    |Процедура Сервер_СерверПолучилДанные() Экспорт
+    |    МС.ОбработатьСерверПолучилДанные(МС.АргументыСобытия);
+    |КонецПроцедуры
+    |
+    |Процедура Сервер_ПриОшибкеСервера() Экспорт
+    |    МС.ОбработатьПриОшибкеСервера(МС.АргументыСобытия);
+    |КонецПроцедуры
+    |
+    |Ф.РазрешитьСобытия = Истина;
+    |Сервер.ПриПодключенииКлиента = МС.Действие(ЭтотОбъект, """"Сервер_ПриПодключенииКлиента"""");
+    |Сервер.ПриОтключенииКлиента = МС.Действие(ЭтотОбъект, """"Сервер_ПриОтключенииКлиента"""");
+    |Сервер.СерверПолучилДанные = МС.Действие(ЭтотОбъект, """"Сервер_СерверПолучилДанные"""");
+    |Сервер.ПриОшибкеСервера = МС.Действие(ЭтотОбъект, """"Сервер_ПриОшибкеСервера"""");
+    |Сервер.Начать();
+    |
+    |Пока МС.Продолжать Цикл
+    |   МС.ПолучитьСобытие().Выполнить();
+    |КонецЦикла;
+    |"";
+    ЗагрузитьСценарийИзСтроки(Стр, Контекст);
+КонецПроцедуры
+
+МассивПараметров = Новый Массив(3);
+МассивПараметров[0] = Ф;
+МассивПараметров[1] = Сервер;
+МассивПараметров[2] = МС;
+Задание = ФоновыеЗадания.Выполнить(ЭтотОбъект, ""ЗапускМногопоточногоСервераSSL"", МассивПараметров);
+";
+            if (OSMTCPServer == null)
+            {
+                OSMTCPServer = new OneScriptMultithreadedTCPServer();
+            }
+            TsMultithreadedTCPServerSSL MultiTCPServerSSL = new TsMultithreadedTCPServerSSL(port, path_cert, pas);
+            MultiTCPServerSSL.ServerBase = OSMTCPServer;
+            StructureImpl extContext = new StructureImpl();
+            extContext.Insert("Ф", instance);
+            extContext.Insert("Сервер", MultiTCPServerSSL);
+            extContext.Insert("МС", OSMTCPServer);
+            Utils.GlobalContext().LoadScriptFromString(backgroundTasksMultiTCPServerSSL, extContext);
+            while (!multiServerUploadedSSL)
+            {
+                System.Threading.Thread.Sleep(300);
+                if (multiServerErrorSSL)
+                {
+                    break;
+                }
+            }
+            if (multiServerErrorSSL)
+            {
+                return null;
+            }
+            return MultiTCPServerSSL;
+        }
+
         [ContextMethod("Форма", "Form")]
         public ClForm Form()
         {
@@ -2453,7 +3068,7 @@ namespace osf
         {
             return new ClNodeDecimalTextBox();
         }
-        
+
         [ContextMethod("Шрифт", "Font")]
         public ClFont Font(string p1 = null, IValue p2 = null, int p3 = 0)
         {
@@ -2468,7 +3083,7 @@ namespace osf
             }
             return new ClFont(p1, _p2, p3);
         }
-        
+
         [ContextMethod("Экран", "Screen")]
         public ClScreen Screen()
         {
@@ -2480,19 +3095,19 @@ namespace osf
         {
             return new ClMenuItem(p1, p2, p3);
         }
-        
+
         [ContextMethod("ЭлементСписка", "ListItem")]
         public ClListItem ListItem(string p1 = null, IValue p2 = null)
         {
             return new ClListItem(p1, p2);
         }
-        
+
         [ContextMethod("ЭлементСпискаЭлементов", "ListViewItem")]
         public ClListViewItem ListViewItem(string p1 = "", int p2 = -1)
         {
             return new ClListViewItem(p1, p2);
         }
-        
+
         [ContextMethod("ЯчейкаСеткиДанных", "DataGridCell")]
         public ClDataGridCell DataGridCell(int p1, int p2)
         {
@@ -2502,183 +3117,184 @@ namespace osf
         [ContextMethod("ОтменаАрг", "CancelEventArgs")]
         public ClCancelEventArgs CancelEventArgs()
         {
-        	return (ClCancelEventArgs)Event;
+            return (ClCancelEventArgs)Event;
         }
-        
+
         [ContextMethod("КолонкаНажатиеАрг", "ColumnClickEventArgs")]
         public ClColumnClickEventArgs ColumnClickEventArgs()
         {
-        	return (ClColumnClickEventArgs)Event;
+            return (ClColumnClickEventArgs)Event;
         }
-        
+
         [ContextMethod("ЭлементУправленияАрг", "ControlEventArgs")]
         public ClControlEventArgs ControlEventArgs()
         {
-        	return (ClControlEventArgs)Event;
+            return (ClControlEventArgs)Event;
         }
-        
+
         [ContextMethod("ЯчейкаОтменаАрг", "DataGridViewCellCancelEventArgs")]
         public ClDataGridViewCellCancelEventArgs DataGridViewCellCancelEventArgs()
         {
-        	return (ClDataGridViewCellCancelEventArgs)Event;
+            return (ClDataGridViewCellCancelEventArgs)Event;
         }
-        
+
         [ContextMethod("ЯчейкаТаблицыАрг", "DataGridViewCellEventArgs")]
         public ClDataGridViewCellEventArgs DataGridViewCellEventArgs()
         {
-        	return (ClDataGridViewCellEventArgs)Event;
+            return (ClDataGridViewCellEventArgs)Event;
         }
-        
+
         [ContextMethod("ЯчейкаТаблицыМышьАрг", "DataGridViewCellMouseEventArgs")]
         public ClDataGridViewCellMouseEventArgs DataGridViewCellMouseEventArgs()
         {
-        	return (ClDataGridViewCellMouseEventArgs)Event;
+            return (ClDataGridViewCellMouseEventArgs)Event;
         }
-        
+
         [ContextMethod("СобытиеФайловойСистемыАрг", "FileSystemEventArgs")]
         public ClFileSystemEventArgs FileSystemEventArgs()
         {
-        	return (ClFileSystemEventArgs)Event;
+            return (ClFileSystemEventArgs)Event;
         }
-        
+
         [ContextMethod("ПриЗакрытииФормыАрг", "FormClosingEventArgs")]
         public ClFormClosingEventArgs FormClosingEventArgs()
         {
-        	return (ClFormClosingEventArgs)Event;
+            return (ClFormClosingEventArgs)Event;
         }
-        
+
         [ContextMethod("ЭлементПомеченАрг", "ItemCheckEventArgs")]
         public ClItemCheckEventArgs ItemCheckEventArgs()
         {
-        	return (ClItemCheckEventArgs)Event;
+            return (ClItemCheckEventArgs)Event;
         }
-        
+
         [ContextMethod("КлавишаАрг", "KeyEventArgs")]
         public ClKeyEventArgs KeyEventArgs()
         {
-        	return (ClKeyEventArgs)Event;
+            return (ClKeyEventArgs)Event;
         }
-        
+
         [ContextMethod("КлавишаНажатаАрг", "KeyPressEventArgs")]
         public ClKeyPressEventArgs KeyPressEventArgs()
         {
-        	return (ClKeyPressEventArgs)Event;
+            return (ClKeyPressEventArgs)Event;
         }
-        
+
         [ContextMethod("РедактированиеНадписиАрг", "LabelEditEventArgs")]
         public ClLabelEditEventArgs LabelEditEventArgs()
         {
-        	return (ClLabelEditEventArgs)Event;
+            return (ClLabelEditEventArgs)Event;
         }
-        
+
         [ContextMethod("СсылкаНажатаАрг", "LinkClickedEventArgs")]
         public ClLinkClickedEventArgs LinkClickedEventArgs()
         {
-        	return (ClLinkClickedEventArgs)Event;
+            return (ClLinkClickedEventArgs)Event;
         }
-        
+
         [ContextMethod("НадписьСсылкаСсылкаНажатаАрг", "LinkLabelLinkClickedEventArgs")]
         public ClLinkLabelLinkClickedEventArgs LinkLabelLinkClickedEventArgs()
         {
-        	return (ClLinkLabelLinkClickedEventArgs)Event;
+            return (ClLinkLabelLinkClickedEventArgs)Event;
         }
-        
+
         [ContextMethod("ВводОтклоненАрг", "MaskInputRejectedEventArgs")]
         public ClMaskInputRejectedEventArgs MaskInputRejectedEventArgs()
         {
-        	return (ClMaskInputRejectedEventArgs)Event;
+            return (ClMaskInputRejectedEventArgs)Event;
         }
-        
+
         [ContextMethod("МышьАрг", "MouseEventArgs")]
         public ClMouseEventArgs MouseEventArgs()
         {
-        	return (ClMouseEventArgs)Event;
+            return (ClMouseEventArgs)Event;
         }
-        
+
         [ContextMethod("РедактированиеНадписиУзлаАрг", "NodeLabelEditEventArgs")]
         public ClNodeLabelEditEventArgs NodeLabelEditEventArgs()
         {
-        	return (ClNodeLabelEditEventArgs)Event;
+            return (ClNodeLabelEditEventArgs)Event;
         }
-        
+
         [ContextMethod("РисованиеАрг", "PaintEventArgs")]
         public ClPaintEventArgs PaintEventArgs()
         {
-        	return (ClPaintEventArgs)Event;
+            return (ClPaintEventArgs)Event;
         }
-        
+
         [ContextMethod("ЗначениеСвойстваИзмененоАрг", "PropertyValueChangedEventArgs")]
         public ClPropertyValueChangedEventArgs PropertyValueChangedEventArgs()
         {
-        	return (ClPropertyValueChangedEventArgs)Event;
+            return (ClPropertyValueChangedEventArgs)Event;
         }
-        
+
         [ContextMethod("ПереименованиеАрг", "RenamedEventArgs")]
         public ClRenamedEventArgs RenamedEventArgs()
         {
-        	return (ClRenamedEventArgs)Event;
+            return (ClRenamedEventArgs)Event;
         }
-        
+
         [ContextMethod("ПриПрокручиванииАрг", "ScrollEventArgs")]
         public ClScrollEventArgs ScrollEventArgs()
         {
-        	return (ClScrollEventArgs)Event;
+            return (ClScrollEventArgs)Event;
         }
-        
+
         [ContextMethod("ВыбранныйЭлементСеткиИзмененАрг", "SelectedGridItemChangedEventArgs")]
         public ClSelectedGridItemChangedEventArgs SelectedGridItemChangedEventArgs()
         {
-        	return (ClSelectedGridItemChangedEventArgs)Event;
+            return (ClSelectedGridItemChangedEventArgs)Event;
         }
-        
+
         [ContextMethod("КнопкаПанелиИнструментовАрг", "ToolBarButtonClickEventArgs")]
         public ClToolBarButtonClickEventArgs ToolBarButtonClickEventArgs()
         {
-        	return (ClToolBarButtonClickEventArgs)Event;
+            return (ClToolBarButtonClickEventArgs)Event;
         }
-        
+
         [ContextMethod("КолонкаДереваЗначенийАрг", "TreeColumnEventArgs")]
         public ClTreeColumnEventArgs TreeColumnEventArgs()
         {
-        	return (ClTreeColumnEventArgs)Event;
+            return (ClTreeColumnEventArgs)Event;
         }
-        
+
         [ContextMethod("УзелДереваЗначенийАрг", "TreeNodeAdvMouseEventArgs")]
         public ClTreeNodeAdvMouseEventArgs TreeNodeAdvMouseEventArgs()
         {
-        	return (ClTreeNodeAdvMouseEventArgs)Event;
+            return (ClTreeNodeAdvMouseEventArgs)Event;
         }
-        
+
         [ContextMethod("ДеревоЗначенийАрг", "TreeViewAdvEventArgs")]
         public ClTreeViewAdvEventArgs TreeViewAdvEventArgs()
         {
-        	return (ClTreeViewAdvEventArgs)Event;
+            return (ClTreeViewAdvEventArgs)Event;
         }
-        
+
         [ContextMethod("ДеревоОтменаАрг", "TreeViewCancelEventArgs")]
         public ClTreeViewCancelEventArgs TreeViewCancelEventArgs()
         {
-        	return (ClTreeViewCancelEventArgs)Event;
+            return (ClTreeViewCancelEventArgs)Event;
         }
-        
+
         [ContextMethod("ДеревоАрг", "TreeViewEventArgs")]
         public ClTreeViewEventArgs TreeViewEventArgs()
         {
-        	return (ClTreeViewEventArgs)Event;
+            return (ClTreeViewEventArgs)Event;
         }
-        
+
         [ContextMethod("ЗначениеДереваЗначенийАрг", "ValueTreeViewAdvEventArgs")]
         public ClValueTreeViewAdvEventArgs ValueTreeViewAdvEventArgs()
         {
-        	return (ClValueTreeViewAdvEventArgs)Event;
+            return (ClValueTreeViewAdvEventArgs)Event;
         }
-        
+
         [ContextMethod("ДанныеДляДизайнера", "DataForDesigner")] // метод нужен только для дизайнера форм
         public string AttributesForDesigner(string p1, string p2) // p1 - строковое представление типа объекта, p2 - имя свойства
         {
             System.Type Type1 = GetTypeFromName(p1);
             string str1 = "";
-            string DisplayName = "";//ОтображаемоеИмяСвойства
+            string DisplayName = "";
+            //ОтображаемоеИмяСвойства
             //try
             //{
             //    System.ComponentModel.PropertyDescriptor PropertyDescriptorCollection1 = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2];
@@ -2688,7 +3304,8 @@ namespace osf
             //}
             //catch { }
             str1 = str1 + "DisplayName=" + DisplayName + "~";
-            string Description = "";//ОписаниеСвойства
+            string Description = "";
+            //ОписаниеСвойства
             //try
             //{
             //    System.ComponentModel.PropertyDescriptor PropertyDescriptorCollection1 = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2];
@@ -2718,7 +3335,8 @@ namespace osf
             }
             catch { }
             str1 = str1 + "Browsable=" + Browsable + "~";
-            string ConverterTypeName = "";//КонвертерТипаСвойства
+            string ConverterTypeName = "";
+            //КонвертерТипаСвойства
             //try
             //{
             //    System.ComponentModel.PropertyDescriptor PropertyDescriptorCollection1 = System.ComponentModel.TypeDescriptor.GetProperties(Type1)[p2];
@@ -2784,7 +3402,7 @@ namespace osf
 
             return null;
         }
-			
+
         public static void AddToHashtable(dynamic p1, dynamic p2)
         {
             if (!OneScriptForms.hashtable.ContainsKey(p1))
@@ -2799,7 +3417,7 @@ namespace osf
                 }
             }
         }
-			
+
         public static dynamic RevertEqualsObj(dynamic initialObject)
         {
             try
@@ -2812,7 +3430,7 @@ namespace osf
             }
         }
 
-        public static IValue RevertObj(dynamic initialObject) 
+        public static IValue RevertObj(dynamic initialObject)
         {
             //ScriptEngine.Machine.Values.NullValue NullValue1;
             //ScriptEngine.Machine.Values.BooleanValue BooleanValue1;
@@ -2863,7 +3481,7 @@ namespace osf
             {
                 return (IValue)Obj1;
             }
-			
+
             try
             {
                 if (str1.Contains("osf."))
@@ -2942,7 +3560,7 @@ namespace osf
                     return (IValue)ValueFactory.Create(vOut);
                 }
             }
-			
+
             if (str4 == "Неопределено")
             {
                 return (IValue)null;
@@ -2965,7 +3583,7 @@ namespace osf
             }
             return (IValue)initialObject;
         }
-			
+
         public static dynamic DefineTypeIValue(dynamic p1)
         {
             if (p1.GetType() == typeof(ScriptEngine.Machine.Values.StringValue))
@@ -2989,7 +3607,7 @@ namespace osf
                 return p1;
             }
         }
-			
+
         public static dynamic GetEventParameter(dynamic dll_objEvent)
         {
             if (dll_objEvent != null)

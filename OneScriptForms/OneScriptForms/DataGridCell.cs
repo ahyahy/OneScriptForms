@@ -48,7 +48,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЯчейкаСеткиДанных", "ClDataGridCell")]
+    [ContextClass("КлЯчейкаСеткиДанных", "ClDataGridCell")]
     public class ClDataGridCell : AutoContext<ClDataGridCell>
     {
         public ClDataGridCell(int p1, int p2)
@@ -57,7 +57,7 @@ namespace osf
             DataGridCell1.dll_obj = this;
             Base_obj = DataGridCell1;
         }
-		
+
         public ClDataGridCell(DataGridCell p1)
         {
             DataGridCell DataGridCell1 = p1;
@@ -66,7 +66,7 @@ namespace osf
         }
 
         public DataGridCell Base_obj;
-        
+
         [ContextProperty("НомерКолонки", "ColumnNumber")]
         public int ColumnNumber
         {
@@ -80,6 +80,6 @@ namespace osf
             get { return Base_obj.RowNumber; }
             set { Base_obj.RowNumber = value; }
         }
-        
+
     }
 }

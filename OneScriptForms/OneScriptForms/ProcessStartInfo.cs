@@ -90,7 +90,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлИнформацияЗапускаПроцесса", "ClProcessStartInfo")]
+    [ContextClass("КлИнформацияЗапускаПроцесса", "ClProcessStartInfo")]
     public class ClProcessStartInfo : AutoContext<ClProcessStartInfo>
     {
         public ClProcessStartInfo(string p1 = null, string p2 = null)
@@ -108,7 +108,7 @@ namespace osf
         }
 
         public ProcessStartInfo Base_obj;
-        
+
         [ContextProperty("Аргументы", "Arguments")]
         public string Arguments
         {
@@ -171,6 +171,6 @@ namespace osf
             get { return (int)Base_obj.WindowStyle; }
             set { Base_obj.WindowStyle = value; }
         }
-        
+
     }
 }

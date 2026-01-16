@@ -74,7 +74,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлСтильЯчейки", "ClDataGridViewCellStyle")]
+    [ContextClass("КлСтильЯчейки", "ClDataGridViewCellStyle")]
     public class ClDataGridViewCellStyle : AutoContext<ClDataGridViewCellStyle>
     {
         private ClColor backColor;
@@ -94,7 +94,7 @@ namespace osf
             backColor = new ClColor(Base_obj.BackColor);
             selectionBackColor = new ClColor(Base_obj.SelectionBackColor);
         }
-		
+
         public ClDataGridViewCellStyle(DataGridViewCellStyle p1)
         {
             DataGridViewCellStyle DataGridViewCellStyle1 = p1;
@@ -107,7 +107,7 @@ namespace osf
         }
 
         public DataGridViewCellStyle Base_obj;
-        
+
         [ContextProperty("Выравнивание", "Alignment")]
         public int Alignment
         {
@@ -121,18 +121,18 @@ namespace osf
             get { return new ClPadding(Base_obj.Padding); }
             set { Base_obj.Padding = value.Base_obj; }
         }
-        
+
         [ContextProperty("Метка", "Tag")]
         public ClCollection Tag
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("ОсновнойЦвет", "ForeColor")]
         public ClColor ForeColor
         {
             get { return foreColor; }
-            set 
+            set
             {
                 foreColor = value;
                 Base_obj.ForeColor = value.Base_obj;
@@ -143,7 +143,7 @@ namespace osf
         public ClColor SelectionForeColor
         {
             get { return selectionForeColor; }
-            set 
+            set
             {
                 selectionForeColor = value;
                 Base_obj.SelectionForeColor = value.Base_obj;
@@ -161,7 +161,7 @@ namespace osf
         public ClColor BackColor
         {
             get { return backColor; }
-            set 
+            set
             {
                 backColor = value;
                 Base_obj.BackColor = value.Base_obj;
@@ -172,7 +172,7 @@ namespace osf
         public ClColor SelectionBackColor
         {
             get { return selectionBackColor; }
-            set 
+            set
             {
                 selectionBackColor = value;
                 Base_obj.SelectionBackColor = value.Base_obj;
@@ -196,6 +196,6 @@ namespace osf
                 Base_obj.Font = value.Base_obj;
             }
         }
-        
+
     }
 }

@@ -15,7 +15,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлПриЗакрытииФормыАрг", "ClFormClosingEventArgs")]
+    [ContextClass("КлПриЗакрытииФормыАрг", "ClFormClosingEventArgs")]
     public class ClFormClosingEventArgs : AutoContext<ClFormClosingEventArgs>
     {
         public ClFormClosingEventArgs()
@@ -33,7 +33,7 @@ namespace osf
         }
 
         public FormClosingEventArgs Base_obj;
-        
+
         [ContextProperty("Отмена", "Cancel")]
         public bool Cancel
         {
@@ -46,7 +46,7 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
@@ -58,6 +58,6 @@ namespace osf
         {
             get { return (int)Base_obj.CloseReason; }
         }
-        
+
     }
 }

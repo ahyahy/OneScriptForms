@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлРежимРазмераПоляКартинки", "ClPictureBoxSizeMode")]
+    [ContextClass("КлРежимРазмераПоляКартинки", "ClPictureBoxSizeMode")]
     public class ClPictureBoxSizeMode : AutoContext<ClPictureBoxSizeMode>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_normal = (int)System.Windows.Forms.PictureBoxSizeMode.Normal; // 0 Изображение размещается в левом верхнем углу <B>ПолеКартинки&nbsp;(PictureBox)</B>. Изображение обрезается, если его размер превышает <B>ПолеКартинки&nbsp;(PictureBox)</B>.
@@ -39,6 +39,48 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {2, "АвтоРазмер"},
+            {4, "Пропорционально"},
+            {1, "РастянутьИзображение"},
+            {0, "Стандартный"},
+            {3, "ЦентрИзображения"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {2, "AutoSize"},
+            {4, "Zoom"},
+            {1, "StretchImage"},
+            {0, "Normal"},
+            {3, "CenterImage"},
+        };
+
         public ClPictureBoxSizeMode()
         {
             _list = new List<IValue>();
@@ -52,31 +94,31 @@ namespace osf
         [ContextProperty("АвтоРазмер", "AutoSize")]
         public int AutoSize
         {
-        	get { return m_autoSize; }
+            get { return m_autoSize; }
         }
 
         [ContextProperty("Пропорционально", "Zoom")]
         public int Zoom
         {
-        	get { return m_zoom; }
+            get { return m_zoom; }
         }
 
         [ContextProperty("РастянутьИзображение", "StretchImage")]
         public int StretchImage
         {
-        	get { return m_stretchImage; }
+            get { return m_stretchImage; }
         }
 
         [ContextProperty("Стандартный", "Normal")]
         public int Normal
         {
-        	get { return m_normal; }
+            get { return m_normal; }
         }
 
         [ContextProperty("ЦентрИзображения", "CenterImage")]
         public int CenterImage
         {
-        	get { return m_centerImage; }
+            get { return m_centerImage; }
         }
     }
 }

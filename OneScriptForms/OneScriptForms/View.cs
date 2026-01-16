@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace osf
 {
-    [ContextClass ("КлРежимОтображения", "ClView")]
+    [ContextClass("КлРежимОтображения", "ClView")]
     public class ClView : AutoContext<ClView>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_largeIcon = (int)View.LargeIcon; // 0 Каждый элемент отображается в виде полноразмерного значка с меткой под ним.
@@ -39,6 +39,46 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {0, "БольшойЗначок"},
+            {2, "МаленькийЗначок"},
+            {1, "Подробно"},
+            {3, "Список"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {0, "LargeIcon"},
+            {2, "SmallIcon"},
+            {1, "Details"},
+            {3, "List"},
+        };
+
         public ClView()
         {
             _list = new List<IValue>();
@@ -51,25 +91,25 @@ namespace osf
         [ContextProperty("БольшойЗначок", "LargeIcon")]
         public int LargeIcon
         {
-        	get { return m_largeIcon; }
+            get { return m_largeIcon; }
         }
 
         [ContextProperty("МаленькийЗначок", "SmallIcon")]
         public int SmallIcon
         {
-        	get { return m_smallIcon; }
+            get { return m_smallIcon; }
         }
 
         [ContextProperty("Подробно", "Details")]
         public int Details
         {
-        	get { return m_details; }
+            get { return m_details; }
         }
 
         [ContextProperty("Список", "List")]
         public int List
         {
-        	get { return m_list; }
+            get { return m_list; }
         }
     }
 }

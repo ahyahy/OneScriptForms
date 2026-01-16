@@ -71,7 +71,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлКолонка", "ClColumnHeader")]
+    [ContextClass("КлКолонка", "ClColumnHeader")]
     public class ClColumnHeader : AutoContext<ClColumnHeader>
     {
         public ClColumnHeader()
@@ -96,7 +96,7 @@ namespace osf
         }
 
         public ColumnHeader Base_obj;
-        
+
         [ContextProperty("ВыравниваниеТекста", "TextAlign")]
         public int TextAlign
         {
@@ -130,6 +130,6 @@ namespace osf
             get { return Base_obj.Width; }
             set { Base_obj.Width = value; }
         }
-        
+
     }
 }

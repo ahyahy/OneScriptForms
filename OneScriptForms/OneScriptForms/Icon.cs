@@ -80,11 +80,10 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЗначок", "ClIcon")]
+    [ContextClass("КлЗначок", "ClIcon")]
     public class ClIcon : AutoContext<ClIcon>
     {
-
-    public ClIcon(string p1)
+        public ClIcon(string p1)
         {
             Icon Icon1 = new Icon(p1);
             Icon1.dll_obj = this;
@@ -106,7 +105,7 @@ namespace osf
         }
 
         public Icon Base_obj;
-        
+
         [ContextProperty("Высота", "Height")]
         public int Height
         {
@@ -124,7 +123,7 @@ namespace osf
         {
             get { return Base_obj.Width; }
         }
-        
+
         [ContextMethod("ВКартинку", "ToBitmap")]
         public ClBitmap ToBitmap()
         {

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлСтильКнопокПанелиИнструментов", "ClToolBarButtonStyle")]
+    [ContextClass("КлСтильКнопокПанелиИнструментов", "ClToolBarButtonStyle")]
     public class ClToolBarButtonStyle : AutoContext<ClToolBarButtonStyle>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_pushButton = (int)System.Windows.Forms.ToolBarButtonStyle.PushButton; // 1 Стандартная трехмерная кнопка.
@@ -38,6 +38,46 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {4, "КнопкаВыпадающегоСписка"},
+            {3, "Разделитель"},
+            {1, "СтандартнаяТрехмерная"},
+            {2, "Тумблер"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {4, "DropDownButton"},
+            {3, "Separator"},
+            {1, "PushButton"},
+            {2, "ToggleButton"},
+        };
+
         public ClToolBarButtonStyle()
         {
             _list = new List<IValue>();
@@ -50,25 +90,25 @@ namespace osf
         [ContextProperty("КнопкаВыпадающегоСписка", "DropDownButton")]
         public int DropDownButton
         {
-        	get { return m_dropDownButton; }
+            get { return m_dropDownButton; }
         }
 
         [ContextProperty("Разделитель", "Separator")]
         public int Separator
         {
-        	get { return m_separator; }
+            get { return m_separator; }
         }
 
         [ContextProperty("СтандартнаяТрехмерная", "PushButton")]
         public int PushButton
         {
-        	get { return m_pushButton; }
+            get { return m_pushButton; }
         }
 
         [ContextProperty("Тумблер", "ToggleButton")]
         public int ToggleButton
         {
-        	get { return m_toggleButton; }
+            get { return m_toggleButton; }
         }
     }
 }

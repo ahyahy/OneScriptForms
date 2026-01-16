@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлФорматПоляКалендаря", "ClFormatDateTimePicker")]
+    [ContextClass("КлФорматПоляКалендаря", "ClFormatDateTimePicker")]
     public class ClFormatDateTimePicker : AutoContext<ClFormatDateTimePicker>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_long = (int)System.Windows.Forms.DateTimePickerFormat.Long; // 1 Элемент управления <B>ПолеКалендаря&nbsp;(DateTimePicker)</B> отображает значение даты/времени в длинном формате даты, настроенном в операционной системе пользователя.
@@ -38,6 +38,46 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {4, "Время"},
+            {1, "Длинный"},
+            {2, "Короткий"},
+            {8, "Пользовательский"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {4, "Time"},
+            {1, "Long"},
+            {2, "Short"},
+            {8, "Custom"},
+        };
+
         public ClFormatDateTimePicker()
         {
             _list = new List<IValue>();
@@ -50,25 +90,25 @@ namespace osf
         [ContextProperty("Время", "Time")]
         public int Time
         {
-        	get { return m_time; }
+            get { return m_time; }
         }
 
         [ContextProperty("Длинный", "Long")]
         public int Long
         {
-        	get { return m_long; }
+            get { return m_long; }
         }
 
         [ContextProperty("Короткий", "Short")]
         public int Short
         {
-        	get { return m_short; }
+            get { return m_short; }
         }
 
         [ContextProperty("Пользовательский", "Custom")]
         public int Custom
         {
-        	get { return m_custom; }
+            get { return m_custom; }
         }
     }
 }

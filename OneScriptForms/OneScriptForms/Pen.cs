@@ -31,7 +31,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлПеро", "ClPen")]
+    [ContextClass("КлПеро", "ClPen")]
     public class ClPen : AutoContext<ClPen>
     {
         public ClPen(ClColor p1, float p2 = 1.0f)
@@ -40,7 +40,7 @@ namespace osf
             Pen1.dll_obj = this;
             Base_obj = Pen1;
         }
-		
+
         public ClPen(Pen p1)
         {
             Pen Pen1 = p1;
@@ -49,7 +49,7 @@ namespace osf
         }
 
         public Pen Base_obj;
-        
+
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

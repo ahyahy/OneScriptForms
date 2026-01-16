@@ -156,7 +156,7 @@ namespace osf
                     }
                     else if (sortOrder == 1)
                     {
-                        
+
                     }
                     else if (sortOrder == 2)
                     {
@@ -261,7 +261,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлМассивСписок", "ClArrayList")]
+    [ContextClass("КлМассивСписок", "ClArrayList")]
     public class ClArrayList : AutoContext<ClArrayList>
     {
         public ClArrayList()
@@ -270,34 +270,34 @@ namespace osf
             ArrayList1.dll_obj = this;
             Base_obj = ArrayList1;
         }
-		
+
         public ClArrayList(ArrayList p1)
         {
             ArrayList ArrayList1 = p1;
             ArrayList1.dll_obj = this;
             Base_obj = ArrayList1;
         }
-        
+
         public ArrayList Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Вставить", "Insert")]
         public IValue Insert(int p1, IValue p2)
         {
             return (IValue)Base_obj.Insert(p1, p2);
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public IValue Add(IValue p1 = null)
         {
             return (IValue)Base_obj.Add(p1);
         }
-        
+
         [ContextMethod("Индекс", "IndexOf")]
         public int IndexOf(IValue p1)
         {
@@ -309,13 +309,13 @@ namespace osf
         {
             Base_obj.Reverse();
         }
-					
+
         [ContextMethod("Очистить", "Clear")]
         public void Clear()
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Содержит", "Contains")]
         public bool Contains(IValue p1)
         {

@@ -96,7 +96,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлПрямоугольник", "ClRectangle")]
+    [ContextClass("КлПрямоугольник", "ClRectangle")]
     public class ClRectangle : AutoContext<ClRectangle>
     {
         public ClRectangle(int x = 0, int y = 0, int width = 0, int height = 0)
@@ -109,7 +109,7 @@ namespace osf
             Width = width;
             Height = height;
         }
-		
+
         public ClRectangle(Rectangle p1)
         {
             Rectangle Rectangle1 = p1;
@@ -118,7 +118,7 @@ namespace osf
         }
 
         public Rectangle Base_obj;
-        
+
         [ContextProperty("Верх", "Top")]
         public int Top
         {
@@ -184,6 +184,6 @@ namespace osf
             get { return Base_obj.Width; }
             set { Base_obj.Width = value; }
         }
-        
+
     }
 }

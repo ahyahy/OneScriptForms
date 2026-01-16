@@ -15,7 +15,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлКлавишаНажатаАрг", "ClKeyPressEventArgs")]
+    [ContextClass("КлКлавишаНажатаАрг", "ClKeyPressEventArgs")]
     public class ClKeyPressEventArgs : AutoContext<ClKeyPressEventArgs>
     {
         public ClKeyPressEventArgs()
@@ -24,22 +24,22 @@ namespace osf
             KeyPressEventArgs1.dll_obj = this;
             Base_obj = KeyPressEventArgs1;
         }
-		
+
         public ClKeyPressEventArgs(KeyPressEventArgs p1)
         {
             KeyPressEventArgs KeyPressEventArgs1 = p1;
             KeyPressEventArgs1.dll_obj = this;
             Base_obj = KeyPressEventArgs1;
         }
-        
+
         public KeyPressEventArgs Base_obj;
-        
+
         [ContextProperty("Отправитель", "Sender")]
         public IValue Sender
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
@@ -51,6 +51,6 @@ namespace osf
         {
             get { return Base_obj.KeyChar; }
         }
-        
+
     }
 }

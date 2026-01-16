@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлТипЭлементаСетки", "ClGridItemType")]
+    [ContextClass("КлТипЭлементаСетки", "ClGridItemType")]
     public class ClGridItemType : AutoContext<ClGridItemType>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_property = (int)System.Windows.Forms.GridItemType.Property; // 0 Компонент сетки, соответствующий свойству.
@@ -38,6 +38,46 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1, "Категория"},
+            {3, "Корневой"},
+            {0, "Свойство"},
+            {2, "ЭлементМассива"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1, "Category"},
+            {3, "Root"},
+            {0, "Property"},
+            {2, "ArrayValue"},
+        };
+
         public ClGridItemType()
         {
             _list = new List<IValue>();
@@ -50,25 +90,25 @@ namespace osf
         [ContextProperty("Категория", "Category")]
         public int Category
         {
-        	get { return m_category; }
+            get { return m_category; }
         }
 
         [ContextProperty("Корневой", "Root")]
         public int Root
         {
-        	get { return m_root; }
+            get { return m_root; }
         }
 
         [ContextProperty("Свойство", "Property")]
         public int Property
         {
-        	get { return m_property; }
+            get { return m_property; }
         }
 
         [ContextProperty("ЭлементМассива", "ArrayValue")]
         public int ArrayValue
         {
-        	get { return m_arrayValue; }
+            get { return m_arrayValue; }
         }
     }
 }

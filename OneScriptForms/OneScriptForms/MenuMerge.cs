@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлСлияниеМеню", "ClMenuMerge")]
+    [ContextClass("КлСлияниеМеню", "ClMenuMerge")]
     public class ClMenuMerge : AutoContext<ClMenuMerge>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_add = (int)System.Windows.Forms.MenuMerge.Add; // 0 Объект <B>ЭлементМеню&nbsp;(MenuItem)</B> добавляется к коллекции объектов <B>ЭлементМеню&nbsp;(MenuItem)</B> в объединенном меню.
@@ -38,6 +38,46 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {0, "Добавить"},
+            {1, "Заменить"},
+            {2, "ОбъединитьМеню"},
+            {3, "Удалить"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {0, "Add"},
+            {1, "Replace"},
+            {2, "MergeItems"},
+            {3, "Remove"},
+        };
+
         public ClMenuMerge()
         {
             _list = new List<IValue>();
@@ -50,25 +90,25 @@ namespace osf
         [ContextProperty("Добавить", "Add")]
         public int Add
         {
-        	get { return m_add; }
+            get { return m_add; }
         }
 
         [ContextProperty("Заменить", "Replace")]
         public int Replace
         {
-        	get { return m_replace; }
+            get { return m_replace; }
         }
 
         [ContextProperty("ОбъединитьМеню", "MergeItems")]
         public int MergeItems
         {
-        	get { return m_mergeItems; }
+            get { return m_mergeItems; }
         }
 
         [ContextProperty("Удалить", "Remove")]
         public int Remove
         {
-        	get { return m_remove; }
+            get { return m_remove; }
         }
     }
 }

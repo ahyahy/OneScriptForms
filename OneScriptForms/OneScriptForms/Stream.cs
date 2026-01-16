@@ -90,7 +90,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлПоток", "ClStream")]
+    [ContextClass("КлПоток", "ClStream")]
     public class ClStream : AutoContext<ClStream>
     {
         public ClStream()
@@ -99,16 +99,16 @@ namespace osf
             Stream1.dll_obj = this;
             Base_obj = Stream1;
         }
-		
+
         public ClStream(Stream p1)
         {
             Stream Stream1 = p1;
             Stream1.dll_obj = this;
             Base_obj = Stream1;
         }
-        
+
         public Stream Base_obj;
-        
+
         [ContextProperty("ВозможностьЗаписи", "CanWrite")]
         public bool CanWrite
         {
@@ -139,13 +139,13 @@ namespace osf
             get { return Base_obj.Position; }
             set { Base_obj.Position = value; }
         }
-        
+
         [ContextMethod("Закрыть", "Close")]
         public void Close()
         {
             Base_obj.Close();
         }
-					
+
         [ContextMethod("Записать", "Write")]
         public void Write(ClArrayList p1, int p2, int p3)
         {
@@ -158,13 +158,13 @@ namespace osf
             }
             Base_obj.Write(objects, p2, p3);
         }
-        
+
         [ContextMethod("ЗаписатьБайт", "WriteByte")]
         public void WriteByte(int p1)
         {
             Base_obj.WriteByte(Convert.ToByte(p1));
         }
-        
+
         [ContextMethod("Найти", "Seek")]
         public int Seek(int p1, int p2)
         {
@@ -176,7 +176,7 @@ namespace osf
         {
             Base_obj.Flush();
         }
-					
+
         [ContextMethod("УстановитьДлину", "SetLength")]
         public void SetLength(int p1)
         {

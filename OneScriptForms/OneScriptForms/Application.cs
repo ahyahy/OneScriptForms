@@ -54,7 +54,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлПриложение", "ClApplication")]
+    [ContextClass("КлПриложение", "ClApplication")]
     public class ClApplication : AutoContext<ClApplication>
     {
         public ClApplication()
@@ -63,16 +63,16 @@ namespace osf
             Application1.dll_obj = this;
             Base_obj = Application1;
         }
-		
+
         public ClApplication(Application p1)
         {
             Application Application1 = p1;
             Application1.dll_obj = this;
             Base_obj = Application1;
         }
-        
+
         public Application Base_obj;
-        
+
         [ContextProperty("Версия", "Version")]
         public ClVersion Version
         {
@@ -90,13 +90,13 @@ namespace osf
         {
             get { return ((AssemblyTitleAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false)[0]).Title.ToString(); }
         }
-        
+
         [ContextProperty("ПутьДанныхПриложенияПользователя", "UserAppDataPath")]
         public string UserAppDataPath
         {
             get { return Base_obj.UserAppDataPath; }
         }
-        
+
         [ContextMethod("ВключитьВизуальныеСтили", "EnableVisualStyles")]
         public void EnableVisualStyles()
         {

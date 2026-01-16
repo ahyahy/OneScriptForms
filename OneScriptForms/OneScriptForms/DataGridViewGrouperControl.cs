@@ -11,7 +11,7 @@ namespace Subro.Controls
     // Этот элемент управления используется для обеспечения пользовательского интерфейса для DataGridViewGrouper.
     // Код создан на основе разработки автора Robert.Verpalen https://www.codeproject.com/Tips/995958/DataGridViewGrouper под лицензией 
     // The Code Project Open License (CPOL) 1.02 https://www.codeproject.com/info/cpol10.aspx
-		
+
     public partial class DataGridViewGrouperControl : UserControl
     {
         private System.ComponentModel.IContainer components = null;
@@ -61,12 +61,12 @@ namespace Subro.Controls
             ResumeLayout(false);
             PerformLayout();
         }
-		
+
         public System.Windows.Forms.ComboBox CmbFields
         {
             get { return cmbFields; }
         }
-		
+
         public System.Windows.Forms.CheckBox Chk
         {
             get { return chk; }
@@ -154,7 +154,7 @@ namespace Subro.Controls
         public DataGridView DataGridView
         {
             get
-            {                
+            {
                 if (grouper != null)
                 {
                     return grouper.DataGridView;
@@ -448,7 +448,7 @@ namespace Subro.Controls
             DataGridViewGrouperControl1.dll_obj = this;
             Base_obj = DataGridViewGrouperControl1;
         }
-		
+
         public ClDataGridViewGrouperControl(Subro.Controls.DataGridViewGrouper p1)
         {
             DataGridViewGrouperControl DataGridViewGrouperControl1 = new DataGridViewGrouperControl();
@@ -465,7 +465,7 @@ namespace Subro.Controls
                 DataGridViewGrouperControl1.Chk.CheckState = CheckState.Unchecked;
             }
         }
-		
+
         public ClDataGridViewGrouperControl(DataGridViewGrouperControl p1)
         {
             DataGridViewGrouperControl DataGridViewGrouperControl1 = p1;
@@ -475,7 +475,6 @@ namespace Subro.Controls
 
         public DataGridViewGrouperControl Base_obj;
 
-        //Свойства============================================================
         [ContextProperty("Верх", "Top")]
         public int Top
         {
@@ -488,7 +487,7 @@ namespace Subro.Controls
         {
             get { return (ClDataGridViewGrouper)osf.OneScriptForms.RevertObj(Base_obj.Grouper); }
         }
-        
+
         [ContextProperty("Лево", "Left")]
         public int Left
         {
@@ -502,7 +501,7 @@ namespace Subro.Controls
             get { return osf.OneScriptForms.RevertObj(Base_obj.Parent); }
             set { Base_obj.Parent = ((dynamic)value).Base_obj.M_Control; }
         }
-        
+
         [ContextProperty("Ширина", "Width")]
         public int Width
         {
@@ -510,28 +509,27 @@ namespace Subro.Controls
             set { Base_obj.Width = value; }
         }
 
-        //Методы============================================================
         [ContextMethod("Выше", "PlaceTop")]
         public void PlaceTop(IValue p1, int p2)
         {
             dynamic p3 = ((dynamic)p1).Base_obj;
             Base_obj.Location = new Point(p3.Left, p3.Top - Base_obj.Height - p2);
         }
-        
+
         [ContextMethod("Левее", "PlaceLeft")]
         public void PlaceLeft(IValue p1, int p2)
         {
             dynamic p3 = ((dynamic)p1).Base_obj;
             Base_obj.Location = new Point(p3.Left - Base_obj.Width - p2, p3.Top);
         }
-        
+
         [ContextMethod("Ниже", "PlaceBottom")]
         public void PlaceBottom(IValue p1, int p2)
         {
             dynamic p3 = ((dynamic)p1).Base_obj;
             Base_obj.Location = new Point(p3.Left, p3.Top + p3.Height + p2);
         }
-        
+
         [ContextMethod("Правее", "PlaceRight")]
         public void PlaceRight(IValue p1, int p2)
         {

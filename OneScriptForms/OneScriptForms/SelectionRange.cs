@@ -46,7 +46,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлВыделенныйДиапазон", "ClSelectionRange")]
+    [ContextClass("КлВыделенныйДиапазон", "ClSelectionRange")]
     public class ClSelectionRange : AutoContext<ClSelectionRange>
     {
         public ClSelectionRange()
@@ -55,14 +55,14 @@ namespace osf
             SelectionRange1.dll_obj = this;
             Base_obj = SelectionRange1;
         }
-		
+
         public ClSelectionRange(IValue p1, IValue p2)
         {
             SelectionRange SelectionRange1 = new SelectionRange(p1.AsDate(), p2.AsDate());
             SelectionRange1.dll_obj = this;
             Base_obj = SelectionRange1;
         }
-		
+
         public ClSelectionRange(SelectionRange p1)
         {
             SelectionRange SelectionRange1 = p1;
@@ -71,7 +71,7 @@ namespace osf
         }
 
         public SelectionRange Base_obj;
-        
+
         [ContextProperty("Конец", "End")]
         public DateTime End
         {
@@ -85,6 +85,6 @@ namespace osf
             get { return Base_obj.Start; }
             set { Base_obj.Start = value; }
         }
-        
+
     }
 }

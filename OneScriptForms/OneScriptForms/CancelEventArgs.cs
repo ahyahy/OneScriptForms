@@ -10,7 +10,7 @@ namespace osf
 
     }
 
-    [ContextClass ("КлОтменаАрг", "ClCancelEventArgs")]
+    [ContextClass("КлОтменаАрг", "ClCancelEventArgs")]
     public class ClCancelEventArgs : AutoContext<ClCancelEventArgs>
     {
         public ClCancelEventArgs()
@@ -19,16 +19,16 @@ namespace osf
             CancelEventArgs1.dll_obj = this;
             Base_obj = CancelEventArgs1;
         }
-		
+
         public ClCancelEventArgs(CancelEventArgs p1)
         {
             CancelEventArgs CancelEventArgs1 = p1;
             CancelEventArgs1.dll_obj = this;
             Base_obj = CancelEventArgs1;
         }
-        
+
         public CancelEventArgs Base_obj;
-        
+
         [ContextProperty("Отмена", "Cancel")]
         public bool Cancel
         {
@@ -41,12 +41,12 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
             get { return (IValue)Base_obj.Parameter; }
         }
-        
+
     }
 }

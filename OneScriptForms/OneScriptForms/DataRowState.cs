@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлСостояниеСтрокиДанных", "ClDataRowState")]
+    [ContextClass("КлСостояниеСтрокиДанных", "ClDataRowState")]
     public class ClDataRowState : AutoContext<ClDataRowState>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_detached = (int)System.Data.DataRowState.Detached; // 1 Строка была создана, но не является частью какой-либо коллекции данных. Поток данных находится в этом состоянии сразу после его создания и до его добавления в коллекцию или после его удаления из коллекции.
@@ -39,6 +39,48 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {4, "Добавлена"},
+            {16, "Изменена"},
+            {2, "Неизменна"},
+            {1, "Отсоединена"},
+            {8, "Удалена"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {4, "Added"},
+            {16, "Modified"},
+            {2, "Unchanged"},
+            {1, "Detached"},
+            {8, "Deleted"},
+        };
+
         public ClDataRowState()
         {
             _list = new List<IValue>();
@@ -52,31 +94,31 @@ namespace osf
         [ContextProperty("Добавлена", "Added")]
         public int Added
         {
-        	get { return m_added; }
+            get { return m_added; }
         }
 
         [ContextProperty("Изменена", "Modified")]
         public int Modified
         {
-        	get { return m_modified; }
+            get { return m_modified; }
         }
 
         [ContextProperty("Неизменна", "Unchanged")]
         public int Unchanged
         {
-        	get { return m_unchanged; }
+            get { return m_unchanged; }
         }
 
         [ContextProperty("Отсоединена", "Detached")]
         public int Detached
         {
-        	get { return m_detached; }
+            get { return m_detached; }
         }
 
         [ContextProperty("Удалена", "Deleted")]
         public int Deleted
         {
-        	get { return m_deleted; }
+            get { return m_deleted; }
         }
     }
 }

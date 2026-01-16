@@ -31,7 +31,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлПомеченныеЭлементыСпискаЭлементов", "ClListViewCheckedItemCollection")]
+    [ContextClass("КлПомеченныеЭлементыСпискаЭлементов", "ClListViewCheckedItemCollection")]
     public class ClListViewCheckedItemCollection : AutoContext<ClListViewCheckedItemCollection>
     {
         public ClListViewCheckedItemCollection()
@@ -40,22 +40,22 @@ namespace osf
             ListViewCheckedItemCollection1.dll_obj = this;
             Base_obj = ListViewCheckedItemCollection1;
         }
-		
+
         public ClListViewCheckedItemCollection(ListViewCheckedItemCollection p1)
         {
             ListViewCheckedItemCollection ListViewCheckedItemCollection1 = p1;
             ListViewCheckedItemCollection1.dll_obj = this;
             Base_obj = ListViewCheckedItemCollection1;
         }
-        
+
         public ListViewCheckedItemCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Элемент", "Item")]
         public ClListViewItem Item(int p1)
         {

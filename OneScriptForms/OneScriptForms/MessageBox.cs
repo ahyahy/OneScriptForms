@@ -40,7 +40,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлОкноСообщений", "ClMessageBox")]
+    [ContextClass("КлОкноСообщений", "ClMessageBox")]
     public class ClMessageBox : AutoContext<ClMessageBox>
     {
         public ClMessageBox()
@@ -49,16 +49,16 @@ namespace osf
             MessageBox1.dll_obj = this;
             Base_obj = MessageBox1;
         }
-		
+
         public ClMessageBox(MessageBox p1)
         {
             MessageBox MessageBox1 = p1;
             MessageBox1.dll_obj = this;
             Base_obj = MessageBox1;
         }
-        
+
         public MessageBox Base_obj;
-        
+
         [ContextProperty("Заголовок", "Title")]
         public string Title
         {
@@ -86,7 +86,7 @@ namespace osf
             get { return Base_obj.Text; }
             set { Base_obj.Text = value; }
         }
-        
+
         [ContextMethod("Показать", "Show")]
         public int Show(string text = null, string title = null, int buttons = 0, int icon = 0)
         {

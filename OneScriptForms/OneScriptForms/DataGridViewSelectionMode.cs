@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлРежимВыбораТаблицы", "ClDataGridViewSelectionMode")]
+    [ContextClass("КлРежимВыбораТаблицы", "ClDataGridViewSelectionMode")]
     public class ClDataGridViewSelectionMode : AutoContext<ClDataGridViewSelectionMode>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_cellSelect = (int)System.Windows.Forms.DataGridViewSelectionMode.CellSelect; // 0 Можно выбрать одну или несколько отдельных ячеек.
@@ -39,6 +39,48 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {4, "ЗаголовокКолонки"},
+            {3, "ЗаголовокСтроки"},
+            {2, "Колонка"},
+            {1, "Строка"},
+            {0, "Ячейка"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {4, "ColumnHeaderSelect"},
+            {3, "RowHeaderSelect"},
+            {2, "FullColumnSelect"},
+            {1, "FullRowSelect"},
+            {0, "CellSelect"},
+        };
+
         public ClDataGridViewSelectionMode()
         {
             _list = new List<IValue>();
@@ -52,31 +94,31 @@ namespace osf
         [ContextProperty("ЗаголовокКолонки", "ColumnHeaderSelect")]
         public int ColumnHeaderSelect
         {
-        	get { return m_columnHeaderSelect; }
+            get { return m_columnHeaderSelect; }
         }
 
         [ContextProperty("ЗаголовокСтроки", "RowHeaderSelect")]
         public int RowHeaderSelect
         {
-        	get { return m_rowHeaderSelect; }
+            get { return m_rowHeaderSelect; }
         }
 
         [ContextProperty("Колонка", "FullColumnSelect")]
         public int FullColumnSelect
         {
-        	get { return m_fullColumnSelect; }
+            get { return m_fullColumnSelect; }
         }
 
         [ContextProperty("Строка", "FullRowSelect")]
         public int FullRowSelect
         {
-        	get { return m_fullRowSelect; }
+            get { return m_fullRowSelect; }
         }
 
         [ContextProperty("Ячейка", "CellSelect")]
         public int CellSelect
         {
-        	get { return m_cellSelect; }
+            get { return m_cellSelect; }
         }
     }
 }

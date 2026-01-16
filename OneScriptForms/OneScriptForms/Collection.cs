@@ -30,7 +30,7 @@ namespace osf
             get
             {
                 int count = 0;
-                foreach (KeyValuePair<string, object>  DictionaryEntry in M_Collection)
+                foreach (KeyValuePair<string, object> DictionaryEntry in M_Collection)
                 {
                     count = count + 1;
                 }
@@ -59,7 +59,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлКоллекция", "ClCollection")]
+    [ContextClass("КлКоллекция", "ClCollection")]
     public class ClCollection : AutoContext<ClCollection>
     {
         public ClCollection()
@@ -68,22 +68,22 @@ namespace osf
             Collection1.dll_obj = this;
             Base_obj = Collection1;
         }
-		
+
         public ClCollection(Collection p1)
         {
             Collection Collection1 = p1;
             Collection1.dll_obj = this;
             Base_obj = Collection1;
         }
-        
+
         public Collection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public void Add(IValue p2, string p1)
         {

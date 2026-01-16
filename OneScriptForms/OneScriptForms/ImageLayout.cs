@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлРазмещениеИзображения", "ClImageLayout")]
+    [ContextClass("КлРазмещениеИзображения", "ClImageLayout")]
     public class ClImageLayout : AutoContext<ClImageLayout>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_none = (int)System.Windows.Forms.ImageLayout.None; // 0 Изображение выравнивается в клиентском прямоугольнике элемента управления вверху по левой стороне.
@@ -39,6 +39,48 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {4, "Масштабировать"},
+            {1, "Мозаика"},
+            {0, "Отсутствие"},
+            {3, "Растянуть"},
+            {2, "Центр"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {4, "Zoom"},
+            {1, "Tile"},
+            {0, "None"},
+            {3, "Stretch"},
+            {2, "Center"},
+        };
+
         public ClImageLayout()
         {
             _list = new List<IValue>();
@@ -52,31 +94,31 @@ namespace osf
         [ContextProperty("Масштабировать", "Zoom")]
         public int Zoom
         {
-        	get { return m_zoom; }
+            get { return m_zoom; }
         }
 
         [ContextProperty("Мозаика", "Tile")]
         public int Tile
         {
-        	get { return m_tile; }
+            get { return m_tile; }
         }
 
         [ContextProperty("Отсутствие", "None")]
         public int None
         {
-        	get { return m_none; }
+            get { return m_none; }
         }
 
         [ContextProperty("Растянуть", "Stretch")]
         public int Stretch
         {
-        	get { return m_stretch; }
+            get { return m_stretch; }
         }
 
         [ContextProperty("Центр", "Center")]
         public int Center
         {
-        	get { return m_center; }
+            get { return m_center; }
         }
     }
 }

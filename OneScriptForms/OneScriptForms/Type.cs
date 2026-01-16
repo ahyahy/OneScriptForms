@@ -6,7 +6,7 @@ namespace osf
 {
     public class Type
     {
-    public bool IsSubclassOf(osf.Type p1)
+        public bool IsSubclassOf(osf.Type p1)
         {
             return M_Type.IsSubclassOf(p1.M_Type);
         }
@@ -43,7 +43,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлТип", "ClType")]
+    [ContextClass("КлТип", "ClType")]
     public class ClType : AutoContext<ClType>
     {
         public ClType(IValue p1)
@@ -85,7 +85,7 @@ namespace osf
                                 str2 = type1.GetCustomAttribute<ContextClassAttribute>().GetAlias();
                             }
                             catch { }
-                            if ( type1.ToString() == p2)
+                            if (type1.ToString() == p2)
                             {
                                 Type1 = new Type(type1);
                                 break;
@@ -134,7 +134,7 @@ namespace osf
         }
 
         public dynamic Base_obj;
-        
+
         [ContextProperty("Имя", "Имя")]
         public string Name1
         {
@@ -190,19 +190,19 @@ namespace osf
                 return str1;
             }
         }
-        
+
         [ContextProperty("ЭтоКласс", "IsClass")]
         public bool IsClass
         {
             get { return Base_obj.IsClass; }
         }
-        
+
         [ContextMethod("ВСтроку", "ToString")]
         public override string ToString()
         {
             return Base_obj.ToString();
         }
-        
+
         [ContextMethod("ЭтоПодкласс", "IsSubclassOf")]
         public bool IsSubclassOf(ClType p1)
         {

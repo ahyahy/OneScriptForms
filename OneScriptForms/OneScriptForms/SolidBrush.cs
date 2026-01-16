@@ -29,7 +29,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлСплошнаяКисть", "ClSolidBrush")]
+    [ContextClass("КлСплошнаяКисть", "ClSolidBrush")]
     public class ClSolidBrush : AutoContext<ClSolidBrush>
     {
         public ClSolidBrush(Color p1)
@@ -40,6 +40,6 @@ namespace osf
         }
 
         public SolidBrush Base_obj;
-        
+
     }
 }

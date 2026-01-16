@@ -23,11 +23,6 @@
             M_Image = p1;
         }
 
-        public osf.ImageFormat  RawFormat
-        {
-            get { return new ImageFormat(M_Image.RawFormat); }
-        }
-
         public int Height
         {
             get { return M_Image.Height; }
@@ -36,6 +31,11 @@
         public int PixelFormat
         {
             get { return (int)M_Image.PixelFormat; }
+        }
+
+        public osf.ImageFormat RawFormat
+        {
+            get { return new ImageFormat(M_Image.RawFormat); }
         }
 
         public osf.Size Size

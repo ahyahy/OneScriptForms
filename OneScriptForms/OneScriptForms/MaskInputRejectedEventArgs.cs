@@ -10,7 +10,7 @@ namespace osf
 
     }
 
-    [ContextClass ("КлВводОтклоненАрг", "ClMaskInputRejectedEventArgs")]
+    [ContextClass("КлВводОтклоненАрг", "ClMaskInputRejectedEventArgs")]
     public class ClMaskInputRejectedEventArgs : AutoContext<ClMaskInputRejectedEventArgs>
     {
         public ClMaskInputRejectedEventArgs()
@@ -19,16 +19,16 @@ namespace osf
             MaskInputRejectedEventArgs1.dll_obj = this;
             Base_obj = MaskInputRejectedEventArgs1;
         }
-		
+
         public ClMaskInputRejectedEventArgs(MaskInputRejectedEventArgs p1)
         {
             MaskInputRejectedEventArgs MaskInputRejectedEventArgs1 = p1;
             MaskInputRejectedEventArgs1.dll_obj = this;
             Base_obj = MaskInputRejectedEventArgs1;
         }
-        
+
         public MaskInputRejectedEventArgs Base_obj;
-        
+
         [ContextProperty("Позиция", "Position")]
         public int Position
         {
@@ -40,6 +40,6 @@ namespace osf
         {
             get { return (int)Base_obj.RejectionHint; }
         }
-        
+
     }
 }

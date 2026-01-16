@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлОсобаяПапка", "ClSpecialFolder")]
+    [ContextClass("КлОсобаяПапка", "ClSpecialFolder")]
     public class ClSpecialFolder : AutoContext<ClSpecialFolder>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_desktop = (int)System.Environment.SpecialFolder.Desktop; // 0 Логический рабочий стол, а не физическое местоположение файлов системы.
@@ -56,6 +56,82 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {32, "ВременныеФайлыИнтернета"},
+            {26, "ДанныеПриложений"},
+            {28, "ДанныеПриложенийПользователя"},
+            {6, "Избранное"},
+            {34, "История"},
+            {7, "КаталогЗапуска"},
+            {9, "КаталогОтправить"},
+            {11, "КаталогПуск"},
+            {37, "КаталогСистема"},
+            {33, "Куки"},
+            {5, "Личное"},
+            {39, "МоиРисунки"},
+            {17, "МойКомпьютер"},
+            {13, "МояМузыка"},
+            {8, "НедавниеДокументы"},
+            {35, "ОбщиеДанныеПриложений"},
+            {43, "ОбщиеПрограммныеФайлы"},
+            {38, "ПрограммныеФайлы"},
+            {2, "Программы"},
+            {0, "РабочийСтол"},
+            {16, "ФайлыРабочегоСтола"},
+            {21, "Шаблоны"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {32, "InternetCache"},
+            {26, "ApplicationData"},
+            {28, "LocalApplicationData"},
+            {6, "Favorites"},
+            {34, "History"},
+            {7, "Startup"},
+            {9, "SendTo"},
+            {11, "StartMenu"},
+            {37, "SystemDirectory"},
+            {33, "Cookies"},
+            {5, "Personal"},
+            {39, "MyPictures"},
+            {17, "MyComputer"},
+            {13, "MyMusic"},
+            {8, "Recent"},
+            {35, "CommonApplicationData"},
+            {43, "CommonProgramFiles"},
+            {38, "ProgramFiles"},
+            {2, "Programs"},
+            {0, "Desktop"},
+            {16, "DesktopDirectory"},
+            {21, "Templates"},
+        };
+
         public ClSpecialFolder()
         {
             _list = new List<IValue>();
@@ -86,133 +162,133 @@ namespace osf
         [ContextProperty("ВременныеФайлыИнтернета", "InternetCache")]
         public int InternetCache
         {
-        	get { return m_internetCache; }
+            get { return m_internetCache; }
         }
 
         [ContextProperty("ДанныеПриложений", "ApplicationData")]
         public int ApplicationData
         {
-        	get { return m_applicationData; }
+            get { return m_applicationData; }
         }
 
         [ContextProperty("ДанныеПриложенийПользователя", "LocalApplicationData")]
         public int LocalApplicationData
         {
-        	get { return m_localApplicationData; }
+            get { return m_localApplicationData; }
         }
 
         [ContextProperty("Избранное", "Favorites")]
         public int Favorites
         {
-        	get { return m_favorites; }
+            get { return m_favorites; }
         }
 
         [ContextProperty("История", "History")]
         public int History
         {
-        	get { return m_history; }
+            get { return m_history; }
         }
 
         [ContextProperty("КаталогЗапуска", "Startup")]
         public int Startup
         {
-        	get { return m_startup; }
+            get { return m_startup; }
         }
 
         [ContextProperty("КаталогОтправить", "SendTo")]
         public int SendTo
         {
-        	get { return m_sendTo; }
+            get { return m_sendTo; }
         }
 
         [ContextProperty("КаталогПуск", "StartMenu")]
         public int StartMenu
         {
-        	get { return m_startMenu; }
+            get { return m_startMenu; }
         }
 
         [ContextProperty("КаталогСистема", "SystemDirectory")]
         public int SystemDirectory
         {
-        	get { return m_systemDirectory; }
+            get { return m_systemDirectory; }
         }
 
         [ContextProperty("Куки", "Cookies")]
         public int Cookies
         {
-        	get { return m_cookies; }
+            get { return m_cookies; }
         }
 
         [ContextProperty("Личное", "Personal")]
         public int Personal
         {
-        	get { return m_personal; }
+            get { return m_personal; }
         }
 
         [ContextProperty("МоиРисунки", "MyPictures")]
         public int MyPictures
         {
-        	get { return m_myPictures; }
+            get { return m_myPictures; }
         }
 
         [ContextProperty("МойКомпьютер", "MyComputer")]
         public int MyComputer
         {
-        	get { return m_myComputer; }
+            get { return m_myComputer; }
         }
 
         [ContextProperty("МояМузыка", "MyMusic")]
         public int MyMusic
         {
-        	get { return m_myMusic; }
+            get { return m_myMusic; }
         }
 
         [ContextProperty("НедавниеДокументы", "Recent")]
         public int Recent
         {
-        	get { return m_recent; }
+            get { return m_recent; }
         }
 
         [ContextProperty("ОбщиеДанныеПриложений", "CommonApplicationData")]
         public int CommonApplicationData
         {
-        	get { return m_commonApplicationData; }
+            get { return m_commonApplicationData; }
         }
 
         [ContextProperty("ОбщиеПрограммныеФайлы", "CommonProgramFiles")]
         public int CommonProgramFiles
         {
-        	get { return m_commonProgramFiles; }
+            get { return m_commonProgramFiles; }
         }
 
         [ContextProperty("ПрограммныеФайлы", "ProgramFiles")]
         public int ProgramFiles
         {
-        	get { return m_programFiles; }
+            get { return m_programFiles; }
         }
 
         [ContextProperty("Программы", "Programs")]
         public int Programs
         {
-        	get { return m_programs; }
+            get { return m_programs; }
         }
 
         [ContextProperty("РабочийСтол", "Desktop")]
         public int Desktop
         {
-        	get { return m_desktop; }
+            get { return m_desktop; }
         }
 
         [ContextProperty("ФайлыРабочегоСтола", "DesktopDirectory")]
         public int DesktopDirectory
         {
-        	get { return m_desktopDirectory; }
+            get { return m_desktopDirectory; }
         }
 
         [ContextProperty("Шаблоны", "Templates")]
         public int Templates
         {
-        	get { return m_templates; }
+            get { return m_templates; }
         }
     }
 }

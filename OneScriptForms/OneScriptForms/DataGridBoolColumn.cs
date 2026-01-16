@@ -34,7 +34,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлСтильКолонкиБулево", "ClDataGridBoolColumn")]
+    [ContextClass("КлСтильКолонкиБулево", "ClDataGridBoolColumn")]
     public class ClDataGridBoolColumn : AutoContext<ClDataGridBoolColumn>
     {
         public ClDataGridBoolColumn()
@@ -43,16 +43,16 @@ namespace osf
             DataGridBoolColumn1.dll_obj = this;
             Base_obj = DataGridBoolColumn1;
         }
-		
+
         public ClDataGridBoolColumn(DataGridBoolColumn p1)
         {
             DataGridBoolColumn DataGridBoolColumn1 = p1;
             DataGridBoolColumn1.dll_obj = this;
             Base_obj = DataGridBoolColumn1;
         }
-        
+
         public DataGridBoolColumn Base_obj;
-        
+
         [ContextProperty("Выравнивание", "Alignment")]
         public int Alignment
         {
@@ -87,7 +87,7 @@ namespace osf
             get { return Base_obj.Width; }
             set { Base_obj.Width = value; }
         }
-        
+
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

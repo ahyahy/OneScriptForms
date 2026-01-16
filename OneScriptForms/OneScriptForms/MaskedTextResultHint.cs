@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлРезультатМаски", "ClMaskedTextResultHint")]
+    [ContextClass("КлРезультатМаски", "ClMaskedTextResultHint")]
     public class ClMaskedTextResultHint : AutoContext<ClMaskedTextResultHint>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_positionOutOfRange = (int)System.ComponentModel.MaskedTextResultHint.PositionOutOfRange; // -55 Не удалось выполнить операцию. Заданная позиция находится вне диапазона конечной строки. Обычно это происходит, если это значение меньше нуля или больше длины конечной строки.
@@ -48,6 +48,66 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {2, "БезЭффекта"},
+            {-1, "НеASCII"},
+            {-4, "НеБуква"},
+            {-51, "НедопустимыйСимвол"},
+            {-53, "НедоступнаяПозицияРедактирования"},
+            {0, "Неизвестно"},
+            {-54, "НеРедактируемаяПозиция"},
+            {-3, "НеЦифра"},
+            {-5, "НеЦифраСоЗнаком"},
+            {3, "ПобочныйЭффект"},
+            {-55, "ПозицияВнеДиапазона"},
+            {-52, "ПриглашениеНеПрименимо"},
+            {4, "Успех"},
+            {1, "Экранирование"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {2, "NoEffect"},
+            {-1, "AsciiCharacterExpected"},
+            {-4, "LetterExpected"},
+            {-51, "InvalidInput"},
+            {-53, "UnavailableEditPosition"},
+            {0, "Unknown"},
+            {-54, "NonEditPosition"},
+            {-3, "DigitExpected"},
+            {-5, "SignedDigitExpected"},
+            {3, "SideEffect"},
+            {-55, "PositionOutOfRange"},
+            {-52, "PromptCharNotAllowed"},
+            {4, "Success"},
+            {1, "CharacterEscaped"},
+        };
+
         public ClMaskedTextResultHint()
         {
             _list = new List<IValue>();
@@ -70,85 +130,85 @@ namespace osf
         [ContextProperty("БезЭффекта", "NoEffect")]
         public int NoEffect
         {
-        	get { return m_noEffect; }
+            get { return m_noEffect; }
         }
 
         [ContextProperty("НеASCII", "AsciiCharacterExpected")]
         public int AsciiCharacterExpected
         {
-        	get { return m_asciiCharacterExpected; }
+            get { return m_asciiCharacterExpected; }
         }
 
         [ContextProperty("НеБуква", "LetterExpected")]
         public int LetterExpected
         {
-        	get { return m_letterExpected; }
+            get { return m_letterExpected; }
         }
 
         [ContextProperty("НедопустимыйСимвол", "InvalidInput")]
         public int InvalidInput
         {
-        	get { return m_invalidInput; }
+            get { return m_invalidInput; }
         }
 
         [ContextProperty("НедоступнаяПозицияРедактирования", "UnavailableEditPosition")]
         public int UnavailableEditPosition
         {
-        	get { return m_unavailableEditPosition; }
+            get { return m_unavailableEditPosition; }
         }
 
         [ContextProperty("Неизвестно", "Unknown")]
         public int Unknown
         {
-        	get { return m_unknown; }
+            get { return m_unknown; }
         }
 
         [ContextProperty("НеРедактируемаяПозиция", "NonEditPosition")]
         public int NonEditPosition
         {
-        	get { return m_nonEditPosition; }
+            get { return m_nonEditPosition; }
         }
 
         [ContextProperty("НеЦифра", "DigitExpected")]
         public int DigitExpected
         {
-        	get { return m_digitExpected; }
+            get { return m_digitExpected; }
         }
 
         [ContextProperty("НеЦифраСоЗнаком", "SignedDigitExpected")]
         public int SignedDigitExpected
         {
-        	get { return m_signedDigitExpected; }
+            get { return m_signedDigitExpected; }
         }
 
         [ContextProperty("ПобочныйЭффект", "SideEffect")]
         public int SideEffect
         {
-        	get { return m_sideEffect; }
+            get { return m_sideEffect; }
         }
 
         [ContextProperty("ПозицияВнеДиапазона", "PositionOutOfRange")]
         public int PositionOutOfRange
         {
-        	get { return m_positionOutOfRange; }
+            get { return m_positionOutOfRange; }
         }
 
         [ContextProperty("ПриглашениеНеПрименимо", "PromptCharNotAllowed")]
         public int PromptCharNotAllowed
         {
-        	get { return m_promptCharNotAllowed; }
+            get { return m_promptCharNotAllowed; }
         }
 
         [ContextProperty("Успех", "Success")]
         public int Success
         {
-        	get { return m_success; }
+            get { return m_success; }
         }
 
         [ContextProperty("Экранирование", "CharacterEscaped")]
         public int CharacterEscaped
         {
-        	get { return m_characterEscaped; }
+            get { return m_characterEscaped; }
         }
     }
 }

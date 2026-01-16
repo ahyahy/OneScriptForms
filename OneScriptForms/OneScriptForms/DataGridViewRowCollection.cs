@@ -72,7 +72,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлСтрокиТаблицы", "ClDataGridViewRowCollection")]
+    [ContextClass("КлСтрокиТаблицы", "ClDataGridViewRowCollection")]
     public class ClDataGridViewRowCollection : AutoContext<ClDataGridViewRowCollection>
     {
         public ClDataGridViewRowCollection()
@@ -81,22 +81,22 @@ namespace osf
             DataGridViewRowCollection1.dll_obj = this;
             Base_obj = DataGridViewRowCollection1;
         }
-		
+
         public ClDataGridViewRowCollection(DataGridViewRowCollection p1)
         {
             DataGridViewRowCollection DataGridViewRowCollection1 = p1;
             DataGridViewRowCollection1.dll_obj = this;
             Base_obj = DataGridViewRowCollection1;
         }
-        
+
         public DataGridViewRowCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Вставить", "Insert")]
         public void Insert(int p1, ClDataGridViewRow p2)
         {
@@ -112,7 +112,7 @@ namespace osf
             }
             return Base_obj.Add(p1.Base_obj);
         }
-        
+
         [ContextMethod("ДобавитьКопию", "AddCopy")]
         public int AddCopy(int p1)
         {
@@ -130,7 +130,7 @@ namespace osf
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Содержит", "Contains")]
         public bool Contains(ClDataGridViewRow p1)
         {

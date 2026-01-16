@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлФорматМаски", "ClMaskFormat")]
+    [ContextClass("КлФорматМаски", "ClMaskFormat")]
     public class ClMaskFormat : AutoContext<ClMaskFormat>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_excludePromptAndLiterals = (int)System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals; // 0 Возвращать только текст, введенный пользователем.
@@ -38,6 +38,46 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {2, "ВключитьЛитералы"},
+            {1, "ВключитьПриглашение"},
+            {3, "ВключитьПриглашениеИЛитералы"},
+            {0, "ИсключитьПриглашениеИЛитералы"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {2, "IncludeLiterals"},
+            {1, "IncludePrompt"},
+            {3, "IncludePromptAndLiterals"},
+            {0, "ExcludePromptAndLiterals"},
+        };
+
         public ClMaskFormat()
         {
             _list = new List<IValue>();
@@ -50,25 +90,25 @@ namespace osf
         [ContextProperty("ВключитьЛитералы", "IncludeLiterals")]
         public int IncludeLiterals
         {
-        	get { return m_includeLiterals; }
+            get { return m_includeLiterals; }
         }
 
         [ContextProperty("ВключитьПриглашение", "IncludePrompt")]
         public int IncludePrompt
         {
-        	get { return m_includePrompt; }
+            get { return m_includePrompt; }
         }
 
         [ContextProperty("ВключитьПриглашениеИЛитералы", "IncludePromptAndLiterals")]
         public int IncludePromptAndLiterals
         {
-        	get { return m_includePromptAndLiterals; }
+            get { return m_includePromptAndLiterals; }
         }
 
         [ContextProperty("ИсключитьПриглашениеИЛитералы", "ExcludePromptAndLiterals")]
         public int ExcludePromptAndLiterals
         {
-        	get { return m_excludePromptAndLiterals; }
+            get { return m_excludePromptAndLiterals; }
         }
     }
 }

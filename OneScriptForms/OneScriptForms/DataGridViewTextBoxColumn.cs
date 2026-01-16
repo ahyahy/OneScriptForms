@@ -54,7 +54,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлКолонкаПолеВвода", "ClDataGridViewTextBoxColumn")]
+    [ContextClass("КлКолонкаПолеВвода", "ClDataGridViewTextBoxColumn")]
     public class ClDataGridViewTextBoxColumn : AutoContext<ClDataGridViewTextBoxColumn>
     {
         private ClCollection tag = new ClCollection();
@@ -65,23 +65,23 @@ namespace osf
             DataGridViewTextBoxColumn1.dll_obj = this;
             Base_obj = DataGridViewTextBoxColumn1;
         }
-		
+
         public ClDataGridViewTextBoxColumn(DataGridViewTextBoxColumn p1)
         {
             DataGridViewTextBoxColumn DataGridViewTextBoxColumn1 = p1;
             DataGridViewTextBoxColumn1.dll_obj = this;
             Base_obj = DataGridViewTextBoxColumn1;
         }
-        
+
         public DataGridViewTextBoxColumn Base_obj;
-        
+
         [ContextProperty("ВесЗаполнения", "FillWeight")]
         public IValue FillWeight
         {
             get { return ValueFactory.Create((Convert.ToDecimal(Base_obj.FillWeight))); }
             set { Base_obj.FillWeight = Convert.ToSingle(value.AsNumber()); }
         }
-        
+
         [ContextProperty("Выбран", "Selected")]
         public bool Selected
         {
@@ -149,7 +149,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("МинимальнаяШирина", "MinimumWidth")]
         public int MinimumWidth
         {
@@ -231,6 +231,6 @@ namespace osf
             get { return Base_obj.DividerWidth; }
             set { Base_obj.DividerWidth = value; }
         }
-        
+
     }
 }

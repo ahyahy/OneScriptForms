@@ -4,7 +4,6 @@ using ScriptEngine.Machine;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Threading;
 
 namespace osf
 {
@@ -534,7 +533,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлФорма", "ClForm")]
+    [ContextClass("КлФорма", "ClForm")]
     public class ClForm : AutoContext<ClForm>
     {
         private IValue _Activated;
@@ -579,13 +578,13 @@ namespace osf
 
         public System.Windows.Forms.ContainerControl M_ContainerControl;
         private IRuntimeContextInstance script = null;
-		
+
         public ClForm()
         {
             Form Form1 = new Form();
             Form1.dll_obj = this;
             Base_obj = Form1;
-		
+
             OneScriptForms.formsCollection.Add(this);
             if (OneScriptForms.useMainForm)
             {
@@ -602,9 +601,9 @@ namespace osf
             backColor = new ClColor(Base_obj.BackColor);
             controls = new ClControlCollection(Base_obj.Controls);
         }
-        
+
         public Form Base_obj;
-        
+
         [ContextProperty("АвтоПрокрутка", "AutoScroll")]
         public bool AutoScroll
         {
@@ -624,14 +623,14 @@ namespace osf
                 return null;
             }
         }
-        
+
         [ContextProperty("АктивныйЭлемент", "ActiveControl")]
         public IValue ActiveControl
         {
             get { return ((dynamic)Base_obj.ActiveControl).dll_obj; }
             set { Base_obj.ActiveControl = ((dynamic)value).Base_obj; }
         }
-        
+
         [ContextProperty("ВерсияПродукта", "ProductVersion")]
         public string ProductVersion
         {
@@ -651,7 +650,7 @@ namespace osf
             get { return Base_obj.Owner.dll_obj; }
             set { Base_obj.Owner = value.Base_obj; }
         }
-        
+
         [ContextProperty("Высота", "Height")]
         public int Height
         {
@@ -664,12 +663,12 @@ namespace osf
         {
             get { return Convert.ToInt32(Base_obj.FontHeight); }
         }
-        
+
         [ContextProperty("Границы", "Bounds")]
         public ClRectangle Bounds
         {
             get { return bounds; }
-            set 
+            set
             {
                 bounds = value;
                 Base_obj.Bounds = value.Base_obj;
@@ -694,7 +693,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("Доступность", "Enabled")]
         public bool Enabled
         {
@@ -727,7 +726,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ЗаполнениеГраниц", "DockPadding")]
         public ClDockPaddingEdges DockPadding
         {
@@ -745,7 +744,7 @@ namespace osf
         public ClIcon Icon
         {
             get { return icon; }
-            set 
+            set
             {
                 icon = value;
                 Base_obj.Icon = value.Base_obj;
@@ -764,7 +763,7 @@ namespace osf
         {
             get { return ((AssemblyTitleAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false)[0]).Title.ToString(); }
         }
-        
+
         [ContextProperty("ИмяШрифта", "FontName")]
         public string FontName
         {
@@ -797,7 +796,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("КлавишаВниз", "KeyDown")]
         public IValue KeyDown
         {
@@ -816,7 +815,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("КлавишаНажата", "KeyPress")]
         public IValue KeyPress
         {
@@ -835,7 +834,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("КлавишаПредпросмотр", "KeyPreview")]
         public bool KeyPreview
         {
@@ -890,14 +889,14 @@ namespace osf
             get { return ((dynamic)Base_obj.CancelButton).dll_obj; }
             set { Base_obj.CancelButton = ((dynamic)value).Base_obj; }
         }
-        
+
         [ContextProperty("КнопкаПринять", "AcceptButton")]
         public IValue AcceptButton
         {
             get { return ((dynamic)Base_obj.AcceptButton).dll_obj; }
             set { Base_obj.AcceptButton = ((dynamic)value).Base_obj; }
         }
-        
+
         [ContextProperty("КнопкиМыши", "MouseButtons")]
         public int MouseButtons
         {
@@ -928,7 +927,7 @@ namespace osf
                 Base_obj.Cursor = value.Base_obj;
             }
         }
-        
+
         [ContextProperty("Лево", "Left")]
         public int Left
         {
@@ -949,7 +948,7 @@ namespace osf
             get { return Base_obj.Menu.dll_obj; }
             set { Base_obj.Menu = value.Base_obj; }
         }
-        
+
         [ContextProperty("Местоположение", "DesktopLocation")]
         public ClPoint DesktopLocation
         {
@@ -962,7 +961,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("МинимальныйРазмер", "MinimumSize")]
         public ClSize MinimumSize
         {
@@ -988,7 +987,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("МышьПокинулаЭлемент", "MouseLeave")]
         public IValue MouseLeave
         {
@@ -1007,7 +1006,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("Нажатие", "Click")]
         public IValue Click
         {
@@ -1026,7 +1025,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("НачальноеПоложение", "StartPosition")]
         public int StartPosition
         {
@@ -1051,7 +1050,7 @@ namespace osf
         public ClColor ForeColor
         {
             get { return foreColor; }
-            set 
+            set
             {
                 foreColor = value;
                 Base_obj.ForeColor = value.Base_obj;
@@ -1077,7 +1076,7 @@ namespace osf
         {
             get { return new ClPoint(System.Windows.Forms.Control.MousePosition); }
         }
-        
+
         [ContextProperty("ПоказатьВПанели", "ShowInTaskbar")]
         public bool ShowInTaskbar
         {
@@ -1110,7 +1109,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПорядокОбхода", "TabIndex")]
         public int TabIndex
         {
@@ -1142,7 +1141,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриВходе", "Enter")]
         public IValue Enter
         {
@@ -1161,7 +1160,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриДеактивации", "Deactivate")]
         public IValue Deactivate
         {
@@ -1180,7 +1179,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриЗагрузке", "Load")]
         public IValue Load
         {
@@ -1199,7 +1198,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриЗадержкеМыши", "MouseHover")]
         public IValue MouseHover
         {
@@ -1218,7 +1217,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриЗакрытии", "FormClosing")]
         public IValue FormClosing
         {
@@ -1237,7 +1236,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриНажатииКнопкиМыши", "MouseDown")]
         public IValue MouseDown
         {
@@ -1256,7 +1255,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриОтпусканииМыши", "MouseUp")]
         public IValue MouseUp
         {
@@ -1275,7 +1274,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриПеремещении", "Move")]
         public IValue Move
         {
@@ -1294,7 +1293,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриПеремещенииМыши", "MouseMove")]
         public IValue MouseMove
         {
@@ -1313,7 +1312,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриПерерисовке", "Paint")]
         public IValue Paint
         {
@@ -1332,7 +1331,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриПотереФокуса", "LostFocus")]
         public IValue LostFocus
         {
@@ -1351,7 +1350,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриУходе", "Leave")]
         public IValue Leave
         {
@@ -1370,12 +1369,12 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПрозрачныйЦвет", "TransparencyKey")]
         public ClColor TransparencyKey
         {
             get { return transparencyKey; }
-            set 
+            set
             {
                 transparencyKey = value;
                 Base_obj.TransparencyKey = value.Base_obj;
@@ -1414,7 +1413,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("РазмерПоляАвтоПрокрутки", "AutoScrollMargin")]
         public ClSize AutoScrollMargin
         {
@@ -1428,7 +1427,7 @@ namespace osf
             get { return Convert.ToInt32(Base_obj.FontSize); }
             set { Base_obj.FontSize = value; }
         }
-        
+
         [ContextProperty("РезультатДиалога", "DialogResult")]
         public int DialogResult
         {
@@ -1442,7 +1441,7 @@ namespace osf
             get { return OneScriptForms.RevertObj(Base_obj.Parent); }
             set { Base_obj.Parent = ((dynamic)value).Base_obj; }
         }
-        
+
         [ContextProperty("СостояниеОкна", "WindowState")]
         public int WindowState
         {
@@ -1476,7 +1475,7 @@ namespace osf
             get { return script; }
             set { script = value; }
         }
-        
+
         [ContextProperty("ТабФокус", "TabStop")]
         public bool TabStop
         {
@@ -1509,13 +1508,13 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("Тип", "Type")]
         public ClType Type
         {
             get { return new ClType(this); }
         }
-        
+
         [ContextProperty("Фокусируемый", "CanFocus")]
         public bool CanFocus
         {
@@ -1533,7 +1532,7 @@ namespace osf
         public ClColor BackColor
         {
             get { return backColor; }
-            set 
+            set
             {
                 backColor = value;
                 Base_obj.BackColor = value.Base_obj;
@@ -1564,13 +1563,13 @@ namespace osf
                 Base_obj.Font = value.Base_obj;
             }
         }
-        
+
         [ContextProperty("ЭлементВерхнегоУровня", "TopLevelControl")]
         public IValue TopLevelControl
         {
             get { return OneScriptForms.RevertObj(Base_obj.TopLevelControl); }
         }
-        
+
         [ContextProperty("ЭлементДобавлен", "ControlAdded")]
         public IValue ControlAdded
         {
@@ -1589,7 +1588,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ЭлементУдален", "ControlRemoved")]
         public IValue ControlRemoved
         {
@@ -1608,7 +1607,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ЭлементыУправления", "Controls")]
         public ClControlCollection Controls
         {
@@ -1621,25 +1620,25 @@ namespace osf
             get { return (int)Base_obj.Anchor; }
             set { Base_obj.Anchor = value; }
         }
-        
+
         [ContextMethod("Активизировать", "Activate")]
         public void Activate()
         {
             Base_obj.Activate();
         }
-					
+
         [ContextMethod("Актуализировать", "Refresh")]
         public void Refresh()
         {
             Base_obj.Refresh();
         }
-					
+
         [ContextMethod("Аннулировать", "Invalidate")]
         public void Invalidate()
         {
             Base_obj.Invalidate();
         }
-					
+
         [ContextMethod("ВозобновитьРазмещение", "ResumeLayout")]
         public void ResumeLayout(bool p1 = false)
         {
@@ -1651,31 +1650,31 @@ namespace osf
         {
             Base_obj.ResetBackgroundImage();
         }
-					
+
         [ContextMethod("Выбрать", "Select")]
         public void Select()
         {
             Base_obj.Select();
         }
-					
+
         [ContextMethod("ВыполнитьРазмещение", "PerformLayout")]
         public void PerformLayout()
         {
             Base_obj.PerformLayout();
         }
-					
+
         [ContextMethod("ДочернийПоКоординатам", "GetChildAtPoint")]
         public IValue GetChildAtPoint(ClPoint p1)
         {
             return ((dynamic)Base_obj.GetChildAtPoint(p1.Base_obj)).dll_obj;
         }
-        
+
         [ContextMethod("ЗавершитьОбновление", "EndUpdate")]
         public void EndUpdate()
         {
             Base_obj.EndUpdate();
         }
-					
+
         [ContextMethod("ЗакрепитьНаРабочемСтоле", "PinToDesktop")]
         public void PinToDesktop()
         {
@@ -1683,19 +1682,19 @@ namespace osf
             IntPtr hWndProgMan = FindWindow("Progman", "Program Manager");
             SetParent(hWnd.ToInt32(), hWndProgMan.ToInt32());
         }
-        
+
         [ContextMethod("Закрыть", "Close")]
         public void Close()
         {
             Base_obj.Close();
         }
-					
+
         [ContextMethod("НаЗаднийПлан", "SendToBack")]
         public void SendToBack()
         {
             Base_obj.SendToBack();
         }
-					
+
         [ContextMethod("НайтиФорму", "FindForm")]
         public ClForm FindForm()
         {
@@ -1705,56 +1704,56 @@ namespace osf
             }
             return null;
         }
-        
+
         [ContextMethod("НайтиЭлемент", "FindControl")]
         public IValue FindControl(string p1)
         {
             return OneScriptForms.RevertObj(Base_obj.FindControl(p1));
         }
-        
+
         [ContextMethod("НаПереднийПлан", "BringToFront")]
         public void BringToFront()
         {
             Base_obj.BringToFront();
         }
-					
+
         [ContextMethod("НачатьОбновление", "BeginUpdate")]
         public void BeginUpdate()
         {
             Base_obj.BeginUpdate();
         }
-					
+
         [ContextMethod("Обновить", "Update")]
         public void Update()
         {
             Base_obj.Update();
         }
-					
+
         [ContextMethod("ОбновитьСтили", "UpdateStyles")]
         public void UpdateStyles()
         {
             Base_obj.UpdateStyles();
         }
-					
+
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {
             Base_obj.Dispose();
         }
-					
+
         [ContextMethod("ОткрепитьОтРабочегоСтола", "UnpinFromDesktop")]
         public void UnpinFromDesktop()
         {
             IntPtr hWnd = Base_obj.M_Form.Handle;
             SetParent(hWnd.ToInt32(), IntPtr.Zero.ToInt32());
         }
-        
+
         [ContextMethod("Показать", "Show")]
         public void Show()
         {
             Base_obj.Show();
         }
-					
+
         [ContextMethod("ПоказатьДиалог", "ShowDialog")]
         public int ShowDialog()
         {
@@ -1772,31 +1771,31 @@ namespace osf
         {
             Base_obj.SuspendLayout();
         }
-					
+
         [ContextMethod("Скрыть", "Hide")]
         public void Hide()
         {
             Base_obj.Hide();
         }
-					
+
         [ContextMethod("СледующийЭлемент", "GetNextControl")]
         public IValue GetNextControl(IValue p1, bool p2)
         {
             return Base_obj.GetNextControl(((dynamic)p1).Base_obj, p2).dll_obj;
         }
-        
+
         [ContextMethod("СоздатьГрафику", "CreateGraphics")]
         public ClGraphics CreateGraphics()
         {
             return new ClGraphics(Base_obj.CreateGraphics());
         }
-        
+
         [ContextMethod("СоздатьЭлемент", "CreateControl")]
         public void CreateControl()
         {
             Base_obj.CreateControl();
         }
-					
+
         [ContextMethod("ТочкаНаКлиенте", "PointToClient")]
         public ClPoint PointToClient(ClPoint p1)
         {
@@ -1826,13 +1825,13 @@ namespace osf
         {
             Base_obj.Focus();
         }
-					
+
         [ContextMethod("ЭлементУправления", "Control")]
         public IValue Control(int p1)
         {
             return OneScriptForms.RevertObj(Base_obj.getControl(p1));
         }
-        
+
         [ContextMethod("ЭлементыУправления", "Controls")]
         public IValue Controls2(int p1)
         {

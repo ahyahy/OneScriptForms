@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлФильтрыУведомления", "ClNotifyFilters")]
+    [ContextClass("КлФильтрыУведомления", "ClNotifyFilters")]
     public class ClNotifyFilters : AutoContext<ClNotifyFilters>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_fileName = (int)System.IO.NotifyFilters.FileName; // 1 Имя файла.
@@ -42,6 +42,54 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {4, "Атрибуты"},
+            {256, "Безопасность"},
+            {64, "ВремяСоздания"},
+            {2, "ИмяКаталога"},
+            {1, "ИмяФайла"},
+            {32, "ПоследнийДоступ"},
+            {16, "ПоследняяЗапись"},
+            {8, "Размер"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {4, "Attributes"},
+            {256, "Security"},
+            {64, "CreationTime"},
+            {2, "DirectoryName"},
+            {1, "FileName"},
+            {32, "LastAccess"},
+            {16, "LastWrite"},
+            {8, "Size"},
+        };
+
         public ClNotifyFilters()
         {
             _list = new List<IValue>();
@@ -58,49 +106,49 @@ namespace osf
         [ContextProperty("Атрибуты", "Attributes")]
         public int Attributes
         {
-        	get { return m_attributes; }
+            get { return m_attributes; }
         }
 
         [ContextProperty("Безопасность", "Security")]
         public int Security
         {
-        	get { return m_security; }
+            get { return m_security; }
         }
 
         [ContextProperty("ВремяСоздания", "CreationTime")]
         public int CreationTime
         {
-        	get { return m_creationTime; }
+            get { return m_creationTime; }
         }
 
         [ContextProperty("ИмяКаталога", "DirectoryName")]
         public int DirectoryName
         {
-        	get { return m_directoryName; }
+            get { return m_directoryName; }
         }
 
         [ContextProperty("ИмяФайла", "FileName")]
         public int FileName
         {
-        	get { return m_fileName; }
+            get { return m_fileName; }
         }
 
         [ContextProperty("ПоследнийДоступ", "LastAccess")]
         public int LastAccess
         {
-        	get { return m_lastAccess; }
+            get { return m_lastAccess; }
         }
 
         [ContextProperty("ПоследняяЗапись", "LastWrite")]
         public int LastWrite
         {
-        	get { return m_lastWrite; }
+            get { return m_lastWrite; }
         }
 
         [ContextProperty("Размер", "Size")]
         public int Size
         {
-        	get { return m_size; }
+            get { return m_size; }
         }
     }
 }

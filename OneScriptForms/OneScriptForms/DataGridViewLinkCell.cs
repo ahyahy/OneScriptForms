@@ -474,7 +474,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлСсылкаЯчейки", "ClDataGridViewLinkCell")]
+    [ContextClass("КлСсылкаЯчейки", "ClDataGridViewLinkCell")]
     public class ClDataGridViewLinkCell : AutoContext<ClDataGridViewLinkCell>
     {
         private ClColor activeLinkColor;
@@ -493,7 +493,7 @@ namespace osf
             visitedLinkColor = new ClColor(Base_obj.VisitedLinkColor);
             linkColor = new ClColor(Base_obj.LinkColor);
         }
-		
+
         public ClDataGridViewLinkCell(DataGridViewLinkCell p1)
         {
             DataGridViewLinkCell DataGridViewLinkCell1 = p1;
@@ -504,9 +504,9 @@ namespace osf
             visitedLinkColor = new ClColor(Base_obj.VisitedLinkColor);
             linkColor = new ClColor(Base_obj.LinkColor);
         }
-        
+
         public DataGridViewLinkCell Base_obj;
-        
+
         [ContextProperty("Выбран", "Selected")]
         public bool Selected
         {
@@ -532,7 +532,7 @@ namespace osf
             get { return OneScriptForms.RevertObj(Base_obj.Value); }
             set { Base_obj.Value = value; }
         }
-        
+
         [ContextProperty("ИзменяемыйРазмер", "Resizable")]
         public bool Resizable
         {
@@ -569,7 +569,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("Отображается", "Displayed")]
         public bool Displayed
         {
@@ -652,18 +652,18 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.FormattedValue); }
         }
-        
+
         [ContextProperty("ФорматированноеЗначениеРедактируемого", "EditedFormattedValue")]
         public IValue EditedFormattedValue
         {
             get { return OneScriptForms.RevertObj(Base_obj.EditedFormattedValue); }
         }
-        
+
         [ContextProperty("ЦветАктивнойСсылки", "ActiveLinkColor")]
         public ClColor ActiveLinkColor
         {
             get { return activeLinkColor; }
-            set 
+            set
             {
                 activeLinkColor = value;
                 Base_obj.ActiveLinkColor = value.Base_obj;
@@ -681,7 +681,7 @@ namespace osf
         public ClColor VisitedLinkColor
         {
             get { return visitedLinkColor; }
-            set 
+            set
             {
                 visitedLinkColor = value;
                 Base_obj.VisitedLinkColor = value.Base_obj;
@@ -692,12 +692,12 @@ namespace osf
         public ClColor LinkColor
         {
             get { return linkColor; }
-            set 
+            set
             {
                 linkColor = value;
                 Base_obj.LinkColor = value.Base_obj;
             }
         }
-        
+
     }
 }

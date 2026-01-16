@@ -29,7 +29,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлТекстурнаяКисть", "ClTextureBrush")]
+    [ContextClass("КлТекстурнаяКисть", "ClTextureBrush")]
     public class ClTextureBrush : AutoContext<ClTextureBrush>
     {
         public ClTextureBrush(Image p1)
@@ -38,7 +38,7 @@ namespace osf
             TextureBrush1.dll_obj = this;
             Base_obj = TextureBrush1;
         }
-		
+
         public ClTextureBrush(TextureBrush p1)
         {
             TextureBrush TextureBrush1 = p1;
@@ -47,6 +47,6 @@ namespace osf
         }
 
         public TextureBrush Base_obj;
-        
+
     }
 }

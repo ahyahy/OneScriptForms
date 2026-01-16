@@ -80,7 +80,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлСсылка", "ClLink")]
+    [ContextClass("КлСсылка", "ClLink")]
     public class ClLink : AutoContext<ClLink>
     {
         private ClCollection tag = new ClCollection();
@@ -91,14 +91,14 @@ namespace osf
             Link1.dll_obj = this;
             Base_obj = Link1;
         }
-		
+
         public ClLink(Link p1)
         {
             Link Link1 = p1;
             Link1.dll_obj = this;
             Base_obj = Link1;
         }
-        
+
         public ClLink(System.Windows.Forms.LinkLabel.Link p1)
         {
             Link Link1 = new Link(p1);
@@ -107,7 +107,7 @@ namespace osf
         }
 
         public Link Base_obj;
-        
+
         [ContextProperty("Данные", "LinkData")]
         public IValue LinkData
         {
@@ -141,7 +141,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("Начало", "Start")]
         public int Start
         {
@@ -162,6 +162,6 @@ namespace osf
             get { return Base_obj.Visited; }
             set { Base_obj.Visited = value; }
         }
-        
+
     }
 }

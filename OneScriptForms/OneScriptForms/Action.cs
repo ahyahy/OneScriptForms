@@ -3,7 +3,7 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-    [ContextClass ("КлДействие", "ClAction")]
+    [ContextClass("КлДействие", "ClAction")]
     public class ClAction : AutoContext<ClAction>
     {
         public ClAction(IRuntimeContextInstance script, string methodName, IValue param = null)
@@ -12,15 +12,15 @@ namespace osf
             MethodName = methodName;
             Parameter = param;
         }
-        
+
         [ContextProperty("ИмяМетода", "MethodName")]
         public string MethodName { get; set; }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter { get; set; }
-        
+
         [ContextProperty("Сценарий", "Script")]
         public IRuntimeContextInstance Script { get; set; }
-        
+
     }
 }

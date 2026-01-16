@@ -53,13 +53,13 @@ namespace osf
                 flags = SHGFI.Icon | SHGFI.LargeIcon | SHGFI.UseFileAttributes;
 
             SHGetFileInfo(strPath, 256, out info, (uint)cbFileInfo, flags);
-            
+
             return System.Drawing.Icon.FromHandle(info.hIcon);
-        }        
+        }
 
         public static System.Drawing.Icon GetSysIcon(int icNo)
         {
-            IntPtr HIcon = ExtractIcon(GetModuleHandle(string.Empty), "DDORes.dll"/*"Shell32.dll"*/, icNo);            
+            IntPtr HIcon = ExtractIcon(GetModuleHandle(string.Empty), "DDORes.dll"/*"Shell32.dll"*/, icNo);
             return System.Drawing.Icon.FromHandle(HIcon);
         }
         public static System.Drawing.Icon GetSysIconFromDll(int icNo, string dll)

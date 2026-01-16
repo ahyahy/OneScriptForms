@@ -42,7 +42,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлДиалогВыбораЦвета", "ClColorDialog")]
+    [ContextClass("КлДиалогВыбораЦвета", "ClColorDialog")]
     public class ClColorDialog : AutoContext<ClColorDialog>
     {
         private ClColor color;
@@ -54,7 +54,7 @@ namespace osf
             Base_obj = ColorDialog1;
             color = new ClColor(Base_obj.Color);
         }
-		
+
         public ClColorDialog(ColorDialog p1)
         {
             ColorDialog ColorDialog1 = p1;
@@ -62,32 +62,32 @@ namespace osf
             Base_obj = ColorDialog1;
             color = new ClColor(Base_obj.Color);
         }
-        
+
         public ColorDialog Base_obj;
-        
+
         [ContextProperty("Тип", "Type")]
         public ClType Type
         {
             get { return new ClType(this); }
         }
-        
+
         [ContextProperty("Цвет", "Color")]
         public ClColor Color
         {
             get { return color; }
-            set 
+            set
             {
                 color = value;
                 Base_obj.Color = value.Base_obj;
             }
         }
-        
+
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {
             Base_obj.Dispose();
         }
-					
+
         [ContextMethod("ПоказатьДиалог", "ShowDialog")]
         public IValue ShowDialog()
         {

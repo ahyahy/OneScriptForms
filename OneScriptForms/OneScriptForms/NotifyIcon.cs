@@ -209,7 +209,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЗначокУведомления", "ClNotifyIcon")]
+    [ContextClass("КлЗначокУведомления", "ClNotifyIcon")]
     public class ClNotifyIcon : AutoContext<ClNotifyIcon>
     {
         private IValue _Click;
@@ -226,7 +226,7 @@ namespace osf
         }
 
         public NotifyIcon Base_obj;
-        
+
         [ContextProperty("ДвойноеНажатие", "DoubleClick")]
         public IValue DoubleClick
         {
@@ -245,7 +245,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ЗаголовокВсплывающейПодсказки", "BalloonTipTitle")]
         public string BalloonTipTitle
         {
@@ -257,9 +257,9 @@ namespace osf
         public ClIcon Icon
         {
             get { return (ClIcon)OneScriptForms.RevertObj(Base_obj.Icon); }
-            set 
+            set
             {
-                Base_obj.Icon = value.Base_obj; 
+                Base_obj.Icon = value.Base_obj;
                 Base_obj.Icon.dll_obj = value;
             }
         }
@@ -277,7 +277,7 @@ namespace osf
             get { return (ClContextMenu)OneScriptForms.RevertObj(Base_obj.ContextMenu); }
             set { Base_obj.ContextMenu = value.Base_obj; }
         }
-        
+
         [ContextProperty("Нажатие", "Click")]
         public IValue Click
         {
@@ -296,7 +296,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("Отображать", "Visible")]
         public bool Visible
         {
@@ -322,7 +322,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриОтпусканииМыши", "MouseUp")]
         public IValue MouseUp
         {
@@ -341,7 +341,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("ПриПеремещенииМыши", "MouseMove")]
         public IValue MouseMove
         {
@@ -360,7 +360,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("Текст", "Text")]
         public string Text
         {
@@ -380,13 +380,13 @@ namespace osf
         {
             get { return new ClType(this); }
         }
-        
+
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {
             Base_obj.Dispose();
         }
-					
+
         [ContextMethod("ПоказатьВсплывающуюПодсказку", "ShowBalloonTip")]
         public void ShowBalloonTip(int p1, IValue p2 = null, IValue p3 = null, IValue p4 = null)
         {

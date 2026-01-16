@@ -31,7 +31,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЭлементСетки", "ClGridItem")]
+    [ContextClass("КлЭлементСетки", "ClGridItem")]
     public class ClGridItem : AutoContext<ClGridItem>
     {
         public ClGridItem(GridItem p1)
@@ -42,13 +42,13 @@ namespace osf
         }
 
         public GridItem Base_obj;
-        
+
         [ContextProperty("Значение", "Value")]
         public IValue Value
         {
             get { return OneScriptForms.RevertObj(Base_obj.Value); }
         }
-        
+
         [ContextProperty("Надпись", "Label")]
         public string Label
         {
@@ -60,12 +60,12 @@ namespace osf
         {
             get { return (int)Base_obj.M_GridItem.GridItemType; }
         }
-        
+
         [ContextProperty("ЭлементыСетки", "GridItems")]
         public ClGridItemCollection GridItems
         {
             get { return new ClGridItemCollection(Base_obj.M_GridItem.GridItems); }
         }
-        
+
     }
 }

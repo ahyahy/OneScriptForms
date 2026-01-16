@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлАктивацияЭлемента", "ClItemActivation")]
+    [ContextClass("КлАктивацияЭлемента", "ClItemActivation")]
     public class ClItemActivation : AutoContext<ClItemActivation>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_standard = (int)System.Windows.Forms.ItemActivation.Standard; // 0 Активация двойным щелчком. Без обратной связи при перемещении пользователем указателя мыши над элементом.
@@ -37,6 +37,44 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {2, "ДваНажатия"},
+            {1, "ОдноНажатие"},
+            {0, "Стандартная"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {2, "TwoClick"},
+            {1, "OneClick"},
+            {0, "Standard"},
+        };
+
         public ClItemActivation()
         {
             _list = new List<IValue>();
@@ -48,19 +86,19 @@ namespace osf
         [ContextProperty("ДваНажатия", "TwoClick")]
         public int TwoClick
         {
-        	get { return m_twoClick; }
+            get { return m_twoClick; }
         }
 
         [ContextProperty("ОдноНажатие", "OneClick")]
         public int OneClick
         {
-        	get { return m_oneClick; }
+            get { return m_oneClick; }
         }
 
         [ContextProperty("Стандартная", "Standard")]
         public int Standard
         {
-        	get { return m_standard; }
+            get { return m_standard; }
         }
     }
 }

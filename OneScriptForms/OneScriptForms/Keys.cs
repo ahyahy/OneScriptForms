@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлКлавиши", "ClKeys")]
+    [ContextClass("КлКлавиши", "ClKeys")]
     public class ClKeys : AutoContext<ClKeys>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_modifiers = (int)System.Windows.Forms.Keys.Modifiers; // -65536 Бит-маска для извлечения модификаторов из значения ключа.
@@ -20,21 +20,16 @@ namespace osf
         private int m_tab = (int)System.Windows.Forms.Keys.Tab; // 9 Клавиша TAB
         private int m_lineFeed = (int)System.Windows.Forms.Keys.LineFeed; // 10 Клавиша LINEFEED
         private int m_clear = (int)System.Windows.Forms.Keys.Clear; // 12 Клавиша CLEAR
-        private int m_return = (int)System.Windows.Forms.Keys.Return; // 13 Клавиша RETURN
         private int m_enter = (int)System.Windows.Forms.Keys.Enter; // 13 Клавиша ENTER
         private int m_shiftKey = (int)System.Windows.Forms.Keys.ShiftKey; // 16 Клавиша SHIFT
         private int m_controlKey = (int)System.Windows.Forms.Keys.ControlKey; // 17 Клавиша CTRL
         private int m_menu = (int)System.Windows.Forms.Keys.Menu; // 18 Клавиша ALT
         private int m_pause = (int)System.Windows.Forms.Keys.Pause; // 19 Клавиша PAUSE
-        private int m_capital = (int)System.Windows.Forms.Keys.Capital; // 20 Клавиша CAPS LOCK.
         private int m_capsLock = (int)System.Windows.Forms.Keys.CapsLock; // 20 Клавиша CAPS LOCK.
-        private int m_hanguelMode = (int)System.Windows.Forms.Keys.HanguelMode; // 21 Клавиша режима IME Hanguel. (поддерживается для обеспечения совместимости; HangulMode)
-        private int m_kanaMode = (int)System.Windows.Forms.Keys.KanaMode; // 21 Клавиша режима IME Kana.
         private int m_hangulMode = (int)System.Windows.Forms.Keys.HangulMode; // 21 Клавиша режима IMG Hangul.
         private int m_junjaMode = (int)System.Windows.Forms.Keys.JunjaMode; // 23 Клавиша режима IME Junja.
         private int m_finalMode = (int)System.Windows.Forms.Keys.FinalMode; // 24 Клавиша окончательного режима IME.
         private int m_hanjaMode = (int)System.Windows.Forms.Keys.HanjaMode; // 25 Клавиша режима IME Hanja.
-        private int m_kanjiMode = (int)System.Windows.Forms.Keys.KanjiMode; // 25 Клавиша режима IME Kanji.
         private int m_escape = (int)System.Windows.Forms.Keys.Escape; // 27 Клавиша ESC
         private int m_iMEConvert = (int)System.Windows.Forms.Keys.IMEConvert; // 28 Клавиша конвертации IME.
         private int m_iMENonconvert = (int)System.Windows.Forms.Keys.IMENonconvert; // 29 Неконвертируемый IME-ключ.
@@ -42,8 +37,6 @@ namespace osf
         private int m_iMEModeChange = (int)System.Windows.Forms.Keys.IMEModeChange; // 31 Клавиша изменения режима IME.
         private int m_space = (int)System.Windows.Forms.Keys.Space; // 32 Клавиша SPACEBAR
         private int m_pageUp = (int)System.Windows.Forms.Keys.PageUp; // 33 Клавиша PAGE UP.
-        private int m_prior = (int)System.Windows.Forms.Keys.Prior; // 33 Клавиша PAGE UP.
-        private int m_next = (int)System.Windows.Forms.Keys.Next; // 34 Клавиша PAGE DOWN.
         private int m_pageDown = (int)System.Windows.Forms.Keys.PageDown; // 34 Клавиша PAGE DOWN.
         private int m_end = (int)System.Windows.Forms.Keys.End; // 35 Клавиша END
         private int m_home = (int)System.Windows.Forms.Keys.Home; // 36 Клавиша HOME
@@ -55,7 +48,6 @@ namespace osf
         private int m_print = (int)System.Windows.Forms.Keys.Print; // 42 Клавиша PRINT
         private int m_execute = (int)System.Windows.Forms.Keys.Execute; // 43 Клавиша EXECUTE
         private int m_printScreen = (int)System.Windows.Forms.Keys.PrintScreen; // 44 Клавиша PRINT SCREEN.
-        private int m_snapshot = (int)System.Windows.Forms.Keys.Snapshot; // 44 Клавиша PRINT SCREEN.
         private int m_insert = (int)System.Windows.Forms.Keys.Insert; // 45 Клавиша INS
         private int m_delete = (int)System.Windows.Forms.Keys.Delete; // 46 Клавиша DEL
         private int m_help = (int)System.Windows.Forms.Keys.Help; // 47 Клавиша HELP
@@ -217,6 +209,388 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {65, "A"},
+            {262144, "Alt"},
+            {93, "Apps"},
+            {246, "Attn"},
+            {66, "B"},
+            {166, "BrowserBack"},
+            {171, "BrowserFavorites"},
+            {167, "BrowserForward"},
+            {172, "BrowserHome"},
+            {168, "BrowserRefresh"},
+            {170, "BrowserSearch"},
+            {169, "BrowserStop"},
+            {67, "C"},
+            {20, "CapsLock"},
+            {17, "ControlKey"},
+            {247, "Crsel"},
+            {131072, "Ctrl"},
+            {68, "D"},
+            {48, "D0"},
+            {49, "D1"},
+            {50, "D2"},
+            {51, "D3"},
+            {52, "D4"},
+            {53, "D5"},
+            {54, "D6"},
+            {55, "D7"},
+            {56, "D8"},
+            {57, "D9"},
+            {69, "E"},
+            {35, "End"},
+            {13, "Enter"},
+            {249, "EraseEof"},
+            {27, "Escape"},
+            {43, "Execute"},
+            {248, "Exsel"},
+            {70, "F"},
+            {112, "F1"},
+            {121, "F10"},
+            {122, "F11"},
+            {123, "F12"},
+            {124, "F13"},
+            {125, "F14"},
+            {126, "F15"},
+            {127, "F16"},
+            {128, "F17"},
+            {129, "F18"},
+            {130, "F19"},
+            {113, "F2"},
+            {131, "F20"},
+            {132, "F21"},
+            {133, "F22"},
+            {134, "F23"},
+            {135, "F24"},
+            {114, "F3"},
+            {115, "F4"},
+            {116, "F5"},
+            {117, "F6"},
+            {118, "F7"},
+            {119, "F8"},
+            {120, "F9"},
+            {24, "FinalMode"},
+            {71, "G"},
+            {72, "H"},
+            {21, "HangulMode"},
+            {25, "HanjaMode"},
+            {73, "I"},
+            {30, "IMEAceept"},
+            {28, "IMEConvert"},
+            {31, "IMEModeChange"},
+            {29, "IMENonconvert"},
+            {74, "J"},
+            {23, "JunjaMode"},
+            {75, "K"},
+            {65535, "KeyCode"},
+            {76, "L"},
+            {182, "LaunchApplication1"},
+            {183, "LaunchApplication2"},
+            {180, "LaunchMail"},
+            {162, "LControlKey"},
+            {10, "LineFeed"},
+            {164, "LMenu"},
+            {160, "LShiftKey"},
+            {91, "LWin"},
+            {77, "M"},
+            {176, "MediaNextTrack"},
+            {179, "MediaPlayPause"},
+            {177, "MediaPreviousTrack"},
+            {178, "MediaStop"},
+            {-65536, "Modifiers"},
+            {106, "Multiply"},
+            {78, "N"},
+            {252, "NoName"},
+            {144, "NumLock"},
+            {96, "NumPad0"},
+            {97, "NumPad1"},
+            {98, "NumPad2"},
+            {99, "NumPad3"},
+            {100, "NumPad4"},
+            {101, "NumPad5"},
+            {102, "NumPad6"},
+            {103, "NumPad7"},
+            {104, "NumPad8"},
+            {105, "NumPad9"},
+            {79, "O"},
+            {223, "Oem8"},
+            {226, "OemBackslash"},
+            {254, "OemClear"},
+            {221, "OemCloseBrackets"},
+            {188, "Oemcomma"},
+            {189, "OemMinus"},
+            {219, "OemOpenBrackets"},
+            {190, "OemPeriod"},
+            {220, "OemPipe"},
+            {187, "Oemplus"},
+            {191, "OemQuestion"},
+            {222, "OemQuotes"},
+            {186, "OemSemicolon"},
+            {192, "Oemtilde"},
+            {80, "P"},
+            {253, "Pa1"},
+            {34, "PageDown"},
+            {33, "PageUp"},
+            {19, "Pause"},
+            {250, "Play"},
+            {42, "Print"},
+            {44, "PrintScreen"},
+            {229, "ProcessKey"},
+            {81, "Q"},
+            {82, "R"},
+            {163, "RControlKey"},
+            {165, "RMenu"},
+            {161, "RShiftKey"},
+            {92, "RWin"},
+            {83, "S"},
+            {145, "Scroll"},
+            {41, "Select"},
+            {181, "SelectMedia"},
+            {108, "Separator"},
+            {65536, "Shift"},
+            {16, "ShiftKey"},
+            {109, "Subtract"},
+            {84, "T"},
+            {9, "Tab"},
+            {85, "U"},
+            {86, "V"},
+            {174, "VolumeDown"},
+            {173, "VolumeMute"},
+            {175, "VolumeUp"},
+            {87, "W"},
+            {88, "X"},
+            {5, "XButton1"},
+            {6, "XButton2"},
+            {89, "Y"},
+            {90, "Z"},
+            {251, "Zoom"},
+            {38, "Вверх"},
+            {40, "Вниз"},
+            {45, "Вставить"},
+            {111, "Деление"},
+            {110, "Десятичное"},
+            {107, "Добавить"},
+            {36, "Домой"},
+            {1, "ЛеваяКнопкаМыши"},
+            {37, "Лево"},
+            {18, "Меню"},
+            {8, "Назад"},
+            {3, "Отмена"},
+            {0, "Отсутствие"},
+            {12, "Очистить"},
+            {47, "Помощь"},
+            {2, "ПраваяКнопкаМыши"},
+            {39, "Право"},
+            {32, "Пробел"},
+            {4, "СредняяКнопкаМыши"},
+            {46, "Удалить"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {65, "A"},
+            {262144, "Alt"},
+            {93, "Apps"},
+            {246, "Attn"},
+            {66, "B"},
+            {166, "BrowserBack"},
+            {171, "BrowserFavorites"},
+            {167, "BrowserForward"},
+            {172, "BrowserHome"},
+            {168, "BrowserRefresh"},
+            {170, "BrowserSearch"},
+            {169, "BrowserStop"},
+            {67, "C"},
+            {20, "CapsLock"},
+            {17, "ControlKey"},
+            {247, "Crsel"},
+            {131072, "Control"},
+            {68, "D"},
+            {48, "D0"},
+            {49, "D1"},
+            {50, "D2"},
+            {51, "D3"},
+            {52, "D4"},
+            {53, "D5"},
+            {54, "D6"},
+            {55, "D7"},
+            {56, "D8"},
+            {57, "D9"},
+            {69, "E"},
+            {35, "End"},
+            {13, "Enter"},
+            {249, "EraseEof"},
+            {27, "Escape"},
+            {43, "Execute"},
+            {248, "Exsel"},
+            {70, "F"},
+            {112, "F1"},
+            {121, "F10"},
+            {122, "F11"},
+            {123, "F12"},
+            {124, "F13"},
+            {125, "F14"},
+            {126, "F15"},
+            {127, "F16"},
+            {128, "F17"},
+            {129, "F18"},
+            {130, "F19"},
+            {113, "F2"},
+            {131, "F20"},
+            {132, "F21"},
+            {133, "F22"},
+            {134, "F23"},
+            {135, "F24"},
+            {114, "F3"},
+            {115, "F4"},
+            {116, "F5"},
+            {117, "F6"},
+            {118, "F7"},
+            {119, "F8"},
+            {120, "F9"},
+            {24, "FinalMode"},
+            {71, "G"},
+            {72, "H"},
+            {21, "HangulMode"},
+            {25, "HanjaMode"},
+            {73, "I"},
+            {30, "IMEAceept"},
+            {28, "IMEConvert"},
+            {31, "IMEModeChange"},
+            {29, "IMENonconvert"},
+            {74, "J"},
+            {23, "JunjaMode"},
+            {75, "K"},
+            {65535, "KeyCode"},
+            {76, "L"},
+            {182, "LaunchApplication1"},
+            {183, "LaunchApplication2"},
+            {180, "LaunchMail"},
+            {162, "LControlKey"},
+            {10, "LineFeed"},
+            {164, "LMenu"},
+            {160, "LShiftKey"},
+            {91, "LWin"},
+            {77, "M"},
+            {176, "MediaNextTrack"},
+            {179, "MediaPlayPause"},
+            {177, "MediaPreviousTrack"},
+            {178, "MediaStop"},
+            {-65536, "Modifiers"},
+            {106, "Multiply"},
+            {78, "N"},
+            {252, "NoName"},
+            {144, "NumLock"},
+            {96, "NumPad0"},
+            {97, "NumPad1"},
+            {98, "NumPad2"},
+            {99, "NumPad3"},
+            {100, "NumPad4"},
+            {101, "NumPad5"},
+            {102, "NumPad6"},
+            {103, "NumPad7"},
+            {104, "NumPad8"},
+            {105, "NumPad9"},
+            {79, "O"},
+            {223, "Oem8"},
+            {226, "OemBackslash"},
+            {254, "OemClear"},
+            {221, "OemCloseBrackets"},
+            {188, "Oemcomma"},
+            {189, "OemMinus"},
+            {219, "OemOpenBrackets"},
+            {190, "OemPeriod"},
+            {220, "OemPipe"},
+            {187, "Oemplus"},
+            {191, "OemQuestion"},
+            {222, "OemQuotes"},
+            {186, "OemSemicolon"},
+            {192, "Oemtilde"},
+            {80, "P"},
+            {253, "Pa1"},
+            {34, "PageDown"},
+            {33, "PageUp"},
+            {19, "Pause"},
+            {250, "Play"},
+            {42, "Print"},
+            {44, "PrintScreen"},
+            {229, "ProcessKey"},
+            {81, "Q"},
+            {82, "R"},
+            {163, "RControlKey"},
+            {165, "RMenu"},
+            {161, "RShiftKey"},
+            {92, "RWin"},
+            {83, "S"},
+            {145, "Scroll"},
+            {41, "Select"},
+            {181, "SelectMedia"},
+            {108, "Separator"},
+            {65536, "Shift"},
+            {16, "ShiftKey"},
+            {109, "Subtract"},
+            {84, "T"},
+            {9, "Tab"},
+            {85, "U"},
+            {86, "V"},
+            {174, "VolumeDown"},
+            {173, "VolumeMute"},
+            {175, "VolumeUp"},
+            {87, "W"},
+            {88, "X"},
+            {5, "XButton1"},
+            {6, "XButton2"},
+            {89, "Y"},
+            {90, "Z"},
+            {251, "Zoom"},
+            {38, "Up"},
+            {40, "Down"},
+            {45, "Insert"},
+            {111, "Divide"},
+            {110, "Decimal"},
+            {107, "Add"},
+            {36, "Home"},
+            {1, "LButton"},
+            {37, "Left"},
+            {18, "Menu"},
+            {8, "Back"},
+            {3, "Cancel"},
+            {0, "None"},
+            {12, "Clear"},
+            {47, "Help"},
+            {2, "RButton"},
+            {39, "Right"},
+            {32, "Space"},
+            {4, "MButton"},
+            {46, "Delete"},
+        };
+
         public ClKeys()
         {
             _list = new List<IValue>();
@@ -236,7 +610,6 @@ namespace osf
             _list.Add(ValueFactory.Create(BrowserStop));
             _list.Add(ValueFactory.Create(C));
             _list.Add(ValueFactory.Create(Cancel));
-            _list.Add(ValueFactory.Create(Capital));
             _list.Add(ValueFactory.Create(CapsLock));
             _list.Add(ValueFactory.Create(Clear));
             _list.Add(ValueFactory.Create(Control));
@@ -292,7 +665,6 @@ namespace osf
             _list.Add(ValueFactory.Create(FinalMode));
             _list.Add(ValueFactory.Create(G));
             _list.Add(ValueFactory.Create(H));
-            _list.Add(ValueFactory.Create(HanguelMode));
             _list.Add(ValueFactory.Create(HangulMode));
             _list.Add(ValueFactory.Create(HanjaMode));
             _list.Add(ValueFactory.Create(Help));
@@ -306,8 +678,6 @@ namespace osf
             _list.Add(ValueFactory.Create(J));
             _list.Add(ValueFactory.Create(JunjaMode));
             _list.Add(ValueFactory.Create(K));
-            _list.Add(ValueFactory.Create(KanaMode));
-            _list.Add(ValueFactory.Create(KanjiMode));
             _list.Add(ValueFactory.Create(KeyCode));
             _list.Add(ValueFactory.Create(L));
             _list.Add(ValueFactory.Create(LaunchApplication1));
@@ -330,7 +700,6 @@ namespace osf
             _list.Add(ValueFactory.Create(Modifiers));
             _list.Add(ValueFactory.Create(Multiply));
             _list.Add(ValueFactory.Create(N));
-            _list.Add(ValueFactory.Create(Next));
             _list.Add(ValueFactory.Create(NoName));
             _list.Add(ValueFactory.Create(None));
             _list.Add(ValueFactory.Create(NumLock));
@@ -367,13 +736,11 @@ namespace osf
             _list.Add(ValueFactory.Create(Play));
             _list.Add(ValueFactory.Create(Print));
             _list.Add(ValueFactory.Create(PrintScreen));
-            _list.Add(ValueFactory.Create(Prior));
             _list.Add(ValueFactory.Create(ProcessKey));
             _list.Add(ValueFactory.Create(Q));
             _list.Add(ValueFactory.Create(R));
             _list.Add(ValueFactory.Create(RButton));
             _list.Add(ValueFactory.Create(RControlKey));
-            _list.Add(ValueFactory.Create(Return));
             _list.Add(ValueFactory.Create(Right));
             _list.Add(ValueFactory.Create(RMenu));
             _list.Add(ValueFactory.Create(RShiftKey));
@@ -385,7 +752,6 @@ namespace osf
             _list.Add(ValueFactory.Create(Separator));
             _list.Add(ValueFactory.Create(Shift));
             _list.Add(ValueFactory.Create(ShiftKey));
-            _list.Add(ValueFactory.Create(Snapshot));
             _list.Add(ValueFactory.Create(Space));
             _list.Add(ValueFactory.Create(Subtract));
             _list.Add(ValueFactory.Create(T));
@@ -408,1099 +774,1051 @@ namespace osf
         [ContextProperty("A", "A")]
         public int A
         {
-        	get { return m_a; }
+            get { return m_a; }
         }
 
         [ContextProperty("Alt", "Alt")]
         public int Alt
         {
-        	get { return m_alt; }
+            get { return m_alt; }
         }
 
         [ContextProperty("Apps", "Apps")]
         public int Apps
         {
-        	get { return m_apps; }
+            get { return m_apps; }
         }
 
         [ContextProperty("Attn", "Attn")]
         public int Attn
         {
-        	get { return m_attn; }
+            get { return m_attn; }
         }
 
         [ContextProperty("B", "B")]
         public int B
         {
-        	get { return m_b; }
+            get { return m_b; }
         }
 
         [ContextProperty("BrowserBack", "BrowserBack")]
         public int BrowserBack
         {
-        	get { return m_browserBack; }
+            get { return m_browserBack; }
         }
 
         [ContextProperty("BrowserFavorites", "BrowserFavorites")]
         public int BrowserFavorites
         {
-        	get { return m_browserFavorites; }
+            get { return m_browserFavorites; }
         }
 
         [ContextProperty("BrowserForward", "BrowserForward")]
         public int BrowserForward
         {
-        	get { return m_browserForward; }
+            get { return m_browserForward; }
         }
 
         [ContextProperty("BrowserHome", "BrowserHome")]
         public int BrowserHome
         {
-        	get { return m_browserHome; }
+            get { return m_browserHome; }
         }
 
         [ContextProperty("BrowserRefresh", "BrowserRefresh")]
         public int BrowserRefresh
         {
-        	get { return m_browserRefresh; }
+            get { return m_browserRefresh; }
         }
 
         [ContextProperty("BrowserSearch", "BrowserSearch")]
         public int BrowserSearch
         {
-        	get { return m_browserSearch; }
+            get { return m_browserSearch; }
         }
 
         [ContextProperty("BrowserStop", "BrowserStop")]
         public int BrowserStop
         {
-        	get { return m_browserStop; }
+            get { return m_browserStop; }
         }
 
         [ContextProperty("C", "C")]
         public int C
         {
-        	get { return m_c; }
-        }
-
-        [ContextProperty("Capital", "Capital")]
-        public int Capital
-        {
-        	get { return m_capital; }
+            get { return m_c; }
         }
 
         [ContextProperty("CapsLock", "CapsLock")]
         public int CapsLock
         {
-        	get { return m_capsLock; }
+            get { return m_capsLock; }
         }
 
         [ContextProperty("ControlKey", "ControlKey")]
         public int ControlKey
         {
-        	get { return m_controlKey; }
+            get { return m_controlKey; }
         }
 
         [ContextProperty("Crsel", "Crsel")]
         public int Crsel
         {
-        	get { return m_crsel; }
+            get { return m_crsel; }
         }
 
         [ContextProperty("Ctrl", "Control")]
         public int Control
         {
-        	get { return m_control; }
+            get { return m_control; }
         }
 
         [ContextProperty("D", "D")]
         public int D
         {
-        	get { return m_d; }
+            get { return m_d; }
         }
 
         [ContextProperty("D0", "D0")]
         public int D0
         {
-        	get { return m_d0; }
+            get { return m_d0; }
         }
 
         [ContextProperty("D1", "D1")]
         public int D1
         {
-        	get { return m_d1; }
+            get { return m_d1; }
         }
 
         [ContextProperty("D2", "D2")]
         public int D2
         {
-        	get { return m_d2; }
+            get { return m_d2; }
         }
 
         [ContextProperty("D3", "D3")]
         public int D3
         {
-        	get { return m_d3; }
+            get { return m_d3; }
         }
 
         [ContextProperty("D4", "D4")]
         public int D4
         {
-        	get { return m_d4; }
+            get { return m_d4; }
         }
 
         [ContextProperty("D5", "D5")]
         public int D5
         {
-        	get { return m_d5; }
+            get { return m_d5; }
         }
 
         [ContextProperty("D6", "D6")]
         public int D6
         {
-        	get { return m_d6; }
+            get { return m_d6; }
         }
 
         [ContextProperty("D7", "D7")]
         public int D7
         {
-        	get { return m_d7; }
+            get { return m_d7; }
         }
 
         [ContextProperty("D8", "D8")]
         public int D8
         {
-        	get { return m_d8; }
+            get { return m_d8; }
         }
 
         [ContextProperty("D9", "D9")]
         public int D9
         {
-        	get { return m_d9; }
+            get { return m_d9; }
         }
 
         [ContextProperty("E", "E")]
         public int E
         {
-        	get { return m_e; }
+            get { return m_e; }
         }
 
         [ContextProperty("End", "End")]
         public int End
         {
-        	get { return m_end; }
+            get { return m_end; }
         }
 
         [ContextProperty("Enter", "Enter")]
         public int Enter
         {
-        	get { return m_enter; }
+            get { return m_enter; }
         }
 
         [ContextProperty("EraseEof", "EraseEof")]
         public int EraseEof
         {
-        	get { return m_eraseEof; }
+            get { return m_eraseEof; }
         }
 
         [ContextProperty("Escape", "Escape")]
         public int Escape
         {
-        	get { return m_escape; }
+            get { return m_escape; }
         }
 
         [ContextProperty("Execute", "Execute")]
         public int Execute
         {
-        	get { return m_execute; }
+            get { return m_execute; }
         }
 
         [ContextProperty("Exsel", "Exsel")]
         public int Exsel
         {
-        	get { return m_exsel; }
+            get { return m_exsel; }
         }
 
         [ContextProperty("F", "F")]
         public int F
         {
-        	get { return m_f; }
+            get { return m_f; }
         }
 
         [ContextProperty("F1", "F1")]
         public int F1
         {
-        	get { return m_f1; }
+            get { return m_f1; }
         }
 
         [ContextProperty("F10", "F10")]
         public int F10
         {
-        	get { return m_f10; }
+            get { return m_f10; }
         }
 
         [ContextProperty("F11", "F11")]
         public int F11
         {
-        	get { return m_f11; }
+            get { return m_f11; }
         }
 
         [ContextProperty("F12", "F12")]
         public int F12
         {
-        	get { return m_f12; }
+            get { return m_f12; }
         }
 
         [ContextProperty("F13", "F13")]
         public int F13
         {
-        	get { return m_f13; }
+            get { return m_f13; }
         }
 
         [ContextProperty("F14", "F14")]
         public int F14
         {
-        	get { return m_f14; }
+            get { return m_f14; }
         }
 
         [ContextProperty("F15", "F15")]
         public int F15
         {
-        	get { return m_f15; }
+            get { return m_f15; }
         }
 
         [ContextProperty("F16", "F16")]
         public int F16
         {
-        	get { return m_f16; }
+            get { return m_f16; }
         }
 
         [ContextProperty("F17", "F17")]
         public int F17
         {
-        	get { return m_f17; }
+            get { return m_f17; }
         }
 
         [ContextProperty("F18", "F18")]
         public int F18
         {
-        	get { return m_f18; }
+            get { return m_f18; }
         }
 
         [ContextProperty("F19", "F19")]
         public int F19
         {
-        	get { return m_f19; }
+            get { return m_f19; }
         }
 
         [ContextProperty("F2", "F2")]
         public int F2
         {
-        	get { return m_f2; }
+            get { return m_f2; }
         }
 
         [ContextProperty("F20", "F20")]
         public int F20
         {
-        	get { return m_f20; }
+            get { return m_f20; }
         }
 
         [ContextProperty("F21", "F21")]
         public int F21
         {
-        	get { return m_f21; }
+            get { return m_f21; }
         }
 
         [ContextProperty("F22", "F22")]
         public int F22
         {
-        	get { return m_f22; }
+            get { return m_f22; }
         }
 
         [ContextProperty("F23", "F23")]
         public int F23
         {
-        	get { return m_f23; }
+            get { return m_f23; }
         }
 
         [ContextProperty("F24", "F24")]
         public int F24
         {
-        	get { return m_f24; }
+            get { return m_f24; }
         }
 
         [ContextProperty("F3", "F3")]
         public int F3
         {
-        	get { return m_f3; }
+            get { return m_f3; }
         }
 
         [ContextProperty("F4", "F4")]
         public int F4
         {
-        	get { return m_f4; }
+            get { return m_f4; }
         }
 
         [ContextProperty("F5", "F5")]
         public int F5
         {
-        	get { return m_f5; }
+            get { return m_f5; }
         }
 
         [ContextProperty("F6", "F6")]
         public int F6
         {
-        	get { return m_f6; }
+            get { return m_f6; }
         }
 
         [ContextProperty("F7", "F7")]
         public int F7
         {
-        	get { return m_f7; }
+            get { return m_f7; }
         }
 
         [ContextProperty("F8", "F8")]
         public int F8
         {
-        	get { return m_f8; }
+            get { return m_f8; }
         }
 
         [ContextProperty("F9", "F9")]
         public int F9
         {
-        	get { return m_f9; }
+            get { return m_f9; }
         }
 
         [ContextProperty("FinalMode", "FinalMode")]
         public int FinalMode
         {
-        	get { return m_finalMode; }
+            get { return m_finalMode; }
         }
 
         [ContextProperty("G", "G")]
         public int G
         {
-        	get { return m_g; }
+            get { return m_g; }
         }
 
         [ContextProperty("H", "H")]
         public int H
         {
-        	get { return m_h; }
-        }
-
-        [ContextProperty("HanguelMode", "HanguelMode")]
-        public int HanguelMode
-        {
-        	get { return m_hanguelMode; }
+            get { return m_h; }
         }
 
         [ContextProperty("HangulMode", "HangulMode")]
         public int HangulMode
         {
-        	get { return m_hangulMode; }
+            get { return m_hangulMode; }
         }
 
         [ContextProperty("HanjaMode", "HanjaMode")]
         public int HanjaMode
         {
-        	get { return m_hanjaMode; }
+            get { return m_hanjaMode; }
         }
 
         [ContextProperty("I", "I")]
         public int I
         {
-        	get { return m_i; }
+            get { return m_i; }
         }
 
         [ContextProperty("IMEAceept", "IMEAceept")]
         public int IMEAceept
         {
-        	get { return m_iMEAceept; }
+            get { return m_iMEAceept; }
         }
 
         [ContextProperty("IMEConvert", "IMEConvert")]
         public int IMEConvert
         {
-        	get { return m_iMEConvert; }
+            get { return m_iMEConvert; }
         }
 
         [ContextProperty("IMEModeChange", "IMEModeChange")]
         public int IMEModeChange
         {
-        	get { return m_iMEModeChange; }
+            get { return m_iMEModeChange; }
         }
 
         [ContextProperty("IMENonconvert", "IMENonconvert")]
         public int IMENonconvert
         {
-        	get { return m_iMENonconvert; }
+            get { return m_iMENonconvert; }
         }
 
         [ContextProperty("J", "J")]
         public int J
         {
-        	get { return m_j; }
+            get { return m_j; }
         }
 
         [ContextProperty("JunjaMode", "JunjaMode")]
         public int JunjaMode
         {
-        	get { return m_junjaMode; }
+            get { return m_junjaMode; }
         }
 
         [ContextProperty("K", "K")]
         public int K
         {
-        	get { return m_k; }
-        }
-
-        [ContextProperty("KanaMode", "KanaMode")]
-        public int KanaMode
-        {
-        	get { return m_kanaMode; }
-        }
-
-        [ContextProperty("KanjiMode", "KanjiMode")]
-        public int KanjiMode
-        {
-        	get { return m_kanjiMode; }
+            get { return m_k; }
         }
 
         [ContextProperty("KeyCode", "KeyCode")]
         public int KeyCode
         {
-        	get { return m_keyCode; }
+            get { return m_keyCode; }
         }
 
         [ContextProperty("L", "L")]
         public int L
         {
-        	get { return m_l; }
+            get { return m_l; }
         }
 
         [ContextProperty("LaunchApplication1", "LaunchApplication1")]
         public int LaunchApplication1
         {
-        	get { return m_launchApplication1; }
+            get { return m_launchApplication1; }
         }
 
         [ContextProperty("LaunchApplication2", "LaunchApplication2")]
         public int LaunchApplication2
         {
-        	get { return m_launchApplication2; }
+            get { return m_launchApplication2; }
         }
 
         [ContextProperty("LaunchMail", "LaunchMail")]
         public int LaunchMail
         {
-        	get { return m_launchMail; }
+            get { return m_launchMail; }
         }
 
         [ContextProperty("LControlKey", "LControlKey")]
         public int LControlKey
         {
-        	get { return m_lControlKey; }
+            get { return m_lControlKey; }
         }
 
         [ContextProperty("LineFeed", "LineFeed")]
         public int LineFeed
         {
-        	get { return m_lineFeed; }
+            get { return m_lineFeed; }
         }
 
         [ContextProperty("LMenu", "LMenu")]
         public int LMenu
         {
-        	get { return m_lMenu; }
+            get { return m_lMenu; }
         }
 
         [ContextProperty("LShiftKey", "LShiftKey")]
         public int LShiftKey
         {
-        	get { return m_lShiftKey; }
+            get { return m_lShiftKey; }
         }
 
         [ContextProperty("LWin", "LWin")]
         public int LWin
         {
-        	get { return m_lWin; }
+            get { return m_lWin; }
         }
 
         [ContextProperty("M", "M")]
         public int M
         {
-        	get { return m_m; }
+            get { return m_m; }
         }
 
         [ContextProperty("MediaNextTrack", "MediaNextTrack")]
         public int MediaNextTrack
         {
-        	get { return m_mediaNextTrack; }
+            get { return m_mediaNextTrack; }
         }
 
         [ContextProperty("MediaPlayPause", "MediaPlayPause")]
         public int MediaPlayPause
         {
-        	get { return m_mediaPlayPause; }
+            get { return m_mediaPlayPause; }
         }
 
         [ContextProperty("MediaPreviousTrack", "MediaPreviousTrack")]
         public int MediaPreviousTrack
         {
-        	get { return m_mediaPreviousTrack; }
+            get { return m_mediaPreviousTrack; }
         }
 
         [ContextProperty("MediaStop", "MediaStop")]
         public int MediaStop
         {
-        	get { return m_mediaStop; }
+            get { return m_mediaStop; }
         }
 
         [ContextProperty("Modifiers", "Modifiers")]
         public int Modifiers
         {
-        	get { return m_modifiers; }
+            get { return m_modifiers; }
         }
 
         [ContextProperty("Multiply", "Multiply")]
         public int Multiply
         {
-        	get { return m_multiply; }
+            get { return m_multiply; }
         }
 
         [ContextProperty("N", "N")]
         public int N
         {
-        	get { return m_n; }
-        }
-
-        [ContextProperty("Next", "Next")]
-        public int Next
-        {
-        	get { return m_next; }
+            get { return m_n; }
         }
 
         [ContextProperty("NoName", "NoName")]
         public int NoName
         {
-        	get { return m_noName; }
+            get { return m_noName; }
         }
 
         [ContextProperty("NumLock", "NumLock")]
         public int NumLock
         {
-        	get { return m_numLock; }
+            get { return m_numLock; }
         }
 
         [ContextProperty("NumPad0", "NumPad0")]
         public int NumPad0
         {
-        	get { return m_numPad0; }
+            get { return m_numPad0; }
         }
 
         [ContextProperty("NumPad1", "NumPad1")]
         public int NumPad1
         {
-        	get { return m_numPad1; }
+            get { return m_numPad1; }
         }
 
         [ContextProperty("NumPad2", "NumPad2")]
         public int NumPad2
         {
-        	get { return m_numPad2; }
+            get { return m_numPad2; }
         }
 
         [ContextProperty("NumPad3", "NumPad3")]
         public int NumPad3
         {
-        	get { return m_numPad3; }
+            get { return m_numPad3; }
         }
 
         [ContextProperty("NumPad4", "NumPad4")]
         public int NumPad4
         {
-        	get { return m_numPad4; }
+            get { return m_numPad4; }
         }
 
         [ContextProperty("NumPad5", "NumPad5")]
         public int NumPad5
         {
-        	get { return m_numPad5; }
+            get { return m_numPad5; }
         }
 
         [ContextProperty("NumPad6", "NumPad6")]
         public int NumPad6
         {
-        	get { return m_numPad6; }
+            get { return m_numPad6; }
         }
 
         [ContextProperty("NumPad7", "NumPad7")]
         public int NumPad7
         {
-        	get { return m_numPad7; }
+            get { return m_numPad7; }
         }
 
         [ContextProperty("NumPad8", "NumPad8")]
         public int NumPad8
         {
-        	get { return m_numPad8; }
+            get { return m_numPad8; }
         }
 
         [ContextProperty("NumPad9", "NumPad9")]
         public int NumPad9
         {
-        	get { return m_numPad9; }
+            get { return m_numPad9; }
         }
 
         [ContextProperty("O", "O")]
         public int O
         {
-        	get { return m_o; }
+            get { return m_o; }
         }
 
         [ContextProperty("Oem8", "Oem8")]
         public int Oem8
         {
-        	get { return m_oem8; }
+            get { return m_oem8; }
         }
 
         [ContextProperty("OemBackslash", "OemBackslash")]
         public int OemBackslash
         {
-        	get { return m_oemBackslash; }
+            get { return m_oemBackslash; }
         }
 
         [ContextProperty("OemClear", "OemClear")]
         public int OemClear
         {
-        	get { return m_oemClear; }
+            get { return m_oemClear; }
         }
 
         [ContextProperty("OemCloseBrackets", "OemCloseBrackets")]
         public int OemCloseBrackets
         {
-        	get { return m_oemCloseBrackets; }
+            get { return m_oemCloseBrackets; }
         }
 
         [ContextProperty("Oemcomma", "Oemcomma")]
         public int Oemcomma
         {
-        	get { return m_oemcomma; }
+            get { return m_oemcomma; }
         }
 
         [ContextProperty("OemMinus", "OemMinus")]
         public int OemMinus
         {
-        	get { return m_oemMinus; }
+            get { return m_oemMinus; }
         }
 
         [ContextProperty("OemOpenBrackets", "OemOpenBrackets")]
         public int OemOpenBrackets
         {
-        	get { return m_oemOpenBrackets; }
+            get { return m_oemOpenBrackets; }
         }
 
         [ContextProperty("OemPeriod", "OemPeriod")]
         public int OemPeriod
         {
-        	get { return m_oemPeriod; }
+            get { return m_oemPeriod; }
         }
 
         [ContextProperty("OemPipe", "OemPipe")]
         public int OemPipe
         {
-        	get { return m_oemPipe; }
+            get { return m_oemPipe; }
         }
 
         [ContextProperty("Oemplus", "Oemplus")]
         public int Oemplus
         {
-        	get { return m_oemplus; }
+            get { return m_oemplus; }
         }
 
         [ContextProperty("OemQuestion", "OemQuestion")]
         public int OemQuestion
         {
-        	get { return m_oemQuestion; }
+            get { return m_oemQuestion; }
         }
 
         [ContextProperty("OemQuotes", "OemQuotes")]
         public int OemQuotes
         {
-        	get { return m_oemQuotes; }
+            get { return m_oemQuotes; }
         }
 
         [ContextProperty("OemSemicolon", "OemSemicolon")]
         public int OemSemicolon
         {
-        	get { return m_oemSemicolon; }
+            get { return m_oemSemicolon; }
         }
 
         [ContextProperty("Oemtilde", "Oemtilde")]
         public int Oemtilde
         {
-        	get { return m_oemtilde; }
+            get { return m_oemtilde; }
         }
 
         [ContextProperty("P", "P")]
         public int P
         {
-        	get { return m_p; }
+            get { return m_p; }
         }
 
         [ContextProperty("Pa1", "Pa1")]
         public int Pa1
         {
-        	get { return m_pa1; }
+            get { return m_pa1; }
         }
 
         [ContextProperty("PageDown", "PageDown")]
         public int PageDown
         {
-        	get { return m_pageDown; }
+            get { return m_pageDown; }
         }
 
         [ContextProperty("PageUp", "PageUp")]
         public int PageUp
         {
-        	get { return m_pageUp; }
+            get { return m_pageUp; }
         }
 
         [ContextProperty("Pause", "Pause")]
         public int Pause
         {
-        	get { return m_pause; }
+            get { return m_pause; }
         }
 
         [ContextProperty("Play", "Play")]
         public int Play
         {
-        	get { return m_play; }
+            get { return m_play; }
         }
 
         [ContextProperty("Print", "Print")]
         public int Print
         {
-        	get { return m_print; }
+            get { return m_print; }
         }
 
         [ContextProperty("PrintScreen", "PrintScreen")]
         public int PrintScreen
         {
-        	get { return m_printScreen; }
-        }
-
-        [ContextProperty("Prior", "Prior")]
-        public int Prior
-        {
-        	get { return m_prior; }
+            get { return m_printScreen; }
         }
 
         [ContextProperty("ProcessKey", "ProcessKey")]
         public int ProcessKey
         {
-        	get { return m_processKey; }
+            get { return m_processKey; }
         }
 
         [ContextProperty("Q", "Q")]
         public int Q
         {
-        	get { return m_q; }
+            get { return m_q; }
         }
 
         [ContextProperty("R", "R")]
         public int R
         {
-        	get { return m_r; }
+            get { return m_r; }
         }
 
         [ContextProperty("RControlKey", "RControlKey")]
         public int RControlKey
         {
-        	get { return m_rControlKey; }
-        }
-
-        [ContextProperty("Return", "Return")]
-        public int Return
-        {
-        	get { return m_return; }
+            get { return m_rControlKey; }
         }
 
         [ContextProperty("RMenu", "RMenu")]
         public int RMenu
         {
-        	get { return m_rMenu; }
+            get { return m_rMenu; }
         }
 
         [ContextProperty("RShiftKey", "RShiftKey")]
         public int RShiftKey
         {
-        	get { return m_rShiftKey; }
+            get { return m_rShiftKey; }
         }
 
         [ContextProperty("RWin", "RWin")]
         public int RWin
         {
-        	get { return m_rWin; }
+            get { return m_rWin; }
         }
 
         [ContextProperty("S", "S")]
         public int S
         {
-        	get { return m_s; }
+            get { return m_s; }
         }
 
         [ContextProperty("Scroll", "Scroll")]
         public int Scroll
         {
-        	get { return m_scroll; }
+            get { return m_scroll; }
         }
 
         [ContextProperty("Select", "Select")]
         public int Select
         {
-        	get { return m_select; }
+            get { return m_select; }
         }
 
         [ContextProperty("SelectMedia", "SelectMedia")]
         public int SelectMedia
         {
-        	get { return m_selectMedia; }
+            get { return m_selectMedia; }
         }
 
         [ContextProperty("Separator", "Separator")]
         public int Separator
         {
-        	get { return m_separator; }
+            get { return m_separator; }
         }
 
         [ContextProperty("Shift", "Shift")]
         public int Shift
         {
-        	get { return m_shift; }
+            get { return m_shift; }
         }
 
         [ContextProperty("ShiftKey", "ShiftKey")]
         public int ShiftKey
         {
-        	get { return m_shiftKey; }
-        }
-
-        [ContextProperty("Snapshot", "Snapshot")]
-        public int Snapshot
-        {
-        	get { return m_snapshot; }
+            get { return m_shiftKey; }
         }
 
         [ContextProperty("Subtract", "Subtract")]
         public int Subtract
         {
-        	get { return m_subtract; }
+            get { return m_subtract; }
         }
 
         [ContextProperty("T", "T")]
         public int T
         {
-        	get { return m_t; }
+            get { return m_t; }
         }
 
         [ContextProperty("Tab", "Tab")]
         public int Tab
         {
-        	get { return m_tab; }
+            get { return m_tab; }
         }
 
         [ContextProperty("U", "U")]
         public int U
         {
-        	get { return m_u; }
+            get { return m_u; }
         }
 
         [ContextProperty("V", "V")]
         public int V
         {
-        	get { return m_v; }
+            get { return m_v; }
         }
 
         [ContextProperty("VolumeDown", "VolumeDown")]
         public int VolumeDown
         {
-        	get { return m_volumeDown; }
+            get { return m_volumeDown; }
         }
 
         [ContextProperty("VolumeMute", "VolumeMute")]
         public int VolumeMute
         {
-        	get { return m_volumeMute; }
+            get { return m_volumeMute; }
         }
 
         [ContextProperty("VolumeUp", "VolumeUp")]
         public int VolumeUp
         {
-        	get { return m_volumeUp; }
+            get { return m_volumeUp; }
         }
 
         [ContextProperty("W", "W")]
         public int W
         {
-        	get { return m_w; }
+            get { return m_w; }
         }
 
         [ContextProperty("X", "X")]
         public int X
         {
-        	get { return m_x; }
+            get { return m_x; }
         }
 
         [ContextProperty("XButton1", "XButton1")]
         public int XButton1
         {
-        	get { return m_xButton1; }
+            get { return m_xButton1; }
         }
 
         [ContextProperty("XButton2", "XButton2")]
         public int XButton2
         {
-        	get { return m_xButton2; }
+            get { return m_xButton2; }
         }
 
         [ContextProperty("Y", "Y")]
         public int Y
         {
-        	get { return m_y; }
+            get { return m_y; }
         }
 
         [ContextProperty("Z", "Z")]
         public int Z
         {
-        	get { return m_z; }
+            get { return m_z; }
         }
 
         [ContextProperty("Zoom", "Zoom")]
         public int Zoom
         {
-        	get { return m_zoom; }
+            get { return m_zoom; }
         }
 
         [ContextProperty("Вверх", "Up")]
         public int Up
         {
-        	get { return m_up; }
+            get { return m_up; }
         }
 
         [ContextProperty("Вниз", "Down")]
         public int Down
         {
-        	get { return m_down; }
+            get { return m_down; }
         }
 
         [ContextProperty("Вставить", "Insert")]
         public int Insert
         {
-        	get { return m_insert; }
+            get { return m_insert; }
         }
 
         [ContextProperty("Деление", "Divide")]
         public int Divide
         {
-        	get { return m_divide; }
+            get { return m_divide; }
         }
 
         [ContextProperty("Десятичное", "Decimal")]
         public int Decimal
         {
-        	get { return m_decimal; }
+            get { return m_decimal; }
         }
 
         [ContextProperty("Добавить", "Add")]
         public int Add
         {
-        	get { return m_add; }
+            get { return m_add; }
         }
 
         [ContextProperty("Домой", "Home")]
         public int Home
         {
-        	get { return m_home; }
+            get { return m_home; }
         }
 
         [ContextProperty("ЛеваяКнопкаМыши", "LButton")]
         public int LButton
         {
-        	get { return m_lButton; }
+            get { return m_lButton; }
         }
 
         [ContextProperty("Лево", "Left")]
         public int Left
         {
-        	get { return m_left; }
+            get { return m_left; }
         }
 
         [ContextProperty("Меню", "Menu")]
         public int Menu
         {
-        	get { return m_menu; }
+            get { return m_menu; }
         }
 
         [ContextProperty("Назад", "Back")]
         public int Back
         {
-        	get { return m_back; }
+            get { return m_back; }
         }
 
         [ContextProperty("Отмена", "Cancel")]
         public int Cancel
         {
-        	get { return m_cancel; }
+            get { return m_cancel; }
         }
 
         [ContextProperty("Отсутствие", "None")]
         public int None
         {
-        	get { return m_none; }
+            get { return m_none; }
         }
 
         [ContextProperty("Очистить", "Clear")]
         public int Clear
         {
-        	get { return m_clear; }
+            get { return m_clear; }
         }
 
         [ContextProperty("Помощь", "Help")]
         public int Help
         {
-        	get { return m_help; }
+            get { return m_help; }
         }
 
         [ContextProperty("ПраваяКнопкаМыши", "RButton")]
         public int RButton
         {
-        	get { return m_rButton; }
+            get { return m_rButton; }
         }
 
         [ContextProperty("Право", "Right")]
         public int Right
         {
-        	get { return m_right; }
+            get { return m_right; }
         }
 
         [ContextProperty("Пробел", "Space")]
         public int Space
         {
-        	get { return m_space; }
+            get { return m_space; }
         }
 
         [ContextProperty("СредняяКнопкаМыши", "MButton")]
         public int MButton
         {
-        	get { return m_mButton; }
+            get { return m_mButton; }
         }
 
         [ContextProperty("Удалить", "Delete")]
         public int Delete
         {
-        	get { return m_delete; }
+            get { return m_delete; }
         }
     }
 }

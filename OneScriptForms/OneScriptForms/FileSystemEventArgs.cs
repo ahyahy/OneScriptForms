@@ -12,7 +12,7 @@ namespace osf
 
     }
 
-    [ContextClass ("КлСобытиеФайловойСистемыАрг", "ClFileSystemEventArgs")]
+    [ContextClass("КлСобытиеФайловойСистемыАрг", "ClFileSystemEventArgs")]
     public class ClFileSystemEventArgs : AutoContext<ClFileSystemEventArgs>
     {
         public ClFileSystemEventArgs()
@@ -21,16 +21,16 @@ namespace osf
             FileSystemEventArgs1.dll_obj = this;
             Base_obj = FileSystemEventArgs1;
         }
-		
+
         public ClFileSystemEventArgs(FileSystemEventArgs p1)
         {
             FileSystemEventArgs FileSystemEventArgs1 = p1;
             FileSystemEventArgs1.dll_obj = this;
             Base_obj = FileSystemEventArgs1;
         }
-        
+
         public FileSystemEventArgs Base_obj;
-        
+
         [ContextProperty("Имя", "Name")]
         public string Name
         {
@@ -42,7 +42,7 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
@@ -60,6 +60,6 @@ namespace osf
         {
             get { return (int)Base_obj.ChangeType; }
         }
-        
+
     }
 }

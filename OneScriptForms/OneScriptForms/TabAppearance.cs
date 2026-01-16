@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлОформлениеВкладок", "ClTabAppearance")]
+    [ContextClass("КлОформлениеВкладок", "ClTabAppearance")]
     public class ClTabAppearance : AutoContext<ClTabAppearance>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_normal = (int)System.Windows.Forms.TabAppearance.Normal; // 0 Вкладки имеют стандартный внешний вид вкладок.
@@ -37,6 +37,44 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1, "Кнопки"},
+            {2, "ПлоскиеКнопки"},
+            {0, "Стандартный"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1, "Buttons"},
+            {2, "FlatButtons"},
+            {0, "Normal"},
+        };
+
         public ClTabAppearance()
         {
             _list = new List<IValue>();
@@ -48,19 +86,19 @@ namespace osf
         [ContextProperty("Кнопки", "Buttons")]
         public int Buttons
         {
-        	get { return m_buttons; }
+            get { return m_buttons; }
         }
 
         [ContextProperty("ПлоскиеКнопки", "FlatButtons")]
         public int FlatButtons
         {
-        	get { return m_flatButtons; }
+            get { return m_flatButtons; }
         }
 
         [ContextProperty("Стандартный", "Normal")]
         public int Normal
         {
-        	get { return m_normal; }
+            get { return m_normal; }
         }
     }
 }

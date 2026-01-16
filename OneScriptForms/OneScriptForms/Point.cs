@@ -35,7 +35,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлТочка", "ClPoint")]
+    [ContextClass("КлТочка", "ClPoint")]
     public class ClPoint : AutoContext<ClPoint>
     {
         public ClPoint(int x, int y)
@@ -51,7 +51,7 @@ namespace osf
             Point1.dll_obj = this;
             Base_obj = Point1;
         }
-		
+
         public ClPoint(System.Drawing.Point p1)
         {
             Point Point1 = new Point(p1);
@@ -60,7 +60,7 @@ namespace osf
         }
 
         public Point Base_obj;
-        
+
         [ContextProperty("Игрек", "Y")]
         public int Y
         {
@@ -74,6 +74,6 @@ namespace osf
             get { return Base_obj.X; }
             set { Base_obj.X = value; }
         }
-        
+
     }
 }

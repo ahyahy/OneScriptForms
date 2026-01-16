@@ -48,7 +48,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлКнопкиПанелиИнструментов", "ClToolBarButtonCollection")]
+    [ContextClass("КлКнопкиПанелиИнструментов", "ClToolBarButtonCollection")]
     public class ClToolBarButtonCollection : AutoContext<ClToolBarButtonCollection>
     {
         public ClToolBarButtonCollection()
@@ -57,22 +57,22 @@ namespace osf
             ToolBarButtonCollection1.dll_obj = this;
             Base_obj = ToolBarButtonCollection1;
         }
-		
+
         public ClToolBarButtonCollection(ToolBarButtonCollection p1)
         {
             ToolBarButtonCollection ToolBarButtonCollection1 = p1;
             ToolBarButtonCollection1.dll_obj = this;
             Base_obj = ToolBarButtonCollection1;
         }
-        
+
         public ToolBarButtonCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Вставить", "Insert")]
         public ClToolBarButton Insert(int p1, ClToolBarButton p2)
         {
@@ -90,7 +90,7 @@ namespace osf
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Удалить", "Remove")]
         public void Remove(ClToolBarButton p1)
         {

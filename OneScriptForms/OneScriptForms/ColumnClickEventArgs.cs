@@ -10,7 +10,7 @@ namespace osf
 
     }
 
-    [ContextClass ("КлКолонкаНажатиеАрг", "ClColumnClickEventArgs")]
+    [ContextClass("КлКолонкаНажатиеАрг", "ClColumnClickEventArgs")]
     public class ClColumnClickEventArgs : AutoContext<ClColumnClickEventArgs>
     {
         public ClColumnClickEventArgs()
@@ -19,16 +19,16 @@ namespace osf
             ColumnClickEventArgs1.dll_obj = this;
             Base_obj = ColumnClickEventArgs1;
         }
-		
+
         public ClColumnClickEventArgs(ColumnClickEventArgs p1)
         {
             ColumnClickEventArgs ColumnClickEventArgs1 = p1;
             ColumnClickEventArgs1.dll_obj = this;
             Base_obj = ColumnClickEventArgs1;
         }
-        
+
         public ColumnClickEventArgs Base_obj;
-        
+
         [ContextProperty("Колонка", "Column")]
         public int Column
         {
@@ -40,12 +40,12 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
             get { return (IValue)Base_obj.Parameter; }
         }
-        
+
     }
 }

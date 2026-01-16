@@ -197,13 +197,13 @@ namespace osf
         }
 
         private void NativePaint(
-            System.Drawing.Graphics graphics, 
-            System.Drawing.Rectangle clipBounds, 
-            System.Drawing.Rectangle cellBounds, 
+            System.Drawing.Graphics graphics,
+            System.Drawing.Rectangle clipBounds,
+            System.Drawing.Rectangle cellBounds,
             int rowIndex,
-            System.Windows.Forms.DataGridViewElementStates cellState, 
-            object value, 
-            object formattedValue, 
+            System.Windows.Forms.DataGridViewElementStates cellState,
+            object value,
+            object formattedValue,
             string errorText,
             System.Windows.Forms.DataGridViewCellStyle cellStyle,
             System.Windows.Forms.DataGridViewAdvancedBorderStyle advancedBorderStyle,
@@ -264,17 +264,17 @@ namespace osf
         }
 
         public override System.Drawing.Rectangle PositionEditingPanel(
-            System.Drawing.Rectangle cellBounds, 
+            System.Drawing.Rectangle cellBounds,
             System.Drawing.Rectangle cellClip,
-            System.Windows.Forms.DataGridViewCellStyle cellStyle, 
-            bool singleVerticalBorderAdded, 
-            bool singleHorizontalBorderAdded, 
-            bool isFirstDisplayedColumn, 
+            System.Windows.Forms.DataGridViewCellStyle cellStyle,
+            bool singleVerticalBorderAdded,
+            bool singleHorizontalBorderAdded,
+            bool isFirstDisplayedColumn,
             bool isFirstDisplayedRow)
         {
             if (m_OwnerCell == null && m_ColumnSpan == 1 && m_RowSpan == 1)
             {
-                return base.PositionEditingPanel( cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, isFirstDisplayedColumn, isFirstDisplayedRow);
+                return base.PositionEditingPanel(cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, isFirstDisplayedColumn, isFirstDisplayedRow);
             }
 
             var ownerCell = this;
@@ -301,9 +301,9 @@ namespace osf
                 singleVerticalBorderAdded,
                 singleHorizontalBorderAdded);
             cellClip = DataGridViewCellExHelper.GetSpannedCellClipBounds(
-                ownerCell, 
-                cellBounds, 
-                singleVerticalBorderAdded, 
+                ownerCell,
+                cellBounds,
+                singleVerticalBorderAdded,
                 singleHorizontalBorderAdded);
             return base.PositionEditingPanel(cellBounds, cellClip, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, ownerCell.InFirstDisplayedColumn(), ownerCell.InFirstDisplayedRow());
         }
@@ -362,7 +362,7 @@ namespace osf
 
         protected override System.Drawing.Size GetPreferredSize(
             System.Drawing.Graphics graphics,
-            System.Windows.Forms.DataGridViewCellStyle cellStyle, 
+            System.Windows.Forms.DataGridViewCellStyle cellStyle,
             int rowIndex,
             System.Drawing.Size constraintSize)
         {
@@ -434,7 +434,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлПолеВводаЯчейки", "ClDataGridViewTextBoxCell")]
+    [ContextClass("КлПолеВводаЯчейки", "ClDataGridViewTextBoxCell")]
     public class ClDataGridViewTextBoxCell : AutoContext<ClDataGridViewTextBoxCell>
     {
         private ClRectangle contentBounds;
@@ -447,7 +447,7 @@ namespace osf
             Base_obj = DataGridViewTextBoxCell1;
             contentBounds = new ClRectangle(Base_obj.ContentBounds);
         }
-		
+
         public ClDataGridViewTextBoxCell(DataGridViewTextBoxCell p1)
         {
             DataGridViewTextBoxCell DataGridViewTextBoxCell1 = p1;
@@ -455,9 +455,9 @@ namespace osf
             Base_obj = DataGridViewTextBoxCell1;
             contentBounds = new ClRectangle(Base_obj.ContentBounds);
         }
-        
+
         public DataGridViewTextBoxCell Base_obj;
-        
+
         [ContextProperty("Выбран", "Selected")]
         public bool Selected
         {
@@ -483,7 +483,7 @@ namespace osf
             get { return OneScriptForms.RevertObj(Base_obj.Value); }
             set { Base_obj.Value = value.AsString(); }
         }
-        
+
         [ContextProperty("ИзменяемыйРазмер", "Resizable")]
         public bool Resizable
         {
@@ -520,7 +520,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("Отображается", "Displayed")]
         public bool Displayed
         {
@@ -589,12 +589,12 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.FormattedValue); }
         }
-        
+
         [ContextProperty("ФорматированноеЗначениеРедактируемого", "EditedFormattedValue")]
         public IValue EditedFormattedValue
         {
             get { return OneScriptForms.RevertObj(Base_obj.EditedFormattedValue); }
         }
-        
+
     }
 }

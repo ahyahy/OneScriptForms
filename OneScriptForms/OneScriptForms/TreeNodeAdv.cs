@@ -1,24 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using System.Threading;
-using System.Text;
-using System.Security.Permissions;
-using System.Runtime.Serialization;
-using System.Runtime.InteropServices;
-using System.Reflection;
-using System.IO;
-using System.Globalization;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.Drawing.Drawing2D;
-using System.Drawing.Design;
-using System.ComponentModel;
-using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using Aga.Controls.Tree.NodeControls;
-using Aga.Controls.Threading;
 using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
 
@@ -50,7 +35,7 @@ namespace Aga.Controls.Tree
         }
 
         public TreeNodeAdv TreeNodeAdv { get; set; }
-		
+
         public string NodeName { get; set; }
 
         internal TreeModel Model
@@ -63,7 +48,7 @@ namespace Aga.Controls.Tree
         {
             get { return _nodes; }
         }
-		
+
         public object TooltipText { get; set; }
 
         public Node Parent
@@ -227,7 +212,7 @@ namespace Aga.Controls.Tree
                 }
             }
         }
-		
+
         public string FullPath
         {
             get { return GetFullPath(); }
@@ -244,7 +229,7 @@ namespace Aga.Controls.Tree
             }
             return fullPath.TrimStart(this.TreeNodeAdv.Tree.PathSeparator.ToCharArray());
         }
-		
+
         public void SetControlValue(NodeControl p1, object p2)
         {
             if (p2 == null)
@@ -263,7 +248,7 @@ namespace Aga.Controls.Tree
                 }
             }
         }
-		
+
         public object GetControlValue(NodeControl p1)
         {
             object obj;
@@ -925,18 +910,17 @@ namespace osf
             Base_obj.dll_obj = this;
             nodes = new ClNodeCollection(Base_obj.Nodes);
             NodeName = p1;
-        }//end_constr
+        }
 
         public ClNode(Aga.Controls.Tree.Node p1)
         {
             Base_obj = p1;
             Base_obj.dll_obj = this;
             nodes = new ClNodeCollection(Base_obj.Nodes);
-        }//end_constr
+        }
 
         public Aga.Controls.Tree.Node Base_obj;
 
-        //Свойства============================================================
         [ContextProperty("Выбран", "IsSelected")]
         public bool IsSelected
         {
@@ -968,7 +952,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("ПолныйПуть", "FullPath")]
         public string FullPath
         {
@@ -994,7 +978,7 @@ namespace osf
             get { return OneScriptForms.RevertObj(Base_obj.Parent); }
             set { Base_obj.Parent = ((dynamic)value).Base_obj; }
         }
-        
+
         [ContextProperty("СледующийУзел", "NextNode")]
         public ClNode NextNode
         {
@@ -1012,15 +996,13 @@ namespace osf
         {
             get { return nodes; }
         }
-        
+
         [ContextProperty("Уровень", "Level")]
         public int Level
         {
             get { return Base_obj.TreeNodeAdv.Level; }
         }
 
-        //endProperty
-        //Методы============================================================
         [ContextMethod("ПолучитьЗначение", "GetControlValue")]
         public IValue GetControlValue(IValue p1)
         {
@@ -1033,31 +1015,31 @@ namespace osf
                 return Base_obj.GetControlValue(((dynamic)p1).Base_obj);
             }
         }
-        
+
         [ContextMethod("Развернуть", "Expand")]
         public void Expand()
         {
             Base_obj.TreeNodeAdv.Expand();
         }
-        
+
         [ContextMethod("Свернуть", "Collapse")]
         public void Collapse()
         {
             Base_obj.TreeNodeAdv.Collapse();
         }
-        
+
         [ContextMethod("Удалить", "Remove")]
         public void Remove()
         {
             Base_obj.TreeNodeAdv.Remove();
         }
-        
+
         [ContextMethod("Узлы", "Nodes")]
         public ClNode Nodes2(int p1)
         {
             return new ClNode(Base_obj.Nodes[p1]);
         }
-        
+
         [ContextMethod("УстановитьЗначение", "SetControlValue")]
         public void SetControlValue(IValue p1, IValue p2)
         {
@@ -1071,7 +1053,5 @@ namespace osf
             }
         }
 
-        //endMethods
-    }//endClass
-
-}//endnamespace
+    }
+}

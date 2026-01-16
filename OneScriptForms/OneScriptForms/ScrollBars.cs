@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлПолосыПрокрутки", "ClScrollBars")]
+    [ContextClass("КлПолосыПрокрутки", "ClScrollBars")]
     public class ClScrollBars : AutoContext<ClScrollBars>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_none = (int)System.Windows.Forms.ScrollBars.None; // 0 Полосы прокрутки не отображаются.
@@ -38,6 +38,46 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {2, "Вертикальная"},
+            {1, "Горизонтальная"},
+            {3, "Обе"},
+            {0, "Отсутствие"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {2, "Vertical"},
+            {1, "Horizontal"},
+            {3, "Both"},
+            {0, "None"},
+        };
+
         public ClScrollBars()
         {
             _list = new List<IValue>();
@@ -50,25 +90,25 @@ namespace osf
         [ContextProperty("Вертикальная", "Vertical")]
         public int Vertical
         {
-        	get { return m_vertical; }
+            get { return m_vertical; }
         }
 
         [ContextProperty("Горизонтальная", "Horizontal")]
         public int Horizontal
         {
-        	get { return m_horizontal; }
+            get { return m_horizontal; }
         }
 
         [ContextProperty("Обе", "Both")]
         public int Both
         {
-        	get { return m_both; }
+            get { return m_both; }
         }
 
         [ContextProperty("Отсутствие", "None")]
         public int None
         {
-        	get { return m_none; }
+            get { return m_none; }
         }
     }
 }

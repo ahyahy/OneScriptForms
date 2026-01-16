@@ -63,7 +63,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлПредставлениеСтрокиДанных", "ClDataRowView")]
+    [ContextClass("КлПредставлениеСтрокиДанных", "ClDataRowView")]
     public class ClDataRowView : AutoContext<ClDataRowView>
     {
         public ClDataRowView()
@@ -72,7 +72,7 @@ namespace osf
             DataRowView1.dll_obj = this;
             Base_obj = DataRowView1;
         }
-		
+
         public ClDataRowView(DataRowView p1)
         {
             DataRowView DataRowView1 = p1;
@@ -88,25 +88,25 @@ namespace osf
         }
 
         public DataRowView Base_obj;
-        
+
         [ContextProperty("Строка", "Row")]
         public ClDataRow Row
         {
             get { return new ClDataRow(Base_obj.Row); }
         }
-        
+
         [ContextMethod("ЗакончитьРедактирование", "EndEdit")]
         public void EndEdit()
         {
             Base_obj.EndEdit();
         }
-					
+
         [ContextMethod("Удалить", "Delete")]
         public void Delete()
         {
             Base_obj.Delete();
         }
-					
+
         [ContextMethod("УстановитьЭлемент", "SetItem")]
         public void SetItem(IValue p1, IValue p2)
         {

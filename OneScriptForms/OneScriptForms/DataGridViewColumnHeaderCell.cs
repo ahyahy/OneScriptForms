@@ -29,7 +29,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЗаголовокКолонки", "ClDataGridViewColumnHeaderCell")]
+    [ContextClass("КлЗаголовокКолонки", "ClDataGridViewColumnHeaderCell")]
     public class ClDataGridViewColumnHeaderCell : AutoContext<ClDataGridViewColumnHeaderCell>
     {
         private ClCollection tag = new ClCollection();
@@ -40,16 +40,16 @@ namespace osf
             DataGridViewColumnHeaderCell1.dll_obj = this;
             Base_obj = DataGridViewColumnHeaderCell1;
         }
-		
+
         public ClDataGridViewColumnHeaderCell(DataGridViewColumnHeaderCell p1)
         {
             DataGridViewColumnHeaderCell DataGridViewColumnHeaderCell1 = p1;
             DataGridViewColumnHeaderCell1.dll_obj = this;
             Base_obj = DataGridViewColumnHeaderCell1;
         }
-        
+
         public DataGridViewColumnHeaderCell Base_obj;
-        
+
         [ContextProperty("Закреплено", "Frozen")]
         public bool Frozen
         {
@@ -62,7 +62,7 @@ namespace osf
             get { return OneScriptForms.RevertObj(Base_obj.Value); }
             set { Base_obj.Value = value.AsString(); }
         }
-        
+
         [ContextProperty("ИзменяемыйРазмер", "Resizable")]
         public bool Resizable
         {
@@ -86,7 +86,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("Отображается", "Displayed")]
         public bool Displayed
         {
@@ -123,6 +123,6 @@ namespace osf
             get { return Base_obj.ToolTipText; }
             set { Base_obj.ToolTipText = value; }
         }
-        
+
     }
 }

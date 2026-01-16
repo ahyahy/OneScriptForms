@@ -38,7 +38,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЭкран", "ClScreen")]
+    [ContextClass("КлЭкран", "ClScreen")]
     public class ClScreen : AutoContext<ClScreen>
     {
         private ClRectangle bounds;
@@ -52,7 +52,7 @@ namespace osf
             bounds = new ClRectangle(Base_obj.Bounds);
             workingArea = new ClRectangle(Base_obj.WorkingArea);
         }
-		
+
         public ClScreen(Screen p1)
         {
             Screen Screen1 = p1;
@@ -61,9 +61,9 @@ namespace osf
             bounds = new ClRectangle(Base_obj.Bounds);
             workingArea = new ClRectangle(Base_obj.WorkingArea);
         }
-        
+
         public Screen Base_obj;
-        
+
         [ContextProperty("Границы", "Bounds")]
         public ClRectangle Bounds
         {
@@ -81,6 +81,6 @@ namespace osf
         {
             get { return workingArea; }
         }
-        
+
     }
 }

@@ -308,7 +308,6 @@
     </Compile>
     <Compile Include="LabelEditEventArgs.cs" />
     <Compile Include="LeftRightAlignment.cs" />
-    <Compile Include="LinearGradientMode.cs" />
     <Compile Include="Link.cs" />
     <Compile Include="LinkArea.cs" />
     <Compile Include="LinkClickedEventArgs.cs" />
@@ -365,6 +364,9 @@
     <Compile Include="MouseButtons.cs" />
     <Compile Include="MouseEventArgs.cs" />
     <Compile Include="MouseFlags.cs" />
+    <Compile Include="MultithreadedTCPServer.cs" />
+    <Compile Include="MultithreadedTCPServerSSL.cs" />
+    <Compile Include="MultithreadedTCPServerState.cs" />
     <Compile Include="NetworkStream.cs" />
     <Compile Include="NodeCheckBox.cs">
       <SubType>Component</SubType>
@@ -455,6 +457,7 @@
     <Compile Include="SelectedTreeNodeAdvCollection.cs" />
     <Compile Include="SelectionMode.cs" />
     <Compile Include="SelectionRange.cs" />
+    <Compile Include="ServerEventArgs.cs" />
     <Compile Include="Shortcut.cs" />
     <Compile Include="Size.cs" />
     <Compile Include="SolidBrush.cs" />
@@ -467,6 +470,7 @@
     <Compile Include="Splitter.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="SslStreamWrapper.cs" />
     <Compile Include="StatusBar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -479,6 +483,7 @@
     <Compile Include="Stream.cs" />
     <Compile Include="StreamReader.cs" />
     <Compile Include="StringTrimming.cs" />
+    <Compile Include="SupportTCPServer.cs" />
     <Compile Include="TabAlignment.cs" />
     <Compile Include="TabAppearance.cs" />
     <Compile Include="TabControl.cs">
@@ -490,6 +495,7 @@
     <Compile Include="TabPageCollection.cs" />
     <Compile Include="TabSizeMode.cs" />
     <Compile Include="TCPClient.cs" />
+    <Compile Include="TCPClientSSL.cs" />
     <Compile Include="TCPListener.cs" />
     <Compile Include="TextBox.cs">
       <SubType>Component</SubType>
@@ -546,6 +552,7 @@
     <Compile Include="UserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Utils.cs" />
     <Compile Include="ValueTreeViewAdvEventArgs.cs" />
     <Compile Include="Version.cs" />
     <Compile Include="VerticalAlign.cs" />

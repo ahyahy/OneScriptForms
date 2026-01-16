@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлРегистрСимволов", "ClCharacterCasing")]
+    [ContextClass("КлРегистрСимволов", "ClCharacterCasing")]
     public class ClCharacterCasing : AutoContext<ClCharacterCasing>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_normal = (int)System.Windows.Forms.CharacterCasing.Normal; // 0 Регистр символов не изменяется.
@@ -37,6 +37,44 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1, "Верхний"},
+            {2, "Нижний"},
+            {0, "Стандартный"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1, "Upper"},
+            {2, "Lower"},
+            {0, "Normal"},
+        };
+
         public ClCharacterCasing()
         {
             _list = new List<IValue>();
@@ -48,19 +86,19 @@ namespace osf
         [ContextProperty("Верхний", "Upper")]
         public int Upper
         {
-        	get { return m_upper; }
+            get { return m_upper; }
         }
 
         [ContextProperty("Нижний", "Lower")]
         public int Lower
         {
-        	get { return m_lower; }
+            get { return m_lower; }
         }
 
         [ContextProperty("Стандартный", "Normal")]
         public int Normal
         {
-        	get { return m_normal; }
+            get { return m_normal; }
         }
     }
 }

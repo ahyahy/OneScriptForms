@@ -55,7 +55,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлУзелДереваЗначенийАрг", "ClTreeNodeAdvMouseEventArgs")]
+    [ContextClass("КлУзелДереваЗначенийАрг", "ClTreeNodeAdvMouseEventArgs")]
     public class ClTreeNodeAdvMouseEventArgs : AutoContext<ClTreeNodeAdvMouseEventArgs>
     {
         public ClTreeNodeAdvMouseEventArgs(osf.TreeNodeAdvMouseEventArgs p1)
@@ -66,7 +66,7 @@ namespace osf
         }
 
         public TreeNodeAdvMouseEventArgs Base_obj;
-        
+
         [ContextProperty("ГраницыЭлементаУзла", "ControlBounds")]
         public ClRectangle ControlBounds
         {
@@ -84,7 +84,7 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
@@ -102,7 +102,7 @@ namespace osf
         {
             get { return new ClNode((Aga.Controls.Tree.Node)Base_obj.Node.Tag); }
         }
-        
+
         [ContextProperty("ЭлементУзла", "Control")]
         public IValue Control
         {
@@ -117,6 +117,6 @@ namespace osf
                 return OneScriptForms.RevertObj(Obj1);
             }
         }
-        
+
     }
 }

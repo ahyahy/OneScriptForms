@@ -82,7 +82,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЭлементыУправления", "ClControlCollection")]
+    [ContextClass("КлЭлементыУправления", "ClControlCollection")]
     public class ClControlCollection : AutoContext<ClControlCollection>, ICollectionContext, IEnumerable<IValue>
     {
         public ClControlCollection()
@@ -91,7 +91,7 @@ namespace osf
             ControlCollection1.dll_obj = this;
             Base_obj = ControlCollection1;
         }
-		
+
         public ClControlCollection(ControlCollection p1)
         {
             ControlCollection ControlCollection1 = p1;
@@ -123,13 +123,13 @@ namespace osf
         }
 
         public ControlCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int CountControl
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public IValue Add(IValue p1)
         {
@@ -137,7 +137,7 @@ namespace osf
             //System.Windows.Forms.Application.DoEvents();
             return p1;
         }
-        
+
         [ContextMethod("ДобавитьКнопку", "AddButton")]
         public ClButton AddButton(string p1 = null, int p2 = 0, int p3 = 0, int p4 = 0, int p5 = 0)
         {
@@ -158,13 +158,13 @@ namespace osf
             }
             return index1;
         }
-        
+
         [ContextMethod("Очистить", "Clear")]
         public void Clear()
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Содержит", "Contains")]
         public bool Contains(IValue p1)
         {
@@ -188,7 +188,7 @@ namespace osf
         {
             Base_obj.SetChildIndex(((osf.Control)((dynamic)p1).Base_obj), p2);
         }
-        
+
         [ContextMethod("Элемент", "Item")]
         public IValue Item(int p1)
         {

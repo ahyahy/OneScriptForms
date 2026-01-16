@@ -28,7 +28,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлСтилиКолонкиСеткиДанных", "ClGridColumnStylesCollection")]
+    [ContextClass("КлСтилиКолонкиСеткиДанных", "ClGridColumnStylesCollection")]
     public class ClGridColumnStylesCollection : AutoContext<ClGridColumnStylesCollection>
     {
         public ClGridColumnStylesCollection(GridColumnStylesCollection p1)
@@ -39,13 +39,13 @@ namespace osf
         }
 
         public GridColumnStylesCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public int Add(IValue p1)
         {
@@ -57,7 +57,7 @@ namespace osf
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("УдалитьПоИндексу", "RemoveAt")]
         public void RemoveAt(int p1)
         {

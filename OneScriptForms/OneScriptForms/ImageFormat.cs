@@ -48,7 +48,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлФорматИзображения", "ClImageFormat")]
+    [ContextClass("КлФорматИзображения", "ClImageFormat")]
     public class ClImageFormat : AutoContext<ClImageFormat>
     {
         public ClImageFormat()
@@ -57,16 +57,16 @@ namespace osf
             ImageFormat1.dll_obj = this;
             Base_obj = ImageFormat1;
         }
-		
+
         public ClImageFormat(ImageFormat p1)
         {
             ImageFormat ImageFormat1 = p1;
             ImageFormat1.dll_obj = this;
             Base_obj = ImageFormat1;
         }
-        
+
         public ImageFormat Base_obj;
-        
+
         [ContextProperty("Bmp", "Bmp")]
         public ClImageFormat Bmp
         {
@@ -96,7 +96,7 @@ namespace osf
         {
             get { return (ClImageFormat)OneScriptForms.RevertObj(Base_obj.Png); }
         }
-        
+
         [ContextMethod("ВСтроку", "ToString")]
         public new string ToString()
         {

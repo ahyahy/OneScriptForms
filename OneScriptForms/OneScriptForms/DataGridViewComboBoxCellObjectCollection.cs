@@ -64,7 +64,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЭлементыПоляВыбораЯчейки", "ClDataGridViewComboBoxCellObjectCollection")]
+    [ContextClass("КлЭлементыПоляВыбораЯчейки", "ClDataGridViewComboBoxCellObjectCollection")]
     public class ClDataGridViewComboBoxCellObjectCollection : AutoContext<ClDataGridViewComboBoxCellObjectCollection>
     {
         public ClDataGridViewComboBoxCellObjectCollection()
@@ -73,22 +73,22 @@ namespace osf
             DataGridViewComboBoxCellObjectCollection1.dll_obj = this;
             Base_obj = DataGridViewComboBoxCellObjectCollection1;
         }
-		
+
         public ClDataGridViewComboBoxCellObjectCollection(DataGridViewComboBoxCellObjectCollection p1)
         {
             DataGridViewComboBoxCellObjectCollection DataGridViewComboBoxCellObjectCollection1 = p1;
             DataGridViewComboBoxCellObjectCollection1.dll_obj = this;
             Base_obj = DataGridViewComboBoxCellObjectCollection1;
         }
-        
+
         public DataGridViewComboBoxCellObjectCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Вставить", "Insert")]
         public ClListItem Insert(int p1, IValue p2)
         {
@@ -129,7 +129,7 @@ namespace osf
             Base_obj.Add(p2.Base_obj);
             return p2;
         }
-        
+
         [ContextMethod("Индекс", "IndexOf")]
         public int IndexOf(ClListItem p1)
         {
@@ -141,7 +141,7 @@ namespace osf
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Содержит", "Contains")]
         public bool Contains(ClListItem p1)
         {

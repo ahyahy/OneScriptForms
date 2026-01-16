@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлСтильСтыковки", "ClDockStyle")]
+    [ContextClass("КлСтильСтыковки", "ClDockStyle")]
     public class ClDockStyle : AutoContext<ClDockStyle>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_none = (int)System.Windows.Forms.DockStyle.None; // 0 Элемент управления не закреплен к краям содержащего его элемента управления.
@@ -40,6 +40,50 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1, "Верх"},
+            {5, "Заполнение"},
+            {3, "Лево"},
+            {2, "Низ"},
+            {0, "Отсутствие"},
+            {4, "Право"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1, "Top"},
+            {5, "Fill"},
+            {3, "Left"},
+            {2, "Bottom"},
+            {0, "None"},
+            {4, "Right"},
+        };
+
         public ClDockStyle()
         {
             _list = new List<IValue>();
@@ -54,37 +98,37 @@ namespace osf
         [ContextProperty("Верх", "Top")]
         public int Top
         {
-        	get { return m_top; }
+            get { return m_top; }
         }
 
         [ContextProperty("Заполнение", "Fill")]
         public int Fill
         {
-        	get { return m_fill; }
+            get { return m_fill; }
         }
 
         [ContextProperty("Лево", "Left")]
         public int Left
         {
-        	get { return m_left; }
+            get { return m_left; }
         }
 
         [ContextProperty("Низ", "Bottom")]
         public int Bottom
         {
-        	get { return m_bottom; }
+            get { return m_bottom; }
         }
 
         [ContextProperty("Отсутствие", "None")]
         public int None
         {
-        	get { return m_none; }
+            get { return m_none; }
         }
 
         [ContextProperty("Право", "Right")]
         public int Right
         {
-        	get { return m_right; }
+            get { return m_right; }
         }
     }
 }

@@ -1,24 +1,5 @@
 ﻿using System;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using System.Threading;
-using System.Text;
-using System.Security.Permissions;
-using System.Runtime.Serialization;
-using System.Runtime.InteropServices;
-using System.Reflection;
-using System.IO;
-using System.Globalization;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Drawing.Drawing2D;
-using System.Drawing.Design;
-using System.ComponentModel;
-using System.Collections;
 using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using Aga.Controls.Tree.NodeControls;
-using Aga.Controls.Threading;
 using ScriptEngine.Machine.Contexts;
 using ScriptEngine.Machine;
 
@@ -94,7 +75,7 @@ namespace Aga.Controls.Tree.NodeControls
                 _tree.EndUpdate();
             }
         }
-		
+
         public void SetControl(int p1, NodeControl p2)
         {
             SetItem(p1, p2);
@@ -113,19 +94,16 @@ namespace osf
         public ClNodeControlsCollection(Aga.Controls.Tree.NodeControls.NodeControlsCollection p1)
         {
             Base_obj = p1;
-        }//end_constr
+        }
 
         public Aga.Controls.Tree.NodeControls.NodeControlsCollection Base_obj;
 
-        //Свойства============================================================
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
 
-        //endProperty
-        //Методы============================================================
         [ContextMethod("Вставить", "Insert")]
         public void Insert(int p1, IValue p2)
         {
@@ -138,7 +116,7 @@ namespace osf
             dynamic p2 = p1.AsObject();
             p2.Base_obj.Parent = this.TreeViewAdv.Base_obj.M_TreeViewAdv;
         }
-        
+
         [ContextMethod("Индекс", "IndexOf")]
         public int IndexOf(IValue p1)
         {
@@ -150,7 +128,7 @@ namespace osf
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Содержит", "Contains")]
         public bool Contains(IValue p1)
         {
@@ -175,7 +153,5 @@ namespace osf
             Base_obj.SetControl(p1, ((dynamic)p2.AsObject()).Base_obj);
         }
 
-        //endMethods
-    }//endClass
-
-}//endnamespace
+    }
+}

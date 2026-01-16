@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлФормаИндикатора", "ClProgressShape")]
+    [ContextClass("КлФормаИндикатора", "ClProgressShape")]
     public class ClProgressShape : AutoContext<ClProgressShape>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_round = 0; // 0 Форма индикатора круглая.
@@ -36,6 +36,42 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {0, "Круглый"},
+            {1, "Плоский"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {0, "Round"},
+            {1, "Flat"},
+        };
+
         public ClProgressShape()
         {
             _list = new List<IValue>();
@@ -46,13 +82,13 @@ namespace osf
         [ContextProperty("Круглый", "Round")]
         public int Round
         {
-        	get { return m_round; }
+            get { return m_round; }
         }
 
         [ContextProperty("Плоский", "Flat")]
         public int Flat
         {
-        	get { return m_flat; }
+            get { return m_flat; }
         }
     }
 }

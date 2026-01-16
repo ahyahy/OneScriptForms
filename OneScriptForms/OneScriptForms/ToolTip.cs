@@ -83,7 +83,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлПодсказка", "ClToolTip")]
+    [ContextClass("КлПодсказка", "ClToolTip")]
     public class ClToolTip : AutoContext<ClToolTip>
     {
         public ClToolTip()
@@ -92,16 +92,16 @@ namespace osf
             ToolTip1.dll_obj = this;
             Base_obj = ToolTip1;
         }
-		
+
         public ClToolTip(ToolTip p1)
         {
             ToolTip ToolTip1 = p1;
             ToolTip1.dll_obj = this;
             Base_obj = ToolTip1;
         }
-        
+
         public ToolTip Base_obj;
-        
+
         [ContextProperty("АвтоЗадержка", "AutomaticDelay")]
         public int AutomaticDelay
         {
@@ -143,7 +143,7 @@ namespace osf
             get { return Base_obj.ShowAlways; }
             set { Base_obj.ShowAlways = value; }
         }
-        
+
         [ContextMethod("ПолучитьПодсказку", "GetToolTip")]
         public IValue GetToolTip(IValue p1)
         {
@@ -165,13 +165,13 @@ namespace osf
                 return ValueFactory.Create(Base_obj.GetToolTip(((dynamic)p1).Base_obj));
             }
         }
-        
+
         [ContextMethod("УдалитьВсе", "RemoveAll")]
         public void RemoveAll()
         {
             Base_obj.RemoveAll();
         }
-					
+
         [ContextMethod("УстановитьПодсказку", "SetToolTip")]
         public void SetToolTip(IValue p1, IValue p2)
         {

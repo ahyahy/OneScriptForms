@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлСостояниеОкнаФормы", "ClFormWindowState")]
+    [ContextClass("КлСостояниеОкнаФормы", "ClFormWindowState")]
     public class ClFormWindowState : AutoContext<ClFormWindowState>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_normal = (int)System.Windows.Forms.FormWindowState.Normal; // 0 Окно с размерами по умолчанию.
@@ -37,6 +37,44 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {2, "Развернутое"},
+            {1, "Свернутое"},
+            {0, "Стандартное"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {2, "Maximized"},
+            {1, "Minimized"},
+            {0, "Normal"},
+        };
+
         public ClFormWindowState()
         {
             _list = new List<IValue>();
@@ -48,19 +86,19 @@ namespace osf
         [ContextProperty("Развернутое", "Maximized")]
         public int Maximized
         {
-        	get { return m_maximized; }
+            get { return m_maximized; }
         }
 
         [ContextProperty("Свернутое", "Minimized")]
         public int Minimized
         {
-        	get { return m_minimized; }
+            get { return m_minimized; }
         }
 
         [ContextProperty("Стандартное", "Normal")]
         public int Normal
         {
-        	get { return m_normal; }
+            get { return m_normal; }
         }
     }
 }

@@ -51,7 +51,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлПодэлементыСпискаЭлементов", "ClListViewSubItemCollection")]
+    [ContextClass("КлПодэлементыСпискаЭлементов", "ClListViewSubItemCollection")]
     public class ClListViewSubItemCollection : AutoContext<ClListViewSubItemCollection>
     {
         public ClListViewSubItemCollection()
@@ -60,28 +60,28 @@ namespace osf
             ListViewSubItemCollection1.dll_obj = this;
             Base_obj = ListViewSubItemCollection1;
         }
-		
+
         public ClListViewSubItemCollection(ListViewSubItemCollection p1)
         {
             ListViewSubItemCollection ListViewSubItemCollection1 = p1;
             ListViewSubItemCollection1.dll_obj = this;
             Base_obj = ListViewSubItemCollection1;
         }
-        
+
         public ListViewSubItemCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Вставить", "Insert")]
         public ClListViewSubItem Insert(int p1, ClListViewSubItem p2)
         {
             return (ClListViewSubItem)OneScriptForms.RevertObj(Base_obj.Insert(p1, p2.Base_obj));
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public ClListViewSubItem Add(IValue p1)
         {
@@ -100,13 +100,13 @@ namespace osf
             }
             return new ClListViewSubItem(ListViewSubItem1);
         }
-        
+
         [ContextMethod("Очистить", "Clear")]
         public void Clear()
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("УдалитьПоИндексу", "RemoveAt")]
         public void RemoveAt(int p1)
         {

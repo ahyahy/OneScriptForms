@@ -11,7 +11,7 @@ namespace osf
 
     }
 
-    [ContextClass ("КлНадписьСсылкаСсылкаНажатаАрг", "ClLinkLabelLinkClickedEventArgs")]
+    [ContextClass("КлНадписьСсылкаСсылкаНажатаАрг", "ClLinkLabelLinkClickedEventArgs")]
     public class ClLinkLabelLinkClickedEventArgs : AutoContext<ClLinkLabelLinkClickedEventArgs>
     {
         public ClLinkLabelLinkClickedEventArgs()
@@ -20,16 +20,16 @@ namespace osf
             LinkLabelLinkClickedEventArgs1.dll_obj = this;
             Base_obj = LinkLabelLinkClickedEventArgs1;
         }
-		
+
         public ClLinkLabelLinkClickedEventArgs(LinkLabelLinkClickedEventArgs p1)
         {
             LinkLabelLinkClickedEventArgs LinkLabelLinkClickedEventArgs1 = p1;
             LinkLabelLinkClickedEventArgs1.dll_obj = this;
             Base_obj = LinkLabelLinkClickedEventArgs1;
         }
-        
+
         public LinkLabelLinkClickedEventArgs Base_obj;
-        
+
         [ContextProperty("Кнопка", "Button")]
         public int Button
         {
@@ -41,7 +41,7 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
@@ -53,6 +53,6 @@ namespace osf
         {
             get { return (ClLink)OneScriptForms.RevertObj(Base_obj.Link); }
         }
-        
+
     }
 }

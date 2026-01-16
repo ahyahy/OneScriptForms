@@ -85,7 +85,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЭлементСписка", "ClListItem")]
+    [ContextClass("КлЭлементСписка", "ClListItem")]
     public class ClListItem : AutoContext<ClListItem>
     {
         private ClColor foreColor;
@@ -105,7 +105,7 @@ namespace osf
             Base_obj = ListItem1;
             foreColor = new ClColor(Base_obj.ForeColor);
         }
-		
+
         public ClListItem(ListItem p1)
         {
             ListItem ListItem1 = p1;
@@ -115,7 +115,7 @@ namespace osf
         }
 
         public ListItem Base_obj;
-        
+
         [ContextProperty("Значение", "Value")]
         public IValue Value
         {
@@ -132,12 +132,12 @@ namespace osf
             }
             set { Base_obj.Value = value; }
         }
-        
+
         [ContextProperty("ОсновнойЦвет", "ForeColor")]
         public ClColor ForeColor
         {
             get { return foreColor; }
-            set 
+            set
             {
                 foreColor = value;
                 Base_obj.ForeColor = value.Base_obj;
@@ -150,7 +150,7 @@ namespace osf
             get { return Base_obj.Text; }
             set { Base_obj.Text = value; }
         }
-        
+
         [ContextMethod("ВСтроку", "ToString")]
         public new string ToString()
         {

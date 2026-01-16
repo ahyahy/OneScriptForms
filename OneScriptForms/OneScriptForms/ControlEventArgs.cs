@@ -10,7 +10,7 @@ namespace osf
 
     }
 
-    [ContextClass ("КлЭлементУправленияАрг", "ClControlEventArgs")]
+    [ContextClass("КлЭлементУправленияАрг", "ClControlEventArgs")]
     public class ClControlEventArgs : AutoContext<ClControlEventArgs>
     {
         public ClControlEventArgs()
@@ -19,22 +19,22 @@ namespace osf
             ControlEventArgs1.dll_obj = this;
             Base_obj = ControlEventArgs1;
         }
-		
+
         public ClControlEventArgs(ControlEventArgs p1)
         {
             ControlEventArgs ControlEventArgs1 = p1;
             ControlEventArgs1.dll_obj = this;
             Base_obj = ControlEventArgs1;
         }
-        
+
         public ControlEventArgs Base_obj;
-        
+
         [ContextProperty("Отправитель", "Sender")]
         public IValue Sender
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
@@ -46,6 +46,6 @@ namespace osf
         {
             get { return (IValue)OneScriptForms.RevertObj(Base_obj.Control); }
         }
-        
+
     }
 }

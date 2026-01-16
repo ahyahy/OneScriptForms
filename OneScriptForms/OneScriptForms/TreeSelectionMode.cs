@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлРежимВыбораДереваЗначений", "ClTreeSelectionMode")]
+    [ContextClass("КлРежимВыбораДереваЗначений", "ClTreeSelectionMode")]
     public class ClTreeSelectionMode : AutoContext<ClTreeSelectionMode>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_single = 0; // 0 Можно выбрать только один узел.
@@ -37,6 +37,44 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1, "Множественный"},
+            {2, "МножественныйДляРодителя"},
+            {0, "Одиночный"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1, "Multi"},
+            {2, "MultiSameParent"},
+            {0, "Single"},
+        };
+
         public ClTreeSelectionMode()
         {
             _list = new List<IValue>();
@@ -48,19 +86,19 @@ namespace osf
         [ContextProperty("Множественный", "Multi")]
         public int Multi
         {
-        	get { return m_multi; }
+            get { return m_multi; }
         }
 
         [ContextProperty("МножественныйДляРодителя", "MultiSameParent")]
         public int MultiSameParent
         {
-        	get { return m_multiSameParent; }
+            get { return m_multiSameParent; }
         }
 
         [ContextProperty("Одиночный", "Single")]
         public int Single
         {
-        	get { return m_single; }
+            get { return m_single; }
         }
     }
 }

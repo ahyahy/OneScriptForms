@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлРежимРазмераВкладок", "ClTabSizeMode")]
+    [ContextClass("КлРежимРазмераВкладок", "ClTabSizeMode")]
     public class ClTabSizeMode : AutoContext<ClTabSizeMode>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_normal = (int)System.Windows.Forms.TabSizeMode.Normal; // 0 Ширина каждой вкладки изменяется в соответствии со сведениями, отображаемыми на вкладке, а размер вкладок в строке не настраивается для заполнения во всю ширину контейнерного элемента управления.
@@ -37,6 +37,44 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1, "ЗаполнитьВправо"},
+            {2, "Постоянный"},
+            {0, "Стандартный"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1, "FillToRight"},
+            {2, "Fixed"},
+            {0, "Normal"},
+        };
+
         public ClTabSizeMode()
         {
             _list = new List<IValue>();
@@ -48,19 +86,19 @@ namespace osf
         [ContextProperty("ЗаполнитьВправо", "FillToRight")]
         public int FillToRight
         {
-        	get { return m_fillToRight; }
+            get { return m_fillToRight; }
         }
 
         [ContextProperty("Постоянный", "Fixed")]
         public int Fixed
         {
-        	get { return m_fixed; }
+            get { return m_fixed; }
         }
 
         [ContextProperty("Стандартный", "Normal")]
         public int Normal
         {
-        	get { return m_normal; }
+            get { return m_normal; }
         }
     }
 }

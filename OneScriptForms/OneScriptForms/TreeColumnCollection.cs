@@ -1,26 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using System.Threading;
-using System.Text;
-using System.Security.Permissions;
-using System.Runtime.Serialization;
-using System.Runtime.InteropServices;
-using System.Reflection;
-using System.IO;
-using System.Globalization;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Drawing.Drawing2D;
-using System.Drawing.Design;
-using System.ComponentModel;
-using System.Collections;
 using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using Aga.Controls.Tree.NodeControls;
-using Aga.Controls.Threading;
 using ScriptEngine.Machine.Contexts;
-using ScriptEngine.Machine;
 
 namespace Aga.Controls.Tree
 {
@@ -115,7 +96,7 @@ namespace Aga.Controls.Tree
         {
             _treeView.UpdateView();
         }
-		
+
         public void SetColumn(int p1, TreeColumn p2)
         {
             SetItem(p1, p2);
@@ -133,55 +114,52 @@ namespace osf
         public ClTreeColumnCollection(Aga.Controls.Tree.TreeColumnCollection p1)
         {
             Base_obj = p1;
-        }//end_constr
+        }
 
         public Aga.Controls.Tree.TreeColumnCollection Base_obj;
 
-        //Свойства============================================================
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
 
-        //endProperty
-        //Методы============================================================
         [ContextMethod("Вставить", "Insert")]
         public void Insert(int p1, ClTreeColumn p2)
         {
             Base_obj.Insert(p1, p2.Base_obj.M_TreeColumn);
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public void Add(ClTreeColumn p1)
         {
             Base_obj.Add(p1.Base_obj.M_TreeColumn);
         }
-        
+
         [ContextMethod("Индекс", "IndexOf")]
         public int IndexOf(ClTreeColumn p1)
         {
             return Base_obj.IndexOf(p1.Base_obj.M_TreeColumn);
         }
-        
+
         [ContextMethod("Очистить", "Clear")]
         public void Clear()
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Содержит", "Contains")]
         public bool Contains(ClTreeColumn p1)
         {
             return Base_obj.Contains(p1.Base_obj.M_TreeColumn);
         }
-        
+
         [ContextMethod("Удалить", "Remove")]
         public void Remove(ClTreeColumn p1)
         {
             Base_obj.Remove(p1.Base_obj.M_TreeColumn);
         }
-        
+
         [ContextMethod("УдалитьПоИндексу", "RemoveAt")]
         public void RemoveAt(int p1)
         {
@@ -193,8 +171,6 @@ namespace osf
         {
             Base_obj.SetColumn(p1, p2.Base_obj.M_TreeColumn);
         }
-        
-        //endMethods
-    }//endClass
 
-}//endnamespace
+    }
+}

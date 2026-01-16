@@ -158,7 +158,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЭлементМеню", "ClMenuItem")]
+    [ContextClass("КлЭлементМеню", "ClMenuItem")]
     public class ClMenuItem : AutoContext<ClMenuItem>
     {
         private IValue _Click;
@@ -171,7 +171,7 @@ namespace osf
             Base_obj = MenuItem1;
             menuItems = new ClMenuItemCollection(Base_obj.MenuItems);
         }
-		
+
         public ClMenuItem(MenuItem p1)
         {
             MenuItem MenuItem1 = p1;
@@ -190,7 +190,7 @@ namespace osf
             MenuItem MenuItem1 = new MenuItem(p1, "", (System.Windows.Forms.Shortcut)p3);
             MenuItem1.dll_obj = this;
             Base_obj = MenuItem1;
-		
+
             if (p2 != null)
             {
                 Click = p2;
@@ -199,7 +199,7 @@ namespace osf
         }
 
         public MenuItem Base_obj;
-        
+
         [ContextProperty("Доступность", "Enabled")]
         public bool Enabled
         {
@@ -239,7 +239,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("Отображать", "Visible")]
         public bool Visible
         {
@@ -273,7 +273,7 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.Parent); }
         }
-        
+
         [ContextProperty("СочетаниеКлавиш", "Shortcut")]
         public int Shortcut
         {
@@ -300,7 +300,7 @@ namespace osf
         {
             get { return menuItems; }
         }
-        
+
         [ContextMethod("КлонироватьМеню", "CloneMenu")]
         public ClMenuItem CloneMenu()
         {
@@ -379,13 +379,13 @@ namespace osf
         {
             return (ClMainMenu)OneScriptForms.RevertObj(Base_obj.GetMainMenu());
         }
-        
+
         [ContextMethod("ЭлементМеню", "MenuItem")]
         public ClMenuItem MenuItem(int p1)
         {
             return new ClMenuItem(Base_obj.MenuItems[p1]);
         }
-        
+
         [ContextMethod("ЭлементыМеню", "MenuItems")]
         public ClMenuItem MenuItems2(int p1)
         {

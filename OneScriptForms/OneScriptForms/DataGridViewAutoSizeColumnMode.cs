@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлРежимАвтоРазмераКолонки", "ClDataGridViewAutoSizeColumnMode")]
+    [ContextClass("КлРежимАвтоРазмераКолонки", "ClDataGridViewAutoSizeColumnMode")]
     public class ClDataGridViewAutoSizeColumnMode : AutoContext<ClDataGridViewAutoSizeColumnMode>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_notSet = (int)System.Windows.Forms.DataGridViewAutoSizeColumnMode.NotSet; // 0 Режим изменения размеров колонки наследуется из свойства AutoSizeColumnsMode.
@@ -42,6 +42,54 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {6, "ВсеЯчейки"},
+            {4, "ВсеЯчейкиБезЗаголовков"},
+            {2, "ЗаголовокКолонки"},
+            {16, "Заполнение"},
+            {0, "НеУстановлено"},
+            {10, "ОтобразритьЯчейки"},
+            {8, "ОтобразритьЯчейкиБезЗаголовков"},
+            {1, "Отсутствие"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {6, "AllCells"},
+            {4, "AllCellsExceptHeader"},
+            {2, "ColumnHeader"},
+            {16, "Fill"},
+            {0, "NotSet"},
+            {10, "DisplayedCells"},
+            {8, "DisplayedCellsExceptHeader"},
+            {1, "None"},
+        };
+
         public ClDataGridViewAutoSizeColumnMode()
         {
             _list = new List<IValue>();
@@ -58,49 +106,49 @@ namespace osf
         [ContextProperty("ВсеЯчейки", "AllCells")]
         public int AllCells
         {
-        	get { return m_allCells; }
+            get { return m_allCells; }
         }
 
         [ContextProperty("ВсеЯчейкиБезЗаголовков", "AllCellsExceptHeader")]
         public int AllCellsExceptHeader
         {
-        	get { return m_allCellsExceptHeader; }
+            get { return m_allCellsExceptHeader; }
         }
 
         [ContextProperty("ЗаголовокКолонки", "ColumnHeader")]
         public int ColumnHeader
         {
-        	get { return m_columnHeader; }
+            get { return m_columnHeader; }
         }
 
         [ContextProperty("Заполнение", "Fill")]
         public int Fill
         {
-        	get { return m_fill; }
+            get { return m_fill; }
         }
 
         [ContextProperty("НеУстановлено", "NotSet")]
         public int NotSet
         {
-        	get { return m_notSet; }
+            get { return m_notSet; }
         }
 
         [ContextProperty("ОтобразритьЯчейки", "DisplayedCells")]
         public int DisplayedCells
         {
-        	get { return m_displayedCells; }
+            get { return m_displayedCells; }
         }
 
         [ContextProperty("ОтобразритьЯчейкиБезЗаголовков", "DisplayedCellsExceptHeader")]
         public int DisplayedCellsExceptHeader
         {
-        	get { return m_displayedCellsExceptHeader; }
+            get { return m_displayedCellsExceptHeader; }
         }
 
         [ContextProperty("Отсутствие", "None")]
         public int None
         {
-        	get { return m_none; }
+            get { return m_none; }
         }
     }
 }

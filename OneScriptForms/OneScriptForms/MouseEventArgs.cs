@@ -18,7 +18,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлМышьАрг", "ClMouseEventArgs")]
+    [ContextClass("КлМышьАрг", "ClMouseEventArgs")]
     public class ClMouseEventArgs : AutoContext<ClMouseEventArgs>
     {
         public ClMouseEventArgs()
@@ -27,16 +27,16 @@ namespace osf
             MouseEventArgs1.dll_obj = this;
             Base_obj = MouseEventArgs1;
         }
-		
+
         public ClMouseEventArgs(MouseEventArgs p1)
         {
             MouseEventArgs MouseEventArgs1 = p1;
             MouseEventArgs1.dll_obj = this;
             Base_obj = MouseEventArgs1;
         }
-        
+
         public MouseEventArgs Base_obj;
-        
+
         [ContextProperty("Игрек", "Y")]
         public int Y
         {
@@ -66,12 +66,12 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
             get { return (IValue)Base_obj.Parameter; }
         }
-        
+
     }
 }

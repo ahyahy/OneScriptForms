@@ -43,7 +43,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлКурсор", "ClCursor")]
+    [ContextClass("КлКурсор", "ClCursor")]
     public class ClCursor : AutoContext<ClCursor>
     {
         public ClCursor()
@@ -52,16 +52,16 @@ namespace osf
             Cursor1.dll_obj = this;
             Base_obj = Cursor1;
         }
-		
+
         public ClCursor(Cursor p1)
         {
             Cursor Cursor1 = p1;
             Cursor1.dll_obj = this;
             Base_obj = Cursor1;
         }
-        
+
         public Cursor Base_obj;
-        
+
         [ContextProperty("Позиция", "Position")]
         public ClPoint Position
         {
@@ -80,6 +80,6 @@ namespace osf
         {
             get { return (ClCursor)OneScriptForms.RevertObj(Base_obj.Current); }
         }
-        
+
     }
 }

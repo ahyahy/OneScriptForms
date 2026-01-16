@@ -12,7 +12,7 @@ namespace osf
         public DataGridViewCheckBoxCellEx() : base()
         {
         }
-		
+
         protected override void OnClick(System.Windows.Forms.DataGridViewCellEventArgs e)
         {
             DataGridViewCheckBoxCellEx cell1 = (DataGridViewCheckBoxCellEx)DataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
@@ -487,7 +487,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлФлажокЯчейки", "ClDataGridViewCheckBoxCell")]
+    [ContextClass("КлФлажокЯчейки", "ClDataGridViewCheckBoxCell")]
     public class ClDataGridViewCheckBoxCell : AutoContext<ClDataGridViewCheckBoxCell>
     {
         private ClRectangle contentBounds;
@@ -500,7 +500,7 @@ namespace osf
             Base_obj = DataGridViewCheckBoxCell1;
             contentBounds = new ClRectangle(Base_obj.ContentBounds);
         }
-		
+
         public ClDataGridViewCheckBoxCell(DataGridViewCheckBoxCell p1)
         {
             DataGridViewCheckBoxCell DataGridViewCheckBoxCell1 = p1;
@@ -508,9 +508,9 @@ namespace osf
             Base_obj = DataGridViewCheckBoxCell1;
             contentBounds = new ClRectangle(Base_obj.ContentBounds);
         }
-        
+
         public DataGridViewCheckBoxCell Base_obj;
-        
+
         [ContextProperty("Выбран", "Selected")]
         public bool Selected
         {
@@ -536,7 +536,7 @@ namespace osf
             get { return OneScriptForms.RevertObj(Base_obj.Value); }
             set { Base_obj.Value = value; }
         }
-        
+
         [ContextProperty("ИзменяемыйРазмер", "Resizable")]
         public bool Resizable
         {
@@ -566,7 +566,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("Отображается", "Displayed")]
         public bool Displayed
         {
@@ -670,12 +670,12 @@ namespace osf
         {
             get { return OneScriptForms.RevertObj(Base_obj.FormattedValue); }
         }
-        
+
         [ContextProperty("ФорматированноеЗначениеРедактируемого", "EditedFormattedValue")]
         public IValue EditedFormattedValue
         {
             get { return OneScriptForms.RevertObj(Base_obj.EditedFormattedValue); }
         }
-        
+
     }
 }

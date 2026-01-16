@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлТриСостояния", "ClDataGridViewTriState")]
+    [ContextClass("КлТриСостояния", "ClDataGridViewTriState")]
     public class ClDataGridViewTriState : AutoContext<ClDataGridViewTriState>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_notSet = (int)System.Windows.Forms.DataGridViewTriState.NotSet; // 0 Это свойство не задано и будет функционировать по другому.
@@ -37,6 +37,44 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {1, "Истина"},
+            {2, "Ложь"},
+            {0, "НеУстановлено"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {1, "True"},
+            {2, "False"},
+            {0, "NotSet"},
+        };
+
         public ClDataGridViewTriState()
         {
             _list = new List<IValue>();
@@ -48,19 +86,19 @@ namespace osf
         [ContextProperty("Истина", "True")]
         public int True
         {
-        	get { return m_true; }
+            get { return m_true; }
         }
 
         [ContextProperty("Ложь", "False")]
         public int False
         {
-        	get { return m_false; }
+            get { return m_false; }
         }
 
         [ContextProperty("НеУстановлено", "NotSet")]
         public int NotSet
         {
-        	get { return m_notSet; }
+            get { return m_notSet; }
         }
     }
 }

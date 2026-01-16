@@ -53,12 +53,12 @@ namespace osf
             return Enumerator.MoveNext();
         }
 
-        public bool ContainsKey(object  p1)
+        public bool ContainsKey(object p1)
         {
             return M_SortedList.ContainsKey(p1);
         }
 
-        public bool ContainsValue(object  p1)
+        public bool ContainsValue(object p1)
         {
             return M_SortedList.ContainsValue(p1);
         }
@@ -81,7 +81,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлСортированныйСписок", "ClSortedList")]
+    [ContextClass("КлСортированныйСписок", "ClSortedList")]
     public class ClSortedList : AutoContext<ClSortedList>
     {
         public ClSortedList()
@@ -90,16 +90,16 @@ namespace osf
             SortedList1.dll_obj = this;
             Base_obj = SortedList1;
         }
-		
+
         public ClSortedList(SortedList p1)
         {
             SortedList SortedList1 = p1;
             SortedList1.dll_obj = this;
             Base_obj = SortedList1;
         }
-        
+
         public SortedList Base_obj;
-        
+
         [ContextProperty("Значения", "Values")]
         public ClArrayList Values
         {
@@ -137,13 +137,13 @@ namespace osf
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public void Add(object p1, IValue p2)
         {
             Base_obj.Add(p1, p2);
         }
-        
+
         [ContextMethod("ПолучитьПоИндексу", "GetByIndex")]
         public IValue GetByIndex(int p1)
         {

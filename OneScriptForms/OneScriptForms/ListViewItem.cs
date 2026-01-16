@@ -171,7 +171,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЭлементСпискаЭлементов", "ClListViewItem")]
+    [ContextClass("КлЭлементСпискаЭлементов", "ClListViewItem")]
     public class ClListViewItem : AutoContext<ClListViewItem>
     {
         private ClColor backColor;
@@ -191,7 +191,7 @@ namespace osf
             subItems = new ClListViewSubItemCollection(Base_obj.SubItems);
             backColor = new ClColor(Base_obj.BackColor);
         }
-		
+
         public ClListViewItem(ListViewItem p1)
         {
             ListViewItem ListViewItem1 = p1;
@@ -204,7 +204,7 @@ namespace osf
         }
 
         public ListViewItem Base_obj;
-        
+
         [ContextProperty("Выбран", "Selected")]
         public bool Selected
         {
@@ -243,12 +243,12 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("ОсновнойЦвет", "ForeColor")]
         public ClColor ForeColor
         {
             get { return foreColor; }
-            set 
+            set
             {
                 foreColor = value;
                 Base_obj.ForeColor = value.Base_obj;
@@ -273,7 +273,7 @@ namespace osf
         {
             get { return (ClImageList)OneScriptForms.RevertObj(Base_obj.ImageList); }
         }
-        
+
         [ContextProperty("Сфокусирован", "Focused")]
         public bool Focused
         {
@@ -292,7 +292,7 @@ namespace osf
         public ClColor BackColor
         {
             get { return backColor; }
-            set 
+            set
             {
                 backColor = value;
                 Base_obj.BackColor = value.Base_obj;
@@ -316,19 +316,19 @@ namespace osf
                 Base_obj.Font = value.Base_obj;
             }
         }
-        
+
         [ContextMethod("НачатьРедактирование", "BeginEdit")]
         public void BeginEdit()
         {
             Base_obj.BeginEdit();
         }
-					
+
         [ContextMethod("ОбеспечитьОтображение", "EnsureVisible")]
         public void EnsureVisible()
         {
             Base_obj.EnsureVisible();
         }
-					
+
         [ContextMethod("Подэлементы", "SubItems")]
         public ClListViewSubItem SubItems2(int p1)
         {

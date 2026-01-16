@@ -144,7 +144,7 @@ namespace JonasKohl.Graphics
             // Восстановить блок страниц.
             pGraphics.PageUnit = oldPageUnit;
         }
-		
+
         public static void SetRoundedShape(System.Windows.Forms.Panel control, int radius)
         {
             System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
@@ -159,4 +159,4 @@ namespace JonasKohl.Graphics
             control.Region = new Region(path);
         }
     }
-}//endnamespace
+}

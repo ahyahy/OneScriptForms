@@ -13,7 +13,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЭлементТаблицы", "ClDataGridViewElement")]
+    [ContextClass("КлЭлементТаблицы", "ClDataGridViewElement")]
     public class ClDataGridViewElement : AutoContext<ClDataGridViewElement>
     {
         public ClDataGridViewElement()
@@ -22,21 +22,21 @@ namespace osf
             DataGridViewElement1.dll_obj = this;
             Base_obj = DataGridViewElement1;
         }
-		
+
         public ClDataGridViewElement(DataGridViewElement p1)
         {
             DataGridViewElement DataGridViewElement1 = p1;
             DataGridViewElement1.dll_obj = this;
             Base_obj = DataGridViewElement1;
         }
-        
+
         public DataGridViewElement Base_obj;
-        
+
         [ContextProperty("Таблица", "DataGridView")]
         public ClDataGridView DataGridView
         {
             get { return (ClDataGridView)OneScriptForms.RevertObj(Base_obj.DataGridView); }
         }
-        
+
     }
 }

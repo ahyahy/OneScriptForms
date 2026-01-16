@@ -88,7 +88,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлКодировка", "ClEncoding")]
+    [ContextClass("КлКодировка", "ClEncoding")]
     public class ClEncoding : AutoContext<ClEncoding>
     {
         public ClEncoding()
@@ -97,16 +97,16 @@ namespace osf
             Encoding1.dll_obj = this;
             Base_obj = Encoding1;
         }
-		
+
         public ClEncoding(Encoding p1)
         {
             Encoding Encoding1 = p1;
             Encoding1.dll_obj = this;
             Base_obj = Encoding1;
         }
-        
+
         public Encoding Base_obj;
-        
+
         [ContextProperty("ASCII", "ASCII")]
         public ClEncoding ASCII
         {
@@ -172,7 +172,7 @@ namespace osf
         {
             get { return (ClEncoding)OneScriptForms.RevertObj(Base_obj.Unicode); }
         }
-        
+
         [ContextMethod("КоличествоБайтов", "GetByteCount")]
         public int GetByteCount(string p1)
         {

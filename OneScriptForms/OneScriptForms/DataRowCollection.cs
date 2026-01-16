@@ -91,7 +91,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлСтрокиДанных", "ClDataRowCollection")]
+    [ContextClass("КлСтрокиДанных", "ClDataRowCollection")]
     public class ClDataRowCollection : AutoContext<ClDataRowCollection>
     {
         public ClDataRowCollection(DataRowCollection p1)
@@ -102,13 +102,13 @@ namespace osf
         }
 
         public DataRowCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Вставить", "InsertAt")]
         public ClDataRow InsertAt(ClDataRow p1, int p2)
         {
@@ -126,7 +126,7 @@ namespace osf
         {
             Base_obj.Clear();
         }
-					
+
         [ContextMethod("Удалить", "Remove")]
         public void Remove(ClDataRow p1)
         {

@@ -4,7 +4,7 @@ using ScriptEngine.Machine;
 
 namespace osf
 {
-    [ContextClass ("КлЕжемесячныеДаты", "ClMonthlyBoldedDates")]
+    [ContextClass("КлЕжемесячныеДаты", "ClMonthlyBoldedDates")]
     public class ClMonthlyBoldedDates : AutoContext<ClMonthlyBoldedDates>
     {
         public osf.MonthCalendar M_MonthCalendar;
@@ -14,13 +14,13 @@ namespace osf
             get { return M_MonthCalendar.MonthlyBoldedDates; }
             set { M_MonthCalendar.MonthlyBoldedDates = value; }
         }
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return M_Object.Length; }
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public IValue Add(IValue p1)
         {
@@ -31,13 +31,13 @@ namespace osf
             M_Object = DateTime2;
             return p1;
         }
-        
+
         [ContextMethod("Очистить", "Clear")]
         public void Clear()
         {
             M_Object = new DateTime[0];
         }
-        
+
         [ContextMethod("Элемент", "Item")]
         public IValue Item(int p1)
         {

@@ -104,7 +104,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлСтрокаТаблицы", "ClDataGridViewRow")]
+    [ContextClass("КлСтрокаТаблицы", "ClDataGridViewRow")]
     public class ClDataGridViewRow : AutoContext<ClDataGridViewRow>
     {
         private ClDataGridViewCellCollection cells;
@@ -117,7 +117,7 @@ namespace osf
             Base_obj = DataGridViewRow1;
             cells = new ClDataGridViewCellCollection(Base_obj.Cells);
         }
-		
+
         public ClDataGridViewRow(DataGridViewRow p1)
         {
             DataGridViewRow DataGridViewRow1 = p1;
@@ -127,7 +127,7 @@ namespace osf
         }
 
         public DataGridViewRow Base_obj;
-        
+
         [ContextProperty("Выбран", "Selected")]
         public bool Selected
         {
@@ -181,7 +181,7 @@ namespace osf
         {
             get { return tag; }
         }
-        
+
         [ContextProperty("МинимальнаяВысота", "MinimumHeight")]
         public int MinimumHeight
         {
@@ -233,7 +233,7 @@ namespace osf
         {
             get { return cells; }
         }
-        
+
         [ContextMethod("Ячейки", "Cells")]
         public IValue Cells2(int p1)
         {

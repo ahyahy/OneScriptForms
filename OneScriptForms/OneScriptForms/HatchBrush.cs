@@ -38,7 +38,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлПрямоугольнаяКисть", "ClHatchBrush")]
+    [ContextClass("КлПрямоугольнаяКисть", "ClHatchBrush")]
     public class ClHatchBrush : AutoContext<ClHatchBrush>
     {
         public ClHatchBrush(int p1, osf.Color p2, osf.Color p3 = null)
@@ -47,7 +47,7 @@ namespace osf
             HatchBrush1.dll_obj = this;
             Base_obj = HatchBrush1;
         }
-		
+
         public ClHatchBrush(HatchBrush p1)
         {
             HatchBrush HatchBrush1 = p1;
@@ -56,6 +56,6 @@ namespace osf
         }
 
         public HatchBrush Base_obj;
-        
+
     }
 }

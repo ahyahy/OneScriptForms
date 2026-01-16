@@ -911,7 +911,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлЦвет", "ClColor")]
+    [ContextClass("КлЦвет", "ClColor")]
     public class ClColor : AutoContext<ClColor>
     {
         public ClColor()
@@ -920,16 +920,16 @@ namespace osf
             Color1.dll_obj = this;
             Base_obj = Color1;
         }
-		
+
         public ClColor(Color p1)
         {
             Color Color1 = p1;
             Color1.dll_obj = this;
             Base_obj = Color1;
         }
-        
+
         public Color Base_obj;
-        
+
         [ContextProperty("Аквамариновый", "Aquamarine")]
         public ClColor Aquamarine
         {
@@ -1205,7 +1205,7 @@ namespace osf
                 }
             }
         }
-        
+
         [ContextProperty("Индиго", "Indigo")]
         public ClColor Indigo
         {
@@ -2003,19 +2003,19 @@ namespace osf
         {
             get { return (ClColor)OneScriptForms.RevertObj(Base_obj.HotPink); }
         }
-        
+
         [ContextMethod("ИзArgb", "FromArgb")]
         public ClColor FromArgb(int p1, int p2, int p3, int p4)
         {
             return new ClColor(Base_obj.FromArgb(p1, p2, p3, p4));
         }
-        
+
         [ContextMethod("ИзRgb", "FromRgb")]
         public ClColor FromRgb(int p1, int p2, int p3)
         {
             return new ClColor(Base_obj.FromRgb(p1, p2, p3));
         }
-        
+
         [ContextMethod("ИзИмени", "FromName")]
         public ClColor FromName(string p1)
         {
@@ -2023,7 +2023,7 @@ namespace osf
             dynamic obj1 = this.GetPropValue(NumberProp1);
             return (ClColor)ValueFactory.Create(obj1);
         }
-        
+
         [ContextMethod("ПолучитьArgb", "ToArgb")]
         public int ToArgb()
         {

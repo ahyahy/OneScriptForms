@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлРежимВыбора", "ClSelectionMode")]
+    [ContextClass("КлРежимВыбора", "ClSelectionMode")]
     public class ClSelectionMode : AutoContext<ClSelectionMode>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_none = (int)System.Windows.Forms.SelectionMode.None; // 0 Элементы не могут быть выбраны.
@@ -38,6 +38,46 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {2, "МножественныйПростой"},
+            {3, "МножественныйРасширенный"},
+            {1, "Одиночный"},
+            {0, "Отсутствие"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {2, "MultiSimple"},
+            {3, "MultiExtended"},
+            {1, "One"},
+            {0, "None"},
+        };
+
         public ClSelectionMode()
         {
             _list = new List<IValue>();
@@ -50,25 +90,25 @@ namespace osf
         [ContextProperty("МножественныйПростой", "MultiSimple")]
         public int MultiSimple
         {
-        	get { return m_multiSimple; }
+            get { return m_multiSimple; }
         }
 
         [ContextProperty("МножественныйРасширенный", "MultiExtended")]
         public int MultiExtended
         {
-        	get { return m_multiExtended; }
+            get { return m_multiExtended; }
         }
 
         [ContextProperty("Одиночный", "One")]
         public int One
         {
-        	get { return m_one; }
+            get { return m_one; }
         }
 
         [ContextProperty("Отсутствие", "None")]
         public int None
         {
-        	get { return m_none; }
+            get { return m_none; }
         }
     }
 }

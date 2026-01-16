@@ -24,7 +24,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлДеревоЗначенийАрг", "ClTreeViewAdvEventArgs")]
+    [ContextClass("КлДеревоЗначенийАрг", "ClTreeViewAdvEventArgs")]
     public class ClTreeViewAdvEventArgs : AutoContext<ClTreeViewAdvEventArgs>
     {
         public ClTreeViewAdvEventArgs(osf.TreeViewAdvEventArgs p1)
@@ -35,13 +35,13 @@ namespace osf
         }
 
         public TreeViewAdvEventArgs Base_obj;
-        
+
         [ContextProperty("Отправитель", "Sender")]
         public IValue Sender
         {
             get { return OneScriptForms.RevertObj(Base_obj.Sender); }
         }
-        
+
         [ContextProperty("Параметр", "Parameter")]
         public IValue Parameter
         {
@@ -53,6 +53,6 @@ namespace osf
         {
             get { return new ClNode((Aga.Controls.Tree.Node)Base_obj.Node.Tag); }
         }
-        
+
     }
 }

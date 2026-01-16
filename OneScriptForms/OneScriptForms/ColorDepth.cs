@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace osf
 {
-    [ContextClass ("КлГлубинаЦвета", "ClColorDepth")]
+    [ContextClass("КлГлубинаЦвета", "ClColorDepth")]
     public class ClColorDepth : AutoContext<ClColorDepth>, ICollectionContext, IEnumerable<IValue>
     {
         private int m_depth4Bit = (int)System.Windows.Forms.ColorDepth.Depth4Bit; // 4 4-битовая глубина цвета.
@@ -39,6 +39,48 @@ namespace osf
             }
         }
 
+        [ContextProperty("Количество", "Count")]
+        public int CountProp
+        {
+            get { return _list.Count; }
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int index)
+        {
+            return _list[index];
+        }
+
+        [ContextMethod("Имя")]
+        public string NameRu(decimal p1)
+        {
+            return namesRu.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        [ContextMethod("Name")]
+        public string NameEn(decimal p1)
+        {
+            return namesEn.TryGetValue(p1, out string name) ? name : p1.ToString();
+        }
+
+        private static readonly Dictionary<decimal, string> namesRu = new Dictionary<decimal, string>
+        {
+            {16, "Глубина16"},
+            {24, "Глубина24"},
+            {32, "Глубина32"},
+            {4, "Глубина4"},
+            {8, "Глубина8"},
+        };
+
+        private static readonly Dictionary<decimal, string> namesEn = new Dictionary<decimal, string>
+        {
+            {16, "Depth16Bit"},
+            {24, "Depth24Bit"},
+            {32, "Depth32Bit"},
+            {4, "Depth4Bit"},
+            {8, "Depth8Bit"},
+        };
+
         public ClColorDepth()
         {
             _list = new List<IValue>();
@@ -52,31 +94,31 @@ namespace osf
         [ContextProperty("Глубина16", "Depth16Bit")]
         public int Depth16Bit
         {
-        	get { return m_depth16Bit; }
+            get { return m_depth16Bit; }
         }
 
         [ContextProperty("Глубина24", "Depth24Bit")]
         public int Depth24Bit
         {
-        	get { return m_depth24Bit; }
+            get { return m_depth24Bit; }
         }
 
         [ContextProperty("Глубина32", "Depth32Bit")]
         public int Depth32Bit
         {
-        	get { return m_depth32Bit; }
+            get { return m_depth32Bit; }
         }
 
         [ContextProperty("Глубина4", "Depth4Bit")]
         public int Depth4Bit
         {
-        	get { return m_depth4Bit; }
+            get { return m_depth4Bit; }
         }
 
         [ContextProperty("Глубина8", "Depth8Bit")]
         public int Depth8Bit
         {
-        	get { return m_depth8Bit; }
+            get { return m_depth8Bit; }
         }
     }
 }

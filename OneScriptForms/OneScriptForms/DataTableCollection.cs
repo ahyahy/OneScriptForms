@@ -97,7 +97,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлТаблицыДанных", "ClDataTableCollection")]
+    [ContextClass("КлТаблицыДанных", "ClDataTableCollection")]
     public class ClDataTableCollection : AutoContext<ClDataTableCollection>
     {
         public ClDataTableCollection(DataTableCollection p1)
@@ -108,19 +108,19 @@ namespace osf
         }
 
         public DataTableCollection Base_obj;
-        
+
         [ContextProperty("Количество", "Count")]
         public int Count
         {
             get { return Base_obj.Count; }
         }
-        
+
         [ContextMethod("Добавить", "Add")]
         public ClDataTable Add(ClDataTable p1)
         {
             return (ClDataTable)OneScriptForms.RevertObj(Base_obj.Add(p1.Base_obj));
         }
-        
+
         [ContextMethod("Удалить", "Remove")]
         public void Remove(IValue p1)
         {

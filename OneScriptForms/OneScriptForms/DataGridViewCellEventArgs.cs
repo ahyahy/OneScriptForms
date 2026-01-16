@@ -10,7 +10,7 @@ namespace osf
 
     }
 
-    [ContextClass ("КлЯчейкаТаблицыАрг", "ClDataGridViewCellEventArgs")]
+    [ContextClass("КлЯчейкаТаблицыАрг", "ClDataGridViewCellEventArgs")]
     public class ClDataGridViewCellEventArgs : AutoContext<ClDataGridViewCellEventArgs>
     {
         public ClDataGridViewCellEventArgs()
@@ -19,16 +19,16 @@ namespace osf
             DataGridViewCellEventArgs1.dll_obj = this;
             Base_obj = DataGridViewCellEventArgs1;
         }
-		
+
         public ClDataGridViewCellEventArgs(DataGridViewCellEventArgs p1)
         {
             DataGridViewCellEventArgs DataGridViewCellEventArgs1 = p1;
             DataGridViewCellEventArgs1.dll_obj = this;
             Base_obj = DataGridViewCellEventArgs1;
         }
-        
+
         public DataGridViewCellEventArgs Base_obj;
-        
+
         [ContextProperty("ИндексКолонки", "ColumnIndex")]
         public int ColumnIndex
         {
@@ -40,6 +40,6 @@ namespace osf
         {
             get { return Base_obj.RowIndex; }
         }
-        
+
     }
 }

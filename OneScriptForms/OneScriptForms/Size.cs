@@ -35,7 +35,7 @@ namespace osf
         }
     }
 
-    [ContextClass ("КлРазмер", "ClSize")]
+    [ContextClass("КлРазмер", "ClSize")]
     public class ClSize : AutoContext<ClSize>
     {
         public ClSize(int width, int height)
@@ -51,7 +51,7 @@ namespace osf
             Size1.dll_obj = this;
             Base_obj = Size1;
         }
-		
+
         public ClSize(System.Drawing.Size p1)
         {
             Size Size1 = new Size(p1);
@@ -60,7 +60,7 @@ namespace osf
         }
 
         public Size Base_obj;
-        
+
         [ContextProperty("Высота", "Height")]
         public int Height
         {
@@ -74,6 +74,6 @@ namespace osf
             get { return Base_obj.Width; }
             set { Base_obj.Width = value; }
         }
-        
+
     }
 }
