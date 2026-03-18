@@ -1,0 +1,144 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+    <TITLE>Name Property</TITLE>
+    <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+    <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script defer src="mobilstyle.js"></script>
+</HEAD>
+<BODY id=bodyID class=dtBODY onclick="divrightClick(event)">
+    <DIV id=nsbanner>
+        <DIV id=bannerrow1>
+            <TABLE class=bannerparthead cellSpacing=0>
+                <TBODY>
+                    <TR id=hdr>
+                        <TD class=runninghead></TD>
+                        <TD class=product></TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </DIV>
+        <DIV id=TitleRow>
+            <H1 class=dtH1>ТекстурнаяКисть.Имя&nbsp;(TextureBrush.Name)&nbsp;Свойство</H1>
+        </DIV>
+</DIV>
+    <DIV id=nstext>
+        <H4 class=dtH4>Использование</H4>
+        <P>Чтение и запись.</P>
+        <H4 class=dtH4>Значение</H4>
+        <P>Тип: Строка.</P>
+        <P>Возвращает или задает имя элемента управления.</P>
+        <H4 class=dtH4>Примечание</H4>
+        <P></P>
+        <H4 class=dtH4>Пример</H4>
+            <PRE class=code>
+ТекстурнаяКисть1.Имя = "ТекстурнаяКисть1";
+Сообщить("ТекстурнаяКисть1.Имя = " + ТекстурнаяКисть1.Имя);
+</PRE>
+            <details>
+                <summary>Полный пример кода</summary>
+                    <PRE class=code>
+<button id="copy1" type="button" style="font-size:100%;">Копировать</button>
+<hr style="border-color: lightgray;"><DIV id="cont1">
+Перем Ф, Форма1, ТекстурнаяКисть1;
+
+Процедура Форма1_ПриПерерисовке() Экспорт
+	Графика1 = Форма1.СоздатьГрафику();
+	Графика1.Очистить(Ф.Цвет().Белый);
+	Графика1.ЗаполнитьПрямоугольник(ТекстурнаяКисть1, 10, 10, 250, 150);
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Высота = 200;
+Форма1.ПриПерерисовке = Ф.Действие(ЭтотОбъект, "Форма1_ПриПерерисовке");
+Форма1.Отображать = Истина;
+Форма1.Показать();
+
+Стр = "/9j/4AAQSkZJRgABAQEAeAB4AAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBg
+|NDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAnACcDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcIC
+|QoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R
+|1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFB
+|gcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2h
+|panN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD1nxJrD2jRWcKuW
+|dfMkKHBC9AM9snPPXjiuTbWHuZGjisdPUgZO5N7n3zWn4lNwfFMUItUlSRUfEp+RlXsR12gnJ9eAOpIp6v4bXVZdlkbfTtcVfNtZrZTHBcgdVZedrj8eCDyMgeTiaWJrOXJPl7HlV8Di66
+|lVTsr6LyRJZanq1k+6GQPGetu+dh+ndT9OPauk03VLm9jUicLIzFMSQ5G4DJU4IwcdifoSME+dJqviLV5o9C0/SmttYUhb+SQYW2Gfvd8A8kHnP8ADu6jrdOhh8O2a2kU73TxSNJLK3HnX
+|BXaceir+PPfI54qcsRhqbnipuy2N8qpYhN05arz6eh1ltf+bcNayqEnVd2FOQwz1H6ZHv3orlbN5/7VtbkktNJKwHv8jHH0wP0or0cux31qi6jVtWvketXoezla557q3jkJq95e7Gnnmf8
+|AdoGwEiH3AT6Y5wO5J71J4e1fxT4s1aO2txbwhWWUSKh/0cA/6wknOeoA/izg8ZrlNT0efTTc/aFYvbymJ8jowOP8D9CK6261WLwr4a0uxsw01tqdqLu7ubc4N1IeDFuz8qoMZHUgj/az0
+|YGhWxdb2a0Ppc3q4TAYaLprmbW/RaHql1rFrqiXemaXfp9v2tsxuUNtPzBXxhiOh2k7SecVzOlFbuV4ipSaE7HiIwUxxjHseK4o+ObS5tIrd7e4tvJIMLRqB5JHClCv3SOnTpkHIJFWZPH
+|GjTSfbtWF4mppGU87THVFvBjAEin5kOMAlfwIwoHRm/DlXEQWj0PksJmNOLauek6IiXurvcRlTb2IMSEEHfM3DH6KAVz3LN6UVzXwa+1T6Hqt7dfenuwoxwAFjXgDoAAQABwABiiiGDjhF
+|7CPQcqrqvnZ1mu+ENK18vJOjwzyLseWEjMi9gwIIb2JGR2IrlbX4Q2VvI0batNJZSH95AYQC2OhDZ+VgTwwGeo5BIJRVRVpcy0ZTrVPZuDd12MPUvhfqtjIxtFTUbXJ2ujLHKB/tKxC8eo
+|bn+6OlVbP4davfShFslhQHmaeRNq/grEk/h+Ioor1VnWLjTaun8jy3l1BzTtY9e0DRbbQNGt9OtsskQO5yMF2JyzH6n8ulFFFeXJuTcpas9GMUlZH/9k=";
+ТекстурнаяКисть1 = Ф.ТекстурнаяКисть(Ф.Картинка(Стр));
+
+Ф.РазрешитьСобытия = Истина;
+
+Форма1.Активизировать();
+
+ТекстурнаяКисть1.Имя = "ТекстурнаяКисть1";
+Сообщить("ТекстурнаяКисть1.Имя = " + ТекстурнаяКисть1.Имя);
+
+Ф.ЗапуститьОбработкуСобытий();
+</DIV>
+</PRE>
+            </details>
+        <P></P>
+        <details>
+            <summary>Тестовый код</summary>
+            <P>
+                <PRE class=code>
+<button id="copy2" type="button" style="font-size:100%;">Копировать</button>
+<hr style="border-color: lightgray;"><DIV id="cont2">
+Перем Ф, Форма1, ТекстурнаяКисть1;
+
+Процедура Форма1_ПриПерерисовке() Экспорт
+	Графика1 = Форма1.СоздатьГрафику();
+	Графика1.Очистить(Ф.Цвет().Белый);
+	Графика1.ЗаполнитьПрямоугольник(ТекстурнаяКисть1, 10, 10, 250, 150);
+КонецПроцедуры
+
+ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+Ф = Новый ФормыДляОдноСкрипта();
+Форма1 = Ф.Форма();
+Форма1.Высота = 200;
+Форма1.ПриПерерисовке = Ф.Действие(ЭтотОбъект, "Форма1_ПриПерерисовке");
+Форма1.Отображать = Истина;
+Форма1.Показать();
+
+Стр = "/9j/4AAQSkZJRgABAQEAeAB4AAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBg
+|NDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAnACcDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcIC
+|QoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R
+|1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFB
+|gcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2h
+|panN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD1nxJrD2jRWcKuW
+|dfMkKHBC9AM9snPPXjiuTbWHuZGjisdPUgZO5N7n3zWn4lNwfFMUItUlSRUfEp+RlXsR12gnJ9eAOpIp6v4bXVZdlkbfTtcVfNtZrZTHBcgdVZedrj8eCDyMgeTiaWJrOXJPl7HlV8Di66
+|lVTsr6LyRJZanq1k+6GQPGetu+dh+ndT9OPauk03VLm9jUicLIzFMSQ5G4DJU4IwcdifoSME+dJqviLV5o9C0/SmttYUhb+SQYW2Gfvd8A8kHnP8ADu6jrdOhh8O2a2kU73TxSNJLK3HnX
+|BXaceir+PPfI54qcsRhqbnipuy2N8qpYhN05arz6eh1ltf+bcNayqEnVd2FOQwz1H6ZHv3orlbN5/7VtbkktNJKwHv8jHH0wP0or0cux31qi6jVtWvketXoezla557q3jkJq95e7Gnnmf8
+|AdoGwEiH3AT6Y5wO5J71J4e1fxT4s1aO2txbwhWWUSKh/0cA/6wknOeoA/izg8ZrlNT0efTTc/aFYvbymJ8jowOP8D9CK6261WLwr4a0uxsw01tqdqLu7ubc4N1IeDFuz8qoMZHUgj/az0
+|YGhWxdb2a0Ppc3q4TAYaLprmbW/RaHql1rFrqiXemaXfp9v2tsxuUNtPzBXxhiOh2k7SecVzOlFbuV4ipSaE7HiIwUxxjHseK4o+ObS5tIrd7e4tvJIMLRqB5JHClCv3SOnTpkHIJFWZPH
+|GjTSfbtWF4mppGU87THVFvBjAEin5kOMAlfwIwoHRm/DlXEQWj0PksJmNOLauek6IiXurvcRlTb2IMSEEHfM3DH6KAVz3LN6UVzXwa+1T6Hqt7dfenuwoxwAFjXgDoAAQABwABiiiGDjhF
+|7CPQcqrqvnZ1mu+ENK18vJOjwzyLseWEjMi9gwIIb2JGR2IrlbX4Q2VvI0batNJZSH95AYQC2OhDZ+VgTwwGeo5BIJRVRVpcy0ZTrVPZuDd12MPUvhfqtjIxtFTUbXJ2ujLHKB/tKxC8eo
+|bn+6OlVbP4davfShFslhQHmaeRNq/grEk/h+Ioor1VnWLjTaun8jy3l1BzTtY9e0DRbbQNGt9OtsskQO5yMF2JyzH6n8ulFFFeXJuTcpas9GMUlZH/9k=";
+ТекстурнаяКисть1 = Ф.ТекстурнаяКисть(Ф.Картинка(Стр));
+
+Ф.РазрешитьСобытия = Истина;
+
+Форма1.Активизировать();
+
+ТекстурнаяКисть1.Имя = "ТекстурнаяКисть1";
+
+Сообщить(?(
+ТекстурнаяКисть1.Имя = "ТекстурнаяКисть1"
+, "", "!!! ") + "ТекстурнаяКисть.Имя (TextureBrush.Name) Свойство" + " " + ТекущаяДата());
+</DIV>
+</PRE>
+        </details>
+        <P></P>
+        <H4 class=dtH4>Смотрите также</H4>
+        <P>
+            <A href="OneScriptForms.TextureBrush.html">ТекстурнаяКисть&nbsp;(TextureBrush)&nbsp;Класс</A> | <A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A>
+        </P>
+    </DIV>
+</BODY>
+</HTML>
