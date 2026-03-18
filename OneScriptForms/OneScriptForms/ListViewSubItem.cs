@@ -96,7 +96,15 @@ namespace osf
         }
 
         public ListViewSubItem Base_obj;
-
+        
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("Метка", "Tag")]
         public ClCollection Tag
         {

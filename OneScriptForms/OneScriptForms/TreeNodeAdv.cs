@@ -934,6 +934,14 @@ namespace osf
             get { return (ClTreeViewAdv)OneScriptForms.RevertObj(Base_obj.TreeNodeAdv.Tree); }
         }
 
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("ИмяУзла", "NodeName")]
         public string NodeName
         {

@@ -137,6 +137,14 @@ namespace osf
             get { return Base_obj.Horizontal; }
         }
 
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("Лево", "Left")]
         public int Left
         {

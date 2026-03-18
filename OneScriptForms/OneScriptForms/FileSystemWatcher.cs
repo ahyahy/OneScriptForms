@@ -227,6 +227,14 @@ namespace osf
             set { Base_obj.IncludeSubDirectories = value; }
         }
 
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("КомпонентДоступен", "EnableRaisingEvents")]
         public bool EnableRaisingEvents
         {

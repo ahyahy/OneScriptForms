@@ -85,6 +85,14 @@ namespace osf
             get { return images; }
         }
 
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("РазмерИзображения", "ImageSize")]
         public ClSize ImageSize
         {

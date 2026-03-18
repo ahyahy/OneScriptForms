@@ -66,7 +66,15 @@ namespace osf
         }
 
         public MainMenu Base_obj;
-
+        
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("ЭлементыМеню", "MenuItems")]
         public ClMenuItemCollection MenuItems
         {

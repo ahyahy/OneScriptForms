@@ -271,6 +271,14 @@ namespace osf
             set { Base_obj.BalloonTipIcon = value; }
         }
 
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("КонтекстноеМеню", "ContextMenu")]
         public ClContextMenu ContextMenu
         {

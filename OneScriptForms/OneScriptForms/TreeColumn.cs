@@ -597,6 +597,14 @@ namespace osf
             set { Base_obj.Header = value; }
         }
 
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("Индекс", "Index")]
         public int Index
         {

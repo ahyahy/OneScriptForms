@@ -178,6 +178,14 @@ namespace osf
             get { return (ClTreeView)OneScriptForms.RevertObj(Base_obj.TreeView); }
         }
 
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("Индекс", "Index")]
         public int Index
         {

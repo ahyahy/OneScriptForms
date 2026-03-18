@@ -125,6 +125,14 @@ namespace osf
             get { return (ClEncoding)OneScriptForms.RevertObj(Base_obj.UTF8); }
         }
 
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("ИмяWeb", "WebName")]
         public string WebName
         {

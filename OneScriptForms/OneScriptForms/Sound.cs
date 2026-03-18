@@ -43,7 +43,15 @@ namespace osf
         }
 
         public Sound Base_obj;
-
+        
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextMethod("Воспроизвести", "Play")]
         public void Play(string p1)
         {

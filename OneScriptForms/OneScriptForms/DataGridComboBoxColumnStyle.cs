@@ -188,6 +188,14 @@ namespace osf
             set { Base_obj.Alignment = (System.Windows.Forms.HorizontalAlignment)value; }
         }
 
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("ИмяОтображаемого", "MappingName")]
         public string MappingName
         {

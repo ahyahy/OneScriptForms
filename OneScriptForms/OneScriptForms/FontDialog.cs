@@ -74,7 +74,15 @@ namespace osf
         }
 
         public FontDialog Base_obj;
-
+        
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("Тип", "Type")]
         public ClType Type
         {

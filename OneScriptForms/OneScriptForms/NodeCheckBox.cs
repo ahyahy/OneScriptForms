@@ -256,6 +256,15 @@ namespace osf
 
         public Aga.Controls.Tree.NodeControls.NodeCheckBox Base_obj;
 
+        //Свойства============================================================
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("Колонка", "ParentColumn")]
         public ClTreeColumn ParentColumn
         {

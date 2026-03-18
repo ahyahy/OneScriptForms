@@ -121,7 +121,15 @@ namespace osf
             get { return new ClPadding(Base_obj.Padding); }
             set { Base_obj.Padding = value.Base_obj; }
         }
-
+        
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("Метка", "Tag")]
         public ClCollection Tag
         {

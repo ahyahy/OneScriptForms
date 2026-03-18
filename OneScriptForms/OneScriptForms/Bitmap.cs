@@ -224,6 +224,14 @@ namespace osf
             get { return Base_obj.Height; }
         }
 
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("Размер", "Size")]
         public ClSize Size
         {

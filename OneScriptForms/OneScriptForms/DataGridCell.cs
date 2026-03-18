@@ -66,7 +66,15 @@ namespace osf
         }
 
         public DataGridCell Base_obj;
-
+        
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("НомерКолонки", "ColumnNumber")]
         public int ColumnNumber
         {

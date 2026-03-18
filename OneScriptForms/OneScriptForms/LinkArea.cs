@@ -76,6 +76,14 @@ namespace osf
             set { Base_obj.Length = value; }
         }
 
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("Начало", "Start")]
         public int Start
         {

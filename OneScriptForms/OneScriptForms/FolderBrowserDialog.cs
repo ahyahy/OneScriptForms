@@ -84,6 +84,14 @@ namespace osf
             set { Base_obj.SelectedPath = value; }
         }
 
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("КорневойКаталог", "RootFolder")]
         public int RootFolder
         {

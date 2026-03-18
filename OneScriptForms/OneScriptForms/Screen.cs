@@ -70,6 +70,14 @@ namespace osf
             get { return bounds; }
         }
 
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("ОсновнойЭкран", "PrimaryScreen")]
         public ClScreen PrimaryScreen
         {

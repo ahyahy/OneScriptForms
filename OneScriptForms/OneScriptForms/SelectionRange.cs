@@ -71,7 +71,15 @@ namespace osf
         }
 
         public SelectionRange Base_obj;
-
+        
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("Конец", "End")]
         public DateTime End
         {

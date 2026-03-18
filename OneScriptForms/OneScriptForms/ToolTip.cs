@@ -137,6 +137,14 @@ namespace osf
             set { Base_obj.InitialDelay = value; }
         }
 
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("ПоказыватьВсегда", "ShowAlways")]
         public bool ShowAlways
         {

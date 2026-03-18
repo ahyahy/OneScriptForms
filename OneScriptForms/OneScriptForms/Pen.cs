@@ -49,7 +49,15 @@ namespace osf
         }
 
         public Pen Base_obj;
-
+        
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextMethod("Освободить", "Dispose")]
         public void Dispose()
         {

@@ -284,6 +284,14 @@ namespace osf
             get { return (ClCursor)OneScriptForms.RevertObj(Base_obj.HSplit); }
         }
 
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("КурсорВ", "PanEast")]
         public ClCursor PanEast
         {

@@ -132,7 +132,15 @@ namespace osf
             }
             set { Base_obj.Value = value; }
         }
-
+        
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("ОсновнойЦвет", "ForeColor")]
         public ClColor ForeColor
         {

@@ -104,6 +104,14 @@ namespace osf
             set { Base_obj.TextAlign = value; }
         }
 
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("Индекс", "Index")]
         public int Index
         {

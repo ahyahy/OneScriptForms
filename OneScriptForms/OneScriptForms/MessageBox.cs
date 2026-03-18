@@ -73,6 +73,14 @@ namespace osf
             set { Base_obj.Icon = value; }
         }
 
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("Кнопки", "Buttons")]
         public int Buttons
         {

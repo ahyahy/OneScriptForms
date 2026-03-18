@@ -136,6 +136,14 @@ namespace osf
             set { Base_obj.Enabled = value; }
         }
 
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("ИндексИзображения", "ImageIndex")]
         public int ImageIndex
         {

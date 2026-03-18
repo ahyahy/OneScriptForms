@@ -6,7 +6,15 @@ namespace osf
     [ContextClass("КлОкноВвода", "ClInputBox")]
     public class ClInputBox : AutoContext<ClInputBox>
     {
-
+        
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextMethod("Показать", "Show")]
         public string Show(string Prompt, string Title = "", string DefaultResponse = "", int XPos = -1, int YPos = -1)
         {

@@ -209,7 +209,15 @@ namespace osf
                 OneScriptForms.AddToHashtable(Base_obj.SelectedImage, value);
             }
         }
-
+        
+        private string name;
+        [ContextProperty("Имя", "Name")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }				
+        
         [ContextProperty("Колонка", "ParentColumn")]
         public ClTreeColumn ParentColumn
         {
