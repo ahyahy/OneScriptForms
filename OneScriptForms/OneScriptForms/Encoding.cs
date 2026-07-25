@@ -12,7 +12,7 @@ namespace osf
             M_Encoding = p1.M_Encoding;
         }
 
-        private Encoding(System.Text.Encoding p1)
+        public Encoding(System.Text.Encoding p1)
         {
             M_Encoding = p1;
         }

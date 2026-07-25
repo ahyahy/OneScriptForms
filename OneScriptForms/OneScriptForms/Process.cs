@@ -56,6 +56,11 @@ namespace osf
             M_Process.Start();
             return this;
         }
+
+        public int Id
+        {
+            get { return M_Process.Id; }
+        }
     }
 
     [ContextClass("КлПроцесс", "ClProcess")]
@@ -83,6 +88,12 @@ namespace osf
         public bool HasExited
         {
             get { return Base_obj.HasExited; }
+        }
+
+        [ContextProperty("Идентификатор", "Id")]
+        public int Id
+        {
+            get { return Base_obj.Id; }
         }
 
         [ContextProperty("НачальнаяИнформация", "StartInfo")]

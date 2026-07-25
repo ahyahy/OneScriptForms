@@ -71,6 +71,12 @@ namespace osf
             set { M_ProcessStartInfo.RedirectStandardOutput = value; }
         }
 
+        public osf.Encoding StandardOutputEncoding
+        {
+            get { return new Encoding(M_ProcessStartInfo.StandardOutputEncoding); }
+            set { M_ProcessStartInfo.StandardOutputEncoding = value.M_Encoding; }
+        }
+
         public string UserName
         {
             get { return M_ProcessStartInfo.UserName; }
@@ -142,6 +148,13 @@ namespace osf
         {
             get { return Base_obj.UseShellExecute; }
             set { Base_obj.UseShellExecute = value; }
+        }
+
+        [ContextProperty("КодировкаВыходногоПотока", "StandardOutputEncoding")]
+        public ClEncoding StandardOutputEncoding
+        {
+            get { return new ClEncoding(Base_obj.StandardOutputEncoding); }
+            set { Base_obj.StandardOutputEncoding = value.Base_obj; }
         }
 
         [ContextProperty("Пароль", "Password")]
