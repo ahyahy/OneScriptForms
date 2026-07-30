@@ -39,14 +39,14 @@
         <P><span style="color: #ff0000;"><B>Важно:</B> Точка быдет иметь экранные координаты.</span></P>
         <H4 class=dtH4>Пример</H4>
         <P>
-            <PRE class=code>
+            <PRE class=code id="sample-code-reflection">
 Позиция = Ф.НайтиЦентр(Кнопка4);
 </PRE>
             <details>
                 <summary>Полный пример кода</summary>
                 <P>
-                    <PRE class=code>
-<button id="copy1" type="button" style="font-size:100%;">Копировать</button>
+                    <PRE class=code id="sample-code-reflection">
+<button type="button" class="copy-btn" data-target-id="cont1" style="font-size:100%;">Копировать</button>
 <hr style="border-color: lightgray;"><DIV id="cont1">
 Перем Ф, Форма1, МышьАрг1_Игрек, Форма1Нажата, Панель1Нажата, Кнопка2Нажата;
 Перем Панель2Нажата, Кнопка3Нажата, Панель3Нажата, Кнопка4Нажата, Кнопка1Нажата;
@@ -155,7 +155,7 @@
 	Ф.ОкноСообщений().Показать("Кнопка4_ПриНажатииКнопкиМыши", "", Ф.КнопкиОкнаСообщений.ОКОтмена, Ф.ЗначокОкнаСообщений.Предупреждение);
 КонецФункции
 
-ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+ПодключитьВнешнююКомпоненту("OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();
 Форма1 = Ф.Форма();
 Форма1.Ширина = 600;
@@ -292,8 +292,8 @@
         <details>
             <summary>Тестовый код</summary>
             <P>
-                <PRE class=code>
-<button id="copy2" type="button" style="font-size:100%;">Копировать</button>
+                <PRE class=code id="sample-code-reflection">
+<button type="button" class="copy-btn" data-target-id="cont2" style="font-size:100%;">Копировать</button>
 <hr style="border-color: lightgray;"><DIV id="cont2">
 Перем Ф, Форма1, МышьАрг1_Игрек, Форма1Нажата, Панель1Нажата, Кнопка2Нажата;
 Перем Панель2Нажата, Кнопка3Нажата, Панель3Нажата, Кнопка4Нажата, Кнопка1Нажата;
@@ -402,7 +402,7 @@
 	// Ф.ОкноСообщений().Показать("Кнопка4_ПриНажатииКнопкиМыши", "", Ф.КнопкиОкнаСообщений.ОКОтмена, Ф.ЗначокОкнаСообщений.Предупреждение);
 КонецФункции
 
-ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+ПодключитьВнешнююКомпоненту("OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();
 Форма1 = Ф.Форма();
 Форма1.Ширина = 600;
