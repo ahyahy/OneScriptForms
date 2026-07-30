@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
-    <TITLE>Aquamarine Property</TITLE>
+    <TITLE>Get Method</TITLE>
     <META content="text/html; charset=Windows-1252" http-equiv="Content-Type">
     <LINK rel="stylesheet" type="text/css" href="mainstyle.css">
     <script defer src="mobilstyle.js"></script>
@@ -19,21 +19,30 @@
             </TABLE>
         </DIV>
         <DIV id=TitleRow>
-            <H1 class=dtH1>Цвет.Аквамариновый&nbsp;(Color.Aquamarine)&nbsp;Свойство</H1>
+            <H1 class=dtH1>МассивСписок.Получить (ArrayList.Get)&nbsp;Метод</H1>
         </DIV>
     </DIV>
     <DIV id=nstext>
-        <H4 class=dtH4>Использование</H4>
-        <P>Только чтение.</P>
-        <H4 class=dtH4>Значение</H4>
-        <P>Тип: <A href="OneScriptForms.Color.html">Цвет&nbsp;(Color)</A>.</P>
-        <P>Системный цвет.</P>
+        <H4 class=dtH4>Синтаксис</H4>
+        <P>Получить(&lt;Индекс&gt;)</P>
+        <H4 class=dtH4>Параметры</H4>
+        <DL>
+            <DT><I>Индекс</I> (обязательный)</DT>
+            <DD>Тип: Число.</DD>
+            <DD>Индекс элемента.</DD>
+        </DL>
+        <H4 class=dtH4>Возвращаемое значение</H4>
+        <P>Тип: Число.</P>
+        <H4 class=dtH4>Описание</H4>
+        <P>Возвращает значение по указанному индексу.</P>
         <H4 class=dtH4>Примечание</H4>
         <P></P>
         <H4 class=dtH4>Пример</H4>
         <P>
             <PRE class=code id="sample-code-reflection">
-Цвет1 = Ф.Цвет().Аквамариновый;
+Для А = 0 По М.ВГраница() Цикл
+	Сообщить("М.Получить(" + А + ") = " + М.Получить(А));
+КонецЦикла;
 </PRE>
             <details>
                 <summary>Полный пример кода</summary>
@@ -43,16 +52,16 @@
 <hr style="border-color: lightgray;"><DIV id="cont1">
 ПодключитьВнешнююКомпоненту("OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();
-Форма1 = Ф.Форма();
-Форма1.Отображать = Истина;
-Форма1.Показать();
-Форма1.Активизировать();
 
-Цвет1 = Ф.Цвет().Аквамариновый;
+М = Ф.МассивСписок();
+М.Добавить("Строка в массив");
+М.Добавить(237.6554567776);
+М.Добавить(Ложь);
+М.Добавить(Дата("19871225000000"));
 
-Сообщить("" + Цвет1.Имя);
-Форма1.Текст = Цвет1.Имя;
-Форма1.ЦветФона = Цвет1;
+Для А = 0 По М.ВГраница() Цикл
+	Сообщить("М.Получить(" + А + ") = " + М.Получить(А));
+КонецЦикла;
 
 Ф.ЗапуститьОбработкуСобытий();
 </DIV>
@@ -67,23 +76,23 @@
 <hr style="border-color: lightgray;"><DIV id="cont2">
 ПодключитьВнешнююКомпоненту("OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();
-Форма1 = Ф.Форма();
-Форма1.Отображать = Истина;
-Форма1.Показать();
-Форма1.Активизировать();
+
+М = Ф.МассивСписок();
+М.Добавить("Строка в массив");
+М.Добавить(237.6554567776);
+М.Добавить(Ложь);
+М.Добавить(Дата("19871225000000"));
 
 Сообщить(?(
-Ф.Цвет().Аквамариновый.Имя = "Аквамариновый"
-, "", "!!! ") + "Цвет.Аквамариновый (Color.Aquamarine) Свойство" + " " + ТекущаяДата());
+М.Получить(1) = 237.6554567776
+, "", "!!! ") + "МассивСписок.Получить (ArrayList.Get) Метод" + " " + ТекущаяДата());
 </DIV>
 </PRE>
         </details>
         <P></P>
-        <DIV .square style="width: 100px; height: 100px; background: Aquamarine;"></DIV>
-        <P></P>
         <H4 class=dtH4>Смотрите также</H4>
         <P>
-            <A href="OneScriptForms.Color.html">Цвет&nbsp;(Color)&nbsp;Класс</A> | <A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A>
+            <A href="OneScriptForms.ArrayList.html">МассивСписок&nbsp;(ArrayList)&nbsp;Класс</A> | <A href="OneScriptForms.html">Библиотека&nbsp;OneScriptForms</A>
         </P>
     </DIV>
 </BODY>

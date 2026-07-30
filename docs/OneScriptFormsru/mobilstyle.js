@@ -30,150 +30,47 @@ document.addEventListener('DOMContentLoaded', function (event) {
 	localStorage["destination"] = '' + document.location;
 });
 // ================================
-// Функции копирования примеров.
-window.onload = function () {
-	var a = document.getElementById('copy1');
-	a.onclick = function () {
-		window.getSelection().removeAllRanges();
-		var range1 = document.createRange();
-		range1.selectNode(document.getElementById('cont1'));
-		try {
-			navigator.clipboard.writeText(range1);
-		} catch (err) { }
-		window.getSelection().removeRange(range1);
-		return false;
-	}
-
-	var b = document.getElementById('copy2');
-	b.onclick = function () {
-		window.getSelection().removeAllRanges();
-		var range2 = document.createRange();
-		range2.selectNode(document.getElementById('cont2'));
-		try {
-			navigator.clipboard.writeText(range2);
-		} catch (err) { }
-		window.getSelection().removeRange(range2);
-		return false;
-	}
-	
-	var a = document.getElementById('copy1');
-	a.onclick = function () {
-		window.getSelection().removeAllRanges();
-		var range1 = document.createRange();
-		range1.selectNode(document.getElementById('cont1'));
-		try {
-			navigator.clipboard.writeText(range1);
-		} catch (err) { }
-		window.getSelection().removeRange(range1);
-		return false;
-	}
-
-	var b = document.getElementById('copy2');
-	b.onclick = function () {
-		window.getSelection().removeAllRanges();
-		var range2 = document.createRange();
-		range2.selectNode(document.getElementById('cont2'));
-		try {
-			navigator.clipboard.writeText(range2);
-		} catch (err) { }
-		window.getSelection().removeRange(range2);
-		return false;
-	}
-
-	var a = document.getElementById('copy3');
-	a.onclick = function () {
-		window.getSelection().removeAllRanges();
-		var range1 = document.createRange();
-		range1.selectNode(document.getElementById('cont3'));
-		try {
-			navigator.clipboard.writeText(range1);
-		} catch (err) { }
-		window.getSelection().removeRange(range1);
-		return false;
-	}
-
-	var b = document.getElementById('copy4');
-	b.onclick = function () {
-		window.getSelection().removeAllRanges();
-		var range2 = document.createRange();
-		range2.selectNode(document.getElementById('cont4'));
-		try {
-			navigator.clipboard.writeText(range2);
-		} catch (err) { }
-		window.getSelection().removeRange(range2);
-		return false;
-	}
-
-	var a = document.getElementById('copy5');
-	a.onclick = function () {
-		window.getSelection().removeAllRanges();
-		var range1 = document.createRange();
-		range1.selectNode(document.getElementById('cont5'));
-		try {
-			navigator.clipboard.writeText(range1);
-		} catch (err) { }
-		window.getSelection().removeRange(range1);
-		return false;
-	}
-
-	var b = document.getElementById('copy6');
-	b.onclick = function () {
-		window.getSelection().removeAllRanges();
-		var range2 = document.createRange();
-		range2.selectNode(document.getElementById('cont6'));
-		try {
-			navigator.clipboard.writeText(range2);
-		} catch (err) { }
-		window.getSelection().removeRange(range2);
-		return false;
-	}
-
-	var a = document.getElementById('copy7');
-	a.onclick = function () {
-		window.getSelection().removeAllRanges();
-		var range1 = document.createRange();
-		range1.selectNode(document.getElementById('cont7'));
-		try {
-			navigator.clipboard.writeText(range1);
-		} catch (err) { }
-		window.getSelection().removeRange(range1);
-		return false;
-	}
-
-	var b = document.getElementById('copy8');
-	b.onclick = function () {
-		window.getSelection().removeAllRanges();
-		var range2 = document.createRange();
-		range2.selectNode(document.getElementById('cont8'));
-		try {
-			navigator.clipboard.writeText(range2);
-		} catch (err) { }
-		window.getSelection().removeRange(range2);
-		return false;
-	}
-
-	var a = document.getElementById('copy9');
-	a.onclick = function () {
-		window.getSelection().removeAllRanges();
-		var range1 = document.createRange();
-		range1.selectNode(document.getElementById('cont9'));
-		try {
-			navigator.clipboard.writeText(range1);
-		} catch (err) { }
-		window.getSelection().removeRange(range1);
-		return false;
-	}
-
-	var b = document.getElementById('copy10');
-	b.onclick = function () {
-		window.getSelection().removeAllRanges();
-		var range2 = document.createRange();
-		range2.selectNode(document.getElementById('cont10'));
-		try {
-			navigator.clipboard.writeText(range2);
-		} catch (err) { }
-		window.getSelection().removeRange(range2);
-		return false;
-	}
-}
+// Функция копирования примеров.
+document.addEventListener('DOMContentLoaded', function () {
+    // Используем делегирование: вешаем один клик на все окно документа
+    document.body.addEventListener('click', function(event) {
+        // Проверяем, что кликнули именно по кнопке с нужным классом
+        if (event.target.classList.contains('copy-btn')) {
+            event.preventDefault(); // Отменяем стандартное поведение button внутри details
+            const button = event.target;
+            // Читаем из data-атрибута, какой именно div нам нужен
+            const targetId = button.getAttribute('data-target-id'); 
+            // Находим нужный элемент с кодом
+            const codeBlock = document.getElementById(targetId);
+            if (!codeBlock) return;
+            // Создаем временный невидимый textarea для браузера
+            const textArea = document.createElement("textarea");
+            // Получаем текст
+            textArea.value = codeBlock.innerText;
+            // Стилизуем его, чтобы он был вне экрана
+            textArea.style.position = "fixed"; 
+            textArea.style.top = "-9999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            let successful = false;
+            try {
+                // Современный API
+                successful = navigator.clipboard.writeText(textArea.value);
+            } catch (err) {
+                // Fallback для старых браузеров
+                successful = document.execCommand('copy');
+            }
+            document.body.removeChild(textArea);
+            // Опционально: визуальная обратная связь
+            const originalText = button.textContent;
+            if (successful) {
+                button.textContent = 'Скопировано!';
+                setTimeout(() => button.textContent = originalText, 1500); // Вернуть текст через 1.5 сек
+            } else {
+                alert('Не удалось скопировать текст.');
+            }
+        }
+    });
+});
 // ================================

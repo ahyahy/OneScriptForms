@@ -467,7 +467,8 @@ function setFocus(eventkey, eventnewValue){
 					detail.open = false;
 				}
 			});		
-			document.getElementById('divleftid').scrollTop = NewDetail.offsetTop - 150;
+			myItem.scrollIntoView(false);
+			document.getElementById('divleftid').scrollTop = myItem.offsetTop - 150;
 		}
 	}
 }
