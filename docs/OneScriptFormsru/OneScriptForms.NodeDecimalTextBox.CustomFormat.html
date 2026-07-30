@@ -33,7 +33,7 @@
         <P>Описатель точности — это необязательное целое число, которое влияет на число цифр в результирующей строке.</P>
         <P>Допустимые строки формата и их описание.</P>
         <P>
-            <PRE class=code>
+            <PRE class=code id="sample-code-reflection">
 
 <B>#&nbsp;(#)</B> Настраиваемый описатель. Заменитель цифры. Заменяет знак # соответствующей цифрой, если такая имеется. В противном случае в результирующей строке не будет цифры.
 	Используя знак #, можно настроить формат вывода. Например, нам надо вывести некоторое число в формате телефона +х (ххх)ххх-хх-хх.
@@ -68,14 +68,14 @@
         <P></P>
         <H4 class=dtH4>Пример</H4>
         <P>
-            <PRE class=code>
+            <PRE class=code id="sample-code-reflection">
 ЧисловоеПолеУзла2.ПользовательскийФормат = "F5";
 </PRE>
             <details>
                 <summary>Полный пример кода</summary>
                 <P>
-                    <PRE class=code>
-<button id="copy1" type="button" style="font-size:100%;">Копировать</button>
+                    <PRE class=code id="sample-code-reflection">
+<button type="button" class="copy-btn" data-target-id="cont1" style="font-size:100%;">Копировать</button>
 <hr style="border-color: lightgray;"><DIV id="cont1">
 Перем Ф, ПолеВыбора1, ЧисловоеПолеУзла2, КолонкаДереваЗначений3, ДеревоЗначений1;
 
@@ -85,7 +85,7 @@
 	КолонкаДереваЗначений3.Заголовок = ПользовательскийФормат;
 КонецПроцедуры
 
-ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+ПодключитьВнешнююКомпоненту("OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();
 Форма1 = Ф.Форма();
 Форма1.Ширина = 830;
@@ -277,8 +277,8 @@
         <details>
             <summary>Тестовый код</summary>
             <P>
-                <PRE class=code>
-<button id="copy2" type="button" style="font-size:100%;">Копировать</button>
+                <PRE class=code id="sample-code-reflection">
+<button type="button" class="copy-btn" data-target-id="cont2" style="font-size:100%;">Копировать</button>
 <hr style="border-color: lightgray;"><DIV id="cont2">
 Перем Ф, ПолеВыбора1, ЧисловоеПолеУзла2, КолонкаДереваЗначений3, ДеревоЗначений1;
 
@@ -288,7 +288,7 @@
 	КолонкаДереваЗначений3.Заголовок = ПользовательскийФормат;
 КонецПроцедуры
 
-ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+ПодключитьВнешнююКомпоненту("OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();
 Форма1 = Ф.Форма();
 Форма1.Ширина = 830;

@@ -39,7 +39,7 @@
         <P>&nbsp;&nbsp;<B>5</B>. Добавить панель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Заполнение</B>.</P>
         <P>Разберем подробнее. Подготовим форму с панелью, которую будем делить разделителями на три части.</P>
         <P>
-            <PRE class=code>
+            <PRE class=code id="sample-code-reflection">
 Ф = Новый ФормыДляОдноСкрипта();
 Форма1 = Ф.Форма();
 Форма1.Размер = Ф.Размер(300, 150);
@@ -53,7 +53,7 @@
             <hr style="border-color: lightgray;">
         <P>Добавим разделитель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>.</P>
         <P>
-            <PRE class=code>
+            <PRE class=code id="sample-code-reflection">
 Разделитель1 = Панель0.ЭлементыУправления.Добавить(Ф.Разделитель());
 Разделитель1.Стыковка = Ф.СтильСтыковки.Лево;
 </PRE>
@@ -62,7 +62,7 @@
         <hr style="border-color: lightgray;">
         <P>Добавим панель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>. Для наглядности окрасим её в синий цвет.</P>
         <P>
-            <PRE class=code>
+            <PRE class=code id="sample-code-reflection">
 Панель1 = Панель0.ЭлементыУправления.Добавить(Ф.Панель());
 Панель1.СтильГраницы = Ф.СтильГраницы.Трехмерная;
 Панель1.ЦветФона = Ф.Цвет().Синий;
@@ -73,7 +73,7 @@
         <hr style="border-color: lightgray;">
         <P>Добавим ещё один разделитель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>.</P>
         <P>
-            <PRE class=code>
+            <PRE class=code id="sample-code-reflection">
 Разделитель2 = Панель0.ЭлементыУправления.Добавить(Ф.Разделитель());
 Разделитель2.Стыковка = Ф.СтильСтыковки.Лево;
 </PRE>
@@ -81,7 +81,7 @@
             <hr style="border-color: lightgray;">
         <P>Добавим ещё одну панель, задав свойству <B>Стыковка</B> значение <B>Ф.СтильСтыковки.Лево</B>. Окрасим её в красный цвет.</P>
         <P>
-            <PRE class=code>
+            <PRE class=code id="sample-code-reflection">
 Панель2 = Панель0.ЭлементыУправления.Добавить(Ф.Панель());
 Панель2.Ширина = 50;
 Панель2.СтильГраницы = Ф.СтильГраницы.Трехмерная;
@@ -96,7 +96,7 @@
             неё должно быть установлено в значение <B>Ф.СтильСтыковки.Заполнение</B>. Добавим последнюю панель с зеленым цветом.
         </P>
         <P>
-            <PRE class=code>
+            <PRE class=code id="sample-code-reflection">
 Панель3 = Панель0.ЭлементыУправления.Добавить(Ф.Панель());
 Панель3.СтильГраницы = Ф.СтильГраницы.Трехмерная;
 Панель3.ЦветФона = Ф.Цвет().Зеленый;
@@ -119,10 +119,10 @@
         <details>
             <summary>Код примера деления формы разделителями с применением метода <B>ЭлементУправления.НаПереднийПлан&nbsp;(Control.BringToFront)</B>:</summary>
             <P>
-                <PRE class=code>
-<button id="copy4" type="button" style="font-size:100%;">Копировать</button>
+                <PRE class=code id="sample-code-reflection">
+<button type="button" class="copy-btn" data-target-id="cont4" style="font-size:100%;">Копировать</button>
 <hr style="border-color: lightgray;"><DIV id="cont4">
-ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+ПодключитьВнешнююКомпоненту("OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();
 Форма1 = Ф.Форма();
 Форма1.Размер = Ф.Размер(300, 150);
@@ -162,16 +162,16 @@
         <P></P>
         <H4 class=dtH4>Пример</H4>
         <P>
-            <PRE class=code>
+            <PRE class=code id="sample-code-reflection">
 Разделитель1 = Ф.Разделитель();
 </PRE>
             <details>
                 <summary>Полный пример кода</summary>
                 <P>
-                    <PRE class=code>
-<button id="copy1" type="button" style="font-size:100%;">Копировать</button>
+                    <PRE class=code id="sample-code-reflection">
+<button type="button" class="copy-btn" data-target-id="cont1" style="font-size:100%;">Копировать</button>
 <hr style="border-color: lightgray;"><DIV id="cont1">
-ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+ПодключитьВнешнююКомпоненту("OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();
 Форма1 = Ф.Форма();
 Форма1.Размер = Ф.Размер(300, 150);
@@ -213,10 +213,10 @@
         <details>
             <summary>Тестовый код</summary>
             <P>
-                <PRE class=code>
-<button id="copy2" type="button" style="font-size:100%;">Копировать</button>
+                <PRE class=code id="sample-code-reflection">
+<button type="button" class="copy-btn" data-target-id="cont2" style="font-size:100%;">Копировать</button>
 <hr style="border-color: lightgray;"><DIV id="cont2">
-ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+ПодключитьВнешнююКомпоненту("OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();
 Форма1 = Ф.Форма();
 Форма1.Размер = Ф.Размер(300, 150);
@@ -261,8 +261,8 @@
         <details>
             <summary>Код примера различных вариантов деления формы с помощью разделителей:</summary>
             <P>
-                <PRE class=code>
-<button id="copy3" type="button" style="font-size:100%;">Копировать</button>
+                <PRE class=code id="sample-code-reflection">
+<button type="button" class="copy-btn" data-target-id="cont3" style="font-size:100%;">Копировать</button>
 <hr style="border-color: lightgray;"><DIV id="cont3">
 Перем Ф, Панель13, Форма1;
 
@@ -709,7 +709,7 @@
 	Кнопка6_Нажатие() Экспорт;
 КонецПроцедуры
 
-ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+ПодключитьВнешнююКомпоненту("OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();
 Форма1 = Ф.Форма();
 Форма1.Размер = Ф.Размер(800, 400);
