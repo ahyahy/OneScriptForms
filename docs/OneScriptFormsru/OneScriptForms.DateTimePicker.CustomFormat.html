@@ -34,7 +34,7 @@
             Например, для отображения даты и времени в виде строки <B>06/15/2001 12:00 PM</B>, это свойство должно быть задано как строка <B>"MM'/'dd'/'yyyy hh':'mm tt"</B>.
         </P>
         <P>
-            <PRE class=code>
+            <PRE class=code id="sample-code-reflection">
 Допустимые строки формата и их описание.
 г (y) - Номер года без века и лидирующего нуля. (2001 отображается как «1»).
 гг (yy) - Номер года без века с лидирующим нулем. (2001 отображается как «01»).
@@ -62,16 +62,16 @@
         <P>Свойство вернет русскоязычный вариант строки пользовательского формата, если имя свойства в коде было задано по русски.</P>
         <H4 class=dtH4>Пример</H4>
         <P>
-            <PRE class=code>
+            <PRE class=code id="sample-code-reflection">
 ПолеКалендаря1.ПользовательскийФормат = "'год' yyyy, 'month' MMMM, 'число' dd, HH':'mm':'ss";
 </PRE>
             <details>
                 <summary>Полный пример кода</summary>
                 <P>
-                    <PRE class=code>
-<button id="copy1" type="button" style="font-size:100%;">Копировать</button>
+                    <PRE class=code id="sample-code-reflection">
+<button type="button" class="copy-btn" data-target-id="cont1" style="font-size:100%;">Копировать</button>
 <hr style="border-color: lightgray;"><DIV id="cont1">
-ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+ПодключитьВнешнююКомпоненту("OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();
 Форма1 = Ф.Форма();
 Форма1.Ширина = 360;
@@ -96,10 +96,10 @@
         <details>
             <summary>Тестовый код</summary>
             <P>
-                <PRE class=code>
-<button id="copy2" type="button" style="font-size:100%;">Копировать</button>
+                <PRE class=code id="sample-code-reflection">
+<button type="button" class="copy-btn" data-target-id="cont2" style="font-size:100%;">Копировать</button>
 <hr style="border-color: lightgray;"><DIV id="cont2">
-ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+ПодключитьВнешнююКомпоненту("OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();
 Форма1 = Ф.Форма();
 Форма1.Ширина = 360;
