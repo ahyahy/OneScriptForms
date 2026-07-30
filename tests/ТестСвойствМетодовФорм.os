@@ -11,11 +11,11 @@
 Процедура ПолучитьНастройки()
 	Если Вин Тогда
 		КаталогСправки = "C:\444\OneScriptForms\docs\OneScriptFormsru\"; // со слэшем в конце
-		ПутьБиблиотеки = "C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll";
-		КаталогТестов = "C:\444\ТестыФорм\"; // со слэшем в конце
+		ПутьБиблиотеки = "OneScriptForms.dll";
+		КаталогТестов = "C:\444\OneScriptForms\Scripts\ТестыФорм\"; // со слэшем в конце
 		ИмяВременногоФайла = ПолучитьИмяВременногоФайла();
-		ИмяЛогФайла = "C:\444\ТестыФорм\LogForm.txt";
-		ХодВыполнения = "C:\444\ТестыФорм\CurrentForm.txt";
+		ИмяЛогФайла = "C:\444\OneScriptForms\Scripts\ТестыФорм\LogForm.txt";
+		ХодВыполнения = "C:\444\OneScriptForms\Scripts\ТестыФорм\CurrentForm.txt";
 	Иначе
 		КаталогСправки = "/home/vlad/Projects/444/OneScriptForms/docs/OneScriptFormsru/"; // со слэшем в конце
 		ПутьБиблиотеки = "/home/vlad/Projects/444/111/OneScriptForms/OneScriptForms/bin/Debug/OneScriptForms.dll";

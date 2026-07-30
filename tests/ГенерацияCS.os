@@ -6115,7 +6115,16 @@
 				|        }
 				|
 				|";
-				
+			ИначеЕсли (СвойствоРус = "КодировкаВыходногоПотока") Тогда
+				Стр = Стр +
+				"        [ContextProperty(""КодировкаВыходногоПотока"", ""StandardOutputEncoding"")]
+				|        public ClEncoding StandardOutputEncoding
+				|        {
+				|            get { return new ClEncoding(Base_obj.StandardOutputEncoding); }
+				|            set { Base_obj.StandardOutputEncoding = value.Base_obj; }
+				|        }
+				|
+				|";
 				
 				
 				
@@ -13205,18 +13214,26 @@
 				|        }
 				|
 				|";
-				
-				
-				
-				
-				
-				
+			ИначеЕсли (МетодРус = "ПутьСценария") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""ПутьСценария"", ""PathScenario"")]
+				|        public string PathScenario(IRuntimeContextInstance p1)
+				|        {
+				|            ScriptEngine.Machine.Contexts.UserScriptContextInstance _path = (ScriptEngine.Machine.Contexts.UserScriptContextInstance)p1.GetPropValue(0);
+				|            return _path.Module.ModuleInfo.ModuleName;
+				|        }
+				|
+				|";
+			ИначеЕсли (МетодРус = "Получить") и (ИмяКонтекстКлассаАнгл = "ArrayList") Тогда
+				Стр = Стр +
+				"        [ContextMethod(""Получить"", ""Get"")]
+				|        public IValue Get(int p1)
+				|        {
+				|            return OneScriptForms.RevertObj(Base_obj[p1]);
+				|        }
+				|
+				|";
 
-
-
-				
-				
-				
 				
 				
 				
@@ -48555,7 +48572,7 @@
 		|            M_Encoding = p1.M_Encoding;
 		|        }
 		|
-		|        private Encoding(System.Text.Encoding p1)
+		|        public Encoding(System.Text.Encoding p1)
 		|        {
 		|            M_Encoding = p1;
 		|        }
@@ -50740,6 +50757,11 @@
 		|            return this;
 		|        }
 		|
+		|        public int Id
+		|        {
+		|            get { return M_Process.Id; }
+		|        }
+		|
 		|        public void Close()
 		|        {
 		|            M_Process.Close();
@@ -50825,6 +50847,12 @@
 		|        {
 		|            get { return M_ProcessStartInfo.RedirectStandardOutput; }
 		|            set { M_ProcessStartInfo.RedirectStandardOutput = value; }
+		|        }
+		|
+		|        public osf.Encoding StandardOutputEncoding
+		|        {
+		|            get { return new Encoding(M_ProcessStartInfo.StandardOutputEncoding); }
+		|            set { M_ProcessStartInfo.StandardOutputEncoding = value.M_Encoding; }
 		|        }
 		|
 		|        public string UserName
@@ -54376,6 +54404,11 @@
 		|        public virtual void RemoveAt(int index)
 		|        {
 		|            M_ArrayList.RemoveAt(index);
+		|        }
+		|
+		|        public int UBound()
+		|        {
+		|            return M_ArrayList.Count - 1;
 		|        }
 		|
 		|        public void Reverse()
@@ -60060,9 +60093,9 @@
 
 // Зададим все необходимые пути.
 КаталогСправки = "C:\444\OneScriptForms\docs\OneScriptFormsru";// без слэша в конце
-КаталогВыгрузки = "C:\444\ВыгруженныеОбъекты";// без слэша в конце
+КаталогВыгрузки = "C:\444\OneScriptForms\Scripts\ВыгруженныеОбъекты";// без слэша в конце
 ПутьДо_oscript = "C:\Program Files\OneScript\bin\oscript.exe";
-ПутьДоOneScriptForms_dll = "C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll";
+ПутьДоOneScriptForms_dll = "C:\444\OneScriptForms\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll";
 
 ПодключитьВнешнююКомпоненту(ПутьДоOneScriptForms_dll);
 Ф = Новый ФормыДляОдноСкрипта();

@@ -109,6 +109,11 @@ namespace osf
             M_ArrayList.Sort(myComparer);
         }
 
+        public int UBound()
+        {
+            return M_ArrayList.Count - 1;
+        }
+
         public virtual void RemoveAt(int index)
         {
             M_ArrayList.RemoveAt(index);
@@ -286,6 +291,12 @@ namespace osf
             get { return Base_obj.Count; }
         }
 
+        [ContextMethod("ВГраница", "UBound")]
+        public int UBound()
+        {
+            return Base_obj.UBound();
+        }
+
         [ContextMethod("Вставить", "Insert")]
         public IValue Insert(int p1, IValue p2)
         {
@@ -314,6 +325,12 @@ namespace osf
         public void Clear()
         {
             Base_obj.Clear();
+        }
+
+        [ContextMethod("Получить", "Get")]
+        public IValue Get(int p1)
+        {
+            return OneScriptForms.RevertObj(Base_obj[p1]);
         }
 
         [ContextMethod("Содержит", "Contains")]

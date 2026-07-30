@@ -2242,6 +2242,13 @@ namespace osf
             }
         }
 
+        [ContextMethod("ПутьСценария", "PathScenario")]
+        public string PathScenario(IRuntimeContextInstance p1)
+        {
+            ScriptEngine.Machine.Contexts.UserScriptContextInstance _path = (ScriptEngine.Machine.Contexts.UserScriptContextInstance)p1.GetPropValue(0);
+            return _path.Module.ModuleInfo.ModuleName;
+        }
+
         [ContextMethod("Разделитель", "Splitter")]
         public ClSplitter Splitter()
         {

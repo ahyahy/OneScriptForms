@@ -29,8 +29,8 @@
         <details>
             <summary>Код игры Понг:</summary>
             <P>
-                <PRE class=code>
-<button id="copy1" type="button" style="font-size:100%;">Копировать</button>
+                <PRE class=code id="sample-code-reflection">
+<button type="button" class="copy-btn" data-target-id="cont1" style="font-size:100%;">Копировать</button>
 <hr style="border-color: lightgray;"><DIV id="cont1">
 Перем Ф, Форма1, ИгровоеПоле, Таймер1, Кнопка2, cx, cy, РегуляторВверхВниз1;
 Перем Икс, Ракетка, Мячик, ДвижениеВверх, ДвижениеЛево;
@@ -125,7 +125,7 @@
 	Ракетка.Положение = Ф.Точка(Икс, ИгровоеПоле.Низ - 15);
 КонецПроцедуры
 
-ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+ПодключитьВнешнююКомпоненту("OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();
 Форма1 = Ф.Форма();
 Форма1.НачальноеПоложение = Ф.НачальноеПоложениеФормы.ЦентрЭкрана;
@@ -222,8 +222,8 @@ cy = 3;
         <details>
             <summary>Код игры Тетрис:</summary>
             <P>
-                <PRE class=code>
-<button id="copy2" type="button" style="font-size:100%;">Копировать</button>
+                <PRE class=code id="sample-code-reflection">
+<button type="button" class="copy-btn" data-target-id="cont2" style="font-size:100%;">Копировать</button>
 <hr style="border-color: lightgray;"><DIV id="cont2">
 Перем Ф, Форма1, Панель2, Панель4, Таймер1, ПолеВыбора1, Цвет, ПаузаВключена, Интервал;
 Перем МКубикиИгровогоПоля, МНомераКубиковНовойФигуры, МКубикиПадающейФигуры, МНовыеНомера, МУдаляемых;
@@ -1156,7 +1156,7 @@ cy = 3;
 	Таймер1.Остановить();
 КонецПроцедуры
 
-ПодключитьВнешнююКомпоненту("C:\444\111\OneScriptForms\OneScriptForms\bin\Debug\OneScriptForms.dll");
+ПодключитьВнешнююКомпоненту("OneScriptForms.dll");
 Ф = Новый ФормыДляОдноСкрипта();
 Форма1 = Ф.Форма();
 Форма1.НачальноеПоложение = Ф.НачальноеПоложениеФормы.ЦентрЭкрана;
