@@ -113,8 +113,8 @@ namespace osf
         {
             get { return name; }
             set { name = value; }
-        }				
-        
+        }
+
         [ContextProperty("Интервал", "Interval")]
         public int Interval
         {

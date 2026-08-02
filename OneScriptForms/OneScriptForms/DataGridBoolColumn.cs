@@ -66,8 +66,8 @@ namespace osf
         {
             get { return name; }
             set { name = value; }
-        }				
-        
+        }
+
         [ContextProperty("ИмяОтображаемого", "MappingName")]
         public string MappingName
         {

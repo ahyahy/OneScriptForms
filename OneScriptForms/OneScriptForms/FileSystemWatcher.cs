@@ -51,41 +51,25 @@ namespace osf
         public bool EnableRaisingEvents
         {
             get { return M_FileSystemWatcher.EnableRaisingEvents; }
-            set
-            {
-                M_FileSystemWatcher.EnableRaisingEvents = value;
-                //System.Windows.Forms.Application.DoEvents();
-            }
+            set { M_FileSystemWatcher.EnableRaisingEvents = value; }
         }
 
         public string Filter
         {
             get { return M_FileSystemWatcher.Filter; }
-            set
-            {
-                M_FileSystemWatcher.Filter = value;
-                //System.Windows.Forms.Application.DoEvents();
-            }
+            set { M_FileSystemWatcher.Filter = value; }
         }
 
         public bool IncludeSubDirectories
         {
-            get { return M_FileSystemWatcher.EnableRaisingEvents; }
-            set
-            {
-                M_FileSystemWatcher.EnableRaisingEvents = value;
-                //System.Windows.Forms.Application.DoEvents();
-            }
+            get { return M_FileSystemWatcher.IncludeSubdirectories; }
+            set { M_FileSystemWatcher.IncludeSubdirectories = value; }
         }
 
         public int InternalBufferSize
         {
             get { return M_FileSystemWatcher.InternalBufferSize; }
-            set
-            {
-                M_FileSystemWatcher.InternalBufferSize = value;
-                //System.Windows.Forms.Application.DoEvents();
-            }
+            set { M_FileSystemWatcher.InternalBufferSize = value; }
         }
 
         public FileSystemWatcherEx M_FileSystemWatcher
@@ -108,21 +92,13 @@ namespace osf
         public int NotifyFilter
         {
             get { return (int)M_FileSystemWatcher.NotifyFilter; }
-            set
-            {
-                M_FileSystemWatcher.NotifyFilter = (System.IO.NotifyFilters)value;
-                //System.Windows.Forms.Application.DoEvents();
-            }
+            set { M_FileSystemWatcher.NotifyFilter = (System.IO.NotifyFilters)value; }
         }
 
         public string Path
         {
             get { return M_FileSystemWatcher.Path; }
-            set
-            {
-                M_FileSystemWatcher.Path = value;
-                //System.Windows.Forms.Application.DoEvents();
-            }
+            set { M_FileSystemWatcher.Path = value; }
         }
 
         public void M_FileSystemWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
@@ -233,8 +209,8 @@ namespace osf
         {
             get { return name; }
             set { name = value; }
-        }				
-        
+        }
+
         [ContextProperty("КомпонентДоступен", "EnableRaisingEvents")]
         public bool EnableRaisingEvents
         {

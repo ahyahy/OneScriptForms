@@ -90,8 +90,8 @@ namespace osf
         {
             get { return name; }
             set { name = value; }
-        }				
-        
+        }
+
         [ContextProperty("КорневойКаталог", "RootFolder")]
         public int RootFolder
         {

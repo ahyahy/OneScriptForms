@@ -100,8 +100,8 @@ namespace osf
         {
             get { return name; }
             set { name = value; }
-        }				
-        
+        }
+
         [ContextProperty("ИмяФайла", "FileName")]
         public string FileName
         {

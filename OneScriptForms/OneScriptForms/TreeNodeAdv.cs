@@ -940,8 +940,8 @@ namespace osf
         {
             get { return name; }
             set { name = value; }
-        }				
-        
+        }
+
         [ContextProperty("ИмяУзла", "NodeName")]
         public string NodeName
         {

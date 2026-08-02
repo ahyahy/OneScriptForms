@@ -131,8 +131,8 @@ namespace osf
         {
             get { return name; }
             set { name = value; }
-        }				
-        
+        }
+
         [ContextProperty("ИмяWeb", "WebName")]
         public string WebName
         {

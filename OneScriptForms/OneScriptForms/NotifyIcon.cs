@@ -277,8 +277,8 @@ namespace osf
         {
             get { return name; }
             set { name = value; }
-        }				
-        
+        }
+
         [ContextProperty("КонтекстноеМеню", "ContextMenu")]
         public ClContextMenu ContextMenu
         {

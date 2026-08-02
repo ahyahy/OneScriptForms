@@ -76,8 +76,8 @@ namespace osf
         {
             get { return name; }
             set { name = value; }
-        }				
-        
+        }
+
         [ContextProperty("ОсновнойЭкран", "PrimaryScreen")]
         public ClScreen PrimaryScreen
         {

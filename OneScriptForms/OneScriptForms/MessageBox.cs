@@ -79,8 +79,8 @@ namespace osf
         {
             get { return name; }
             set { name = value; }
-        }				
-        
+        }
+
         [ContextProperty("Кнопки", "Buttons")]
         public int Buttons
         {

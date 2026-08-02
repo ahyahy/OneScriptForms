@@ -290,8 +290,8 @@ namespace osf
         {
             get { return name; }
             set { name = value; }
-        }				
-        
+        }
+
         [ContextProperty("КурсорВ", "PanEast")]
         public ClCursor PanEast
         {

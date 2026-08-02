@@ -142,8 +142,8 @@ namespace osf
         {
             get { return name; }
             set { name = value; }
-        }				
-        
+        }
+
         [ContextProperty("ИндексИзображения", "ImageIndex")]
         public int ImageIndex
         {

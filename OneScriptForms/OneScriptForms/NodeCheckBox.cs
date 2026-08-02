@@ -263,8 +263,8 @@ namespace osf
         {
             get { return name; }
             set { name = value; }
-        }				
-        
+        }
+
         [ContextProperty("Колонка", "ParentColumn")]
         public ClTreeColumn ParentColumn
         {

@@ -230,8 +230,8 @@ namespace osf
         {
             get { return name; }
             set { name = value; }
-        }				
-        
+        }
+
         [ContextProperty("Размер", "Size")]
         public ClSize Size
         {

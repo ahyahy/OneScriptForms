@@ -143,8 +143,8 @@ namespace osf
         {
             get { return name; }
             set { name = value; }
-        }				
-        
+        }
+
         [ContextProperty("Лево", "Left")]
         public int Left
         {

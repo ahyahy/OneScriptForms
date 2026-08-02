@@ -1807,7 +1807,7 @@
 		|            DataView1.dll_obj = this;
 		|            Base_obj = DataView1;
 		|        }//end_constr
-		|        
+		|
 		|        public ClDataView(System.Data.DataView p1)
 		|        {
 		|            DataView DataView1 = new DataView(p1);
@@ -1986,7 +1986,7 @@
 		|            Link1.dll_obj = this;
 		|            Base_obj = Link1;
 		|        }//end_constr
-		|        
+		|
 		|        public ClLink(System.Windows.Forms.LinkLabel.Link p1)
 		|        {
 		|            Link Link1 = new Link(p1);
@@ -2014,7 +2014,7 @@
 		|                }
 		|            }
 		|        }//end_constr
-		|        ";
+		|";
 	ИначеЕсли ИмяКласса = "FormClosingEventArgs" Тогда
 		Стр = 
 		"        public ClFormClosingEventArgs()
@@ -2911,7 +2911,7 @@
 		|            " + ИмяКласса + "1.dll_obj = this;
 		|            Base_obj = " + ИмяКласса + "1;
 		|        }//end_constr
-		|        ";
+		|";
 	КонецЕсли;
 	Возврат Стр;
 КонецФункции//Конструктор
@@ -3311,7 +3311,7 @@
 				|                }
 				|            }
 				|        }
-				|        
+				|
 				|";
 			ИначеЕсли (СвойствоРус = "Адреса") и (ИмяКонтекстКлассаАнгл = "IpHostEntry") Тогда
 				Стр = Стр +
@@ -3340,7 +3340,7 @@
 				|                }
 				|            }
 				|        }
-				|        
+				|
 				|";
 			ИначеЕсли (СвойствоРус = "СписокБольшихИзображений") и (ИмяКонтекстКлассаАнгл = "ListView") Тогда
 				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
@@ -3363,7 +3363,7 @@
 				|                Base_obj.LargeImageList = value.Base_obj;
 				|            }
 				|        }
-				|        
+				|
 				|";
 			ИначеЕсли (СвойствоРус = "СписокМаленькихИзображений") и (ИмяКонтекстКлассаАнгл = "ListView") Тогда
 				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
@@ -3386,7 +3386,7 @@
 				|                Base_obj.SmallImageList = value.Base_obj;
 				|            }
 				|        }
-				|        
+				|
 				|";
 			ИначеЕсли СвойствоРус = "Курсор" Тогда
 				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
@@ -3409,7 +3409,7 @@
 				|                Base_obj.Cursor = value.Base_obj;
 				|            }
 				|        }
-				|        
+				|
 				|";
 			ИначеЕсли (СвойствоРус = "ШрифтВыделения") и (ИмяКонтекстКлассаАнгл = "RichTextBox") Тогда
 				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
@@ -3432,7 +3432,7 @@
 				|                Base_obj.SelectionFont = value.Base_obj;
 				|            }
 				|        }
-				|        
+				|
 				|";
 			ИначеЕсли (СвойствоРус = "ШрифтУзла") и (ИмяКонтекстКлассаАнгл = "TreeNode") Тогда
 				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
@@ -3448,7 +3448,7 @@
 				|                Base_obj.NodeFont = value.Base_obj;
 				|            }
 				|        }
-				|        
+				|
 				|";
 			ИначеЕсли (СвойствоРус = "ШрифтЗаголовков") и (ИмяКонтекстКлассаАнгл = "DataGridTableStyle") Тогда
 				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
@@ -3464,7 +3464,7 @@
 				|                headerFont = value;
 				|            }
 				|        }
-				|        
+				|
 				|";
 			ИначеЕсли (СвойствоРус = "Шрифт") и 
 			(ИмяКонтекстКлассаАнгл = "NodeTextBox" или 
@@ -3505,7 +3505,7 @@
 				|                Base_obj.Font = value.Base_obj;
 				|            }
 				|        }
-				|        
+				|
 				|";
 			ИначеЕсли (СвойствоРус = "ВыбранныйЭлементСетки") и (ИмяКонтекстКлассаАнгл = "PropertyGrid") Тогда
 				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
@@ -3521,7 +3521,7 @@
 				|                Base_obj.SelectedGridItem = value.Base_obj;
 				|            }
 				|        }
-				|        
+				|
 				|";
 			ИначеЕсли (СвойствоРус = "НачальнаяИнформация") и (ИмяКонтекстКлассаАнгл = "Process") Тогда
 				СтрРазделОбъявленияПеременных = СтрРазделОбъявленияПеременных + Символы.ПС +
@@ -5054,7 +5054,7 @@
 				|        {
 				|            get { return name; }
 				|            set { name = value; }
-				|        }				
+				|        }
 				|        
 				|";
 			ИначеЕсли (СвойствоРус = "Имя") и (ИмяКонтекстКлассаАнгл = "Type") Тогда
@@ -46045,61 +46045,37 @@
 		|        public bool EnableRaisingEvents
 		|        {
 		|            get { return M_FileSystemWatcher.EnableRaisingEvents; }
-		|            set
-		|            {
-		|                M_FileSystemWatcher.EnableRaisingEvents = value;
-		|                //System.Windows.Forms.Application.DoEvents();
-		|            }
+		|            set { M_FileSystemWatcher.EnableRaisingEvents = value; }
 		|        }
 		|
 		|        public string Filter
 		|        {
 		|            get { return M_FileSystemWatcher.Filter; }
-		|            set
-		|            {
-		|                M_FileSystemWatcher.Filter = value;
-		|                //System.Windows.Forms.Application.DoEvents();
-		|            }
+		|            set { M_FileSystemWatcher.Filter = value; }
 		|        }
 		|
 		|        public bool IncludeSubDirectories
 		|        {
-		|            get { return M_FileSystemWatcher.EnableRaisingEvents; }
-		|            set
-		|            {
-		|                M_FileSystemWatcher.EnableRaisingEvents = value;
-		|                //System.Windows.Forms.Application.DoEvents();
-		|            }
+		|            get { return M_FileSystemWatcher.IncludeSubdirectories; }
+		|            set { M_FileSystemWatcher.IncludeSubdirectories = value; }
 		|        }
 		|
 		|        public int InternalBufferSize
 		|        {
 		|            get { return M_FileSystemWatcher.InternalBufferSize; }
-		|            set
-		|            {
-		|                M_FileSystemWatcher.InternalBufferSize = value;
-		|                //System.Windows.Forms.Application.DoEvents();
-		|            }
+		|            set { M_FileSystemWatcher.InternalBufferSize = value; }
 		|        }
 		|
 		|        public int NotifyFilter
 		|        {
 		|            get { return (int)M_FileSystemWatcher.NotifyFilter; }
-		|            set
-		|            {
-		|                M_FileSystemWatcher.NotifyFilter = (System.IO.NotifyFilters)value;
-		|                //System.Windows.Forms.Application.DoEvents();
-		|            }
+		|            set { M_FileSystemWatcher.NotifyFilter = (System.IO.NotifyFilters)value; }
 		|        }
 		|
 		|        public string Path
 		|        {
 		|            get { return M_FileSystemWatcher.Path; }
-		|            set
-		|            {
-		|                M_FileSystemWatcher.Path = value;
-		|                //System.Windows.Forms.Application.DoEvents();
-		|            }
+		|            set { M_FileSystemWatcher.Path = value; }
 		|        }
 		|
 		|        public void M_FileSystemWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
@@ -60051,6 +60027,30 @@
 	||
 	||    }"";
 	|ПодстрокаЗамены = ""    }"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|
+	|ПодстрокаПоиска = ""Base_obj;
+	||        
+	||"";
+	|ПодстрокаЗамены = ""Base_obj;
+	||
+	||"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|
+	|ПодстрокаПоиска = ""}
+	||        
+	||        private string name;"";
+	|ПодстрокаЗамены = ""}
+	||
+	||        private string name;"";
+	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
+	|
+	|ПодстрокаПоиска = ""{
+	||        
+	||        private string name;"";
+	|ПодстрокаЗамены = ""{
+	||
+	||        private string name;"";
 	|Стр = СтрЗаменить(Стр, ПодстрокаПоиска, ПодстрокаЗамены);
 	|
 	|ТекстДок.УстановитьТекст(Стр);

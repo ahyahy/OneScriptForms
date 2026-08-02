@@ -82,8 +82,8 @@ namespace osf
         {
             get { return name; }
             set { name = value; }
-        }				
-        
+        }
+
         [ContextProperty("Начало", "Start")]
         public int Start
         {

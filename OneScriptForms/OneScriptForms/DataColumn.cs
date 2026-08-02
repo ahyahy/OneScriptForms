@@ -208,8 +208,8 @@ namespace osf
         {
             get { return name; }
             set { name = value; }
-        }				
-        
+        }
+
         [ContextProperty("ИмяКолонки", "ColumnName")]
         public string ColumnName
         {

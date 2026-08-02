@@ -184,8 +184,8 @@ namespace osf
         {
             get { return name; }
             set { name = value; }
-        }				
-        
+        }
+
         [ContextProperty("Индекс", "Index")]
         public int Index
         {
